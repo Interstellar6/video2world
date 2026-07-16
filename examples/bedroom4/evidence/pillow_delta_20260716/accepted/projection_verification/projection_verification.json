@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "status": "projection_checked",
+  "object_id": "sam3_pillow_01",
+  "point_count": 209479,
+  "interpretation": "One connected ensemble of three touching pillows; not three stable tracked instances.",
+  "quality_gate": {
+    "passed": true,
+    "metric": "minimum projected_point_mask_hit_ratio across checked frames",
+    "threshold": 0.95,
+    "value": 0.9734102225044038
+  },
+  "frames": [
+    {
+      "frame_id": "000020",
+      "projected_points": 209479,
+      "projected_point_mask_hit_ratio": 0.9818167930914315,
+      "dilated_projection_precision": 0.9286556603773585,
+      "dilated_projection_mask_recall": 0.9991805662023209,
+      "image": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/evidence/projection_verification/pillow_projection_000020.jpg"
+    },
+    {
+      "frame_id": "000040",
+      "projected_points": 209479,
+      "projected_point_mask_hit_ratio": 0.986275473913853,
+      "dilated_projection_precision": 0.9249448123620309,
+      "dilated_projection_mask_recall": 0.9999807533152415,
+      "image": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/evidence/projection_verification/pillow_projection_000040.jpg"
+    },
+    {
+      "frame_id": "000064",
+      "projected_points": 209479,
+      "projected_point_mask_hit_ratio": 0.9734102225044038,
+      "dilated_projection_precision": 0.9003720754241029,
+      "dilated_projection_mask_recall": 0.9999299631606224,
+      "image": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/evidence/projection_verification/pillow_projection_000064.jpg"
+    }
+  ],
+  "point_cloud_preview": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/evidence/projection_verification/pillow_point_cloud_pca.png"
+}

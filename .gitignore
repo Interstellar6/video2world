@@ -9,10 +9,22 @@ __pycache__/
 *.py[cod]
 node_modules/
 dist/
+test-results/
+playwright-report/
+blob-report/
+coverage/
+htmlcov/
+.coverage
 tmp/
 output/
 runs/
 web/public/worlds/
+examples/bedroom4/assets-local/
+examples/bedroom4/world.manifest.local.json
+examples/bedroom4/world.materialization.local.json
+examples/**/cognition/outputs.failed.*/
+examples/bedroom4/evidence/pillow_delta_20260716/raw/
+**/.video2world/
 *.log
 
 # Generated 3D assets stay local or remote and are materialized from manifests.
@@ -26,4 +38,23 @@ web/public/worlds/
 *.usd
 *.usdz
 *.urdf
+*.gltf
+*.bin
+*.fbx
+*.stl
+*.las
+*.laz
+*.pcd
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+checkpoints/
+weights/
+downloads/
 
+# Tiny committed browser fixture used by fresh-clone smoke and E2E tests.
+!web/public/test-fixtures/tiny-points.ply

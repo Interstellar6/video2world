@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "id": "sam3_pillow_01",
+  "name": "pillow ensemble",
+  "category": "pillow",
+  "aliases": [
+    "pillow",
+    "pillows",
+    "decorative pillow",
+    "throw pillow",
+    "枕头",
+    "抱枕"
+  ],
+  "instance_semantics": "three_touching_pillows_as_one_ensemble",
+  "coordinate_frame": "video2mesh_da3_world",
+  "units": "scene_scale_not_metric",
+  "aabb": {
+    "min": [
+      -5.087475118637085,
+      -2.10968847990036,
+      13.262138109207154
+    ],
+    "max": [
+      2.1751034355163563,
+      1.080388798713684,
+      17.341511363983148
+    ],
+    "center": [
+      -1.4561858415603641,
+      -0.5146498405933381,
+      15.301824736595151
+    ],
+    "extent": [
+      7.262578554153441,
+      3.1900772786140443,
+      4.079373254775994
+    ]
+  },
+  "obb": {
+    "center": [
+      -1.191687774141056,
+      -0.5471185846423691,
+      14.85173181059759
+    ],
+    "extent": [
+      7.721664659910433,
+      3.9389805459897005,
+      1.6348530048383298
+    ],
+    "transform": [
+      [-0.9235899344332016, -0.20722301411373012, -0.3225527172964068, -1.191687774141056],
+      [0.016685246347634353, -0.8622646007513806, 0.5061831297518531, -0.5471185846423691],
+      [-0.3830185838415594, 0.4621237720705171, 0.7998364731114251, 14.85173181059759],
+      [0.0, 0.0, 0.0, 1.0]
+    ]
+  },
+  "visual": {
+    "type": "point_cloud",
+    "path": "sam3_pillow_01.ply",
+    "point_count": 209479,
+    "sha256": "7590a8d9ae719e2af6d0017d9c1152772f99d726d414a5c4e84cb8ce017a1452"
+  },
+  "description": {
+    "short": "A connected group of three decorative pillows on the bed.",
+    "appearance": "Two large pale green patchwork pillows sit behind a smaller light square pillow.",
+    "source": "agent_visual_audit_of_real_sam3_evidence",
+    "evidence_frames": [
+      "000020",
+      "000040",
+      "000064"
+    ],
+    "official_vlm_caption_generated": false
+  },
+  "focus": {
+    "target": [
+      -1.4561858415603641,
+      -0.5146498405933381,
+      15.301824736595151
+    ],
+    "bounds_source": "aabb"
+  },
+  "interaction": {
+    "selectable": true,
+    "rotation_mode": "ensemble_yaw_about_aabb_center",
+    "double_click_spin_supported": true,
+    "collision_ready": false
+  },
+  "quality": {
+    "status": "accepted_for_visual_focus_and_rotation",
+    "projection_metric": "minimum projected_point_mask_hit_ratio",
+    "projection_threshold": 0.95,
+    "projection_value": 0.9734102225044038,
+    "checked_frames": [
+      "000020",
+      "000040",
+      "000064"
+    ]
+  },
+  "limitations": [
+    "The three touching pillows are not separated into stable per-pillow tracks.",
+    "Coordinates are not metric and must not be reported as meters.",
+    "No mesh, GLB, collider, TRELLIS asset, or robot collision QA exists for this entity.",
+    "The appearance text is a visual audit note, not an official Holi-Spatial VLM caption."
+  ]
+}

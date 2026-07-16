@@ -32,6 +32,8 @@ Video2World 不应成为把四个仓库复制到一起的巨型环境。更稳�
 
 正式资产采用四层表示：场景 3DGS 视觉层、场景 mesh 碰撞层、语义/scene graph sidecar、独立物体组件层。视觉 PLY 不参与 raycast；TSDF、GLB 或简化 proxy 负责地面、障碍、选择和碰撞；Gaussian 与 mesh 子节点必须共享一个 scene-space 父变换和 pivot。
 
+![Layered scene evidence](../assets/pipeline/06-semantic-gaussian.png "语义 Gaussian 是场景语义 sidecar 的可视化，不应和实例 identity、碰撞代理或独立物体生成混为一层")
+
 ## 官方方法边界
 
 | 组件 | 输入 | 输出 | Video2World 中的责任 | 不能误解成 |
@@ -52,12 +54,14 @@ EmbodiedGen V2 的论文目标比本项目当前实测更宽，包括 sim-ready 
 
 | 证据 | 已验证结果 | 当前边界 |
 |---|---|---|
-| Holi fresh bedroom_4 | 80 帧；PGSR 871,317 Gaussians；TSDF 694,773 vertices / 1,351,454 faces；13 个 3D records；701,608 个语义选中 Gaussians | 详细 VLM caption、官方 spatial QA 未跑；坐标未公制标定 |
-| EmbodiedGen auto completion | 9 个最终 Gaussian PLY；9 组 GLB/OBJ；文件和轻量几何 QA 通过 | 所有 GLB 非 watertight；缺少 scene transform、paired hash 和碰撞 QA；两扇 door 语义拒绝 |
+| Holi fresh bedroom_4 | 80 帧；PGSR 871,317 Gaussians；TSDF 694,773 vertices / 1,351,454 faces；13 个 3D records；701,608 个语义选中 Gaussians | 基础 fusion 实际 `min_votes=1`；详细 VLM caption、官方 spatial QA 未跑；raw Gaussian 数值健康为 unsafe；本地归档不是自包含 run bundle |
+| EmbodiedGen auto completion | 9 个最终 Gaussian PLY；9 组 GLB/OBJ；文件和轻量几何 QA 通过 | 资产实际引用较早 2026-07-13 Holi run，不是 07-14 fresh；所有 GLB 非 watertight；缺 scene transform 和碰撞 QA |
 | Web stable baseline `252a85c` | PGSR + TSDF 同帧展示、机器人 mesh 碰撞、相机与性能验证 | 无独立交互物体与 scene QA |
 | Web experiment `a5af3ae` | 4 个独立 Gaussian、静态场景 carve、bbox proxy、双击 360 度、机器人跳跃 | collider 仍是 box；无 GLB loader、caption、查询或动态物体碰撞 |
 
-用户点名的 Holi 权威样例保存在 Video2Mesh 的 `tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217`。其 fresh 结果只有 bed、ceiling、floor、lamp、nightstand、plant、wall 和 window 类别，没有独立 pillow。旧 GroundingDINO 结果曾把 pillow 合并为 bed 的开放词汇标签，但不能据此生成 pillow bbox；正式示例需要重新分割/lift，或者明确回答“未识别为独立实例”。
+用户点名的 Holi 权威样例保存在 Video2Mesh 的 `tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217`。其 fresh 结果只有 bed、ceiling、floor、lamp、nightstand、plant、wall 和 window 类别，没有独立 pillow。为避免沿用旧 GroundingDINO 中混入 bed 的 pillow 标签，本项目在不覆盖 fresh 的前提下执行了隔离 SAM3 delta；最终 209,479 点的三枕头 ensemble 通过三视角 `>=0.95` 回投门禁，可用于查询、focus 与 visual-only rotation，但还没有 GLB/collider。
+
+fresh 原始 PGSR/semantic PGSR 的 Gaussian 数值健康审计为 unsafe：scale p99 约 `0.6656`、elongation p99 约 `6.25e11`、rotation norm error p99 约 `0.858`。远端曾生成 viewer-safe SuperSplat 派生物，但当前本地 fresh 归档没有同步该文件。当前 Video2World carved raw PGSR 已在 Spark/Chrome 的真实页面与性能门禁中通过，这只证明本运行时可用，不等价于对任意 SuperSplat/Spark 版本都 viewer-safe；raw 与 viewer-safe 派生物必须在 manifest 中分开登记。
 
 ## 候选工程方案
 
@@ -136,6 +140,7 @@ video
 ## 风险与门禁
 
 - PGSR 长 splat、floaters 和场景边界拉丝只属于视觉质量问题，不能用激进清理破坏墙和地面。
+- raw PGSR 数值健康为 unsafe 时，不能直接宣称通用 viewer-safe；应同步或重建带独立 hash/报告的安全化派生物，raw 仅保留为训练/审计来源。
 - TSDF mesh 连续不等于 watertight 或可直接作为生产 collider；需要三角形规模、法线、退化面和接触测试。
 - TRELLIS 资产必须做语义、尺度、对齐、支撑面、pair provenance 和 collider 简化 QA。
 - pillow、被子和植物叶片属于 soft/deformable candidate；第一版只能用静态/kinematic proxy，不声称软体仿真。
@@ -144,4 +149,3 @@ video
 ## 接入结论
 
 推荐路线可以复用现有最强资产，同时把实验性结果限制在显式 candidate/gate 内。Video2World 的核心价值不是再实现一遍 PGSR 或 SAM3，而是提供从视频到可查询交互世界的可追溯编排、跨模型合同、场景坐标对齐、运行时分层与质量闭环。
-

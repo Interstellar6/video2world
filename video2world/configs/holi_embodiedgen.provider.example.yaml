@@ -1,0 +1,254 @@
+# This is a generic executable interface, not a claim of a verified arbitrary-
+# video run. Copy it outside the package, replace the driver variables with real
+# site wrappers, then run provider preflight. Bedroom4 remains a separate,
+# scene-specific adopted and verified sample.
+schema_version: "1.0"
+provider_id: holi-spatial-embodiedgen-v2-site
+scope: generic_interface
+verification_status: requires_site_configuration
+notes:
+  - Commands are argv arrays and never run through a shell.
+  - Each driver must call the real upstream model and write exactly the declared outputs.
+  - The historical Bedroom4 scripts are evidence for model entry points, not generic drivers.
+source_repositories:
+  holi_spatial: "Set the exact repository URL and commit used at the deployment site."
+  pgsr: "Set the exact PGSR repository URL and commit used at the deployment site."
+  video2mesh: "Set the exact Video2Mesh repository URL and commit used for 2D-to-3D fusion."
+  embodiedgen_v2: "Set the exact EmbodiedGen V2/TRELLIS repository URL and commit."
+  video2world: "Set the exact Video2World repository URL and commit for cognition, placement, bundle, and Web drivers."
+stages:
+  ingest:
+    provider: Holi-Spatial scene preparation
+    command:
+      - "${HOLI_PYTHON}"
+      - "${VIDEO2WORLD_INGEST_DRIVER}"
+      - --input-video
+      - "{input_video}"
+      - --scene-id
+      - "{scene_id}"
+      - --frames-manifest
+      - "{output_frames_manifest}"
+      - --cameras
+      - "{output_cameras}"
+    input_roles: [video]
+    output_roles: [frames_manifest, cameras]
+    requires:
+      holi_python: {path: "${HOLI_PYTHON}", kind: executable}
+      holi_root: {path: "${HOLI_ROOT}", kind: directory}
+      ingest_driver: {path: "${VIDEO2WORLD_INGEST_DRIVER}", kind: file}
+    lineage_evidence:
+      - Historical Bedroom4 preparation used prepare_holi_spatial_bedroom4_full_run.py; it is scene-specific and is not selected here automatically.
+  da3:
+    provider: Holi-Spatial / Depth Anything 3
+    command:
+      - "${DA3_PYTHON}"
+      - "${VIDEO2WORLD_DA3_DRIVER}"
+      - --frames-manifest
+      - "{input_frames_manifest}"
+      - --cameras
+      - "{input_cameras}"
+      - --depth-manifest
+      - "{output_depth_manifest}"
+      - --point-prior
+      - "{output_point_prior}"
+    input_roles: [frames_manifest, cameras]
+    output_roles: [depth_manifest, point_prior]
+    requires:
+      da3_python: {path: "${DA3_PYTHON}", kind: executable}
+      da3_root: {path: "${DA3_ROOT}", kind: directory}
+      da3_driver: {path: "${VIDEO2WORLD_DA3_DRIVER}", kind: file}
+  sam3:
+    provider: Holi-Spatial / SAM3 plus open-vocabulary caption adapter
+    command:
+      - "${SAM3_PYTHON}"
+      - "${VIDEO2WORLD_SAM3_DRIVER}"
+      - --frames-manifest
+      - "{input_frames_manifest}"
+      - --cameras
+      - "{input_cameras}"
+      - --masks-manifest
+      - "{output_masks_manifest}"
+      - --captions-manifest
+      - "{output_captions_manifest}"
+    input_roles: [frames_manifest, cameras]
+    output_roles: [masks_manifest, captions_manifest]
+    requires:
+      sam3_python: {path: "${SAM3_PYTHON}", kind: executable}
+      sam3_root: {path: "${SAM3_ROOT}", kind: directory}
+      sam3_checkpoint: {path: "${SAM3_CHECKPOINT}", kind: file, min_size_bytes: 1024}
+      sam3_driver: {path: "${VIDEO2WORLD_SAM3_DRIVER}", kind: file}
+    lineage_evidence:
+      - The fresh Bedroom4 run used real SAM3 per-frame inference and later 3D connectivity splitting; class masks did not carry stable cross-frame instance IDs.
+  pgsr:
+    provider: Holi-Spatial / PGSR
+    command:
+      - "${PGSR_PYTHON}"
+      - "${VIDEO2WORLD_PGSR_DRIVER}"
+      - --frames-manifest
+      - "{input_frames_manifest}"
+      - --cameras
+      - "{input_cameras}"
+      - --depth-manifest
+      - "{input_depth_manifest}"
+      - --point-prior
+      - "{input_point_prior}"
+      - --scene-gaussian
+      - "{output_scene_gaussian}"
+      - --scene-mesh
+      - "{output_scene_mesh}"
+    input_roles: [frames_manifest, cameras, depth_manifest, point_prior]
+    output_roles: [scene_gaussian, scene_mesh]
+    timeout_seconds: 172800
+    requires:
+      pgsr_python: {path: "${PGSR_PYTHON}", kind: executable}
+      pgsr_root: {path: "${PGSR_ROOT}", kind: directory}
+      pgsr_driver: {path: "${VIDEO2WORLD_PGSR_DRIVER}", kind: file}
+    lineage_evidence:
+      - The verified Bedroom4 scene used official PGSR 30k training followed by render.py TSDF fusion; finalize_holi_spatial_pgsr_run.sh remains bedroom_4-specific.
+  fusion:
+    provider: Video2Mesh 2D-to-3D projection and instance fusion
+    command:
+      - "${VIDEO2MESH_PYTHON}"
+      - "${VIDEO2WORLD_FUSION_DRIVER}"
+      - --scene-gaussian
+      - "{input_scene_gaussian}"
+      - --scene-mesh
+      - "{input_scene_mesh}"
+      - --masks-manifest
+      - "{input_masks_manifest}"
+      - --captions-manifest
+      - "{input_captions_manifest}"
+      - --object-clouds-manifest
+      - "{output_object_clouds_manifest}"
+      - --semantic-gaussian
+      - "{output_semantic_gaussian}"
+    input_roles: [scene_gaussian, scene_mesh, masks_manifest, captions_manifest]
+    output_roles: [object_clouds_manifest, semantic_gaussian]
+    requires:
+      video2mesh_python: {path: "${VIDEO2MESH_PYTHON}", kind: executable}
+      video2mesh_root: {path: "${VIDEO2MESH_ROOT}", kind: directory}
+      fusion_driver: {path: "${VIDEO2WORLD_FUSION_DRIVER}", kind: file}
+    lineage_evidence:
+      - The Bedroom4 fusion used z-buffer visibility filtering and per-Gaussian probability aggregation; its semantic PLY is category-semantic, not stable instance-semantic.
+  cognition:
+    provider: Video2World scene cognition and open-vocabulary QA facts
+    command:
+      - "${VIDEO2WORLD_PYTHON}"
+      - "${VIDEO2WORLD_COGNITION_DRIVER}"
+      - --masks-manifest
+      - "{input_masks_manifest}"
+      - --captions-manifest
+      - "{input_captions_manifest}"
+      - --object-clouds-manifest
+      - "{input_object_clouds_manifest}"
+      - --semantic-gaussian
+      - "{input_semantic_gaussian}"
+      - --object-facts
+      - "{output_object_facts}"
+    input_roles: [masks_manifest, captions_manifest, object_clouds_manifest, semantic_gaussian]
+    output_roles: [object_facts]
+    requires:
+      video2world_python: {path: "${VIDEO2WORLD_PYTHON}", kind: executable}
+      video2world_root: {path: "${VIDEO2WORLD_ROOT}", kind: directory}
+      cognition_driver: {path: "${VIDEO2WORLD_COGNITION_DRIVER}", kind: file}
+    lineage_evidence:
+      - The generic driver must preserve VLM model identity, evidence frames, confidence, and verified relation flags; it must not promote unsupported QA facts.
+  trellis:
+    provider: EmbodiedGen V2 / TRELLIS Gaussian and mesh export
+    command:
+      - "${TRELLIS_PYTHON}"
+      - "${VIDEO2WORLD_TRELLIS_DRIVER}"
+      - --masks-manifest
+      - "{input_masks_manifest}"
+      - --captions-manifest
+      - "{input_captions_manifest}"
+      - --object-clouds-manifest
+      - "{input_object_clouds_manifest}"
+      - --object-facts
+      - "{input_object_facts}"
+      - --object-assets-manifest
+      - "{output_object_assets_manifest}"
+    input_roles: [masks_manifest, captions_manifest, object_clouds_manifest, object_facts]
+    output_roles: [object_assets_manifest]
+    timeout_seconds: 172800
+    requires:
+      trellis_python: {path: "${TRELLIS_PYTHON}", kind: executable}
+      trellis_root: {path: "${TRELLIS_ROOT}", kind: directory}
+      trellis_weights: {path: "${TRELLIS_WEIGHTS}", kind: directory}
+      dino_source: {path: "${DINO_SOURCE}", kind: directory}
+      trellis_driver: {path: "${VIDEO2WORLD_TRELLIS_DRIVER}", kind: file}
+    lineage_evidence:
+      - Historical run_trellis_gaussian_batch.py and run_trellis_mesh_export.py are real model entry points but require a wrapper to aggregate per-object PLY/GLB/OBJ into object_assets_manifest.
+  placement:
+    provider: Video2World object alignment and collision proxy assembly
+    command:
+      - "${VIDEO2WORLD_PYTHON}"
+      - "${VIDEO2WORLD_PLACEMENT_DRIVER}"
+      - --scene-gaussian
+      - "{input_scene_gaussian}"
+      - --scene-mesh
+      - "{input_scene_mesh}"
+      - --object-clouds-manifest
+      - "{input_object_clouds_manifest}"
+      - --semantic-gaussian
+      - "{input_semantic_gaussian}"
+      - --object-assets-manifest
+      - "{input_object_assets_manifest}"
+      - --aligned-objects-manifest
+      - "{output_aligned_objects_manifest}"
+      - --collision-manifest
+      - "{output_collision_manifest}"
+    input_roles: [scene_gaussian, scene_mesh, object_clouds_manifest, semantic_gaussian, object_assets_manifest]
+    output_roles: [aligned_objects_manifest, collision_manifest]
+    requires:
+      video2world_python: {path: "${VIDEO2WORLD_PYTHON}", kind: executable}
+      video2world_root: {path: "${VIDEO2WORLD_ROOT}", kind: directory}
+      placement_driver: {path: "${VIDEO2WORLD_PLACEMENT_DRIVER}", kind: file}
+    lineage_evidence:
+      - Alignment must produce explicit scene-from-asset transforms; mesh or GLB collision proxies cannot be inferred from filenames alone.
+  bundle:
+    provider: Video2World canonical WorldManifest compiler and validator
+    command:
+      - "${VIDEO2WORLD_PYTHON}"
+      - "${VIDEO2WORLD_BUNDLE_DRIVER}"
+      - --scene-gaussian
+      - "{input_scene_gaussian}"
+      - --scene-mesh
+      - "{input_scene_mesh}"
+      - --object-clouds-manifest
+      - "{input_object_clouds_manifest}"
+      - --semantic-gaussian
+      - "{input_semantic_gaussian}"
+      - --object-facts
+      - "{input_object_facts}"
+      - --aligned-objects-manifest
+      - "{input_aligned_objects_manifest}"
+      - --collision-manifest
+      - "{input_collision_manifest}"
+      - --world-manifest
+      - "{output_world_manifest}"
+    input_roles: [scene_gaussian, scene_mesh, object_clouds_manifest, semantic_gaussian, object_facts, aligned_objects_manifest, collision_manifest]
+    output_roles: [world_manifest]
+    requires:
+      video2world_python: {path: "${VIDEO2WORLD_PYTHON}", kind: executable}
+      video2world_root: {path: "${VIDEO2WORLD_ROOT}", kind: directory}
+      bundle_driver: {path: "${VIDEO2WORLD_BUNDLE_DRIVER}", kind: file}
+    lineage_evidence:
+      - The driver must emit a validated canonical WorldManifest whose local asset sizes and SHA-256 values match disk; the outer world_bundle adapter verifies this again.
+  web:
+    provider: Video2World Web runtime bundle compiler
+    command:
+      - "${VIDEO2WORLD_PYTHON}"
+      - "${VIDEO2WORLD_WEB_DRIVER}"
+      - --world-manifest
+      - "{input_world_manifest}"
+      - --web-bundle-manifest
+      - "{output_web_bundle_manifest}"
+    input_roles: [world_manifest]
+    output_roles: [web_bundle_manifest]
+    requires:
+      video2world_python: {path: "${VIDEO2WORLD_PYTHON}", kind: executable}
+      video2world_root: {path: "${VIDEO2WORLD_ROOT}", kind: directory}
+      web_driver: {path: "${VIDEO2WORLD_WEB_DRIVER}", kind: file}
+    lineage_evidence:
+      - The generic compiler consumes the canonical WorldManifest; Bedroom4 legacy Web-asset adoption remains a migration-only sample, not this generic path.

@@ -1,0 +1,54 @@
+{
+  "caption_en": "Three pillows, two larger pale-green patchwork/floral pillows behind one smaller light square pillow, resting on the bed in front of a dark carved wooden headboard.",
+  "caption_zh": "三只枕头，两只较大的浅绿色拼接花卉枕头在一只较小的浅色正方形枕头后面，放在床前，床头板是深色的雕刻木制。",
+  "visible_attributes": {
+    "object_type": {
+      "en": "pillow",
+      "zh": "枕头"
+    },
+    "colors": {
+      "en": ["pale-green", "light square"],
+      "zh": ["浅绿色", "浅色正方形"]
+    },
+    "material_appearance": {
+      "en": ["fabric", "wood"],
+      "zh": ["布料", "木头"]
+    },
+    "geometry": {
+      "en": ["rectangular", "square"],
+      "zh": ["矩形", "正方形"]
+    },
+    "components": {
+      "en": ["cover", "filling"],
+      "zh": ["盖子", "填充物"]
+    },
+    "style_or_pattern": {
+      "en": ["patchwork/floral", "square"],
+      "zh": ["拼接花卉", "正方形"]
+    }
+  },
+  "spatial_notes": {
+    "intrinsic_orientation": {
+      "en": "lying down",
+      "zh": "平放"
+    },
+    "support_and_placement": {
+      "en": "on the bed",
+      "zh": "在床上"
+    },
+    "scene_relation": {
+      "en": "in front of a dark carved wooden headboard",
+      "zh": "在深色雕刻木制床头板前面"
+    },
+    "scale_caution": {
+      "en": "Metric scale cannot be inferred",
+      "zh": "无法推断度量尺度"
+    }
+  },
+  "uncertainties": [
+    {
+      "en": "The exact number of pillows is uncertain.",
+      "zh": "枕头的数量不确定。"
+    }
+  ]
+}

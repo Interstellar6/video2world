@@ -1,0 +1,924 @@
+{
+  "schema_version": 1,
+  "status": "completed_real_sam3_pillow_delta",
+  "scene_id": "bedroom_4",
+  "coordinate_frame": "source Video2Mesh/DA3 world frame",
+  "units": "scene_scale_not_metric",
+  "provenance": {
+    "base_run": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217",
+    "delta_run": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2",
+    "base_is_read_only": true,
+    "sam3_checkpoint": {
+      "path": "/data/zyx/workspace/third_party/holi-spatial/checkpoints/sam3/sam3.pt",
+      "bytes": 3450062241,
+      "sha256": "9999e2341ceef5e136daa386eecb55cb414446a00ac2b55eb2dfd2f7c3cf8c9e"
+    },
+    "da3_point_cloud": {
+      "path": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/pointcloud_da3.ply",
+      "bytes": 60000181,
+      "sha256": "df4c441d233416ef2853ed4c2775ba43a80db1448d0df130c9d414c4d31cb9b1"
+    },
+    "camera_validation": {
+      "frame_count": 80,
+      "max_world_to_camera_roundtrip_abs_error": 1.3322676295501878e-15,
+      "max_rotation_orthogonality_abs_error": 2.3386752490139884e-07,
+      "rotation_determinant_min": 0.9999998610452139,
+      "rotation_determinant_max": 1.0000002338891618,
+      "passed": true
+    }
+  },
+  "sam3": {
+    "prompt": "pillow",
+    "frame_count": 80,
+    "source_instance_mask_count": 223,
+    "instances_per_frame": {
+      "1": 2,
+      "2": 13,
+      "3": 65
+    },
+    "missing_images": [],
+    "score_min": 0.9065322875976562,
+    "score_mean": 0.9537408715406341,
+    "score_max": 0.9723717570304871,
+    "tracking_counts": {
+      "classes": 1,
+      "source_instance_masks": 223,
+      "merged_class_frame_masks": 80
+    },
+    "previews": [
+      {
+        "frame": "000064",
+        "score": 0.9723717570304871,
+        "bbox": [
+          520.74658203125,
+          387.1203918457031,
+          694.6969604492188,
+          548.5791015625
+        ],
+        "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000064/pillow_03.png",
+        "preview": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/evidence/previews/pillow_01_000064.jpg"
+      },
+      {
+        "frame": "000057",
+        "score": 0.9718163013458252,
+        "bbox": [
+          474.1661071777344,
+          386.7279052734375,
+          639.2874755859375,
+          544.5987548828125
+        ],
+        "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000057/pillow_03.png",
+        "preview": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/evidence/previews/pillow_02_000057.jpg"
+      },
+      {
+        "frame": "000065",
+        "score": 0.9715925455093384,
+        "bbox": [
+          539.2891845703125,
+          385.87786865234375,
+          712.6300659179688,
+          544.8870239257812
+        ],
+        "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000065/pillow_03.png",
+        "preview": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/evidence/previews/pillow_03_000065.jpg"
+      },
+      {
+        "frame": "000058",
+        "score": 0.9713951349258423,
+        "bbox": [
+          474.2763977050781,
+          388.7176208496094,
+          641.492431640625,
+          547.7611083984375
+        ],
+        "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000058/pillow_03.png",
+        "preview": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/evidence/previews/pillow_04_000058.jpg"
+      },
+      {
+        "frame": "000055",
+        "score": 0.9708517789840698,
+        "bbox": [
+          472.98046875,
+          379.904296875,
+          634.68359375,
+          534.041015625
+        ],
+        "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000055/pillow_03.png",
+        "preview": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/evidence/previews/pillow_05_000055.jpg"
+      },
+      {
+        "frame": "000067",
+        "score": 0.970328688621521,
+        "bbox": [
+          578.8228759765625,
+          377.1546936035156,
+          750.2860107421875,
+          532.7985229492188
+        ],
+        "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000067/pillow_02.png",
+        "preview": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/evidence/previews/pillow_06_000067.jpg"
+      }
+    ]
+  },
+  "lifting": {
+    "fusion": {
+      "mode": "probability",
+      "mask_threshold": 128,
+      "min_votes": 2,
+      "min_probability": 0.5,
+      "probability_scale": 255.0,
+      "occlusion_filter": true,
+      "depth_tolerance": 0.02,
+      "relative_depth_tolerance": 0.005,
+      "exclusive_objects": true,
+      "object_priority_categories": [],
+      "exclusive_assignment_strategy": "per_point_evidence_role_size_tiebreak",
+      "exclusivity_report": [
+        {
+          "object_id": "sam3_class_pillow",
+          "candidate_points": 211019,
+          "kept_points": 211019,
+          "removed_overlap_points": 0,
+          "priority": {
+            "category_rank": 0,
+            "role_rank": 0,
+            "role": "thing",
+            "category_priority_enabled": false,
+            "category_priority": null
+          },
+          "name": "pillow",
+          "category": "pillow"
+        }
+      ],
+      "notes": "Probability mode treats mask intensity / probability_scale as a per-pixel semantic probability, thresholds it by min_probability, and back-projects it to visible 3D points. This is a lightweight SVLGaussian-style baseline, not yet ray-to-Gaussian Top-N distance-weighted accumulation."
+    },
+    "class_point_count": 211019,
+    "class_bbox_3d": {
+      "min": [
+        -6.455447196960449,
+        -2.545661211013794,
+        -2.1720499992370605
+      ],
+      "max": [
+        2.586452007293701,
+        1.8417078256607056,
+        20.96977996826172
+      ],
+      "center": [
+        -1.934497594833374,
+        -0.3519766926765442,
+        9.398864984512329
+      ],
+      "size": [
+        9.04189920425415,
+        4.3873690366744995,
+        23.14182996749878
+      ]
+    },
+    "class_probability_summary": {
+      "selected_points": 211019,
+      "min_probability": 0.5,
+      "probability_scale": 255.0,
+      "mean_probability": 0.9557461142539978,
+      "max_probability": 0.9725490212440491,
+      "min_selected_probability": 0.9117647409439087,
+      "mean_probability_observations": 27.045796823982673
+    }
+  },
+  "postprocess": {
+    "instance_count": 1,
+    "instances": [
+      {
+        "object_id": "sam3_pillow_01",
+        "category": "pillow",
+        "point_count": 209479,
+        "bbox_3d": {
+          "min": [
+            -5.087475118637085,
+            -2.10968847990036,
+            13.262138109207154
+          ],
+          "max": [
+            2.1751034355163563,
+            1.080388798713684,
+            17.341511363983148
+          ],
+          "center": [
+            -1.4561858415603641,
+            -0.5146498405933381,
+            15.301824736595151
+          ],
+          "size": [
+            7.262578554153441,
+            3.1900772786140443,
+            4.079373254775994
+          ]
+        },
+        "obb_3d": {
+          "center": [
+            -1.191687774141056,
+            -0.5471185846423691,
+            14.85173181059759
+          ],
+          "extent": [
+            7.721664659910433,
+            3.9389805459897005,
+            1.6348530048383298
+          ],
+          "rotation": [
+            [
+              -0.9235899344332016,
+              -0.20722301411373012,
+              -0.3225527172964068
+            ],
+            [
+              0.016685246347634353,
+              -0.8622646007513806,
+              0.5061831297518531
+            ],
+            [
+              -0.3830185838415594,
+              0.4621237720705171,
+              0.7998364731114251
+            ]
+          ],
+          "transform": [
+            [
+              -0.9235899344332016,
+              -0.20722301411373012,
+              -0.3225527172964068,
+              -1.191687774141056
+            ],
+            [
+              0.016685246347634353,
+              -0.8622646007513806,
+              0.5061831297518531,
+              -0.5471185846423691
+            ],
+            [
+              -0.3830185838415594,
+              0.4621237720705171,
+              0.7998364731114251,
+              14.85173181059759
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "corners": [
+            [
+              3.0459249545229325,
+              0.6729167154164055,
+              14.76654653733142
+            ],
+            [
+              2.5185986754321337,
+              1.5004517260896928,
+              16.074161598776925
+            ],
+            [
+              2.229677533247601,
+              -2.7235267724388583,
+              16.586843085356566
+            ],
+            [
+              1.7023512541568016,
+              -1.8959917617655713,
+              17.894458146802073
+            ],
+            [
+              -4.085726802438914,
+              0.8017545924808331,
+              11.80900547439311
+            ],
+            [
+              -4.6130530815297135,
+              1.6292896031541204,
+              13.116620535838615
+            ],
+            [
+              -4.901974223714246,
+              -2.5946888953744307,
+              13.629302022418255
+            ],
+            [
+              -5.429300502805045,
+              -1.7671538847011434,
+              14.936917083863761
+            ]
+          ],
+          "method": "pca_quantile",
+          "quantile": 0.005
+        },
+        "probability_summary": {
+          "selected_points": 209479,
+          "mean_probability": 0.9558186531066895,
+          "max_probability": 0.9725490212440491,
+          "min_probability": 0.9137254953384399,
+          "mean_probability_observations": 27.12763093197886
+        },
+        "instance_split": {
+          "cluster_label": 10,
+          "point_count": 209479,
+          "support": 200223.9375,
+          "passes_minimum": true
+        },
+        "point_indices": {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/3d_instances/sam3_pillow_01/point_indices.npy",
+          "bytes": 1675960,
+          "sha256": "0eb45b89457bca6bcf6057ba872cd154a06186486f8015d736b3a275678825d1"
+        },
+        "object_cloud": {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/simulator_assets/object_masks_3d/sam3_pillow_01.ply",
+          "bytes": 8534922,
+          "sha256": "7590a8d9ae719e2af6d0017d9c1152772f99d726d414a5c4e84cb8ce017a1452"
+        }
+      }
+    ],
+    "class_reports": {
+      "sam3_class_pillow": {
+        "category": "pillow",
+        "source_point_count": 211019,
+        "instances": [
+          "sam3_pillow_01"
+        ],
+        "split": {
+          "input_points": 211019,
+          "voxel_count": 100863,
+          "voxel_size": 0.04,
+          "dbscan_eps": 0.12,
+          "dbscan_min_voxel_neighbors": 3,
+          "noise_voxels": 716,
+          "noise_points": 731,
+          "raw_cluster_count": 86,
+          "method": "voxel_dbscan_then_probability_support_rank",
+          "minimum_cluster_points": 2111,
+          "groundingdino_instance_cap": 3,
+          "applied_instance_cap": 3,
+          "instance_cap_override": null,
+          "candidate_clusters": [
+            {
+              "cluster_label": 10,
+              "point_count": 209479,
+              "support": 200223.9375,
+              "passes_minimum": true
+            },
+            {
+              "cluster_label": 20,
+              "point_count": 364,
+              "support": 337.2158203125,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 0,
+              "point_count": 74,
+              "support": 70.90902709960938,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 27,
+              "point_count": 10,
+              "support": 9.515992164611816,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 40,
+              "point_count": 9,
+              "support": 8.572944641113281,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 65,
+              "point_count": 8,
+              "support": 7.673104763031006,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 68,
+              "point_count": 8,
+              "support": 7.6666669845581055,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 83,
+              "point_count": 8,
+              "support": 7.663398742675781,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 1,
+              "point_count": 8,
+              "support": 7.659477233886719,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 14,
+              "point_count": 8,
+              "support": 7.46013069152832,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 79,
+              "point_count": 7,
+              "support": 6.7225494384765625,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 62,
+              "point_count": 7,
+              "support": 6.718300819396973,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 82,
+              "point_count": 7,
+              "support": 6.7175164222717285,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 39,
+              "point_count": 7,
+              "support": 6.716993808746338,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 70,
+              "point_count": 7,
+              "support": 6.713725566864014,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 19,
+              "point_count": 7,
+              "support": 6.620261192321777,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 22,
+              "point_count": 7,
+              "support": 6.505882740020752,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 24,
+              "point_count": 7,
+              "support": 6.4941182136535645,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 63,
+              "point_count": 6,
+              "support": 5.764052391052246,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 77,
+              "point_count": 6,
+              "support": 5.760130882263184,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 29,
+              "point_count": 6,
+              "support": 5.758170127868652,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 71,
+              "point_count": 6,
+              "support": 5.754901885986328,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 17,
+              "point_count": 6,
+              "support": 5.709804058074951,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 3,
+              "point_count": 6,
+              "support": 5.639215469360352,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 58,
+              "point_count": 5,
+              "support": 4.803921699523926,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 49,
+              "point_count": 5,
+              "support": 4.8019609451293945,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 51,
+              "point_count": 5,
+              "support": 4.792810440063477,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 57,
+              "point_count": 5,
+              "support": 4.789846420288086,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 11,
+              "point_count": 5,
+              "support": 4.782614231109619,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 33,
+              "point_count": 5,
+              "support": 4.7521796226501465,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 16,
+              "point_count": 5,
+              "support": 4.739869117736816,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 44,
+              "point_count": 5,
+              "support": 4.719013690948486,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 21,
+              "point_count": 5,
+              "support": 4.6294121742248535,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 69,
+              "point_count": 4,
+              "support": 3.8405227661132812,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 74,
+              "point_count": 4,
+              "support": 3.8379085063934326,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 48,
+              "point_count": 4,
+              "support": 3.8372550010681152,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 81,
+              "point_count": 4,
+              "support": 3.8366012573242188,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 61,
+              "point_count": 4,
+              "support": 3.835294246673584,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 50,
+              "point_count": 4,
+              "support": 3.8318769931793213,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 54,
+              "point_count": 4,
+              "support": 3.8318769931793213,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 76,
+              "point_count": 4,
+              "support": 3.8300654888153076,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 53,
+              "point_count": 4,
+              "support": 3.8271706104278564,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 18,
+              "point_count": 4,
+              "support": 3.8176472187042236,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 42,
+              "point_count": 4,
+              "support": 3.8101978302001953,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 43,
+              "point_count": 4,
+              "support": 3.8101978302001953,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 45,
+              "point_count": 4,
+              "support": 3.8101978302001953,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 7,
+              "point_count": 4,
+              "support": 3.8084967136383057,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 26,
+              "point_count": 4,
+              "support": 3.801389455795288,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 13,
+              "point_count": 4,
+              "support": 3.752941131591797,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 46,
+              "point_count": 3,
+              "support": 2.8968300819396973,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 52,
+              "point_count": 3,
+              "support": 2.880392074584961,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 84,
+              "point_count": 3,
+              "support": 2.880392074584961,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 36,
+              "point_count": 3,
+              "support": 2.8797385692596436,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 59,
+              "point_count": 3,
+              "support": 2.879085063934326,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 73,
+              "point_count": 3,
+              "support": 2.878758430480957,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 64,
+              "point_count": 3,
+              "support": 2.877516508102417,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 78,
+              "point_count": 3,
+              "support": 2.877450942993164,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 72,
+              "point_count": 3,
+              "support": 2.8764705657958984,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 85,
+              "point_count": 3,
+              "support": 2.875817060470581,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 80,
+              "point_count": 3,
+              "support": 2.8755555152893066,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 35,
+              "point_count": 3,
+              "support": 2.874509811401367,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 75,
+              "point_count": 3,
+              "support": 2.874509811401367,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 55,
+              "point_count": 3,
+              "support": 2.8739078044891357,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 56,
+              "point_count": 3,
+              "support": 2.8739078044891357,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 60,
+              "point_count": 3,
+              "support": 2.8739078044891357,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 67,
+              "point_count": 3,
+              "support": 2.87385630607605,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 66,
+              "point_count": 3,
+              "support": 2.8735294342041016,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 2,
+              "point_count": 3,
+              "support": 2.8660130500793457,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 5,
+              "point_count": 3,
+              "support": 2.862091541290283,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 28,
+              "point_count": 3,
+              "support": 2.86082124710083,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 4,
+              "point_count": 3,
+              "support": 2.858823537826538,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 15,
+              "point_count": 3,
+              "support": 2.858823537826538,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 9,
+              "point_count": 3,
+              "support": 2.8581700325012207,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 31,
+              "point_count": 3,
+              "support": 2.8580801486968994,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 32,
+              "point_count": 3,
+              "support": 2.857792377471924,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 34,
+              "point_count": 3,
+              "support": 2.8576483726501465,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 37,
+              "point_count": 3,
+              "support": 2.8576483726501465,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 38,
+              "point_count": 3,
+              "support": 2.8576483726501465,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 41,
+              "point_count": 3,
+              "support": 2.8576483726501465,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 47,
+              "point_count": 3,
+              "support": 2.8576483726501465,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 6,
+              "point_count": 3,
+              "support": 2.855555534362793,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 12,
+              "point_count": 3,
+              "support": 2.850980281829834,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 8,
+              "point_count": 3,
+              "support": 2.8503267765045166,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 30,
+              "point_count": 3,
+              "support": 2.8413867950439453,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 23,
+              "point_count": 3,
+              "support": 2.7882351875305176,
+              "passes_minimum": false
+            },
+            {
+              "cluster_label": 25,
+              "point_count": 3,
+              "support": 2.767843246459961,
+              "passes_minimum": false
+            }
+          ],
+          "kept_cluster_count": 1
+        }
+      }
+    },
+    "holi_bbox_count": 1,
+    "limitations": [
+      "SAM3 produces class-level masks without stable cross-frame instance IDs.",
+      "Instances are split by Video2Mesh voxel DBSCAN and are not official Holi-Spatial instance merging.",
+      "Coordinates remain scene-scale; distance values must not be labeled meters until calibrated.",
+      "Detailed appearance captioning and QA generation were not run in this delta."
+    ]
+  },
+  "files": {
+    "mask_index": {
+      "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/sam3_masks/bedroom_4/mask_index.json",
+      "bytes": 229738,
+      "sha256": "83ebbce43e4e179b9c14cfd801e3a0ce58291611e3589b89bf1377a232d66770"
+    },
+    "tracking_manifest": {
+      "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/tracking_manifest.json",
+      "bytes": 39387,
+      "sha256": "134bafb644cf317e827eeaf738089a34ac6c5954569e83ea3b5dbdc6cb111b93"
+    },
+    "class_object_masks": {
+      "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/3d/object_masks.json",
+      "bytes": 54176,
+      "sha256": "2cdb94a7a84ef6247d28ae3fa9a68e51365c4241482474c50a32eb0487381db4"
+    },
+    "instance_object_masks": {
+      "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/3d_instances/object_masks.json",
+      "bytes": 71798,
+      "sha256": "1ac030f1ec5d00c1daf079f022dd8032ccdd627df29c04f1a778f9c6e49a4b3c"
+    },
+    "holi_bbox": {
+      "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/output_scannetppv2_new/bedroom_4.json",
+      "bytes": 1930,
+      "sha256": "bfc9bf370545cbea6c83169e66f83020e1ce9e76e25ef9b7c676280903cfaf18"
+    },
+    "object_cloud_index": {
+      "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/simulator_assets/object_masks_3d/object_mask_clouds.json",
+      "bytes": 1137,
+      "sha256": "b67eb13bea26d2a056e23e2628ba8d290e8334aa8fd3380cccd55d279578c665"
+    }
+  }
+}

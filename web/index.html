@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Video2World · Interactive 3D Scene</title>
+    <meta
+      name="description"
+      content="Video2World interactive scene: Gaussian visual assets, mesh collision, object interaction, and grounded scene questions."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <canvas id="sceneCanvas" tabindex="0" aria-label="PGSR 3DGS visual layer with TSDF mesh collider proxy"></canvas>
+    <div class="reticle" aria-hidden="true"></div>
+
+    <nav class="top-nav" aria-label="页面导航">
+      <a class="brand" href="../">
+        <span class="brand-mark">V2W</span>
+        <span>
+          <strong>Video2World</strong>
+          <em>Interactive Gaussian world</em>
+        </span>
+      </a>
+      <a class="nav-link" href="../">返回项目</a>
+    </nav>
+
+    <div class="mode-chip" id="modeChip">Loading real assets...</div>
+
+    <aside class="viewport-gizmo" aria-label="Viewport navigation controls">
+      <button class="gizmo-ball rotate" data-viewport-gizmo="rotate" type="button" title="Drag to rotate view">
+        <span>Rotate</span>
+      </button>
+      <button class="gizmo-ball pan" data-viewport-gizmo="pan" type="button" title="Drag to pan view">
+        <span>Pan</span>
+      </button>
+    </aside>
+
+    <section class="hud" aria-label="Demo controls">
+      <div class="panel status-card">
+        <h1>视觉代理 3DGS + 碰撞代理 Mesh</h1>
+        <p>
+          静态视觉层保留未替换的 PGSR Gaussians；已识别实例由独立 TRELLIS Gaussian 或 RGB 点云视觉组件替换。只有通过门禁的 mesh/glb 进入碰撞世界，视觉组件共享选择与变换。
+        </p>
+        <form id="sceneQaForm" class="scene-qa" role="search">
+          <label for="sceneQaInput">场景问答</label>
+          <div class="scene-qa-row">
+            <input
+              id="sceneQaInput"
+              name="question"
+              type="search"
+              autocomplete="off"
+              placeholder="植物在哪里？"
+            />
+            <button id="sceneQaSubmit" type="submit">查询</button>
+          </div>
+          <div id="sceneQaAnswer" class="scene-qa-answer" role="status" aria-live="polite" data-status="idle"></div>
+          <div id="sceneQaCandidates" class="scene-qa-candidates" aria-label="匹配的场景物体"></div>
+        </form>
+        <div class="metrics">
+          <div class="metric"><strong id="visualMetric">loading</strong><span>visual primitives</span></div>
+          <div class="metric"><strong id="meshMetric">loading</strong><span>collider faces</span></div>
+          <div class="metric"><strong id="hitMetric">none</strong><span>ray hit</span></div>
+          <div class="metric"><strong id="semanticMetric">none</strong><span>object id</span></div>
+          <div class="metric"><strong id="fpsMetric">0</strong><span>fps</span></div>
+          <div class="metric"><strong id="robotMetric">loading</strong><span>robot</span></div>
+          <div class="metric"><strong id="objectMetric">0</strong><span>visual objects</span></div>
+          <div class="metric"><strong id="objectColliderMetric">0</strong><span>object colliders</span></div>
+        </div>
+      </div>
+
+      <div class="panel controls">
+        <div class="control-row">
+          <button id="toggleVisual" class="is-active" type="button">Visual 3DGS</button>
+          <button id="toggleStaticVisual" class="is-active" type="button">Static Scene On</button>
+          <button id="toggleCollider" type="button">Collider hidden</button>
+          <button id="toggleSemantic" class="is-active" type="button">Semantic color</button>
+          <button id="toggleCameraMode" type="button">Orbit Camera</button>
+          <button id="toggleRobot" class="is-active" type="button">Robot</button>
+          <button id="toggleRobotFollow" type="button">Follow Off</button>
+          <button id="toggleRobotCollision" class="is-active" type="button">Collision On</button>
+          <button id="toggleQuality" type="button">Balanced</button>
+          <button id="toggleObjectProxies" type="button">Object Proxies Off</button>
+          <button id="toggleObjectSolo" type="button">Solo Object Off</button>
+        </div>
+        <div class="control-row">
+          <button id="interiorView" type="button">Cycle Interior</button>
+          <button id="respawnRobot" type="button">Respawn Robot</button>
+          <button id="resetView" type="button">Reset View</button>
+          <button id="focusObject" type="button">Cycle Object</button>
+        </div>
+        <div class="control-row camera-preset-row" aria-label="Camera preset controls">
+          <button data-camera-preset="reference" type="button">Reference</button>
+          <button data-camera-preset="doorway" type="button">Doorway</button>
+          <button data-camera-preset="front" type="button">Front</button>
+          <button data-camera-preset="back" type="button">Back</button>
+          <button data-camera-preset="left" type="button">Left</button>
+          <button data-camera-preset="right" type="button">Right</button>
+          <button data-camera-preset="top" type="button">Top</button>
+          <button data-camera-preset="robot" type="button">Robot Cam</button>
+        </div>
+        <div class="control-row camera-orbit-row" aria-label="Camera orbit controls">
+          <button data-camera-orbit="left" type="button">View ←</button>
+          <button data-camera-orbit="right" type="button">View →</button>
+          <button data-camera-orbit="up" type="button">View ↑</button>
+          <button data-camera-orbit="down" type="button">View ↓</button>
+          <button data-camera-orbit="in" type="button">Zoom In</button>
+          <button data-camera-orbit="out" type="button">Zoom Out</button>
+          <button data-camera-orbit="advance" type="button">Move In</button>
+          <button data-camera-orbit="retreat" type="button">Move Out</button>
+        </div>
+        <div class="control-row robot-step-row" aria-label="Robot step controls">
+          <button data-robot-step="left" type="button">←</button>
+          <button data-robot-step="forward" type="button">↑</button>
+          <button data-robot-step="back" type="button">↓</button>
+          <button data-robot-step="right" type="button">→</button>
+          <button id="jumpRobot" class="jump-button" type="button">Jump</button>
+        </div>
+        <div class="control-row align-row" aria-label="Viewer alignment controls">
+          <span id="alignmentReadout" class="control-readout">default 0.00 0.00 0.00 · manual 0.00 0.00 0.00 · yaw 0.0°</span>
+          <button data-align-nudge="x:-1" type="button">X-</button>
+          <button data-align-nudge="x:1" type="button">X+</button>
+          <button data-align-nudge="y:-1" type="button">Y-</button>
+          <button data-align-nudge="y:1" type="button">Y+</button>
+          <button data-align-nudge="z:-1" type="button">Z-</button>
+          <button data-align-nudge="z:1" type="button">Z+</button>
+          <button data-align-rotate="x:-1" type="button">Pitch-</button>
+          <button data-align-rotate="x:1" type="button">Pitch+</button>
+          <button data-align-rotate="y:-1" type="button">Yaw-</button>
+          <button data-align-rotate="y:1" type="button">Yaw+</button>
+          <button data-align-rotate="z:-1" type="button">Roll-</button>
+          <button data-align-rotate="z:1" type="button">Roll+</button>
+          <button id="resetAlignment" type="button">Align Reset</button>
+        </div>
+        <div class="legend">
+          <span><i class="swatch visual"></i> PGSR Gaussian PLY：Spark 3DGS renderer，关闭视觉层 raycast</span>
+          <span><i class="swatch mesh"></i> TSDF mesh PLY：Mesh collider proxy，保留原始顶点色；当前资产不含语义字段</span>
+          <span><i class="swatch robot"></i> 小机器人：默认启用 mesh 地面与障碍碰撞，Shift+单击 collider 可重生</span>
+          <span><i class="swatch ray"></i> 首屏背面呈现是 viewer 级同步 yaw 180°，3DGS 与 TSDF mesh 使用 PGSR 原生 identity 配准</span>
+          <span><i class="swatch object"></i> 可交互组件：独立 Gaussian 与 robust-bounds mesh proxy 共享 pivot 和 360° 变换</span>
+        </div>
+      </div>
+    </section>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./visual-physics-proxy.js"></script>
+  </body>
+</html>

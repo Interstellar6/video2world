@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "object_id": "sam3_plant_01",
+  "category": "plant",
+  "status": "passed",
+  "description": {
+    "caption_en": "A dense rounded topiary-like plant has many small oval dark-green leaves with lighter edges, multiple woody-looking stems, and a smooth off-white cylindrical pot.",
+    "caption_zh": "这株浓密的圆冠造型植物由许多带浅色叶缘的深绿色小椭圆叶、数根木质观感枝干和一个光滑的灰白色圆柱形花盆组成。",
+    "visible_attributes": {
+      "object_type": {
+        "en": "potted topiary-like plant",
+        "zh": "盆栽圆冠造型植物"
+      },
+      "colors": {
+        "en": [
+          "dark green leaves",
+          "lighter leaf edges",
+          "off-white pot"
+        ],
+        "zh": [
+          "深绿色叶片",
+          "浅色叶缘",
+          "灰白色花盆"
+        ]
+      },
+      "material_appearance": {
+        "en": [
+          "matte leaf surfaces",
+          "woody-looking stems",
+          "smooth off-white pot"
+        ],
+        "zh": [
+          "哑光叶面",
+          "木质观感枝干",
+          "光滑灰白色花盆"
+        ]
+      },
+      "geometry": {
+        "en": [
+          "dense rounded crown",
+          "small oval leaves",
+          "cylindrical pot"
+        ],
+        "zh": [
+          "浓密圆形冠幅",
+          "小椭圆叶片",
+          "圆柱形花盆"
+        ]
+      },
+      "components": {
+        "en": [
+          "many leaves",
+          "multiple stems",
+          "pot"
+        ],
+        "zh": [
+          "大量叶片",
+          "数根枝干",
+          "花盆"
+        ]
+      },
+      "style_or_pattern": {
+        "en": [
+          "lighter leaf edging",
+          "compact topiary-like silhouette"
+        ],
+        "zh": [
+          "浅色叶缘",
+          "紧凑的圆冠造型轮廓"
+        ]
+      }
+    },
+    "spatial_notes": {
+      "intrinsic_orientation": {
+        "en": "upright crown above the pot",
+        "zh": "冠幅直立于花盆上方"
+      },
+      "support_and_placement": {
+        "en": "Visible stems emerge from and are supported within the pot.",
+        "zh": "可见枝干从花盆内部伸出并由花盆承托。"
+      },
+      "scene_relation": {
+        "en": "Scene position cannot be inferred from this isolated reference.",
+        "zh": "无法从这张孤立参考图推断场景位置。"
+      },
+      "scale_caution": {
+        "en": "Metric scale cannot be inferred from the visual evidence.",
+        "zh": "无法从视觉证据推断度量尺度。"
+      }
+    },
+    "uncertainties": [
+      {
+        "en": "The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+        "zh": "无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+      }
+    ]
+  },
+  "model_description": {
+    "caption_en": "A dense, rounded topiary plant with dark green leaves and lighter edges, growing in a beige pot.",
+    "caption_zh": "一株密集的圆顶灌木，叶片呈深绿色，边缘较浅，生长在米色花盆中。",
+    "visible_attributes": {
+      "object_type": {
+        "en": "topiary plant",
+        "zh": "灌木"
+      },
+      "colors": {
+        "en": [
+          "dark green",
+          "lighter edges"
+        ],
+        "zh": [
+          "深绿色",
+          "较浅的边缘"
+        ]
+      },
+      "material_appearance": {
+        "en": [
+          "woody-looking stems",
+          "beige pot"
+        ],
+        "zh": [
+          "多木质茎",
+          "米色花盆"
+        ]
+      },
+      "geometry": {
+        "en": "rounded",
+        "zh": "圆顶形"
+      },
+      "components": {
+        "en": [
+          "multiple woody-looking stems",
+          "beige pot"
+        ],
+        "zh": [
+          "多木质茎",
+          "米色花盆"
+        ]
+      },
+      "style_or_pattern": {
+        "en": "dense, rounded topiary",
+        "zh": "密集的圆顶灌木"
+      }
+    },
+    "spatial_notes": {
+      "intrinsic_orientation": {
+        "en": "isolated reference",
+        "zh": "孤立参考"
+      },
+      "support_and_placement": {
+        "en": "growing in a beige pot",
+        "zh": "生长在米色花盆中"
+      },
+      "scene_relation": {
+        "en": "Scene position cannot be inferred from this isolated reference.",
+        "zh": "无法从这张孤立参考图推断场景位置。"
+      },
+      "scale_caution": {
+        "en": "Metric scale cannot be inferred.",
+        "zh": "无法推断度量尺度。"
+      }
+    },
+    "uncertainties": [
+      {
+        "en": "The plant species cannot be uniquely identified.",
+        "zh": "无法确定植物种类。"
+      }
+    ]
+  },
+  "spatial_constraints": {
+    "scene_position_inferable": false,
+    "constraint": "The isolated RGBA reference contains no scene context. Do not infer room location, neighboring objects, metric size, or world orientation.",
+    "metric_scale_available": false
+  },
+  "quality": {
+    "issues": [],
+    "json_parsed": true,
+    "deterministic_normalizations": [
+      "scalar_to_array:visible_attributes.geometry.en",
+      "scalar_to_array:visible_attributes.geometry.zh",
+      "scalar_to_array:visible_attributes.style_or_pattern.en",
+      "scalar_to_array:visible_attributes.style_or_pattern.zh",
+      "policy_canonicalized:spatial_notes.scale_caution",
+      "agent_visual_audit_correction:caption_en",
+      "agent_visual_audit_correction:caption_zh",
+      "agent_visual_audit_correction:visible_attributes.object_type.en",
+      "agent_visual_audit_correction:visible_attributes.object_type.zh",
+      "agent_visual_audit_correction:visible_attributes.colors.en",
+      "agent_visual_audit_correction:visible_attributes.colors.zh",
+      "agent_visual_audit_correction:visible_attributes.material_appearance.en",
+      "agent_visual_audit_correction:visible_attributes.material_appearance.zh",
+      "agent_visual_audit_correction:visible_attributes.geometry.en",
+      "agent_visual_audit_correction:visible_attributes.geometry.zh",
+      "agent_visual_audit_correction:visible_attributes.components.en",
+      "agent_visual_audit_correction:visible_attributes.components.zh",
+      "agent_visual_audit_correction:visible_attributes.style_or_pattern.en",
+      "agent_visual_audit_correction:visible_attributes.style_or_pattern.zh",
+      "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.en",
+      "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.zh",
+      "agent_visual_audit_correction:spatial_notes.support_and_placement.en",
+      "agent_visual_audit_correction:spatial_notes.support_and_placement.zh",
+      "agent_visual_audit_correction:uncertainties"
+    ],
+    "final_description_method": "local_vlm_generation_then_explicit_schema_and_agent_visual_audit_corrections",
+    "agent_visual_audit_checklist": "Verify a dense rounded topiary-like crown of many small oval dark-green leaves with lighter edges, multiple woody-looking stems, and an off-white cylindrical pot."
+  },
+  "provenance": {
+    "model_repo": "Qwen/Qwen2.5-VL-3B-Instruct",
+    "model_revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+    "model_dir": "/root/autodl-tmp/qwen2.5-vl-3b-instruct",
+    "prompt_path": "/root/video2world_cognition_20260716/outputs/prompts/sam3_plant_01.txt",
+    "prompt_artifact_relative_path": "outputs/prompts/sam3_plant_01.txt",
+    "prompt_sha256": "73a3488358ff5aad8cd58169e5c1b952f3cb1cf10d7c7427b35c795106ecd599",
+    "raw_output_path": "/root/video2world_cognition_20260716/outputs/raw/sam3_plant_01.txt",
+    "raw_output_artifact_relative_path": "outputs/raw/sam3_plant_01.txt",
+    "raw_output_sha256": "f94a4aaac26e6089d86733572d333ecf04cd10ad148da6ff040318943504d20f",
+    "evidence_kind": "embodiedgen_prompted_reference_rgba",
+    "evidence": {
+      "rgba": {
+        "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png",
+        "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_01_prompted_reference_rgba.png",
+        "bytes": 1289825,
+        "sha256": "349771ac6dad558297d5901a57f20230050828523a85f8ee2d4c0de8347584b9",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA",
+        "artifact_relative_path": "inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png"
+      }
+    },
+    "vl_images": [
+      {
+        "role": "neutral_background_composite",
+        "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_plant_01.png",
+        "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png",
+        "bytes": 1068921,
+        "sha256": "fa54a182e508345d07bfeae910930dbe68750f11d40bd8b9ea165f83999af47a",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "artifact_relative_path": "inputs/vl_inputs/sam3_plant_01.png",
+        "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+        "derived_from": [
+          {
+            "role": "rgba_reference",
+            "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png",
+            "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_01_prompted_reference_rgba.png",
+            "bytes": 1289825,
+            "sha256": "349771ac6dad558297d5901a57f20230050828523a85f8ee2d4c0de8347584b9",
+            "width": 1254,
+            "height": 1254,
+            "mode": "RGBA",
+            "artifact_relative_path": "inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png"
+          }
+        ]
+      }
+    ],
+    "transformers_version": "4.57.3",
+    "torch_version": "2.5.1+cu124",
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "device": "NVIDIA GeForce RTX 3090",
+    "processor_class": "Qwen2_5_VLProcessor",
+    "image_processor_class": "Qwen2VLImageProcessor",
+    "use_fast_image_processor": false,
+    "generation": {
+      "do_sample": false,
+      "max_new_tokens": 900,
+      "repetition_penalty": 1.03
+    }
+  },
+  "description_evidence": {
+    "short": {
+      "en": "A dense rounded topiary-like plant has many small oval dark-green leaves with lighter edges, multiple woody-looking stems, and a smooth off-white cylindrical pot.",
+      "zh": "这株浓密的圆冠造型植物由许多带浅色叶缘的深绿色小椭圆叶、数根木质观感枝干和一个光滑的灰白色圆柱形花盆组成。"
+    },
+    "appearance": {
+      "en": "A dense rounded topiary-like plant has many small oval dark-green leaves with lighter edges, multiple woody-looking stems, and a smooth off-white cylindrical pot.",
+      "zh": "这株浓密的圆冠造型植物由许多带浅色叶缘的深绿色小椭圆叶、数根木质观感枝干和一个光滑的灰白色圆柱形花盆组成。"
+    },
+    "detailed": {
+      "en": "Colors: dark green leaves, lighter leaf edges, off-white pot; Material appearance: matte leaf surfaces, woody-looking stems, smooth off-white pot; Geometry: dense rounded crown, small oval leaves, cylindrical pot; Visible components: many leaves, multiple stems, pot; Style or pattern: lighter leaf edging, compact topiary-like silhouette",
+      "zh": "颜色: 深绿色叶片, 浅色叶缘, 灰白色花盆; 材质观感: 哑光叶面, 木质观感枝干, 光滑灰白色花盆; 几何形态: 浓密圆形冠幅, 小椭圆叶片, 圆柱形花盆; 可见组件: 大量叶片, 数根枝干, 花盆; 风格或纹理: 浅色叶缘, 紧凑的圆冠造型轮廓"
+    },
+    "location": {
+      "en": "Visible stems emerge from and are supported within the pot. Scene position cannot be inferred from this isolated reference.",
+      "zh": "可见枝干从花盆内部伸出并由花盆承托。 无法从这张孤立参考图推断场景位置。"
+    },
+    "fidelity_caveat": {
+      "en": "Metric scale cannot be inferred from the visual evidence. The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+      "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+    },
+    "provider": "local_huggingface_transformers+agent_visual_audit",
+    "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+    "confidence": null,
+    "evidence_frames": []
+  }
+}

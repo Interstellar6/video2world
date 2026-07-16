@@ -1,0 +1,634 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "version": "bedroom4-production-20260716",
+  "worldDir": "web-bundle://bedroom4/",
+  "manifest": "web-bundle://bedroom4/manifest.json",
+  "manifestSha256": "e0702f76e144dbf4bcd5c277ed5540ee51f7f9e8098770a145ceea63679ba2de",
+  "visual": {
+    "staticGaussians": 823391,
+    "objectGaussians": 480000,
+    "objectRgbPoints": 209479,
+    "objectVisualPrimitives": 689479,
+    "visualObjectCount": 5,
+    "chunks": 236,
+    "pillowCarve": {
+      "status": "passed",
+      "objectId": "sam3_pillow_01",
+      "method": "accepted_mask_projected_point_nearest_neighbor_within_exact_aabb",
+      "distance": 0.08,
+      "units": "scene_scale_not_metric",
+      "acceptedAabb": {
+        "coordinateFrame": "visual_native",
+        "sourceCoordinateFrame": "video2mesh_da3_world",
+        "transform": "identity_holi_da3_to_pgsr_shared_frame",
+        "min": [
+          -5.087475118637085,
+          -2.10968847990036,
+          13.262138109207154
+        ],
+        "max": [
+          2.1751034355163563,
+          1.080388798713684,
+          17.341511363983148
+        ],
+        "center": [
+          -1.4561858415603641,
+          -0.5146498405933381,
+          15.301824736595151
+        ],
+        "extent": [
+          7.262578554153441,
+          3.1900772786140443,
+          4.079373254775994
+        ]
+      },
+      "inputStaticGaussianCount": 850122,
+      "insideAcceptedAabbCount": 30769,
+      "removedGaussianCount": 26731,
+      "retainedInsideAcceptedAabbCount": 4038,
+      "retainedStaticGaussianCount": 823391,
+      "removedOutsideAcceptedAabbCount": 0,
+      "sensitivityRemovedCounts": {
+        "0.04": 21851,
+        "0.06": 24922,
+        "0.08": 26731,
+        "0.1": 27880,
+        "0.12": 28593,
+        "0.15": 29236,
+        "0.18": 29593
+      },
+      "safetyGate": {
+        "exactAabbRequired": true,
+        "nearestAcceptedPointRequired": true,
+        "wholeAabbDeletionForbidden": true,
+        "unmatchedInsideAabbRetained": 4038,
+        "note": "Conservative identity-frame carve; unmatched bed/headboard Gaussians inside the broad pillow AABB remain static."
+      },
+      "inputAssetSha256": "d956e6895b1dfbce3fd18d1cd7d1ab0152e0a0534879b0ef40617c2179c0597c",
+      "anchorSha256": "7590a8d9ae719e2af6d0017d9c1152772f99d726d414a5c4e84cb8ce017a1452",
+      "anchorPointCount": 209479,
+      "anchorInsideAcceptedAabbCount": 203705,
+      "anchorInsideAcceptedAabbRatio": 0.972436378,
+      "anchorOutsideAcceptedAabbCount": 5774,
+      "anchorRawBounds": {
+        "min": [
+          -5.435565,
+          -2.275802,
+          12.965193
+        ],
+        "max": [
+          2.568901,
+          1.194091,
+          18.424143
+        ]
+      },
+      "outputAssetSha256": "0983b53eeeeefe7d41e3024a5ac9d5001171423da52beb1c8a542c3d02368c23"
+    }
+  },
+  "collisionWorld": {
+    "sceneAssetKey": "colliderStaticCarved",
+    "baselineBoundsAssetKey": "collider",
+    "replacementMode": "expanded_source_anchor_aabb_triangle_intersection",
+    "objectFaceRemovalRequired": true,
+    "gate": {
+      "status": "passed",
+      "originalFaces": 1351454,
+      "staticFaces": 1265671,
+      "removedFaces": 85783,
+      "removedByObject": {
+        "sam3_nightstand_01": 48203,
+        "sam3_nightstand_02": 24874,
+        "sam3_plant_01": 6151,
+        "sam3_plant_02": 6555
+      },
+      "retainedIntersectingFaces": 0,
+      "carveMargin": 0.18
+    }
+  },
+  "collisions": [
+    {
+      "objectId": "sam3_nightstand_01",
+      "source": {
+        "path": "artifact://video2mesh/embodiedgen_v2_bedroom4_mesh_exports_20260716/output/sam3_nightstand_01/sam3_nightstand_01.glb",
+        "bytes": 8514908,
+        "sha256": "3c2dffeaa2ffc82bd77b22cb92d0488bf6e2504d9ed333cc4bd565d1caa77af9",
+        "meshObjects": 1,
+        "vertices": 188390,
+        "faces": 315438,
+        "materialSlots": 1,
+        "bounds": {
+          "coordinateSystem": "blender_world_z_up",
+          "min": [
+            -0.4999772310256958,
+            -0.34762710332870483,
+            -0.5005086660385132
+          ],
+          "max": [
+            0.4974953234195709,
+            0.34668946266174316,
+            0.5001336932182312
+          ],
+          "center": [
+            -0.001240953803062439,
+            -0.00046882033348083496,
+            -0.0001874864101409912
+          ],
+          "size": [
+            0.9974725544452667,
+            0.694316565990448,
+            1.0006423592567444
+          ]
+        }
+      },
+      "output": {
+        "path": "web-bundle://bedroom4/colliders/sam3_nightstand_01.collision.glb",
+        "bytes": 320484,
+        "sha256": "3ea3743069279544163c6588caa23aab0932ae156803e8efefd70dba26b74274",
+        "meshObjects": 1,
+        "vertices": 17690,
+        "faces": 17910,
+        "materialSlots": 0,
+        "bounds": {
+          "coordinateSystem": "blender_world_z_up",
+          "min": [
+            -0.4995412528514862,
+            -0.3469747006893158,
+            -0.5006250143051147
+          ],
+          "max": [
+            0.4975041449069977,
+            0.3475518524646759,
+            0.499860554933548
+          ],
+          "center": [
+            -0.0010185539722442627,
+            0.0002885758876800537,
+            -0.00038222968578338623
+          ],
+          "size": [
+            0.9970453977584839,
+            0.6945265531539917,
+            1.0004855692386627
+          ]
+        }
+      },
+      "qaReport": "web-bundle://bedroom4/qa/sam3_nightstand_01.collision.json",
+      "placement": {
+        "matrix": [
+          4.890696062,
+          0,
+          0,
+          0,
+          0,
+          4.017979993,
+          0,
+          0,
+          0,
+          0,
+          6.202209232,
+          0,
+          0.004981438,
+          0.001535791,
+          0.001789808,
+          1
+        ],
+        "sourceCenter": [
+          -0.0010186,
+          -0.0003822,
+          -0.0002886
+        ],
+        "sourceExtent": [
+          0.9970454,
+          1.0004856,
+          0.6945266
+        ],
+        "targetExtent": [
+          4.876246,
+          4.019931,
+          4.307599
+        ],
+        "scale": [
+          4.8906961,
+          4.01798,
+          6.2022092
+        ],
+        "fittedLocalCenter": [
+          0,
+          0,
+          0
+        ],
+        "fittedLocalExtent": [
+          4.876246,
+          4.019931,
+          4.307599
+        ]
+      },
+      "gate": {
+        "status": "passed",
+        "boundsFit": "passed",
+        "collisionTechnicalQa": "passed",
+        "orientationEvidence": "browser_gaussian_collision_overlay_reviewed",
+        "browserOverlayReview": "passed",
+        "note": "Automated browser collision QA and screenshot overlay review passed."
+      },
+      "sourceSha256": "3c2dffeaa2ffc82bd77b22cb92d0488bf6e2504d9ed333cc4bd565d1caa77af9",
+      "collisionSha256": "3ea3743069279544163c6588caa23aab0932ae156803e8efefd70dba26b74274"
+    },
+    {
+      "objectId": "sam3_nightstand_02",
+      "source": {
+        "path": "artifact://video2mesh/embodiedgen_v2_bedroom4_mesh_exports_20260716/output/sam3_nightstand_02/sam3_nightstand_02.glb",
+        "bytes": 8130760,
+        "sha256": "c34fbca42dfc543f0863a060640c0b1920cfc47c7b9868171a40a4cdb51c63e6",
+        "meshObjects": 1,
+        "vertices": 176570,
+        "faces": 284494,
+        "materialSlots": 1,
+        "bounds": {
+          "coordinateSystem": "blender_world_z_up",
+          "min": [
+            -0.5002548694610596,
+            -0.3974236249923706,
+            -0.43005770444869995
+          ],
+          "max": [
+            0.500598132610321,
+            0.3976700007915497,
+            0.43280088901519775
+          ],
+          "center": [
+            0.0001716315746307373,
+            0.00012318789958953857,
+            0.0013715922832489014
+          ],
+          "size": [
+            1.0008530020713806,
+            0.7950936257839203,
+            0.8628585934638977
+          ]
+        }
+      },
+      "output": {
+        "path": "web-bundle://bedroom4/colliders/sam3_nightstand_02.collision.glb",
+        "bytes": 301656,
+        "sha256": "abe26edfcc045c2b58d8cffba5202189453f2a78fd8ff358935b4e7fed211d37",
+        "meshObjects": 1,
+        "vertices": 16121,
+        "faces": 17910,
+        "materialSlots": 0,
+        "bounds": {
+          "coordinateSystem": "blender_world_z_up",
+          "min": [
+            -0.5001290440559387,
+            -0.3961195647716522,
+            -0.42975854873657227
+          ],
+          "max": [
+            0.5060003995895386,
+            0.4000324606895447,
+            0.4331164062023163
+          ],
+          "center": [
+            0.0029356777667999268,
+            0.001956447958946228,
+            0.0016789287328720093
+          ],
+          "size": [
+            1.0061294436454773,
+            0.7961520254611969,
+            0.8628749549388885
+          ]
+        }
+      },
+      "qaReport": "web-bundle://bedroom4/qa/sam3_nightstand_02.collision.json",
+      "placement": {
+        "matrix": [
+          5.392710684,
+          0,
+          0,
+          0,
+          0,
+          3.015620033,
+          0,
+          0,
+          0,
+          0,
+          6.877734183,
+          0,
+          -0.015831261,
+          -0.005063011,
+          0.013455929,
+          1
+        ],
+        "sourceCenter": [
+          0.0029357,
+          0.0016789,
+          -0.0019564
+        ],
+        "sourceExtent": [
+          1.0061294,
+          0.862875,
+          0.796152
+        ],
+        "targetExtent": [
+          5.425765,
+          2.602103,
+          5.475722
+        ],
+        "scale": [
+          5.3927107,
+          3.01562,
+          6.8777342
+        ],
+        "fittedLocalCenter": [
+          0,
+          0,
+          0
+        ],
+        "fittedLocalExtent": [
+          5.425765,
+          2.602103,
+          5.475722
+        ]
+      },
+      "gate": {
+        "status": "passed",
+        "boundsFit": "passed",
+        "collisionTechnicalQa": "passed",
+        "orientationEvidence": "browser_gaussian_collision_overlay_reviewed",
+        "browserOverlayReview": "passed",
+        "note": "Automated browser collision QA and screenshot overlay review passed."
+      },
+      "sourceSha256": "c34fbca42dfc543f0863a060640c0b1920cfc47c7b9868171a40a4cdb51c63e6",
+      "collisionSha256": "abe26edfcc045c2b58d8cffba5202189453f2a78fd8ff358935b4e7fed211d37"
+    },
+    {
+      "objectId": "sam3_plant_01",
+      "source": {
+        "path": "artifact://video2mesh/embodiedgen_v2_bedroom4_mesh_exports_20260716/output/sam3_plant_01/sam3_plant_01.glb",
+        "bytes": 2538504,
+        "sha256": "1e0feecc50319ebc4a6c8668d111d60a9d6a9d9c4cdae45d8601467937a74470",
+        "meshObjects": 1,
+        "vertices": 36139,
+        "faces": 30750,
+        "materialSlots": 1,
+        "bounds": {
+          "coordinateSystem": "blender_world_z_up",
+          "min": [
+            -0.3844049870967865,
+            -0.3794179856777191,
+            -0.5000372529029846
+          ],
+          "max": [
+            0.380258172750473,
+            0.3819236159324646,
+            0.4967260956764221
+          ],
+          "center": [
+            -0.0020734071731567383,
+            0.0012528151273727417,
+            -0.00165557861328125
+          ],
+          "size": [
+            0.7646631598472595,
+            0.7613416016101837,
+            0.9967633485794067
+          ]
+        }
+      },
+      "output": {
+        "path": "web-bundle://bedroom4/colliders/sam3_plant_01.collision.glb",
+        "bytes": 245520,
+        "sha256": "9f11e32b29224b5d6a0a90a8ab5406e3d0c2a5a7b8320d6d662da78ab0679d09",
+        "meshObjects": 1,
+        "vertices": 15423,
+        "faces": 9950,
+        "materialSlots": 0,
+        "bounds": {
+          "coordinateSystem": "blender_world_z_up",
+          "min": [
+            -0.38472670316696167,
+            -0.3792057931423187,
+            -0.5049814581871033
+          ],
+          "max": [
+            0.3838813602924347,
+            0.3819236159324646,
+            0.49556559324264526
+          ],
+          "center": [
+            -0.00042267143726348877,
+            0.001358911395072937,
+            -0.004707932472229004
+          ],
+          "size": [
+            0.7686080634593964,
+            0.7611294090747833,
+            1.0005470514297485
+          ]
+        }
+      },
+      "qaReport": "web-bundle://bedroom4/qa/sam3_plant_01.collision.json",
+      "placement": {
+        "matrix": [
+          2.10074559,
+          0,
+          0,
+          0,
+          0,
+          0.931291536,
+          0,
+          0,
+          0,
+          0,
+          4.509507791,
+          0,
+          0.000887925,
+          0.004384458,
+          0.006128022,
+          1
+        ],
+        "sourceCenter": [
+          -0.0004227,
+          -0.0047079,
+          -0.0013589
+        ],
+        "sourceExtent": [
+          0.7686081,
+          1.0005471,
+          0.7611294
+        ],
+        "targetExtent": [
+          1.61465,
+          0.931801,
+          3.432319
+        ],
+        "scale": [
+          2.1007456,
+          0.9312915,
+          4.5095078
+        ],
+        "fittedLocalCenter": [
+          0,
+          0,
+          0
+        ],
+        "fittedLocalExtent": [
+          1.61465,
+          0.931801,
+          3.432319
+        ]
+      },
+      "gate": {
+        "status": "passed",
+        "boundsFit": "passed",
+        "collisionTechnicalQa": "passed",
+        "orientationEvidence": "browser_gaussian_collision_overlay_reviewed",
+        "browserOverlayReview": "passed",
+        "note": "Automated browser collision QA and screenshot overlay review passed."
+      },
+      "sourceSha256": "1e0feecc50319ebc4a6c8668d111d60a9d6a9d9c4cdae45d8601467937a74470",
+      "collisionSha256": "9f11e32b29224b5d6a0a90a8ab5406e3d0c2a5a7b8320d6d662da78ab0679d09"
+    },
+    {
+      "objectId": "sam3_plant_02",
+      "source": {
+        "path": "artifact://video2mesh/embodiedgen_v2_bedroom4_mesh_exports_20260716/output/sam3_plant_02/sam3_plant_02.glb",
+        "bytes": 20451292,
+        "sha256": "e264ab00554e963ddcaf6ce49fc9dc5c77ce913d4c7f5bf6269795ab6ecf2c1d",
+        "meshObjects": 1,
+        "vertices": 495125,
+        "faces": 736036,
+        "materialSlots": 1,
+        "bounds": {
+          "coordinateSystem": "blender_world_z_up",
+          "min": [
+            -0.38496649265289307,
+            -0.38069605827331543,
+            -0.5004203915596008
+          ],
+          "max": [
+            0.3963920772075653,
+            0.38172173500061035,
+            0.49947255849838257
+          ],
+          "center": [
+            0.005712792277336121,
+            0.0005128383636474609,
+            -0.00047391653060913086
+          ],
+          "size": [
+            0.7813585698604584,
+            0.7624177932739258,
+            0.9998929500579834
+          ]
+        }
+      },
+      "output": {
+        "path": "web-bundle://bedroom4/colliders/sam3_plant_02.collision.glb",
+        "bytes": 473824,
+        "sha256": "f00ae900878e1a995627dff4c169b527d3f21c6da5cf45d783042fccca5a1d32",
+        "meshObjects": 1,
+        "vertices": 28478,
+        "faces": 21890,
+        "materialSlots": 0,
+        "bounds": {
+          "coordinateSystem": "blender_world_z_up",
+          "min": [
+            -0.3841101825237274,
+            -0.3776603937149048,
+            -0.5020714402198792
+          ],
+          "max": [
+            0.39738816022872925,
+            0.38037070631980896,
+            0.4997386336326599
+          ],
+          "center": [
+            0.0066389888525009155,
+            0.0013551563024520874,
+            -0.0011664032936096191
+          ],
+          "size": [
+            0.7814983427524567,
+            0.7580311000347137,
+            1.001810073852539
+          ]
+        }
+      },
+      "qaReport": "web-bundle://bedroom4/qa/sam3_plant_02.collision.json",
+      "placement": {
+        "matrix": [
+          2.244041867,
+          0,
+          0,
+          0,
+          0,
+          0.796925506,
+          0,
+          0,
+          0,
+          0,
+          2.965884909,
+          0,
+          -0.014898169,
+          0.000929537,
+          0.004019238,
+          1
+        ],
+        "sourceCenter": [
+          0.006639,
+          -0.0011664,
+          -0.0013552
+        ],
+        "sourceExtent": [
+          0.7814983,
+          1.0018101,
+          0.7580311
+        ],
+        "targetExtent": [
+          1.753715,
+          0.798368,
+          2.248233
+        ],
+        "scale": [
+          2.2440419,
+          0.7969255,
+          2.9658849
+        ],
+        "fittedLocalCenter": [
+          0,
+          0,
+          0
+        ],
+        "fittedLocalExtent": [
+          1.753715,
+          0.798368,
+          2.248233
+        ]
+      },
+      "gate": {
+        "status": "passed",
+        "boundsFit": "passed",
+        "collisionTechnicalQa": "passed",
+        "orientationEvidence": "browser_gaussian_collision_overlay_reviewed",
+        "browserOverlayReview": "passed",
+        "note": "Automated browser collision QA and screenshot overlay review passed."
+      },
+      "sourceSha256": "e264ab00554e963ddcaf6ce49fc9dc5c77ce913d4c7f5bf6269795ab6ecf2c1d",
+      "collisionSha256": "f00ae900878e1a995627dff4c169b527d3f21c6da5cf45d783042fccca5a1d32"
+    }
+  ],
+  "gates": {
+    "assetHashes": "passed",
+    "staticColliderCarve": "passed",
+    "objectCollisionTechnicalQa": "passed",
+    "objectPlacementBrowserQa": "passed",
+    "cognition": "passed",
+    "pillowVisualFocus": "passed",
+    "pillowVisualComponent": "passed",
+    "pillowStaticVisualCarve": "passed",
+    "pillowCollisionNone": "passed"
+  }
+}

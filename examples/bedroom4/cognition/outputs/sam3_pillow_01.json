@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "object_id": "sam3_pillow_01",
+  "category": "pillow",
+  "status": "passed",
+  "description": {
+    "caption_en": "This accepted ensemble contains three touching pillows on the bed: two larger pale-green patchwork pillows behind one smaller light square pillow, in front of a dark carved wood-like headboard.",
+    "caption_zh": "这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。",
+    "visible_attributes": {
+      "object_type": {
+        "en": "three-pillow ensemble",
+        "zh": "三只枕头整体"
+      },
+      "colors": {
+        "en": [
+          "pale green",
+          "light off-white",
+          "muted brown floral accents"
+        ],
+        "zh": [
+          "浅绿色",
+          "浅灰白色",
+          "低饱和棕色花卉点缀"
+        ]
+      },
+      "material_appearance": {
+        "en": [
+          "soft quilted fabric-like covers"
+        ],
+        "zh": [
+          "柔软绗缝织物观感枕套"
+        ]
+      },
+      "geometry": {
+        "en": [
+          "two larger near-square rear pillows",
+          "one smaller square front pillow",
+          "soft rounded corners"
+        ],
+        "zh": [
+          "两只较大的近方形后排枕头",
+          "一只较小的方形前排枕头",
+          "柔和圆角"
+        ]
+      },
+      "components": {
+        "en": [
+          "two larger rear pillows",
+          "one smaller front pillow"
+        ],
+        "zh": [
+          "两只较大的后排枕头",
+          "一只较小的前排枕头"
+        ]
+      },
+      "style_or_pattern": {
+        "en": [
+          "patchwork and quilted panels",
+          "muted floral motifs on the rear pillows"
+        ],
+        "zh": [
+          "拼接与绗缝分区",
+          "后排枕头上的低饱和花卉图案"
+        ]
+      }
+    },
+    "spatial_notes": {
+      "intrinsic_orientation": {
+        "en": "two larger pillows upright behind one smaller front pillow",
+        "zh": "两只较大的枕头直立于一只较小前排枕头后方"
+      },
+      "support_and_placement": {
+        "en": "The three pillows rest together on the bed.",
+        "zh": "三只枕头共同放置在床上。"
+      },
+      "scene_relation": {
+        "en": "On the bed in front of a dark carved wood-like headboard.",
+        "zh": "位于床上、深色雕花木质观感床头板前方。"
+      },
+      "scale_caution": {
+        "en": "Metric scale cannot be inferred from the visual evidence.",
+        "zh": "无法从视觉证据推断度量尺度。"
+      }
+    },
+    "uncertainties": [
+      {
+        "en": "The exact textile and internal fill are not visually identifiable; the accepted mask does not provide stable per-pillow IDs.",
+        "zh": "无法仅凭图像确认确切织物与内部填充物；该接受 mask 不提供稳定的单枕头 ID。"
+      }
+    ]
+  },
+  "model_description": {
+    "caption_en": "Three pillows, two larger pale-green patchwork/floral pillows behind one smaller light square pillow, resting on the bed in front of a dark carved wooden headboard.",
+    "caption_zh": "三只枕头，两只较大的浅绿色拼接花卉枕头在一只较小的浅色正方形枕头后面，放在床前，床头板是深色的雕刻木制。",
+    "visible_attributes": {
+      "object_type": {
+        "en": "pillow",
+        "zh": "枕头"
+      },
+      "colors": {
+        "en": [
+          "pale-green",
+          "light square"
+        ],
+        "zh": [
+          "浅绿色",
+          "浅色正方形"
+        ]
+      },
+      "material_appearance": {
+        "en": [
+          "fabric",
+          "wood"
+        ],
+        "zh": [
+          "布料",
+          "木头"
+        ]
+      },
+      "geometry": {
+        "en": [
+          "rectangular",
+          "square"
+        ],
+        "zh": [
+          "矩形",
+          "正方形"
+        ]
+      },
+      "components": {
+        "en": [
+          "cover",
+          "filling"
+        ],
+        "zh": [
+          "盖子",
+          "填充物"
+        ]
+      },
+      "style_or_pattern": {
+        "en": [
+          "patchwork/floral",
+          "square"
+        ],
+        "zh": [
+          "拼接花卉",
+          "正方形"
+        ]
+      }
+    },
+    "spatial_notes": {
+      "intrinsic_orientation": {
+        "en": "lying down",
+        "zh": "平放"
+      },
+      "support_and_placement": {
+        "en": "on the bed",
+        "zh": "在床上"
+      },
+      "scene_relation": {
+        "en": "in front of a dark carved wooden headboard",
+        "zh": "在深色雕刻木制床头板前面"
+      },
+      "scale_caution": {
+        "en": "Metric scale cannot be inferred",
+        "zh": "无法推断度量尺度"
+      }
+    },
+    "uncertainties": [
+      {
+        "en": "The exact number of pillows is uncertain.",
+        "zh": "枕头的数量不确定。"
+      }
+    ]
+  },
+  "spatial_constraints": {
+    "scene_position_inferable": true,
+    "constraint": "Only relations visibly supported inside frame 000064 may be described. Coordinates and distances are not metric.",
+    "metric_scale_available": false
+  },
+  "quality": {
+    "issues": [],
+    "json_parsed": true,
+    "deterministic_normalizations": [
+      "policy_canonicalized:spatial_notes.scale_caution",
+      "agent_visual_audit_correction:caption_en",
+      "agent_visual_audit_correction:caption_zh",
+      "agent_visual_audit_correction:visible_attributes.object_type.en",
+      "agent_visual_audit_correction:visible_attributes.object_type.zh",
+      "agent_visual_audit_correction:visible_attributes.colors.en",
+      "agent_visual_audit_correction:visible_attributes.colors.zh",
+      "agent_visual_audit_correction:visible_attributes.material_appearance.en",
+      "agent_visual_audit_correction:visible_attributes.material_appearance.zh",
+      "agent_visual_audit_correction:visible_attributes.geometry.en",
+      "agent_visual_audit_correction:visible_attributes.geometry.zh",
+      "agent_visual_audit_correction:visible_attributes.components.en",
+      "agent_visual_audit_correction:visible_attributes.components.zh",
+      "agent_visual_audit_correction:visible_attributes.style_or_pattern.en",
+      "agent_visual_audit_correction:visible_attributes.style_or_pattern.zh",
+      "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.en",
+      "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.zh",
+      "agent_visual_audit_correction:spatial_notes.support_and_placement.en",
+      "agent_visual_audit_correction:spatial_notes.support_and_placement.zh",
+      "agent_visual_audit_correction:spatial_notes.scene_relation.en",
+      "agent_visual_audit_correction:spatial_notes.scene_relation.zh",
+      "agent_visual_audit_correction:uncertainties"
+    ],
+    "final_description_method": "local_vlm_generation_then_explicit_schema_and_agent_visual_audit_corrections",
+    "agent_visual_audit_checklist": "Verify exactly three touching pillows treated as one ensemble: two larger pale-green patchwork/floral pillows behind one smaller light square pillow, resting on the bed in front of a dark carved wooden headboard. Never state that the pillow count is uncertain."
+  },
+  "provenance": {
+    "model_repo": "Qwen/Qwen2.5-VL-3B-Instruct",
+    "model_revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+    "model_dir": "/root/autodl-tmp/qwen2.5-vl-3b-instruct",
+    "prompt_path": "/root/video2world_cognition_20260716/outputs/prompts/sam3_pillow_01.txt",
+    "prompt_artifact_relative_path": "outputs/prompts/sam3_pillow_01.txt",
+    "prompt_sha256": "b1f59ddaa259ae5171f22e9718d59f4c5ef2299701b384609a83cabdec426e57",
+    "raw_output_path": "/root/video2world_cognition_20260716/outputs/raw/sam3_pillow_01.txt",
+    "raw_output_artifact_relative_path": "outputs/raw/sam3_pillow_01.txt",
+    "raw_output_sha256": "e83f16821d776f84e4a6ae6ea51128c34b94dc581f33eec86216a90e69c14463",
+    "evidence_kind": "accepted_holi_sam3_frame_mask_crop",
+    "evidence": {
+      "frame": {
+        "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/frame_000064.png",
+        "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/scene/frames/000064.png",
+        "bytes": 1092295,
+        "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+        "width": 1280,
+        "height": 720,
+        "mode": "RGB",
+        "artifact_relative_path": "inputs/evidence/sam3_pillow_01/frame_000064.png"
+      },
+      "accepted_mask": {
+        "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/accepted_mask_000064.png",
+        "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000064.png",
+        "bytes": 4736,
+        "sha256": "94e885a3133252c240d73fb60bac78dd4d28ec6e95b7741816dfd7a9fce66957",
+        "width": 1280,
+        "height": 720,
+        "mode": "L",
+        "artifact_relative_path": "inputs/evidence/sam3_pillow_01/accepted_mask_000064.png"
+      }
+    },
+    "vl_images": [
+      {
+        "role": "accepted_mask_isolated",
+        "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_pillow_01_masked.png",
+        "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/accepted_mask_000064.png",
+        "bytes": 89873,
+        "sha256": "125c045126d02e8d998898f50ed7b146bc9b5bf4dd1c1a27b51c25e49f28b88d",
+        "width": 534,
+        "height": 318,
+        "mode": "RGB",
+        "artifact_relative_path": "inputs/vl_inputs/sam3_pillow_01_masked.png",
+        "derived_from": [
+          {
+            "role": "rgb_frame",
+            "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/frame_000064.png",
+            "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/scene/frames/000064.png",
+            "bytes": 1092295,
+            "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+            "width": 1280,
+            "height": 720,
+            "mode": "RGB",
+            "artifact_relative_path": "inputs/evidence/sam3_pillow_01/frame_000064.png"
+          },
+          {
+            "role": "accepted_binary_mask",
+            "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/accepted_mask_000064.png",
+            "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000064.png",
+            "bytes": 4736,
+            "sha256": "94e885a3133252c240d73fb60bac78dd4d28ec6e95b7741816dfd7a9fce66957",
+            "width": 1280,
+            "height": 720,
+            "mode": "L",
+            "artifact_relative_path": "inputs/evidence/sam3_pillow_01/accepted_mask_000064.png"
+          }
+        ],
+        "derivation": "crop frame to accepted mask bbox plus 56px padding; alpha=mask>0; composite on synthetic RGB(238,238,238)"
+      },
+      {
+        "role": "scene_context_with_red_mask_boundary",
+        "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_pillow_01_context.png",
+        "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/frame_000064.png",
+        "bytes": 175714,
+        "sha256": "5b91408193cf59f336f1b8b4d4efbf4c7db92a38ddffd58da788f50ab721b91c",
+        "width": 534,
+        "height": 318,
+        "mode": "RGB",
+        "artifact_relative_path": "inputs/vl_inputs/sam3_pillow_01_context.png",
+        "derived_from": [
+          {
+            "role": "rgb_frame",
+            "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/frame_000064.png",
+            "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/scene/frames/000064.png",
+            "bytes": 1092295,
+            "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+            "width": 1280,
+            "height": 720,
+            "mode": "RGB",
+            "artifact_relative_path": "inputs/evidence/sam3_pillow_01/frame_000064.png"
+          },
+          {
+            "role": "accepted_binary_mask",
+            "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/accepted_mask_000064.png",
+            "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000064.png",
+            "bytes": 4736,
+            "sha256": "94e885a3133252c240d73fb60bac78dd4d28ec6e95b7741816dfd7a9fce66957",
+            "width": 1280,
+            "height": 720,
+            "mode": "L",
+            "artifact_relative_path": "inputs/evidence/sam3_pillow_01/accepted_mask_000064.png"
+          }
+        ],
+        "derivation": "same crop; synthetic RGB(235,52,52), 4px contour over mask>0 boundary"
+      }
+    ],
+    "transformers_version": "4.57.3",
+    "torch_version": "2.5.1+cu124",
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "device": "NVIDIA GeForce RTX 3090",
+    "processor_class": "Qwen2_5_VLProcessor",
+    "image_processor_class": "Qwen2VLImageProcessor",
+    "use_fast_image_processor": false,
+    "generation": {
+      "do_sample": false,
+      "max_new_tokens": 900,
+      "repetition_penalty": 1.03
+    }
+  },
+  "description_evidence": {
+    "short": {
+      "en": "This accepted ensemble contains three touching pillows on the bed: two larger pale-green patchwork pillows behind one smaller light square pillow, in front of a dark carved wood-like headboard.",
+      "zh": "这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。"
+    },
+    "appearance": {
+      "en": "This accepted ensemble contains three touching pillows on the bed: two larger pale-green patchwork pillows behind one smaller light square pillow, in front of a dark carved wood-like headboard.",
+      "zh": "这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。"
+    },
+    "detailed": {
+      "en": "Colors: pale green, light off-white, muted brown floral accents; Material appearance: soft quilted fabric-like covers; Geometry: two larger near-square rear pillows, one smaller square front pillow, soft rounded corners; Visible components: two larger rear pillows, one smaller front pillow; Style or pattern: patchwork and quilted panels, muted floral motifs on the rear pillows",
+      "zh": "颜色: 浅绿色, 浅灰白色, 低饱和棕色花卉点缀; 材质观感: 柔软绗缝织物观感枕套; 几何形态: 两只较大的近方形后排枕头, 一只较小的方形前排枕头, 柔和圆角; 可见组件: 两只较大的后排枕头, 一只较小的前排枕头; 风格或纹理: 拼接与绗缝分区, 后排枕头上的低饱和花卉图案"
+    },
+    "location": {
+      "en": "The three pillows rest together on the bed. On the bed in front of a dark carved wood-like headboard.",
+      "zh": "三只枕头共同放置在床上。 位于床上、深色雕花木质观感床头板前方。"
+    },
+    "fidelity_caveat": {
+      "en": "Metric scale cannot be inferred from the visual evidence. The exact textile and internal fill are not visually identifiable; the accepted mask does not provide stable per-pillow IDs.",
+      "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认确切织物与内部填充物；该接受 mask 不提供稳定的单枕头 ID。"
+    },
+    "provider": "local_huggingface_transformers+agent_visual_audit",
+    "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+    "confidence": null,
+    "evidence_frames": [
+      "000064"
+    ]
+  }
+}

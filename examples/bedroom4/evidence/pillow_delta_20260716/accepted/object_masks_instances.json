@@ -1,0 +1,1788 @@
+{
+  "schema_version": 1,
+  "point_cloud": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/pointcloud_da3.ply",
+  "camera_info": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/scene/cameras/camera_info.json",
+  "mask_root": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5",
+  "num_points": 4000000,
+  "num_masks": 80,
+  "objects": {
+    "sam3_pillow_01": {
+      "schema_version": 1,
+      "object_id": "sam3_pillow_01",
+      "name": "pillow 1",
+      "category": "pillow",
+      "asset_role": "foreground_object",
+      "description": "Real SAM3 pillow mask lifted through corrected DA3 geometry and post-processed in 3D.",
+      "point_count": 209479,
+      "bbox_3d": {
+        "min": [
+          -5.087475118637085,
+          -2.10968847990036,
+          13.262138109207154
+        ],
+        "max": [
+          2.1751034355163563,
+          1.080388798713684,
+          17.341511363983148
+        ],
+        "center": [
+          -1.4561858415603641,
+          -0.5146498405933381,
+          15.301824736595151
+        ],
+        "size": [
+          7.262578554153441,
+          3.1900772786140443,
+          4.079373254775994
+        ]
+      },
+      "bbox_3d_raw": {
+        "min": [
+          -5.435564994812012,
+          -2.275801658630371,
+          12.965192794799805
+        ],
+        "max": [
+          2.5689010620117188,
+          1.1940914392471313,
+          18.424142837524414
+        ],
+        "center": [
+          -1.4333319664001465,
+          -0.5408551096916199,
+          15.69466781616211
+        ],
+        "size": [
+          8.00446605682373,
+          3.4698930978775024,
+          5.458950042724609
+        ]
+      },
+      "obb_3d": {
+        "center": [
+          -1.191687774141056,
+          -0.5471185846423691,
+          14.85173181059759
+        ],
+        "extent": [
+          7.721664659910433,
+          3.9389805459897005,
+          1.6348530048383298
+        ],
+        "rotation": [
+          [
+            -0.9235899344332016,
+            -0.20722301411373012,
+            -0.3225527172964068
+          ],
+          [
+            0.016685246347634353,
+            -0.8622646007513806,
+            0.5061831297518531
+          ],
+          [
+            -0.3830185838415594,
+            0.4621237720705171,
+            0.7998364731114251
+          ]
+        ],
+        "transform": [
+          [
+            -0.9235899344332016,
+            -0.20722301411373012,
+            -0.3225527172964068,
+            -1.191687774141056
+          ],
+          [
+            0.016685246347634353,
+            -0.8622646007513806,
+            0.5061831297518531,
+            -0.5471185846423691
+          ],
+          [
+            -0.3830185838415594,
+            0.4621237720705171,
+            0.7998364731114251,
+            14.85173181059759
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "corners": [
+          [
+            3.0459249545229325,
+            0.6729167154164055,
+            14.76654653733142
+          ],
+          [
+            2.5185986754321337,
+            1.5004517260896928,
+            16.074161598776925
+          ],
+          [
+            2.229677533247601,
+            -2.7235267724388583,
+            16.586843085356566
+          ],
+          [
+            1.7023512541568016,
+            -1.8959917617655713,
+            17.894458146802073
+          ],
+          [
+            -4.085726802438914,
+            0.8017545924808331,
+            11.80900547439311
+          ],
+          [
+            -4.6130530815297135,
+            1.6292896031541204,
+            13.116620535838615
+          ],
+          [
+            -4.901974223714246,
+            -2.5946888953744307,
+            13.629302022418255
+          ],
+          [
+            -5.429300502805045,
+            -1.7671538847011434,
+            14.936917083863761
+          ]
+        ],
+        "method": "pca_quantile",
+        "quantile": 0.005
+      },
+      "bbox_postprocess": {
+        "method": "axis_quantile_and_pca_quantile",
+        "quantile": 0.005
+      },
+      "mask_3d": {
+        "point_indices_npy": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/3d_instances/sam3_pillow_01/point_indices.npy",
+        "point_probabilities_npz": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/3d_instances/sam3_pillow_01/point_probabilities.npz",
+        "point_probabilities_summary_json": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/3d_instances/sam3_pillow_01/point_probabilities_summary.json",
+        "probability_summary": {
+          "selected_points": 209479,
+          "mean_probability": 0.9558186531066895,
+          "max_probability": 0.9725490212440491,
+          "min_probability": 0.9137254953384399,
+          "mean_probability_observations": 27.12763093197886
+        },
+        "source_class_object_id": "sam3_class_pillow",
+        "source_class_object_masks": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/3d/object_masks.json",
+        "fusion_mode": "probability"
+      },
+      "frame_scores": {
+        "000000": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000000.png",
+          "fusion_mode": "probability",
+          "mask_area": 5898,
+          "projected_points": 3978333,
+          "visible_points": 1885532,
+          "hit_points": 16645,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 15624.4111328125,
+          "mean_projected_probability": 0.008286473341286182,
+          "probability_scale": 255.0
+        },
+        "000001": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000001.png",
+          "fusion_mode": "probability",
+          "mask_area": 6175,
+          "projected_points": 3977304,
+          "visible_points": 1898822,
+          "hit_points": 16774,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 15695.0830078125,
+          "mean_projected_probability": 0.008265694603323936,
+          "probability_scale": 255.0
+        },
+        "000002": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000002.png",
+          "fusion_mode": "probability",
+          "mask_area": 3608,
+          "projected_points": 3969493,
+          "visible_points": 1912683,
+          "hit_points": 7796,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 7062.255859375,
+          "mean_projected_probability": 0.0036923293955624104,
+          "probability_scale": 255.0
+        },
+        "000003": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000003.png",
+          "fusion_mode": "probability",
+          "mask_area": 8320,
+          "projected_points": 3954505,
+          "visible_points": 1922615,
+          "hit_points": 21127,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 19600.638671875,
+          "mean_projected_probability": 0.010194781236350536,
+          "probability_scale": 255.0
+        },
+        "000004": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000004.png",
+          "fusion_mode": "probability",
+          "mask_area": 5450,
+          "projected_points": 3939327,
+          "visible_points": 1931724,
+          "hit_points": 11748,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 10780.5126953125,
+          "mean_projected_probability": 0.0055807726457715034,
+          "probability_scale": 255.0
+        },
+        "000005": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000005.png",
+          "fusion_mode": "probability",
+          "mask_area": 9473,
+          "projected_points": 3916599,
+          "visible_points": 1944701,
+          "hit_points": 23328,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 21908.005859375,
+          "mean_projected_probability": 0.011265488341450691,
+          "probability_scale": 255.0
+        },
+        "000006": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000006.png",
+          "fusion_mode": "probability",
+          "mask_area": 9691,
+          "projected_points": 3890039,
+          "visible_points": 1962050,
+          "hit_points": 23346,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 21972.703125,
+          "mean_projected_probability": 0.01119884941726923,
+          "probability_scale": 255.0
+        },
+        "000007": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000007.png",
+          "fusion_mode": "probability",
+          "mask_area": 17493,
+          "projected_points": 3810388,
+          "visible_points": 1973605,
+          "hit_points": 40589,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 38183.50390625,
+          "mean_projected_probability": 0.019347084686160088,
+          "probability_scale": 255.0
+        },
+        "000008": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000008.png",
+          "fusion_mode": "probability",
+          "mask_area": 21913,
+          "projected_points": 3716047,
+          "visible_points": 1980977,
+          "hit_points": 51804,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 48571.94140625,
+          "mean_projected_probability": 0.024519184604287148,
+          "probability_scale": 255.0
+        },
+        "000009": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000009.png",
+          "fusion_mode": "probability",
+          "mask_area": 10912,
+          "projected_points": 3641407,
+          "visible_points": 1979242,
+          "hit_points": 25015,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 23438.974609375,
+          "mean_projected_probability": 0.011842399835586548,
+          "probability_scale": 255.0
+        },
+        "000010": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000010.png",
+          "fusion_mode": "probability",
+          "mask_area": 11390,
+          "projected_points": 3596948,
+          "visible_points": 1987246,
+          "hit_points": 25610,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 24094.14453125,
+          "mean_projected_probability": 0.012124389410018921,
+          "probability_scale": 255.0
+        },
+        "000011": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000011.png",
+          "fusion_mode": "probability",
+          "mask_area": 11879,
+          "projected_points": 3554714,
+          "visible_points": 1996512,
+          "hit_points": 26257,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 24707.494140625,
+          "mean_projected_probability": 0.012375329621136189,
+          "probability_scale": 255.0
+        },
+        "000012": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000012.png",
+          "fusion_mode": "probability",
+          "mask_area": 12323,
+          "projected_points": 3510834,
+          "visible_points": 1987953,
+          "hit_points": 26810,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 25227.974609375,
+          "mean_projected_probability": 0.012690427713096142,
+          "probability_scale": 255.0
+        },
+        "000013": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000013.png",
+          "fusion_mode": "probability",
+          "mask_area": 26462,
+          "projected_points": 3477632,
+          "visible_points": 1966764,
+          "hit_points": 55953,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 52705.21875,
+          "mean_projected_probability": 0.026797937229275703,
+          "probability_scale": 255.0
+        },
+        "000014": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000014.png",
+          "fusion_mode": "probability",
+          "mask_area": 13123,
+          "projected_points": 3448424,
+          "visible_points": 1950424,
+          "hit_points": 27600,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 25682.478515625,
+          "mean_projected_probability": 0.013167638331651688,
+          "probability_scale": 255.0
+        },
+        "000015": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000015.png",
+          "fusion_mode": "probability",
+          "mask_area": 13647,
+          "projected_points": 3417389,
+          "visible_points": 1932241,
+          "hit_points": 28189,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 26124.01953125,
+          "mean_projected_probability": 0.013520062901079655,
+          "probability_scale": 255.0
+        },
+        "000016": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000016.png",
+          "fusion_mode": "probability",
+          "mask_area": 29507,
+          "projected_points": 3389004,
+          "visible_points": 1917513,
+          "hit_points": 59401,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 56081.03125,
+          "mean_projected_probability": 0.029246754944324493,
+          "probability_scale": 255.0
+        },
+        "000017": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000017.png",
+          "fusion_mode": "probability",
+          "mask_area": 30847,
+          "projected_points": 3347850,
+          "visible_points": 1898065,
+          "hit_points": 61168,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 56821.671875,
+          "mean_projected_probability": 0.02993663027882576,
+          "probability_scale": 255.0
+        },
+        "000018": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000018.png",
+          "fusion_mode": "probability",
+          "mask_area": 32063,
+          "projected_points": 3300987,
+          "visible_points": 1871743,
+          "hit_points": 62236,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 58200.2265625,
+          "mean_projected_probability": 0.031094133853912354,
+          "probability_scale": 255.0
+        },
+        "000019": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000019.png",
+          "fusion_mode": "probability",
+          "mask_area": 33399,
+          "projected_points": 3256049,
+          "visible_points": 1845392,
+          "hit_points": 64035,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 59800.46484375,
+          "mean_projected_probability": 0.03240529075264931,
+          "probability_scale": 255.0
+        },
+        "000020": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000020.png",
+          "fusion_mode": "probability",
+          "mask_area": 34784,
+          "projected_points": 3214842,
+          "visible_points": 1824416,
+          "hit_points": 65530,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 60940.97265625,
+          "mean_projected_probability": 0.033403001725673676,
+          "probability_scale": 255.0
+        },
+        "000021": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000021.png",
+          "fusion_mode": "probability",
+          "mask_area": 17272,
+          "projected_points": 3182276,
+          "visible_points": 1809321,
+          "hit_points": 33339,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 31569.984375,
+          "mean_projected_probability": 0.01744852587580681,
+          "probability_scale": 255.0
+        },
+        "000022": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000022.png",
+          "fusion_mode": "probability",
+          "mask_area": 17724,
+          "projected_points": 3158845,
+          "visible_points": 1799653,
+          "hit_points": 33939,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 32270.0,
+          "mean_projected_probability": 0.01793123409152031,
+          "probability_scale": 255.0
+        },
+        "000023": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000023.png",
+          "fusion_mode": "probability",
+          "mask_area": 37732,
+          "projected_points": 3137612,
+          "visible_points": 1793366,
+          "hit_points": 68942,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 64113.88671875,
+          "mean_projected_probability": 0.03575058653950691,
+          "probability_scale": 255.0
+        },
+        "000024": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000024.png",
+          "fusion_mode": "probability",
+          "mask_area": 38199,
+          "projected_points": 3118333,
+          "visible_points": 1790390,
+          "hit_points": 69626,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 66040.34375,
+          "mean_projected_probability": 0.03688601031899452,
+          "probability_scale": 255.0
+        },
+        "000025": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000025.png",
+          "fusion_mode": "probability",
+          "mask_area": 38532,
+          "projected_points": 3098307,
+          "visible_points": 1782911,
+          "hit_points": 69420,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 65591.0859375,
+          "mean_projected_probability": 0.036788761615753174,
+          "probability_scale": 255.0
+        },
+        "000026": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000026.png",
+          "fusion_mode": "probability",
+          "mask_area": 39400,
+          "projected_points": 3080245,
+          "visible_points": 1779683,
+          "hit_points": 70311,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 66166.5703125,
+          "mean_projected_probability": 0.037178851664066315,
+          "probability_scale": 255.0
+        },
+        "000027": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000027.png",
+          "fusion_mode": "probability",
+          "mask_area": 40085,
+          "projected_points": 3059053,
+          "visible_points": 1774103,
+          "hit_points": 71000,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 67082.7421875,
+          "mean_projected_probability": 0.03781220316886902,
+          "probability_scale": 255.0
+        },
+        "000028": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000028.png",
+          "fusion_mode": "probability",
+          "mask_area": 40625,
+          "projected_points": 3040112,
+          "visible_points": 1769594,
+          "hit_points": 71816,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 68491.875,
+          "mean_projected_probability": 0.038704853504896164,
+          "probability_scale": 255.0
+        },
+        "000029": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000029.png",
+          "fusion_mode": "probability",
+          "mask_area": 41663,
+          "projected_points": 3015431,
+          "visible_points": 1765515,
+          "hit_points": 72773,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 69839.8515625,
+          "mean_projected_probability": 0.03955777734518051,
+          "probability_scale": 255.0
+        },
+        "000030": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000030.png",
+          "fusion_mode": "probability",
+          "mask_area": 42508,
+          "projected_points": 2988238,
+          "visible_points": 1758309,
+          "hit_points": 73744,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 69962.5859375,
+          "mean_projected_probability": 0.039789699018001556,
+          "probability_scale": 255.0
+        },
+        "000031": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000031.png",
+          "fusion_mode": "probability",
+          "mask_area": 43393,
+          "projected_points": 2959566,
+          "visible_points": 1751415,
+          "hit_points": 74936,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 71607.3515625,
+          "mean_projected_probability": 0.040885426104068756,
+          "probability_scale": 255.0
+        },
+        "000032": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000032.png",
+          "fusion_mode": "probability",
+          "mask_area": 44524,
+          "projected_points": 2930262,
+          "visible_points": 1746541,
+          "hit_points": 76056,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 72520.375,
+          "mean_projected_probability": 0.04152228683233261,
+          "probability_scale": 255.0
+        },
+        "000033": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000033.png",
+          "fusion_mode": "probability",
+          "mask_area": 45470,
+          "projected_points": 2900371,
+          "visible_points": 1742460,
+          "hit_points": 77166,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 73018.796875,
+          "mean_projected_probability": 0.04190557822585106,
+          "probability_scale": 255.0
+        },
+        "000034": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000034.png",
+          "fusion_mode": "probability",
+          "mask_area": 46231,
+          "projected_points": 2875224,
+          "visible_points": 1737706,
+          "hit_points": 77913,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 74594.3671875,
+          "mean_projected_probability": 0.04292691871523857,
+          "probability_scale": 255.0
+        },
+        "000035": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000035.png",
+          "fusion_mode": "probability",
+          "mask_area": 46803,
+          "projected_points": 2851148,
+          "visible_points": 1738565,
+          "hit_points": 78520,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 74900.625,
+          "mean_projected_probability": 0.0430818647146225,
+          "probability_scale": 255.0
+        },
+        "000036": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000036.png",
+          "fusion_mode": "probability",
+          "mask_area": 47424,
+          "projected_points": 2829303,
+          "visible_points": 1743021,
+          "hit_points": 78993,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 75210.2265625,
+          "mean_projected_probability": 0.043149352073669434,
+          "probability_scale": 255.0
+        },
+        "000037": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000037.png",
+          "fusion_mode": "probability",
+          "mask_area": 47616,
+          "projected_points": 2813226,
+          "visible_points": 1750668,
+          "hit_points": 79258,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 75839.0234375,
+          "mean_projected_probability": 0.04332004860043526,
+          "probability_scale": 255.0
+        },
+        "000038": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000038.png",
+          "fusion_mode": "probability",
+          "mask_area": 47971,
+          "projected_points": 2804288,
+          "visible_points": 1758991,
+          "hit_points": 79606,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 76263.46875,
+          "mean_projected_probability": 0.04335637390613556,
+          "probability_scale": 255.0
+        },
+        "000039": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000039.png",
+          "fusion_mode": "probability",
+          "mask_area": 48248,
+          "projected_points": 2791163,
+          "visible_points": 1768372,
+          "hit_points": 80312,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 77021.703125,
+          "mean_projected_probability": 0.04355514794588089,
+          "probability_scale": 255.0
+        },
+        "000040": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000040.png",
+          "fusion_mode": "probability",
+          "mask_area": 48284,
+          "projected_points": 2775773,
+          "visible_points": 1771496,
+          "hit_points": 80486,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 76967.4921875,
+          "mean_projected_probability": 0.04344773665070534,
+          "probability_scale": 255.0
+        },
+        "000041": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000041.png",
+          "fusion_mode": "probability",
+          "mask_area": 48603,
+          "projected_points": 2758167,
+          "visible_points": 1774197,
+          "hit_points": 81192,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 77820.6640625,
+          "mean_projected_probability": 0.043862469494342804,
+          "probability_scale": 255.0
+        },
+        "000042": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000042.png",
+          "fusion_mode": "probability",
+          "mask_area": 48904,
+          "projected_points": 2740871,
+          "visible_points": 1772925,
+          "hit_points": 81067,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 77747.484375,
+          "mean_projected_probability": 0.04385266453027725,
+          "probability_scale": 255.0
+        },
+        "000043": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000043.png",
+          "fusion_mode": "probability",
+          "mask_area": 49466,
+          "projected_points": 2722702,
+          "visible_points": 1776098,
+          "hit_points": 82187,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 78356.4765625,
+          "mean_projected_probability": 0.04411720484495163,
+          "probability_scale": 255.0
+        },
+        "000044": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000044.png",
+          "fusion_mode": "probability",
+          "mask_area": 50244,
+          "projected_points": 2699296,
+          "visible_points": 1776697,
+          "hit_points": 83090,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 79447.5234375,
+          "mean_projected_probability": 0.04471641778945923,
+          "probability_scale": 255.0
+        },
+        "000045": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000045.png",
+          "fusion_mode": "probability",
+          "mask_area": 51259,
+          "projected_points": 2671934,
+          "visible_points": 1772471,
+          "hit_points": 83900,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 80419.6015625,
+          "mean_projected_probability": 0.045371461659669876,
+          "probability_scale": 255.0
+        },
+        "000046": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000046.png",
+          "fusion_mode": "probability",
+          "mask_area": 52264,
+          "projected_points": 2647196,
+          "visible_points": 1768334,
+          "hit_points": 85177,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 81497.3125,
+          "mean_projected_probability": 0.04608706012368202,
+          "probability_scale": 255.0
+        },
+        "000047": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000047.png",
+          "fusion_mode": "probability",
+          "mask_area": 53214,
+          "projected_points": 2617284,
+          "visible_points": 1763705,
+          "hit_points": 86156,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 82571.0078125,
+          "mean_projected_probability": 0.04681679233908653,
+          "probability_scale": 255.0
+        },
+        "000048": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000048.png",
+          "fusion_mode": "probability",
+          "mask_area": 54338,
+          "projected_points": 2588134,
+          "visible_points": 1755781,
+          "hit_points": 87271,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 83445.4609375,
+          "mean_projected_probability": 0.04752612113952637,
+          "probability_scale": 255.0
+        },
+        "000049": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000049.png",
+          "fusion_mode": "probability",
+          "mask_area": 55282,
+          "projected_points": 2562028,
+          "visible_points": 1748713,
+          "hit_points": 87956,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 84446.84375,
+          "mean_projected_probability": 0.04829085245728493,
+          "probability_scale": 255.0
+        },
+        "000050": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000050.png",
+          "fusion_mode": "probability",
+          "mask_area": 56456,
+          "projected_points": 2535344,
+          "visible_points": 1738550,
+          "hit_points": 89137,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 85881.8046875,
+          "mean_projected_probability": 0.049398522824048996,
+          "probability_scale": 255.0
+        },
+        "000051": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000051.png",
+          "fusion_mode": "probability",
+          "mask_area": 57218,
+          "projected_points": 2511453,
+          "visible_points": 1730494,
+          "hit_points": 89748,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 86117.390625,
+          "mean_projected_probability": 0.04976462945342064,
+          "probability_scale": 255.0
+        },
+        "000052": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000052.png",
+          "fusion_mode": "probability",
+          "mask_area": 57966,
+          "projected_points": 2489843,
+          "visible_points": 1723213,
+          "hit_points": 90623,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 87218.8203125,
+          "mean_projected_probability": 0.050614066421985626,
+          "probability_scale": 255.0
+        },
+        "000053": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000053.png",
+          "fusion_mode": "probability",
+          "mask_area": 58872,
+          "projected_points": 2463972,
+          "visible_points": 1713531,
+          "hit_points": 91466,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 88029.9140625,
+          "mean_projected_probability": 0.051373399794101715,
+          "probability_scale": 255.0
+        },
+        "000054": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000054.png",
+          "fusion_mode": "probability",
+          "mask_area": 59733,
+          "projected_points": 2436314,
+          "visible_points": 1701730,
+          "hit_points": 92071,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 88707.453125,
+          "mean_projected_probability": 0.05212780833244324,
+          "probability_scale": 255.0
+        },
+        "000055": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000055.png",
+          "fusion_mode": "probability",
+          "mask_area": 60956,
+          "projected_points": 2409382,
+          "visible_points": 1687557,
+          "hit_points": 93107,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 89975.09375,
+          "mean_projected_probability": 0.05331677198410034,
+          "probability_scale": 255.0
+        },
+        "000056": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000056.png",
+          "fusion_mode": "probability",
+          "mask_area": 62328,
+          "projected_points": 2382866,
+          "visible_points": 1674812,
+          "hit_points": 93961,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 90687.65625,
+          "mean_projected_probability": 0.05414796248078346,
+          "probability_scale": 255.0
+        },
+        "000057": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000057.png",
+          "fusion_mode": "probability",
+          "mask_area": 63635,
+          "projected_points": 2356835,
+          "visible_points": 1659448,
+          "hit_points": 95085,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 91981.5,
+          "mean_projected_probability": 0.05542897433042526,
+          "probability_scale": 255.0
+        },
+        "000058": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000058.png",
+          "fusion_mode": "probability",
+          "mask_area": 64812,
+          "projected_points": 2335155,
+          "visible_points": 1648119,
+          "hit_points": 96089,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 92857.375,
+          "mean_projected_probability": 0.05634142458438873,
+          "probability_scale": 255.0
+        },
+        "000059": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000059.png",
+          "fusion_mode": "probability",
+          "mask_area": 65899,
+          "projected_points": 2312156,
+          "visible_points": 1634810,
+          "hit_points": 96824,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 93453.7265625,
+          "mean_projected_probability": 0.057164885103702545,
+          "probability_scale": 255.0
+        },
+        "000060": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000060.png",
+          "fusion_mode": "probability",
+          "mask_area": 67087,
+          "projected_points": 2288343,
+          "visible_points": 1620296,
+          "hit_points": 97539,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 93975.890625,
+          "mean_projected_probability": 0.05799921229481697,
+          "probability_scale": 255.0
+        },
+        "000061": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000061.png",
+          "fusion_mode": "probability",
+          "mask_area": 67765,
+          "projected_points": 2263022,
+          "visible_points": 1603372,
+          "hit_points": 97659,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 93997.3359375,
+          "mean_projected_probability": 0.05862478166818619,
+          "probability_scale": 255.0
+        },
+        "000062": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000062.png",
+          "fusion_mode": "probability",
+          "mask_area": 68137,
+          "projected_points": 2240604,
+          "visible_points": 1585134,
+          "hit_points": 97957,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 94384.796875,
+          "mean_projected_probability": 0.059543732553720474,
+          "probability_scale": 255.0
+        },
+        "000063": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000063.png",
+          "fusion_mode": "probability",
+          "mask_area": 67657,
+          "projected_points": 2225017,
+          "visible_points": 1570128,
+          "hit_points": 97495,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 94110.34375,
+          "mean_projected_probability": 0.05993800610303879,
+          "probability_scale": 255.0
+        },
+        "000064": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000064.png",
+          "fusion_mode": "probability",
+          "mask_area": 67066,
+          "projected_points": 2211771,
+          "visible_points": 1555132,
+          "hit_points": 96891,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 93910.09375,
+          "mean_projected_probability": 0.06038721650838852,
+          "probability_scale": 255.0
+        },
+        "000065": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000065.png",
+          "fusion_mode": "probability",
+          "mask_area": 65964,
+          "projected_points": 2198407,
+          "visible_points": 1538214,
+          "hit_points": 95791,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 92848.53125,
+          "mean_projected_probability": 0.06036125868558884,
+          "probability_scale": 255.0
+        },
+        "000066": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000066.png",
+          "fusion_mode": "probability",
+          "mask_area": 64564,
+          "projected_points": 2189548,
+          "visible_points": 1524721,
+          "hit_points": 94382,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 91117.3671875,
+          "mean_projected_probability": 0.05976002663373947,
+          "probability_scale": 255.0
+        },
+        "000067": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000067.png",
+          "fusion_mode": "probability",
+          "mask_area": 63587,
+          "projected_points": 2182399,
+          "visible_points": 1513377,
+          "hit_points": 93979,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 90731.0390625,
+          "mean_projected_probability": 0.05995270237326622,
+          "probability_scale": 255.0
+        },
+        "000068": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000068.png",
+          "fusion_mode": "probability",
+          "mask_area": 62530,
+          "projected_points": 2178147,
+          "visible_points": 1499598,
+          "hit_points": 92654,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 88946.90625,
+          "mean_projected_probability": 0.059313833713531494,
+          "probability_scale": 255.0
+        },
+        "000069": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000069.png",
+          "fusion_mode": "probability",
+          "mask_area": 61411,
+          "projected_points": 2175963,
+          "visible_points": 1486337,
+          "hit_points": 91544,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 88028.1328125,
+          "mean_projected_probability": 0.05922488123178482,
+          "probability_scale": 255.0
+        },
+        "000070": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000070.png",
+          "fusion_mode": "probability",
+          "mask_area": 60747,
+          "projected_points": 2171197,
+          "visible_points": 1471982,
+          "hit_points": 90852,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 87120.9921875,
+          "mean_projected_probability": 0.0591861791908741,
+          "probability_scale": 255.0
+        },
+        "000071": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000071.png",
+          "fusion_mode": "probability",
+          "mask_area": 60311,
+          "projected_points": 2161734,
+          "visible_points": 1452404,
+          "hit_points": 90498,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 86811.9140625,
+          "mean_projected_probability": 0.05977118760347366,
+          "probability_scale": 255.0
+        },
+        "000072": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000072.png",
+          "fusion_mode": "probability",
+          "mask_area": 59869,
+          "projected_points": 2151635,
+          "visible_points": 1430326,
+          "hit_points": 90407,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 86233.1328125,
+          "mean_projected_probability": 0.06028914451599121,
+          "probability_scale": 255.0
+        },
+        "000073": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000073.png",
+          "fusion_mode": "probability",
+          "mask_area": 59596,
+          "projected_points": 2137617,
+          "visible_points": 1406675,
+          "hit_points": 90103,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 86653.359375,
+          "mean_projected_probability": 0.06160154938697815,
+          "probability_scale": 255.0
+        },
+        "000074": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000074.png",
+          "fusion_mode": "probability",
+          "mask_area": 59244,
+          "projected_points": 2123844,
+          "visible_points": 1382590,
+          "hit_points": 89670,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 85663.96875,
+          "mean_projected_probability": 0.061959054321050644,
+          "probability_scale": 255.0
+        },
+        "000075": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000075.png",
+          "fusion_mode": "probability",
+          "mask_area": 59667,
+          "projected_points": 2102802,
+          "visible_points": 1355645,
+          "hit_points": 90513,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 86788.7421875,
+          "mean_projected_probability": 0.06402026116847992,
+          "probability_scale": 255.0
+        },
+        "000076": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000076.png",
+          "fusion_mode": "probability",
+          "mask_area": 60079,
+          "projected_points": 2078099,
+          "visible_points": 1330320,
+          "hit_points": 91475,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 87135.78125,
+          "mean_projected_probability": 0.06549986451864243,
+          "probability_scale": 255.0
+        },
+        "000077": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000077.png",
+          "fusion_mode": "probability",
+          "mask_area": 61278,
+          "projected_points": 2040695,
+          "visible_points": 1293244,
+          "hit_points": 92442,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 88153.625,
+          "mean_projected_probability": 0.06816472858190536,
+          "probability_scale": 255.0
+        },
+        "000078": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000078.png",
+          "fusion_mode": "probability",
+          "mask_area": 63328,
+          "projected_points": 1990202,
+          "visible_points": 1248086,
+          "hit_points": 94351,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 90396.6484375,
+          "mean_projected_probability": 0.07242821902036667,
+          "probability_scale": 255.0
+        },
+        "000079": {
+          "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000079.png",
+          "fusion_mode": "probability",
+          "mask_area": 66432,
+          "projected_points": 1926459,
+          "visible_points": 1198874,
+          "hit_points": 97400,
+          "occlusion_filter": true,
+          "min_probability": 0.5,
+          "probability_mass": 93314.421875,
+          "mean_projected_probability": 0.07783505320549011,
+          "probability_scale": 255.0
+        }
+      },
+      "instance_split": {
+        "cluster_label": 10,
+        "point_count": 209479,
+        "support": 200223.9375,
+        "passes_minimum": true
+      }
+    }
+  },
+  "source_class_object_masks": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/3d/object_masks.json",
+  "class_reports": {
+    "sam3_class_pillow": {
+      "category": "pillow",
+      "source_point_count": 211019,
+      "instances": [
+        "sam3_pillow_01"
+      ],
+      "split": {
+        "input_points": 211019,
+        "voxel_count": 100863,
+        "voxel_size": 0.04,
+        "dbscan_eps": 0.12,
+        "dbscan_min_voxel_neighbors": 3,
+        "noise_voxels": 716,
+        "noise_points": 731,
+        "raw_cluster_count": 86,
+        "method": "voxel_dbscan_then_probability_support_rank",
+        "minimum_cluster_points": 2111,
+        "groundingdino_instance_cap": 3,
+        "applied_instance_cap": 3,
+        "instance_cap_override": null,
+        "candidate_clusters": [
+          {
+            "cluster_label": 10,
+            "point_count": 209479,
+            "support": 200223.9375,
+            "passes_minimum": true
+          },
+          {
+            "cluster_label": 20,
+            "point_count": 364,
+            "support": 337.2158203125,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 0,
+            "point_count": 74,
+            "support": 70.90902709960938,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 27,
+            "point_count": 10,
+            "support": 9.515992164611816,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 40,
+            "point_count": 9,
+            "support": 8.572944641113281,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 65,
+            "point_count": 8,
+            "support": 7.673104763031006,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 68,
+            "point_count": 8,
+            "support": 7.6666669845581055,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 83,
+            "point_count": 8,
+            "support": 7.663398742675781,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 1,
+            "point_count": 8,
+            "support": 7.659477233886719,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 14,
+            "point_count": 8,
+            "support": 7.46013069152832,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 79,
+            "point_count": 7,
+            "support": 6.7225494384765625,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 62,
+            "point_count": 7,
+            "support": 6.718300819396973,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 82,
+            "point_count": 7,
+            "support": 6.7175164222717285,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 39,
+            "point_count": 7,
+            "support": 6.716993808746338,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 70,
+            "point_count": 7,
+            "support": 6.713725566864014,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 19,
+            "point_count": 7,
+            "support": 6.620261192321777,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 22,
+            "point_count": 7,
+            "support": 6.505882740020752,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 24,
+            "point_count": 7,
+            "support": 6.4941182136535645,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 63,
+            "point_count": 6,
+            "support": 5.764052391052246,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 77,
+            "point_count": 6,
+            "support": 5.760130882263184,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 29,
+            "point_count": 6,
+            "support": 5.758170127868652,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 71,
+            "point_count": 6,
+            "support": 5.754901885986328,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 17,
+            "point_count": 6,
+            "support": 5.709804058074951,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 3,
+            "point_count": 6,
+            "support": 5.639215469360352,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 58,
+            "point_count": 5,
+            "support": 4.803921699523926,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 49,
+            "point_count": 5,
+            "support": 4.8019609451293945,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 51,
+            "point_count": 5,
+            "support": 4.792810440063477,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 57,
+            "point_count": 5,
+            "support": 4.789846420288086,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 11,
+            "point_count": 5,
+            "support": 4.782614231109619,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 33,
+            "point_count": 5,
+            "support": 4.7521796226501465,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 16,
+            "point_count": 5,
+            "support": 4.739869117736816,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 44,
+            "point_count": 5,
+            "support": 4.719013690948486,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 21,
+            "point_count": 5,
+            "support": 4.6294121742248535,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 69,
+            "point_count": 4,
+            "support": 3.8405227661132812,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 74,
+            "point_count": 4,
+            "support": 3.8379085063934326,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 48,
+            "point_count": 4,
+            "support": 3.8372550010681152,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 81,
+            "point_count": 4,
+            "support": 3.8366012573242188,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 61,
+            "point_count": 4,
+            "support": 3.835294246673584,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 50,
+            "point_count": 4,
+            "support": 3.8318769931793213,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 54,
+            "point_count": 4,
+            "support": 3.8318769931793213,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 76,
+            "point_count": 4,
+            "support": 3.8300654888153076,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 53,
+            "point_count": 4,
+            "support": 3.8271706104278564,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 18,
+            "point_count": 4,
+            "support": 3.8176472187042236,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 42,
+            "point_count": 4,
+            "support": 3.8101978302001953,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 43,
+            "point_count": 4,
+            "support": 3.8101978302001953,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 45,
+            "point_count": 4,
+            "support": 3.8101978302001953,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 7,
+            "point_count": 4,
+            "support": 3.8084967136383057,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 26,
+            "point_count": 4,
+            "support": 3.801389455795288,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 13,
+            "point_count": 4,
+            "support": 3.752941131591797,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 46,
+            "point_count": 3,
+            "support": 2.8968300819396973,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 52,
+            "point_count": 3,
+            "support": 2.880392074584961,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 84,
+            "point_count": 3,
+            "support": 2.880392074584961,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 36,
+            "point_count": 3,
+            "support": 2.8797385692596436,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 59,
+            "point_count": 3,
+            "support": 2.879085063934326,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 73,
+            "point_count": 3,
+            "support": 2.878758430480957,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 64,
+            "point_count": 3,
+            "support": 2.877516508102417,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 78,
+            "point_count": 3,
+            "support": 2.877450942993164,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 72,
+            "point_count": 3,
+            "support": 2.8764705657958984,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 85,
+            "point_count": 3,
+            "support": 2.875817060470581,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 80,
+            "point_count": 3,
+            "support": 2.8755555152893066,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 35,
+            "point_count": 3,
+            "support": 2.874509811401367,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 75,
+            "point_count": 3,
+            "support": 2.874509811401367,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 55,
+            "point_count": 3,
+            "support": 2.8739078044891357,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 56,
+            "point_count": 3,
+            "support": 2.8739078044891357,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 60,
+            "point_count": 3,
+            "support": 2.8739078044891357,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 67,
+            "point_count": 3,
+            "support": 2.87385630607605,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 66,
+            "point_count": 3,
+            "support": 2.8735294342041016,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 2,
+            "point_count": 3,
+            "support": 2.8660130500793457,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 5,
+            "point_count": 3,
+            "support": 2.862091541290283,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 28,
+            "point_count": 3,
+            "support": 2.86082124710083,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 4,
+            "point_count": 3,
+            "support": 2.858823537826538,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 15,
+            "point_count": 3,
+            "support": 2.858823537826538,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 9,
+            "point_count": 3,
+            "support": 2.8581700325012207,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 31,
+            "point_count": 3,
+            "support": 2.8580801486968994,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 32,
+            "point_count": 3,
+            "support": 2.857792377471924,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 34,
+            "point_count": 3,
+            "support": 2.8576483726501465,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 37,
+            "point_count": 3,
+            "support": 2.8576483726501465,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 38,
+            "point_count": 3,
+            "support": 2.8576483726501465,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 41,
+            "point_count": 3,
+            "support": 2.8576483726501465,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 47,
+            "point_count": 3,
+            "support": 2.8576483726501465,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 6,
+            "point_count": 3,
+            "support": 2.855555534362793,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 12,
+            "point_count": 3,
+            "support": 2.850980281829834,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 8,
+            "point_count": 3,
+            "support": 2.8503267765045166,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 30,
+            "point_count": 3,
+            "support": 2.8413867950439453,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 23,
+            "point_count": 3,
+            "support": 2.7882351875305176,
+            "passes_minimum": false
+          },
+          {
+            "cluster_label": 25,
+            "point_count": 3,
+            "support": 2.767843246459961,
+            "passes_minimum": false
+          }
+        ],
+        "kept_cluster_count": 1
+      }
+    }
+  },
+  "postprocess": {
+    "method": "class_probability_fusion_to_voxel_dbscan_instances",
+    "voxel_size": 0.04,
+    "cluster_eps": 0.12,
+    "min_voxel_neighbors": 3,
+    "min_cluster_points": 300,
+    "min_cluster_fraction": 0.01,
+    "bbox_quantile": 0.005,
+    "structure_categories": [
+      "ceiling",
+      "floor",
+      "wall"
+    ],
+    "groundingdino_prompts": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/prompts/pillow_prompts.json"
+  }
+}

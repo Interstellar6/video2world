@@ -1,0 +1,21 @@
+ply
+format ascii 1.0
+element vertex 4
+property float x
+property float y
+property float z
+property uchar red
+property uchar green
+property uchar blue
+property int object_id
+property float object_probability
+property int source_face
+element face 2
+property list uchar int vertex_indices
+end_header
+-13 6 0 110 120 125 0 1 0
+17 6 0 110 120 125 0 1 0
+17 6 24 110 120 125 0 1 1
+-13 6 24 110 120 125 0 1 1
+3 0 1 2
+3 0 2 3

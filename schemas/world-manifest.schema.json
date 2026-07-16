@@ -1,0 +1,1121 @@
+{
+  "$defs": {
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "media_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Media Type"
+        },
+        "provenance": {
+          "additionalProperties": true,
+          "title": "Provenance",
+          "type": "object"
+        },
+        "role": {
+          "minLength": 1,
+          "title": "Role",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 1,
+          "title": "Size Bytes",
+          "type": "integer"
+        },
+        "status": {
+          "default": "candidate",
+          "enum": [
+            "candidate",
+            "validated",
+            "rejected"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "uri": {
+          "minLength": 1,
+          "title": "Uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "uri",
+        "sha256",
+        "size_bytes",
+        "role"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "Bounds2D": {
+      "additionalProperties": false,
+      "properties": {
+        "convention": {
+          "default": "pixel-exclusive",
+          "enum": [
+            "pixel-inclusive",
+            "pixel-exclusive"
+          ],
+          "title": "Convention",
+          "type": "string"
+        },
+        "frame_id": {
+          "minLength": 1,
+          "title": "Frame Id",
+          "type": "string"
+        },
+        "image_height": {
+          "exclusiveMinimum": 0,
+          "title": "Image Height",
+          "type": "integer"
+        },
+        "image_width": {
+          "exclusiveMinimum": 0,
+          "title": "Image Width",
+          "type": "integer"
+        },
+        "xyxy": {
+          "maxItems": 4,
+          "minItems": 4,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Xyxy",
+          "type": "array"
+        }
+      },
+      "required": [
+        "frame_id",
+        "image_width",
+        "image_height",
+        "xyxy"
+      ],
+      "title": "Bounds2D",
+      "type": "object"
+    },
+    "Bounds3D": {
+      "additionalProperties": false,
+      "properties": {
+        "frame_id": {
+          "minLength": 1,
+          "title": "Frame Id",
+          "type": "string"
+        },
+        "maximum": {
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Maximum",
+          "type": "array"
+        },
+        "minimum": {
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Minimum",
+          "type": "array"
+        }
+      },
+      "required": [
+        "frame_id",
+        "minimum",
+        "maximum"
+      ],
+      "title": "Bounds3D",
+      "type": "object"
+    },
+    "CoordinateSystem": {
+      "additionalProperties": false,
+      "properties": {
+        "frame_id": {
+          "minLength": 1,
+          "title": "Frame Id",
+          "type": "string"
+        },
+        "handedness": {
+          "enum": [
+            "right",
+            "left"
+          ],
+          "title": "Handedness",
+          "type": "string"
+        },
+        "metric_scale": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Metric Scale"
+        },
+        "units": {
+          "default": "native",
+          "enum": [
+            "meters",
+            "centimeters",
+            "millimeters",
+            "native",
+            "scene_scale_not_metric"
+          ],
+          "title": "Units",
+          "type": "string"
+        },
+        "up_axis": {
+          "enum": [
+            "+X",
+            "-X",
+            "+Y",
+            "-Y",
+            "+Z",
+            "-Z"
+          ],
+          "title": "Up Axis",
+          "type": "string"
+        }
+      },
+      "required": [
+        "frame_id",
+        "up_axis",
+        "handedness"
+      ],
+      "title": "CoordinateSystem",
+      "type": "object"
+    },
+    "DescriptionEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "appearance": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LocalizedText"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "detailed": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LocalizedText"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "evidence_frames": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Frames",
+          "type": "array"
+        },
+        "fidelity_caveat": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LocalizedText"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "location": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LocalizedText"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "model": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model"
+        },
+        "provider": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Provider"
+        },
+        "short": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LocalizedText"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "DescriptionEvidence",
+      "type": "object"
+    },
+    "GateRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "metrics": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "Metrics",
+          "type": "object"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        },
+        "report_uri": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Report Uri"
+        },
+        "status": {
+          "default": "not_tested",
+          "enum": [
+            "passed",
+            "failed",
+            "not_tested"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "title": "GateRecord",
+      "type": "object"
+    },
+    "InteractionPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "collision_enabled": {
+          "default": false,
+          "title": "Collision Enabled",
+          "type": "boolean"
+        },
+        "double_click_action": {
+          "default": "none",
+          "enum": [
+            "none",
+            "spin_360"
+          ],
+          "title": "Double Click Action",
+          "type": "string"
+        },
+        "drag_action": {
+          "default": "none",
+          "enum": [
+            "none",
+            "rotate_yaw"
+          ],
+          "title": "Drag Action",
+          "type": "string"
+        },
+        "physics_mode": {
+          "default": "none",
+          "enum": [
+            "none",
+            "static",
+            "kinematic",
+            "dynamic"
+          ],
+          "title": "Physics Mode",
+          "type": "string"
+        },
+        "selectable": {
+          "default": false,
+          "title": "Selectable",
+          "type": "boolean"
+        }
+      },
+      "title": "InteractionPolicy",
+      "type": "object"
+    },
+    "LocalizedText": {
+      "additionalProperties": false,
+      "properties": {
+        "en": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "En"
+        },
+        "zh": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Zh"
+        }
+      },
+      "title": "LocalizedText",
+      "type": "object"
+    },
+    "ObjectEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "bbox_2d": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Bounds2D"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "mask_score": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mask Score"
+        },
+        "source_frame_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Frame Id"
+        },
+        "source_image": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source_mask": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source_point_cloud": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "support_ratio": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Support Ratio"
+        }
+      },
+      "title": "ObjectEvidence",
+      "type": "object"
+    },
+    "OrientedBounds3D": {
+      "additionalProperties": false,
+      "properties": {
+        "extents": {
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Extents",
+          "type": "array"
+        },
+        "frame_id": {
+          "minLength": 1,
+          "title": "Frame Id",
+          "type": "string"
+        },
+        "transform": {
+          "maxItems": 16,
+          "minItems": 16,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Transform",
+          "type": "array"
+        }
+      },
+      "required": [
+        "frame_id",
+        "transform",
+        "extents"
+      ],
+      "title": "OrientedBounds3D",
+      "type": "object"
+    },
+    "ProvenanceRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "config_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Config Sha256",
+          "type": "string"
+        },
+        "notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "source_repositories": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Source Repositories",
+          "type": "object"
+        },
+        "source_runs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Runs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "config_sha256"
+      ],
+      "title": "ProvenanceRecord",
+      "type": "object"
+    },
+    "QualityGates": {
+      "additionalProperties": false,
+      "properties": {
+        "alignment": {
+          "$ref": "#/$defs/GateRecord"
+        },
+        "collision": {
+          "$ref": "#/$defs/GateRecord"
+        },
+        "file": {
+          "$ref": "#/$defs/GateRecord"
+        },
+        "semantic": {
+          "$ref": "#/$defs/GateRecord"
+        },
+        "visual": {
+          "$ref": "#/$defs/GateRecord"
+        }
+      },
+      "title": "QualityGates",
+      "type": "object"
+    },
+    "Relation": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "predicate": {
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "title": "Predicate",
+          "type": "string"
+        },
+        "target_label": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LocalizedText"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "target_object_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target Object Id"
+        },
+        "verified": {
+          "default": false,
+          "title": "Verified",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "predicate",
+        "confidence"
+      ],
+      "title": "Relation",
+      "type": "object"
+    },
+    "SceneLayer": {
+      "additionalProperties": false,
+      "properties": {
+        "bounds": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Bounds3D"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "collider": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "coordinate_system": {
+          "$ref": "#/$defs/CoordinateSystem"
+        },
+        "semantic_visual": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "visual": {
+          "$ref": "#/$defs/AssetRef"
+        }
+      },
+      "required": [
+        "coordinate_system",
+        "visual",
+        "collider",
+        "semantic_visual"
+      ],
+      "title": "SceneLayer",
+      "type": "object"
+    },
+    "SceneTransform": {
+      "additionalProperties": false,
+      "properties": {
+        "from_frame": {
+          "minLength": 1,
+          "title": "From Frame",
+          "type": "string"
+        },
+        "matrix": {
+          "maxItems": 16,
+          "minItems": 16,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Matrix",
+          "type": "array"
+        },
+        "pivot_scene": {
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Pivot Scene",
+          "type": "array"
+        },
+        "scale_xyz": {
+          "default": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Scale Xyz",
+          "type": "array"
+        },
+        "to_frame": {
+          "minLength": 1,
+          "title": "To Frame",
+          "type": "string"
+        }
+      },
+      "required": [
+        "from_frame",
+        "to_frame",
+        "matrix",
+        "pivot_scene"
+      ],
+      "title": "SceneTransform",
+      "type": "object"
+    },
+    "WorldObject": {
+      "additionalProperties": false,
+      "properties": {
+        "aliases": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Aliases",
+          "type": "array"
+        },
+        "bbox_scene": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Bounds3D"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "category": {
+          "minLength": 1,
+          "title": "Category",
+          "type": "string"
+        },
+        "collider": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "description": {
+          "$ref": "#/$defs/DescriptionEvidence"
+        },
+        "evidence": {
+          "$ref": "#/$defs/ObjectEvidence"
+        },
+        "id": {
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.-]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "interaction": {
+          "$ref": "#/$defs/InteractionPolicy"
+        },
+        "name": {
+          "$ref": "#/$defs/LocalizedText"
+        },
+        "obb_scene": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/OrientedBounds3D"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "quality_gates": {
+          "$ref": "#/$defs/QualityGates"
+        },
+        "relations": {
+          "items": {
+            "$ref": "#/$defs/Relation"
+          },
+          "title": "Relations",
+          "type": "array"
+        },
+        "render_mesh": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "scoped_id": {
+          "minLength": 1,
+          "title": "Scoped Id",
+          "type": "string"
+        },
+        "source_run_id": {
+          "minLength": 1,
+          "title": "Source Run Id",
+          "type": "string"
+        },
+        "transform_scene_from_asset": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SceneTransform"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "visual": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "source_run_id",
+        "scoped_id",
+        "name",
+        "category"
+      ],
+      "title": "WorldObject",
+      "type": "object"
+    }
+  },
+  "$id": "https://relumeow.top/schemas/video2world/world-manifest-1.0.0.json",
+  "additionalProperties": false,
+  "properties": {
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "manifest_status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "validated"
+      ],
+      "title": "Manifest Status",
+      "type": "string"
+    },
+    "objects": {
+      "items": {
+        "$ref": "#/$defs/WorldObject"
+      },
+      "title": "Objects",
+      "type": "array"
+    },
+    "provenance": {
+      "$ref": "#/$defs/ProvenanceRecord"
+    },
+    "run_id": {
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "scene": {
+      "$ref": "#/$defs/SceneLayer"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "world_id": {
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.-]+$",
+      "title": "World Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "world_id",
+    "run_id",
+    "created_at",
+    "scene",
+    "provenance"
+  ],
+  "title": "Video2World World Manifest",
+  "type": "object"
+}

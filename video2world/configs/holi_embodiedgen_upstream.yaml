@@ -1,0 +1,447 @@
+# Executable upstream-provider profile. Copy this file, set provider_contract to
+# a site-configured contract, and keep the command arrays intact. Unlike the
+# default adoption-first template, every stage invokes a real provider command.
+schema_version: "1.0"
+run_id: initialized-by-cli
+scene_id: scene
+input_video: /absolute/path/to/input.mp4
+run_dir: /absolute/path/to/run
+variables:
+  provider_python: python
+  provider_contract: /absolute/path/to/holi_embodiedgen.provider.yaml
+stages:
+  provider_preflight:
+    adapter: command
+    needs: []
+    command:
+      - "{provider_python}"
+      - -m
+      - video2world.providers.external
+      - preflight
+      - --contract
+      - "{provider_contract}"
+      - --value
+      - "run_dir={run_dir}"
+      - --value
+      - "run_id={run_id}"
+      - --value
+      - "scene_id={scene_id}"
+      - --value
+      - "input_video={input_video}"
+      - --report
+      - "{output_provider_preflight}"
+    cwd: "{run_dir}"
+    fingerprints:
+      provider_contract: "{provider_contract}"
+    outputs:
+      provider_preflight: "{run_dir}/artifacts/provider/preflight.json"
+  ingest:
+    adapter: holi_ingest
+    needs: [provider_preflight]
+    command:
+      - "{provider_python}"
+      - -m
+      - video2world.providers.external
+      - run
+      - --contract
+      - "{provider_contract}"
+      - --stage
+      - ingest
+      - --value
+      - "run_dir={run_dir}"
+      - --value
+      - "run_id={run_id}"
+      - --value
+      - "scene_id={scene_id}"
+      - --input
+      - "video={input_video}"
+      - --output
+      - "frames_manifest={output_frames_manifest}"
+      - --output
+      - "cameras={output_cameras}"
+      - --receipt
+      - "{output_provider_receipt}"
+    cwd: "{run_dir}"
+    inputs:
+      video: "{input_video}"
+    fingerprints:
+      provider_contract: "{provider_contract}"
+    outputs:
+      frames_manifest: "{run_dir}/artifacts/ingest/frames.json"
+      cameras: "{run_dir}/artifacts/ingest/cameras.json"
+      provider_receipt: "{run_dir}/artifacts/ingest/provider-receipt.json"
+  da3:
+    adapter: holi_da3
+    needs: [ingest]
+    command:
+      - "{provider_python}"
+      - -m
+      - video2world.providers.external
+      - run
+      - --contract
+      - "{provider_contract}"
+      - --stage
+      - da3
+      - --value
+      - "run_dir={run_dir}"
+      - --value
+      - "run_id={run_id}"
+      - --value
+      - "scene_id={scene_id}"
+      - --input
+      - "frames_manifest={ingest_frames_manifest}"
+      - --input
+      - "cameras={ingest_cameras}"
+      - --output
+      - "depth_manifest={output_depth_manifest}"
+      - --output
+      - "point_prior={output_point_prior}"
+      - --receipt
+      - "{output_provider_receipt}"
+    cwd: "{run_dir}"
+    inputs:
+      frames_manifest: "{ingest_frames_manifest}"
+      cameras: "{ingest_cameras}"
+    fingerprints:
+      provider_contract: "{provider_contract}"
+    outputs:
+      depth_manifest: "{run_dir}/artifacts/da3/depth.json"
+      point_prior: "{run_dir}/artifacts/da3/point_prior.ply"
+      provider_receipt: "{run_dir}/artifacts/da3/provider-receipt.json"
+  sam3:
+    adapter: holi_sam3
+    needs: [ingest]
+    command:
+      - "{provider_python}"
+      - -m
+      - video2world.providers.external
+      - run
+      - --contract
+      - "{provider_contract}"
+      - --stage
+      - sam3
+      - --value
+      - "run_dir={run_dir}"
+      - --value
+      - "run_id={run_id}"
+      - --value
+      - "scene_id={scene_id}"
+      - --input
+      - "frames_manifest={ingest_frames_manifest}"
+      - --input
+      - "cameras={ingest_cameras}"
+      - --output
+      - "masks_manifest={output_masks_manifest}"
+      - --output
+      - "captions_manifest={output_captions_manifest}"
+      - --receipt
+      - "{output_provider_receipt}"
+    cwd: "{run_dir}"
+    inputs:
+      frames_manifest: "{ingest_frames_manifest}"
+      cameras: "{ingest_cameras}"
+    fingerprints:
+      provider_contract: "{provider_contract}"
+    outputs:
+      masks_manifest: "{run_dir}/artifacts/sam3/masks.json"
+      captions_manifest: "{run_dir}/artifacts/sam3/captions.json"
+      provider_receipt: "{run_dir}/artifacts/sam3/provider-receipt.json"
+  pgsr:
+    adapter: holi_pgsr
+    needs: [ingest, da3]
+    command:
+      - "{provider_python}"
+      - -m
+      - video2world.providers.external
+      - run
+      - --contract
+      - "{provider_contract}"
+      - --stage
+      - pgsr
+      - --value
+      - "run_dir={run_dir}"
+      - --value
+      - "run_id={run_id}"
+      - --value
+      - "scene_id={scene_id}"
+      - --input
+      - "frames_manifest={ingest_frames_manifest}"
+      - --input
+      - "cameras={ingest_cameras}"
+      - --input
+      - "depth_manifest={da3_depth_manifest}"
+      - --input
+      - "point_prior={da3_point_prior}"
+      - --output
+      - "scene_gaussian={output_scene_gaussian}"
+      - --output
+      - "scene_mesh={output_scene_mesh}"
+      - --receipt
+      - "{output_provider_receipt}"
+    cwd: "{run_dir}"
+    inputs:
+      frames_manifest: "{ingest_frames_manifest}"
+      cameras: "{ingest_cameras}"
+      depth_manifest: "{da3_depth_manifest}"
+      point_prior: "{da3_point_prior}"
+    fingerprints:
+      provider_contract: "{provider_contract}"
+    outputs:
+      scene_gaussian: "{run_dir}/artifacts/pgsr/scene_gaussian.ply"
+      scene_mesh: "{run_dir}/artifacts/pgsr/tsdf_scene.ply"
+      provider_receipt: "{run_dir}/artifacts/pgsr/provider-receipt.json"
+  fusion:
+    adapter: video2mesh_fusion
+    needs: [pgsr, sam3]
+    command:
+      - "{provider_python}"
+      - -m
+      - video2world.providers.external
+      - run
+      - --contract
+      - "{provider_contract}"
+      - --stage
+      - fusion
+      - --value
+      - "run_dir={run_dir}"
+      - --value
+      - "run_id={run_id}"
+      - --value
+      - "scene_id={scene_id}"
+      - --input
+      - "scene_gaussian={pgsr_scene_gaussian}"
+      - --input
+      - "scene_mesh={pgsr_scene_mesh}"
+      - --input
+      - "masks_manifest={sam3_masks_manifest}"
+      - --input
+      - "captions_manifest={sam3_captions_manifest}"
+      - --output
+      - "object_clouds_manifest={output_object_clouds_manifest}"
+      - --output
+      - "semantic_gaussian={output_semantic_gaussian}"
+      - --receipt
+      - "{output_provider_receipt}"
+    cwd: "{run_dir}"
+    inputs:
+      scene_gaussian: "{pgsr_scene_gaussian}"
+      scene_mesh: "{pgsr_scene_mesh}"
+      masks_manifest: "{sam3_masks_manifest}"
+      captions_manifest: "{sam3_captions_manifest}"
+    fingerprints:
+      provider_contract: "{provider_contract}"
+    outputs:
+      object_clouds_manifest: "{run_dir}/artifacts/fusion/object_clouds.json"
+      semantic_gaussian: "{run_dir}/artifacts/fusion/semantic_gaussian.ply"
+      provider_receipt: "{run_dir}/artifacts/fusion/provider-receipt.json"
+  cognition:
+    adapter: scene_cognition
+    needs: [sam3, fusion]
+    command:
+      - "{provider_python}"
+      - -m
+      - video2world.providers.external
+      - run
+      - --contract
+      - "{provider_contract}"
+      - --stage
+      - cognition
+      - --value
+      - "run_dir={run_dir}"
+      - --value
+      - "run_id={run_id}"
+      - --value
+      - "scene_id={scene_id}"
+      - --input
+      - "masks_manifest={sam3_masks_manifest}"
+      - --input
+      - "captions_manifest={sam3_captions_manifest}"
+      - --input
+      - "object_clouds_manifest={fusion_object_clouds_manifest}"
+      - --input
+      - "semantic_gaussian={fusion_semantic_gaussian}"
+      - --output
+      - "object_facts={output_object_facts}"
+      - --receipt
+      - "{output_provider_receipt}"
+    cwd: "{run_dir}"
+    inputs:
+      masks_manifest: "{sam3_masks_manifest}"
+      captions_manifest: "{sam3_captions_manifest}"
+      object_clouds_manifest: "{fusion_object_clouds_manifest}"
+      semantic_gaussian: "{fusion_semantic_gaussian}"
+    fingerprints:
+      provider_contract: "{provider_contract}"
+    outputs:
+      object_facts: "{run_dir}/artifacts/cognition/object_facts.json"
+      provider_receipt: "{run_dir}/artifacts/cognition/provider-receipt.json"
+  trellis:
+    adapter: embodiedgen_trellis
+    needs: [ingest, sam3, fusion, cognition]
+    command:
+      - "{provider_python}"
+      - -m
+      - video2world.providers.external
+      - run
+      - --contract
+      - "{provider_contract}"
+      - --stage
+      - trellis
+      - --value
+      - "run_dir={run_dir}"
+      - --value
+      - "run_id={run_id}"
+      - --value
+      - "scene_id={scene_id}"
+      - --input
+      - "masks_manifest={sam3_masks_manifest}"
+      - --input
+      - "captions_manifest={sam3_captions_manifest}"
+      - --input
+      - "object_clouds_manifest={fusion_object_clouds_manifest}"
+      - --input
+      - "object_facts={cognition_object_facts}"
+      - --output
+      - "object_assets_manifest={output_object_assets_manifest}"
+      - --receipt
+      - "{output_provider_receipt}"
+    cwd: "{run_dir}"
+    inputs:
+      masks_manifest: "{sam3_masks_manifest}"
+      captions_manifest: "{sam3_captions_manifest}"
+      object_clouds_manifest: "{fusion_object_clouds_manifest}"
+      object_facts: "{cognition_object_facts}"
+    fingerprints:
+      provider_contract: "{provider_contract}"
+    outputs:
+      object_assets_manifest: "{run_dir}/artifacts/trellis/object_assets.json"
+      provider_receipt: "{run_dir}/artifacts/trellis/provider-receipt.json"
+  placement:
+    adapter: object_placement
+    needs: [pgsr, fusion, trellis]
+    command:
+      - "{provider_python}"
+      - -m
+      - video2world.providers.external
+      - run
+      - --contract
+      - "{provider_contract}"
+      - --stage
+      - placement
+      - --value
+      - "run_dir={run_dir}"
+      - --value
+      - "run_id={run_id}"
+      - --value
+      - "scene_id={scene_id}"
+      - --input
+      - "scene_gaussian={pgsr_scene_gaussian}"
+      - --input
+      - "scene_mesh={pgsr_scene_mesh}"
+      - --input
+      - "object_clouds_manifest={fusion_object_clouds_manifest}"
+      - --input
+      - "semantic_gaussian={fusion_semantic_gaussian}"
+      - --input
+      - "object_assets_manifest={trellis_object_assets_manifest}"
+      - --output
+      - "aligned_objects_manifest={output_aligned_objects_manifest}"
+      - --output
+      - "collision_manifest={output_collision_manifest}"
+      - --receipt
+      - "{output_provider_receipt}"
+    cwd: "{run_dir}"
+    inputs:
+      scene_gaussian: "{pgsr_scene_gaussian}"
+      scene_mesh: "{pgsr_scene_mesh}"
+      object_clouds_manifest: "{fusion_object_clouds_manifest}"
+      semantic_gaussian: "{fusion_semantic_gaussian}"
+      object_assets_manifest: "{trellis_object_assets_manifest}"
+    fingerprints:
+      provider_contract: "{provider_contract}"
+    outputs:
+      aligned_objects_manifest: "{run_dir}/artifacts/placement/aligned_objects.json"
+      collision_manifest: "{run_dir}/artifacts/placement/colliders.json"
+      provider_receipt: "{run_dir}/artifacts/placement/provider-receipt.json"
+  bundle:
+    adapter: world_bundle
+    needs: [pgsr, fusion, cognition, placement]
+    command:
+      - "{provider_python}"
+      - -m
+      - video2world.providers.external
+      - run
+      - --contract
+      - "{provider_contract}"
+      - --stage
+      - bundle
+      - --value
+      - "run_dir={run_dir}"
+      - --value
+      - "run_id={run_id}"
+      - --value
+      - "scene_id={scene_id}"
+      - --input
+      - "scene_gaussian={pgsr_scene_gaussian}"
+      - --input
+      - "scene_mesh={pgsr_scene_mesh}"
+      - --input
+      - "object_clouds_manifest={fusion_object_clouds_manifest}"
+      - --input
+      - "semantic_gaussian={fusion_semantic_gaussian}"
+      - --input
+      - "object_facts={cognition_object_facts}"
+      - --input
+      - "aligned_objects_manifest={placement_aligned_objects_manifest}"
+      - --input
+      - "collision_manifest={placement_collision_manifest}"
+      - --output
+      - "world_manifest={output_world_manifest}"
+      - --receipt
+      - "{output_provider_receipt}"
+    cwd: "{run_dir}"
+    inputs:
+      scene_gaussian: "{pgsr_scene_gaussian}"
+      scene_mesh: "{pgsr_scene_mesh}"
+      object_clouds_manifest: "{fusion_object_clouds_manifest}"
+      semantic_gaussian: "{fusion_semantic_gaussian}"
+      object_facts: "{cognition_object_facts}"
+      aligned_objects_manifest: "{placement_aligned_objects_manifest}"
+      collision_manifest: "{placement_collision_manifest}"
+    fingerprints:
+      provider_contract: "{provider_contract}"
+    outputs:
+      world_manifest: "{run_dir}/bundle/world.json"
+      provider_receipt: "{run_dir}/bundle/world-provider-receipt.json"
+  web:
+    adapter: web_bundle
+    needs: [bundle]
+    command:
+      - "{provider_python}"
+      - -m
+      - video2world.providers.external
+      - run
+      - --contract
+      - "{provider_contract}"
+      - --stage
+      - web
+      - --value
+      - "run_dir={run_dir}"
+      - --value
+      - "run_id={run_id}"
+      - --value
+      - "scene_id={scene_id}"
+      - --input
+      - "world_manifest={bundle_world_manifest}"
+      - --output
+      - "web_bundle_manifest={output_web_bundle_manifest}"
+      - --receipt
+      - "{output_provider_receipt}"
+    cwd: "{run_dir}"
+    inputs:
+      world_manifest: "{bundle_world_manifest}"
+    fingerprints:
+      provider_contract: "{provider_contract}"
+    outputs:
+      web_bundle_manifest: "{run_dir}/bundle/web-bundle.json"
+      provider_receipt: "{run_dir}/bundle/web-provider-receipt.json"

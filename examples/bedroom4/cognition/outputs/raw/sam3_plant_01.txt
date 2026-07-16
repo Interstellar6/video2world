@@ -1,0 +1,56 @@
+```json
+{
+  "caption_en": "A dense, rounded topiary plant with dark green leaves and lighter edges, growing in a beige pot.",
+  "caption_zh": "一株密集的圆顶灌木，叶片呈深绿色，边缘较浅，生长在米色花盆中。",
+  "visible_attributes": {
+    "object_type": {
+      "en": "topiary plant",
+      "zh": "灌木"
+    },
+    "colors": {
+      "en": ["dark green", "lighter edges"],
+      "zh": ["深绿色", "较浅的边缘"]
+    },
+    "material_appearance": {
+      "en": ["woody-looking stems", "beige pot"],
+      "zh": ["多木质茎", "米色花盆"]
+    },
+    "geometry": {
+      "en": "rounded",
+      "zh": "圆顶形"
+    },
+    "components": {
+      "en": ["multiple woody-looking stems", "beige pot"],
+      "zh": ["多木质茎", "米色花盆"]
+    },
+    "style_or_pattern": {
+      "en": "dense, rounded topiary",
+      "zh": "密集的圆顶灌木"
+    }
+  },
+  "spatial_notes": {
+    "intrinsic_orientation": {
+      "en": "isolated reference",
+      "zh": "孤立参考"
+    },
+    "support_and_placement": {
+      "en": "growing in a beige pot",
+      "zh": "生长在米色花盆中"
+    },
+    "scene_relation": {
+      "en": "Scene position cannot be inferred from this isolated reference.",
+      "zh": "无法从这张孤立参考图推断场景位置。"
+    },
+    "scale_caution": {
+      "en": "Metric scale cannot be inferred.",
+      "zh": "无法推断度量尺度。"
+    }
+  },
+  "uncertainties": [
+    {
+      "en": "The plant species cannot be uniquely identified.",
+      "zh": "无法确定植物种类。"
+    }
+  ]
+}
+```

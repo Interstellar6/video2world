@@ -1,0 +1,56 @@
+```json
+{
+  "caption_en": "A spherical plant with green and cream variegated leaves in a white pot.",
+  "caption_zh": "一株球形植物，叶子为绿色和奶油色的斑点。",
+  "visible_attributes": {
+    "object_type": {
+      "en": "plant",
+      "zh": "植物"
+    },
+    "colors": {
+      "en": ["green", "cream"],
+      "zh": ["绿色", "奶油色"]
+    },
+    "material_appearance": {
+      "en": ["plastic", "ceramic"],
+      "zh": ["塑料", "陶瓷"]
+    },
+    "geometry": {
+      "en": "spherical",
+      "zh": "球形"
+    },
+    "components": {
+      "en": ["pot", "stems"],
+      "zh": ["花盆", "茎"]
+    },
+    "style_or_pattern": {
+      "en": "variegated",
+      "zh": "斑点"
+    }
+  },
+  "spatial_notes": {
+    "intrinsic_orientation": {
+      "en": "isolated",
+      "zh": "孤立"
+    },
+    "support_and_placement": {
+      "en": "in a white pot",
+      "zh": "在白色花盆中"
+    },
+    "scene_relation": {
+      "en": "Scene position cannot be inferred from this isolated reference.",
+      "zh": "无法从这张孤立参考图推断场景位置。"
+    },
+    "scale_caution": {
+      "en": "Metric scale cannot be inferred",
+      "zh": "无法推断度量尺度"
+    }
+  },
+  "uncertainties": [
+    {
+      "en": "The exact species of the plant cannot be determined.",
+      "zh": "无法确定该植物的确切种类。"
+    }
+  ]
+}
+```

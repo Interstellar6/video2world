@@ -1,0 +1,42 @@
+Object ID: sam3_pillow_01
+Open-vocabulary category hint: pillow
+Evidence constraint: The first image is an accepted SAM3 mask crop; the second shows its real frame context with a red boundary. Only visible scene relations may be stated.
+Instance constraint: This accepted entity is one ensemble made of exactly three visibly separate, touching pillows. Describe all three together; there are no stable per-pillow IDs.
+Image derivation warning: Image role accepted_mask_isolated: crop frame to accepted mask bbox plus 56px padding; alpha=mask>0; composite on synthetic RGB(238,238,238). Image role scene_context_with_red_mask_boundary: same crop; synthetic RGB(235,52,52), 4px contour over mask>0 boundary.
+Required spatial wording: State only the bed/headboard relation that is directly visible in the real context crop. Both captions must explicitly say "three pillows" / "三只枕头".
+Human visual-audit checklist to verify against the supplied evidence: Verify exactly three touching pillows treated as one ensemble: two larger pale-green patchwork/floral pillows behind one smaller light square pillow, resting on the bed in front of a dark carved wooden headboard. Never state that the pillow count is uncertain.
+
+Produce a detailed but concise bilingual annotation. Use this exact JSON schema:
+{
+  "caption_en": "one precise English sentence",
+  "caption_zh": "对应的精确中文句子",
+  "visible_attributes": {
+    "object_type": {"en": "", "zh": ""},
+    "colors": {"en": [""], "zh": [""]},
+    "material_appearance": {"en": [""], "zh": [""]},
+    "geometry": {"en": [""], "zh": [""]},
+    "components": {"en": [""], "zh": [""]},
+    "style_or_pattern": {"en": [""], "zh": [""]}
+  },
+  "spatial_notes": {
+    "intrinsic_orientation": {"en": "", "zh": ""},
+    "support_and_placement": {"en": "", "zh": ""},
+    "scene_relation": {"en": "", "zh": ""},
+    "scale_caution": {"en": "", "zh": ""}
+  },
+  "uncertainties": [{"en": "", "zh": ""}]
+}
+
+Requirements:
+- Mention the category naturally, then distinguish color, shape, visible parts, texture/pattern, and finish.
+- colors, material_appearance, geometry, components, and style_or_pattern must each contain JSON arrays for both en and zh, never scalar strings.
+- Use the visual-audit checklist only where the pixels confirm it; correct or omit any unsupported checklist detail.
+- Treat apparent wood/ceramic/fabric only as visual appearance unless directly certain.
+- Do not name a plant species unless uniquely certain; prefer leaf shape and variegation.
+- Do not invent drawers, doors, handles, legs, supports, or surfaces that are not visible.
+- Do not report measurements or meters.
+- spatial_notes.scale_caution must explicitly include "Metric scale cannot be inferred" and "无法推断度量尺度".
+- Synthetic light-gray backgrounds are not object color, material, support, or scene context.
+- The red contour in the pillow context image is a synthetic mask overlay, not object color or pattern.
+- Keep English and Chinese semantically aligned.
+- Return JSON only.

@@ -1,0 +1,1474 @@
+{
+  "schema_version": 1,
+  "method": "elliptical_grayscale_erosion",
+  "kernel_size": 5,
+  "source_root": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d",
+  "output_root": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5",
+  "mask_count": 80,
+  "mean_retained_ratio": 0.9217626079258567,
+  "source_tracking_manifest": {
+    "schema_version": 1,
+    "provider": "SAM3",
+    "tracking_mode": "class_probability_merge_without_temporal_instance_ids",
+    "mask_root": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d",
+    "source_mask_index": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/sam3_masks/bedroom_4/mask_index.json",
+    "objects": {
+      "sam3_class_pillow": {
+        "object_id": "sam3_class_pillow",
+        "label": "pillow",
+        "frames_written": 80,
+        "source_instance_masks": 223,
+        "mean_score": 0.9537408715406341,
+        "max_score": 0.9723717570304871,
+        "asset_role": "foreground_object",
+        "frames": {
+          "000000": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000000.png",
+            "source_instance_count": 2,
+            "source_scores": [
+              0.9407446980476379,
+              0.9365009665489197
+            ],
+            "max_score": 0.9407446980476379,
+            "nonzero_pixels": 6700
+          },
+          "000001": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000001.png",
+            "source_instance_count": 2,
+            "source_scores": [
+              0.9388355612754822,
+              0.9334027171134949
+            ],
+            "max_score": 0.9388355612754822,
+            "nonzero_pixels": 7221
+          },
+          "000002": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000002.png",
+            "source_instance_count": 1,
+            "source_scores": [
+              0.9065322875976562
+            ],
+            "max_score": 0.9065322875976562,
+            "nonzero_pixels": 4129
+          },
+          "000003": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000003.png",
+            "source_instance_count": 2,
+            "source_scores": [
+              0.9346430897712708,
+              0.9230035543441772
+            ],
+            "max_score": 0.9346430897712708,
+            "nonzero_pixels": 9543
+          },
+          "000004": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000004.png",
+            "source_instance_count": 1,
+            "source_scores": [
+              0.9176214337348938
+            ],
+            "max_score": 0.9176214337348938,
+            "nonzero_pixels": 6072
+          },
+          "000005": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000005.png",
+            "source_instance_count": 2,
+            "source_scores": [
+              0.9397338628768921,
+              0.9385004639625549
+            ],
+            "max_score": 0.9397338628768921,
+            "nonzero_pixels": 10789
+          },
+          "000006": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000006.png",
+            "source_instance_count": 2,
+            "source_scores": [
+              0.940049946308136,
+              0.9396408796310425
+            ],
+            "max_score": 0.940049946308136,
+            "nonzero_pixels": 11072
+          },
+          "000007": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000007.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9560816884040833,
+              0.940339207649231,
+              0.9309601783752441
+            ],
+            "max_score": 0.9560816884040833,
+            "nonzero_pixels": 19621
+          },
+          "000008": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000008.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9513450860977173,
+              0.9395589232444763,
+              0.9287675023078918
+            ],
+            "max_score": 0.9513450860977173,
+            "nonzero_pixels": 24264
+          },
+          "000009": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000009.png",
+            "source_instance_count": 2,
+            "source_scores": [
+              0.9461334943771362,
+              0.930121898651123
+            ],
+            "max_score": 0.9461334943771362,
+            "nonzero_pixels": 12271
+          },
+          "000010": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000010.png",
+            "source_instance_count": 2,
+            "source_scores": [
+              0.9481609463691711,
+              0.9333810210227966
+            ],
+            "max_score": 0.9481609463691711,
+            "nonzero_pixels": 12786
+          },
+          "000011": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000011.png",
+            "source_instance_count": 2,
+            "source_scores": [
+              0.946617066860199,
+              0.9359046220779419
+            ],
+            "max_score": 0.946617066860199,
+            "nonzero_pixels": 13321
+          },
+          "000012": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000012.png",
+            "source_instance_count": 2,
+            "source_scores": [
+              0.9447346329689026,
+              0.9384284615516663
+            ],
+            "max_score": 0.9447346329689026,
+            "nonzero_pixels": 13860
+          },
+          "000013": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000013.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9485594630241394,
+              0.939704179763794,
+              0.9385730624198914
+            ],
+            "max_score": 0.9485594630241394,
+            "nonzero_pixels": 29106
+          },
+          "000014": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000014.png",
+            "source_instance_count": 2,
+            "source_scores": [
+              0.9449959993362427,
+              0.9189269542694092
+            ],
+            "max_score": 0.9449959993362427,
+            "nonzero_pixels": 14729
+          },
+          "000015": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000015.png",
+            "source_instance_count": 2,
+            "source_scores": [
+              0.9360664486885071,
+              0.9181548357009888
+            ],
+            "max_score": 0.9360664486885071,
+            "nonzero_pixels": 15269
+          },
+          "000016": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000016.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9462827444076538,
+              0.9436761140823364,
+              0.9401057958602905
+            ],
+            "max_score": 0.9462827444076538,
+            "nonzero_pixels": 32262
+          },
+          "000017": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000017.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9433297514915466,
+              0.9370771050453186,
+              0.9195974469184875
+            ],
+            "max_score": 0.9433297514915466,
+            "nonzero_pixels": 33692
+          },
+          "000018": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000018.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9475763440132141,
+              0.9417080879211426,
+              0.9250788688659668
+            ],
+            "max_score": 0.9475763440132141,
+            "nonzero_pixels": 35050
+          },
+          "000019": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000019.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9514543414115906,
+              0.941807210445404,
+              0.922569215297699
+            ],
+            "max_score": 0.9514543414115906,
+            "nonzero_pixels": 36360
+          },
+          "000020": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000020.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9515454769134521,
+              0.9409233331680298,
+              0.914223313331604
+            ],
+            "max_score": 0.9515454769134521,
+            "nonzero_pixels": 37831
+          },
+          "000021": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000021.png",
+            "source_instance_count": 2,
+            "source_scores": [
+              0.9485397338867188,
+              0.9451794624328613
+            ],
+            "max_score": 0.9485397338867188,
+            "nonzero_pixels": 19105
+          },
+          "000022": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000022.png",
+            "source_instance_count": 2,
+            "source_scores": [
+              0.9519325494766235,
+              0.9494032859802246
+            ],
+            "max_score": 0.9519325494766235,
+            "nonzero_pixels": 19597
+          },
+          "000023": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000023.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9580231308937073,
+              0.9385470747947693,
+              0.9125210046768188
+            ],
+            "max_score": 0.9580231308937073,
+            "nonzero_pixels": 41042
+          },
+          "000024": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000024.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9592421054840088,
+              0.9472129344940186,
+              0.9386776089668274
+            ],
+            "max_score": 0.9592421054840088,
+            "nonzero_pixels": 41555
+          },
+          "000025": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000025.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9629188776016235,
+              0.9475218653678894,
+              0.9335729479789734
+            ],
+            "max_score": 0.9629188776016235,
+            "nonzero_pixels": 41768
+          },
+          "000026": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000026.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9608672857284546,
+              0.9443773031234741,
+              0.9276329278945923
+            ],
+            "max_score": 0.9608672857284546,
+            "nonzero_pixels": 42711
+          },
+          "000027": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000027.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9580903053283691,
+              0.9418005347251892,
+              0.9392557740211487
+            ],
+            "max_score": 0.9580903053283691,
+            "nonzero_pixels": 43398
+          },
+          "000028": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000028.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9595897793769836,
+              0.9528793692588806,
+              0.9477361440658569
+            ],
+            "max_score": 0.9595897793769836,
+            "nonzero_pixels": 43944
+          },
+          "000029": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000029.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.961530327796936,
+              0.9598557353019714,
+              0.9570711851119995
+            ],
+            "max_score": 0.961530327796936,
+            "nonzero_pixels": 45034
+          },
+          "000030": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000030.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9560067653656006,
+              0.9506033658981323,
+              0.9429695010185242
+            ],
+            "max_score": 0.9560067653656006,
+            "nonzero_pixels": 45894
+          },
+          "000031": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000031.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9624783396720886,
+              0.957240641117096,
+              0.9494781494140625
+            ],
+            "max_score": 0.9624783396720886,
+            "nonzero_pixels": 46829
+          },
+          "000032": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000032.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9584736227989197,
+              0.9582744836807251,
+              0.9448508024215698
+            ],
+            "max_score": 0.9584736227989197,
+            "nonzero_pixels": 48017
+          },
+          "000033": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000033.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.952982485294342,
+              0.9519012570381165,
+              0.9293351769447327
+            ],
+            "max_score": 0.952982485294342,
+            "nonzero_pixels": 49010
+          },
+          "000034": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000034.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9607599973678589,
+              0.958839476108551,
+              0.9492334127426147
+            ],
+            "max_score": 0.9607599973678589,
+            "nonzero_pixels": 49786
+          },
+          "000035": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000035.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9580785632133484,
+              0.9537855982780457,
+              0.9526326656341553
+            ],
+            "max_score": 0.9580785632133484,
+            "nonzero_pixels": 50387
+          },
+          "000036": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000036.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9549826383590698,
+              0.9523472189903259,
+              0.9471678137779236
+            ],
+            "max_score": 0.9549826383590698,
+            "nonzero_pixels": 51032
+          },
+          "000037": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000037.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9569814205169678,
+              0.9565339088439941,
+              0.9560598731040955
+            ],
+            "max_score": 0.9569814205169678,
+            "nonzero_pixels": 51238
+          },
+          "000038": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000038.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9601311087608337,
+              0.9587287306785583,
+              0.9569525122642517
+            ],
+            "max_score": 0.9601311087608337,
+            "nonzero_pixels": 51623
+          },
+          "000039": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000039.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9610806703567505,
+              0.9590960741043091,
+              0.9570938348770142
+            ],
+            "max_score": 0.9610806703567505,
+            "nonzero_pixels": 51894
+          },
+          "000040": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000040.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9594952464103699,
+              0.9579071402549744,
+              0.9537548422813416
+            ],
+            "max_score": 0.9594952464103699,
+            "nonzero_pixels": 51957
+          },
+          "000041": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000041.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9635204672813416,
+              0.9599025845527649,
+              0.9540417194366455
+            ],
+            "max_score": 0.9635204672813416,
+            "nonzero_pixels": 52272
+          },
+          "000042": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000042.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9622533917427063,
+              0.9618319272994995,
+              0.9554448127746582
+            ],
+            "max_score": 0.9622533917427063,
+            "nonzero_pixels": 52584
+          },
+          "000043": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000043.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9571865797042847,
+              0.9553765654563904,
+              0.9491857886314392
+            ],
+            "max_score": 0.9571865797042847,
+            "nonzero_pixels": 53156
+          },
+          "000044": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000044.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9595640301704407,
+              0.9573394656181335,
+              0.9535364508628845
+            ],
+            "max_score": 0.9595640301704407,
+            "nonzero_pixels": 53971
+          },
+          "000045": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000045.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9649807810783386,
+              0.961844265460968,
+              0.9529896378517151
+            ],
+            "max_score": 0.9649807810783386,
+            "nonzero_pixels": 55016
+          },
+          "000046": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000046.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9632138609886169,
+              0.9619330763816833,
+              0.9506261348724365
+            ],
+            "max_score": 0.9632138609886169,
+            "nonzero_pixels": 56074
+          },
+          "000047": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000047.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9642728567123413,
+              0.9610386490821838,
+              0.9531220197677612
+            ],
+            "max_score": 0.9642728567123413,
+            "nonzero_pixels": 57060
+          },
+          "000048": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000048.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9600996971130371,
+              0.9580643773078918,
+              0.9537978172302246
+            ],
+            "max_score": 0.9600996971130371,
+            "nonzero_pixels": 58217
+          },
+          "000049": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000049.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.963837742805481,
+              0.9603968262672424,
+              0.957789957523346
+            ],
+            "max_score": 0.963837742805481,
+            "nonzero_pixels": 59202
+          },
+          "000050": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000050.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9680683016777039,
+              0.9674646854400635,
+              0.9584580659866333
+            ],
+            "max_score": 0.9680683016777039,
+            "nonzero_pixels": 60413
+          },
+          "000051": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000051.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9656412601470947,
+              0.9629856944084167,
+              0.9544508457183838
+            ],
+            "max_score": 0.9656412601470947,
+            "nonzero_pixels": 61187
+          },
+          "000052": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000052.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9676534533500671,
+              0.9658139944076538,
+              0.9558179974555969
+            ],
+            "max_score": 0.9676534533500671,
+            "nonzero_pixels": 61945
+          },
+          "000053": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000053.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9685747623443604,
+              0.9644231796264648,
+              0.9567005634307861
+            ],
+            "max_score": 0.9685747623443604,
+            "nonzero_pixels": 62892
+          },
+          "000054": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000054.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9693486094474792,
+              0.9669346809387207,
+              0.9583441615104675
+            ],
+            "max_score": 0.9693486094474792,
+            "nonzero_pixels": 63788
+          },
+          "000055": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000055.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9708517789840698,
+              0.9700056910514832,
+              0.9613537192344666
+            ],
+            "max_score": 0.9708517789840698,
+            "nonzero_pixels": 65054
+          },
+          "000056": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000056.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9694069027900696,
+              0.9681278467178345,
+              0.9592987298965454
+            ],
+            "max_score": 0.9694069027900696,
+            "nonzero_pixels": 66462
+          },
+          "000057": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000057.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9718163013458252,
+              0.9716414213180542,
+              0.9619210958480835
+            ],
+            "max_score": 0.9718163013458252,
+            "nonzero_pixels": 67828
+          },
+          "000058": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000058.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9713951349258423,
+              0.967965841293335,
+              0.9618508219718933
+            ],
+            "max_score": 0.9713951349258423,
+            "nonzero_pixels": 69041
+          },
+          "000059": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000059.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9698779582977295,
+              0.9689362645149231,
+              0.9591285586357117
+            ],
+            "max_score": 0.9698779582977295,
+            "nonzero_pixels": 70170
+          },
+          "000060": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000060.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9689043760299683,
+              0.9686052799224854,
+              0.9582391381263733
+            ],
+            "max_score": 0.9689043760299683,
+            "nonzero_pixels": 71405
+          },
+          "000061": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000061.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9685919880867004,
+              0.9661970138549805,
+              0.9556713104248047
+            ],
+            "max_score": 0.9685919880867004,
+            "nonzero_pixels": 72109
+          },
+          "000062": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000062.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9690995812416077,
+              0.9689132571220398,
+              0.9585514068603516
+            ],
+            "max_score": 0.9690995812416077,
+            "nonzero_pixels": 72500
+          },
+          "000063": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000063.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9687848687171936,
+              0.9677409529685974,
+              0.9594908952713013
+            ],
+            "max_score": 0.9687848687171936,
+            "nonzero_pixels": 71988
+          },
+          "000064": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000064.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9723717570304871,
+              0.9715292453765869,
+              0.9660567045211792
+            ],
+            "max_score": 0.9723717570304871,
+            "nonzero_pixels": 71391
+          },
+          "000065": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000065.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9715925455093384,
+              0.9705899953842163,
+              0.9642339944839478
+            ],
+            "max_score": 0.9715925455093384,
+            "nonzero_pixels": 70264
+          },
+          "000066": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000066.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9689750671386719,
+              0.9680482149124146,
+              0.9618654251098633
+            ],
+            "max_score": 0.9689750671386719,
+            "nonzero_pixels": 68850
+          },
+          "000067": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000067.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.970328688621521,
+              0.9695195555686951,
+              0.9600322246551514
+            ],
+            "max_score": 0.970328688621521,
+            "nonzero_pixels": 67811
+          },
+          "000068": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000068.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9654616713523865,
+              0.9638707637786865,
+              0.9541606903076172
+            ],
+            "max_score": 0.9654616713523865,
+            "nonzero_pixels": 66738
+          },
+          "000069": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000069.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9648169875144958,
+              0.9646559953689575,
+              0.9549664855003357
+            ],
+            "max_score": 0.9648169875144958,
+            "nonzero_pixels": 65586
+          },
+          "000070": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000070.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9647093415260315,
+              0.9611125588417053,
+              0.9539891481399536
+            ],
+            "max_score": 0.9647093415260315,
+            "nonzero_pixels": 64896
+          },
+          "000071": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000071.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9619250297546387,
+              0.9600203037261963,
+              0.9553753137588501
+            ],
+            "max_score": 0.9619250297546387,
+            "nonzero_pixels": 64443
+          },
+          "000072": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000072.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9585384130477905,
+              0.9577539563179016,
+              0.9495182633399963
+            ],
+            "max_score": 0.9585384130477905,
+            "nonzero_pixels": 64001
+          },
+          "000073": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000073.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9648093581199646,
+              0.962867021560669,
+              0.9582856297492981
+            ],
+            "max_score": 0.9648093581199646,
+            "nonzero_pixels": 63729
+          },
+          "000074": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000074.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9622890949249268,
+              0.9526160359382629,
+              0.9524570107460022
+            ],
+            "max_score": 0.9622890949249268,
+            "nonzero_pixels": 63364
+          },
+          "000075": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000075.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9641969799995422,
+              0.9627646803855896,
+              0.9484333395957947
+            ],
+            "max_score": 0.9641969799995422,
+            "nonzero_pixels": 63787
+          },
+          "000076": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000076.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9601148366928101,
+              0.9513657689094543,
+              0.9432746171951294
+            ],
+            "max_score": 0.9601148366928101,
+            "nonzero_pixels": 64223
+          },
+          "000077": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000077.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9613674283027649,
+              0.9600117206573486,
+              0.9429893493652344
+            ],
+            "max_score": 0.9613674283027649,
+            "nonzero_pixels": 65483
+          },
+          "000078": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000078.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9606723785400391,
+              0.9582793712615967,
+              0.956278383731842
+            ],
+            "max_score": 0.9606723785400391,
+            "nonzero_pixels": 67590
+          },
+          "000079": {
+            "mask": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000079.png",
+            "source_instance_count": 3,
+            "source_scores": [
+              0.9632288813591003,
+              0.9576900601387024,
+              0.9520673155784607
+            ],
+            "max_score": 0.9632288813591003,
+            "nonzero_pixels": 70799
+          }
+        }
+      }
+    },
+    "counts": {
+      "classes": 1,
+      "source_instance_masks": 223,
+      "merged_class_frame_masks": 80
+    },
+    "labels": {
+      "pillow": {
+        "object_id": "sam3_class_pillow",
+        "frames_written": 80,
+        "source_instance_masks": 223,
+        "mean_score": 0.9537408715406341,
+        "min_score": 0.9065322875976562,
+        "max_score": 0.9723717570304871
+      }
+    },
+    "notes": [
+      "Same-label SAM3 instances in one frame are merged by pixel-wise maximum.",
+      "Each foreground pixel stores round(SAM3 score * 255), preserving score-derived probability.",
+      "SAM3 image inference has no stable cross-frame instance id; 3D connectivity splits class masks later."
+    ]
+  },
+  "masks": [
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000000.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000000.png",
+      "pixels_before": 6700,
+      "pixels_after": 5898,
+      "retained_ratio": 0.8802985074626866
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000001.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000001.png",
+      "pixels_before": 7221,
+      "pixels_after": 6175,
+      "retained_ratio": 0.8551447167982273
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000002.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000002.png",
+      "pixels_before": 4129,
+      "pixels_after": 3608,
+      "retained_ratio": 0.8738193267134899
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000003.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000003.png",
+      "pixels_before": 9543,
+      "pixels_after": 8320,
+      "retained_ratio": 0.8718432358797024
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000004.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000004.png",
+      "pixels_before": 6072,
+      "pixels_after": 5450,
+      "retained_ratio": 0.897562582345191
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000005.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000005.png",
+      "pixels_before": 10789,
+      "pixels_after": 9473,
+      "retained_ratio": 0.8780239132449718
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000006.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000006.png",
+      "pixels_before": 11072,
+      "pixels_after": 9691,
+      "retained_ratio": 0.8752709537572254
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000007.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000007.png",
+      "pixels_before": 19621,
+      "pixels_after": 17493,
+      "retained_ratio": 0.8915447734570103
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000008.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000008.png",
+      "pixels_before": 24264,
+      "pixels_after": 21913,
+      "retained_ratio": 0.9031074843389384
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000009.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000009.png",
+      "pixels_before": 12271,
+      "pixels_after": 10912,
+      "retained_ratio": 0.8892510797815989
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000010.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000010.png",
+      "pixels_before": 12786,
+      "pixels_after": 11390,
+      "retained_ratio": 0.890818082277491
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000011.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000011.png",
+      "pixels_before": 13321,
+      "pixels_after": 11879,
+      "retained_ratio": 0.8917498686284814
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000012.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000012.png",
+      "pixels_before": 13860,
+      "pixels_after": 12323,
+      "retained_ratio": 0.8891053391053391
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000013.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000013.png",
+      "pixels_before": 29106,
+      "pixels_after": 26462,
+      "retained_ratio": 0.9091596234453377
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000014.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000014.png",
+      "pixels_before": 14729,
+      "pixels_after": 13123,
+      "retained_ratio": 0.8909634055265123
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000015.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000015.png",
+      "pixels_before": 15269,
+      "pixels_after": 13647,
+      "retained_ratio": 0.8937716942825332
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000016.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000016.png",
+      "pixels_before": 32262,
+      "pixels_after": 29507,
+      "retained_ratio": 0.914605418138987
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000017.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000017.png",
+      "pixels_before": 33692,
+      "pixels_after": 30847,
+      "retained_ratio": 0.9155585895761605
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000018.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000018.png",
+      "pixels_before": 35050,
+      "pixels_after": 32063,
+      "retained_ratio": 0.9147788873038516
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000019.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000019.png",
+      "pixels_before": 36360,
+      "pixels_after": 33399,
+      "retained_ratio": 0.9185643564356436
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000020.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000020.png",
+      "pixels_before": 37831,
+      "pixels_after": 34784,
+      "retained_ratio": 0.919457587692633
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000021.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000021.png",
+      "pixels_before": 19105,
+      "pixels_after": 17272,
+      "retained_ratio": 0.9040565297042659
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000022.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000022.png",
+      "pixels_before": 19597,
+      "pixels_after": 17724,
+      "retained_ratio": 0.9044241465530438
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000023.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000023.png",
+      "pixels_before": 41042,
+      "pixels_after": 37732,
+      "retained_ratio": 0.919350908825106
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000024.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000024.png",
+      "pixels_before": 41555,
+      "pixels_after": 38199,
+      "retained_ratio": 0.9192395620262303
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000025.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000025.png",
+      "pixels_before": 41768,
+      "pixels_after": 38532,
+      "retained_ratio": 0.9225244206090787
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000026.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000026.png",
+      "pixels_before": 42711,
+      "pixels_after": 39400,
+      "retained_ratio": 0.922478986677905
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000027.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000027.png",
+      "pixels_before": 43398,
+      "pixels_after": 40085,
+      "retained_ratio": 0.9236600765012213
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000028.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000028.png",
+      "pixels_before": 43944,
+      "pixels_after": 40625,
+      "retained_ratio": 0.924472055343164
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000029.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000029.png",
+      "pixels_before": 45034,
+      "pixels_after": 41663,
+      "retained_ratio": 0.9251454456632766
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000030.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000030.png",
+      "pixels_before": 45894,
+      "pixels_after": 42508,
+      "retained_ratio": 0.9262212925436877
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000031.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000031.png",
+      "pixels_before": 46829,
+      "pixels_after": 43393,
+      "retained_ratio": 0.9266266629652565
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000032.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000032.png",
+      "pixels_before": 48017,
+      "pixels_after": 44524,
+      "retained_ratio": 0.9272549305454318
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000033.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000033.png",
+      "pixels_before": 49010,
+      "pixels_after": 45470,
+      "retained_ratio": 0.9277698428892063
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000034.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000034.png",
+      "pixels_before": 49786,
+      "pixels_after": 46231,
+      "retained_ratio": 0.9285943839633632
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000035.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000035.png",
+      "pixels_before": 50387,
+      "pixels_after": 46803,
+      "retained_ratio": 0.9288705420048822
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000036.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000036.png",
+      "pixels_before": 51032,
+      "pixels_after": 47424,
+      "retained_ratio": 0.9292992632073993
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000037.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000037.png",
+      "pixels_before": 51238,
+      "pixels_after": 47616,
+      "retained_ratio": 0.9293102775283969
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000038.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000038.png",
+      "pixels_before": 51623,
+      "pixels_after": 47971,
+      "retained_ratio": 0.9292563392286384
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000039.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000039.png",
+      "pixels_before": 51894,
+      "pixels_after": 48248,
+      "retained_ratio": 0.9297413959224573
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000040.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000040.png",
+      "pixels_before": 51957,
+      "pixels_after": 48284,
+      "retained_ratio": 0.9293069268818446
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000041.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000041.png",
+      "pixels_before": 52272,
+      "pixels_after": 48603,
+      "retained_ratio": 0.9298094582185491
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000042.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000042.png",
+      "pixels_before": 52584,
+      "pixels_after": 48904,
+      "retained_ratio": 0.9300167351285562
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000043.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000043.png",
+      "pixels_before": 53156,
+      "pixels_after": 49466,
+      "retained_ratio": 0.9305816840996313
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000044.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000044.png",
+      "pixels_before": 53971,
+      "pixels_after": 50244,
+      "retained_ratio": 0.9309443960645531
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000045.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000045.png",
+      "pixels_before": 55016,
+      "pixels_after": 51259,
+      "retained_ratio": 0.931710775047259
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000046.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000046.png",
+      "pixels_before": 56074,
+      "pixels_after": 52264,
+      "retained_ratio": 0.9320540714056426
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000047.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000047.png",
+      "pixels_before": 57060,
+      "pixels_after": 53214,
+      "retained_ratio": 0.9325972660357519
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000048.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000048.png",
+      "pixels_before": 58217,
+      "pixels_after": 54338,
+      "retained_ratio": 0.933369977841524
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000049.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000049.png",
+      "pixels_before": 59202,
+      "pixels_after": 55282,
+      "retained_ratio": 0.9337860207425425
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000050.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000050.png",
+      "pixels_before": 60413,
+      "pixels_after": 56456,
+      "retained_ratio": 0.9345008524655289
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000051.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000051.png",
+      "pixels_before": 61187,
+      "pixels_after": 57218,
+      "retained_ratio": 0.9351332799450863
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000052.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000052.png",
+      "pixels_before": 61945,
+      "pixels_after": 57966,
+      "retained_ratio": 0.9357655985148116
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000053.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000053.png",
+      "pixels_before": 62892,
+      "pixels_after": 58872,
+      "retained_ratio": 0.9360809005914902
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000054.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000054.png",
+      "pixels_before": 63788,
+      "pixels_after": 59733,
+      "retained_ratio": 0.9364300495390983
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000055.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000055.png",
+      "pixels_before": 65054,
+      "pixels_after": 60956,
+      "retained_ratio": 0.9370061794816614
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000056.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000056.png",
+      "pixels_before": 66462,
+      "pixels_after": 62328,
+      "retained_ratio": 0.937799043062201
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000057.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000057.png",
+      "pixels_before": 67828,
+      "pixels_after": 63635,
+      "retained_ratio": 0.9381818717933597
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000058.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000058.png",
+      "pixels_before": 69041,
+      "pixels_after": 64812,
+      "retained_ratio": 0.9387465419098796
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000059.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000059.png",
+      "pixels_before": 70170,
+      "pixels_after": 65899,
+      "retained_ratio": 0.9391335328487957
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000060.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000060.png",
+      "pixels_before": 71405,
+      "pixels_after": 67087,
+      "retained_ratio": 0.939528044254604
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000061.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000061.png",
+      "pixels_before": 72109,
+      "pixels_after": 67765,
+      "retained_ratio": 0.9397578665631198
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000062.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000062.png",
+      "pixels_before": 72500,
+      "pixels_after": 68137,
+      "retained_ratio": 0.9398206896551724
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000063.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000063.png",
+      "pixels_before": 71988,
+      "pixels_after": 67657,
+      "retained_ratio": 0.9398371950880703
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000064.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000064.png",
+      "pixels_before": 71391,
+      "pixels_after": 67066,
+      "retained_ratio": 0.9394181339384516
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000065.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000065.png",
+      "pixels_before": 70264,
+      "pixels_after": 65964,
+      "retained_ratio": 0.9388022315837413
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000066.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000066.png",
+      "pixels_before": 68850,
+      "pixels_after": 64564,
+      "retained_ratio": 0.9377487291212782
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000067.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000067.png",
+      "pixels_before": 67811,
+      "pixels_after": 63587,
+      "retained_ratio": 0.9377092212177965
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000068.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000068.png",
+      "pixels_before": 66738,
+      "pixels_after": 62530,
+      "retained_ratio": 0.9369474662111541
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000069.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000069.png",
+      "pixels_before": 65586,
+      "pixels_after": 61411,
+      "retained_ratio": 0.9363431220077456
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000070.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000070.png",
+      "pixels_before": 64896,
+      "pixels_after": 60747,
+      "retained_ratio": 0.9360669378698225
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000071.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000071.png",
+      "pixels_before": 64443,
+      "pixels_after": 60311,
+      "retained_ratio": 0.9358813214778952
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000072.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000072.png",
+      "pixels_before": 64001,
+      "pixels_after": 59869,
+      "retained_ratio": 0.9354385087733004
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000073.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000073.png",
+      "pixels_before": 63729,
+      "pixels_after": 59596,
+      "retained_ratio": 0.9351472641968335
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000074.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000074.png",
+      "pixels_before": 63364,
+      "pixels_after": 59244,
+      "retained_ratio": 0.9349788523451802
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000075.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000075.png",
+      "pixels_before": 63787,
+      "pixels_after": 59667,
+      "retained_ratio": 0.9354100365278192
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000076.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000076.png",
+      "pixels_before": 64223,
+      "pixels_after": 60079,
+      "retained_ratio": 0.9354748298896034
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000077.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000077.png",
+      "pixels_before": 65483,
+      "pixels_after": 61278,
+      "retained_ratio": 0.9357848601927218
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000078.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000078.png",
+      "pixels_before": 67590,
+      "pixels_after": 63328,
+      "retained_ratio": 0.9369433348128421
+    },
+    {
+      "source": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d/sam3_class_pillow/000079.png",
+      "output": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000079.png",
+      "pixels_before": 70799,
+      "pixels_after": 66432,
+      "retained_ratio": 0.9383183378296304
+    }
+  ]
+}

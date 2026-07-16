@@ -1,0 +1,373 @@
+{
+  "schema_version": 1,
+  "scene_id": "bedroom_4",
+  "objects": [
+    {
+      "object_id": "sam3_nightstand_01",
+      "category": "nightstand",
+      "instance_scope": "single_reconstruction_candidate",
+      "evidence_kind": "embodiedgen_prompted_reference_rgba",
+      "source_records": {
+        "rgba": {
+          "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_nightstand_01/sam3_nightstand_01_prompted_reference_rgba.png",
+          "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_nightstand_01_prompted_reference_rgba.png",
+          "bytes": 644731,
+          "sha256": "145645137dd4d6d8fa8f61cd7398b1e4e801b1ba7c2ec55f16f1ac469405b2d7",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "artifact_relative_path": "inputs/evidence/sam3_nightstand_01/sam3_nightstand_01_prompted_reference_rgba.png"
+        }
+      },
+      "vl_images": [
+        {
+          "role": "neutral_background_composite",
+          "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_nightstand_01.png",
+          "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_nightstand_01/sam3_nightstand_01_prompted_reference_rgba.png",
+          "bytes": 540821,
+          "sha256": "c7f5a929713cd2d0a402b00c95002231d5d31b64b199510ea5cca8e43d691027",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGB",
+          "artifact_relative_path": "inputs/vl_inputs/sam3_nightstand_01.png",
+          "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+          "derived_from": [
+            {
+              "role": "rgba_reference",
+              "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_nightstand_01/sam3_nightstand_01_prompted_reference_rgba.png",
+              "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_nightstand_01_prompted_reference_rgba.png",
+              "bytes": 644731,
+              "sha256": "145645137dd4d6d8fa8f61cd7398b1e4e801b1ba7c2ec55f16f1ac469405b2d7",
+              "width": 1254,
+              "height": 1254,
+              "mode": "RGBA",
+              "artifact_relative_path": "inputs/evidence/sam3_nightstand_01/sam3_nightstand_01_prompted_reference_rgba.png"
+            }
+          ]
+        }
+      ],
+      "alpha_nonzero_ratio": 0.2562695705480898,
+      "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+      "scene_position_inferable": false,
+      "spatial_constraint": "The isolated RGBA reference contains no scene context. Do not infer room location, neighboring objects, metric size, or world orientation."
+    },
+    {
+      "object_id": "sam3_nightstand_02",
+      "category": "nightstand",
+      "instance_scope": "single_reconstruction_candidate",
+      "evidence_kind": "embodiedgen_prompted_reference_rgba",
+      "source_records": {
+        "rgba": {
+          "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_nightstand_02/sam3_nightstand_02_prompted_reference_rgba.png",
+          "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_nightstand_02_prompted_reference_rgba.png",
+          "bytes": 811465,
+          "sha256": "7d79f9bf327b953ae2b7b5f21ece53ed3c99ee42bdf0b3ea28df5267c6a52420",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "artifact_relative_path": "inputs/evidence/sam3_nightstand_02/sam3_nightstand_02_prompted_reference_rgba.png"
+        }
+      },
+      "vl_images": [
+        {
+          "role": "neutral_background_composite",
+          "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_nightstand_02.png",
+          "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_nightstand_02/sam3_nightstand_02_prompted_reference_rgba.png",
+          "bytes": 676975,
+          "sha256": "5100d09199b62119303d1b828d0f5c338ab6532cc880535b9193583f62f8e3ba",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGB",
+          "artifact_relative_path": "inputs/vl_inputs/sam3_nightstand_02.png",
+          "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+          "derived_from": [
+            {
+              "role": "rgba_reference",
+              "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_nightstand_02/sam3_nightstand_02_prompted_reference_rgba.png",
+              "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_nightstand_02_prompted_reference_rgba.png",
+              "bytes": 811465,
+              "sha256": "7d79f9bf327b953ae2b7b5f21ece53ed3c99ee42bdf0b3ea28df5267c6a52420",
+              "width": 1254,
+              "height": 1254,
+              "mode": "RGBA",
+              "artifact_relative_path": "inputs/evidence/sam3_nightstand_02/sam3_nightstand_02_prompted_reference_rgba.png"
+            }
+          ]
+        }
+      ],
+      "alpha_nonzero_ratio": 0.296309226742367,
+      "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+      "scene_position_inferable": false,
+      "spatial_constraint": "The isolated RGBA reference contains no scene context. Do not infer room location, neighboring objects, metric size, or world orientation."
+    },
+    {
+      "object_id": "sam3_plant_01",
+      "category": "plant",
+      "instance_scope": "single_reconstruction_candidate",
+      "evidence_kind": "embodiedgen_prompted_reference_rgba",
+      "source_records": {
+        "rgba": {
+          "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png",
+          "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_01_prompted_reference_rgba.png",
+          "bytes": 1289825,
+          "sha256": "349771ac6dad558297d5901a57f20230050828523a85f8ee2d4c0de8347584b9",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "artifact_relative_path": "inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png"
+        }
+      },
+      "vl_images": [
+        {
+          "role": "neutral_background_composite",
+          "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_plant_01.png",
+          "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png",
+          "bytes": 1068921,
+          "sha256": "fa54a182e508345d07bfeae910930dbe68750f11d40bd8b9ea165f83999af47a",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGB",
+          "artifact_relative_path": "inputs/vl_inputs/sam3_plant_01.png",
+          "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+          "derived_from": [
+            {
+              "role": "rgba_reference",
+              "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png",
+              "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_01_prompted_reference_rgba.png",
+              "bytes": 1289825,
+              "sha256": "349771ac6dad558297d5901a57f20230050828523a85f8ee2d4c0de8347584b9",
+              "width": 1254,
+              "height": 1254,
+              "mode": "RGBA",
+              "artifact_relative_path": "inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png"
+            }
+          ]
+        }
+      ],
+      "alpha_nonzero_ratio": 0.3327272981642158,
+      "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+      "scene_position_inferable": false,
+      "spatial_constraint": "The isolated RGBA reference contains no scene context. Do not infer room location, neighboring objects, metric size, or world orientation."
+    },
+    {
+      "object_id": "sam3_plant_02",
+      "category": "plant",
+      "instance_scope": "single_reconstruction_candidate",
+      "evidence_kind": "embodiedgen_prompted_reference_rgba",
+      "source_records": {
+        "rgba": {
+          "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png",
+          "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_02_prompted_reference_rgba.png",
+          "bytes": 1290035,
+          "sha256": "be0a729def18725445299251324f119bd34a189370513037ffa3fd47ff4594cb",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "artifact_relative_path": "inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png"
+        }
+      },
+      "vl_images": [
+        {
+          "role": "neutral_background_composite",
+          "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_plant_02.png",
+          "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png",
+          "bytes": 1060819,
+          "sha256": "afc15474e515357c1f2ce0a54d36e6386c2529068a1880d3fb27198d105bb69b",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGB",
+          "artifact_relative_path": "inputs/vl_inputs/sam3_plant_02.png",
+          "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+          "derived_from": [
+            {
+              "role": "rgba_reference",
+              "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png",
+              "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_02_prompted_reference_rgba.png",
+              "bytes": 1290035,
+              "sha256": "be0a729def18725445299251324f119bd34a189370513037ffa3fd47ff4594cb",
+              "width": 1254,
+              "height": 1254,
+              "mode": "RGBA",
+              "artifact_relative_path": "inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png"
+            }
+          ]
+        }
+      ],
+      "alpha_nonzero_ratio": 0.3366312330049424,
+      "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+      "scene_position_inferable": false,
+      "spatial_constraint": "The isolated RGBA reference contains no scene context. Do not infer room location, neighboring objects, metric size, or world orientation."
+    },
+    {
+      "object_id": "sam3_plant_03",
+      "category": "plant",
+      "instance_scope": "single_reconstruction_candidate",
+      "evidence_kind": "embodiedgen_prompted_reference_rgba",
+      "source_records": {
+        "rgba": {
+          "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_03/sam3_plant_03_prompted_reference_rgba.png",
+          "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_03_prompted_reference_rgba.png",
+          "bytes": 1239980,
+          "sha256": "c4dfff89dace75b019a7d84f858e31f8cf2aeae50479a0ae43bab30b7df38537",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGBA",
+          "artifact_relative_path": "inputs/evidence/sam3_plant_03/sam3_plant_03_prompted_reference_rgba.png"
+        }
+      },
+      "vl_images": [
+        {
+          "role": "neutral_background_composite",
+          "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_plant_03.png",
+          "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_03/sam3_plant_03_prompted_reference_rgba.png",
+          "bytes": 1039062,
+          "sha256": "0e82346499b1df26db3c3dafcc9e28fd14bc2d24049123a82a9d26ca30b883cd",
+          "width": 1254,
+          "height": 1254,
+          "mode": "RGB",
+          "artifact_relative_path": "inputs/vl_inputs/sam3_plant_03.png",
+          "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+          "derived_from": [
+            {
+              "role": "rgba_reference",
+              "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_03/sam3_plant_03_prompted_reference_rgba.png",
+              "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_03_prompted_reference_rgba.png",
+              "bytes": 1239980,
+              "sha256": "c4dfff89dace75b019a7d84f858e31f8cf2aeae50479a0ae43bab30b7df38537",
+              "width": 1254,
+              "height": 1254,
+              "mode": "RGBA",
+              "artifact_relative_path": "inputs/evidence/sam3_plant_03/sam3_plant_03_prompted_reference_rgba.png"
+            }
+          ]
+        }
+      ],
+      "alpha_nonzero_ratio": 0.3236628434941203,
+      "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+      "scene_position_inferable": false,
+      "spatial_constraint": "The isolated RGBA reference contains no scene context. Do not infer room location, neighboring objects, metric size, or world orientation."
+    },
+    {
+      "object_id": "sam3_pillow_01",
+      "category": "pillow",
+      "instance_scope": "ensemble",
+      "instance_semantics": "three_touching_pillows_as_one_accepted_entity_without_stable_per-pillow_ids",
+      "mask_component_count": 3,
+      "mask_component_pixels_descending": [
+        28576,
+        21788,
+        16702
+      ],
+      "evidence_kind": "accepted_holi_sam3_frame_mask_crop",
+      "source_records": {
+        "frame": {
+          "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/frame_000064.png",
+          "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/scene/frames/000064.png",
+          "bytes": 1092295,
+          "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+          "width": 1280,
+          "height": 720,
+          "mode": "RGB",
+          "artifact_relative_path": "inputs/evidence/sam3_pillow_01/frame_000064.png"
+        },
+        "accepted_mask": {
+          "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/accepted_mask_000064.png",
+          "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000064.png",
+          "bytes": 4736,
+          "sha256": "94e885a3133252c240d73fb60bac78dd4d28ec6e95b7741816dfd7a9fce66957",
+          "width": 1280,
+          "height": 720,
+          "mode": "L",
+          "artifact_relative_path": "inputs/evidence/sam3_pillow_01/accepted_mask_000064.png"
+        }
+      },
+      "crop_box_xyxy": [
+        314,
+        284,
+        848,
+        602
+      ],
+      "vl_images": [
+        {
+          "role": "accepted_mask_isolated",
+          "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_pillow_01_masked.png",
+          "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/accepted_mask_000064.png",
+          "bytes": 89873,
+          "sha256": "125c045126d02e8d998898f50ed7b146bc9b5bf4dd1c1a27b51c25e49f28b88d",
+          "width": 534,
+          "height": 318,
+          "mode": "RGB",
+          "artifact_relative_path": "inputs/vl_inputs/sam3_pillow_01_masked.png",
+          "derived_from": [
+            {
+              "role": "rgb_frame",
+              "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/frame_000064.png",
+              "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/scene/frames/000064.png",
+              "bytes": 1092295,
+              "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+              "width": 1280,
+              "height": 720,
+              "mode": "RGB",
+              "artifact_relative_path": "inputs/evidence/sam3_pillow_01/frame_000064.png"
+            },
+            {
+              "role": "accepted_binary_mask",
+              "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/accepted_mask_000064.png",
+              "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000064.png",
+              "bytes": 4736,
+              "sha256": "94e885a3133252c240d73fb60bac78dd4d28ec6e95b7741816dfd7a9fce66957",
+              "width": 1280,
+              "height": 720,
+              "mode": "L",
+              "artifact_relative_path": "inputs/evidence/sam3_pillow_01/accepted_mask_000064.png"
+            }
+          ],
+          "derivation": "crop frame to accepted mask bbox plus 56px padding; alpha=mask>0; composite on synthetic RGB(238,238,238)"
+        },
+        {
+          "role": "scene_context_with_red_mask_boundary",
+          "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_pillow_01_context.png",
+          "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/frame_000064.png",
+          "bytes": 175714,
+          "sha256": "5b91408193cf59f336f1b8b4d4efbf4c7db92a38ddffd58da788f50ab721b91c",
+          "width": 534,
+          "height": 318,
+          "mode": "RGB",
+          "artifact_relative_path": "inputs/vl_inputs/sam3_pillow_01_context.png",
+          "derived_from": [
+            {
+              "role": "rgb_frame",
+              "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/frame_000064.png",
+              "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/scene/frames/000064.png",
+              "bytes": 1092295,
+              "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+              "width": 1280,
+              "height": 720,
+              "mode": "RGB",
+              "artifact_relative_path": "inputs/evidence/sam3_pillow_01/frame_000064.png"
+            },
+            {
+              "role": "accepted_binary_mask",
+              "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/accepted_mask_000064.png",
+              "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000064.png",
+              "bytes": 4736,
+              "sha256": "94e885a3133252c240d73fb60bac78dd4d28ec6e95b7741816dfd7a9fce66957",
+              "width": 1280,
+              "height": 720,
+              "mode": "L",
+              "artifact_relative_path": "inputs/evidence/sam3_pillow_01/accepted_mask_000064.png"
+            }
+          ],
+          "derivation": "same crop; synthetic RGB(235,52,52), 4px contour over mask>0 boundary"
+        }
+      ],
+      "scene_position_inferable": true,
+      "spatial_constraint": "Only relations visibly supported inside frame 000064 may be described. Coordinates and distances are not metric."
+    }
+  ],
+  "notes": [
+    "EmbodiedGen evidence is the exact prompted-reference RGBA used by the reconstruction run.",
+    "Pillow evidence uses accepted SAM3 erosion/depth-refined mask frame 000064.",
+    "All VLM inputs are deterministic image derivatives; no generative image editing is applied."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "point_cloud": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/pointcloud_da3.ply",
+  "output_dir": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/simulator_assets/object_masks_3d",
+  "objects": {
+    "sam3_pillow_01": {
+      "object_id": "sam3_pillow_01",
+      "name": "pillow 1",
+      "category": "pillow",
+      "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/simulator_assets/object_masks_3d/sam3_pillow_01.ply",
+      "point_count": 209479,
+      "source_point_cloud": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/pointcloud_da3.ply",
+      "source_indices": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/3d_instances/sam3_pillow_01/point_indices.npy"
+    }
+  }
+}

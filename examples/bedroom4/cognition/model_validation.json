@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "validated_at": "2026-07-16T18:27:48.531407+08:00",
+  "status": "passed",
+  "model_dir": "/root/autodl-tmp/qwen2.5-vl-3b-instruct",
+  "repo_id": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+  "revision_evidence": [
+    {
+      "file": "config.json",
+      "revision": "66285546d2b821cf421d4f5eb2576359d3770cd3"
+    },
+    {
+      "file": "generation_config.json",
+      "revision": "66285546d2b821cf421d4f5eb2576359d3770cd3"
+    },
+    {
+      "file": "model.safetensors.index.json",
+      "revision": "66285546d2b821cf421d4f5eb2576359d3770cd3"
+    },
+    {
+      "file": "preprocessor_config.json",
+      "revision": "66285546d2b821cf421d4f5eb2576359d3770cd3"
+    },
+    {
+      "file": "tokenizer.json",
+      "revision": "66285546d2b821cf421d4f5eb2576359d3770cd3"
+    },
+    {
+      "file": "tokenizer_config.json",
+      "revision": "66285546d2b821cf421d4f5eb2576359d3770cd3"
+    },
+    {
+      "file": "model-00001-of-00002.safetensors",
+      "revision": "66285546d2b821cf421d4f5eb2576359d3770cd3"
+    },
+    {
+      "file": "model-00002-of-00002.safetensors",
+      "revision": "66285546d2b821cf421d4f5eb2576359d3770cd3"
+    }
+  ],
+  "model_type": "qwen2_5_vl",
+  "architectures": [
+    "Qwen2_5_VLForConditionalGeneration"
+  ],
+  "index_total_size": 7509245952,
+  "shards": [
+    {
+      "name": "model-00001-of-00002.safetensors",
+      "physical_bytes": 3982649232,
+      "header_bytes": 61328,
+      "tensor_payload_bytes": 3982587904,
+      "tensor_count": 556
+    },
+    {
+      "name": "model-00002-of-00002.safetensors",
+      "physical_bytes": 3526688744,
+      "header_bytes": 30696,
+      "tensor_payload_bytes": 3526658048,
+      "tensor_count": 268
+    }
+  ],
+  "parameter_count": 3754622976,
+  "processor_class": "Qwen2_5_VLProcessor",
+  "image_processor_class": "Qwen2VLImageProcessor",
+  "use_fast_image_processor": false,
+  "transformers_version": "4.57.3",
+  "torch_version": "2.5.1+cu124",
+  "dtype": "bfloat16",
+  "attention": "sdpa",
+  "device": "NVIDIA GeForce RTX 3090",
+  "cuda_memory_allocated_before": 0,
+  "cuda_memory_allocated_after_load": 7509286400,
+  "local_files_only": true,
+  "loading_info": {
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "mismatched_keys": [],
+    "error_msgs": []
+  }
+}

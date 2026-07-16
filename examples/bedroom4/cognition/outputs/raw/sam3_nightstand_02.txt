@@ -1,0 +1,54 @@
+{
+  "caption_en": "A wooden nightstand with a single drawer and a rounded knob, featuring a warm reddish-brown finish.",
+  "caption_zh": "一个木制的床头柜，带有单个抽屉和圆形旋钮，表面呈现出温暖的红棕色。",
+  "visible_attributes": {
+    "object_type": {
+      "en": "nightstand",
+      "zh": "床头柜"
+    },
+    "colors": {
+      "en": ["warm reddish-brown"],
+      "zh": ["温暖的红棕色"]
+    },
+    "material_appearance": {
+      "en": ["wood"],
+      "zh": ["木头"]
+    },
+    "geometry": {
+      "en": ["rectangular with rounded corners"],
+      "zh": ["矩形带有圆角"]
+    },
+    "components": {
+      "en": ["drawer with round knob", "four legs"],
+      "zh": ["带圆形旋钮的抽屉，四条腿"]
+    },
+    "style_or_pattern": {
+      "en": ["traditional design"],
+      "zh": ["传统设计"]
+    }
+  },
+  "spatial_notes": {
+    "intrinsic_orientation": {
+      "en": "isolated reference",
+      "zh": "孤立参考"
+    },
+    "support_and_placement": {
+      "en": "no specific support or placement information provided",
+      "zh": "没有提供具体的支持或放置信息"
+    },
+    "scene_relation": {
+      "en": "Scene position cannot be inferred from this isolated reference.",
+      "zh": "无法从这张孤立参考图推断场景位置。"
+    },
+    "scale_caution": {
+      "en": "Metric scale cannot be inferred.",
+      "zh": "无法推断度量尺度。"
+    }
+  },
+  "uncertainties": [
+    {
+      "en": "The exact brand or function of the nightstand cannot be determined.",
+      "zh": "无法确定这个床头柜的具体品牌或功能。"
+    }
+  ]
+}

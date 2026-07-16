@@ -1,0 +1,42 @@
+Object ID: sam3_nightstand_01
+Open-vocabulary category hint: nightstand
+Evidence constraint: The images are isolated EmbodiedGen RGBA reference derivatives and contain no scene context. The spatial_notes.scene_relation fields must explicitly say that scene position is not inferable.
+Instance constraint: Describe only the single reconstruction candidate shown.
+Image derivation warning: Image role neutral_background_composite: RGBA alpha-composited over neutral RGB(238,238,238); no content generation.
+Required spatial wording: In spatial_notes.scene_relation, include "Scene position cannot be inferred from this isolated reference." and "无法从这张孤立参考图推断场景位置。"
+Human visual-audit checklist to verify against the supplied evidence: Verify a plain dark/warm-brown wood-like finish, rectangular top and apron, and four square legs. No drawer or handle is visible; do not invent one.
+
+Produce a detailed but concise bilingual annotation. Use this exact JSON schema:
+{
+  "caption_en": "one precise English sentence",
+  "caption_zh": "对应的精确中文句子",
+  "visible_attributes": {
+    "object_type": {"en": "", "zh": ""},
+    "colors": {"en": [""], "zh": [""]},
+    "material_appearance": {"en": [""], "zh": [""]},
+    "geometry": {"en": [""], "zh": [""]},
+    "components": {"en": [""], "zh": [""]},
+    "style_or_pattern": {"en": [""], "zh": [""]}
+  },
+  "spatial_notes": {
+    "intrinsic_orientation": {"en": "", "zh": ""},
+    "support_and_placement": {"en": "", "zh": ""},
+    "scene_relation": {"en": "", "zh": ""},
+    "scale_caution": {"en": "", "zh": ""}
+  },
+  "uncertainties": [{"en": "", "zh": ""}]
+}
+
+Requirements:
+- Mention the category naturally, then distinguish color, shape, visible parts, texture/pattern, and finish.
+- colors, material_appearance, geometry, components, and style_or_pattern must each contain JSON arrays for both en and zh, never scalar strings.
+- Use the visual-audit checklist only where the pixels confirm it; correct or omit any unsupported checklist detail.
+- Treat apparent wood/ceramic/fabric only as visual appearance unless directly certain.
+- Do not name a plant species unless uniquely certain; prefer leaf shape and variegation.
+- Do not invent drawers, doors, handles, legs, supports, or surfaces that are not visible.
+- Do not report measurements or meters.
+- spatial_notes.scale_caution must explicitly include "Metric scale cannot be inferred" and "无法推断度量尺度".
+- Synthetic light-gray backgrounds are not object color, material, support, or scene context.
+- The red contour in the pillow context image is a synthetic mask overlay, not object color or pattern.
+- Keep English and Chinese semantically aligned.
+- Return JSON only.

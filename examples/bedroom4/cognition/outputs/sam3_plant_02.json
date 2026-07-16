@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "object_id": "sam3_plant_02",
+  "category": "plant",
+  "status": "passed",
+  "description": {
+    "caption_en": "A dense rounded potted plant has palmate-looking green-and-cream variegated leaves, multiple upright stems, and a smooth off-white cylindrical pot.",
+    "caption_zh": "这株浓密的圆冠盆栽具有掌状观感的绿奶油色斑锦叶、数根直立枝干和一个光滑的灰白色圆柱形花盆。",
+    "visible_attributes": {
+      "object_type": {
+        "en": "potted broadleaf plant",
+        "zh": "盆栽阔叶植物"
+      },
+      "colors": {
+        "en": [
+          "green and cream variegated leaves",
+          "off-white pot"
+        ],
+        "zh": [
+          "绿奶油色斑锦叶",
+          "灰白色花盆"
+        ]
+      },
+      "material_appearance": {
+        "en": [
+          "smooth leaf surfaces",
+          "woody-looking stems",
+          "smooth off-white pot"
+        ],
+        "zh": [
+          "平滑叶面",
+          "木质观感枝干",
+          "光滑灰白色花盆"
+        ]
+      },
+      "geometry": {
+        "en": [
+          "dense rounded crown",
+          "palmate-looking leaf clusters",
+          "cylindrical pot"
+        ],
+        "zh": [
+          "浓密圆形冠幅",
+          "掌状观感叶簇",
+          "圆柱形花盆"
+        ]
+      },
+      "components": {
+        "en": [
+          "variegated leaves",
+          "multiple stems",
+          "pot"
+        ],
+        "zh": [
+          "斑锦叶片",
+          "数根枝干",
+          "花盆"
+        ]
+      },
+      "style_or_pattern": {
+        "en": [
+          "green-and-cream variegation"
+        ],
+        "zh": [
+          "绿奶油色斑锦纹理"
+        ]
+      }
+    },
+    "spatial_notes": {
+      "intrinsic_orientation": {
+        "en": "upright rounded crown above the pot",
+        "zh": "圆形冠幅直立于花盆上方"
+      },
+      "support_and_placement": {
+        "en": "Visible stems emerge from and are supported within the pot.",
+        "zh": "可见枝干从花盆内部伸出并由花盆承托。"
+      },
+      "scene_relation": {
+        "en": "Scene position cannot be inferred from this isolated reference.",
+        "zh": "无法从这张孤立参考图推断场景位置。"
+      },
+      "scale_caution": {
+        "en": "Metric scale cannot be inferred from the visual evidence.",
+        "zh": "无法从视觉证据推断度量尺度。"
+      }
+    },
+    "uncertainties": [
+      {
+        "en": "The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+        "zh": "无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+      }
+    ]
+  },
+  "model_description": {
+    "caption_en": "A spherical plant with green and cream variegated leaves in a white pot.",
+    "caption_zh": "一株球形植物，叶子为绿色和奶油色的斑点。",
+    "visible_attributes": {
+      "object_type": {
+        "en": "plant",
+        "zh": "植物"
+      },
+      "colors": {
+        "en": [
+          "green",
+          "cream"
+        ],
+        "zh": [
+          "绿色",
+          "奶油色"
+        ]
+      },
+      "material_appearance": {
+        "en": [
+          "plastic",
+          "ceramic"
+        ],
+        "zh": [
+          "塑料",
+          "陶瓷"
+        ]
+      },
+      "geometry": {
+        "en": "spherical",
+        "zh": "球形"
+      },
+      "components": {
+        "en": [
+          "pot",
+          "stems"
+        ],
+        "zh": [
+          "花盆",
+          "茎"
+        ]
+      },
+      "style_or_pattern": {
+        "en": "variegated",
+        "zh": "斑点"
+      }
+    },
+    "spatial_notes": {
+      "intrinsic_orientation": {
+        "en": "isolated",
+        "zh": "孤立"
+      },
+      "support_and_placement": {
+        "en": "in a white pot",
+        "zh": "在白色花盆中"
+      },
+      "scene_relation": {
+        "en": "Scene position cannot be inferred from this isolated reference.",
+        "zh": "无法从这张孤立参考图推断场景位置。"
+      },
+      "scale_caution": {
+        "en": "Metric scale cannot be inferred",
+        "zh": "无法推断度量尺度"
+      }
+    },
+    "uncertainties": [
+      {
+        "en": "The exact species of the plant cannot be determined.",
+        "zh": "无法确定该植物的确切种类。"
+      }
+    ]
+  },
+  "spatial_constraints": {
+    "scene_position_inferable": false,
+    "constraint": "The isolated RGBA reference contains no scene context. Do not infer room location, neighboring objects, metric size, or world orientation.",
+    "metric_scale_available": false
+  },
+  "quality": {
+    "issues": [],
+    "json_parsed": true,
+    "deterministic_normalizations": [
+      "scalar_to_array:visible_attributes.geometry.en",
+      "scalar_to_array:visible_attributes.geometry.zh",
+      "scalar_to_array:visible_attributes.style_or_pattern.en",
+      "scalar_to_array:visible_attributes.style_or_pattern.zh",
+      "policy_canonicalized:spatial_notes.scale_caution",
+      "agent_visual_audit_correction:caption_en",
+      "agent_visual_audit_correction:caption_zh",
+      "agent_visual_audit_correction:visible_attributes.object_type.en",
+      "agent_visual_audit_correction:visible_attributes.object_type.zh",
+      "agent_visual_audit_correction:visible_attributes.colors.en",
+      "agent_visual_audit_correction:visible_attributes.colors.zh",
+      "agent_visual_audit_correction:visible_attributes.material_appearance.en",
+      "agent_visual_audit_correction:visible_attributes.material_appearance.zh",
+      "agent_visual_audit_correction:visible_attributes.geometry.en",
+      "agent_visual_audit_correction:visible_attributes.geometry.zh",
+      "agent_visual_audit_correction:visible_attributes.components.en",
+      "agent_visual_audit_correction:visible_attributes.components.zh",
+      "agent_visual_audit_correction:visible_attributes.style_or_pattern.en",
+      "agent_visual_audit_correction:visible_attributes.style_or_pattern.zh",
+      "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.en",
+      "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.zh",
+      "agent_visual_audit_correction:spatial_notes.support_and_placement.en",
+      "agent_visual_audit_correction:spatial_notes.support_and_placement.zh",
+      "agent_visual_audit_correction:uncertainties"
+    ],
+    "final_description_method": "local_vlm_generation_then_explicit_schema_and_agent_visual_audit_corrections",
+    "agent_visual_audit_checklist": "Verify a dense rounded crown of palmate-looking green-and-cream variegated leaves, multiple stems, and an off-white cylindrical pot; do not guess a species."
+  },
+  "provenance": {
+    "model_repo": "Qwen/Qwen2.5-VL-3B-Instruct",
+    "model_revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+    "model_dir": "/root/autodl-tmp/qwen2.5-vl-3b-instruct",
+    "prompt_path": "/root/video2world_cognition_20260716/outputs/prompts/sam3_plant_02.txt",
+    "prompt_artifact_relative_path": "outputs/prompts/sam3_plant_02.txt",
+    "prompt_sha256": "b96488d576661e2e23ed67c821113cd946e55110baa86a2617bdf69a2a0d7b20",
+    "raw_output_path": "/root/video2world_cognition_20260716/outputs/raw/sam3_plant_02.txt",
+    "raw_output_artifact_relative_path": "outputs/raw/sam3_plant_02.txt",
+    "raw_output_sha256": "5395a7cd1712e5ea684e25ba1eed0dafb8a588e259e8cf5d2a19b35bf781d209",
+    "evidence_kind": "embodiedgen_prompted_reference_rgba",
+    "evidence": {
+      "rgba": {
+        "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png",
+        "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_02_prompted_reference_rgba.png",
+        "bytes": 1290035,
+        "sha256": "be0a729def18725445299251324f119bd34a189370513037ffa3fd47ff4594cb",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA",
+        "artifact_relative_path": "inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png"
+      }
+    },
+    "vl_images": [
+      {
+        "role": "neutral_background_composite",
+        "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_plant_02.png",
+        "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png",
+        "bytes": 1060819,
+        "sha256": "afc15474e515357c1f2ce0a54d36e6386c2529068a1880d3fb27198d105bb69b",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "artifact_relative_path": "inputs/vl_inputs/sam3_plant_02.png",
+        "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+        "derived_from": [
+          {
+            "role": "rgba_reference",
+            "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png",
+            "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_02_prompted_reference_rgba.png",
+            "bytes": 1290035,
+            "sha256": "be0a729def18725445299251324f119bd34a189370513037ffa3fd47ff4594cb",
+            "width": 1254,
+            "height": 1254,
+            "mode": "RGBA",
+            "artifact_relative_path": "inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png"
+          }
+        ]
+      }
+    ],
+    "transformers_version": "4.57.3",
+    "torch_version": "2.5.1+cu124",
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "device": "NVIDIA GeForce RTX 3090",
+    "processor_class": "Qwen2_5_VLProcessor",
+    "image_processor_class": "Qwen2VLImageProcessor",
+    "use_fast_image_processor": false,
+    "generation": {
+      "do_sample": false,
+      "max_new_tokens": 900,
+      "repetition_penalty": 1.03
+    }
+  },
+  "description_evidence": {
+    "short": {
+      "en": "A dense rounded potted plant has palmate-looking green-and-cream variegated leaves, multiple upright stems, and a smooth off-white cylindrical pot.",
+      "zh": "这株浓密的圆冠盆栽具有掌状观感的绿奶油色斑锦叶、数根直立枝干和一个光滑的灰白色圆柱形花盆。"
+    },
+    "appearance": {
+      "en": "A dense rounded potted plant has palmate-looking green-and-cream variegated leaves, multiple upright stems, and a smooth off-white cylindrical pot.",
+      "zh": "这株浓密的圆冠盆栽具有掌状观感的绿奶油色斑锦叶、数根直立枝干和一个光滑的灰白色圆柱形花盆。"
+    },
+    "detailed": {
+      "en": "Colors: green and cream variegated leaves, off-white pot; Material appearance: smooth leaf surfaces, woody-looking stems, smooth off-white pot; Geometry: dense rounded crown, palmate-looking leaf clusters, cylindrical pot; Visible components: variegated leaves, multiple stems, pot; Style or pattern: green-and-cream variegation",
+      "zh": "颜色: 绿奶油色斑锦叶, 灰白色花盆; 材质观感: 平滑叶面, 木质观感枝干, 光滑灰白色花盆; 几何形态: 浓密圆形冠幅, 掌状观感叶簇, 圆柱形花盆; 可见组件: 斑锦叶片, 数根枝干, 花盆; 风格或纹理: 绿奶油色斑锦纹理"
+    },
+    "location": {
+      "en": "Visible stems emerge from and are supported within the pot. Scene position cannot be inferred from this isolated reference.",
+      "zh": "可见枝干从花盆内部伸出并由花盆承托。 无法从这张孤立参考图推断场景位置。"
+    },
+    "fidelity_caveat": {
+      "en": "Metric scale cannot be inferred from the visual evidence. The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+      "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+    },
+    "provider": "local_huggingface_transformers+agent_visual_audit",
+    "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+    "confidence": null,
+    "evidence_frames": []
+  }
+}

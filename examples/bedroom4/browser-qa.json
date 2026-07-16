@@ -1,0 +1,1106 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "automatedGate": "passed",
+  "placementReview": {
+    "status": "passed",
+    "reviewer": "codex_screenshot_review",
+    "reviewedAt": "2026-07-16T15:46:18.211Z"
+  },
+  "startedAt": "2026-07-16T15:24:27.913Z",
+  "finishedAt": "2026-07-16T15:25:29.885Z",
+  "durationSeconds": 61.97,
+  "url": "http://127.0.0.1:4175/?manifest=/worlds/bedroom4/manifest.json&allowCandidateColliders=1&collisionDebug=on",
+  "browser": {
+    "engine": "chromium",
+    "channel": "chrome",
+    "headless": true,
+    "viewport": [
+      1440,
+      900
+    ]
+  },
+  "manifestPath": "web-bundle://bedroom4/manifest.json",
+  "manifestSha256": "8aae122689dcc5580d22780babf8b5a10e112071afd68c98d03d9d99f57aa1fb",
+  "counts": {
+    "staticGaussians": 823391,
+    "objectGaussians": 480000,
+    "objectRgbPoints": 209479,
+    "totalVisualPrimitives": 1512870,
+    "visualObjectsReady": 5,
+    "visualObjectsExpected": 5,
+    "objectCollidersReady": 4,
+    "objectCollidersExpected": 4,
+    "staticColliderFaces": 1265671,
+    "objectColliderFaces": 67660,
+    "collisionTargets": 5
+  },
+  "collisionWorld": {
+    "sceneReady": true,
+    "sceneFaces": 1265671,
+    "targetCount": 5,
+    "objectColliderReadyCount": 4,
+    "objectColliderMeshCount": 4,
+    "objectColliderFaces": 67660,
+    "degradedCount": 0,
+    "errors": [],
+    "objects": [
+      {
+        "id": "sam3_nightstand_01",
+        "ready": true,
+        "mode": "glb",
+        "faces": 17910,
+        "bounds": {
+          "min": {
+            "x": 10.921256,
+            "y": 0.909106,
+            "z": 8.540487
+          },
+          "max": {
+            "x": 15.797502,
+            "y": 4.929037,
+            "z": 12.848086
+          },
+          "center": {
+            "x": 13.359379,
+            "y": 2.919071,
+            "z": 10.694286
+          },
+          "size": {
+            "x": 4.876246,
+            "y": 4.019931,
+            "z": 4.307599
+          }
+        }
+      },
+      {
+        "id": "sam3_nightstand_02",
+        "ready": true,
+        "mode": "glb",
+        "faces": 17910,
+        "bounds": {
+          "min": {
+            "x": -3.839397,
+            "y": 0.058868,
+            "z": 1.313446
+          },
+          "max": {
+            "x": 1.586368,
+            "y": 2.660971,
+            "z": 6.789168
+          },
+          "center": {
+            "x": -1.126514,
+            "y": 1.35992,
+            "z": 4.051307
+          },
+          "size": {
+            "x": 5.425765,
+            "y": 2.602103,
+            "z": 5.475722
+          }
+        }
+      },
+      {
+        "id": "sam3_plant_01",
+        "ready": true,
+        "mode": "glb",
+        "faces": 9950,
+        "bounds": {
+          "min": {
+            "x": -1.911907,
+            "y": -1.047522,
+            "z": 1.696465
+          },
+          "max": {
+            "x": -0.297257,
+            "y": -0.115721,
+            "z": 5.128784
+          },
+          "center": {
+            "x": -1.104582,
+            "y": -0.581621,
+            "z": 3.412624
+          },
+          "size": {
+            "x": 1.61465,
+            "y": 0.931801,
+            "z": 3.432319
+          }
+        }
+      },
+      {
+        "id": "sam3_plant_02",
+        "ready": true,
+        "mode": "glb",
+        "faces": 21890,
+        "bounds": {
+          "min": {
+            "x": 13.729343,
+            "y": -0.204065,
+            "z": 9.157946
+          },
+          "max": {
+            "x": 15.483058,
+            "y": 0.594303,
+            "z": 11.406179
+          },
+          "center": {
+            "x": 14.606201,
+            "y": 0.195119,
+            "z": 10.282062
+          },
+          "size": {
+            "x": 1.753715,
+            "y": 0.798368,
+            "z": 2.248233
+          }
+        }
+      },
+      {
+        "id": "sam3_pillow_01",
+        "ready": false,
+        "mode": "none",
+        "faces": 0,
+        "bounds": null
+      }
+    ]
+  },
+  "staticVisualCarve": {
+    "status": "passed",
+    "objectId": "sam3_pillow_01",
+    "method": "accepted_mask_projected_point_nearest_neighbor_within_exact_aabb",
+    "distance": 0.08,
+    "units": "scene_scale_not_metric",
+    "acceptedAabb": {
+      "coordinateFrame": "visual_native",
+      "sourceCoordinateFrame": "video2mesh_da3_world",
+      "transform": "identity_holi_da3_to_pgsr_shared_frame",
+      "min": [
+        -5.087475118637085,
+        -2.10968847990036,
+        13.262138109207154
+      ],
+      "max": [
+        2.1751034355163563,
+        1.080388798713684,
+        17.341511363983148
+      ],
+      "center": [
+        -1.4561858415603641,
+        -0.5146498405933381,
+        15.301824736595151
+      ],
+      "extent": [
+        7.262578554153441,
+        3.1900772786140443,
+        4.079373254775994
+      ]
+    },
+    "inputStaticGaussianCount": 850122,
+    "insideAcceptedAabbCount": 30769,
+    "removedGaussianCount": 26731,
+    "retainedInsideAcceptedAabbCount": 4038,
+    "retainedStaticGaussianCount": 823391,
+    "removedOutsideAcceptedAabbCount": 0,
+    "sensitivityRemovedCounts": {
+      "0.04": 21851,
+      "0.06": 24922,
+      "0.08": 26731,
+      "0.1": 27880,
+      "0.12": 28593,
+      "0.15": 29236,
+      "0.18": 29593
+    },
+    "safetyGate": {
+      "exactAabbRequired": true,
+      "nearestAcceptedPointRequired": true,
+      "wholeAabbDeletionForbidden": true,
+      "unmatchedInsideAabbRetained": 4038,
+      "note": "Conservative identity-frame carve; unmatched bed/headboard Gaussians inside the broad pillow AABB remain static."
+    },
+    "inputAssetSha256": "d956e6895b1dfbce3fd18d1cd7d1ab0152e0a0534879b0ef40617c2179c0597c",
+    "anchorSha256": "7590a8d9ae719e2af6d0017d9c1152772f99d726d414a5c4e84cb8ce017a1452",
+    "anchorPointCount": 209479,
+    "anchorInsideAcceptedAabbCount": 203705,
+    "anchorInsideAcceptedAabbRatio": 0.972436378,
+    "anchorOutsideAcceptedAabbCount": 5774,
+    "anchorRawBounds": {
+      "min": [
+        -5.435565,
+        -2.275802,
+        12.965193
+      ],
+      "max": [
+        2.568901,
+        1.194091,
+        18.424143
+      ]
+    },
+    "outputAssetSha256": "0983b53eeeeefe7d41e3024a5ac9d5001171423da52beb1c8a542c3d02368c23"
+  },
+  "sceneCognition": {
+    "pillow": {
+      "location": {
+        "status": "resolved",
+        "intent": "location",
+        "answer": "枕头组合 / Pillow ensemble: 三只枕头共同放置在床上。 位于床上、深色雕花木质观感床头板前方。",
+        "entityId": "sam3_pillow_01",
+        "focusEntityId": "sam3_pillow_01",
+        "candidates": []
+      },
+      "appearance": {
+        "status": "resolved",
+        "intent": "appearance",
+        "answer": "枕头组合 / Pillow ensemble: 这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。 无法从视觉证据推断度量尺度。 无法仅凭图像确认确切织物与内部填充物；该接受 mask 不提供稳定的单枕头 ID。",
+        "entityId": "sam3_pillow_01",
+        "focusEntityId": "sam3_pillow_01",
+        "candidates": []
+      },
+      "selectedEntityId": "sam3_pillow_01",
+      "screenshots": {
+        "location": "web-bundle://bedroom4/qa/screenshots/pillow-location-query.png",
+        "appearance": "web-bundle://bedroom4/qa/screenshots/pillow-appearance-query.png"
+      }
+    }
+  },
+  "objects": [
+    {
+      "id": "sam3_nightstand_01",
+      "collisionMode": "glb",
+      "collisionFaces": 17910,
+      "collisionBounds": {
+        "min": {
+          "x": 10.921256,
+          "y": 0.909106,
+          "z": 8.540487
+        },
+        "max": {
+          "x": 15.797502,
+          "y": 4.929037,
+          "z": 12.848086
+        },
+        "center": {
+          "x": 13.359379,
+          "y": 2.919071,
+          "z": 10.694286
+        },
+        "size": {
+          "x": 4.876246,
+          "y": 4.019931,
+          "z": 4.307599
+        }
+      },
+      "gaussianBounds": {
+        "min": {
+          "x": 10.830082,
+          "y": 0.901493,
+          "z": 8.479443
+        },
+        "max": {
+          "x": 15.892582,
+          "y": 5.036259,
+          "z": 12.950146
+        },
+        "center": {
+          "x": 13.361332,
+          "y": 2.968876,
+          "z": 10.714794
+        },
+        "size": {
+          "x": 5.0625,
+          "y": 4.134766,
+          "z": 4.470703
+        }
+      },
+      "proxyBounds": {
+        "min": {
+          "x": 10.921256,
+          "y": 0.909106,
+          "z": 8.540487
+        },
+        "max": {
+          "x": 15.797502,
+          "y": 4.929037,
+          "z": 12.848086
+        },
+        "center": {
+          "x": 13.359379,
+          "y": 2.919071,
+          "z": 10.694286
+        },
+        "size": {
+          "x": 4.876246,
+          "y": 4.019931,
+          "z": 4.307599
+        }
+      },
+      "centerError": 0,
+      "maximumRelativeSizeError": 0,
+      "directRayHit": {
+        "axis": "y",
+        "sign": -1,
+        "hit": {
+          "label": "Nightstand 01 glb collider",
+          "colliderKind": "object",
+          "colliderId": "sam3_nightstand_01",
+          "surfaceType": "interactive-object-glb-collider",
+          "faceIndex": 12380,
+          "objectId": "sam3_nightstand_01",
+          "objectProbability": null,
+          "sourceFace": null,
+          "point": {
+            "x": 13.3594,
+            "y": 4.0035,
+            "z": 10.6943
+          },
+          "normal": {
+            "x": 0.0031,
+            "y": -1,
+            "z": -0.0026
+          },
+          "distance": 3.4444
+        },
+        "matched": true
+      }
+    },
+    {
+      "id": "sam3_nightstand_02",
+      "collisionMode": "glb",
+      "collisionFaces": 17910,
+      "collisionBounds": {
+        "min": {
+          "x": -3.839397,
+          "y": 0.058868,
+          "z": 1.313446
+        },
+        "max": {
+          "x": 1.586368,
+          "y": 2.660971,
+          "z": 6.789168
+        },
+        "center": {
+          "x": -1.126514,
+          "y": 1.35992,
+          "z": 4.051307
+        },
+        "size": {
+          "x": 5.425765,
+          "y": 2.602103,
+          "z": 5.475722
+        }
+      },
+      "gaussianBounds": {
+        "min": {
+          "x": -3.989795,
+          "y": -0.125432,
+          "z": 1.236854
+        },
+        "max": {
+          "x": 1.742626,
+          "y": 2.710505,
+          "z": 6.89701
+        },
+        "center": {
+          "x": -1.123584,
+          "y": 1.292537,
+          "z": 4.066932
+        },
+        "size": {
+          "x": 5.732422,
+          "y": 2.835938,
+          "z": 5.660156
+        }
+      },
+      "proxyBounds": {
+        "min": {
+          "x": -3.839397,
+          "y": 0.058868,
+          "z": 1.313446
+        },
+        "max": {
+          "x": 1.586368,
+          "y": 2.660971,
+          "z": 6.789168
+        },
+        "center": {
+          "x": -1.126514,
+          "y": 1.35992,
+          "z": 4.051307
+        },
+        "size": {
+          "x": 5.425765,
+          "y": 2.602103,
+          "z": 5.475722
+        }
+      },
+      "centerError": 0,
+      "maximumRelativeSizeError": 0,
+      "directRayHit": {
+        "axis": "y",
+        "sign": 1,
+        "hit": {
+          "label": "Nightstand 02 glb collider",
+          "colliderKind": "object",
+          "colliderId": "sam3_nightstand_02",
+          "surfaceType": "interactive-object-glb-collider",
+          "faceIndex": 6813,
+          "objectId": "sam3_nightstand_02",
+          "objectProbability": null,
+          "sourceFace": null,
+          "point": {
+            "x": -1.1265,
+            "y": 2.4259,
+            "z": 4.0513
+          },
+          "normal": {
+            "x": -0.0034,
+            "y": 1,
+            "z": -0.0034
+          },
+          "distance": 0.585
+        },
+        "matched": true
+      }
+    },
+    {
+      "id": "sam3_plant_01",
+      "collisionMode": "glb",
+      "collisionFaces": 9950,
+      "collisionBounds": {
+        "min": {
+          "x": -1.911907,
+          "y": -1.047522,
+          "z": 1.696465
+        },
+        "max": {
+          "x": -0.297257,
+          "y": -0.115721,
+          "z": 5.128784
+        },
+        "center": {
+          "x": -1.104582,
+          "y": -0.581621,
+          "z": 3.412624
+        },
+        "size": {
+          "x": 1.61465,
+          "y": 0.931801,
+          "z": 3.432319
+        }
+      },
+      "gaussianBounds": {
+        "min": {
+          "x": -2.066984,
+          "y": -1.114336,
+          "z": 1.145046
+        },
+        "max": {
+          "x": -0.076261,
+          "y": -0.104327,
+          "z": 5.521999
+        },
+        "center": {
+          "x": -1.071623,
+          "y": -0.609331,
+          "z": 3.333523
+        },
+        "size": {
+          "x": 1.990723,
+          "y": 1.01001,
+          "z": 4.376953
+        }
+      },
+      "proxyBounds": {
+        "min": {
+          "x": -1.911907,
+          "y": -1.047522,
+          "z": 1.696465
+        },
+        "max": {
+          "x": -0.297257,
+          "y": -0.115721,
+          "z": 5.128784
+        },
+        "center": {
+          "x": -1.104582,
+          "y": -0.581622,
+          "z": 3.412624
+        },
+        "size": {
+          "x": 1.61465,
+          "y": 0.931801,
+          "z": 3.432319
+        }
+      },
+      "centerError": 0.000001,
+      "maximumRelativeSizeError": 0,
+      "directRayHit": {
+        "axis": "x",
+        "sign": 1,
+        "hit": {
+          "label": "Plant 01 glb collider",
+          "colliderKind": "object",
+          "colliderId": "sam3_plant_01",
+          "surfaceType": "interactive-object-glb-collider",
+          "faceIndex": 551,
+          "objectId": "sam3_plant_01",
+          "objectProbability": null,
+          "sourceFace": null,
+          "point": {
+            "x": -0.6265,
+            "y": -0.5816,
+            "z": 3.4126
+          },
+          "normal": {
+            "x": 0.9472,
+            "y": 0.3206,
+            "z": -0.0026
+          },
+          "distance": 0.6793
+        },
+        "matched": true
+      }
+    },
+    {
+      "id": "sam3_plant_02",
+      "collisionMode": "glb",
+      "collisionFaces": 21890,
+      "collisionBounds": {
+        "min": {
+          "x": 13.729343,
+          "y": -0.204065,
+          "z": 9.157946
+        },
+        "max": {
+          "x": 15.483058,
+          "y": 0.594303,
+          "z": 11.406179
+        },
+        "center": {
+          "x": 14.606201,
+          "y": 0.195119,
+          "z": 10.282062
+        },
+        "size": {
+          "x": 1.753715,
+          "y": 0.798368,
+          "z": 2.248233
+        }
+      },
+      "gaussianBounds": {
+        "min": {
+          "x": 13.478271,
+          "y": -0.276317,
+          "z": 8.639484
+        },
+        "max": {
+          "x": 15.651123,
+          "y": 0.59673,
+          "z": 11.946125
+        },
+        "center": {
+          "x": 14.564697,
+          "y": 0.160207,
+          "z": 10.292805
+        },
+        "size": {
+          "x": 2.172852,
+          "y": 0.873047,
+          "z": 3.306641
+        }
+      },
+      "proxyBounds": {
+        "min": {
+          "x": 13.729343,
+          "y": -0.204065,
+          "z": 9.157946
+        },
+        "max": {
+          "x": 15.483058,
+          "y": 0.594303,
+          "z": 11.406179
+        },
+        "center": {
+          "x": 14.606201,
+          "y": 0.195119,
+          "z": 10.282062
+        },
+        "size": {
+          "x": 1.753715,
+          "y": 0.798368,
+          "z": 2.248233
+        }
+      },
+      "centerError": 0,
+      "maximumRelativeSizeError": 0,
+      "directRayHit": {
+        "axis": "x",
+        "sign": 1,
+        "hit": {
+          "label": "Plant 02 glb collider",
+          "colliderKind": "object",
+          "colliderId": "sam3_plant_02",
+          "surfaceType": "interactive-object-glb-collider",
+          "faceIndex": 9441,
+          "objectId": "sam3_plant_02",
+          "objectProbability": null,
+          "sourceFace": null,
+          "point": {
+            "x": 15.0313,
+            "y": 0.1951,
+            "z": 10.2821
+          },
+          "normal": {
+            "x": -0.9232,
+            "y": 0.3432,
+            "z": 0.1729
+          },
+          "distance": 0.8018
+        },
+        "matched": true
+      }
+    },
+    {
+      "id": "sam3_pillow_01",
+      "visualKind": "rgb-points",
+      "visualReady": true,
+      "colliderReady": false,
+      "collisionMode": "none",
+      "collisionFaces": 0,
+      "collisionBounds": null,
+      "splatWorldBounds": {
+        "min": {
+          "x": 1.93293,
+          "y": -2.275802,
+          "z": 6.787178
+        },
+        "max": {
+          "x": 9.937396,
+          "y": 1.194091,
+          "z": 12.246128
+        },
+        "center": {
+          "x": 5.935163,
+          "y": -0.540855,
+          "z": 9.516653
+        },
+        "size": {
+          "x": 8.004466,
+          "y": 3.469893,
+          "z": 5.45895
+        }
+      },
+      "proxyWorldBounds": {
+        "min": {
+          "x": 2.326728,
+          "y": -2.109688,
+          "z": 7.869809
+        },
+        "max": {
+          "x": 9.589306,
+          "y": 1.080389,
+          "z": 11.949183
+        },
+        "center": {
+          "x": 5.958017,
+          "y": -0.51465,
+          "z": 9.909496
+        },
+        "size": {
+          "x": 7.262578,
+          "y": 3.190077,
+          "z": 4.079373
+        }
+      },
+      "acceptedPivotError": 0,
+      "acceptedBoundingBoxSizeError": 8.7e-8,
+      "rawPointBoundsVsAcceptedCenterError": 0.394379,
+      "rawPointBoundsVsAcceptedMaximumRelativeSizeDifference": 0.338184,
+      "acceptedAabbPointCoverage": 0.972436378,
+      "rawPointTailCaveat": "The accepted AABB is robust; 2.76% of accepted raw points form tails outside it and remain visual-only.",
+      "acceptedPointCount": 209479
+    }
+  ],
+  "interactions": {
+    "doubleClick360": {
+      "objectId": "sam3_plant_01",
+      "turnsBefore": 0,
+      "turnsAfter": 1,
+      "passed": true
+    },
+    "pointerDrag": {
+      "objectId": "sam3_nightstand_01",
+      "matrixChanged": true,
+      "released": true
+    },
+    "pillowVisualOnly": {
+      "pointerDrag": {
+        "objectId": "sam3_pillow_01",
+        "parentGroupMatrixChanged": true,
+        "pointVisualMatrixChanged": true,
+        "selectionBoundsMatrixChanged": true,
+        "released": true,
+        "collisionTargetCountUnchanged": true,
+        "passed": true,
+        "screenshot": "web-bundle://bedroom4/qa/screenshots/sam3_pillow_01-dragged.png"
+      },
+      "doubleClick360": {
+        "objectId": "sam3_pillow_01",
+        "turnsBefore": 1,
+        "turnsAfter": 2,
+        "returnedToStartTransform": true,
+        "collisionModeAfter": "none",
+        "passed": true
+      }
+    },
+    "robotCollisions": [
+      {
+        "objectId": "sam3_nightstand_01",
+        "prepared": {
+          "prepared": true,
+          "reason": null,
+          "supportSource": "walkable_scene_surface",
+          "surfacePoint": {
+            "x": 15.605985,
+            "y": 4.446645,
+            "z": 10.307725
+          },
+          "supportPoint": {
+            "x": 15.822799,
+            "y": 5.116507,
+            "z": 10.270419
+          },
+          "robotPosition": {
+            "x": 15.822799,
+            "y": 5.096507,
+            "z": 10.270419
+          }
+        },
+        "step": {
+          "attempted": true,
+          "moved": false,
+          "blocked": true,
+          "lastCollisionKind": "object",
+          "lastCollisionObjectId": "sam3_nightstand_01",
+          "before": {
+            "x": 15.822799,
+            "y": 5.096507,
+            "z": 10.270419
+          },
+          "after": {
+            "x": 15.822799,
+            "y": 5.096507,
+            "z": 10.270419
+          },
+          "requestedDistance": 0.65
+        },
+        "passed": true
+      },
+      {
+        "objectId": "sam3_nightstand_02",
+        "prepared": {
+          "prepared": true,
+          "reason": null,
+          "supportSource": "object_midplane_collision_harness",
+          "surfacePoint": {
+            "x": -2.200561,
+            "y": 2.348719,
+            "z": 1.33096
+          },
+          "supportPoint": {
+            "x": -2.281353,
+            "y": 2.948719,
+            "z": 1.126332
+          },
+          "robotPosition": {
+            "x": -2.281353,
+            "y": 2.928719,
+            "z": 1.126332
+          }
+        },
+        "step": {
+          "attempted": true,
+          "moved": false,
+          "blocked": true,
+          "lastCollisionKind": "object",
+          "lastCollisionObjectId": "sam3_nightstand_02",
+          "before": {
+            "x": -2.281353,
+            "y": 2.928719,
+            "z": 1.126332
+          },
+          "after": {
+            "x": -2.281353,
+            "y": 2.928719,
+            "z": 1.126332
+          },
+          "requestedDistance": 0.65
+        },
+        "passed": true
+      },
+      {
+        "objectId": "sam3_plant_01",
+        "prepared": {
+          "prepared": true,
+          "reason": null,
+          "supportSource": "object_midplane_collision_harness",
+          "surfacePoint": {
+            "x": -1.504261,
+            "y": -0.581621,
+            "z": 2.317626
+          },
+          "supportPoint": {
+            "x": -1.579694,
+            "y": 0.018379,
+            "z": 2.110963
+          },
+          "robotPosition": {
+            "x": -1.579694,
+            "y": -0.001621,
+            "z": 2.110963
+          }
+        },
+        "step": {
+          "attempted": true,
+          "moved": false,
+          "blocked": true,
+          "lastCollisionKind": "object",
+          "lastCollisionObjectId": "sam3_plant_01",
+          "before": {
+            "x": -1.579694,
+            "y": -0.001621,
+            "z": 2.110963
+          },
+          "after": {
+            "x": -1.579694,
+            "y": -0.001621,
+            "z": 2.110963
+          },
+          "requestedDistance": 0.65
+        },
+        "passed": true
+      },
+      {
+        "objectId": "sam3_plant_02",
+        "prepared": {
+          "prepared": true,
+          "reason": null,
+          "supportSource": "object_midplane_collision_harness",
+          "surfacePoint": {
+            "x": 15.03127,
+            "y": 0.195119,
+            "z": 10.282062
+          },
+          "supportPoint": {
+            "x": 15.25127,
+            "y": 0.795119,
+            "z": 10.282062
+          },
+          "robotPosition": {
+            "x": 15.25127,
+            "y": 0.775119,
+            "z": 10.282062
+          }
+        },
+        "step": {
+          "attempted": true,
+          "moved": false,
+          "blocked": true,
+          "lastCollisionKind": "object",
+          "lastCollisionObjectId": "sam3_plant_02",
+          "before": {
+            "x": 15.25127,
+            "y": 0.775119,
+            "z": 10.282062
+          },
+          "after": {
+            "x": 15.25127,
+            "y": 0.775119,
+            "z": 10.282062
+          },
+          "requestedDistance": 0.65
+        },
+        "passed": true
+      }
+    ]
+  },
+  "performance": {
+    "fpsSamples": [
+      42,
+      43,
+      40,
+      38,
+      38
+    ],
+    "averageFps": 40.2,
+    "minimumFps": 38,
+    "memory": {
+      "usedJSHeapSize": 478156721,
+      "totalJSHeapSize": 539778101,
+      "jsHeapSizeLimit": 4395630592
+    }
+  },
+  "responsive": {
+    "status": "passed",
+    "checks": {
+      "appearanceResolved": true,
+      "detailedAnswer": true,
+      "exactViewport": true,
+      "exactCanvasCssSize": true,
+      "exactHudInsetsAndWidth": true,
+      "noHorizontalOverflow": true,
+      "answerHasNoOwnOverflow": true,
+      "controlsDoNotOverlap": true
+    },
+    "freshPageLoad": true,
+    "viewport": [
+      390,
+      844
+    ],
+    "appearance": {
+      "status": "resolved",
+      "intent": "appearance",
+      "answer": "枕头组合 / Pillow ensemble: 这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。 无法从视觉证据推断度量尺度。 无法仅凭图像确认确切织物与内部填充物；该接受 mask 不提供稳定的单枕头 ID。",
+      "entityId": "sam3_pillow_01",
+      "focusEntityId": "sam3_pillow_01",
+      "candidates": []
+    },
+    "layout": {
+      "viewport": [
+        390,
+        844
+      ],
+      "canvas": {
+        "left": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "height": 844
+      },
+      "canvasBackingStore": [
+        366,
+        793
+      ],
+      "hud": {
+        "left": 12,
+        "top": 64,
+        "right": 378,
+        "bottom": 832,
+        "width": 366,
+        "height": 768,
+        "rightInset": 12,
+        "scrollWidth": 366,
+        "clientWidth": 366,
+        "scrollHeight": 1358,
+        "clientHeight": 768
+      },
+      "body": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "htmlScrollWidth": 390,
+        "htmlClientWidth": 390
+      },
+      "answer": {
+        "left": 27,
+        "top": 275.03125,
+        "right": 359,
+        "bottom": 377.984375,
+        "width": 332,
+        "height": 102.953125,
+        "text": "枕头组合 / Pillow ensemble: 这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。 无法从视觉证据推断度量尺度。 无法仅凭图像确认确切织物与内部填充物；该接受 mask 不提供稳定的单枕头 ID。",
+        "scrollWidth": 330,
+        "clientWidth": 330,
+        "scrollHeight": 103,
+        "clientHeight": 103
+      },
+      "queryRow": {
+        "left": 27,
+        "top": 232.03125,
+        "right": 359,
+        "bottom": 268.03125,
+        "width": 332,
+        "height": 36
+      },
+      "metrics": {
+        "left": 27,
+        "top": 389.984375,
+        "right": 359,
+        "bottom": 624.734375,
+        "width": 332,
+        "height": 234.75
+      },
+      "statusCard": {
+        "left": 12,
+        "top": 64,
+        "right": 374,
+        "bottom": 639.734375,
+        "width": 362,
+        "height": 575.734375
+      },
+      "controls": {
+        "left": 12,
+        "top": 651.734375,
+        "right": 374,
+        "bottom": 1421.609375,
+        "width": 362,
+        "height": 769.875
+      },
+      "nonOverlap": {
+        "queryRowBeforeAnswer": true,
+        "answerBeforeMetrics": true,
+        "statusBeforeControls": true
+      }
+    },
+    "screenshot": "web-bundle://bedroom4/qa/screenshots/mobile-390x844-pillow-appearance.png"
+  },
+  "console": {
+    "messages": [],
+    "pageErrors": [],
+    "requestFailures": []
+  },
+  "screenshots": {
+    "overview": "web-bundle://bedroom4/qa/screenshots/overview-collider-overlay.png",
+    "sceneCognition": {
+      "location": "web-bundle://bedroom4/qa/screenshots/pillow-location-query.png",
+      "appearance": "web-bundle://bedroom4/qa/screenshots/pillow-appearance-query.png"
+    },
+    "pillowDrag": "web-bundle://bedroom4/qa/screenshots/sam3_pillow_01-dragged.png",
+    "mobile": "web-bundle://bedroom4/qa/screenshots/mobile-390x844-pillow-appearance.png",
+    "objects": [
+      {
+        "objectId": "sam3_nightstand_01",
+        "context": "web-bundle://bedroom4/qa/screenshots/sam3_nightstand_01-context-overlay.png",
+        "visualOnly": "web-bundle://bedroom4/qa/screenshots/sam3_nightstand_01-visual-only.png",
+        "solo": "web-bundle://bedroom4/qa/screenshots/sam3_nightstand_01-solo-overlay.png"
+      },
+      {
+        "objectId": "sam3_nightstand_02",
+        "context": "web-bundle://bedroom4/qa/screenshots/sam3_nightstand_02-context-overlay.png",
+        "visualOnly": "web-bundle://bedroom4/qa/screenshots/sam3_nightstand_02-visual-only.png",
+        "solo": "web-bundle://bedroom4/qa/screenshots/sam3_nightstand_02-solo-overlay.png"
+      },
+      {
+        "objectId": "sam3_plant_01",
+        "context": "web-bundle://bedroom4/qa/screenshots/sam3_plant_01-context-overlay.png",
+        "visualOnly": "web-bundle://bedroom4/qa/screenshots/sam3_plant_01-visual-only.png",
+        "solo": "web-bundle://bedroom4/qa/screenshots/sam3_plant_01-solo-overlay.png"
+      },
+      {
+        "objectId": "sam3_plant_02",
+        "context": "web-bundle://bedroom4/qa/screenshots/sam3_plant_02-context-overlay.png",
+        "visualOnly": "web-bundle://bedroom4/qa/screenshots/sam3_plant_02-visual-only.png",
+        "solo": "web-bundle://bedroom4/qa/screenshots/sam3_plant_02-solo-overlay.png"
+      },
+      {
+        "objectId": "sam3_pillow_01",
+        "context": "web-bundle://bedroom4/qa/screenshots/sam3_pillow_01-context-overlay.png",
+        "visualOnly": "web-bundle://bedroom4/qa/screenshots/sam3_pillow_01-visual-only.png",
+        "solo": "web-bundle://bedroom4/qa/screenshots/sam3_pillow_01-solo-overlay.png"
+      }
+    ]
+  },
+  "failures": [],
+  "manifestSha256AfterPromotion": "e0702f76e144dbf4bcd5c277ed5540ee51f7f9e8098770a145ceea63679ba2de"
+}

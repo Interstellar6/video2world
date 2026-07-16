@@ -1,0 +1,54 @@
+{
+  "caption_en": "A dark brown wooden nightstand with a rectangular top and four square legs.",
+  "caption_zh": "一个深棕色木制的床头柜，带有矩形的顶部和四个方形的腿。",
+  "visible_attributes": {
+    "object_type": {
+      "en": "nightstand",
+      "zh": "床头柜"
+    },
+    "colors": {
+      "en": ["dark brown"],
+      "zh": ["深棕色"]
+    },
+    "material_appearance": {
+      "en": ["wood"],
+      "zh": ["木头"]
+    },
+    "geometry": {
+      "en": ["rectangular top", "four square legs"],
+      "zh": ["矩形的顶部", "四个方形的腿"]
+    },
+    "components": {
+      "en": ["top", "legs"],
+      "zh": ["顶部", "腿"]
+    },
+    "style_or_pattern": {
+      "en": ["plain"],
+      "zh": ["朴素"]
+    }
+  },
+  "spatial_notes": {
+    "intrinsic_orientation": {
+      "en": "isolated reference",
+      "zh": "孤立参考"
+    },
+    "support_and_placement": {
+      "en": "no specific support or placement information provided",
+      "zh": "没有提供具体的支持或放置信息"
+    },
+    "scene_relation": {
+      "en": "Scene position cannot be inferred from this isolated reference.",
+      "zh": "无法从这张孤立参考图推断场景位置。"
+    },
+    "scale_caution": {
+      "en": "Metric scale cannot be inferred.",
+      "zh": "无法推断度量尺度。"
+    }
+  },
+  "uncertainties": [
+    {
+      "en": "drawer or handle is not visible.",
+      "zh": "看不到抽屉或把手。"
+    }
+  ]
+}

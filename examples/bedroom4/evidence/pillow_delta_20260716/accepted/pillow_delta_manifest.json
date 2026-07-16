@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "run_id": "bedroom_4_pillow_top3_score090_erode5_depth005_minvotes2",
+  "scene_id": "bedroom_4",
+  "scope": "single-class pillow discovery and 2D-to-3D delta",
+  "isolation": {
+    "base_run": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217",
+    "base_access": "read_only",
+    "delta_run": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2",
+    "fresh_artifacts_overwritten": false
+  },
+  "stage_status": {
+    "data_package": "Passed",
+    "DA3": "ReusedReadOnlyParent",
+    "GroundingDINO": "ProvenanceOnly19OldBoxes",
+    "SAM3": "PassedRealCheckpoint",
+    "Video2Mesh_lifting": "PassedAdapter",
+    "instance_bbox_postprocess": "PassedProxyVoxelDBSCAN",
+    "object_cloud_export": "Passed",
+    "PGSR": "NotRunReusedReadOnlyParent",
+    "caption": "NotRun",
+    "QA": "NotRun",
+    "TRELLIS": "NotRunByDesign"
+  },
+  "counts": {
+    "source_frames": 80,
+    "sam3_instance_masks": 223,
+    "sam3_merged_frame_masks": 80,
+    "class_points": 211019,
+    "pillow_instances": 1,
+    "holi_bbox_records": 1
+  },
+  "commands": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/commands/run_pillow_delta.sh",
+  "log": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/logs/pillow_delta.log",
+  "summary": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/evidence/pillow_delta_summary.json"
+}

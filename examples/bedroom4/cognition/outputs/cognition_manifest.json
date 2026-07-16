@@ -1,0 +1,1845 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-16T18:29:20.829615+08:00",
+  "scene_id": "bedroom_4",
+  "status": "passed",
+  "model": {
+    "repo": "Qwen/Qwen2.5-VL-3B-Instruct",
+    "revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+    "local_files_only": true
+  },
+  "object_count": 6,
+  "failures": [],
+  "quality_issue_objects": [],
+  "objects": [
+    {
+      "schema_version": 1,
+      "object_id": "sam3_nightstand_01",
+      "category": "nightstand",
+      "status": "passed",
+      "description": {
+        "caption_en": "A plain dark warm-brown nightstand has a smooth wood-like finish, a rectangular top and apron, and four straight square-section legs, with no visible drawer or handle.",
+        "caption_zh": "这件素面深暖棕色床头柜呈平滑木质观感，具有矩形柜面、围板和四条方截面直腿，未见抽屉或把手。",
+        "visible_attributes": {
+          "object_type": {
+            "en": "nightstand",
+            "zh": "床头柜"
+          },
+          "colors": {
+            "en": [
+              "dark warm brown"
+            ],
+            "zh": [
+              "深暖棕色"
+            ]
+          },
+          "material_appearance": {
+            "en": [
+              "smooth wood-like finish"
+            ],
+            "zh": [
+              "平滑的木质观感表面"
+            ]
+          },
+          "geometry": {
+            "en": [
+              "rectangular top and apron",
+              "four straight square-section legs"
+            ],
+            "zh": [
+              "矩形柜面与围板",
+              "四条方截面直腿"
+            ]
+          },
+          "components": {
+            "en": [
+              "top",
+              "apron",
+              "four legs"
+            ],
+            "zh": [
+              "柜面",
+              "围板",
+              "四条柜腿"
+            ]
+          },
+          "style_or_pattern": {
+            "en": [
+              "plain with minimal ornament"
+            ],
+            "zh": [
+              "素面、装饰极少"
+            ]
+          }
+        },
+        "spatial_notes": {
+          "intrinsic_orientation": {
+            "en": "upright, viewed from a front-oblique angle",
+            "zh": "直立，以正面斜视角展示"
+          },
+          "support_and_placement": {
+            "en": "Shown upright on its visible legs; room support and placement cannot be inferred.",
+            "zh": "图中以可见柜腿直立展示；无法推断其在房间中的支撑面与摆放位置。"
+          },
+          "scene_relation": {
+            "en": "Scene position cannot be inferred from this isolated reference.",
+            "zh": "无法从这张孤立参考图推断场景位置。"
+          },
+          "scale_caution": {
+            "en": "Metric scale cannot be inferred from the visual evidence.",
+            "zh": "无法从视觉证据推断度量尺度。"
+          }
+        },
+        "uncertainties": [
+          {
+            "en": "The exact substrate is not visually confirmed; no drawer or handle is visible from this view.",
+            "zh": "无法仅凭图像确认确切基材；此视角未见抽屉或把手。"
+          }
+        ]
+      },
+      "model_description": {
+        "caption_en": "A dark brown wooden nightstand with a rectangular top and four square legs.",
+        "caption_zh": "一个深棕色木制的床头柜，带有矩形的顶部和四个方形的腿。",
+        "visible_attributes": {
+          "object_type": {
+            "en": "nightstand",
+            "zh": "床头柜"
+          },
+          "colors": {
+            "en": [
+              "dark brown"
+            ],
+            "zh": [
+              "深棕色"
+            ]
+          },
+          "material_appearance": {
+            "en": [
+              "wood"
+            ],
+            "zh": [
+              "木头"
+            ]
+          },
+          "geometry": {
+            "en": [
+              "rectangular top",
+              "four square legs"
+            ],
+            "zh": [
+              "矩形的顶部",
+              "四个方形的腿"
+            ]
+          },
+          "components": {
+            "en": [
+              "top",
+              "legs"
+            ],
+            "zh": [
+              "顶部",
+              "腿"
+            ]
+          },
+          "style_or_pattern": {
+            "en": [
+              "plain"
+            ],
+            "zh": [
+              "朴素"
+            ]
+          }
+        },
+        "spatial_notes": {
+          "intrinsic_orientation": {
+            "en": "isolated reference",
+            "zh": "孤立参考"
+          },
+          "support_and_placement": {
+            "en": "no specific support or placement information provided",
+            "zh": "没有提供具体的支持或放置信息"
+          },
+          "scene_relation": {
+            "en": "Scene position cannot be inferred from this isolated reference.",
+            "zh": "无法从这张孤立参考图推断场景位置。"
+          },
+          "scale_caution": {
+            "en": "Metric scale cannot be inferred.",
+            "zh": "无法推断度量尺度。"
+          }
+        },
+        "uncertainties": [
+          {
+            "en": "drawer or handle is not visible.",
+            "zh": "看不到抽屉或把手。"
+          }
+        ]
+      },
+      "spatial_constraints": {
+        "scene_position_inferable": false,
+        "constraint": "The isolated RGBA reference contains no scene context. Do not infer room location, neighboring objects, metric size, or world orientation.",
+        "metric_scale_available": false
+      },
+      "quality": {
+        "issues": [],
+        "json_parsed": true,
+        "deterministic_normalizations": [
+          "policy_canonicalized:spatial_notes.scale_caution",
+          "synthetic_background_guard:spatial_notes.support_and_placement",
+          "agent_visual_audit_correction:caption_en",
+          "agent_visual_audit_correction:caption_zh",
+          "agent_visual_audit_correction:visible_attributes.colors.en",
+          "agent_visual_audit_correction:visible_attributes.colors.zh",
+          "agent_visual_audit_correction:visible_attributes.material_appearance.en",
+          "agent_visual_audit_correction:visible_attributes.material_appearance.zh",
+          "agent_visual_audit_correction:visible_attributes.geometry.en",
+          "agent_visual_audit_correction:visible_attributes.geometry.zh",
+          "agent_visual_audit_correction:visible_attributes.components.en",
+          "agent_visual_audit_correction:visible_attributes.components.zh",
+          "agent_visual_audit_correction:visible_attributes.style_or_pattern.en",
+          "agent_visual_audit_correction:visible_attributes.style_or_pattern.zh",
+          "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.en",
+          "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.zh",
+          "agent_visual_audit_correction:uncertainties"
+        ],
+        "final_description_method": "local_vlm_generation_then_explicit_schema_and_agent_visual_audit_corrections",
+        "agent_visual_audit_checklist": "Verify a plain dark/warm-brown wood-like finish, rectangular top and apron, and four square legs. No drawer or handle is visible; do not invent one."
+      },
+      "provenance": {
+        "model_repo": "Qwen/Qwen2.5-VL-3B-Instruct",
+        "model_revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "model_dir": "/root/autodl-tmp/qwen2.5-vl-3b-instruct",
+        "prompt_path": "/root/video2world_cognition_20260716/outputs/prompts/sam3_nightstand_01.txt",
+        "prompt_artifact_relative_path": "outputs/prompts/sam3_nightstand_01.txt",
+        "prompt_sha256": "ee40166f84eec872dcf2aed91d4f356ba7cab7e7619d5635b1144d157c535faa",
+        "raw_output_path": "/root/video2world_cognition_20260716/outputs/raw/sam3_nightstand_01.txt",
+        "raw_output_artifact_relative_path": "outputs/raw/sam3_nightstand_01.txt",
+        "raw_output_sha256": "b3bb825cd962a7b533e3792b614fe2bcdf701b4ee37b60433accf8531259a309",
+        "evidence_kind": "embodiedgen_prompted_reference_rgba",
+        "evidence": {
+          "rgba": {
+            "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_nightstand_01/sam3_nightstand_01_prompted_reference_rgba.png",
+            "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_nightstand_01_prompted_reference_rgba.png",
+            "bytes": 644731,
+            "sha256": "145645137dd4d6d8fa8f61cd7398b1e4e801b1ba7c2ec55f16f1ac469405b2d7",
+            "width": 1254,
+            "height": 1254,
+            "mode": "RGBA",
+            "artifact_relative_path": "inputs/evidence/sam3_nightstand_01/sam3_nightstand_01_prompted_reference_rgba.png"
+          }
+        },
+        "vl_images": [
+          {
+            "role": "neutral_background_composite",
+            "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_nightstand_01.png",
+            "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_nightstand_01/sam3_nightstand_01_prompted_reference_rgba.png",
+            "bytes": 540821,
+            "sha256": "c7f5a929713cd2d0a402b00c95002231d5d31b64b199510ea5cca8e43d691027",
+            "width": 1254,
+            "height": 1254,
+            "mode": "RGB",
+            "artifact_relative_path": "inputs/vl_inputs/sam3_nightstand_01.png",
+            "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+            "derived_from": [
+              {
+                "role": "rgba_reference",
+                "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_nightstand_01/sam3_nightstand_01_prompted_reference_rgba.png",
+                "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_nightstand_01_prompted_reference_rgba.png",
+                "bytes": 644731,
+                "sha256": "145645137dd4d6d8fa8f61cd7398b1e4e801b1ba7c2ec55f16f1ac469405b2d7",
+                "width": 1254,
+                "height": 1254,
+                "mode": "RGBA",
+                "artifact_relative_path": "inputs/evidence/sam3_nightstand_01/sam3_nightstand_01_prompted_reference_rgba.png"
+              }
+            ]
+          }
+        ],
+        "transformers_version": "4.57.3",
+        "torch_version": "2.5.1+cu124",
+        "dtype": "bfloat16",
+        "attention": "sdpa",
+        "device": "NVIDIA GeForce RTX 3090",
+        "processor_class": "Qwen2_5_VLProcessor",
+        "image_processor_class": "Qwen2VLImageProcessor",
+        "use_fast_image_processor": false,
+        "generation": {
+          "do_sample": false,
+          "max_new_tokens": 900,
+          "repetition_penalty": 1.03
+        }
+      },
+      "description_evidence": {
+        "short": {
+          "en": "A plain dark warm-brown nightstand has a smooth wood-like finish, a rectangular top and apron, and four straight square-section legs, with no visible drawer or handle.",
+          "zh": "这件素面深暖棕色床头柜呈平滑木质观感，具有矩形柜面、围板和四条方截面直腿，未见抽屉或把手。"
+        },
+        "appearance": {
+          "en": "A plain dark warm-brown nightstand has a smooth wood-like finish, a rectangular top and apron, and four straight square-section legs, with no visible drawer or handle.",
+          "zh": "这件素面深暖棕色床头柜呈平滑木质观感，具有矩形柜面、围板和四条方截面直腿，未见抽屉或把手。"
+        },
+        "detailed": {
+          "en": "Colors: dark warm brown; Material appearance: smooth wood-like finish; Geometry: rectangular top and apron, four straight square-section legs; Visible components: top, apron, four legs; Style or pattern: plain with minimal ornament",
+          "zh": "颜色: 深暖棕色; 材质观感: 平滑的木质观感表面; 几何形态: 矩形柜面与围板, 四条方截面直腿; 可见组件: 柜面, 围板, 四条柜腿; 风格或纹理: 素面、装饰极少"
+        },
+        "location": {
+          "en": "Shown upright on its visible legs; room support and placement cannot be inferred. Scene position cannot be inferred from this isolated reference.",
+          "zh": "图中以可见柜腿直立展示；无法推断其在房间中的支撑面与摆放位置。 无法从这张孤立参考图推断场景位置。"
+        },
+        "fidelity_caveat": {
+          "en": "Metric scale cannot be inferred from the visual evidence. The exact substrate is not visually confirmed; no drawer or handle is visible from this view.",
+          "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认确切基材；此视角未见抽屉或把手。"
+        },
+        "provider": "local_huggingface_transformers+agent_visual_audit",
+        "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "confidence": null,
+        "evidence_frames": []
+      }
+    },
+    {
+      "schema_version": 1,
+      "object_id": "sam3_nightstand_02",
+      "category": "nightstand",
+      "status": "passed",
+      "description": {
+        "caption_en": "A warm reddish-brown nightstand with a smooth wood-like finish has one front drawer with a round dark knob, a raised curved back-and-side lip, and four legs.",
+        "caption_zh": "这件暖红棕色床头柜呈平滑木质观感，正面有一只带深色圆形旋钮的抽屉，并带抬高的弧形后沿与侧沿和四条柜腿。",
+        "visible_attributes": {
+          "object_type": {
+            "en": "nightstand",
+            "zh": "床头柜"
+          },
+          "colors": {
+            "en": [
+              "warm reddish brown",
+              "dark knob"
+            ],
+            "zh": [
+              "暖红棕色",
+              "深色旋钮"
+            ]
+          },
+          "material_appearance": {
+            "en": [
+              "smooth wood-like finish"
+            ],
+            "zh": [
+              "平滑的木质观感表面"
+            ]
+          },
+          "geometry": {
+            "en": [
+              "rectangular body",
+              "raised curved back and side lip",
+              "four straight legs"
+            ],
+            "zh": [
+              "矩形柜体",
+              "抬高的弧形后沿与侧沿",
+              "四条直腿"
+            ]
+          },
+          "components": {
+            "en": [
+              "top",
+              "one front drawer",
+              "round dark knob",
+              "curved lip",
+              "four legs"
+            ],
+            "zh": [
+              "柜面",
+              "一只正面抽屉",
+              "深色圆形旋钮",
+              "弧形围沿",
+              "四条柜腿"
+            ]
+          },
+          "style_or_pattern": {
+            "en": [
+              "simple furniture profile with curved trim"
+            ],
+            "zh": [
+              "带弧形收边的简洁家具轮廓"
+            ]
+          }
+        },
+        "spatial_notes": {
+          "intrinsic_orientation": {
+            "en": "upright, front face visible",
+            "zh": "直立，正面可见"
+          },
+          "support_and_placement": {
+            "en": "Shown upright on its visible legs; room support and placement cannot be inferred.",
+            "zh": "图中以可见柜腿直立展示；无法推断其在房间中的支撑面与摆放位置。"
+          },
+          "scene_relation": {
+            "en": "Scene position cannot be inferred from this isolated reference.",
+            "zh": "无法从这张孤立参考图推断场景位置。"
+          },
+          "scale_caution": {
+            "en": "Metric scale cannot be inferred from the visual evidence.",
+            "zh": "无法从视觉证据推断度量尺度。"
+          }
+        },
+        "uncertainties": [
+          {
+            "en": "The exact substrate and hidden rear geometry are not visually confirmed.",
+            "zh": "无法仅凭图像确认确切基材与背面隐藏几何。"
+          }
+        ]
+      },
+      "model_description": {
+        "caption_en": "A wooden nightstand with a single drawer and a rounded knob, featuring a warm reddish-brown finish.",
+        "caption_zh": "一个木制的床头柜，带有单个抽屉和圆形旋钮，表面呈现出温暖的红棕色。",
+        "visible_attributes": {
+          "object_type": {
+            "en": "nightstand",
+            "zh": "床头柜"
+          },
+          "colors": {
+            "en": [
+              "warm reddish-brown"
+            ],
+            "zh": [
+              "温暖的红棕色"
+            ]
+          },
+          "material_appearance": {
+            "en": [
+              "wood"
+            ],
+            "zh": [
+              "木头"
+            ]
+          },
+          "geometry": {
+            "en": [
+              "rectangular with rounded corners"
+            ],
+            "zh": [
+              "矩形带有圆角"
+            ]
+          },
+          "components": {
+            "en": [
+              "drawer with round knob",
+              "four legs"
+            ],
+            "zh": [
+              "带圆形旋钮的抽屉，四条腿"
+            ]
+          },
+          "style_or_pattern": {
+            "en": [
+              "traditional design"
+            ],
+            "zh": [
+              "传统设计"
+            ]
+          }
+        },
+        "spatial_notes": {
+          "intrinsic_orientation": {
+            "en": "isolated reference",
+            "zh": "孤立参考"
+          },
+          "support_and_placement": {
+            "en": "no specific support or placement information provided",
+            "zh": "没有提供具体的支持或放置信息"
+          },
+          "scene_relation": {
+            "en": "Scene position cannot be inferred from this isolated reference.",
+            "zh": "无法从这张孤立参考图推断场景位置。"
+          },
+          "scale_caution": {
+            "en": "Metric scale cannot be inferred.",
+            "zh": "无法推断度量尺度。"
+          }
+        },
+        "uncertainties": [
+          {
+            "en": "The exact brand or function of the nightstand cannot be determined.",
+            "zh": "无法确定这个床头柜的具体品牌或功能。"
+          }
+        ]
+      },
+      "spatial_constraints": {
+        "scene_position_inferable": false,
+        "constraint": "The isolated RGBA reference contains no scene context. Do not infer room location, neighboring objects, metric size, or world orientation.",
+        "metric_scale_available": false
+      },
+      "quality": {
+        "issues": [],
+        "json_parsed": true,
+        "deterministic_normalizations": [
+          "policy_canonicalized:spatial_notes.scale_caution",
+          "synthetic_background_guard:spatial_notes.support_and_placement",
+          "agent_visual_audit_correction:caption_en",
+          "agent_visual_audit_correction:caption_zh",
+          "agent_visual_audit_correction:visible_attributes.colors.en",
+          "agent_visual_audit_correction:visible_attributes.colors.zh",
+          "agent_visual_audit_correction:visible_attributes.material_appearance.en",
+          "agent_visual_audit_correction:visible_attributes.material_appearance.zh",
+          "agent_visual_audit_correction:visible_attributes.geometry.en",
+          "agent_visual_audit_correction:visible_attributes.geometry.zh",
+          "agent_visual_audit_correction:visible_attributes.components.en",
+          "agent_visual_audit_correction:visible_attributes.components.zh",
+          "agent_visual_audit_correction:visible_attributes.style_or_pattern.en",
+          "agent_visual_audit_correction:visible_attributes.style_or_pattern.zh",
+          "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.en",
+          "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.zh",
+          "agent_visual_audit_correction:uncertainties"
+        ],
+        "final_description_method": "local_vlm_generation_then_explicit_schema_and_agent_visual_audit_corrections",
+        "agent_visual_audit_checklist": "Verify a warm reddish-brown wood-like finish, one visible front drawer with a round dark knob, a raised curved back/side lip, and four legs."
+      },
+      "provenance": {
+        "model_repo": "Qwen/Qwen2.5-VL-3B-Instruct",
+        "model_revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "model_dir": "/root/autodl-tmp/qwen2.5-vl-3b-instruct",
+        "prompt_path": "/root/video2world_cognition_20260716/outputs/prompts/sam3_nightstand_02.txt",
+        "prompt_artifact_relative_path": "outputs/prompts/sam3_nightstand_02.txt",
+        "prompt_sha256": "dddebf18e86e62e7e4067f4e6f6868ff7be8fba0e2f58922d0a26020fbb00f26",
+        "raw_output_path": "/root/video2world_cognition_20260716/outputs/raw/sam3_nightstand_02.txt",
+        "raw_output_artifact_relative_path": "outputs/raw/sam3_nightstand_02.txt",
+        "raw_output_sha256": "2d53e208579d55360fa006023f400eb6987516da7c9cae5522dfd5573972836c",
+        "evidence_kind": "embodiedgen_prompted_reference_rgba",
+        "evidence": {
+          "rgba": {
+            "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_nightstand_02/sam3_nightstand_02_prompted_reference_rgba.png",
+            "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_nightstand_02_prompted_reference_rgba.png",
+            "bytes": 811465,
+            "sha256": "7d79f9bf327b953ae2b7b5f21ece53ed3c99ee42bdf0b3ea28df5267c6a52420",
+            "width": 1254,
+            "height": 1254,
+            "mode": "RGBA",
+            "artifact_relative_path": "inputs/evidence/sam3_nightstand_02/sam3_nightstand_02_prompted_reference_rgba.png"
+          }
+        },
+        "vl_images": [
+          {
+            "role": "neutral_background_composite",
+            "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_nightstand_02.png",
+            "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_nightstand_02/sam3_nightstand_02_prompted_reference_rgba.png",
+            "bytes": 676975,
+            "sha256": "5100d09199b62119303d1b828d0f5c338ab6532cc880535b9193583f62f8e3ba",
+            "width": 1254,
+            "height": 1254,
+            "mode": "RGB",
+            "artifact_relative_path": "inputs/vl_inputs/sam3_nightstand_02.png",
+            "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+            "derived_from": [
+              {
+                "role": "rgba_reference",
+                "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_nightstand_02/sam3_nightstand_02_prompted_reference_rgba.png",
+                "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_nightstand_02_prompted_reference_rgba.png",
+                "bytes": 811465,
+                "sha256": "7d79f9bf327b953ae2b7b5f21ece53ed3c99ee42bdf0b3ea28df5267c6a52420",
+                "width": 1254,
+                "height": 1254,
+                "mode": "RGBA",
+                "artifact_relative_path": "inputs/evidence/sam3_nightstand_02/sam3_nightstand_02_prompted_reference_rgba.png"
+              }
+            ]
+          }
+        ],
+        "transformers_version": "4.57.3",
+        "torch_version": "2.5.1+cu124",
+        "dtype": "bfloat16",
+        "attention": "sdpa",
+        "device": "NVIDIA GeForce RTX 3090",
+        "processor_class": "Qwen2_5_VLProcessor",
+        "image_processor_class": "Qwen2VLImageProcessor",
+        "use_fast_image_processor": false,
+        "generation": {
+          "do_sample": false,
+          "max_new_tokens": 900,
+          "repetition_penalty": 1.03
+        }
+      },
+      "description_evidence": {
+        "short": {
+          "en": "A warm reddish-brown nightstand with a smooth wood-like finish has one front drawer with a round dark knob, a raised curved back-and-side lip, and four legs.",
+          "zh": "这件暖红棕色床头柜呈平滑木质观感，正面有一只带深色圆形旋钮的抽屉，并带抬高的弧形后沿与侧沿和四条柜腿。"
+        },
+        "appearance": {
+          "en": "A warm reddish-brown nightstand with a smooth wood-like finish has one front drawer with a round dark knob, a raised curved back-and-side lip, and four legs.",
+          "zh": "这件暖红棕色床头柜呈平滑木质观感，正面有一只带深色圆形旋钮的抽屉，并带抬高的弧形后沿与侧沿和四条柜腿。"
+        },
+        "detailed": {
+          "en": "Colors: warm reddish brown, dark knob; Material appearance: smooth wood-like finish; Geometry: rectangular body, raised curved back and side lip, four straight legs; Visible components: top, one front drawer, round dark knob, curved lip, four legs; Style or pattern: simple furniture profile with curved trim",
+          "zh": "颜色: 暖红棕色, 深色旋钮; 材质观感: 平滑的木质观感表面; 几何形态: 矩形柜体, 抬高的弧形后沿与侧沿, 四条直腿; 可见组件: 柜面, 一只正面抽屉, 深色圆形旋钮, 弧形围沿, 四条柜腿; 风格或纹理: 带弧形收边的简洁家具轮廓"
+        },
+        "location": {
+          "en": "Shown upright on its visible legs; room support and placement cannot be inferred. Scene position cannot be inferred from this isolated reference.",
+          "zh": "图中以可见柜腿直立展示；无法推断其在房间中的支撑面与摆放位置。 无法从这张孤立参考图推断场景位置。"
+        },
+        "fidelity_caveat": {
+          "en": "Metric scale cannot be inferred from the visual evidence. The exact substrate and hidden rear geometry are not visually confirmed.",
+          "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认确切基材与背面隐藏几何。"
+        },
+        "provider": "local_huggingface_transformers+agent_visual_audit",
+        "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "confidence": null,
+        "evidence_frames": []
+      }
+    },
+    {
+      "schema_version": 1,
+      "object_id": "sam3_plant_01",
+      "category": "plant",
+      "status": "passed",
+      "description": {
+        "caption_en": "A dense rounded topiary-like plant has many small oval dark-green leaves with lighter edges, multiple woody-looking stems, and a smooth off-white cylindrical pot.",
+        "caption_zh": "这株浓密的圆冠造型植物由许多带浅色叶缘的深绿色小椭圆叶、数根木质观感枝干和一个光滑的灰白色圆柱形花盆组成。",
+        "visible_attributes": {
+          "object_type": {
+            "en": "potted topiary-like plant",
+            "zh": "盆栽圆冠造型植物"
+          },
+          "colors": {
+            "en": [
+              "dark green leaves",
+              "lighter leaf edges",
+              "off-white pot"
+            ],
+            "zh": [
+              "深绿色叶片",
+              "浅色叶缘",
+              "灰白色花盆"
+            ]
+          },
+          "material_appearance": {
+            "en": [
+              "matte leaf surfaces",
+              "woody-looking stems",
+              "smooth off-white pot"
+            ],
+            "zh": [
+              "哑光叶面",
+              "木质观感枝干",
+              "光滑灰白色花盆"
+            ]
+          },
+          "geometry": {
+            "en": [
+              "dense rounded crown",
+              "small oval leaves",
+              "cylindrical pot"
+            ],
+            "zh": [
+              "浓密圆形冠幅",
+              "小椭圆叶片",
+              "圆柱形花盆"
+            ]
+          },
+          "components": {
+            "en": [
+              "many leaves",
+              "multiple stems",
+              "pot"
+            ],
+            "zh": [
+              "大量叶片",
+              "数根枝干",
+              "花盆"
+            ]
+          },
+          "style_or_pattern": {
+            "en": [
+              "lighter leaf edging",
+              "compact topiary-like silhouette"
+            ],
+            "zh": [
+              "浅色叶缘",
+              "紧凑的圆冠造型轮廓"
+            ]
+          }
+        },
+        "spatial_notes": {
+          "intrinsic_orientation": {
+            "en": "upright crown above the pot",
+            "zh": "冠幅直立于花盆上方"
+          },
+          "support_and_placement": {
+            "en": "Visible stems emerge from and are supported within the pot.",
+            "zh": "可见枝干从花盆内部伸出并由花盆承托。"
+          },
+          "scene_relation": {
+            "en": "Scene position cannot be inferred from this isolated reference.",
+            "zh": "无法从这张孤立参考图推断场景位置。"
+          },
+          "scale_caution": {
+            "en": "Metric scale cannot be inferred from the visual evidence.",
+            "zh": "无法从视觉证据推断度量尺度。"
+          }
+        },
+        "uncertainties": [
+          {
+            "en": "The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+            "zh": "无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+          }
+        ]
+      },
+      "model_description": {
+        "caption_en": "A dense, rounded topiary plant with dark green leaves and lighter edges, growing in a beige pot.",
+        "caption_zh": "一株密集的圆顶灌木，叶片呈深绿色，边缘较浅，生长在米色花盆中。",
+        "visible_attributes": {
+          "object_type": {
+            "en": "topiary plant",
+            "zh": "灌木"
+          },
+          "colors": {
+            "en": [
+              "dark green",
+              "lighter edges"
+            ],
+            "zh": [
+              "深绿色",
+              "较浅的边缘"
+            ]
+          },
+          "material_appearance": {
+            "en": [
+              "woody-looking stems",
+              "beige pot"
+            ],
+            "zh": [
+              "多木质茎",
+              "米色花盆"
+            ]
+          },
+          "geometry": {
+            "en": "rounded",
+            "zh": "圆顶形"
+          },
+          "components": {
+            "en": [
+              "multiple woody-looking stems",
+              "beige pot"
+            ],
+            "zh": [
+              "多木质茎",
+              "米色花盆"
+            ]
+          },
+          "style_or_pattern": {
+            "en": "dense, rounded topiary",
+            "zh": "密集的圆顶灌木"
+          }
+        },
+        "spatial_notes": {
+          "intrinsic_orientation": {
+            "en": "isolated reference",
+            "zh": "孤立参考"
+          },
+          "support_and_placement": {
+            "en": "growing in a beige pot",
+            "zh": "生长在米色花盆中"
+          },
+          "scene_relation": {
+            "en": "Scene position cannot be inferred from this isolated reference.",
+            "zh": "无法从这张孤立参考图推断场景位置。"
+          },
+          "scale_caution": {
+            "en": "Metric scale cannot be inferred.",
+            "zh": "无法推断度量尺度。"
+          }
+        },
+        "uncertainties": [
+          {
+            "en": "The plant species cannot be uniquely identified.",
+            "zh": "无法确定植物种类。"
+          }
+        ]
+      },
+      "spatial_constraints": {
+        "scene_position_inferable": false,
+        "constraint": "The isolated RGBA reference contains no scene context. Do not infer room location, neighboring objects, metric size, or world orientation.",
+        "metric_scale_available": false
+      },
+      "quality": {
+        "issues": [],
+        "json_parsed": true,
+        "deterministic_normalizations": [
+          "scalar_to_array:visible_attributes.geometry.en",
+          "scalar_to_array:visible_attributes.geometry.zh",
+          "scalar_to_array:visible_attributes.style_or_pattern.en",
+          "scalar_to_array:visible_attributes.style_or_pattern.zh",
+          "policy_canonicalized:spatial_notes.scale_caution",
+          "agent_visual_audit_correction:caption_en",
+          "agent_visual_audit_correction:caption_zh",
+          "agent_visual_audit_correction:visible_attributes.object_type.en",
+          "agent_visual_audit_correction:visible_attributes.object_type.zh",
+          "agent_visual_audit_correction:visible_attributes.colors.en",
+          "agent_visual_audit_correction:visible_attributes.colors.zh",
+          "agent_visual_audit_correction:visible_attributes.material_appearance.en",
+          "agent_visual_audit_correction:visible_attributes.material_appearance.zh",
+          "agent_visual_audit_correction:visible_attributes.geometry.en",
+          "agent_visual_audit_correction:visible_attributes.geometry.zh",
+          "agent_visual_audit_correction:visible_attributes.components.en",
+          "agent_visual_audit_correction:visible_attributes.components.zh",
+          "agent_visual_audit_correction:visible_attributes.style_or_pattern.en",
+          "agent_visual_audit_correction:visible_attributes.style_or_pattern.zh",
+          "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.en",
+          "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.zh",
+          "agent_visual_audit_correction:spatial_notes.support_and_placement.en",
+          "agent_visual_audit_correction:spatial_notes.support_and_placement.zh",
+          "agent_visual_audit_correction:uncertainties"
+        ],
+        "final_description_method": "local_vlm_generation_then_explicit_schema_and_agent_visual_audit_corrections",
+        "agent_visual_audit_checklist": "Verify a dense rounded topiary-like crown of many small oval dark-green leaves with lighter edges, multiple woody-looking stems, and an off-white cylindrical pot."
+      },
+      "provenance": {
+        "model_repo": "Qwen/Qwen2.5-VL-3B-Instruct",
+        "model_revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "model_dir": "/root/autodl-tmp/qwen2.5-vl-3b-instruct",
+        "prompt_path": "/root/video2world_cognition_20260716/outputs/prompts/sam3_plant_01.txt",
+        "prompt_artifact_relative_path": "outputs/prompts/sam3_plant_01.txt",
+        "prompt_sha256": "73a3488358ff5aad8cd58169e5c1b952f3cb1cf10d7c7427b35c795106ecd599",
+        "raw_output_path": "/root/video2world_cognition_20260716/outputs/raw/sam3_plant_01.txt",
+        "raw_output_artifact_relative_path": "outputs/raw/sam3_plant_01.txt",
+        "raw_output_sha256": "f94a4aaac26e6089d86733572d333ecf04cd10ad148da6ff040318943504d20f",
+        "evidence_kind": "embodiedgen_prompted_reference_rgba",
+        "evidence": {
+          "rgba": {
+            "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png",
+            "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_01_prompted_reference_rgba.png",
+            "bytes": 1289825,
+            "sha256": "349771ac6dad558297d5901a57f20230050828523a85f8ee2d4c0de8347584b9",
+            "width": 1254,
+            "height": 1254,
+            "mode": "RGBA",
+            "artifact_relative_path": "inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png"
+          }
+        },
+        "vl_images": [
+          {
+            "role": "neutral_background_composite",
+            "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_plant_01.png",
+            "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png",
+            "bytes": 1068921,
+            "sha256": "fa54a182e508345d07bfeae910930dbe68750f11d40bd8b9ea165f83999af47a",
+            "width": 1254,
+            "height": 1254,
+            "mode": "RGB",
+            "artifact_relative_path": "inputs/vl_inputs/sam3_plant_01.png",
+            "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+            "derived_from": [
+              {
+                "role": "rgba_reference",
+                "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png",
+                "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_01_prompted_reference_rgba.png",
+                "bytes": 1289825,
+                "sha256": "349771ac6dad558297d5901a57f20230050828523a85f8ee2d4c0de8347584b9",
+                "width": 1254,
+                "height": 1254,
+                "mode": "RGBA",
+                "artifact_relative_path": "inputs/evidence/sam3_plant_01/sam3_plant_01_prompted_reference_rgba.png"
+              }
+            ]
+          }
+        ],
+        "transformers_version": "4.57.3",
+        "torch_version": "2.5.1+cu124",
+        "dtype": "bfloat16",
+        "attention": "sdpa",
+        "device": "NVIDIA GeForce RTX 3090",
+        "processor_class": "Qwen2_5_VLProcessor",
+        "image_processor_class": "Qwen2VLImageProcessor",
+        "use_fast_image_processor": false,
+        "generation": {
+          "do_sample": false,
+          "max_new_tokens": 900,
+          "repetition_penalty": 1.03
+        }
+      },
+      "description_evidence": {
+        "short": {
+          "en": "A dense rounded topiary-like plant has many small oval dark-green leaves with lighter edges, multiple woody-looking stems, and a smooth off-white cylindrical pot.",
+          "zh": "这株浓密的圆冠造型植物由许多带浅色叶缘的深绿色小椭圆叶、数根木质观感枝干和一个光滑的灰白色圆柱形花盆组成。"
+        },
+        "appearance": {
+          "en": "A dense rounded topiary-like plant has many small oval dark-green leaves with lighter edges, multiple woody-looking stems, and a smooth off-white cylindrical pot.",
+          "zh": "这株浓密的圆冠造型植物由许多带浅色叶缘的深绿色小椭圆叶、数根木质观感枝干和一个光滑的灰白色圆柱形花盆组成。"
+        },
+        "detailed": {
+          "en": "Colors: dark green leaves, lighter leaf edges, off-white pot; Material appearance: matte leaf surfaces, woody-looking stems, smooth off-white pot; Geometry: dense rounded crown, small oval leaves, cylindrical pot; Visible components: many leaves, multiple stems, pot; Style or pattern: lighter leaf edging, compact topiary-like silhouette",
+          "zh": "颜色: 深绿色叶片, 浅色叶缘, 灰白色花盆; 材质观感: 哑光叶面, 木质观感枝干, 光滑灰白色花盆; 几何形态: 浓密圆形冠幅, 小椭圆叶片, 圆柱形花盆; 可见组件: 大量叶片, 数根枝干, 花盆; 风格或纹理: 浅色叶缘, 紧凑的圆冠造型轮廓"
+        },
+        "location": {
+          "en": "Visible stems emerge from and are supported within the pot. Scene position cannot be inferred from this isolated reference.",
+          "zh": "可见枝干从花盆内部伸出并由花盆承托。 无法从这张孤立参考图推断场景位置。"
+        },
+        "fidelity_caveat": {
+          "en": "Metric scale cannot be inferred from the visual evidence. The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+          "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+        },
+        "provider": "local_huggingface_transformers+agent_visual_audit",
+        "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "confidence": null,
+        "evidence_frames": []
+      }
+    },
+    {
+      "schema_version": 1,
+      "object_id": "sam3_plant_02",
+      "category": "plant",
+      "status": "passed",
+      "description": {
+        "caption_en": "A dense rounded potted plant has palmate-looking green-and-cream variegated leaves, multiple upright stems, and a smooth off-white cylindrical pot.",
+        "caption_zh": "这株浓密的圆冠盆栽具有掌状观感的绿奶油色斑锦叶、数根直立枝干和一个光滑的灰白色圆柱形花盆。",
+        "visible_attributes": {
+          "object_type": {
+            "en": "potted broadleaf plant",
+            "zh": "盆栽阔叶植物"
+          },
+          "colors": {
+            "en": [
+              "green and cream variegated leaves",
+              "off-white pot"
+            ],
+            "zh": [
+              "绿奶油色斑锦叶",
+              "灰白色花盆"
+            ]
+          },
+          "material_appearance": {
+            "en": [
+              "smooth leaf surfaces",
+              "woody-looking stems",
+              "smooth off-white pot"
+            ],
+            "zh": [
+              "平滑叶面",
+              "木质观感枝干",
+              "光滑灰白色花盆"
+            ]
+          },
+          "geometry": {
+            "en": [
+              "dense rounded crown",
+              "palmate-looking leaf clusters",
+              "cylindrical pot"
+            ],
+            "zh": [
+              "浓密圆形冠幅",
+              "掌状观感叶簇",
+              "圆柱形花盆"
+            ]
+          },
+          "components": {
+            "en": [
+              "variegated leaves",
+              "multiple stems",
+              "pot"
+            ],
+            "zh": [
+              "斑锦叶片",
+              "数根枝干",
+              "花盆"
+            ]
+          },
+          "style_or_pattern": {
+            "en": [
+              "green-and-cream variegation"
+            ],
+            "zh": [
+              "绿奶油色斑锦纹理"
+            ]
+          }
+        },
+        "spatial_notes": {
+          "intrinsic_orientation": {
+            "en": "upright rounded crown above the pot",
+            "zh": "圆形冠幅直立于花盆上方"
+          },
+          "support_and_placement": {
+            "en": "Visible stems emerge from and are supported within the pot.",
+            "zh": "可见枝干从花盆内部伸出并由花盆承托。"
+          },
+          "scene_relation": {
+            "en": "Scene position cannot be inferred from this isolated reference.",
+            "zh": "无法从这张孤立参考图推断场景位置。"
+          },
+          "scale_caution": {
+            "en": "Metric scale cannot be inferred from the visual evidence.",
+            "zh": "无法从视觉证据推断度量尺度。"
+          }
+        },
+        "uncertainties": [
+          {
+            "en": "The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+            "zh": "无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+          }
+        ]
+      },
+      "model_description": {
+        "caption_en": "A spherical plant with green and cream variegated leaves in a white pot.",
+        "caption_zh": "一株球形植物，叶子为绿色和奶油色的斑点。",
+        "visible_attributes": {
+          "object_type": {
+            "en": "plant",
+            "zh": "植物"
+          },
+          "colors": {
+            "en": [
+              "green",
+              "cream"
+            ],
+            "zh": [
+              "绿色",
+              "奶油色"
+            ]
+          },
+          "material_appearance": {
+            "en": [
+              "plastic",
+              "ceramic"
+            ],
+            "zh": [
+              "塑料",
+              "陶瓷"
+            ]
+          },
+          "geometry": {
+            "en": "spherical",
+            "zh": "球形"
+          },
+          "components": {
+            "en": [
+              "pot",
+              "stems"
+            ],
+            "zh": [
+              "花盆",
+              "茎"
+            ]
+          },
+          "style_or_pattern": {
+            "en": "variegated",
+            "zh": "斑点"
+          }
+        },
+        "spatial_notes": {
+          "intrinsic_orientation": {
+            "en": "isolated",
+            "zh": "孤立"
+          },
+          "support_and_placement": {
+            "en": "in a white pot",
+            "zh": "在白色花盆中"
+          },
+          "scene_relation": {
+            "en": "Scene position cannot be inferred from this isolated reference.",
+            "zh": "无法从这张孤立参考图推断场景位置。"
+          },
+          "scale_caution": {
+            "en": "Metric scale cannot be inferred",
+            "zh": "无法推断度量尺度"
+          }
+        },
+        "uncertainties": [
+          {
+            "en": "The exact species of the plant cannot be determined.",
+            "zh": "无法确定该植物的确切种类。"
+          }
+        ]
+      },
+      "spatial_constraints": {
+        "scene_position_inferable": false,
+        "constraint": "The isolated RGBA reference contains no scene context. Do not infer room location, neighboring objects, metric size, or world orientation.",
+        "metric_scale_available": false
+      },
+      "quality": {
+        "issues": [],
+        "json_parsed": true,
+        "deterministic_normalizations": [
+          "scalar_to_array:visible_attributes.geometry.en",
+          "scalar_to_array:visible_attributes.geometry.zh",
+          "scalar_to_array:visible_attributes.style_or_pattern.en",
+          "scalar_to_array:visible_attributes.style_or_pattern.zh",
+          "policy_canonicalized:spatial_notes.scale_caution",
+          "agent_visual_audit_correction:caption_en",
+          "agent_visual_audit_correction:caption_zh",
+          "agent_visual_audit_correction:visible_attributes.object_type.en",
+          "agent_visual_audit_correction:visible_attributes.object_type.zh",
+          "agent_visual_audit_correction:visible_attributes.colors.en",
+          "agent_visual_audit_correction:visible_attributes.colors.zh",
+          "agent_visual_audit_correction:visible_attributes.material_appearance.en",
+          "agent_visual_audit_correction:visible_attributes.material_appearance.zh",
+          "agent_visual_audit_correction:visible_attributes.geometry.en",
+          "agent_visual_audit_correction:visible_attributes.geometry.zh",
+          "agent_visual_audit_correction:visible_attributes.components.en",
+          "agent_visual_audit_correction:visible_attributes.components.zh",
+          "agent_visual_audit_correction:visible_attributes.style_or_pattern.en",
+          "agent_visual_audit_correction:visible_attributes.style_or_pattern.zh",
+          "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.en",
+          "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.zh",
+          "agent_visual_audit_correction:spatial_notes.support_and_placement.en",
+          "agent_visual_audit_correction:spatial_notes.support_and_placement.zh",
+          "agent_visual_audit_correction:uncertainties"
+        ],
+        "final_description_method": "local_vlm_generation_then_explicit_schema_and_agent_visual_audit_corrections",
+        "agent_visual_audit_checklist": "Verify a dense rounded crown of palmate-looking green-and-cream variegated leaves, multiple stems, and an off-white cylindrical pot; do not guess a species."
+      },
+      "provenance": {
+        "model_repo": "Qwen/Qwen2.5-VL-3B-Instruct",
+        "model_revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "model_dir": "/root/autodl-tmp/qwen2.5-vl-3b-instruct",
+        "prompt_path": "/root/video2world_cognition_20260716/outputs/prompts/sam3_plant_02.txt",
+        "prompt_artifact_relative_path": "outputs/prompts/sam3_plant_02.txt",
+        "prompt_sha256": "b96488d576661e2e23ed67c821113cd946e55110baa86a2617bdf69a2a0d7b20",
+        "raw_output_path": "/root/video2world_cognition_20260716/outputs/raw/sam3_plant_02.txt",
+        "raw_output_artifact_relative_path": "outputs/raw/sam3_plant_02.txt",
+        "raw_output_sha256": "5395a7cd1712e5ea684e25ba1eed0dafb8a588e259e8cf5d2a19b35bf781d209",
+        "evidence_kind": "embodiedgen_prompted_reference_rgba",
+        "evidence": {
+          "rgba": {
+            "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png",
+            "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_02_prompted_reference_rgba.png",
+            "bytes": 1290035,
+            "sha256": "be0a729def18725445299251324f119bd34a189370513037ffa3fd47ff4594cb",
+            "width": 1254,
+            "height": 1254,
+            "mode": "RGBA",
+            "artifact_relative_path": "inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png"
+          }
+        },
+        "vl_images": [
+          {
+            "role": "neutral_background_composite",
+            "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_plant_02.png",
+            "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png",
+            "bytes": 1060819,
+            "sha256": "afc15474e515357c1f2ce0a54d36e6386c2529068a1880d3fb27198d105bb69b",
+            "width": 1254,
+            "height": 1254,
+            "mode": "RGB",
+            "artifact_relative_path": "inputs/vl_inputs/sam3_plant_02.png",
+            "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+            "derived_from": [
+              {
+                "role": "rgba_reference",
+                "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png",
+                "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_02_prompted_reference_rgba.png",
+                "bytes": 1290035,
+                "sha256": "be0a729def18725445299251324f119bd34a189370513037ffa3fd47ff4594cb",
+                "width": 1254,
+                "height": 1254,
+                "mode": "RGBA",
+                "artifact_relative_path": "inputs/evidence/sam3_plant_02/sam3_plant_02_prompted_reference_rgba.png"
+              }
+            ]
+          }
+        ],
+        "transformers_version": "4.57.3",
+        "torch_version": "2.5.1+cu124",
+        "dtype": "bfloat16",
+        "attention": "sdpa",
+        "device": "NVIDIA GeForce RTX 3090",
+        "processor_class": "Qwen2_5_VLProcessor",
+        "image_processor_class": "Qwen2VLImageProcessor",
+        "use_fast_image_processor": false,
+        "generation": {
+          "do_sample": false,
+          "max_new_tokens": 900,
+          "repetition_penalty": 1.03
+        }
+      },
+      "description_evidence": {
+        "short": {
+          "en": "A dense rounded potted plant has palmate-looking green-and-cream variegated leaves, multiple upright stems, and a smooth off-white cylindrical pot.",
+          "zh": "这株浓密的圆冠盆栽具有掌状观感的绿奶油色斑锦叶、数根直立枝干和一个光滑的灰白色圆柱形花盆。"
+        },
+        "appearance": {
+          "en": "A dense rounded potted plant has palmate-looking green-and-cream variegated leaves, multiple upright stems, and a smooth off-white cylindrical pot.",
+          "zh": "这株浓密的圆冠盆栽具有掌状观感的绿奶油色斑锦叶、数根直立枝干和一个光滑的灰白色圆柱形花盆。"
+        },
+        "detailed": {
+          "en": "Colors: green and cream variegated leaves, off-white pot; Material appearance: smooth leaf surfaces, woody-looking stems, smooth off-white pot; Geometry: dense rounded crown, palmate-looking leaf clusters, cylindrical pot; Visible components: variegated leaves, multiple stems, pot; Style or pattern: green-and-cream variegation",
+          "zh": "颜色: 绿奶油色斑锦叶, 灰白色花盆; 材质观感: 平滑叶面, 木质观感枝干, 光滑灰白色花盆; 几何形态: 浓密圆形冠幅, 掌状观感叶簇, 圆柱形花盆; 可见组件: 斑锦叶片, 数根枝干, 花盆; 风格或纹理: 绿奶油色斑锦纹理"
+        },
+        "location": {
+          "en": "Visible stems emerge from and are supported within the pot. Scene position cannot be inferred from this isolated reference.",
+          "zh": "可见枝干从花盆内部伸出并由花盆承托。 无法从这张孤立参考图推断场景位置。"
+        },
+        "fidelity_caveat": {
+          "en": "Metric scale cannot be inferred from the visual evidence. The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+          "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+        },
+        "provider": "local_huggingface_transformers+agent_visual_audit",
+        "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "confidence": null,
+        "evidence_frames": []
+      }
+    },
+    {
+      "schema_version": 1,
+      "object_id": "sam3_plant_03",
+      "category": "plant",
+      "status": "passed",
+      "description": {
+        "caption_en": "A potted plant has broad lance-shaped leaves with pale cream-green variegation and dark-green edges or streaks, clumping stems, and a smooth off-white cylindrical pot.",
+        "caption_zh": "这株盆栽具有宽披针形叶片、浅奶油绿色斑锦与深绿色叶缘或条纹、簇生枝干和一个光滑的灰白色圆柱形花盆。",
+        "visible_attributes": {
+          "object_type": {
+            "en": "potted broadleaf plant",
+            "zh": "盆栽阔叶植物"
+          },
+          "colors": {
+            "en": [
+              "pale cream green",
+              "dark green edges and streaks",
+              "off-white pot"
+            ],
+            "zh": [
+              "浅奶油绿色",
+              "深绿色叶缘与条纹",
+              "灰白色花盆"
+            ]
+          },
+          "material_appearance": {
+            "en": [
+              "smooth leaf surfaces",
+              "woody-looking clumping stems",
+              "smooth off-white pot"
+            ],
+            "zh": [
+              "平滑叶面",
+              "木质观感簇生枝干",
+              "光滑灰白色花盆"
+            ]
+          },
+          "geometry": {
+            "en": [
+              "broad lance-shaped leaves",
+              "clumping stems",
+              "cylindrical pot"
+            ],
+            "zh": [
+              "宽披针形叶片",
+              "簇生枝干",
+              "圆柱形花盆"
+            ]
+          },
+          "components": {
+            "en": [
+              "variegated leaves",
+              "clumping stems",
+              "pot"
+            ],
+            "zh": [
+              "斑锦叶片",
+              "簇生枝干",
+              "花盆"
+            ]
+          },
+          "style_or_pattern": {
+            "en": [
+              "cream-green variegation",
+              "dark-green edging and streaking"
+            ],
+            "zh": [
+              "奶油绿色斑锦",
+              "深绿色叶缘与条纹"
+            ]
+          }
+        },
+        "spatial_notes": {
+          "intrinsic_orientation": {
+            "en": "upright leaf clusters above the pot",
+            "zh": "叶簇直立于花盆上方"
+          },
+          "support_and_placement": {
+            "en": "Visible stems emerge from and are supported within the pot.",
+            "zh": "可见枝干从花盆内部伸出并由花盆承托。"
+          },
+          "scene_relation": {
+            "en": "Scene position cannot be inferred from this isolated reference.",
+            "zh": "无法从这张孤立参考图推断场景位置。"
+          },
+          "scale_caution": {
+            "en": "Metric scale cannot be inferred from the visual evidence.",
+            "zh": "无法从视觉证据推断度量尺度。"
+          }
+        },
+        "uncertainties": [
+          {
+            "en": "The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+            "zh": "无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+          }
+        ]
+      },
+      "model_description": {
+        "caption_en": "A green plant with white variegation in a white pot.",
+        "caption_zh": "一株绿叶上有白色斑纹的植物，放在一个白色的花盆里。",
+        "visible_attributes": {
+          "object_type": {
+            "en": "plant",
+            "zh": "植物"
+          },
+          "colors": {
+            "en": [
+              "green",
+              "white"
+            ],
+            "zh": [
+              "绿色",
+              "白色"
+            ]
+          },
+          "material_appearance": {
+            "en": [
+              "plastic",
+              "ceramic"
+            ],
+            "zh": [
+              "塑料",
+              "陶瓷"
+            ]
+          },
+          "geometry": {
+            "en": [
+              "cylindrical",
+              "round"
+            ],
+            "zh": [
+              "圆柱形",
+              "圆形"
+            ]
+          },
+          "components": {
+            "en": [
+              "pot",
+              "stems"
+            ],
+            "zh": [
+              "花盆",
+              "茎"
+            ]
+          },
+          "style_or_pattern": {
+            "en": [
+              "variegated",
+              "striped"
+            ],
+            "zh": [
+              "斑驳",
+              "条纹"
+            ]
+          }
+        },
+        "spatial_notes": {
+          "intrinsic_orientation": {
+            "en": "upright",
+            "zh": "直立"
+          },
+          "support_and_placement": {
+            "en": "in a white pot",
+            "zh": "在一个白色的花盆里"
+          },
+          "scene_relation": {
+            "en": "isolated",
+            "zh": "孤立"
+          },
+          "scale_caution": {
+            "en": "Metric scale cannot be inferred",
+            "zh": "无法推断度量尺度"
+          }
+        },
+        "uncertainties": [
+          {
+            "en": "species",
+            "zh": "物种"
+          }
+        ]
+      },
+      "spatial_constraints": {
+        "scene_position_inferable": false,
+        "constraint": "The isolated RGBA reference contains no scene context. Do not infer room location, neighboring objects, metric size, or world orientation.",
+        "metric_scale_available": false
+      },
+      "quality": {
+        "issues": [],
+        "json_parsed": true,
+        "deterministic_normalizations": [
+          "policy_canonicalized:spatial_notes.scale_caution",
+          "evidence_scope_canonicalized:spatial_notes.scene_relation",
+          "agent_visual_audit_correction:caption_en",
+          "agent_visual_audit_correction:caption_zh",
+          "agent_visual_audit_correction:visible_attributes.object_type.en",
+          "agent_visual_audit_correction:visible_attributes.object_type.zh",
+          "agent_visual_audit_correction:visible_attributes.colors.en",
+          "agent_visual_audit_correction:visible_attributes.colors.zh",
+          "agent_visual_audit_correction:visible_attributes.material_appearance.en",
+          "agent_visual_audit_correction:visible_attributes.material_appearance.zh",
+          "agent_visual_audit_correction:visible_attributes.geometry.en",
+          "agent_visual_audit_correction:visible_attributes.geometry.zh",
+          "agent_visual_audit_correction:visible_attributes.components.en",
+          "agent_visual_audit_correction:visible_attributes.components.zh",
+          "agent_visual_audit_correction:visible_attributes.style_or_pattern.en",
+          "agent_visual_audit_correction:visible_attributes.style_or_pattern.zh",
+          "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.en",
+          "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.zh",
+          "agent_visual_audit_correction:spatial_notes.support_and_placement.en",
+          "agent_visual_audit_correction:spatial_notes.support_and_placement.zh",
+          "agent_visual_audit_correction:uncertainties"
+        ],
+        "final_description_method": "local_vlm_generation_then_explicit_schema_and_agent_visual_audit_corrections",
+        "agent_visual_audit_checklist": "Verify broad lance-shaped leaves with pale cream/green variegation and darker green edges or streaks, clumping stems, and an off-white cylindrical pot; do not guess a species."
+      },
+      "provenance": {
+        "model_repo": "Qwen/Qwen2.5-VL-3B-Instruct",
+        "model_revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "model_dir": "/root/autodl-tmp/qwen2.5-vl-3b-instruct",
+        "prompt_path": "/root/video2world_cognition_20260716/outputs/prompts/sam3_plant_03.txt",
+        "prompt_artifact_relative_path": "outputs/prompts/sam3_plant_03.txt",
+        "prompt_sha256": "f0c3bcd1f54e7150c3421ef2f9a0f1f3be0add748bc739a35cedbf8953ad2c76",
+        "raw_output_path": "/root/video2world_cognition_20260716/outputs/raw/sam3_plant_03.txt",
+        "raw_output_artifact_relative_path": "outputs/raw/sam3_plant_03.txt",
+        "raw_output_sha256": "33e37428c8fc2e9efa1f429bc2c1211e482948079198c671a74ec9f89cf6b208",
+        "evidence_kind": "embodiedgen_prompted_reference_rgba",
+        "evidence": {
+          "rgba": {
+            "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_03/sam3_plant_03_prompted_reference_rgba.png",
+            "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_03_prompted_reference_rgba.png",
+            "bytes": 1239980,
+            "sha256": "c4dfff89dace75b019a7d84f858e31f8cf2aeae50479a0ae43bab30b7df38537",
+            "width": 1254,
+            "height": 1254,
+            "mode": "RGBA",
+            "artifact_relative_path": "inputs/evidence/sam3_plant_03/sam3_plant_03_prompted_reference_rgba.png"
+          }
+        },
+        "vl_images": [
+          {
+            "role": "neutral_background_composite",
+            "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_plant_03.png",
+            "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_03/sam3_plant_03_prompted_reference_rgba.png",
+            "bytes": 1039062,
+            "sha256": "0e82346499b1df26db3c3dafcc9e28fd14bc2d24049123a82a9d26ca30b883cd",
+            "width": 1254,
+            "height": 1254,
+            "mode": "RGB",
+            "artifact_relative_path": "inputs/vl_inputs/sam3_plant_03.png",
+            "derivation": "RGBA alpha-composited over neutral RGB(238,238,238); no content generation",
+            "derived_from": [
+              {
+                "role": "rgba_reference",
+                "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_plant_03/sam3_plant_03_prompted_reference_rgba.png",
+                "source_path": "/root/autodl-tmp/embodiedgen_v2_bedroom4_auto_completion_20260714/run/input/sam3_plant_03_prompted_reference_rgba.png",
+                "bytes": 1239980,
+                "sha256": "c4dfff89dace75b019a7d84f858e31f8cf2aeae50479a0ae43bab30b7df38537",
+                "width": 1254,
+                "height": 1254,
+                "mode": "RGBA",
+                "artifact_relative_path": "inputs/evidence/sam3_plant_03/sam3_plant_03_prompted_reference_rgba.png"
+              }
+            ]
+          }
+        ],
+        "transformers_version": "4.57.3",
+        "torch_version": "2.5.1+cu124",
+        "dtype": "bfloat16",
+        "attention": "sdpa",
+        "device": "NVIDIA GeForce RTX 3090",
+        "processor_class": "Qwen2_5_VLProcessor",
+        "image_processor_class": "Qwen2VLImageProcessor",
+        "use_fast_image_processor": false,
+        "generation": {
+          "do_sample": false,
+          "max_new_tokens": 900,
+          "repetition_penalty": 1.03
+        }
+      },
+      "description_evidence": {
+        "short": {
+          "en": "A potted plant has broad lance-shaped leaves with pale cream-green variegation and dark-green edges or streaks, clumping stems, and a smooth off-white cylindrical pot.",
+          "zh": "这株盆栽具有宽披针形叶片、浅奶油绿色斑锦与深绿色叶缘或条纹、簇生枝干和一个光滑的灰白色圆柱形花盆。"
+        },
+        "appearance": {
+          "en": "A potted plant has broad lance-shaped leaves with pale cream-green variegation and dark-green edges or streaks, clumping stems, and a smooth off-white cylindrical pot.",
+          "zh": "这株盆栽具有宽披针形叶片、浅奶油绿色斑锦与深绿色叶缘或条纹、簇生枝干和一个光滑的灰白色圆柱形花盆。"
+        },
+        "detailed": {
+          "en": "Colors: pale cream green, dark green edges and streaks, off-white pot; Material appearance: smooth leaf surfaces, woody-looking clumping stems, smooth off-white pot; Geometry: broad lance-shaped leaves, clumping stems, cylindrical pot; Visible components: variegated leaves, clumping stems, pot; Style or pattern: cream-green variegation, dark-green edging and streaking",
+          "zh": "颜色: 浅奶油绿色, 深绿色叶缘与条纹, 灰白色花盆; 材质观感: 平滑叶面, 木质观感簇生枝干, 光滑灰白色花盆; 几何形态: 宽披针形叶片, 簇生枝干, 圆柱形花盆; 可见组件: 斑锦叶片, 簇生枝干, 花盆; 风格或纹理: 奶油绿色斑锦, 深绿色叶缘与条纹"
+        },
+        "location": {
+          "en": "Visible stems emerge from and are supported within the pot. Scene position cannot be inferred from this isolated reference.",
+          "zh": "可见枝干从花盆内部伸出并由花盆承托。 无法从这张孤立参考图推断场景位置。"
+        },
+        "fidelity_caveat": {
+          "en": "Metric scale cannot be inferred from the visual evidence. The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+          "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+        },
+        "provider": "local_huggingface_transformers+agent_visual_audit",
+        "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "confidence": null,
+        "evidence_frames": []
+      }
+    },
+    {
+      "schema_version": 1,
+      "object_id": "sam3_pillow_01",
+      "category": "pillow",
+      "status": "passed",
+      "description": {
+        "caption_en": "This accepted ensemble contains three touching pillows on the bed: two larger pale-green patchwork pillows behind one smaller light square pillow, in front of a dark carved wood-like headboard.",
+        "caption_zh": "这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。",
+        "visible_attributes": {
+          "object_type": {
+            "en": "three-pillow ensemble",
+            "zh": "三只枕头整体"
+          },
+          "colors": {
+            "en": [
+              "pale green",
+              "light off-white",
+              "muted brown floral accents"
+            ],
+            "zh": [
+              "浅绿色",
+              "浅灰白色",
+              "低饱和棕色花卉点缀"
+            ]
+          },
+          "material_appearance": {
+            "en": [
+              "soft quilted fabric-like covers"
+            ],
+            "zh": [
+              "柔软绗缝织物观感枕套"
+            ]
+          },
+          "geometry": {
+            "en": [
+              "two larger near-square rear pillows",
+              "one smaller square front pillow",
+              "soft rounded corners"
+            ],
+            "zh": [
+              "两只较大的近方形后排枕头",
+              "一只较小的方形前排枕头",
+              "柔和圆角"
+            ]
+          },
+          "components": {
+            "en": [
+              "two larger rear pillows",
+              "one smaller front pillow"
+            ],
+            "zh": [
+              "两只较大的后排枕头",
+              "一只较小的前排枕头"
+            ]
+          },
+          "style_or_pattern": {
+            "en": [
+              "patchwork and quilted panels",
+              "muted floral motifs on the rear pillows"
+            ],
+            "zh": [
+              "拼接与绗缝分区",
+              "后排枕头上的低饱和花卉图案"
+            ]
+          }
+        },
+        "spatial_notes": {
+          "intrinsic_orientation": {
+            "en": "two larger pillows upright behind one smaller front pillow",
+            "zh": "两只较大的枕头直立于一只较小前排枕头后方"
+          },
+          "support_and_placement": {
+            "en": "The three pillows rest together on the bed.",
+            "zh": "三只枕头共同放置在床上。"
+          },
+          "scene_relation": {
+            "en": "On the bed in front of a dark carved wood-like headboard.",
+            "zh": "位于床上、深色雕花木质观感床头板前方。"
+          },
+          "scale_caution": {
+            "en": "Metric scale cannot be inferred from the visual evidence.",
+            "zh": "无法从视觉证据推断度量尺度。"
+          }
+        },
+        "uncertainties": [
+          {
+            "en": "The exact textile and internal fill are not visually identifiable; the accepted mask does not provide stable per-pillow IDs.",
+            "zh": "无法仅凭图像确认确切织物与内部填充物；该接受 mask 不提供稳定的单枕头 ID。"
+          }
+        ]
+      },
+      "model_description": {
+        "caption_en": "Three pillows, two larger pale-green patchwork/floral pillows behind one smaller light square pillow, resting on the bed in front of a dark carved wooden headboard.",
+        "caption_zh": "三只枕头，两只较大的浅绿色拼接花卉枕头在一只较小的浅色正方形枕头后面，放在床前，床头板是深色的雕刻木制。",
+        "visible_attributes": {
+          "object_type": {
+            "en": "pillow",
+            "zh": "枕头"
+          },
+          "colors": {
+            "en": [
+              "pale-green",
+              "light square"
+            ],
+            "zh": [
+              "浅绿色",
+              "浅色正方形"
+            ]
+          },
+          "material_appearance": {
+            "en": [
+              "fabric",
+              "wood"
+            ],
+            "zh": [
+              "布料",
+              "木头"
+            ]
+          },
+          "geometry": {
+            "en": [
+              "rectangular",
+              "square"
+            ],
+            "zh": [
+              "矩形",
+              "正方形"
+            ]
+          },
+          "components": {
+            "en": [
+              "cover",
+              "filling"
+            ],
+            "zh": [
+              "盖子",
+              "填充物"
+            ]
+          },
+          "style_or_pattern": {
+            "en": [
+              "patchwork/floral",
+              "square"
+            ],
+            "zh": [
+              "拼接花卉",
+              "正方形"
+            ]
+          }
+        },
+        "spatial_notes": {
+          "intrinsic_orientation": {
+            "en": "lying down",
+            "zh": "平放"
+          },
+          "support_and_placement": {
+            "en": "on the bed",
+            "zh": "在床上"
+          },
+          "scene_relation": {
+            "en": "in front of a dark carved wooden headboard",
+            "zh": "在深色雕刻木制床头板前面"
+          },
+          "scale_caution": {
+            "en": "Metric scale cannot be inferred",
+            "zh": "无法推断度量尺度"
+          }
+        },
+        "uncertainties": [
+          {
+            "en": "The exact number of pillows is uncertain.",
+            "zh": "枕头的数量不确定。"
+          }
+        ]
+      },
+      "spatial_constraints": {
+        "scene_position_inferable": true,
+        "constraint": "Only relations visibly supported inside frame 000064 may be described. Coordinates and distances are not metric.",
+        "metric_scale_available": false
+      },
+      "quality": {
+        "issues": [],
+        "json_parsed": true,
+        "deterministic_normalizations": [
+          "policy_canonicalized:spatial_notes.scale_caution",
+          "agent_visual_audit_correction:caption_en",
+          "agent_visual_audit_correction:caption_zh",
+          "agent_visual_audit_correction:visible_attributes.object_type.en",
+          "agent_visual_audit_correction:visible_attributes.object_type.zh",
+          "agent_visual_audit_correction:visible_attributes.colors.en",
+          "agent_visual_audit_correction:visible_attributes.colors.zh",
+          "agent_visual_audit_correction:visible_attributes.material_appearance.en",
+          "agent_visual_audit_correction:visible_attributes.material_appearance.zh",
+          "agent_visual_audit_correction:visible_attributes.geometry.en",
+          "agent_visual_audit_correction:visible_attributes.geometry.zh",
+          "agent_visual_audit_correction:visible_attributes.components.en",
+          "agent_visual_audit_correction:visible_attributes.components.zh",
+          "agent_visual_audit_correction:visible_attributes.style_or_pattern.en",
+          "agent_visual_audit_correction:visible_attributes.style_or_pattern.zh",
+          "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.en",
+          "agent_visual_audit_correction:spatial_notes.intrinsic_orientation.zh",
+          "agent_visual_audit_correction:spatial_notes.support_and_placement.en",
+          "agent_visual_audit_correction:spatial_notes.support_and_placement.zh",
+          "agent_visual_audit_correction:spatial_notes.scene_relation.en",
+          "agent_visual_audit_correction:spatial_notes.scene_relation.zh",
+          "agent_visual_audit_correction:uncertainties"
+        ],
+        "final_description_method": "local_vlm_generation_then_explicit_schema_and_agent_visual_audit_corrections",
+        "agent_visual_audit_checklist": "Verify exactly three touching pillows treated as one ensemble: two larger pale-green patchwork/floral pillows behind one smaller light square pillow, resting on the bed in front of a dark carved wooden headboard. Never state that the pillow count is uncertain."
+      },
+      "provenance": {
+        "model_repo": "Qwen/Qwen2.5-VL-3B-Instruct",
+        "model_revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "model_dir": "/root/autodl-tmp/qwen2.5-vl-3b-instruct",
+        "prompt_path": "/root/video2world_cognition_20260716/outputs/prompts/sam3_pillow_01.txt",
+        "prompt_artifact_relative_path": "outputs/prompts/sam3_pillow_01.txt",
+        "prompt_sha256": "b1f59ddaa259ae5171f22e9718d59f4c5ef2299701b384609a83cabdec426e57",
+        "raw_output_path": "/root/video2world_cognition_20260716/outputs/raw/sam3_pillow_01.txt",
+        "raw_output_artifact_relative_path": "outputs/raw/sam3_pillow_01.txt",
+        "raw_output_sha256": "e83f16821d776f84e4a6ae6ea51128c34b94dc581f33eec86216a90e69c14463",
+        "evidence_kind": "accepted_holi_sam3_frame_mask_crop",
+        "evidence": {
+          "frame": {
+            "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/frame_000064.png",
+            "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/scene/frames/000064.png",
+            "bytes": 1092295,
+            "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+            "width": 1280,
+            "height": 720,
+            "mode": "RGB",
+            "artifact_relative_path": "inputs/evidence/sam3_pillow_01/frame_000064.png"
+          },
+          "accepted_mask": {
+            "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/accepted_mask_000064.png",
+            "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000064.png",
+            "bytes": 4736,
+            "sha256": "94e885a3133252c240d73fb60bac78dd4d28ec6e95b7741816dfd7a9fce66957",
+            "width": 1280,
+            "height": 720,
+            "mode": "L",
+            "artifact_relative_path": "inputs/evidence/sam3_pillow_01/accepted_mask_000064.png"
+          }
+        },
+        "vl_images": [
+          {
+            "role": "accepted_mask_isolated",
+            "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_pillow_01_masked.png",
+            "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/accepted_mask_000064.png",
+            "bytes": 89873,
+            "sha256": "125c045126d02e8d998898f50ed7b146bc9b5bf4dd1c1a27b51c25e49f28b88d",
+            "width": 534,
+            "height": 318,
+            "mode": "RGB",
+            "artifact_relative_path": "inputs/vl_inputs/sam3_pillow_01_masked.png",
+            "derived_from": [
+              {
+                "role": "rgb_frame",
+                "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/frame_000064.png",
+                "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/scene/frames/000064.png",
+                "bytes": 1092295,
+                "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+                "width": 1280,
+                "height": 720,
+                "mode": "RGB",
+                "artifact_relative_path": "inputs/evidence/sam3_pillow_01/frame_000064.png"
+              },
+              {
+                "role": "accepted_binary_mask",
+                "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/accepted_mask_000064.png",
+                "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000064.png",
+                "bytes": 4736,
+                "sha256": "94e885a3133252c240d73fb60bac78dd4d28ec6e95b7741816dfd7a9fce66957",
+                "width": 1280,
+                "height": 720,
+                "mode": "L",
+                "artifact_relative_path": "inputs/evidence/sam3_pillow_01/accepted_mask_000064.png"
+              }
+            ],
+            "derivation": "crop frame to accepted mask bbox plus 56px padding; alpha=mask>0; composite on synthetic RGB(238,238,238)"
+          },
+          {
+            "role": "scene_context_with_red_mask_boundary",
+            "path": "/root/video2world_cognition_20260716/inputs/vl_inputs/sam3_pillow_01_context.png",
+            "source_path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/frame_000064.png",
+            "bytes": 175714,
+            "sha256": "5b91408193cf59f336f1b8b4d4efbf4c7db92a38ddffd58da788f50ab721b91c",
+            "width": 534,
+            "height": 318,
+            "mode": "RGB",
+            "artifact_relative_path": "inputs/vl_inputs/sam3_pillow_01_context.png",
+            "derived_from": [
+              {
+                "role": "rgb_frame",
+                "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/frame_000064.png",
+                "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/scene/frames/000064.png",
+                "bytes": 1092295,
+                "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+                "width": 1280,
+                "height": 720,
+                "mode": "RGB",
+                "artifact_relative_path": "inputs/evidence/sam3_pillow_01/frame_000064.png"
+              },
+              {
+                "role": "accepted_binary_mask",
+                "path": "/root/video2world_cognition_20260716/inputs/evidence/sam3_pillow_01/accepted_mask_000064.png",
+                "source_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/video2mesh/masks/2d_eroded5/sam3_class_pillow/000064.png",
+                "bytes": 4736,
+                "sha256": "94e885a3133252c240d73fb60bac78dd4d28ec6e95b7741816dfd7a9fce66957",
+                "width": 1280,
+                "height": 720,
+                "mode": "L",
+                "artifact_relative_path": "inputs/evidence/sam3_pillow_01/accepted_mask_000064.png"
+              }
+            ],
+            "derivation": "same crop; synthetic RGB(235,52,52), 4px contour over mask>0 boundary"
+          }
+        ],
+        "transformers_version": "4.57.3",
+        "torch_version": "2.5.1+cu124",
+        "dtype": "bfloat16",
+        "attention": "sdpa",
+        "device": "NVIDIA GeForce RTX 3090",
+        "processor_class": "Qwen2_5_VLProcessor",
+        "image_processor_class": "Qwen2VLImageProcessor",
+        "use_fast_image_processor": false,
+        "generation": {
+          "do_sample": false,
+          "max_new_tokens": 900,
+          "repetition_penalty": 1.03
+        }
+      },
+      "description_evidence": {
+        "short": {
+          "en": "This accepted ensemble contains three touching pillows on the bed: two larger pale-green patchwork pillows behind one smaller light square pillow, in front of a dark carved wood-like headboard.",
+          "zh": "这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。"
+        },
+        "appearance": {
+          "en": "This accepted ensemble contains three touching pillows on the bed: two larger pale-green patchwork pillows behind one smaller light square pillow, in front of a dark carved wood-like headboard.",
+          "zh": "这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。"
+        },
+        "detailed": {
+          "en": "Colors: pale green, light off-white, muted brown floral accents; Material appearance: soft quilted fabric-like covers; Geometry: two larger near-square rear pillows, one smaller square front pillow, soft rounded corners; Visible components: two larger rear pillows, one smaller front pillow; Style or pattern: patchwork and quilted panels, muted floral motifs on the rear pillows",
+          "zh": "颜色: 浅绿色, 浅灰白色, 低饱和棕色花卉点缀; 材质观感: 柔软绗缝织物观感枕套; 几何形态: 两只较大的近方形后排枕头, 一只较小的方形前排枕头, 柔和圆角; 可见组件: 两只较大的后排枕头, 一只较小的前排枕头; 风格或纹理: 拼接与绗缝分区, 后排枕头上的低饱和花卉图案"
+        },
+        "location": {
+          "en": "The three pillows rest together on the bed. On the bed in front of a dark carved wood-like headboard.",
+          "zh": "三只枕头共同放置在床上。 位于床上、深色雕花木质观感床头板前方。"
+        },
+        "fidelity_caveat": {
+          "en": "Metric scale cannot be inferred from the visual evidence. The exact textile and internal fill are not visually identifiable; the accepted mask does not provide stable per-pillow IDs.",
+          "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认确切织物与内部填充物；该接受 mask 不提供稳定的单枕头 ID。"
+        },
+        "provider": "local_huggingface_transformers+agent_visual_audit",
+        "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "confidence": null,
+        "evidence_frames": [
+          "000064"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+# Commands are intentionally null. Video2World never guesses environment-specific
+# Holi-Spatial, Video2Mesh, or TRELLIS entry points. Configure an argv template or
+# register already existing real outputs with `video2world adopt-existing`.
+schema_version: "1.0"
+run_id: initialized-by-cli
+scene_id: scene
+input_video: /absolute/path/to/input.mp4
+run_dir: /absolute/path/to/run
+variables: {}
+stages:
+  ingest:
+    adapter: holi_ingest
+    needs: []
+    command: null
+    cwd: "{run_dir}"
+    inputs:
+      video: "{input_video}"
+    outputs:
+      frames_manifest: "{run_dir}/artifacts/ingest/frames.json"
+      cameras: "{run_dir}/artifacts/ingest/cameras.json"
+  da3:
+    adapter: holi_da3
+    needs: [ingest]
+    command: null
+    cwd: "{run_dir}"
+    outputs:
+      depth_manifest: "{run_dir}/artifacts/da3/depth.json"
+      point_prior: "{run_dir}/artifacts/da3/point_prior.ply"
+  pgsr:
+    adapter: holi_pgsr
+    needs: [ingest, da3]
+    command: null
+    cwd: "{run_dir}"
+    outputs:
+      scene_gaussian: "{run_dir}/artifacts/pgsr/scene_gaussian.ply"
+      scene_mesh: "{run_dir}/artifacts/pgsr/tsdf_scene.ply"
+  sam3:
+    adapter: holi_sam3
+    needs: [ingest]
+    command: null
+    cwd: "{run_dir}"
+    outputs:
+      masks_manifest: "{run_dir}/artifacts/sam3/masks.json"
+      captions_manifest: "{run_dir}/artifacts/sam3/captions.json"
+  fusion:
+    adapter: video2mesh_fusion
+    needs: [ingest, pgsr, sam3]
+    command: null
+    cwd: "{run_dir}"
+    outputs:
+      object_clouds_manifest: "{run_dir}/artifacts/fusion/object_clouds.json"
+      semantic_gaussian: "{run_dir}/artifacts/fusion/semantic_gaussian.ply"
+  cognition:
+    adapter: scene_cognition
+    needs: [sam3, fusion]
+    command: null
+    cwd: "{run_dir}"
+    outputs:
+      object_facts: "{run_dir}/artifacts/cognition/object_facts.json"
+  trellis:
+    adapter: embodiedgen_trellis
+    needs: [ingest, sam3, fusion, cognition]
+    command: null
+    cwd: "{run_dir}"
+    outputs:
+      object_assets_manifest: "{run_dir}/artifacts/trellis/object_assets.json"
+  placement:
+    adapter: object_placement
+    needs: [pgsr, fusion, trellis]
+    command: null
+    cwd: "{run_dir}"
+    outputs:
+      aligned_objects_manifest: "{run_dir}/artifacts/placement/aligned_objects.json"
+      collision_manifest: "{run_dir}/artifacts/placement/colliders.json"
+  bundle:
+    adapter: world_bundle
+    needs: [pgsr, fusion, cognition, placement]
+    command: null
+    cwd: "{run_dir}"
+    outputs:
+      world_manifest: "{run_dir}/bundle/world.json"
+  web:
+    adapter: web_bundle
+    needs: [bundle]
+    command: null
+    cwd: "{run_dir}"
+    outputs:
+      web_bundle_manifest: "{run_dir}/bundle/web-bundle.json"

@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "contract": "video2world-web-manifest-1.0.0",
+  "version": "browser-fixture-v1",
+  "coordinateSystem": {
+    "worldUp": [0, -1, 0],
+    "source": "browser-fixture"
+  },
+  "presentation": {
+    "yawDeg": 180,
+    "pivot": [2.250915668599896, -3.375, 12.605660413500915],
+    "referenceBoundsAssetKey": "collider"
+  },
+  "alignment": {
+    "id": "pgsr_native_shared_frame_20260714",
+    "method": "identity_same_pgsr_coordinate_frame",
+    "scale": 1,
+    "rotationMatrix": [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+    "translation": [0, 0, 0]
+  },
+  "cameraPresets": {
+    "reference": {
+      "id": "pgsr_input_camera_000018",
+      "coordinateFrame": "visual_native",
+      "eye": [-1.62950243820192, 1.818849050201853, -2.5396998253837135],
+      "forward": [0.31380919609254937, 0.005869813544282999, 0.9494679394693233],
+      "up": [-0.027003895871585824, 0.9996315591734393, 0.0027451343575030564],
+      "targetDistance": 6,
+      "verticalFovDeg": 55.776917
+    }
+  },
+  "initialState": {
+    "cameraPreset": "reference",
+    "robotObstacleCollision": true,
+    "robotSpawn": {
+      "id": "fixed-user-approved-interior-20260716",
+      "coordinateFrame": "visual_native",
+      "groundPoint": [5.968559, 6.051313, 7.851893],
+      "forward": [0.31380919609254937, 0, 0.9494679394693233]
+    }
+  },
+  "assets": {
+    "visual": {
+      "id": "fixture-visual-metadata-only",
+      "fileName": "fixture-gaussian.ply",
+      "fileType": "ply",
+      "vertexCount": 0,
+      "bbox": {
+        "min": [-14.451483726501465, -14.092606544494629, -3.047991991043091],
+        "max": [17.380931854248047, 7.19534158706665, 25.302595138549805]
+      }
+    },
+    "collider": {
+      "id": "fixture-floor-collider",
+      "label": "Fixture floor collider",
+      "url": "./test-fixtures/collider.txt",
+      "fileName": "collider.txt",
+      "fileType": "ply",
+      "format": "semantic-ascii-mesh-ply",
+      "vertexCount": 4,
+      "faceCount": 2,
+      "bbox": {
+        "min": [-13, 6, 0],
+        "max": [17, 6, 24]
+      }
+    }
+  },
+  "sceneKnowledge": {
+    "coordinateFrame": "visual_native",
+    "missingInstances": [],
+    "objects": [
+      {
+        "id": "sam3_plant_01",
+        "name": "Plant 01",
+        "category": "plant",
+        "aliases": ["左侧盆栽", "left plant"],
+        "description": {
+          "short": "A reconstructed indoor plant.",
+          "appearance": "绿色阔叶植物，放在深色花盆中。"
+        },
+        "bbox": {
+          "min": [4.8, -1.05, 20.08],
+          "max": [6.41, -0.12, 23.51],
+          "center": [5.605, -0.585, 21.795],
+          "extent": [1.61, 0.93, 3.43]
+        }
+      },
+      {
+        "id": "sam3_plant_02",
+        "name": "Plant 02",
+        "category": "plant",
+        "aliases": ["右侧盆栽", "right plant"],
+        "description": {
+          "appearance": "一株较小的室内盆栽。"
+        },
+        "bbox": {
+          "min": [-10.98, -0.2, 13.81],
+          "max": [-9.23, 0.59, 16.05],
+          "center": [-10.105, 0.195, 14.93],
+          "extent": [1.75, 0.79, 2.24]
+        }
+      },
+      {
+        "id": "sam3_pillow_01",
+        "name": "枕头组合 / Pillow ensemble",
+        "category": "pillow",
+        "aliases": ["pillow", "pillows", "枕头", "抱枕"],
+        "description": {
+          "appearance": {
+            "zh": "三只相接的装饰枕头：后方两只较大的浅绿色拼接枕头，前方一只较小的浅色方枕。",
+            "en": "Three touching decorative pillows with two larger pale-green patchwork pillows behind a smaller light square pillow."
+          },
+          "location": {
+            "zh": "三只枕头一起放在床上。",
+            "en": "The three pillows rest together on the bed."
+          }
+        },
+        "bbox": {
+          "min": [-1.8, -0.9, 14.2],
+          "max": [1.8, 0.9, 16.4],
+          "center": [0, 0, 15.3],
+          "extent": [3.6, 1.8, 2.2]
+        },
+        "interactiveObjectId": "sam3_pillow_01",
+        "independentlyRecognized": true,
+        "visualOnly": true
+      }
+    ],
+    "relations": [
+      {
+        "subject": "sam3_pillow_01",
+        "predicate": "OnTopOf",
+        "object": "sam3_bed_01",
+        "targetLabel": {"zh": "床", "en": "the bed"},
+        "verified": true
+      }
+    ]
+  },
+  "interactiveObjects": [
+    {
+      "id": "sam3_plant_01",
+      "label": "Plant 01",
+      "category": "plant",
+      "placement": {
+        "coordinateFrame": "visual_native",
+        "pivot": [5.605, -0.585, 21.795],
+        "generatedCenter": [0, 0, 0],
+        "scale": [1, 1, 1],
+        "rotationEulerDeg": [0, 0, 0]
+      },
+      "colliderProxy": {
+        "type": "box",
+        "dimensions": [1.61, 0.93, 3.43],
+        "center": [0, 0, 0]
+      },
+      "visual": {
+        "url": "./test-fixtures/tiny-points.ply",
+        "fileName": "tiny-points.ply",
+        "fileType": "ply",
+        "format": "rgb-point-cloud-ply",
+        "renderer": "three-points",
+        "pointSize": 0.08,
+        "vertexCount": 8,
+        "bbox": {"min": [-0.35, -0.2, -0.25], "max": [0.35, 0.2, 0.25]}
+      },
+      "collision": {
+        "mode": "kinematic",
+        "walkable": true,
+        "characterCollision": true,
+        "asset": {
+          "id": "fixture-plant-triangle-glb",
+          "label": "Fixture plant GLB collider",
+          "url": "./test-fixtures/tiny-collider.glb.base64.txt",
+          "fileName": "tiny-collider.glb",
+          "fileType": "glb",
+          "format": "gltf-binary",
+          "encoding": "base64",
+          "size": 628,
+          "vertices": 3,
+          "faces": 1
+        }
+      },
+      "interaction": {"kind": "spin", "degrees": 360, "durationMs": 400}
+    },
+    {
+      "id": "sam3_plant_02",
+      "label": "Plant 02",
+      "category": "plant",
+      "placement": {
+        "coordinateFrame": "visual_native",
+        "pivot": [-10.105, 0.195, 14.93],
+        "generatedCenter": [0, 0, 0],
+        "scale": [1, 1, 1],
+        "rotationEulerDeg": [0, 0, 0]
+      },
+      "colliderProxy": {
+        "type": "box",
+        "dimensions": [1.75, 0.79, 2.24],
+        "center": [0, 0, 0]
+      },
+      "visual": {
+        "url": "./test-fixtures/tiny-points.ply",
+        "fileName": "tiny-points.ply",
+        "fileType": "ply",
+        "format": "rgb-point-cloud-ply",
+        "renderer": "three-points",
+        "pointSize": 0.08,
+        "vertexCount": 8,
+        "bbox": {"min": [-0.35, -0.2, -0.25], "max": [0.35, 0.2, 0.25]}
+      },
+      "collision": {
+        "mode": "degraded-box",
+        "asset": null,
+        "gate": {"status": "not_tested", "reason": "intentional fallback fixture"}
+      },
+      "interaction": {"kind": "spin", "degrees": 360, "durationMs": 400}
+    },
+    {
+      "id": "sam3_pillow_01",
+      "label": "枕头组合 / Pillow ensemble",
+      "category": "pillow",
+      "placement": {
+        "coordinateFrame": "visual_native",
+        "pivot": [0, 0, 15.3],
+        "generatedCenter": [0, 0, 0],
+        "scale": [5.1428571429, 4.5, 4.4],
+        "rotationEulerDeg": [0, 0, 0]
+      },
+      "colliderProxy": {
+        "type": "selection-box",
+        "dimensions": [3.6, 1.8, 2.2],
+        "center": [0, 0, 0],
+        "collisionEnabled": false
+      },
+      "visual": {
+        "url": "./test-fixtures/tiny-points.ply",
+        "fileName": "tiny-points.ply",
+        "fileType": "ply",
+        "format": "rgb-point-cloud-ply",
+        "renderer": "three-points",
+        "pointSize": 0.08,
+        "vertexCount": 8,
+        "bbox": {"min": [-0.35, -0.2, -0.25], "max": [0.35, 0.2, 0.25]}
+      },
+      "collision": {
+        "mode": "none",
+        "walkable": false,
+        "characterCollision": false,
+        "asset": null,
+        "gate": {"status": "not_tested", "reason": "visual-only fixture"}
+      },
+      "interaction": {"kind": "spin", "degrees": 360, "durationMs": 400, "drag": "horizontal_yaw"}
+    }
+  ]
+}
