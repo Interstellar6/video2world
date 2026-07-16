@@ -16,7 +16,7 @@ import os
 import sys
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -358,7 +358,7 @@ def run_diffusion_anchor_inpaint(
     if destination == model_path or model_path in destination.parents:
         raise DiffusionAnchorInpaintError("output_dir cannot be inside model_dir")
 
-    timestamp = created_at or datetime.now(UTC)
+    timestamp = created_at or datetime.now(timezone.utc)  # noqa: UP017 - remote runtime is 3.10.
     if timestamp.tzinfo is None or timestamp.utcoffset() is None:
         raise DiffusionAnchorInpaintError("created_at must include timezone information")
 
