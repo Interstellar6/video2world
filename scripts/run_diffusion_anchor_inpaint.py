@@ -388,6 +388,8 @@ def run_diffusion_anchor_inpaint(
             num_inference_steps=steps,
             guidance_scale=guidance,
             strength=validated_strength,
+            height=source_image.height,
+            width=source_image.width,
         )
         images = getattr(result, "images", None)
         if not isinstance(images, list | tuple) or len(images) != 1:

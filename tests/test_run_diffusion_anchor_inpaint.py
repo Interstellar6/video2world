@@ -116,6 +116,8 @@ def test_fake_pipeline_preserves_outside_exactly_and_writes_auditable_receipt(
     assert [call["generator"] for call in pipeline.calls] == [40, 41, 42]
     assert all(call["num_inference_steps"] == 28 for call in pipeline.calls)
     assert all(call["guidance_scale"] == 6.25 for call in pipeline.calls)
+    assert all(call["height"] == 8 for call in pipeline.calls)
+    assert all(call["width"] == 10 for call in pipeline.calls)
     assert all(call["prompt"] == PROMPT for call in pipeline.calls)
     assert all(call["negative_prompt"] == NEGATIVE_PROMPT for call in pipeline.calls)
 
