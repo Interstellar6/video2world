@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "video2world.canonical_object_six_view_review",
+  "createdAt": "2026-07-17T03:14:20.191Z",
+  "state": "captured_visual_pending",
+  "promotionAllowed": false,
+  "sourcePageUrl": "http://127.0.0.1:4179/object-review.html?objectId=sam3_bed_01_component_assembly_v1&asset=%2F%40fs%2FUsers%2Fzhangyuxiang%2FDesktop%2Fworksplace%2Fvideo2world%2Fexamples%2Fbedroom4%2Fcompletion%2Flayered-peel%2Fround04_bed%2Fcomponent_assembly_v1%2Fsam3_bed_01.component-assembly.glb",
+  "canonicalViews": [
+    "front",
+    "right",
+    "back",
+    "left",
+    "top",
+    "bottom"
+  ],
+  "canonicalViewAxes": {
+    "front": {
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "orientationContract": "web/object-review.js VIEW_SPECS orthogonal object-local axes",
+  "horizontalOrbitAcceptedAsSixViewEvidence": false,
+  "visualGate": {
+    "status": "pending",
+    "blocking": [
+      "shape_mismatch",
+      "primary_color_category_error",
+      "missing_surface_or_sheet_geometry",
+      "disconnected_or_floating_parts",
+      "significant_scene_interpenetration"
+    ],
+    "warning": [
+      "minor_backside_texture_hallucination",
+      "minor_material_or_pattern_drift"
+    ]
+  },
+  "objectId": "sam3_bed_01_component_assembly_v1",
+  "renderMode": "neutral-albedo",
+  "bounds": {
+    "min": [
+      -0.7894068360328674,
+      0,
+      -1.107337236404419
+    ],
+    "max": [
+      0.7894068360328674,
+      0.7295557260513306,
+      1.100000023841858
+    ],
+    "size": [
+      1.5788136720657349,
+      0.7295557260513306,
+      2.207337260246277
+    ],
+    "radius": 1.4051015932119921
+  },
+  "meshCount": 6,
+  "triangleCount": 4976,
+  "asset": {
+    "url": "http://127.0.0.1:4179/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/sam3_bed_01.component-assembly.glb",
+    "sizeBytes": 113200,
+    "sha256": "3e96994ede80bd6cfd37fa9398a3ad17b524799a0d8f6535c6fcff67925ab0de"
+  },
+  "views": {
+    "front": {
+      "file": "front_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/canonical_six_view/front_object.png",
+      "sizeBytes": 10764,
+      "sha256": "3357c99701807519fa9bbd667eb54057d9ad1753babc37bb6ea19a2f29c9afa8",
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "file": "right_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/canonical_six_view/right_object.png",
+      "sizeBytes": 10438,
+      "sha256": "24affeb9bd0c08f399d2d6a1c30572c84624522664509418c79693e4a9c97337",
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "file": "back_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/canonical_six_view/back_object.png",
+      "sizeBytes": 10332,
+      "sha256": "77e8c60a2ccd4a5a02bfd17c39c40a908514978bd22018a225cc6160acd2c89d",
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "file": "left_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/canonical_six_view/left_object.png",
+      "sizeBytes": 10459,
+      "sha256": "99fdd7341248be3510d0c4ab73c8ae177b7366efbffa2e9330a397e736001b12",
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "file": "top_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/canonical_six_view/top_object.png",
+      "sizeBytes": 11609,
+      "sha256": "acf78f6f3989f5e8552d81fda4eb1019abc7919041c8463e1572130aef5ad0e4",
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "file": "bottom_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/canonical_six_view/bottom_object.png",
+      "sizeBytes": 9802,
+      "sha256": "0992ed2b1c199f92560177db159f6e1262bc6d7af158ea5353c596321c700527",
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "contactSheet": {
+    "file": "object_six_view_contact_sheet.png",
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/canonical_six_view/object_six_view_contact_sheet.png",
+    "sizeBytes": 24442,
+    "sha256": "540bb144a287ad6063aa25eb5446237d364f7007673f95860ceab86c8f877c4e",
+    "layout": "3x2",
+    "viewport": [
+      1440,
+      1280
+    ]
+  },
+  "browser": {
+    "consoleWarnings": [],
+    "consoleErrors": []
+  }
+}

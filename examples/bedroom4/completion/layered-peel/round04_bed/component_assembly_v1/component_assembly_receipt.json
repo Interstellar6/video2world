@@ -1,0 +1,561 @@
+{
+  "acceptance_gates": {
+    "appearance_fidelity": true,
+    "collision": true,
+    "geometry_completeness": true,
+    "instance_identity": true,
+    "internal_component_alignment": true,
+    "negative_space_preservation": true,
+    "same_instance_multi_frame_evidence": true,
+    "single_logical_asset_root": true,
+    "support_geometry": true
+  },
+  "all_technical_acceptance_gates_passed": true,
+  "component_audit": {
+    "all_components_closed": true,
+    "all_components_finite": true,
+    "all_components_nondegenerate": true,
+    "all_components_nonempty": true,
+    "all_components_pbr": true,
+    "all_components_winding_consistent": true,
+    "components": {
+      "base_frame": {
+        "bounds": [
+          [
+            -0.7420424252435719,
+            0.0,
+            -0.9614000000000003
+          ],
+          [
+            0.7420424252435719,
+            0.18611115639966372,
+            1.1
+          ]
+        ],
+        "degenerate_faces": 0,
+        "faces": 12,
+        "finite_vertices": true,
+        "material_name": "base_fabric_pbr",
+        "material_type": "PBRMaterial",
+        "vertices": 8,
+        "watertight": true,
+        "winding_consistent": true
+      },
+      "foot_cover": {
+        "bounds": [
+          [
+            -0.7420424252435719,
+            0.403488987074471,
+            0.4290000000000001
+          ],
+          [
+            0.7420424252435719,
+            0.42954454897042393,
+            1.0670000000000002
+          ]
+        ],
+        "degenerate_faces": 0,
+        "faces": 1440,
+        "finite_vertices": true,
+        "material_name": "foot_cover_fabric_pbr",
+        "material_type": "PBRMaterial",
+        "vertices": 722,
+        "watertight": true,
+        "winding_consistent": true
+      },
+      "headboard_panel": {
+        "bounds": [
+          [
+            -0.6631017417070216,
+            0.2084444951676234,
+            -1.1
+          ],
+          [
+            0.6631017417070216,
+            0.7146668405747088,
+            -1.001
+          ]
+        ],
+        "degenerate_faces": 0,
+        "faces": 324,
+        "finite_vertices": true,
+        "material_name": "headboard_wood_pbr",
+        "material_type": "PBRMaterial",
+        "vertices": 164,
+        "watertight": true,
+        "winding_consistent": true
+      },
+      "headboard_post_left": {
+        "bounds": [
+          [
+            -0.789406835365502,
+            0.0,
+            -1.107337292146316
+          ],
+          [
+            -0.6757322510728697,
+            0.7295557330866818,
+            -0.9936627078536838
+          ]
+        ],
+        "degenerate_faces": 0,
+        "faces": 128,
+        "finite_vertices": true,
+        "material_name": "headboard_wood_pbr",
+        "material_type": "PBRMaterial",
+        "vertices": 66,
+        "watertight": true,
+        "winding_consistent": true
+      },
+      "headboard_post_right": {
+        "bounds": [
+          [
+            0.6757322510728697,
+            0.0,
+            -1.107337292146316
+          ],
+          [
+            0.789406835365502,
+            0.7295557330866818,
+            -0.9936627078536838
+          ]
+        ],
+        "degenerate_faces": 0,
+        "faces": 128,
+        "finite_vertices": true,
+        "material_name": "headboard_wood_pbr",
+        "material_type": "PBRMaterial",
+        "vertices": 66,
+        "watertight": true,
+        "winding_consistent": true
+      },
+      "mattress": {
+        "bounds": [
+          [
+            -0.726254288536262,
+            0.19057782415325564,
+            -0.9459395000000002
+          ],
+          [
+            0.726254288536262,
+            0.39902231932087906,
+            1.0845395
+          ]
+        ],
+        "degenerate_faces": 0,
+        "faces": 2944,
+        "finite_vertices": true,
+        "material_name": "mattress_fabric_pbr",
+        "material_type": "PBRMaterial",
+        "vertices": 1474,
+        "watertight": true,
+        "winding_consistent": true
+      }
+    },
+    "no_positive_aabb_intersections": true,
+    "pairwise_positive_aabb_intersections": [],
+    "pillow_clearance_empty": true,
+    "pillow_clearance_intersection_volumes": {
+      "base_frame": 0.0,
+      "foot_cover": 0.0,
+      "headboard_panel": 0.0,
+      "headboard_post_left": 0.0,
+      "headboard_post_right": 0.0,
+      "mattress": 0.0
+    }
+  },
+  "component_layout": {
+    "base_top_y": 0.18611115639966372,
+    "body_min_z": -0.9614000000000001,
+    "floor_y": 0.0,
+    "headboard_front_z": -1.0010000000000001,
+    "mattress_bottom_y": 0.19057782415325564,
+    "mattress_top_y": 0.39902231932087906,
+    "pillow_clearance_aabb": [
+      [
+        -0.5367966480485414,
+        0.4079556548280629,
+        -0.8844000000000001
+      ],
+      [
+        0.5367966480485414,
+        0.62533348550287,
+        -0.08140000000000003
+      ]
+    ],
+    "support_gap": 0.004466667753591919
+  },
+  "created_at": "2026-07-17T03:18:50.631447+00:00",
+  "kind": "video2world.multi_component_fixture_assembly",
+  "logical_entity": {
+    "collision_owner": "sam3_bed_01",
+    "independent_scene_object_ids": [],
+    "internal_component_names": [
+      "base_frame",
+      "foot_cover",
+      "headboard_panel",
+      "headboard_post_left",
+      "headboard_post_right",
+      "mattress"
+    ],
+    "internal_components_are_independent_scene_objects": false,
+    "motion_owner": "sam3_bed_01",
+    "root_node": "sam3_bed_01",
+    "selection_owner": "sam3_bed_01",
+    "single_logical_root": true
+  },
+  "material_fit": {
+    "applied": {
+      "base_rgb": [
+        149,
+        147,
+        144
+      ],
+      "cover_rgb": [
+        186,
+        185,
+        181
+      ],
+      "mattress_rgb": [
+        183,
+        183,
+        183
+      ],
+      "wood_rgb": [
+        82,
+        48,
+        30
+      ]
+    },
+    "observed": {
+      "light_fabric_median_rgb": [
+        164,
+        165,
+        167
+      ],
+      "wood_median_rgb": [
+        69,
+        36,
+        22
+      ]
+    },
+    "policy": "evidence_median_with_neutral_review_luminance_floor"
+  },
+  "object_id": "sam3_bed_01",
+  "output": {
+    "unified_pbr_glb": {
+      "base_frame": "world",
+      "component_nodes": [
+        "sam3_bed_01__base_frame",
+        "sam3_bed_01__foot_cover",
+        "sam3_bed_01__headboard_panel",
+        "sam3_bed_01__headboard_post_left",
+        "sam3_bed_01__headboard_post_right",
+        "sam3_bed_01__mattress"
+      ],
+      "component_parenting_verified": true,
+      "expected_component_nodes": [
+        "sam3_bed_01__base_frame",
+        "sam3_bed_01__foot_cover",
+        "sam3_bed_01__headboard_panel",
+        "sam3_bed_01__headboard_post_left",
+        "sam3_bed_01__headboard_post_right",
+        "sam3_bed_01__mattress"
+      ],
+      "geometry_names": [
+        "sam3_bed_01.base_frame",
+        "sam3_bed_01.foot_cover",
+        "sam3_bed_01.headboard_panel",
+        "sam3_bed_01.headboard_post_left",
+        "sam3_bed_01.headboard_post_right",
+        "sam3_bed_01.mattress"
+      ],
+      "logical_root": "sam3_bed_01",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/sam3_bed_01.component-assembly.glb",
+      "root_nodes": [
+        "sam3_bed_01"
+      ],
+      "sha256": "3e96994ede80bd6cfd37fa9398a3ad17b524799a0d8f6535c6fcff67925ab0de",
+      "single_root_verified": true,
+      "size_bytes": 113200
+    }
+  },
+  "profile": "bed",
+  "promotion_allowed": false,
+  "schema_version": "1.0",
+  "selected_backend": "component_assembly",
+  "sources": {
+    "anchor": {
+      "analysis_point_count": 265723,
+      "analysis_stride": 4,
+      "canonical_axes_columns": [
+        [
+          0.9522583221686188,
+          -0.07130897258103762,
+          -0.29684864542396705
+        ],
+        [
+          -0.056204802869881616,
+          0.9147704495929064,
+          -0.4000450533201848
+        ],
+        [
+          0.30007517057391625,
+          0.3976305508647803,
+          0.8670898667520032
+        ]
+      ],
+      "canonical_extents": {
+        "height": 0.7444446255986549,
+        "length": 2.2,
+        "width": 1.578813670731004
+      },
+      "canonical_to_anchor_row_major": [
+        [
+          7.245957401283493,
+          -0.5426067335119572,
+          -2.258791117175344,
+          0.5491912028669282
+        ],
+        [
+          -0.4276755559512813,
+          6.960703367346832,
+          -3.044036841128243,
+          -1.3414701151096375
+        ],
+        [
+          2.2833425054346344,
+          3.0256643244173227,
+          6.597890605210239,
+          11.514488332555553
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "path": "/private/tmp/video2world-bed-fixture-input/sam3_bed_01.ply",
+      "pca_axes_descending_columns": [
+        [
+          -0.29684864542396705,
+          0.9522583221686188,
+          -0.07130897258103762
+        ],
+        [
+          -0.4000450533201848,
+          -0.056204802869881616,
+          0.9147704495929064
+        ],
+        [
+          0.8670898667520032,
+          0.30007517057391625,
+          0.3976305508647803
+        ]
+      ],
+      "pca_eigenvalues_descending": [
+        24.469316361922342,
+        10.077751813926975,
+        1.0961003552662254
+      ],
+      "physical_extents": {
+        "height": 5.664654137564077,
+        "length": 16.740317109038564,
+        "width": 12.013564320055547
+      },
+      "point_count": 1062892,
+      "robust_center": [
+        0.3472208695786192,
+        1.2494589909942668,
+        12.640708105144583
+      ],
+      "robust_quantiles": [
+        0.005,
+        0.995
+      ],
+      "sha256": "f9bd3583c47dc1b001f6b1ebec301f1446d56a20294f01e319c16dba7e9553f4",
+      "size_bytes": 41510443
+    },
+    "anchor_sample": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/evidence/anchor_sample.ply",
+      "point_count": 8192,
+      "sampling": "deterministic_even_source_index",
+      "sha256": "fcb981ded697e6543bf36cafad736adb245acf112b26960643edad7a8969f5da",
+      "size_bytes": 123058
+    },
+    "copied_evidence": [
+      {
+        "mask": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/evidence/frame_00.mask.png",
+          "sha256": "420315838de46c4d3803b941289ba3de8c4ea4104665913f10a4a9f301c1b940"
+        },
+        "rgba": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/evidence/frame_00.rgba.png",
+          "sha256": "d25825d76d3f5f754c48e3b07a60d5ee9ca3271af3f3172737248e5e778913d3"
+        }
+      },
+      {
+        "mask": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/evidence/frame_01.mask.png",
+          "sha256": "f1f5702177a84da004f700271f2227212f1d1589808578aceab93a295b53a746"
+        },
+        "rgba": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/evidence/frame_01.rgba.png",
+          "sha256": "33a4ba5189ff4e0dc5f97b8269e4e6ec4f1a3ad4d3f1fc274efdb1d6fc1d50b2"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "bounded_negative_space_bbox_fraction": 0.12411371616264583,
+        "bounded_negative_space_pixels": 60269,
+        "fabric_support_pixels": 62619,
+        "mask": {
+          "alpha_iou": 1.0,
+          "path": "/private/tmp/video2world-bed-fixture-input/frame67.mask.png",
+          "sha256": "420315838de46c4d3803b941289ba3de8c4ea4104665913f10a4a9f301c1b940",
+          "size_bytes": 4650
+        },
+        "rgba": {
+          "dimensions": [
+            1099,
+            555
+          ],
+          "path": "/private/tmp/video2world-bed-fixture-input/frame67.rgba.png",
+          "sha256": "d25825d76d3f5f754c48e3b07a60d5ee9ca3271af3f3172737248e5e778913d3",
+          "size_bytes": 284791
+        },
+        "visible_bbox_xyxy": [
+          118,
+          60,
+          1098,
+          554
+        ],
+        "visible_pixel_count": 205408,
+        "wood_support_pixels": 44328
+      },
+      {
+        "bounded_negative_space_bbox_fraction": 0.11282571212970731,
+        "bounded_negative_space_pixels": 53527,
+        "fabric_support_pixels": 121706,
+        "mask": {
+          "alpha_iou": 1.0,
+          "path": "/private/tmp/video2world-bed-fixture-input/frame71.mask.png",
+          "sha256": "f1f5702177a84da004f700271f2227212f1d1589808578aceab93a295b53a746",
+          "size_bytes": 4562
+        },
+        "rgba": {
+          "dimensions": [
+            1034,
+            576
+          ],
+          "path": "/private/tmp/video2world-bed-fixture-input/frame71.rgba.png",
+          "sha256": "33a4ba5189ff4e0dc5f97b8269e4e6ec4f1a3ad4d3f1fc274efdb1d6fc1d50b2",
+          "size_bytes": 287590
+        },
+        "visible_bbox_xyxy": [
+          111,
+          62,
+          1033,
+          575
+        ],
+        "visible_pixel_count": 234243,
+        "wood_support_pixels": 64922
+      }
+    ],
+    "reference_manifest": {
+      "frame_count": 2,
+      "frame_ids": [
+        "000067",
+        "000071"
+      ],
+      "identity_revalidated": true,
+      "identity_revalidated_by": "explicit_3d_anchor_calibrated_multiframe_association",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/input/scene_reference_manifest.json",
+      "sha256": "b6bba0ccb6ac15664779861b34108d096f2ecced865274f9b68d7510b46e16de"
+    }
+  },
+  "status": "technical_passed_visual_pending",
+  "trellis_rejection_route": {
+    "preserve_prior_rejected_receipts": true,
+    "prior_rejected_candidate_count": 3,
+    "prior_rejected_candidates": [
+      {
+        "asset_sha256": "d2059e1587b825438cb256b3e648852518bb2747c42ce7f00a69f5798aae1075",
+        "blocking_issue_types": [
+          "shape_mismatch",
+          "significant_scene_interpenetration"
+        ],
+        "contact_sheet": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed45/canonical_six_view/object_six_view_contact_sheet.png",
+          "sha256": "620aced76c0b7bb1f09a0e61b763d6ba3ab24664da87dbcca11d292cb1bb5b54"
+        },
+        "technical_receipt": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed45/trellis2_asset_receipt.json",
+          "sha256": "826c0d0dfec9a035fc9ecdef268b7f2c86e1658b738764388ef1fa7daf62ecf5"
+        },
+        "visual_review": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed45/canonical_six_view/visual_review.json",
+          "sha256": "3432cd7325bc460a0e580c0aecfd56085b145d6afe3113d432390a6b6135394e",
+          "status": "rejected"
+        }
+      },
+      {
+        "asset_sha256": "528aa75599948383c526216d59cb0524cb7979868a6246cb16e22bfd9b854595",
+        "blocking_issue_types": [
+          "shape_mismatch",
+          "primary_color_category_error",
+          "significant_scene_interpenetration"
+        ],
+        "contact_sheet": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed46_preserve_negative_space/canonical_six_view/object_six_view_contact_sheet.png",
+          "sha256": "7cc4aea7add5e1067f0b20ea9d13879196ca94086532761dca52347ca01db54d"
+        },
+        "technical_receipt": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed46_preserve_negative_space/trellis2_asset_receipt.json",
+          "sha256": "27aace02bcdd7bb69902453b9177584d5ad77b4cb6a627b5618eb8af7fa07ef9"
+        },
+        "visual_review": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed46_preserve_negative_space/canonical_six_view/visual_review.json",
+          "sha256": "10f3f9e83989a6ba5bbc977c862b7867167efe67b03dbfbaaca60a541c9cd1d9",
+          "status": "rejected"
+        }
+      },
+      {
+        "asset_sha256": "261bb991f13e04c8506429f6097a8389c7cb895ae521192f19d69d5155db3340",
+        "blocking_issue_types": [
+          "shape_mismatch",
+          "primary_color_category_error",
+          "significant_scene_interpenetration"
+        ],
+        "contact_sheet": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed47_preserve_negative_space_ref67/canonical_six_view/object_six_view_contact_sheet.png",
+          "sha256": "ca4907c43372af76c79f1d1f7389cc7a747164027c0c2e14bfe9b25b542d676c"
+        },
+        "technical_receipt": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed47_preserve_negative_space_ref67/trellis2_asset_receipt.json",
+          "sha256": "a0f5dbb650e124a3ffe5d1c9175e3c6870c50aa8f4267c7e8db58c430e16f46c"
+        },
+        "visual_review": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed47_preserve_negative_space_ref67/canonical_six_view/visual_review.json",
+          "sha256": "5b3a968a860899e654c45e77d56a74fb4bc878f1c42ee6a6ad40eacb9bd21ae7",
+          "status": "rejected"
+        }
+      }
+    ],
+    "reason": "Single-image generation converted verified negative space into positive geometry; component assembly preserves the clearance explicitly."
+  },
+  "visual_review": {
+    "capture_driver": "scripts/capture_object_review.mjs",
+    "required_views": [
+      "front",
+      "right",
+      "back",
+      "left",
+      "top",
+      "bottom"
+    ],
+    "status": "pending"
+  }
+}

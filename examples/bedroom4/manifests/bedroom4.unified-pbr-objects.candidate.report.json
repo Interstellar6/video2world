@@ -1,0 +1,208 @@
+{
+  "candidate_version": "bedroom4-candidate-unified-pbr-four-objects-20260717",
+  "claim_scope": "Four accepted PBR GLBs are adopted as unified visual, logical, selection, and collision roots. The inherited static scene is unchanged and is not a clean plate.",
+  "created_at": "2026-07-17T15:30:00+08:00",
+  "inputs": {
+    "base_manifest": {
+      "path": "repo://video2world/examples/bedroom4/manifests/bedroom4.unified-pillow.candidate.web.json",
+      "sha256": "7e0a1dcd801225bf21bd5a77e82edcce2318e348523d69ca80b7d1e5b53dc96d"
+    },
+    "joint_review_sha256": "48c4ba43baa8b0767772e70fbf0165aeb6531018d4e0c172a0525d2760456d28",
+    "pairwise_review_sha256": "b8928ffa92aaee81ef2abf76f2237da1bb893770fd6e50e4f642db8620204c74",
+    "support_adjustment_receipt_sha256": "9d51f3ec09869ee6ca9ca4ffc21e77f25cf350d02665f682b241dda34778b320"
+  },
+  "kind": "video2world.bedroom4_unified_pbr_objects_candidate_report",
+  "materializer": {
+    "path": "repo://video2world/scripts/materialize_bedroom4_unified_scene_candidate.py",
+    "sha256": "c0763bba9983dbb18a1409bd2a006a8f7a089bc87c2eeea2a43eda3c71dbe2d4"
+  },
+  "objects": {
+    "sam3_bed_01": {
+      "asset": {
+        "bytes": 113468,
+        "faces": 4976,
+        "finite": true,
+        "geometry_count": 6,
+        "nondegenerate": true,
+        "path": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v2_support_adjusted/sam3_bed_01.support-adjusted.glb",
+        "sha256": "ad9eca71a676cf8fa5cad7a38d0ff5a623149de01e61ae91ba651ea07d37790e",
+        "topology": "closed_volume",
+        "vertices": 2500,
+        "watertight": true,
+        "winding_consistent": true
+      },
+      "asset_coordinates_baked": false,
+      "collision_mode": "unified-glb",
+      "proxy_fields_absent": true,
+      "root_interaction": [
+        "selection",
+        "spin_360",
+        "horizontal_yaw_drag"
+      ],
+      "runtime_matrix_row_major": [
+        [
+          6.0940405667591,
+          0.06831981888678311,
+          2.648131223143048,
+          0.639241276163562
+        ],
+        [
+          -0.20072433617157628,
+          -12.444750282849224,
+          0.9540323820267776,
+          5.6921053762733935
+        ],
+        [
+          1.9936905918532148,
+          -1.4617654309371404,
+          -7.998393355783393,
+          10.762354974571135
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "runtime_pivot": [
+        0.639241276163562,
+        5.6921053762733935,
+        10.762354974571135
+      ],
+      "scene_fit_receipt": {
+        "path": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v2_support_adjusted/scene_fit_validated/scene_fit_report.json",
+        "sha256": "2f3b8b29d2270964fe8931c4826b2b126e60266cfd97d157af5b8cdd971a6adc"
+      }
+    },
+    "sam3_pillow_front": {
+      "asset": {
+        "bytes": 3979924,
+        "faces": 97082,
+        "finite": true,
+        "geometry_count": 1,
+        "nondegenerate": true,
+        "path": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/sam3_pillow_front.scene-fit.glb",
+        "sha256": "9d84ab4561d7c017c24c07a94abe5400073b0fafb97893a8a1eafca320c391d6",
+        "topology": "surface_bvh",
+        "vertices": 60237,
+        "watertight": false,
+        "winding_consistent": true
+      },
+      "asset_coordinates_baked": true,
+      "collision_mode": "unified-glb",
+      "proxy_fields_absent": true,
+      "root_interaction": [
+        "selection",
+        "spin_360",
+        "horizontal_yaw_drag"
+      ],
+      "runtime_matrix_row_major": null,
+      "runtime_pivot": [
+        -0.9132125483707731,
+        -0.1424510127463641,
+        14.760714277636716
+      ],
+      "scene_fit_receipt": {
+        "path": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/scene_fit_report.json",
+        "sha256": "da26014b1ecc29eb1dfcf8d45b74d98bd539b69945e029a6512ea6a2ab8769cd"
+      }
+    },
+    "sam3_pillow_left": {
+      "asset": {
+        "bytes": 3440992,
+        "faces": 98230,
+        "finite": true,
+        "geometry_count": 1,
+        "nondegenerate": true,
+        "path": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined_v6/sam3_pillow_left.scene-fit.glb",
+        "sha256": "43f95a5756ccecb9a1ca36ba583c2ad4fd5dd1a4e66b1d591be935f2bd59b600",
+        "topology": "surface_bvh",
+        "vertices": 52981,
+        "watertight": false,
+        "winding_consistent": true
+      },
+      "asset_coordinates_baked": true,
+      "collision_mode": "unified-glb",
+      "proxy_fields_absent": true,
+      "root_interaction": [
+        "selection",
+        "spin_360",
+        "horizontal_yaw_drag"
+      ],
+      "runtime_matrix_row_major": null,
+      "runtime_pivot": [
+        -3.7342797143777404,
+        -0.6590512029691376,
+        14.904595933310139
+      ],
+      "scene_fit_receipt": {
+        "path": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined_v6/scene_fit_report.json",
+        "sha256": "1f551500f5a540dfd46b9aaba33a503f36efc47c5e7169dc953ed779f40a98c7"
+      }
+    },
+    "sam3_pillow_right": {
+      "asset": {
+        "bytes": 3406068,
+        "faces": 98226,
+        "finite": true,
+        "geometry_count": 1,
+        "nondegenerate": true,
+        "path": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/sam3_pillow_right.scene-fit.glb",
+        "sha256": "eb4ad2cb0398602865ff3511039e440ce9cb50ace016fffeaaf3ce3944280f1e",
+        "topology": "surface_bvh",
+        "vertices": 54968,
+        "watertight": false,
+        "winding_consistent": true
+      },
+      "asset_coordinates_baked": true,
+      "collision_mode": "unified-glb",
+      "proxy_fields_absent": true,
+      "root_interaction": [
+        "selection",
+        "spin_360",
+        "horizontal_yaw_drag"
+      ],
+      "runtime_matrix_row_major": null,
+      "runtime_pivot": [
+        0.7022967710683762,
+        -0.9302539358703728,
+        16.94507133184185
+      ],
+      "scene_fit_receipt": {
+        "path": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/scene_fit_report.json",
+        "sha256": "d9ec2811d33372cfda174b7073e574385da283bc191a09fa89cbc6175da41155"
+      }
+    }
+  },
+  "output_manifest": {
+    "bytes": 195191,
+    "path": "repo://video2world/examples/bedroom4/manifests/bedroom4.unified-pbr-objects.candidate.web.json",
+    "sha256": "102557bbe2dab246717d7d57a802507b7c5f0e556ed6df807f191b13133a4a2a"
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "clean_scene_pending",
+    "candidate_asset_transport_pending",
+    "candidate_browser_qa_pending"
+  ],
+  "public_manifests": {
+    "mutated": false,
+    "promoted_manifest_sha256": "7e0a1dcd801225bf21bd5a77e82edcce2318e348523d69ca80b7d1e5b53dc96d",
+    "stable_manifest_sha256": "3805f0e5bab09add424b3b78f9349cd2eca6d1262777ef683e13cda07695e82b"
+  },
+  "schema_version": 1,
+  "static_scene": {
+    "claim": "This candidate reuses the current static scene byte-for-byte and does not claim that the old bed, rear pillows, occlusion holes, or background were peeled.",
+    "inheritedStaticScene": "existing_front_pillow_residual_recarve_candidate",
+    "knownUnremovedOrUnprovenResiduals": [
+      "sam3_pillow_left",
+      "sam3_pillow_right",
+      "sam3_bed_01",
+      "occluded_background"
+    ],
+    "methodRequired": "front_to_back_cumulative_peel_then_clean_plate_reconstruction",
+    "status": "clean_scene_pending"
+  },
+  "status": "candidate_materialized_clean_scene_pending"
+}

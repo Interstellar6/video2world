@@ -1,0 +1,4864 @@
+{
+  "camera_extrinsic_type": "world_to_camera",
+  "camera_info": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/video2mesh/scene/cameras/camera_info.json",
+  "camera_info_sha256": "2901497f144c7378961ad6116a48474dfec475acd35a7a80258db18d36b87568",
+  "config": {
+    "absolute_depth_tolerance": 0.08,
+    "donor_frame_ids": [
+      "000048",
+      "000049",
+      "000050",
+      "000051",
+      "000052",
+      "000053",
+      "000054",
+      "000055",
+      "000056",
+      "000057",
+      "000058",
+      "000059",
+      "000060",
+      "000061",
+      "000062",
+      "000063",
+      "000064",
+      "000065",
+      "000066",
+      "000067",
+      "000068",
+      "000069",
+      "000070",
+      "000071",
+      "000072"
+    ],
+    "donor_mask_dilation": 4,
+    "donor_mask_label": "cumulative_removed",
+    "donor_mask_min_score": null,
+    "exclude_same_frame": true,
+    "fusion": "per_donor_nearest_z_then_cross_donor_median_depth_cluster",
+    "min_support": 2,
+    "relative_depth_tolerance": 0.01,
+    "sample_stride": 2,
+    "splat_radius": 1,
+    "target_frame_ids": [
+      "000048",
+      "000049",
+      "000050",
+      "000051",
+      "000052",
+      "000053",
+      "000054",
+      "000055",
+      "000056",
+      "000057",
+      "000058",
+      "000059",
+      "000060",
+      "000061",
+      "000062",
+      "000063",
+      "000064",
+      "000065",
+      "000066",
+      "000067",
+      "000068",
+      "000069",
+      "000070",
+      "000071",
+      "000072"
+    ]
+  },
+  "created_at": "2026-07-17T05:25:19.866222+00:00",
+  "cumulative_removal_contract": {
+    "all_removed_objects_excluded_from_donors": true,
+    "donors_are_original_observed_rgb": true,
+    "enforced": true,
+    "lineage": {
+      "previous_cumulative_manifest": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/manifest/cumulative_removal_manifest.json",
+      "previous_cumulative_manifest_sha256": "e310958cb8d0caaa2c6c12f00eb3667b1997aad3949973494ae5bb16673d66ed",
+      "previous_prefill_report": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/multiview_prefill_report.json",
+      "previous_prefill_report_sha256": "2be4c23e52d46f928b0aa41e80dd60af9d6ce9af333dab7fe2c28e656da45573",
+      "previous_prefill_status": "technical_passed",
+      "previous_round_index": 2
+    },
+    "manifest_sha256": "445dfc643a916b0aa61853a35a0f7f5833fc49d9ebdbaae1babbbfa4ea647129",
+    "removed_object_ids": [
+      "sam3_pillow_front",
+      "sam3_pillow_left",
+      "sam3_pillow_right"
+    ],
+    "round_index": 3,
+    "unresolved_residual_as_donor": false
+  },
+  "depth_dir": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3",
+  "donor_assets": {
+    "000048": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000048.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "da2465d05069911407686a36de2b3f4bbbf1578ffe0ff848d1ce77adc0b118cf",
+      "excluded_pixels_after_dilation": 63937,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0000.png",
+          "sha256": "790f9db3d41585d5056e8ea825d8e14b8c232b69d1abd7f1fe8587857b7e354e"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000048.png",
+      "frame_sha256": "fd898eec479773edbd603a91c56e1d721fbe77f492d6de0c8e0761b04f3d1271"
+    },
+    "000049": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000049.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "9f4b208dd9b85727eaaa3c6d0195d5b849304ebba724ec560c05bc3b3589a3ab",
+      "excluded_pixels_after_dilation": 64916,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0001.png",
+          "sha256": "50fae7013c938c49ae962bc18e97218c29bee5dcbe92f4d69c5bf4590736b142"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000049.png",
+      "frame_sha256": "b492f6fd0194bff43291dbe3aae2507f660dbce5d172b385f96053282bff04cf"
+    },
+    "000050": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000050.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "0e043f565dd944f41537e83f3aef2c7874c1705f97f43b46315039b299ed2457",
+      "excluded_pixels_after_dilation": 66173,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0002.png",
+          "sha256": "ef94d1586f5f23464e4e3788d0db1fefa1eeba138dfff0a5fef69303547f4b20"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000050.png",
+      "frame_sha256": "2105aa0784b35b40e404924e87133347df2cc1698b25cc90a73922105f58d079"
+    },
+    "000051": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000051.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "602df2045f8bf08cef3ab57c8c6bf2a996f3fb0202b4741c86a7ec2074850a06",
+      "excluded_pixels_after_dilation": 67067,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0003.png",
+          "sha256": "7ac888e1a03632ab4976b84b53d60bfd775d1b669f03269a258de4259d3a9313"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000051.png",
+      "frame_sha256": "7f37cd722b92e0beb73464941ffcb89d9e3c31a2fc2d868cafc2a143a9fa9e35"
+    },
+    "000052": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000052.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "1f63dc60e2db75f7c5e8eeda67017aa4df060338a43bffad4022b6d5bbd621f0",
+      "excluded_pixels_after_dilation": 67835,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0004.png",
+          "sha256": "9c632a65264e3be292a9063c1f5535b980991a2e8bc347209fb3978f3e2c23e7"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000052.png",
+      "frame_sha256": "c2d51786982fe51c8d9ae9d07f9abc64e7520e5706aa0bb6a66df38ad218acc7"
+    },
+    "000053": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000053.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "a3a40f84226452199bdd33e591adda856daf6cfadb29ee00c6b95eaeb07d8784",
+      "excluded_pixels_after_dilation": 68819,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0005.png",
+          "sha256": "86063669ffe697543446b3f91b05fcb67d39a88a4fa6794e479d52d18254f707"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000053.png",
+      "frame_sha256": "b681ba697632ffc94ded9123d927cd9896a51e316769b354147964b818935483"
+    },
+    "000054": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000054.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "07803c5badeb544d5b37eacaf24c4bc3c02169bf8c0cee662e08cf223f7b4d34",
+      "excluded_pixels_after_dilation": 69901,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0006.png",
+          "sha256": "82f780e7326a8503149fb072fa51987e0ad912253ac468ad97f848eda82c5700"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000054.png",
+      "frame_sha256": "75d7224152e018eaafa72d06ab4cc37c910491906cbf294208218d47e3dff542"
+    },
+    "000055": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000055.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "80e849202eb18f9c381781fde5aee0b73d43cbb0dbd06a13507cb07ee7052c95",
+      "excluded_pixels_after_dilation": 71201,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0007.png",
+          "sha256": "b7838c14ec5d0268add7d15af633b98b3dd1ed21376ec7ea415eae1dba40a4bf"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000055.png",
+      "frame_sha256": "bdb9d3222d59cb43c9e0dd770ab0b5eaa0665a346f22dcdab5eed38e7ad6fdae"
+    },
+    "000056": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000056.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "b106feb03f2151a484bb604128e072282e8c7d775e3e59add15a86feb5c40ad9",
+      "excluded_pixels_after_dilation": 72609,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0008.png",
+          "sha256": "0e0caa14b878118f46ffbc89db9fc7a5cde2e1d6e05c7b64c3434bbcc88cb0c8"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000056.png",
+      "frame_sha256": "3518cd5553fe19ec4db8df855a3dd577fcd8df0c1c8f257558f3759eac841ced"
+    },
+    "000057": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000057.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "668725f4ddaafd96b6a38f3ccb2b9a3b3b61698124d712378eafa68c55f8b18f",
+      "excluded_pixels_after_dilation": 74110,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0009.png",
+          "sha256": "904546ebb9aff31d0b0497dbf4a07109bdf2a33fca99f9910da054c813f5b17e"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000057.png",
+      "frame_sha256": "aba06073005f0295581f8d4113c8f5225046665e59b1d2a28fbadc3aa78ee11f"
+    },
+    "000058": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000058.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "14c4c24cff842b7f2b1f661ae42c2a5692565ae1ecbb7aebcf78547f44a3e87b",
+      "excluded_pixels_after_dilation": 75408,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0010.png",
+          "sha256": "07655870fe758988241377af0ee06fc14b0d2cc980b851f1a51a054fe3cbfb8a"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000058.png",
+      "frame_sha256": "ab17232a20d141d2726f41301182b33eeb0058a61c17e95d89b1e446b3eb67d3"
+    },
+    "000059": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000059.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "f1c2118656d2e71d5f6eb1f717efc134e14c23819f49fa8e8c3efba20a18a784",
+      "excluded_pixels_after_dilation": 76575,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0011.png",
+          "sha256": "c8dc00683c82860ef5bc9e15f1e31e57a8124c34deaae61e647bfb43b9ffdb71"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000059.png",
+      "frame_sha256": "9e2e4e676426fbccd07d09d5e7a498574b012abdbcaff44fc83d3e12e04983c4"
+    },
+    "000060": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000060.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "63e845287c634f8d9f81de310d5e4e1896810376a2826497a05daac433873c8a",
+      "excluded_pixels_after_dilation": 77913,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0012.png",
+          "sha256": "7b4d77af6d0d6467c391d5bca13c3657a29b98c2c23e40ca8a0b27e929d5307c"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000060.png",
+      "frame_sha256": "d6fcf5020b8ba320c424d18e9743cd62ba32aee89e816e967a35d45810d3e8d7"
+    },
+    "000061": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000061.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "4ccfdf9e20a8d44269a23ebae3a96f46bb72fa1e11395092bb426319f6d82ec1",
+      "excluded_pixels_after_dilation": 78736,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0013.png",
+          "sha256": "3030b8f3af516588fa75f90f98bae876e04ae34a4218bfbbf4132ad5c083e073"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000061.png",
+      "frame_sha256": "bb0b213216747a4af8d3072e8ea17c69eb5084f59b71e9f3b877daba2b739dbc"
+    },
+    "000062": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000062.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "b238968b23fd7f886cf901a7cbde79f5ca9920b5652b8c0fd64baca680d0837d",
+      "excluded_pixels_after_dilation": 79153,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0014.png",
+          "sha256": "0d71d6211fa779b61704409d7864137b93efd26aaa144c0c5d699e2d31285f6c"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000062.png",
+      "frame_sha256": "938b7196853c7757ddc9a190fdf05e6b7a1f6f87df7b557395a65703a352654a"
+    },
+    "000063": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000063.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "ba3ac1fc7a469854a903214b552066fae4a2ae3a6ca121f2d4b29c62a3e02f8d",
+      "excluded_pixels_after_dilation": 78560,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0015.png",
+          "sha256": "e89c0e2c53ee98602c92246c67891b79c4a97acbb0920d843b6c9668a741aa09"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000063.png",
+      "frame_sha256": "29706947c8c90221281a94243152d0b34f865038dcccbd3869c43d7a70c18919"
+    },
+    "000064": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000064.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "a215cacec04bfd1b374130e2e83b8af4eabd4a97e83780f310ce1809c7ac4dc9",
+      "excluded_pixels_after_dilation": 77853,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0016.png",
+          "sha256": "efb071fb00580e5570832287fd8d2172949bd524a262c03e69f8e101071d7e56"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000064.png",
+      "frame_sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3"
+    },
+    "000065": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000065.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "c4ed2d0bcc107a5498d22f4fabe15bbd8750d1eedb9c7c2b781b46ad74549aaf",
+      "excluded_pixels_after_dilation": 76673,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0017.png",
+          "sha256": "97d2988563e60a3ef47d2a12213323c0bdd757048a8c32258fb59e26cfe92a42"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000065.png",
+      "frame_sha256": "23ea18aefdcc69d23f0ab46e2d675c6f84e2f3ff7e22866ea1d8a55125e41406"
+    },
+    "000066": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000066.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "e91d8942c25094fcb14d4ccbd0f8087567bb37e1b09880353657dc6a3a6536af",
+      "excluded_pixels_after_dilation": 75331,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0018.png",
+          "sha256": "57c35734fdab5741d0817ef48c4f0a93e9a5e945a1fcf8e56a260300edf12784"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000066.png",
+      "frame_sha256": "b39de626c7656cacf4a8e932343e36cc54a46901804d9999806323e638d428cf"
+    },
+    "000067": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000067.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "48f8cf247ccc21f2a569c53c531197f2b23762f0911aaab5c1659e34b4763f9f",
+      "excluded_pixels_after_dilation": 74102,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0019.png",
+          "sha256": "5306cd80d60b20bb67eb600ed5a94cef35d1bcd3cf3662d073c00a1b80f32abd"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000067.png",
+      "frame_sha256": "e31bc25f5f2e3191800b223157561e41212b35000391d01c501f7d07980ab792"
+    },
+    "000068": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000068.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "73ee746fa0bbfea4e8cfa2acef8f9da189c90f7379583304a632335caf891fc9",
+      "excluded_pixels_after_dilation": 73039,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0020.png",
+          "sha256": "99681d8f766c35f4ef871f1f36b6bb47b2c1b9709c1881d7b252e630a88b762c"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000068.png",
+      "frame_sha256": "e0dd873ab695350cdb67fb65ab268a7ac36d9391d7cfccca97e48deebeee930b"
+    },
+    "000069": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000069.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "86b3af11372fc46416185ec5a37448cf33254d85d531611d837edc6180b762bc",
+      "excluded_pixels_after_dilation": 71887,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0021.png",
+          "sha256": "f1fcef135f04fafea0c6afab3881f12c42f16c2eb7ecac57f1282435f9d0fd00"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000069.png",
+      "frame_sha256": "0ff93ca8cddf4ba56ddf4c5874ff6867a419e030002ecf0ec9f90b7cdf921f7d"
+    },
+    "000070": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000070.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "6ab16072950d66d17310d346712ec9bc39be8b7d43a07087d4f9bf8466ad9525",
+      "excluded_pixels_after_dilation": 71125,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0022.png",
+          "sha256": "077a07853a4f9126fd30fa181dc1c7644d24de0d71fd6f2d7157c565c512a223"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000070.png",
+      "frame_sha256": "a5d99a128d82706c70fdcf5b5bea9e80d63c8e20b3d3c01a62b73972ddedfc5c"
+    },
+    "000071": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000071.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "f951344926dc4358331385ead732cee834fe67320463ed8ff565169a14215233",
+      "excluded_pixels_after_dilation": 70583,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0023.png",
+          "sha256": "d2a3632cf970be70053d92f9249839b5c06d1a19910837bf4227162ecb93a664"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000071.png",
+      "frame_sha256": "03a1e7ee7ce03c508bfa173ec62320d42b170797d1b3db0b06cb44db768a6af3"
+    },
+    "000072": {
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000072.npy",
+      "depth_role": "reprojection_evidence_only",
+      "depth_sha256": "62336deb9139d6b3e3b0c74f5d9653adf284b2e5b1ddc5429921091b76e0e399",
+      "excluded_pixels_after_dilation": 70125,
+      "exclusion_masks": [
+        {
+          "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0024.png",
+          "sha256": "cc7c7e4123ccef5e2cef363dcf0d3800fbd6de74d73dbc63d8ca2a290ceaeb2d"
+        }
+      ],
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000072.png",
+      "frame_sha256": "df1dccbe91f762e0ff2ed1851b97814bab5991bd8bc29581a0916a098ef2a3e8"
+    }
+  },
+  "donor_frames_dir": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames",
+  "donor_mask_index": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/donor_exclusion_index.json",
+  "donor_mask_index_sha256": "f29461bc71f78d11a87c554a47d91e2c764ae4bbf076314f29d75d42dea6cca8",
+  "frame_records": [
+    {
+      "coverage_fraction": 0.021132772347950312,
+      "covered_pixels": 1213,
+      "donors": [
+        {
+          "camera_baseline": 0.15244119085553798,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.2966429964279392,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.43099760142910043,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5505206430166942,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 5
+        },
+        {
+          "camera_baseline": 0.6960792174585105,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 174
+        },
+        {
+          "camera_baseline": 0.8388938354466081,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 308
+        },
+        {
+          "camera_baseline": 0.9772413781371441,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 547
+        },
+        {
+          "camera_baseline": 1.1068059694635801,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 711
+        },
+        {
+          "camera_baseline": 1.2322905070692804,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 844
+        },
+        {
+          "camera_baseline": 1.3333868216444824,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 965
+        },
+        {
+          "camera_baseline": 1.4391813869309562,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 1001
+        },
+        {
+          "camera_baseline": 1.542963488474781,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 1111
+        },
+        {
+          "camera_baseline": 1.6309906623234203,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 1102
+        },
+        {
+          "camera_baseline": 1.6949021241813098,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 1122
+        },
+        {
+          "camera_baseline": 1.7070929582363465,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 1076
+        },
+        {
+          "camera_baseline": 1.6971620942402912,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 947
+        },
+        {
+          "camera_baseline": 1.6472605269640495,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 845
+        },
+        {
+          "camera_baseline": 1.568550952774806,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 660
+        },
+        {
+          "camera_baseline": 1.4588565876397501,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 438
+        },
+        {
+          "camera_baseline": 1.3258644721441575,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 157
+        },
+        {
+          "camera_baseline": 1.1845060565451357,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 8
+        },
+        {
+          "camera_baseline": 1.0602873194819968,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 5
+        },
+        {
+          "camera_baseline": 0.9110550864139662,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7539409142206785,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 0
+        }
+      ],
+      "frame_id": "000048",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0000.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "b803c8503d8921517cf488eda48970e97e4e7d15dc4469cdad35b878c95f1792",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 1213,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0000.png",
+      "prefill_frame_sha256": "da89925085f7cf8d1dd5ffaab606f897cb295dd668ff4f6cc5d75e9c1499922c",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0000.png",
+      "removal_mask_pixels": 57399,
+      "removal_mask_sha256": "790f9db3d41585d5056e8ea825d8e14b8c232b69d1abd7f1fe8587857b7e354e",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0000.png",
+      "residual_mask_pixels": 56186,
+      "residual_mask_sha256": "149f84f1855e42667750c1f9098cf87d72a2b06464c7992c239d108a06012a53",
+      "sequence_index": 0,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0000.png",
+      "source_frame_sha256": "dc8cb86b1d566dc1d1ced242fdbc8a7daf3560b70b798864c10e8be57631ad51",
+      "support_max": 17,
+      "support_median_accepted": 11.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0000.png",
+      "support_visualization_sha256": "e1fe38f4dce93998872f80d55f5bdb570e5be861a8c4efa11215508d2741ae11"
+    },
+    {
+      "coverage_fraction": 0.016084495374844677,
+      "covered_pixels": 932,
+      "donors": [
+        {
+          "camera_baseline": 0.15244119085553798,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.144731816579028,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.27979372330711494,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4002896673338645,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5469023138710982,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 34
+        },
+        {
+          "camera_baseline": 0.6900378290668907,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 105
+        },
+        {
+          "camera_baseline": 0.8280216802467233,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 285
+        },
+        {
+          "camera_baseline": 0.9571078733559443,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 428
+        },
+        {
+          "camera_baseline": 1.0824254447251527,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 566
+        },
+        {
+          "camera_baseline": 1.1835291929506087,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 664
+        },
+        {
+          "camera_baseline": 1.2895488549044984,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 725
+        },
+        {
+          "camera_baseline": 1.3936794095891982,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 823
+        },
+        {
+          "camera_baseline": 1.4826499890686198,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 810
+        },
+        {
+          "camera_baseline": 1.5475246285157187,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 836
+        },
+        {
+          "camera_baseline": 1.5611757801484814,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 794
+        },
+        {
+          "camera_baseline": 1.5525743490634252,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 670
+        },
+        {
+          "camera_baseline": 1.5039779309038077,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 582
+        },
+        {
+          "camera_baseline": 1.426880633582666,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 432
+        },
+        {
+          "camera_baseline": 1.3190211406089853,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 166
+        },
+        {
+          "camera_baseline": 1.1894180577623923,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 22
+        },
+        {
+          "camera_baseline": 1.0538026930039928,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.936960767931759,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 0.8014621984004477,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6674611144016654,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 0
+        }
+      ],
+      "frame_id": "000049",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0001.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "23a254b21b0d7a6933d830e7ee1208bf8f521cb409e984171aeadbc03688adef",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 932,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0001.png",
+      "prefill_frame_sha256": "a0036c9356a2bddb7e3e51c2fb9dc77341acbb35a7b9e01dbc2d0caaab6abae8",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0001.png",
+      "removal_mask_pixels": 57944,
+      "removal_mask_sha256": "50fae7013c938c49ae962bc18e97218c29bee5dcbe92f4d69c5bf4590736b142",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0001.png",
+      "residual_mask_pixels": 57012,
+      "residual_mask_sha256": "c18855368f15c314c8533f296a639373e68c8837d6ed2b373b670f69801438b1",
+      "sequence_index": 1,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0001.png",
+      "source_frame_sha256": "fd9fc0e95031e3d3c57216fdf2532235cf31b3e2a7db84bd1b1f4aee0f7441a0",
+      "support_max": 16,
+      "support_median_accepted": 9.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0001.png",
+      "support_visualization_sha256": "7c1a67c4d12db8dd40f0b2ebaa2489f1e1705b26c4aaf6b9e6aefdf05be56591"
+    },
+    {
+      "coverage_fraction": 0.012354406517201912,
+      "covered_pixels": 734,
+      "donors": [
+        {
+          "camera_baseline": 0.2966429964279392,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.144731816579028,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.13575702145829444,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.25774844549241266,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4052458672907673,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 9
+        },
+        {
+          "camera_baseline": 0.5479951519393989,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 55
+        },
+        {
+          "camera_baseline": 0.6849989153236955,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 144
+        },
+        {
+          "camera_baseline": 0.8132224500631102,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 263
+        },
+        {
+          "camera_baseline": 0.9381962080720445,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 375
+        },
+        {
+          "camera_baseline": 1.0393616434301627,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 512
+        },
+        {
+          "camera_baseline": 1.1458946039847644,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 541
+        },
+        {
+          "camera_baseline": 1.2509265153250488,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 637
+        },
+        {
+          "camera_baseline": 1.3414582054309987,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 628
+        },
+        {
+          "camera_baseline": 1.4079068333371907,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 662
+        },
+        {
+          "camera_baseline": 1.423944842129986,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 597
+        },
+        {
+          "camera_baseline": 1.4174451732631597,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 505
+        },
+        {
+          "camera_baseline": 1.3709243928626382,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 344
+        },
+        {
+          "camera_baseline": 1.2962050773371265,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 236
+        },
+        {
+          "camera_baseline": 1.190818433270126,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 85
+        },
+        {
+          "camera_baseline": 1.065213476463825,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 0.9367206706669043,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 5
+        },
+        {
+          "camera_baseline": 0.829055388990724,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 12
+        },
+        {
+          "camera_baseline": 0.7110919102479454,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6072160028947812,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 0
+        }
+      ],
+      "frame_id": "000050",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0002.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "9104c37f4906e4f769f5590112769f7965f8b56b2892f29f918c29bb1b7a2c99",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 734,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0002.png",
+      "prefill_frame_sha256": "eb22dab929979ad2927bd14fee5d97650385de738ad8d5af015b03b2a9ba8253",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0002.png",
+      "removal_mask_pixels": 59412,
+      "removal_mask_sha256": "ef94d1586f5f23464e4e3788d0db1fefa1eeba138dfff0a5fef69303547f4b20",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0002.png",
+      "residual_mask_pixels": 58678,
+      "residual_mask_sha256": "f143a185dceea54b062a62587a3f5c280cb76d9d95b8663b6073120179c066fe",
+      "sequence_index": 2,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0002.png",
+      "source_frame_sha256": "c61f137a445dde24a5c4b5619b1852461218ccfb98a210846b99009dad4eade3",
+      "support_max": 14,
+      "support_median_accepted": 7.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0002.png",
+      "support_visualization_sha256": "fad918c31087610e05d6fe412e4b585acbc2759dbc1543be2235f61bb734836b"
+    },
+    {
+      "coverage_fraction": 0.00782733237850981,
+      "covered_pixels": 470,
+      "donors": [
+        {
+          "camera_baseline": 0.43099760142910043,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.27979372330711494,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.13575702145829444,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.12299210681860406,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.2705921099964824,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4127644488317954,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5493409855113456,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 37
+        },
+        {
+          "camera_baseline": 0.6777689183134915,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 55
+        },
+        {
+          "camera_baseline": 0.8036191781189581,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 142
+        },
+        {
+          "camera_baseline": 0.9060932435898511,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 243
+        },
+        {
+          "camera_baseline": 1.0146338730141231,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 295
+        },
+        {
+          "camera_baseline": 1.1220553107967528,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 394
+        },
+        {
+          "camera_baseline": 1.2156977448862067,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 380
+        },
+        {
+          "camera_baseline": 1.284923435648864,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 411
+        },
+        {
+          "camera_baseline": 1.3049103873063637,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 330
+        },
+        {
+          "camera_baseline": 1.3016968145230983,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 241
+        },
+        {
+          "camera_baseline": 1.2583960367458036,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 158
+        },
+        {
+          "camera_baseline": 1.187360677384892,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 50
+        },
+        {
+          "camera_baseline": 1.0859267655510283,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 8
+        },
+        {
+          "camera_baseline": 0.9665961391877439,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.848903083016599,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 4
+        },
+        {
+          "camera_baseline": 0.7547220816471162,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 17
+        },
+        {
+          "camera_baseline": 0.6611908614065221,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.595346659437419,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 0
+        }
+      ],
+      "frame_id": "000051",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0003.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "5e41a0b6b4fb3ac5793ae5ceeb14fbb4a5aab529a5fd2edb2e041ba36f55cabc",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 470,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0003.png",
+      "prefill_frame_sha256": "025be3db591654e11d803d5b292ee4bf19240e31296ee4207e2fd1eaaf28eae4",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0003.png",
+      "removal_mask_pixels": 60046,
+      "removal_mask_sha256": "7ac888e1a03632ab4976b84b53d60bfd775d1b669f03269a258de4259d3a9313",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0003.png",
+      "residual_mask_pixels": 59576,
+      "residual_mask_sha256": "f1e847bb50da6426253c652ee427300c656e20cc967fbcc98d272a7eb9f4eafb",
+      "sequence_index": 3,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0003.png",
+      "source_frame_sha256": "dc02ec7b5db84aaeaa0d60c61d64fdd09f346b5bd6bef89cfcae539ff5cc47ac",
+      "support_max": 11,
+      "support_median_accepted": 5.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0003.png",
+      "support_visualization_sha256": "91884c60462f152f528b736514594813ad67c34f3a4c8e70d395151868b8ea74"
+    },
+    {
+      "coverage_fraction": 0.0034902012191125385,
+      "covered_pixels": 213,
+      "donors": [
+        {
+          "camera_baseline": 0.5505206430166942,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4002896673338645,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.25774844549241266,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.12299210681860406,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.14769444988319527,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.29050253615421046,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4284861081194233,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5592205075487442,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 6
+        },
+        {
+          "camera_baseline": 0.6878580327694916,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 19
+        },
+        {
+          "camera_baseline": 0.7932753022697057,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 87
+        },
+        {
+          "camera_baseline": 0.9054957950518688,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 87
+        },
+        {
+          "camera_baseline": 1.0166473081904854,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 188
+        },
+        {
+          "camera_baseline": 1.1147558531577546,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 161
+        },
+        {
+          "camera_baseline": 1.1876646348959237,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 185
+        },
+        {
+          "camera_baseline": 1.212783766866388,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 144
+        },
+        {
+          "camera_baseline": 1.213713916402793,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 78
+        },
+        {
+          "camera_baseline": 1.1745421611935658,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 10
+        },
+        {
+          "camera_baseline": 1.1084142034324884,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 4
+        },
+        {
+          "camera_baseline": 1.0126720530289184,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.9026322918585404,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7999749492114413,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 7
+        },
+        {
+          "camera_baseline": 0.7236778951814237,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 13
+        },
+        {
+          "camera_baseline": 0.6593563873947862,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6316002312630773,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 0
+        }
+      ],
+      "frame_id": "000052",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0004.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "0e6f5b8d83f0041687fce2e9330e0299ef3cc48a5c0e827d7ef396f8caf8ed95",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 213,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0004.png",
+      "prefill_frame_sha256": "97b769cd6bf1b83c3949ebcce05e115728afcf6e529be6726ee9727d82dcbb44",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0004.png",
+      "removal_mask_pixels": 61028,
+      "removal_mask_sha256": "9c632a65264e3be292a9063c1f5535b980991a2e8bc347209fb3978f3e2c23e7",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0004.png",
+      "residual_mask_pixels": 60815,
+      "residual_mask_sha256": "5994cef4cf40335795640a443f1b3badbed21975b3737ceb944f8b23de15055f",
+      "sequence_index": 4,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0004.png",
+      "source_frame_sha256": "2568750f5a22dc28528929dcb90fdc990917c9be1040d2b17d9f9dbf53c7d11c",
+      "support_max": 9,
+      "support_median_accepted": 4.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0004.png",
+      "support_visualization_sha256": "7a1d393d5bb34ceba92bc4dd4e86fb59e5000fcdd196501f8a836246f99ec793"
+    },
+    {
+      "coverage_fraction": 0.0005490867395552397,
+      "covered_pixels": 34,
+      "donors": [
+        {
+          "camera_baseline": 0.6960792174585105,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5469023138710982,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 0.4052458672907673,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.2705921099964824,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 0.14769444988319527,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.14379150283287082,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.28392310152584066,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4180258684944206,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5504556799481785,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6598605146299641,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 4
+        },
+        {
+          "camera_baseline": 0.7770270515781577,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.8931479717346753,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 37
+        },
+        {
+          "camera_baseline": 0.9971951381536259,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 23
+        },
+        {
+          "camera_baseline": 1.0749936149065762,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 17
+        },
+        {
+          "camera_baseline": 1.1073223694889651,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 28
+        },
+        {
+          "camera_baseline": 1.1141590044803242,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 4
+        },
+        {
+          "camera_baseline": 1.081171353165396,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 1.022558942900719,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.9358178834034547,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.8400722301341211,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.759827453313515,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 0.7088589655853276,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 10
+        },
+        {
+          "camera_baseline": 0.6821523860473924,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6969411789538503,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 0
+        }
+      ],
+      "frame_id": "000053",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0005.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "18526d518d7bd741e2886aebb1ab75240873455e127d4e666f19cb6994b59558",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 34,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0005.png",
+      "prefill_frame_sha256": "bf00fd4096e21fc7d70a18809b8f01f51bef3da2aeb5d739746fdb1b5a7e94b2",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0005.png",
+      "removal_mask_pixels": 61921,
+      "removal_mask_sha256": "86063669ffe697543446b3f91b05fcb67d39a88a4fa6794e479d52d18254f707",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0005.png",
+      "residual_mask_pixels": 61887,
+      "residual_mask_sha256": "d190567511891a6c35f659622e38e663907dc471c62a76bbde3653fa2cf415e1",
+      "sequence_index": 5,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0005.png",
+      "source_frame_sha256": "3cb6e40504ad734e280f9c61de22a3bfbf594ccf15a677b288ad3e51ad3ccde3",
+      "support_max": 4,
+      "support_median_accepted": 2.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0005.png",
+      "support_visualization_sha256": "22b7759974e1a8818ab8f1e222df350f0ff9e5b18906369c2afeb55d0d07a65f"
+    },
+    {
+      "coverage_fraction": 4.762660739799968e-05,
+      "covered_pixels": 3,
+      "donors": [
+        {
+          "camera_baseline": 0.8388938354466081,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6900378290668907,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5479951519393989,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4127644488317954,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.29050253615421046,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.14379150283287082,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.14144541893150733,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.2781361622927415,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4134989468032086,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 1
+        },
+        {
+          "camera_baseline": 0.526264914117251,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6478075676498939,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7685156421040135,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.8781499170014738,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.960673821384847,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 1.0005932368131814,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 1.0138362046670297,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.9879495628083961,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.9381142852052894,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.8620891642305658,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7827058034621078,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7274174161151885,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 0.7030599653596467,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 8
+        },
+        {
+          "camera_baseline": 0.7124487675038428,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7640780659695697,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 0
+        }
+      ],
+      "frame_id": "000054",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0006.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "fb0461459d6ab4531d1ff43a9949a46cc4dbb9402337edff21ddf88baaf2cb33",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 3,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0006.png",
+      "prefill_frame_sha256": "54a49eacaadbc82e676457cb928a997fc6ada09bcb3b9ee3ab9d8f73ce8c621c",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0006.png",
+      "removal_mask_pixels": 62990,
+      "removal_mask_sha256": "82f780e7326a8503149fb072fa51987e0ad912253ac468ad97f848eda82c5700",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0006.png",
+      "residual_mask_pixels": 62987,
+      "residual_mask_sha256": "fee3a3f87b40c5e859d76c2bef442ab24ab58631e4f48e502427ac3f7e198564",
+      "sequence_index": 6,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0006.png",
+      "source_frame_sha256": "54a49eacaadbc82e676457cb928a997fc6ada09bcb3b9ee3ab9d8f73ce8c621c",
+      "support_max": 2,
+      "support_median_accepted": 2.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0006.png",
+      "support_visualization_sha256": "87cf7d552e3edc43b2ed12ef72aef4414e4be5a04600e7c0b6c848feb654c173"
+    },
+    {
+      "coverage_fraction": 0.0002025426897669201,
+      "covered_pixels": 13,
+      "donors": [
+        {
+          "camera_baseline": 0.9772413781371441,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.8280216802467233,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 4
+        },
+        {
+          "camera_baseline": 0.6849989153236955,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5493409855113456,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4284861081194233,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.28392310152584066,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.14144541893150733,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.13798814178302296,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.27501845538400327,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 4
+        },
+        {
+          "camera_baseline": 0.3900829620061193,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5148829565398386,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6391948332636599,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7534858840453822,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.8400948847167417,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.8872982028384088,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.9069426451163105,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.8886226459219663,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.8484541116463,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.784687322056598,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7238000172939203,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.695806721640641,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 13
+        },
+        {
+          "camera_baseline": 0.6989736435518308,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 26
+        },
+        {
+          "camera_baseline": 0.742831063192521,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 0.8272773077372403,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 7
+        }
+      ],
+      "frame_id": "000055",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0007.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "ba062a5b74f780757a5de09ab73b49ef8503518339eea35430ce54c05cf91b92",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 13,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0007.png",
+      "prefill_frame_sha256": "020fda2718203aa5d2ac6d9a805c8a0d3b1602a69e49a42f63e2230089cc01ca",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0007.png",
+      "removal_mask_pixels": 64184,
+      "removal_mask_sha256": "b7838c14ec5d0268add7d15af633b98b3dd1ed21376ec7ea415eae1dba40a4bf",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0007.png",
+      "residual_mask_pixels": 64171,
+      "residual_mask_sha256": "eff2da40cddfe213dbb8e09aea88f2c8659dbad398e5eff9c7ee5e60fe64fc3e",
+      "sequence_index": 7,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0007.png",
+      "source_frame_sha256": "020fda2718203aa5d2ac6d9a805c8a0d3b1602a69e49a42f63e2230089cc01ca",
+      "support_max": 5,
+      "support_median_accepted": 3.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0007.png",
+      "support_visualization_sha256": "912a351f40acff2746d83983a1dcfc362c2301d8e0b9ae125dbcf37a1463c27b"
+    },
+    {
+      "coverage_fraction": 0.0001224364860728497,
+      "covered_pixels": 8,
+      "donors": [
+        {
+          "camera_baseline": 1.1068059694635801,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.9571078733559443,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.8132224500631102,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6777689183134915,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5592205075487442,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4180258684944206,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.2781361622927415,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 0.13798814178302296,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.13751805939095524,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.25379676891170366,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.3807295975045844,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5077218248978604,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6257078557831175,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7157419569606804,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7697867346500952,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7957232392681335,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7853258898222287,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7556001828324709,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7055387840462446,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6650169098704904,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.665765886025244,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 4
+        },
+        {
+          "camera_baseline": 0.6960444700325281,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 22
+        },
+        {
+          "camera_baseline": 0.7713585586789801,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.8842914073095159,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 1
+        }
+      ],
+      "frame_id": "000056",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0008.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "95ac45cb6f839becf26933ff8c6700eff3658ac76631c853782b5d04866fa9ef",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 8,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0008.png",
+      "prefill_frame_sha256": "0b10ab55e681d0aa9bb4d8605968819b84483adc9784869b45c0e4dc640def28",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0008.png",
+      "removal_mask_pixels": 65340,
+      "removal_mask_sha256": "0e0caa14b878118f46ffbc89db9fc7a5cde2e1d6e05c7b64c3434bbcc88cb0c8",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0008.png",
+      "residual_mask_pixels": 65332,
+      "residual_mask_sha256": "fd355a95c3a9a052e32826430933b5786047f0d202065f1dd7fc7e14d7518c66",
+      "sequence_index": 8,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0008.png",
+      "source_frame_sha256": "0b10ab55e681d0aa9bb4d8605968819b84483adc9784869b45c0e4dc640def28",
+      "support_max": 2,
+      "support_median_accepted": 2.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0008.png",
+      "support_visualization_sha256": "490777e187f53c55c5cb112bed5d482494346a334ca609d902df67860b022575"
+    },
+    {
+      "coverage_fraction": 0.0002699257704131364,
+      "covered_pixels": 18,
+      "donors": [
+        {
+          "camera_baseline": 1.2322905070692804,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 1.0824254447251527,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 2
+        },
+        {
+          "camera_baseline": 0.9381962080720445,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 2
+        },
+        {
+          "camera_baseline": 0.8036191781189581,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 1
+        },
+        {
+          "camera_baseline": 0.6878580327694916,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5504556799481785,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4134989468032086,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.27501845538400327,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.13751805939095524,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.1172161653710749,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.24605429764752987,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.3756343245455277,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4971507728799811,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5905538819384637,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6520439979396673,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6849878367251552,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6838613547421792,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 1
+        },
+        {
+          "camera_baseline": 0.6665825165543929,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 2
+        },
+        {
+          "camera_baseline": 0.6331632198451758,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6163424881245868,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 4
+        },
+        {
+          "camera_baseline": 0.6476308112530719,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 16
+        },
+        {
+          "camera_baseline": 0.7040270877671521,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 24
+        },
+        {
+          "camera_baseline": 0.8070947518875788,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 1
+        },
+        {
+          "camera_baseline": 0.9439753413212889,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 6
+        }
+      ],
+      "frame_id": "000057",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0009.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "ce502810978661627cba6a2f6121045b4c2f5a0a8306a093855cb33a25d3ea28",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 18,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0009.png",
+      "prefill_frame_sha256": "38fadb6379bfa53519f6ffe9def38d002a37dfb39a27145c1536bac33b6deb96",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0009.png",
+      "removal_mask_pixels": 66685,
+      "removal_mask_sha256": "904546ebb9aff31d0b0497dbf4a07109bdf2a33fca99f9910da054c813f5b17e",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0009.png",
+      "residual_mask_pixels": 66667,
+      "residual_mask_sha256": "e3f70852555099dc715f890e5484de1eca3ca3aa4b5259fc5857825b4f3fe9d4",
+      "sequence_index": 9,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0009.png",
+      "source_frame_sha256": "9cc5e264dddc4ea83e0b6de9e8c355c14323f14ebb6914a582537241ab37b48f",
+      "support_max": 5,
+      "support_median_accepted": 2.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0009.png",
+      "support_visualization_sha256": "1ad4495da1fffb35de736fb2f8c505f93e05948ee0b4c49936ff7a8f0e8f0ad0"
+    },
+    {
+      "coverage_fraction": 0.00019078368065746993,
+      "covered_pixels": 13,
+      "donors": [
+        {
+          "camera_baseline": 1.3333868216444824,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 2
+        },
+        {
+          "camera_baseline": 1.1835291929506087,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 1.0393616434301627,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.9060932435898511,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7932753022697057,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6598605146299641,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 5
+        },
+        {
+          "camera_baseline": 0.526264914117251,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.3900829620061193,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.25379676891170366,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.1172161653710749,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.129619990484581,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.26072196412135445,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.3844314118601934,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4801395996326002,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.547647873232297,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.586577662239252,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5939642139940329,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5885400989170269,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 1
+        },
+        {
+          "camera_baseline": 0.5714767571327709,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5772309680627778,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6350459398836451,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 13
+        },
+        {
+          "camera_baseline": 0.7124476359166446,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 26
+        },
+        {
+          "camera_baseline": 0.8366218447454934,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.9913947174976179,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 4
+        }
+      ],
+      "frame_id": "000058",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0010.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "0a08bb77d17463da3eef0ea7f92e3ddb74b20fd1235a774c26c4b5c8dc2de260",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 13,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0010.png",
+      "prefill_frame_sha256": "4f531b8f4d1d20ca7977ce94eb29652eacba7b8937a7b4eb5c8c27b726048af3",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0010.png",
+      "removal_mask_pixels": 68140,
+      "removal_mask_sha256": "07655870fe758988241377af0ee06fc14b0d2cc980b851f1a51a054fe3cbfb8a",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0010.png",
+      "residual_mask_pixels": 68127,
+      "residual_mask_sha256": "a77cd2ad2d286de4c3c07cd1a4150b0c45bbee9bf7a313c207690018c351557f",
+      "sequence_index": 10,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0010.png",
+      "source_frame_sha256": "4f531b8f4d1d20ca7977ce94eb29652eacba7b8937a7b4eb5c8c27b726048af3",
+      "support_max": 3,
+      "support_median_accepted": 2.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0010.png",
+      "support_visualization_sha256": "2137e032ed7a4e584c5233821ae292c0f4479540a36a2ad12002b946bc674644"
+    },
+    {
+      "coverage_fraction": 0.0002742969336490154,
+      "covered_pixels": 19,
+      "donors": [
+        {
+          "camera_baseline": 1.4391813869309562,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 8
+        },
+        {
+          "camera_baseline": 1.2895488549044984,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 1
+        },
+        {
+          "camera_baseline": 1.1458946039847644,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 1
+        },
+        {
+          "camera_baseline": 1.0146338730141231,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 1
+        },
+        {
+          "camera_baseline": 0.9054957950518688,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7770270515781577,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 4
+        },
+        {
+          "camera_baseline": 0.6478075676498939,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5148829565398386,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.3807295975045844,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.24605429764752987,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.129619990484581,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.13207338197887533,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.2572701107605364,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.35488978879980204,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.42875600588536744,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.474464489755566,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4923208488166789,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 2
+        },
+        {
+          "camera_baseline": 0.5020543418792678,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 2
+        },
+        {
+          "camera_baseline": 0.5063812861578725,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 2
+        },
+        {
+          "camera_baseline": 0.5401910075440597,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 0.627161042932545,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 16
+        },
+        {
+          "camera_baseline": 0.7259323005614945,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 29
+        },
+        {
+          "camera_baseline": 0.8705685933392107,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 1
+        },
+        {
+          "camera_baseline": 1.042452360810875,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 7
+        }
+      ],
+      "frame_id": "000059",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0011.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "8d92d4be8fb770b081118a74c25d2177c03ba068c6ccbc10d56bd07ab566d9e3",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 19,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0011.png",
+      "prefill_frame_sha256": "2f03130521c3b3250ebc63b96ea2ecc4683179556c5a7e9228e60a41af9143df",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0011.png",
+      "removal_mask_pixels": 69268,
+      "removal_mask_sha256": "c8dc00683c82860ef5bc9e15f1e31e57a8124c34deaae61e647bfb43b9ffdb71",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0011.png",
+      "residual_mask_pixels": 69249,
+      "residual_mask_sha256": "b5df272538ed592174b7d92913f97c9873b77f172e973ae956172600b9e0f9aa",
+      "sequence_index": 11,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0011.png",
+      "source_frame_sha256": "e7e146fdfa54e79553e1393f7ac465fe97fc8fdb0f8d095f6e807f5223fba042",
+      "support_max": 5,
+      "support_median_accepted": 2.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0011.png",
+      "support_visualization_sha256": "b7acc7a27a29d47b6411dac4098efe37ceaad2d6e6bf117bd0fd42c45bf8d02c"
+    },
+    {
+      "coverage_fraction": 0.001955006516688389,
+      "covered_pixels": 138,
+      "donors": [
+        {
+          "camera_baseline": 1.542963488474781,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 117
+        },
+        {
+          "camera_baseline": 1.3936794095891982,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 90
+        },
+        {
+          "camera_baseline": 1.2509265153250488,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 65
+        },
+        {
+          "camera_baseline": 1.1220553107967528,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 50
+        },
+        {
+          "camera_baseline": 1.0166473081904854,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 88
+        },
+        {
+          "camera_baseline": 0.8931479717346753,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 69
+        },
+        {
+          "camera_baseline": 0.7685156421040135,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 80
+        },
+        {
+          "camera_baseline": 0.6391948332636599,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 42
+        },
+        {
+          "camera_baseline": 0.5077218248978604,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 0.3756343245455277,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 28
+        },
+        {
+          "camera_baseline": 0.26072196412135445,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.13207338197887533,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 0.12636467098045798,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.22529194283984597,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.30603502360369483,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.3595104169508626,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.39046555377456865,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4196647089458298,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.45118881610690975,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5174645767047537,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6327607155780529,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 22
+        },
+        {
+          "camera_baseline": 0.7507458685334676,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 34
+        },
+        {
+          "camera_baseline": 0.9129589093517237,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 6
+        },
+        {
+          "camera_baseline": 1.0992614682268982,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 13
+        }
+      ],
+      "frame_id": "000060",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0012.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "4b19c49fe1c012b89592c85cdc9a4bf0c6c1a47add0d82f1ff72d5b7a3c6496a",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 138,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0012.png",
+      "prefill_frame_sha256": "a46d8863fba02067f5f7ddaec1ce5103bb90a52f45193b848800de836b351ee7",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0012.png",
+      "removal_mask_pixels": 70588,
+      "removal_mask_sha256": "7b4d77af6d0d6467c391d5bca13c3657a29b98c2c23e40ca8a0b27e929d5307c",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0012.png",
+      "residual_mask_pixels": 70450,
+      "residual_mask_sha256": "8803ccf23a332783328e30a3338caea5575f0de8d0e398a206947dc09eacc2ca",
+      "sequence_index": 12,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0012.png",
+      "source_frame_sha256": "228efa31008fa62cfe8d6928e8ddd6c2fd2a6b23d3732cefa8183fcacb173bfc",
+      "support_max": 9,
+      "support_median_accepted": 4.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0012.png",
+      "support_visualization_sha256": "02520d1bbe06fda8ee0cfac28433ecd7bd83b6ff529b336319846cd09d2b8ab9"
+    },
+    {
+      "coverage_fraction": 0.0030498517237986817,
+      "covered_pixels": 217,
+      "donors": [
+        {
+          "camera_baseline": 1.6309906623234203,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 211
+        },
+        {
+          "camera_baseline": 1.4826499890686198,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 187
+        },
+        {
+          "camera_baseline": 1.3414582054309987,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 127
+        },
+        {
+          "camera_baseline": 1.2156977448862067,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 110
+        },
+        {
+          "camera_baseline": 1.1147558531577546,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 160
+        },
+        {
+          "camera_baseline": 0.9971951381536259,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 130
+        },
+        {
+          "camera_baseline": 0.8781499170014738,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 156
+        },
+        {
+          "camera_baseline": 0.7534858840453822,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 122
+        },
+        {
+          "camera_baseline": 0.6257078557831175,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 37
+        },
+        {
+          "camera_baseline": 0.4971507728799811,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 30
+        },
+        {
+          "camera_baseline": 0.3844314118601934,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.2572701107605364,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 4
+        },
+        {
+          "camera_baseline": 0.12636467098045798,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.09959912105479116,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.18762453622835626,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.24977494327459404,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.2963707832369142,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.34770561601032496,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.407762678012627,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5029906844251707,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6398937469541526,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 13
+        },
+        {
+          "camera_baseline": 0.7719561315999703,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 24
+        },
+        {
+          "camera_baseline": 0.9470319699411388,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 1.1442964299504799,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 7
+        }
+      ],
+      "frame_id": "000061",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0013.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "b29766c3bf5307457a76067f97e5915a9b600a54944258d5e986162a7a450da8",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 217,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0013.png",
+      "prefill_frame_sha256": "67ad412afd896a49f5c957408aed235163883f1ac0d3229dfc148c42c47294bd",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0013.png",
+      "removal_mask_pixels": 71151,
+      "removal_mask_sha256": "3030b8f3af516588fa75f90f98bae876e04ae34a4218bfbbf4132ad5c083e073",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0013.png",
+      "residual_mask_pixels": 70934,
+      "residual_mask_sha256": "148ca5792d19de9c811e4a855fc3429eb7f2206228d55eb48c1ba6a120074f88",
+      "sequence_index": 13,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0013.png",
+      "source_frame_sha256": "91574824525a757af6d22145e45f2597a5fd27cb8fd07f17c9e222df3c5076af",
+      "support_max": 10,
+      "support_median_accepted": 5.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0013.png",
+      "support_visualization_sha256": "802646525b2fe07ae2beb7b3fcc3a6ca2f0eba7fd0aa7ebbe9535c9ff8d60770"
+    },
+    {
+      "coverage_fraction": 0.005902380487260346,
+      "covered_pixels": 423,
+      "donors": [
+        {
+          "camera_baseline": 1.6949021241813098,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 411
+        },
+        {
+          "camera_baseline": 1.5475246285157187,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 393
+        },
+        {
+          "camera_baseline": 1.4079068333371907,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 321
+        },
+        {
+          "camera_baseline": 1.284923435648864,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 305
+        },
+        {
+          "camera_baseline": 1.1876646348959237,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 359
+        },
+        {
+          "camera_baseline": 1.0749936149065762,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 329
+        },
+        {
+          "camera_baseline": 0.960673821384847,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 352
+        },
+        {
+          "camera_baseline": 0.8400948847167417,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 302
+        },
+        {
+          "camera_baseline": 0.7157419569606804,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 215
+        },
+        {
+          "camera_baseline": 0.5905538819384637,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 208
+        },
+        {
+          "camera_baseline": 0.4801395996326002,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 115
+        },
+        {
+          "camera_baseline": 0.35488978879980204,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 46
+        },
+        {
+          "camera_baseline": 0.22529194283984597,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.09959912105479116,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.09779242132528877,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.1683078505903301,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.23092159758104178,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.3024499034185827,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.38581818656721434,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5015408906272949,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6515942570170938,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 20
+        },
+        {
+          "camera_baseline": 0.792216831590419,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 34
+        },
+        {
+          "camera_baseline": 0.975143557906638,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 1.1792029291349606,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 11
+        }
+      ],
+      "frame_id": "000062",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0014.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "0c1c0b893ee8e90907275cf9ad73a39bf718e3f4e563487d29f74b914b5aafa9",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 423,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0014.png",
+      "prefill_frame_sha256": "111e27510b8e7b92881ecb92ea9c27f7b39de69953eeab30cb08458b882b788a",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0014.png",
+      "removal_mask_pixels": 71666,
+      "removal_mask_sha256": "0d71d6211fa779b61704409d7864137b93efd26aaa144c0c5d699e2d31285f6c",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0014.png",
+      "residual_mask_pixels": 71243,
+      "residual_mask_sha256": "59672d023c57f93b1e534ce5a3174da69291fc71a8ac17a7dbf9b398f5b67a92",
+      "sequence_index": 14,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0014.png",
+      "source_frame_sha256": "324025a7cc89fa5188e91c2bad97848a6fc126e0ec6d20ecc3805202f2c2af0e",
+      "support_max": 12,
+      "support_median_accepted": 7.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0014.png",
+      "support_visualization_sha256": "12c4d8305297167512de9c370ce222a1f8c97159d680722a6a0a060c3eeba127"
+    },
+    {
+      "coverage_fraction": 0.007858656450413282,
+      "covered_pixels": 560,
+      "donors": [
+        {
+          "camera_baseline": 1.7070929582363465,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 534
+        },
+        {
+          "camera_baseline": 1.5611757801484814,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 513
+        },
+        {
+          "camera_baseline": 1.423944842129986,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 479
+        },
+        {
+          "camera_baseline": 1.3049103873063637,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 434
+        },
+        {
+          "camera_baseline": 1.212783766866388,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 477
+        },
+        {
+          "camera_baseline": 1.1073223694889651,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 453
+        },
+        {
+          "camera_baseline": 1.0005932368131814,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 476
+        },
+        {
+          "camera_baseline": 0.8872982028384088,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 425
+        },
+        {
+          "camera_baseline": 0.7697867346500952,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 359
+        },
+        {
+          "camera_baseline": 0.6520439979396673,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 332
+        },
+        {
+          "camera_baseline": 0.547647873232297,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 238
+        },
+        {
+          "camera_baseline": 0.42875600588536744,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 164
+        },
+        {
+          "camera_baseline": 0.30603502360369483,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 38
+        },
+        {
+          "camera_baseline": 0.18762453622835626,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 4
+        },
+        {
+          "camera_baseline": 0.09779242132528877,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.07261690272427698,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.1444354415448624,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.22932048801884014,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.3294808195423544,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.46053797701462723,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.6199892480718303,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 11
+        },
+        {
+          "camera_baseline": 0.7673323279737831,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 22
+        },
+        {
+          "camera_baseline": 0.9566457136448968,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 1.166172334236943,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 4
+        }
+      ],
+      "frame_id": "000063",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0015.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "a5fd1f11569712f400eed981da0d7fde62ddd17477f1ea93b432a58c9cfb31af",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 560,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0015.png",
+      "prefill_frame_sha256": "26dca122aca9616d6b3c10cbf3e08bb5317b0523dbd0343e7edf768395036ac5",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0015.png",
+      "removal_mask_pixels": 71259,
+      "removal_mask_sha256": "e89c0e2c53ee98602c92246c67891b79c4a97acbb0920d843b6c9668a741aa09",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0015.png",
+      "residual_mask_pixels": 70699,
+      "residual_mask_sha256": "de8b0093c79d908f2a6962a096113f00cd68bff5b61844c4b50329a680032b39",
+      "sequence_index": 15,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0015.png",
+      "source_frame_sha256": "361f296ee7f470d794fe5e4a9b7888db374ea4462bf52836c76de2edf23ff501",
+      "support_max": 14,
+      "support_median_accepted": 8.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0015.png",
+      "support_visualization_sha256": "0bf61e94fef554793f8149bd509a0fa993018274b46c6615a9cbf4601a155a88"
+    },
+    {
+      "coverage_fraction": 0.008862712896238302,
+      "covered_pixels": 626,
+      "donors": [
+        {
+          "camera_baseline": 1.6971620942402912,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 561
+        },
+        {
+          "camera_baseline": 1.5525743490634252,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 586
+        },
+        {
+          "camera_baseline": 1.4174451732631597,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 533
+        },
+        {
+          "camera_baseline": 1.3016968145230983,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 457
+        },
+        {
+          "camera_baseline": 1.213713916402793,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 498
+        },
+        {
+          "camera_baseline": 1.1141590044803242,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 483
+        },
+        {
+          "camera_baseline": 1.0138362046670297,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 520
+        },
+        {
+          "camera_baseline": 0.9069426451163105,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 452
+        },
+        {
+          "camera_baseline": 0.7957232392681335,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 403
+        },
+        {
+          "camera_baseline": 0.6849878367251552,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 379
+        },
+        {
+          "camera_baseline": 0.586577662239252,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 291
+        },
+        {
+          "camera_baseline": 0.474464489755566,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 237
+        },
+        {
+          "camera_baseline": 0.3595104169508626,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 38
+        },
+        {
+          "camera_baseline": 0.24977494327459404,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 0.1683078505903301,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.07261690272427698,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.07842175928349016,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.17141729211098342,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 6
+        },
+        {
+          "camera_baseline": 0.281719995005346,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.42165779041333623,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5857747768385435,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 12
+        },
+        {
+          "camera_baseline": 0.7367154231851575,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 23
+        },
+        {
+          "camera_baseline": 0.9294499187167338,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 1.1418056713558833,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 5
+        }
+      ],
+      "frame_id": "000064",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0016.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "34191931eb69793b32838e9516723698ac8ba6141adec3258729d604e20b2ef6",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 626,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0016.png",
+      "prefill_frame_sha256": "1afabf711fb3007993c3063966f6fe12a8ad540c84e8c30830dc58ec320629ba",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0016.png",
+      "removal_mask_pixels": 70633,
+      "removal_mask_sha256": "efb071fb00580e5570832287fd8d2172949bd524a262c03e69f8e101071d7e56",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0016.png",
+      "residual_mask_pixels": 70007,
+      "residual_mask_sha256": "9fbfb099c72f0e04147ffeebc5edfc388dc9b5689f4d9919b916919909a67e21",
+      "sequence_index": 16,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0016.png",
+      "source_frame_sha256": "432f2b2b8b8d04e7cc3d633d5163ac9abb2165049465769bca770af4f3823b33",
+      "support_max": 13,
+      "support_median_accepted": 8.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0016.png",
+      "support_visualization_sha256": "c1be9668837221f105c5a68951f4c3c542a647362466ab407d3267e74a7f61a4"
+    },
+    {
+      "coverage_fraction": 0.008373085071120783,
+      "covered_pixels": 581,
+      "donors": [
+        {
+          "camera_baseline": 1.6472605269640495,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 516
+        },
+        {
+          "camera_baseline": 1.5039779309038077,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 538
+        },
+        {
+          "camera_baseline": 1.3709243928626382,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 518
+        },
+        {
+          "camera_baseline": 1.2583960367458036,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 422
+        },
+        {
+          "camera_baseline": 1.1745421611935658,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 467
+        },
+        {
+          "camera_baseline": 1.081171353165396,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 432
+        },
+        {
+          "camera_baseline": 0.9879495628083961,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 470
+        },
+        {
+          "camera_baseline": 0.8886226459219663,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 414
+        },
+        {
+          "camera_baseline": 0.7853258898222287,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 383
+        },
+        {
+          "camera_baseline": 0.6838613547421792,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 360
+        },
+        {
+          "camera_baseline": 0.5939642139940329,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 256
+        },
+        {
+          "camera_baseline": 0.4923208488166789,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 186
+        },
+        {
+          "camera_baseline": 0.39046555377456865,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 59
+        },
+        {
+          "camera_baseline": 0.2963707832369142,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 15
+        },
+        {
+          "camera_baseline": 0.23092159758104178,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.1444354415448624,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.07842175928349016,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.09537285955320711,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.21064799430355552,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.35613441151397335,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5228507125181319,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 19
+        },
+        {
+          "camera_baseline": 0.6760636579087282,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 31
+        },
+        {
+          "camera_baseline": 0.8708733954680277,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 10
+        },
+        {
+          "camera_baseline": 1.084624159139146,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 11
+        }
+      ],
+      "frame_id": "000065",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0017.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "fa7ca82a8978845c27f860ccdb516635b24540fa78cbb93e46359e676b90c023",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 581,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0017.png",
+      "prefill_frame_sha256": "d5ebf262af4db3c0c7899550166417f145ce63548810894142a9319056ca0778",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0017.png",
+      "removal_mask_pixels": 69389,
+      "removal_mask_sha256": "97d2988563e60a3ef47d2a12213323c0bdd757048a8c32258fb59e26cfe92a42",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0017.png",
+      "residual_mask_pixels": 68808,
+      "residual_mask_sha256": "9031d3681233b9a1ab9f4d135050eb03e3de109d30d346d7316f33ccc0a10555",
+      "sequence_index": 17,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0017.png",
+      "source_frame_sha256": "26e0e50c18491f8d3245e05d9159ab0c0a9b6deae4df6a797718566b67d5372f",
+      "support_max": 14,
+      "support_median_accepted": 7.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0017.png",
+      "support_visualization_sha256": "5c09ba72848d42a663b3d4be7b664e6ec3f1240ce9d4b593e92c1feecb912433"
+    },
+    {
+      "coverage_fraction": 0.007992581471341517,
+      "covered_pixels": 543,
+      "donors": [
+        {
+          "camera_baseline": 1.568550952774806,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 534
+        },
+        {
+          "camera_baseline": 1.426880633582666,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 531
+        },
+        {
+          "camera_baseline": 1.2962050773371265,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 496
+        },
+        {
+          "camera_baseline": 1.187360677384892,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 436
+        },
+        {
+          "camera_baseline": 1.1084142034324884,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 474
+        },
+        {
+          "camera_baseline": 1.022558942900719,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 446
+        },
+        {
+          "camera_baseline": 0.9381142852052894,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 473
+        },
+        {
+          "camera_baseline": 0.8484541116463,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 438
+        },
+        {
+          "camera_baseline": 0.7556001828324709,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 395
+        },
+        {
+          "camera_baseline": 0.6665825165543929,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 335
+        },
+        {
+          "camera_baseline": 0.5885400989170269,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 275
+        },
+        {
+          "camera_baseline": 0.5020543418792678,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 194
+        },
+        {
+          "camera_baseline": 0.4196647089458298,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 63
+        },
+        {
+          "camera_baseline": 0.34770561601032496,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 15
+        },
+        {
+          "camera_baseline": 0.3024499034185827,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.22932048801884014,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.17141729211098342,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.09537285955320711,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.11797387338838407,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.2671248095911881,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.43505274575549036,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 12
+        },
+        {
+          "camera_baseline": 0.5896348229858663,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 19
+        },
+        {
+          "camera_baseline": 0.7856223720647546,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 1
+        },
+        {
+          "camera_baseline": 0.9999411924190889,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 5
+        }
+      ],
+      "frame_id": "000066",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0018.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "dc8f1c3a7a522835bf45ae21b93708425a3098af62ddfa54ddb07ac5851ce9ee",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 543,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0018.png",
+      "prefill_frame_sha256": "29bd441d306a8760628ba8a6018e38e1840932709ee3f5384b82183c84aa3d0b",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0018.png",
+      "removal_mask_pixels": 67938,
+      "removal_mask_sha256": "57c35734fdab5741d0817ef48c4f0a93e9a5e945a1fcf8e56a260300edf12784",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0018.png",
+      "residual_mask_pixels": 67395,
+      "residual_mask_sha256": "b624830b60ada01b5d6e1f4b79d8391653212e4efa2be9bdb705b6c933c20faa",
+      "sequence_index": 18,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0018.png",
+      "source_frame_sha256": "29bd441d306a8760628ba8a6018e38e1840932709ee3f5384b82183c84aa3d0b",
+      "support_max": 14,
+      "support_median_accepted": 9.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0018.png",
+      "support_visualization_sha256": "de227c517dcff22b99ccb3816e7204d38adbdb624ae8ab9d17160860d722fb90"
+    },
+    {
+      "coverage_fraction": 0.0076581542954200065,
+      "covered_pixels": 514,
+      "donors": [
+        {
+          "camera_baseline": 1.4588565876397501,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 483
+        },
+        {
+          "camera_baseline": 1.3190211406089853,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 485
+        },
+        {
+          "camera_baseline": 1.190818433270126,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 473
+        },
+        {
+          "camera_baseline": 1.0859267655510283,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 386
+        },
+        {
+          "camera_baseline": 1.0126720530289184,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 433
+        },
+        {
+          "camera_baseline": 0.9358178834034547,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 400
+        },
+        {
+          "camera_baseline": 0.8620891642305658,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 445
+        },
+        {
+          "camera_baseline": 0.784687322056598,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 370
+        },
+        {
+          "camera_baseline": 0.7055387840462446,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 371
+        },
+        {
+          "camera_baseline": 0.6331632198451758,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 313
+        },
+        {
+          "camera_baseline": 0.5714767571327709,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 251
+        },
+        {
+          "camera_baseline": 0.5063812861578725,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 177
+        },
+        {
+          "camera_baseline": 0.45118881610690975,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 58
+        },
+        {
+          "camera_baseline": 0.407762678012627,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 10
+        },
+        {
+          "camera_baseline": 0.38581818656721434,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.3294808195423544,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.281719995005346,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.21064799430355552,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.11797387338838407,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 1
+        },
+        {
+          "camera_baseline": 0.15103486961502005,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.3191797102823945,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 3
+        },
+        {
+          "camera_baseline": 0.4742815958681172,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 9
+        },
+        {
+          "camera_baseline": 0.6705744393134153,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.8847033475513146,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 0
+        }
+      ],
+      "frame_id": "000067",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0019.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "493f05a3375fe5db80d4b6f159da7f2cce133a53884dc91aadec61d43b6018c7",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 514,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0019.png",
+      "prefill_frame_sha256": "efeb558b9ecf94b956fae94c1f950cec38d0663e3591a8cb867758864d2c9ff2",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0019.png",
+      "removal_mask_pixels": 67118,
+      "removal_mask_sha256": "5306cd80d60b20bb67eb600ed5a94cef35d1bcd3cf3662d073c00a1b80f32abd",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0019.png",
+      "residual_mask_pixels": 66604,
+      "residual_mask_sha256": "5c96e21bb906daf9132e01c72b18a00091d69db6bda12f94ffcedc271bb20842",
+      "sequence_index": 19,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0019.png",
+      "source_frame_sha256": "0eda3fac7161438ca90fdbd80140d93dadccda6f17a7763318f5e29b392fd3cc",
+      "support_max": 13,
+      "support_median_accepted": 8.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0019.png",
+      "support_visualization_sha256": "3cb9630a35926873c4902930e2bad8ffcd74f867c4f10081a468fed5545cb99d"
+    },
+    {
+      "coverage_fraction": 0.007485369505058295,
+      "covered_pixels": 495,
+      "donors": [
+        {
+          "camera_baseline": 1.3258644721441575,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 460
+        },
+        {
+          "camera_baseline": 1.1894180577623923,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 442
+        },
+        {
+          "camera_baseline": 1.065213476463825,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 422
+        },
+        {
+          "camera_baseline": 0.9665961391877439,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 369
+        },
+        {
+          "camera_baseline": 0.9026322918585404,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 406
+        },
+        {
+          "camera_baseline": 0.8400722301341211,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 386
+        },
+        {
+          "camera_baseline": 0.7827058034621078,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 412
+        },
+        {
+          "camera_baseline": 0.7238000172939203,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 357
+        },
+        {
+          "camera_baseline": 0.6650169098704904,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 342
+        },
+        {
+          "camera_baseline": 0.6163424881245868,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 287
+        },
+        {
+          "camera_baseline": 0.5772309680627778,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 231
+        },
+        {
+          "camera_baseline": 0.5401910075440597,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 151
+        },
+        {
+          "camera_baseline": 0.5174645767047537,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 92
+        },
+        {
+          "camera_baseline": 0.5029906844251707,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 30
+        },
+        {
+          "camera_baseline": 0.5015408906272949,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 18
+        },
+        {
+          "camera_baseline": 0.46053797701462723,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 18
+        },
+        {
+          "camera_baseline": 0.42165779041333623,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.35613441151397335,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.2671248095911881,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.15103486961502005,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.16826142458258483,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 9
+        },
+        {
+          "camera_baseline": 0.3232650068776104,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 19
+        },
+        {
+          "camera_baseline": 0.5195432027819648,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.7337886156179513,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 1
+        }
+      ],
+      "frame_id": "000068",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0020.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "8871a923f4e947350e80d195a08981f1cf793ac133139b0971862f0bae2d7db7",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 495,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0020.png",
+      "prefill_frame_sha256": "3faaca23fd0da0a12370ddfa9c56de0881f34d549dd8a7b90eeb178a904d480e",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0020.png",
+      "removal_mask_pixels": 66129,
+      "removal_mask_sha256": "99681d8f766c35f4ef871f1f36b6bb47b2c1b9709c1881d7b252e630a88b762c",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0020.png",
+      "residual_mask_pixels": 65634,
+      "residual_mask_sha256": "cba2f46a16d20b39325209f721bc560202a85edcb1e08a45c207aae8a566ce68",
+      "sequence_index": 20,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0020.png",
+      "source_frame_sha256": "3faaca23fd0da0a12370ddfa9c56de0881f34d549dd8a7b90eeb178a904d480e",
+      "support_max": 14,
+      "support_median_accepted": 7.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0020.png",
+      "support_visualization_sha256": "6d26b80807fee3cca7f767c894cf8a20fa5790dd4de31bc5088aea2b3449b064"
+    },
+    {
+      "coverage_fraction": 0.010414099087996056,
+      "covered_pixels": 676,
+      "donors": [
+        {
+          "camera_baseline": 1.1845060565451357,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 405
+        },
+        {
+          "camera_baseline": 1.0538026930039928,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 397
+        },
+        {
+          "camera_baseline": 0.9367206706669043,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 374
+        },
+        {
+          "camera_baseline": 0.848903083016599,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 316
+        },
+        {
+          "camera_baseline": 0.7999749492114413,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 357
+        },
+        {
+          "camera_baseline": 0.759827453313515,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 335
+        },
+        {
+          "camera_baseline": 0.7274174161151885,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 358
+        },
+        {
+          "camera_baseline": 0.695806721640641,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 328
+        },
+        {
+          "camera_baseline": 0.665765886025244,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 304
+        },
+        {
+          "camera_baseline": 0.6476308112530719,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 297
+        },
+        {
+          "camera_baseline": 0.6350459398836451,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 289
+        },
+        {
+          "camera_baseline": 0.627161042932545,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 255
+        },
+        {
+          "camera_baseline": 0.6327607155780529,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 271
+        },
+        {
+          "camera_baseline": 0.6398937469541526,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 216
+        },
+        {
+          "camera_baseline": 0.6515942570170938,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 236
+        },
+        {
+          "camera_baseline": 0.6199892480718303,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 205
+        },
+        {
+          "camera_baseline": 0.5857747768385435,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 85
+        },
+        {
+          "camera_baseline": 0.5228507125181319,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 58
+        },
+        {
+          "camera_baseline": 0.43505274575549036,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 5
+        },
+        {
+          "camera_baseline": 0.3191797102823945,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.16826142458258483,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.15525965222206833,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 1
+        },
+        {
+          "camera_baseline": 0.3517582520300508,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.5663187278744142,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 0
+        }
+      ],
+      "frame_id": "000069",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0021.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "bf9bea9ff2bf7e83ede15b480d652884ad001ffa6b1c1aa9d6e59047ac5bef03",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 676,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0021.png",
+      "prefill_frame_sha256": "3953695909115a476b09b157a37babf0bc7352dae56b323becfd64b6ae025e35",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0021.png",
+      "removal_mask_pixels": 64912,
+      "removal_mask_sha256": "f1fcef135f04fafea0c6afab3881f12c42f16c2eb7ecac57f1282435f9d0fd00",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0021.png",
+      "residual_mask_pixels": 64236,
+      "residual_mask_sha256": "e9084980f3dbe18cde62e260f4b3c2c6d61526aedb41e94bc6d6fca20bb8329e",
+      "sequence_index": 21,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0021.png",
+      "source_frame_sha256": "5550f96afd2704f295c89f5f5004857f8e1c537d044b2434e57b72f0e040d4b8",
+      "support_max": 13,
+      "support_median_accepted": 6.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0021.png",
+      "support_visualization_sha256": "614d3fed06ff40a6e969aeb1fff851a563b7851e1e6c927f0be8f947a0182388"
+    },
+    {
+      "coverage_fraction": 0.015336370444333499,
+      "covered_pixels": 983,
+      "donors": [
+        {
+          "camera_baseline": 1.0602873194819968,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 308
+        },
+        {
+          "camera_baseline": 0.936960767931759,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 292
+        },
+        {
+          "camera_baseline": 0.829055388990724,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 280
+        },
+        {
+          "camera_baseline": 0.7547220816471162,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 216
+        },
+        {
+          "camera_baseline": 0.7236778951814237,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 261
+        },
+        {
+          "camera_baseline": 0.7088589655853276,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 245
+        },
+        {
+          "camera_baseline": 0.7030599653596467,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 303
+        },
+        {
+          "camera_baseline": 0.6989736435518308,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 287
+        },
+        {
+          "camera_baseline": 0.6960444700325281,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 367
+        },
+        {
+          "camera_baseline": 0.7040270877671521,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 427
+        },
+        {
+          "camera_baseline": 0.7124476359166446,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 516
+        },
+        {
+          "camera_baseline": 0.7259323005614945,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 502
+        },
+        {
+          "camera_baseline": 0.7507458685334676,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 563
+        },
+        {
+          "camera_baseline": 0.7719561315999703,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 540
+        },
+        {
+          "camera_baseline": 0.792216831590419,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 557
+        },
+        {
+          "camera_baseline": 0.7673323279737831,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 524
+        },
+        {
+          "camera_baseline": 0.7367154231851575,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 357
+        },
+        {
+          "camera_baseline": 0.6760636579087282,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 267
+        },
+        {
+          "camera_baseline": 0.5896348229858663,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 120
+        },
+        {
+          "camera_baseline": 0.4742815958681172,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 18
+        },
+        {
+          "camera_baseline": 0.3232650068776104,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.15525965222206833,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.1965779358513005,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.4115797748197293,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 0
+        }
+      ],
+      "frame_id": "000070",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0022.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "08dababee265ebce63aba8ba81f231f5518fe70ab7a742004860c0e31a9b5873",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 983,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0022.png",
+      "prefill_frame_sha256": "695ed318152c7814c07ac94f4bdbf3af473b0ed0c40901b16b67e84f34e8101b",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0022.png",
+      "removal_mask_pixels": 64096,
+      "removal_mask_sha256": "077a07853a4f9126fd30fa181dc1c7644d24de0d71fd6f2d7157c565c512a223",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0022.png",
+      "residual_mask_pixels": 63113,
+      "residual_mask_sha256": "24ef885aa2ce7c2a260ad94e87a080c508e5e79056f249fda9729a7505416df5",
+      "sequence_index": 22,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0022.png",
+      "source_frame_sha256": "c1ce965149bdc535f0c310b07ab90e642c53cb492e3e634f5a0b20148f5e967c",
+      "support_max": 13,
+      "support_median_accepted": 6.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0022.png",
+      "support_visualization_sha256": "1f8ac7b0eaff9ee2965618a951f00fc7a54c5bd01b2691de6579ad049e0e6bc3"
+    },
+    {
+      "coverage_fraction": 0.020013133618937428,
+      "covered_pixels": 1280,
+      "donors": [
+        {
+          "camera_baseline": 0.9110550864139662,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 194
+        },
+        {
+          "camera_baseline": 0.8014621984004477,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 198
+        },
+        {
+          "camera_baseline": 0.7110919102479454,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 171
+        },
+        {
+          "camera_baseline": 0.6611908614065221,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 134
+        },
+        {
+          "camera_baseline": 0.6593563873947862,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 173
+        },
+        {
+          "camera_baseline": 0.6821523860473924,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 219
+        },
+        {
+          "camera_baseline": 0.7124487675038428,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 318
+        },
+        {
+          "camera_baseline": 0.742831063192521,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 479
+        },
+        {
+          "camera_baseline": 0.7713585586789801,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 605
+        },
+        {
+          "camera_baseline": 0.8070947518875788,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 755
+        },
+        {
+          "camera_baseline": 0.8366218447454934,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 823
+        },
+        {
+          "camera_baseline": 0.8705685933392107,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 875
+        },
+        {
+          "camera_baseline": 0.9129589093517237,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 961
+        },
+        {
+          "camera_baseline": 0.9470319699411388,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 939
+        },
+        {
+          "camera_baseline": 0.975143557906638,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 956
+        },
+        {
+          "camera_baseline": 0.9566457136448968,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 923
+        },
+        {
+          "camera_baseline": 0.9294499187167338,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 753
+        },
+        {
+          "camera_baseline": 0.8708733954680277,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 647
+        },
+        {
+          "camera_baseline": 0.7856223720647546,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 493
+        },
+        {
+          "camera_baseline": 0.6705744393134153,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 243
+        },
+        {
+          "camera_baseline": 0.5195432027819648,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 18
+        },
+        {
+          "camera_baseline": 0.3517582520300508,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.1965779358513005,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 0
+        },
+        {
+          "camera_baseline": 0.21560724986470226,
+          "excluded_object_pixels": 70125,
+          "frame_id": "000072",
+          "projected_mask_pixels": 0
+        }
+      ],
+      "frame_id": "000071",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0023.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "be36fe26af6e34c473fe366cbc4eacd667b2dcc67a121785332b9c547c81fb49",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 1280,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0023.png",
+      "prefill_frame_sha256": "1a10a07db150d80c0aff8231a41bd951c942589ca2e17dff71e30aaa83fab43e",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0023.png",
+      "removal_mask_pixels": 63958,
+      "removal_mask_sha256": "d2a3632cf970be70053d92f9249839b5c06d1a19910837bf4227162ecb93a664",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0023.png",
+      "residual_mask_pixels": 62678,
+      "residual_mask_sha256": "f287f7c224fef15ef779db8020f48a070d32092b2dae73f6fcc42d3e4c38ac09",
+      "sequence_index": 23,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0023.png",
+      "source_frame_sha256": "1c499989f9e08ab56e77661652d082325ff162adefcb21098eb059056ae00afc",
+      "support_max": 16,
+      "support_median_accepted": 8.5,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0023.png",
+      "support_visualization_sha256": "a64848de369eeba2c7255bff99a4460ce46e2df191ac194d1d4fc97812e172d3"
+    },
+    {
+      "coverage_fraction": 0.0272984441301273,
+      "covered_pixels": 1737,
+      "donors": [
+        {
+          "camera_baseline": 0.7539409142206785,
+          "excluded_object_pixels": 63937,
+          "frame_id": "000048",
+          "projected_mask_pixels": 192
+        },
+        {
+          "camera_baseline": 0.6674611144016654,
+          "excluded_object_pixels": 64916,
+          "frame_id": "000049",
+          "projected_mask_pixels": 191
+        },
+        {
+          "camera_baseline": 0.6072160028947812,
+          "excluded_object_pixels": 66173,
+          "frame_id": "000050",
+          "projected_mask_pixels": 191
+        },
+        {
+          "camera_baseline": 0.595346659437419,
+          "excluded_object_pixels": 67067,
+          "frame_id": "000051",
+          "projected_mask_pixels": 113
+        },
+        {
+          "camera_baseline": 0.6316002312630773,
+          "excluded_object_pixels": 67835,
+          "frame_id": "000052",
+          "projected_mask_pixels": 266
+        },
+        {
+          "camera_baseline": 0.6969411789538503,
+          "excluded_object_pixels": 68819,
+          "frame_id": "000053",
+          "projected_mask_pixels": 490
+        },
+        {
+          "camera_baseline": 0.7640780659695697,
+          "excluded_object_pixels": 69901,
+          "frame_id": "000054",
+          "projected_mask_pixels": 670
+        },
+        {
+          "camera_baseline": 0.8272773077372403,
+          "excluded_object_pixels": 71201,
+          "frame_id": "000055",
+          "projected_mask_pixels": 903
+        },
+        {
+          "camera_baseline": 0.8842914073095159,
+          "excluded_object_pixels": 72609,
+          "frame_id": "000056",
+          "projected_mask_pixels": 1058
+        },
+        {
+          "camera_baseline": 0.9439753413212889,
+          "excluded_object_pixels": 74110,
+          "frame_id": "000057",
+          "projected_mask_pixels": 1190
+        },
+        {
+          "camera_baseline": 0.9913947174976179,
+          "excluded_object_pixels": 75408,
+          "frame_id": "000058",
+          "projected_mask_pixels": 1263
+        },
+        {
+          "camera_baseline": 1.042452360810875,
+          "excluded_object_pixels": 76575,
+          "frame_id": "000059",
+          "projected_mask_pixels": 1326
+        },
+        {
+          "camera_baseline": 1.0992614682268982,
+          "excluded_object_pixels": 77913,
+          "frame_id": "000060",
+          "projected_mask_pixels": 1406
+        },
+        {
+          "camera_baseline": 1.1442964299504799,
+          "excluded_object_pixels": 78736,
+          "frame_id": "000061",
+          "projected_mask_pixels": 1391
+        },
+        {
+          "camera_baseline": 1.1792029291349606,
+          "excluded_object_pixels": 79153,
+          "frame_id": "000062",
+          "projected_mask_pixels": 1419
+        },
+        {
+          "camera_baseline": 1.166172334236943,
+          "excluded_object_pixels": 78560,
+          "frame_id": "000063",
+          "projected_mask_pixels": 1376
+        },
+        {
+          "camera_baseline": 1.1418056713558833,
+          "excluded_object_pixels": 77853,
+          "frame_id": "000064",
+          "projected_mask_pixels": 1186
+        },
+        {
+          "camera_baseline": 1.084624159139146,
+          "excluded_object_pixels": 76673,
+          "frame_id": "000065",
+          "projected_mask_pixels": 1104
+        },
+        {
+          "camera_baseline": 0.9999411924190889,
+          "excluded_object_pixels": 75331,
+          "frame_id": "000066",
+          "projected_mask_pixels": 922
+        },
+        {
+          "camera_baseline": 0.8847033475513146,
+          "excluded_object_pixels": 74102,
+          "frame_id": "000067",
+          "projected_mask_pixels": 669
+        },
+        {
+          "camera_baseline": 0.7337886156179513,
+          "excluded_object_pixels": 73039,
+          "frame_id": "000068",
+          "projected_mask_pixels": 298
+        },
+        {
+          "camera_baseline": 0.5663187278744142,
+          "excluded_object_pixels": 71887,
+          "frame_id": "000069",
+          "projected_mask_pixels": 47
+        },
+        {
+          "camera_baseline": 0.4115797748197293,
+          "excluded_object_pixels": 71125,
+          "frame_id": "000070",
+          "projected_mask_pixels": 4
+        },
+        {
+          "camera_baseline": 0.21560724986470226,
+          "excluded_object_pixels": 70583,
+          "frame_id": "000071",
+          "projected_mask_pixels": 0
+        }
+      ],
+      "frame_id": "000072",
+      "measured_depth": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/depth/0024.npy",
+      "measured_depth_role": "fused_multiview_measured_depth",
+      "measured_depth_semantics": "target_camera_positive_z_axis",
+      "measured_depth_sha256": "9bd20fe9f1463c9903afd6e88a38cc28453cdfc239570a665d59a4d5468c3727",
+      "measured_depth_unit": "meter",
+      "measured_depth_valid_pixels": 1737,
+      "measured_depth_validity_matches_measured_rgb": true,
+      "outside_removal_mask_rgb_exact": true,
+      "prefill_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/frames/0024.png",
+      "prefill_frame_sha256": "40a1cf4a5d77a9e3f770f33ff0a1ea2bee8fa7c2c137fcbe74d517f704c7da26",
+      "removal_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/masks/0024.png",
+      "removal_mask_pixels": 63630,
+      "removal_mask_sha256": "cc7c7e4123ccef5e2cef363dcf0d3800fbd6de74d73dbc63d8ca2a290ceaeb2d",
+      "residual_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/masks/0024.png",
+      "residual_mask_pixels": 61893,
+      "residual_mask_sha256": "a2bfc0f5d282e4ccb59c22104e2b5c65f957cc9e2495097e576b4b6200eb263f",
+      "sequence_index": 24,
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/frames/0024.png",
+      "source_frame_sha256": "79c1963c37ed206747733236f75026576c52ca3ef0b8b33d562971429b16d3a6",
+      "support_max": 19,
+      "support_median_accepted": 11.0,
+      "support_min_accepted": 2,
+      "support_visualization": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/support/0024.png",
+      "support_visualization_sha256": "b0cfffbbd687280a73d533aedca43fe336e0ca13aaf9852d8aa250b32fcc2d10"
+    }
+  ],
+  "gates": {
+    "all_residual_masks_subset_of_removal_masks": true,
+    "cumulative_front_to_back_contract_enforced": true,
+    "fused_measured_metric_depth_materialized": true,
+    "new_depth_normal_estimation": "required_before_scene_reconstruction",
+    "no_generated_or_propainter_pixels_as_measured_evidence": true,
+    "outside_removal_mask_rgb_exact": true,
+    "semantic_texture_continuity": "pending_human_or_vlm_review"
+  },
+  "input_manifest": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/cumulative_removal_manifest.json",
+  "input_manifest_sha256": "445dfc643a916b0aa61853a35a0f7f5833fc49d9ebdbaae1babbbfa4ea647129",
+  "limitations": [
+    "Forward splatting cannot reveal a surface that is absent from every donor view.",
+    "DA3 depth noise can misregister high-frequency bedding texture across views.",
+    "Technical coverage and exact outside-mask preservation do not certify semantic quality."
+  ],
+  "next_stage": {
+    "geometry": "rerun depth and normal estimation on accepted clean plates before PGSR/TSDF; the fused donor depth is sparse measured evidence only and must not be treated as a dense final clean-plate depth map",
+    "residual_handling": "keep masks/*.png as explicitly unresolved; recover with a cross-view-consistent background atlas or scene geometry before reconstruction"
+  },
+  "output_receipt": "multiview_prefill_receipt.json",
+  "pixel_provenance": {
+    "classes_are_mutually_exclusive": true,
+    "cumulative_removal_pixels": 1636824,
+    "denominator": "cumulative removal-mask pixels across selected frames",
+    "generated_pixels": 0,
+    "measured_multiview_fraction": 0.007601916882939155,
+    "measured_multiview_pixels": 12443,
+    "propainter_pixels": 0,
+    "unresolved_pixels_are_not_valid_donor_or_geometry_evidence": true,
+    "unresolved_unobserved_fraction": 0.9923980831170608,
+    "unresolved_unobserved_pixels": 1624381
+  },
+  "promotion_approved": false,
+  "promotion_blocker": "semantic texture continuity review is required",
+  "purpose": "calibrated multi-view donor prefill before residual video inpainting",
+  "schema_version": 2,
+  "status": "technical_passed"
+}

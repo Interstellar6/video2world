@@ -1,0 +1,5185 @@
+{
+  "alignment": {
+    "id": "pgsr_native_shared_frame_20260714",
+    "method": "identity_same_pgsr_coordinate_frame",
+    "note": "The TSDF mesh was fused from this PGSR reconstruction and remains in the same native coordinate frame as the Gaussian centers. No fitted Sim(3) or viewer center offset is applied.",
+    "rotationMatrix": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "scale": 1,
+    "translation": [
+      0,
+      0,
+      0
+    ]
+  },
+  "assets": {
+    "collider": {
+      "baselineMetadataOnly": true,
+      "bbox": {
+        "max": [
+          17.688766728282857,
+          7.125000000000001,
+          24.63632082700183
+        ],
+        "min": [
+          -13.186935391083065,
+          -13.875,
+          0.5750000000000001
+        ]
+      },
+      "chunkSize": 1048576,
+      "faceCount": 1351454,
+      "faceIndexType": "uint32",
+      "fileName": "bedroom_4_pgsr_tsdf_fusion_post.ply",
+      "fileType": "ply",
+      "format": "open3d-binary-little-endian-triangle-mesh-ply",
+      "hasSemantics": false,
+      "headerByteLength": 270,
+      "id": "bedroom_4_pgsr_tsdf_fusion_post_ply",
+      "label": "Bedroom 4 PGSR TSDF mesh collider PLY",
+      "note": "Uncarved baseline bounds/hash retained for camera and presentation fixtures; not loaded for character collision.",
+      "parts": [],
+      "sha256": "1cd9faf084a51f3959cd19dfc3ef05fb2dba9d6e1cdca944bfbeba6c33a1859d",
+      "size": 36328043,
+      "sourcePath": "artifact://video2mesh/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/mesh/tsdf_fusion_post.ply",
+      "vertexCount": 694773,
+      "vertexPositionType": "float64",
+      "vertexProperties": [
+        "x",
+        "y",
+        "z",
+        "red",
+        "green",
+        "blue"
+      ],
+      "vertexStride": 27
+    },
+    "colliderStaticCarved": {
+      "additionalFrontPillowRemovedFaceCount": 16485,
+      "baseline": {
+        "carveMethod": "expanded_source_anchor_aabb_triangle_intersection",
+        "faceCount": 1265671,
+        "id": "bedroom4_tsdf_static_carved_interactive_objects",
+        "removedFaceCount": 85783,
+        "sha256": "e6cb0e15496a6d653ceaf97031ed403fee4feb17d97e9283c9d65dd2dc9a6ff6",
+        "size": 35212864
+      },
+      "baselineRemovedFaceCount": 85783,
+      "bbox": {
+        "max": [
+          17.688766728282857,
+          7.125000000000001,
+          24.63632082700183
+        ],
+        "min": [
+          -13.186935391083065,
+          -13.875,
+          0.5750000000000001
+        ]
+      },
+      "carveMargin": 0.08,
+      "carveMethod": "front_split_and_completed_world_union_aabb_triangle_intersection",
+      "chunkSize": 1048576,
+      "directOversizedAssetPublished": false,
+      "faceCount": 1249186,
+      "faceIndicesValid": true,
+      "fileName": "collider_bedroom4_tsdf_static_carved_unified_pillow.ply",
+      "fileType": "ply",
+      "finite": true,
+      "format": "open3d-binary-little-endian-triangle-mesh-ply",
+      "frontPillowCarve": {
+        "completedWorldAabb": {
+          "max": [
+            0.4289947900649813,
+            1.1346495540655943,
+            15.761865082748717
+          ],
+          "min": [
+            -2.5142857068948183,
+            -1.472561065044762,
+            13.865914034685625
+          ]
+        },
+        "expandedAabb": {
+          "max": [
+            0.6542440223693847,
+            1.2146495540655944,
+            15.957863883972168
+          ],
+          "min": [
+            -2.5942857068948184,
+            -1.552561065044762,
+            13.108576698303223
+          ]
+        },
+        "margin": 0.08,
+        "sourceSplitAabb": {
+          "max": [
+            0.5742440223693848,
+            1.1270780563354492,
+            15.877863883972168
+          ],
+          "min": [
+            -2.463304042816162,
+            -1.4221960306167603,
+            13.188576698303223
+          ]
+        },
+        "unionAabb": {
+          "max": [
+            0.5742440223693848,
+            1.1346495540655943,
+            15.877863883972168
+          ],
+          "min": [
+            -2.5142857068948183,
+            -1.472561065044762,
+            13.188576698303223
+          ]
+        }
+      },
+      "id": "bedroom4_tsdf_static_carved_interactive_objects_and_unified_pillow",
+      "label": "Bedroom 4 TSDF static collider with legacy objects and unified front pillow removed",
+      "originalFaceCount": 1351454,
+      "parts": [
+        {
+          "sha256": "1c0daeffcb439364fda392035b610e6d449ee1a8568c3da3a45f50cd8eab79fe",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk000"
+        },
+        {
+          "sha256": "4e19cd1365df7f491992fb6a19930d167e81651d8e120a7f955fa07ea800e328",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk001"
+        },
+        {
+          "sha256": "9dbd05e6a6d53090a6075e2d837e5804d7ccb44833b754a0d3fa66d7d00e57d4",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk002"
+        },
+        {
+          "sha256": "a33dbba833a762a853ec37e508ea62f6262e0dcc95f157928e16d78577ad9938",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk003"
+        },
+        {
+          "sha256": "2bbf40b82b6081c456c7d82bccca041d34ea13e675e3afac351511268d898cba",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk004"
+        },
+        {
+          "sha256": "238815ccf3f07dda17069bca0fd87d69e1aa915d4e3a6d830328fa028fa42002",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk005"
+        },
+        {
+          "sha256": "23528973f6be60ab3bc0848687ded783bc9da640bf81362d01d9ccfefc708666",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk006"
+        },
+        {
+          "sha256": "ca30f539e456c16eb32a5cccfa926589b8d05c1b2d04d69790cf339ad33d339f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk007"
+        },
+        {
+          "sha256": "4fca732268e6dc8c7ea7ca85284aec1ca9d9ed0f473e89b30768cacccb126344",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk008"
+        },
+        {
+          "sha256": "1620cd1404b9c2a56b1dd063b85af9fb845997bc11a6d7b929fe66fa35f03f31",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk009"
+        },
+        {
+          "sha256": "62b0ea801740ed3c5f854b67e3539de3c977ccc47da598458535751865de958a",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk010"
+        },
+        {
+          "sha256": "03680f32255002b222f2fa31a45eb4c885715ee51212d664c700f74d50503e57",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk011"
+        },
+        {
+          "sha256": "8f2eedcc49b1c30f7fa93956d24cd88008631681af3179f121f8cd83888524d9",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk012"
+        },
+        {
+          "sha256": "a6067b36f9a6b645c65cfd4fdbbfc146835be17ba186e1bc70102c854f3d6359",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk013"
+        },
+        {
+          "sha256": "f179a29356da62858ef80af62073ab824db8811b4416b89d4208c5417d91260f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk014"
+        },
+        {
+          "sha256": "3ce6495907faa12ea73be3e17f9b3808ffb18c0ca70005aec204b32118d58ca5",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk015"
+        },
+        {
+          "sha256": "beac57b7b98a7a0ef34640bd3f509a870bbb652686be52cb730a5bf97ae85e46",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk016"
+        },
+        {
+          "sha256": "4682320d6fd1dd000769256dcb50bbd1bcfa0465c9fedaf33891c3150f2dc12e",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk017"
+        },
+        {
+          "sha256": "c185f3eb6f58a76779f27e1ce8eca0fa6f02018b40043623e1586e9a7bcd557d",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk018"
+        },
+        {
+          "sha256": "d23d3eee3fa0e157ac3934953753b38f44970b2959017869d0f036791461ba5f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk019"
+        },
+        {
+          "sha256": "b3c17be35992095a014e7ced4ed0eb6dd2f9e7ada77234639b2e7e70e020352b",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk020"
+        },
+        {
+          "sha256": "ccce2aa9072eb89987051a2b7e46823400ce9ea581cf0f0332e5aaff20c091a7",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk021"
+        },
+        {
+          "sha256": "184625ec98242986c9ff81b1131bf6cdd4f1f756b7ed2b3fb16b3b9a5fc9ac34",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk022"
+        },
+        {
+          "sha256": "565967b3df4ab2d11e0fd90e3f7eb691c49443306010ce1299c02751bffbca9c",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk023"
+        },
+        {
+          "sha256": "ef254c626eb10147754dd4fd7aced8272466fe18e91804b69a200c332bf02326",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk024"
+        },
+        {
+          "sha256": "80a8336209fdba72679e0ccb8ef417b3982012b83c8c092ba009c4dcd99e9d30",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk025"
+        },
+        {
+          "sha256": "0bc6c235224fd1d9744c321f4bed13e0ca1ec98feff6b31281ce494aecedbbe9",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk026"
+        },
+        {
+          "sha256": "940d8f3184ccf4b986b89c76418b1c6dea164927db56c415785ad1a433b768e0",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk027"
+        },
+        {
+          "sha256": "1373ca29617df80eeaceaa2f593b81733e17cad8f1e1ddac0a8560df13e6cd6f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk028"
+        },
+        {
+          "sha256": "f6f1782bf71d6acdd6ecca9ffcdfb4f427ef4d6b3e8b113858be708487901f85",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk029"
+        },
+        {
+          "sha256": "2f0004865dd4aafa775ed9230d816d7982d4f660ea4ee98336c57009b68c5d44",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk030"
+        },
+        {
+          "sha256": "709faeaaa763c34f67b33e904e8287913f83b03e81f0557431bd96a673f782ae",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk031"
+        },
+        {
+          "sha256": "989e57f8ac58693319787af4a8f580478dd94692d74d465a0d2fa722ad7e4951",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk032"
+        },
+        {
+          "sha256": "7fbbcb511480d3e7c9f05ea7df6a6f7c2f435a533b9f4592d2ac6b0b801f0494",
+          "size": 395551,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk033"
+        }
+      ],
+      "protectedSupportFaceCount": 2797,
+      "removedByObject": {
+        "sam3_nightstand_01": 48203,
+        "sam3_nightstand_02": 24874,
+        "sam3_pillow_front": 16485,
+        "sam3_plant_01": 6151,
+        "sam3_plant_02": 6555
+      },
+      "removedFaceCount": 102268,
+      "retainedIntersectingFaces": 2797,
+      "retainedUnprotectedIntersectingFaces": 0,
+      "sha256": "0d746bab37d0b5e6fd0c625f56e0917d80c60d402a0812c66f161239cbd7f35e",
+      "size": 34998559,
+      "sourceSha256": "1cd9faf084a51f3959cd19dfc3ef05fb2dba9d6e1cdca944bfbeba6c33a1859d",
+      "supportProtection": {
+        "classification": "down_side_near_world_up_support_surface",
+        "inwardBand": 0.1,
+        "minimumNormalAlignment": 0.75,
+        "objectDownSideCoordinate": 1.1346495540655943,
+        "outwardBand": 0.1,
+        "worldUp": [
+          0.0,
+          -1.0,
+          0.0
+        ]
+      },
+      "transportMode": "verified_chunks",
+      "vertexCount": 694773
+    },
+    "visual": {
+      "bbox": {
+        "max": [
+          17.380931854248047,
+          7.19534158706665,
+          25.302595138549805
+        ],
+        "min": [
+          -14.451483726501465,
+          -14.092606544494629,
+          -3.047991991043091
+        ]
+      },
+      "carveDistance": 0.18,
+      "carveMethod": "prior_object_carve_then_conservative_pillow_anchor_nearest_neighbor_then_front_residual_semantic_covariance",
+      "carvedObjectIds": [
+        "sam3_nightstand_01",
+        "sam3_nightstand_02",
+        "sam3_plant_01",
+        "sam3_plant_02",
+        "merged_three_pillow_anchor",
+        "sam3_pillow_front_static_residual"
+      ],
+      "chunkSize": 1048576,
+      "directOversizedAssetPublished": false,
+      "fileName": "bedroom_4_pgsr_static_front_recarve_semantic_covariance.ply",
+      "fileType": "ply",
+      "format": "graphdeco-gaussian-ply",
+      "frontResidualCarve": {
+        "backgroundAndBedCompletion": "not_proven",
+        "browserComparison": {
+          "perimeterDarkLossFraction": 0.125426,
+          "report": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/static-recarve-browser-comparison.json",
+          "sha256": "e97d5554d1508b66722e946ddf0206297295c7dae5c316c41346b873ca15df2c",
+          "status": "candidate_passed",
+          "supportBandDarkLossFraction": 0.09849
+        },
+        "inputStaticGaussianCount": 823391,
+        "metrics": {
+          "insideCompletedWorldAabb": 943,
+          "insideSourceSplitAabb": 1215,
+          "rearAabbRemovedCounts": {
+            "sam3_pillow_left": 225,
+            "sam3_pillow_right": 205
+          },
+          "removedCenterBounds": {
+            "max": [
+              0.8330102562904358,
+              1.32260262966156,
+              15.89404582977295
+            ],
+            "min": [
+              -2.5284900665283203,
+              -1.5471806526184082,
+              12.950684547424316
+            ]
+          },
+          "removedGaussianCount": 1606,
+          "retainedGaussianCount": 821785,
+          "supportBandRemovedCount": 682
+        },
+        "mode": "semantic-covariance",
+        "recarveReport": {
+          "path": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/static-recarve-report.json",
+          "sha256": "8d119fb87b329b9abd122335b8d1c7d0b75be0f9bd53fe64b0a28ff3be4dc36b"
+        },
+        "removedGaussianCount": 1606,
+        "retainedStaticGaussianCount": 821785,
+        "scope": "current_demo_only",
+        "status": "passed_current_demo_only"
+      },
+      "headerByteLength": 1531,
+      "id": "bedroom_4_pgsr_static_front_recarve_semantic_covariance",
+      "inputVertexCount": 823391,
+      "label": "Bedroom 4 PGSR static Gaussian layer with interactive objects and residual front-pillow splats removed",
+      "latestRemovedVertexCount": 1606,
+      "originalVertexCount": 871317,
+      "parts": [
+        {
+          "sha256": "2d5580708fd668e95e589813a4d21b5eb2ada59206a87288b0b7f4a000556189",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk000"
+        },
+        {
+          "sha256": "0b9dd47544c7f6fdd1b31dcd3730b24c55b04c3b0bdf9839101e5afb053af577",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk001"
+        },
+        {
+          "sha256": "7a1fed54d4dedfcaf0f6b80c199a4ae5835e0d369437442d870b632461aeb3a4",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk002"
+        },
+        {
+          "sha256": "0990429afab9831a9399470cad2d041340c4fad42813ffbe388e8c3fff5bd871",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk003"
+        },
+        {
+          "sha256": "9bbc0dd44df403bb12096ed005f1f72eb346672ca183a369b964c56c070ba4ec",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk004"
+        },
+        {
+          "sha256": "f45564c4c4c2c3d47c0275d23d8d5205c895192f7abae2343bc97e985ff6c048",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk005"
+        },
+        {
+          "sha256": "1e623c461940d3e7d7e20935de9604b4f9f3cd5ed3c255e5a0c9c4bbb9f2ffdb",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk006"
+        },
+        {
+          "sha256": "56482662f465a904bb356bdb8608ba5330764c1d20c9cb499276ee86b985caa7",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk007"
+        },
+        {
+          "sha256": "8425496ed1d89dfb85cc0182bc4616a3887f3157ffe43af9d936bd474c82f6a4",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk008"
+        },
+        {
+          "sha256": "b35df6b9d6fe76c2ac68ecdde0ff291fb6f4a78775688bf6616ec46d7f9c4e28",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk009"
+        },
+        {
+          "sha256": "8850e3cb06915439841b1aec3b5a4dba0abb2c81551f1c2bfd4d17b42ed5eb63",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk010"
+        },
+        {
+          "sha256": "6c994055be53a56b4f96155be06d737a080f697b5c6382ab8b9a35a6a9f1d028",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk011"
+        },
+        {
+          "sha256": "3946ada67887c6ee6425d322d9a818edfa9ec451a27fd2463f19ae65d2c8896f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk012"
+        },
+        {
+          "sha256": "f94a7953dc9b1a91b5db944f0ba8b98a1596a770ed7274addb95510e0bb6db42",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk013"
+        },
+        {
+          "sha256": "20100345348c1fc0c6c3033cc5007ba3418198e5b602032473e12e8a7a0fe45c",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk014"
+        },
+        {
+          "sha256": "582fad4f04bc7ec164fc7fd204229cd0fd2767c57d1a85417ed931e493fe6f32",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk015"
+        },
+        {
+          "sha256": "dab3dc3ce487f2577c54a1baf6b85ea232a403bee5b1a6ea317ea1f598a67f23",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk016"
+        },
+        {
+          "sha256": "c5c9427c6d5fd14fa6d569e4ec40ad0ee0052fdeb59f0b12946bbb41eccddc03",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk017"
+        },
+        {
+          "sha256": "8062dd508d7e91afcaec2536f03d46e5274d54199525b0ee2710379ae7d8acbc",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk018"
+        },
+        {
+          "sha256": "47e49b2fa2570a2b40ae58e8084e3754131141b4861c7f7ea6a270c2a50e1e6f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk019"
+        },
+        {
+          "sha256": "d02bccbd69371a6bdd3538206b54dba4411a84011d5bad209e8549dd013abeee",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk020"
+        },
+        {
+          "sha256": "0cd843a5b62e1a2437cbbbd9823cd785628b29a2d7453d2b6af20eef80711b37",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk021"
+        },
+        {
+          "sha256": "94f3949855c8760baf9bb43c0e0ad256f16a529776bf13a9b121c43e5aa24e0d",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk022"
+        },
+        {
+          "sha256": "2e494d24a06d59530a6418af7de28984477acd36d0014b48c825799b1e655170",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk023"
+        },
+        {
+          "sha256": "6dfd66b7f9290cb72a181206d82b48eae31cf01ba403f9a766f0f938e118b96b",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk024"
+        },
+        {
+          "sha256": "5c66a4b2bbabcd427de08b2e34b5248387ee6447aa9a70bd39e9884325e6bb88",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk025"
+        },
+        {
+          "sha256": "6de8d7b7e9bab6a13f6715b4b83f6b3bab62b82766aabdb24785f1493ee76f86",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk026"
+        },
+        {
+          "sha256": "aeee9cadfecfb46c7797e2e95d6700dbba9dd9663dc774b63aed867c1534add0",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk027"
+        },
+        {
+          "sha256": "4b3b2e85e2e60c1cf5e5dfe525ec22cc5c1cbea349e71dc178234ed4c3c5ceee",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk028"
+        },
+        {
+          "sha256": "aed38e2bd38f7e7935fff49eb76fbfba843df96b58ec6a512648a9f075258617",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk029"
+        },
+        {
+          "sha256": "ed4eeffb7b7b8c4fbff283cb46c08aedefd3b3d5733ec1cc83868681c8b40994",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk030"
+        },
+        {
+          "sha256": "2aae13db46209b06265e79c65109052b28aa3512eb5e8b3626bd67b4cfed48ca",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk031"
+        },
+        {
+          "sha256": "4699ede81085e0f2c60acfb8611822ad039c06e4ddbe08a541f4a7bd39e7c808",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk032"
+        },
+        {
+          "sha256": "16b25a768fee1adc29a8c612d9dc3fcd73077b04a796889d21640b0d7ef15985",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk033"
+        },
+        {
+          "sha256": "779448910bab47fe44544190d7fea63ce0d6b8e065c3296a77d02ab3e291f333",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk034"
+        },
+        {
+          "sha256": "d3de3dbb4fde085bf55100ffc27e588db7c262e36612e222040f3af454cb8b01",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk035"
+        },
+        {
+          "sha256": "33c5af0a65f1c2c677ccc65a443fd7cdcfaca6702eea624bba5b47a23c69ec6d",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk036"
+        },
+        {
+          "sha256": "8ab5ecc58b43e0966509920ce73a32e261bcc6a430a64f6eda4fbaabb1da8610",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk037"
+        },
+        {
+          "sha256": "a29799043c5840fb7daf091db6cd86de521236e1699d2395488f1f41c3e00ea3",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk038"
+        },
+        {
+          "sha256": "b190ef8052d9a71a0f60d15c5d07d44cf0c65e3a5111b00fbc04eeaedfcb1901",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk039"
+        },
+        {
+          "sha256": "d5018f8329db7242c7dee80ea005f0910579a23f28b8cc16a62a1d362765a672",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk040"
+        },
+        {
+          "sha256": "fb5266494ed8c013597611de93b294071a0727cc697c89c44eb6204199b73f5a",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk041"
+        },
+        {
+          "sha256": "80d66f69263d9960effb89c65d41c24a8ac9bd4aca091167ab0ca1bbae73d82f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk042"
+        },
+        {
+          "sha256": "0c88dd9cde3ac1354d8ee4c6b16873ce74b5daaa93b7b0e894184037e03d88ea",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk043"
+        },
+        {
+          "sha256": "23592c02e264c44294f3d154ee9a2397b69dba46a581a33c37ad374ee7901023",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk044"
+        },
+        {
+          "sha256": "ed6467827540e5d0c13782fa51e507ce6e32ffe2898d44441dabb54d8f09615e",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk045"
+        },
+        {
+          "sha256": "66a5fd6f6f79d163cc036eb7c2543a38c55d1dd09d3ae985ed1eedcc9ef50b26",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk046"
+        },
+        {
+          "sha256": "78713674d7a2af24c21c8a3a7e55853d6b5402b80f027955f3410bc44870de90",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk047"
+        },
+        {
+          "sha256": "e234cdb6c2c6da0d8a42c31c717435077eb97cbdac2b11e0ea1e2ab267655930",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk048"
+        },
+        {
+          "sha256": "03f663cf46356d80b8e26aa2c6587d0d0272fb2ff40de5e9a0169a36076691a1",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk049"
+        },
+        {
+          "sha256": "931d75e9364e99a69c070aebd93372960135e70d130958dbda5ff225a99c577e",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk050"
+        },
+        {
+          "sha256": "e840858d16e6dc463e9b424d87aab5c7ff5e26c08e1b18ae507d94454015f5fc",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk051"
+        },
+        {
+          "sha256": "917f1b6ad46aa560f7e6c3d552f62e23360fbe0f3f0d3968b424349cb2a7a727",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk052"
+        },
+        {
+          "sha256": "f5f1822818d1ba8612e1b0f982cdfe321bfe18f9bb65adfe49a4ba45e8f898ff",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk053"
+        },
+        {
+          "sha256": "44dd0797f20f8408c0b2f9933ee78a4d2dcedfdcd9cd1ec5438549844fcdd305",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk054"
+        },
+        {
+          "sha256": "2b20ef9c6be7f2d4aa4c7763dce514dd9e93994f62bff780c4259b66325e62d3",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk055"
+        },
+        {
+          "sha256": "970326fcf86ebb72a396441fc897d7ddb312eebb8f0542dcfa5a8b678776c01d",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk056"
+        },
+        {
+          "sha256": "fdb393cc1f2afc49ca4cf975b9bb21f5218301f7ca8741315e061e2d0b9120e5",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk057"
+        },
+        {
+          "sha256": "06d4fb966b132281e814c92d42d827111bcc7bd452eae876087492fcfb2e0d82",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk058"
+        },
+        {
+          "sha256": "cd987c48275fce12e4e12989dd4a63ae5069e8be07f39f468e9b50a7a8952fdc",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk059"
+        },
+        {
+          "sha256": "aa0431faf741ffab5908e3c4b601286ad57499df8b77eca37b400b5e27173c4d",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk060"
+        },
+        {
+          "sha256": "3afeb2967b0cc5c6e7f9c72163375a124227dbeb7d04c2481b15d0b3fb36fed8",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk061"
+        },
+        {
+          "sha256": "319663122a51bd108ad4d813eac8d5e4f480f4b9ff38cd64201c812fc39c83c2",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk062"
+        },
+        {
+          "sha256": "35414ea3c7615a70233ba13477c8375fcf014a28b39fe0d86e9b545459926deb",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk063"
+        },
+        {
+          "sha256": "5be372c396121e3af01a303693a7e0e7294a1877d953aa98a6c4669c616dc5d1",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk064"
+        },
+        {
+          "sha256": "488a482f0c73567a0d73efc408f886a11cd28bb1898e7e2627044a84d7e313ca",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk065"
+        },
+        {
+          "sha256": "d8b2cd01280d66cd258fb760086e9b80d3d1c3d226c81121022622eaf2e3601f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk066"
+        },
+        {
+          "sha256": "c0c6b96f1eaed314ea300b6c7041c24f9147c167def2ec07072b4f8008e77bac",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk067"
+        },
+        {
+          "sha256": "6683453703bd52b5ad933d5252c076658569c5e5c11389b5dd7729cfd7c7cfb3",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk068"
+        },
+        {
+          "sha256": "6f699ad71e030366bc240bbbde4d191ad1847520195aadb41ef2fc92b8792678",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk069"
+        },
+        {
+          "sha256": "4e7266264a5a9182fab0a2f89131f7eaf159b3a79e29f512147e1541705a825e",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk070"
+        },
+        {
+          "sha256": "7139884bae47333561728e98cf863ee36277c91a90ea0592f766dc9cdb311115",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk071"
+        },
+        {
+          "sha256": "48a4bfc132845dde4142839b59dd4acc0793fb19558c05339644de9ba2472b96",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk072"
+        },
+        {
+          "sha256": "b8d0356e66036e6eec690617efddae711eb2210d35e5bde7fa4425d1890b3384",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk073"
+        },
+        {
+          "sha256": "fc27493cd39c62b1a57611b4d28fb13b5c12b729e72e8e002346de6c102c68b0",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk074"
+        },
+        {
+          "sha256": "b3f2bc74632f26b42eeb4321c1b9e5b1b06ebfd3721f2a9a334ab4465f259575",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk075"
+        },
+        {
+          "sha256": "b9e3bb61a8be214c44ba5cf40d2e8e5b75a6548a657acb4e83c705862c33eebc",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk076"
+        },
+        {
+          "sha256": "5931de7653c5a6fe59f24fa2ed8f9d6799b6b279e8d642c1da2b0b0b9c9aefa7",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk077"
+        },
+        {
+          "sha256": "1aff7f733223a4aa53eef0d3380518af40a57767ca988339d6a0133e7eafed0f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk078"
+        },
+        {
+          "sha256": "e9a35a0fc280b620f2c4eaa9f53edb635aaa43a91c32bbc47b1ee0855c320dec",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk079"
+        },
+        {
+          "sha256": "57e70aeb538f95e41ab1c4def943fe972a4c231c15b1137c615e5b87ec14ae28",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk080"
+        },
+        {
+          "sha256": "a91f3a7ebc2b86ff1b5e519db42c11be293db304008e71beaf274822baeff4ed",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk081"
+        },
+        {
+          "sha256": "066152588e0c1562edff2787e38e0adad8ca0c8d2773f64e09647148909302b6",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk082"
+        },
+        {
+          "sha256": "f8f54fa324fbc002c6196ea5883cc186c919a2ade2c4be7260a3b09921329a93",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk083"
+        },
+        {
+          "sha256": "c8518f920a2abbc95fd6515af45112cfce373ea03f7fe4de966c6d00c4e55345",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk084"
+        },
+        {
+          "sha256": "49719275d21d46250f2cb450ad009e2c6bfd4162fc58caf57f58690716e30c12",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk085"
+        },
+        {
+          "sha256": "28f9fae96f02ba05fe3c12852bdcb905a6c4381a1f8192fa33079006333378cf",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk086"
+        },
+        {
+          "sha256": "5451eb2bb92d343836a570f19c032fc02e0144eea4a31eec403f27876ef9c420",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk087"
+        },
+        {
+          "sha256": "cb32fbc5c31b4b9f45239d48fa71a9bb8bcaf2f5c4666ce19e0d97914dbc87e0",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk088"
+        },
+        {
+          "sha256": "cf0d715820c655c5b9ada54bd7dc8b6afa090f42d71152d5314716c862321b42",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk089"
+        },
+        {
+          "sha256": "8b89981510e39274da996154ab763bef13e7d92cc608e7b8a5f8d880a1e71726",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk090"
+        },
+        {
+          "sha256": "c1b8d6318ac4d01cd981b24b6bac88dcc3712eb1bc39418b8419dd4dfe20c757",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk091"
+        },
+        {
+          "sha256": "7acb24262b1850f38a2380662ef7ffa1b49545d2a8f24c90753fe46b88da98e3",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk092"
+        },
+        {
+          "sha256": "fc77d1d460a8677822b679d958eca77ba563a00ad8db059c193d86ed343ba5f2",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk093"
+        },
+        {
+          "sha256": "6efb51b930bbc5ccdb64679c0bdaf72adfcf04726b0ac6e59a00f872d43de445",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk094"
+        },
+        {
+          "sha256": "7d03c6febc8d6f4d181e89714717b9dba067eb7fc69ce8bec9ca78e204accce7",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk095"
+        },
+        {
+          "sha256": "09e4e205d0293613e9dcda3daec1ad8941ec12372b018fbeeaa516ac375221ce",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk096"
+        },
+        {
+          "sha256": "4f47e6eda861e25db731c20073bb7005810a2a8c5ab70d5e44de377dc0c3a0e6",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk097"
+        },
+        {
+          "sha256": "b8eabff46be8428c1e6013c57dd876c792ecb713194b77db72a049ba45e59974",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk098"
+        },
+        {
+          "sha256": "f7a865b82a2e736fb7b3ed1db9f1619f2de12de5aea38fd59e67953fbff4fd08",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk099"
+        },
+        {
+          "sha256": "9f22a2b6aa18c50891e9a2e46526dce4a45b0dc3762b1e05b1ef2ea16c7ec064",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk100"
+        },
+        {
+          "sha256": "a0ee5ac6811a64552242f6730c440ff4195c7baf8d08656abfcd68033a7932f4",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk101"
+        },
+        {
+          "sha256": "585deaa1b44c6ff739da8c3458469b5eebcb51df18d1c7f67a194c609e9805b8",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk102"
+        },
+        {
+          "sha256": "7247a96d7fc5529fb16a716446dd3191ce06f8aeb01b648a0d86202391db9cca",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk103"
+        },
+        {
+          "sha256": "324c9604e34fe8e074654002db33a6c2c40fcf1824bc61cd533c60ae29efdd8a",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk104"
+        },
+        {
+          "sha256": "992c99fb654801b36e4572cde09c5e1389cd70d4933674443ea4a9cb6849d188",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk105"
+        },
+        {
+          "sha256": "1581cd28c48611ee1731c346b3ad5da252c2853b78b424e0825dea38f33c773f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk106"
+        },
+        {
+          "sha256": "2b6eb97c6d3d86dc37f99117704eeaae348e80879318db9083f1ca572cf8d405",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk107"
+        },
+        {
+          "sha256": "0cd8784f68c687291d0c8faefdb51d9330d04e67dcaf99c50643bbe79c5edcfc",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk108"
+        },
+        {
+          "sha256": "a6988dfe1748681824fbdee6f0623e45b1a2b653cae45696b4c44ee5ecd1d31f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk109"
+        },
+        {
+          "sha256": "eb69e7e051aaaad6c1eb0ea9db5b02168450feaae499c01545e62eff56f61145",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk110"
+        },
+        {
+          "sha256": "895f0dfe6d78794bf64e274c84044d78c37e76faa71805342975f43dcd8f310f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk111"
+        },
+        {
+          "sha256": "1df111d344b01b0007d165d3a5aa597f1de0f0146815655891250ddf72ab3169",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk112"
+        },
+        {
+          "sha256": "177cb883f5491ec63c74c644ff48017869699e971cac128818590dc8a3876fbd",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk113"
+        },
+        {
+          "sha256": "2437115903239b6e2041c0b37bb4f8065aa79f24ada22bdbb515dce8b5fda448",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk114"
+        },
+        {
+          "sha256": "012e6da96bb60547c044d5bb64ece77e12806bc4dd8041142163f2d5f7cc1f48",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk115"
+        },
+        {
+          "sha256": "dd9e8483c09f14c7bf0aa6fc538f1b818fe12bd4f0e2252d02d07d06b2b56959",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk116"
+        },
+        {
+          "sha256": "64e9a9c6eda201ef6c215b2b1abea14e0af2739cfdcbec251440b5100d6d591b",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk117"
+        },
+        {
+          "sha256": "0b6241bd12a939674d733116194f07c0a62bec6a3bfa9c935fd1928c420c97ca",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk118"
+        },
+        {
+          "sha256": "d24d64d1eed1e325f2a4eb65a9e230953b1cc0b0529061444072806d151498d4",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk119"
+        },
+        {
+          "sha256": "7eff141f77d0edf53474b60fa6c06e3e726ad3508bab5dda77a277b1a2766eb8",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk120"
+        },
+        {
+          "sha256": "782c75940bcfda6434187a79b430cc7ecaf20cfb69b9abe18580eb036b9ea7d9",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk121"
+        },
+        {
+          "sha256": "7cd5898d59724cbeb8e5d2e30b3bad622fafdccb3f4845cac0aa811ae8ab57c0",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk122"
+        },
+        {
+          "sha256": "54b3ed245c0f1453941d78558b38c942ab38888efb848b5c8a5e9fb89f947a57",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk123"
+        },
+        {
+          "sha256": "0adf57df8dbd3622832247e2ecf30ba8c5cbc91c3c5d7caee9f281f89308b734",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk124"
+        },
+        {
+          "sha256": "b98fc0a50e042bc32351838f543e8285f75447bff2e168bcf27bdb59cdba9976",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk125"
+        },
+        {
+          "sha256": "8ab7de8b332773cb21fad8d142ac86d1392d6b93f87ec343176ddaf69dc89e7c",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk126"
+        },
+        {
+          "sha256": "f81ae1f3a7ddc93bd21acd3a0b7435df4c9cc797fa99f1e6efbcd35f6c3dd0ad",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk127"
+        },
+        {
+          "sha256": "c8fcd27761d8e8f70b5cd451fd65b60583d7d0e31961644440f062812a400693",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk128"
+        },
+        {
+          "sha256": "fae5f0d870d2371cf026a1c41b4f984a0a42c34bd3a6b700f430a94a9d895ede",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk129"
+        },
+        {
+          "sha256": "358edd9df294744f19c8aa41bccb30629a5865413e4f4a0a493d44d4d633c28b",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk130"
+        },
+        {
+          "sha256": "8b3afca5e5c592d08a7c4becaad6657f846f2f28d822ca694decbb33e322615f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk131"
+        },
+        {
+          "sha256": "bee72dd29dd9e9472ef477a2c114393c047b4a2227452dcb3286faa33b123438",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk132"
+        },
+        {
+          "sha256": "3c8971ca856ba29814ee4a7cb14dc02e0487108fa55d4c188462c2e2663787af",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk133"
+        },
+        {
+          "sha256": "e5c15c19c1ed42d5dde8b3ab23aab653b8f97757d544e7067d04d6f826d347d9",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk134"
+        },
+        {
+          "sha256": "5ce2c38b9ed98e912111221742df15f359a35725173978cec41fee06a1e153a5",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk135"
+        },
+        {
+          "sha256": "5d2b63fb09a6e2461db00ae933627a1fa4353d0ed57e7c160608879e488e2e7a",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk136"
+        },
+        {
+          "sha256": "728f7833803b1c4f3c120fa7ddab04d2e6c6183939a2814c637cc1d380bb2abf",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk137"
+        },
+        {
+          "sha256": "b2cb7b48af8a6886ec38ffad7b4d36efd02da83af600e4968d2c0525d753f930",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk138"
+        },
+        {
+          "sha256": "0def957b6fcbdd1f4b0915b191fd52fd33ed6ed113dfe1c4bacc53958d858d59",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk139"
+        },
+        {
+          "sha256": "28e87d27786aa5f34e2c8334163cc07a491d18262d0701490cae2791b0685411",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk140"
+        },
+        {
+          "sha256": "31480ec9b485894360eb4a121beb53d202216b92c640973047f8ed27ba96bff3",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk141"
+        },
+        {
+          "sha256": "ade39fb4fcf4bc84cc07e58148f12377df1703b44352d96424d42e253b9f5025",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk142"
+        },
+        {
+          "sha256": "2b4825376cafd6a6c8e25a78a56c55c6fecbf01e76c997d8ea3608585a1d99a6",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk143"
+        },
+        {
+          "sha256": "70b79a49c12190498ab4d882574ffa772a843d488ead3a7620ea8c545a84b528",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk144"
+        },
+        {
+          "sha256": "9f076553c6e04b0a23c1259293367f28ba5f00e8e8bc52b130390623e4403962",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk145"
+        },
+        {
+          "sha256": "29deb926fae58fa46413781f59cc2a366cd6931e23402a0bf6d91bf72b47667e",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk146"
+        },
+        {
+          "sha256": "949858cebbc7195833504df5b46791011320a07f7f88b7171a524d4978d4e435",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk147"
+        },
+        {
+          "sha256": "364b6a208213ab6e23d1023825eefc4bcb1367908aad0c1154740bd1a91dd679",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk148"
+        },
+        {
+          "sha256": "c90abfc12551343b7caa3f246a8778653284b888329b65295f78f4281b369ed2",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk149"
+        },
+        {
+          "sha256": "b5a500ad92548139039d6f25d32846b5bd0ec1a41fbc0860c860d5657b42b6f4",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk150"
+        },
+        {
+          "sha256": "aa41f2d339855d9cc75510a4ac7ef556fcce7d0f6528e33c079477626d19ec3d",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk151"
+        },
+        {
+          "sha256": "f8042d23a2cfb1ce4e9b29fe78476fb1ed4511c61a74970f736fec4aeba675ec",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk152"
+        },
+        {
+          "sha256": "e83df11962da07a2b86f1cbba17978219f0da8afb33ca9051c83bf8353aa2005",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk153"
+        },
+        {
+          "sha256": "55936e37f55639eb6334f20277aaae70fd64a0637f9fe0c980f83392fbbe8b8a",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk154"
+        },
+        {
+          "sha256": "b938f8c52053154e5249c855b3383a2c43f1698237f639a93515c6c89560e5ea",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk155"
+        },
+        {
+          "sha256": "a8f019aa4ca713d8bbc6c12044a37528d431bf1262eec0b1900ce1e609ca1b30",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk156"
+        },
+        {
+          "sha256": "46f0bf53c36fa4ee9e85f2deaf84551b44c610901d96d523518fc09ca9cd2b4b",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk157"
+        },
+        {
+          "sha256": "e2f2a5b4d52db19b195cbe760aba70ea982ef99fe2dd0b37be3590476ccc8b4d",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk158"
+        },
+        {
+          "sha256": "8b82b99919d9b048cb88cf28d9fbe58e0c8918837c5056d257576cd1ac00514e",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk159"
+        },
+        {
+          "sha256": "86e50d600fcdb37c678f3b4fcc8987346bb9e7df22df8e948818bc04ec972503",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk160"
+        },
+        {
+          "sha256": "7758d3e4508354d8c403a9bb78bd3c3ac847e6ceba4c7cede666870e8eed1ab1",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk161"
+        },
+        {
+          "sha256": "b5482912b5881080000131864cbe237e8de04ed867f84b0377dd717f7db18a0b",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk162"
+        },
+        {
+          "sha256": "95980f5a4cdc5495a24cd741059458812726e6fc02ef9af8e1aeebe6af3f4618",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk163"
+        },
+        {
+          "sha256": "47d48c9acc628e685ac0659a6b558b8de2a0e18bba28ad06c8ecbdc554e13157",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk164"
+        },
+        {
+          "sha256": "293995172539525a4be43d78833ed507c0eae463bbd8cd6cc39ddee37f2ac7cb",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk165"
+        },
+        {
+          "sha256": "e15cba4927e801413d1ae915ce747affa7d9d152d4f2fd958432444a963f1e99",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk166"
+        },
+        {
+          "sha256": "8a59a30b4d358beee8889dc047b85b3007b7b01cd373662bd2a11c604399d0f4",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk167"
+        },
+        {
+          "sha256": "b2d37f05632c24dcbcf5a1bf8dd3b3acce97eaad9eecdd81a0715fb0ce7c4410",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk168"
+        },
+        {
+          "sha256": "be02934a5674dc220bdd6f39411adff87dfe78670cd4733bd57d51cbd6ec03ce",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk169"
+        },
+        {
+          "sha256": "7fd68cba6597ca27ea0238681104fb73690886a8556dfbcdfca46cc577ac5498",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk170"
+        },
+        {
+          "sha256": "3ee9bf8292c12d8cdc7336cee921a896b41ec48c01a2a45734d0488dd0c9985f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk171"
+        },
+        {
+          "sha256": "a2721e0f7746e67c98928cc3a995e20dda67a35e5d765af63fdf5ba3a67a9cdc",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk172"
+        },
+        {
+          "sha256": "c5d828b3976203664864476f70cf00a9309520f5da59f0bd5d49f1baadf3fb55",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk173"
+        },
+        {
+          "sha256": "fc617712ef01ff1dddff15098beeb7584b27d1ee6c262626b2c77d711fa1a2f3",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk174"
+        },
+        {
+          "sha256": "0f79e5bbdda028d68fa0739e36f5e8b8d414a9bf6bfc3497ac7d3956cf51c3d2",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk175"
+        },
+        {
+          "sha256": "472d037d3a0b8b3857ced096d06bd4bbcdd404969538063e5f1852106e578477",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk176"
+        },
+        {
+          "sha256": "e8ecc108147c83ddb0de7d77aecf59ca8dac3ff1a225509207da25c3fb148694",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk177"
+        },
+        {
+          "sha256": "366ffb02fe30005ccfb3e4bd266919fdb64799dda482444fa44dce22b9809329",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk178"
+        },
+        {
+          "sha256": "b36c7f96f245914a8de235d9ee11547c41a78d3a191bf7e606242aceddcec35f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk179"
+        },
+        {
+          "sha256": "3498e8881e4ff84806749b0a1528db3d377c0178b66dcb630c73212998cd86eb",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk180"
+        },
+        {
+          "sha256": "f444b1b7b7146ba6d84c329a8fc8b6eef377f7f8f4714fcd722cfd0566fc0018",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk181"
+        },
+        {
+          "sha256": "f96966c362e3a6c9d8e7a0ad1e4ee8c7f7161e3b48e8f66e8493ed058bb2aa62",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk182"
+        },
+        {
+          "sha256": "19c4ed76093dab960fab6f62d9ff1d62a4f8eae672e21423c57d84ffaf206b2e",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk183"
+        },
+        {
+          "sha256": "c7f60125face12bd6a82e7840289eb74b36edf16c3d0717f608d1deb35d91d7a",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk184"
+        },
+        {
+          "sha256": "c6af280fb2211434786e950f08655fd5978f4fc63ffccaddf8a7fa6305cf3f79",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk185"
+        },
+        {
+          "sha256": "bedb053d406aa9e0029ad37b474e9e2d0a5eec2b016417957a024a5079753831",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk186"
+        },
+        {
+          "sha256": "ab88410f1105a3e531d3e7cb30a496dbebaed90a8a94b9f93a7923f36522b242",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk187"
+        },
+        {
+          "sha256": "16f9feec343d5aad722e78da6fb4ad62f15312b9a13840bbb8dcdf8b4e5be8f9",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk188"
+        },
+        {
+          "sha256": "4ef9bea1b6c61cd156247a225d7768111c814b32820ab35ad22bb86ddfb765e9",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk189"
+        },
+        {
+          "sha256": "3583c4747bd69f9b7726034b6fa18f32a4856b14ba9657ff102745a647e06a95",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk190"
+        },
+        {
+          "sha256": "be3e25611145c409ac7e52e526ce5c307e68605f591db8dcb411b63d6469f0ba",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk191"
+        },
+        {
+          "sha256": "d217f56eb951715e2f603b88a7d2ea66d515a792cd831a9c8f6825e460ccf6b6",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk192"
+        },
+        {
+          "sha256": "f2fa5868f98ea4bec0919c951f424fd8c7bff5535e5930abe30b38801cae57cc",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk193"
+        },
+        {
+          "sha256": "654c6e41750df7f97de6d8b9cfdaa731b6e474a444c177ac3b35ff8f45e8ee22",
+          "size": 380467,
+          "url": "./worlds/bedroom4/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk194"
+        }
+      ],
+      "pillowCarve": {
+        "acceptedAabb": {
+          "center": [
+            -1.4561858415603641,
+            -0.5146498405933381,
+            15.301824736595151
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            7.262578554153441,
+            3.1900772786140443,
+            4.079373254775994
+          ],
+          "max": [
+            2.1751034355163563,
+            1.080388798713684,
+            17.341511363983148
+          ],
+          "min": [
+            -5.087475118637085,
+            -2.10968847990036,
+            13.262138109207154
+          ],
+          "sourceCoordinateFrame": "video2mesh_da3_world",
+          "transform": "identity_holi_da3_to_pgsr_shared_frame"
+        },
+        "anchorInsideAcceptedAabbCount": 203705,
+        "anchorInsideAcceptedAabbRatio": 0.972436378,
+        "anchorOutsideAcceptedAabbCount": 5774,
+        "anchorPointCount": 209479,
+        "anchorRawBounds": {
+          "max": [
+            2.568901,
+            1.194091,
+            18.424143
+          ],
+          "min": [
+            -5.435565,
+            -2.275802,
+            12.965193
+          ]
+        },
+        "anchorSha256": "7590a8d9ae719e2af6d0017d9c1152772f99d726d414a5c4e84cb8ce017a1452",
+        "distance": 0.08,
+        "inputAssetSha256": "d956e6895b1dfbce3fd18d1cd7d1ab0152e0a0534879b0ef40617c2179c0597c",
+        "inputStaticGaussianCount": 850122,
+        "insideAcceptedAabbCount": 30769,
+        "method": "accepted_mask_projected_point_nearest_neighbor_within_exact_aabb",
+        "objectId": "merged_three_pillow_anchor",
+        "outputAssetSha256": "0983b53eeeeefe7d41e3024a5ac9d5001171423da52beb1c8a542c3d02368c23",
+        "removedGaussianCount": 26731,
+        "removedOutsideAcceptedAabbCount": 0,
+        "retainedInsideAcceptedAabbCount": 4038,
+        "retainedStaticGaussianCount": 823391,
+        "safetyGate": {
+          "exactAabbRequired": true,
+          "nearestAcceptedPointRequired": true,
+          "note": "Conservative identity-frame carve; unmatched bed/headboard Gaussians inside the broad pillow AABB remain static.",
+          "unmatchedInsideAabbRetained": 4038,
+          "wholeAabbDeletionForbidden": true
+        },
+        "sensitivityRemovedCounts": {
+          "0.04": 21851,
+          "0.06": 24922,
+          "0.08": 26731,
+          "0.1": 27880,
+          "0.12": 28593,
+          "0.15": 29236,
+          "0.18": 29593
+        },
+        "status": "passed",
+        "units": "scene_scale_not_metric"
+      },
+      "removedByObject": {
+        "merged_three_pillow_anchor": 26731,
+        "sam3_nightstand_01": 7895,
+        "sam3_nightstand_02": 7747,
+        "sam3_pillow_front_static_residual": 1606,
+        "sam3_plant_01": 3288,
+        "sam3_plant_02": 2265
+      },
+      "removedVertexCount": 49532,
+      "shDegree": 3,
+      "sha256": "7f8a7d9a1fc07cee34754469d5fffe95d90640bfa9d5883b4432e83698e55c0d",
+      "size": 203804211,
+      "sourcePath": "artifact://video2mesh/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/point_cloud/iteration_30000/point_cloud.ply",
+      "transportMode": "verified_chunks",
+      "vertexCount": 821785,
+      "vertexProperties": [
+        "x",
+        "y",
+        "z",
+        "nx",
+        "ny",
+        "nz",
+        "f_dc_0",
+        "f_dc_1",
+        "f_dc_2",
+        "f_rest_0",
+        "f_rest_1",
+        "f_rest_2",
+        "f_rest_3",
+        "f_rest_4",
+        "f_rest_5",
+        "f_rest_6",
+        "f_rest_7",
+        "f_rest_8",
+        "f_rest_9",
+        "f_rest_10",
+        "f_rest_11",
+        "f_rest_12",
+        "f_rest_13",
+        "f_rest_14",
+        "f_rest_15",
+        "f_rest_16",
+        "f_rest_17",
+        "f_rest_18",
+        "f_rest_19",
+        "f_rest_20",
+        "f_rest_21",
+        "f_rest_22",
+        "f_rest_23",
+        "f_rest_24",
+        "f_rest_25",
+        "f_rest_26",
+        "f_rest_27",
+        "f_rest_28",
+        "f_rest_29",
+        "f_rest_30",
+        "f_rest_31",
+        "f_rest_32",
+        "f_rest_33",
+        "f_rest_34",
+        "f_rest_35",
+        "f_rest_36",
+        "f_rest_37",
+        "f_rest_38",
+        "f_rest_39",
+        "f_rest_40",
+        "f_rest_41",
+        "f_rest_42",
+        "f_rest_43",
+        "f_rest_44",
+        "opacity",
+        "scale_0",
+        "scale_1",
+        "scale_2",
+        "rot_0",
+        "rot_1",
+        "rot_2",
+        "rot_3"
+      ],
+      "vertexStride": 248
+    }
+  },
+  "cameraPresets": {
+    "doorway": {
+      "coordinateFrame": "visual_native",
+      "eye": [
+        -4.259808124205683,
+        1.963646527046706,
+        -6.4737616480170415
+      ],
+      "forward": [
+        0.21489584373036277,
+        -0.0009998972193683907,
+        0.976636482087327
+      ],
+      "id": "pgsr_input_camera_000000",
+      "label": "Doorway entry",
+      "sourceFrame": "000000",
+      "sourcePath": "artifact://video2mesh/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/cameras.json",
+      "targetDistance": 6,
+      "up": [
+        -0.016398570246294243,
+        0.999854805545369,
+        0.004631952091720971
+      ],
+      "verticalFovDeg": 55.776917
+    },
+    "reference": {
+      "coordinateFrame": "visual_native",
+      "eye": [
+        -1.62950243820192,
+        1.818849050201853,
+        -2.5396998253837135
+      ],
+      "forward": [
+        0.31380919609254937,
+        0.005869813544282999,
+        0.9494679394693233
+      ],
+      "id": "pgsr_input_camera_000018",
+      "label": "Reference interior",
+      "sourceFrame": "000018",
+      "sourcePath": "artifact://video2mesh/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/cameras.json",
+      "targetDistance": 6,
+      "up": [
+        -0.027003895871585824,
+        0.9996315591734393,
+        0.0027451343575030564
+      ],
+      "verticalFovDeg": 55.776917
+    }
+  },
+  "candidateBuild": {
+    "cleanScene": {
+      "claim": "This candidate reuses the current static scene byte-for-byte and does not claim that the old bed, rear pillows, occlusion holes, or background were peeled.",
+      "inheritedStaticScene": "existing_front_pillow_residual_recarve_candidate",
+      "knownUnremovedOrUnprovenResiduals": [
+        "sam3_pillow_left",
+        "sam3_pillow_right",
+        "sam3_bed_01",
+        "occluded_background"
+      ],
+      "methodRequired": "front_to_back_cumulative_peel_then_clean_plate_reconstruction",
+      "status": "clean_scene_pending"
+    },
+    "completionClaim": "four_unified_pbr_objects_candidate_only",
+    "evidence": {
+      "assets": {
+        "sam3_bed_01": "ad9eca71a676cf8fa5cad7a38d0ff5a623149de01e61ae91ba651ea07d37790e",
+        "sam3_pillow_front": "9d84ab4561d7c017c24c07a94abe5400073b0fafb97893a8a1eafca320c391d6",
+        "sam3_pillow_left": "43f95a5756ccecb9a1ca36ba583c2ad4fd5dd1a4e66b1d591be935f2bd59b600",
+        "sam3_pillow_right": "eb4ad2cb0398602865ff3511039e440ce9cb50ace016fffeaaf3ce3944280f1e"
+      },
+      "joint_review_sha256": "48c4ba43baa8b0767772e70fbf0165aeb6531018d4e0c172a0525d2760456d28",
+      "pairwise_review_sha256": "b8928ffa92aaee81ef2abf76f2237da1bb893770fd6e50e4f642db8620204c74",
+      "scene_fit_receipts": {
+        "sam3_bed_01": "2f3b8b29d2270964fe8931c4826b2b126e60266cfd97d157af5b8cdd971a6adc",
+        "sam3_pillow_front": "da26014b1ecc29eb1dfcf8d45b74d98bd539b69945e029a6512ea6a2ab8769cd",
+        "sam3_pillow_left": "1f551500f5a540dfd46b9aaba33a503f36efc47c5e7169dc953ed779f40a98c7",
+        "sam3_pillow_right": "d9ec2811d33372cfda174b7073e574385da283bc191a09fa89cbc6175da41155"
+      },
+      "support_adjustment_receipt_sha256": "9d51f3ec09869ee6ca9ca4ffc21e77f25cf350d02665f682b241dda34778b320"
+    },
+    "inheritedStaticScene": {
+      "baseManifestSha256": "7e0a1dcd801225bf21bd5a77e82edcce2318e348523d69ca80b7d1e5b53dc96d",
+      "colliderDescriptorSha256": "0935a8b2b918f27789948806b9da3fb1b9fa8cb1d3012b51a78c2d0609a5d339",
+      "modifiedByThisCandidate": false,
+      "visualDescriptorSha256": "d1888bfb909a95d600f8c66bfd46f4682c7b4ada5fe0b841668510e7a8986dbf"
+    },
+    "promotionAllowed": false,
+    "promotionBlockers": [
+      "clean_scene_pending",
+      "candidate_asset_transport_pending",
+      "candidate_browser_qa_pending"
+    ],
+    "report": "repo://video2world/examples/bedroom4/manifests/bedroom4.unified-pbr-objects.candidate.report.json",
+    "status": "candidate_materialized_clean_scene_pending",
+    "unifiedPbrObjects": {
+      "assetTransport": "pending_candidate_packaging",
+      "forbiddenProxyFields": [
+        "visual",
+        "renderAsset",
+        "colliderProxy"
+      ],
+      "hierarchy": {
+        "children": [
+          "sam3_pillow_front",
+          "sam3_pillow_left",
+          "sam3_pillow_right"
+        ],
+        "childrenRemainIndependentlyMovable": true,
+        "parent": "sam3_bed_01",
+        "parentMotionCarriesChildren": true
+      },
+      "objectIds": [
+        "sam3_pillow_front",
+        "sam3_pillow_left",
+        "sam3_pillow_right",
+        "sam3_bed_01"
+      ],
+      "representation": "one_pbr_glb_per_object_for_visual_logic_selection_and_collision",
+      "rootInteraction": [
+        "selection",
+        "spin_360",
+        "horizontal_yaw_drag"
+      ],
+      "status": "geometry_and_joint_qa_passed"
+    }
+  },
+  "chunkSize": 1048576,
+  "collisionWorld": {
+    "baselineBoundsAssetKey": "collider",
+    "baselineHistory": {
+      "baselineBoundsAssetKey": "collider",
+      "gate": {
+        "carveMargin": 0.18,
+        "originalFaces": 1351454,
+        "removedByObject": {
+          "sam3_nightstand_01": 48203,
+          "sam3_nightstand_02": 24874,
+          "sam3_plant_01": 6151,
+          "sam3_plant_02": 6555
+        },
+        "removedFaces": 85783,
+        "retainedIntersectingFaces": 0,
+        "staticFaces": 1265671,
+        "status": "passed"
+      },
+      "objectFaceRemovalRequired": true,
+      "replacementMode": "expanded_source_anchor_aabb_triangle_intersection",
+      "sceneAssetKey": "colliderStaticCarved"
+    },
+    "gate": {
+      "additionalFrontPillowRemovedFaces": 16485,
+      "baselineRemovedFaces": 85783,
+      "baselineStaticFaces": 1265671,
+      "carveMethod": "front_split_and_completed_world_union_aabb_triangle_intersection",
+      "faceIndicesValid": true,
+      "finite": true,
+      "frontPillowCarve": {
+        "completedWorldAabb": {
+          "max": [
+            0.4289947900649813,
+            1.1346495540655943,
+            15.761865082748717
+          ],
+          "min": [
+            -2.5142857068948183,
+            -1.472561065044762,
+            13.865914034685625
+          ]
+        },
+        "expandedAabb": {
+          "max": [
+            0.6542440223693847,
+            1.2146495540655944,
+            15.957863883972168
+          ],
+          "min": [
+            -2.5942857068948184,
+            -1.552561065044762,
+            13.108576698303223
+          ]
+        },
+        "margin": 0.08,
+        "sourceSplitAabb": {
+          "max": [
+            0.5742440223693848,
+            1.1270780563354492,
+            15.877863883972168
+          ],
+          "min": [
+            -2.463304042816162,
+            -1.4221960306167603,
+            13.188576698303223
+          ]
+        },
+        "unionAabb": {
+          "max": [
+            0.5742440223693848,
+            1.1346495540655943,
+            15.877863883972168
+          ],
+          "min": [
+            -2.5142857068948183,
+            -1.472561065044762,
+            13.188576698303223
+          ]
+        }
+      },
+      "originalFaces": 1351454,
+      "protectedSupportFaceCount": 2797,
+      "removedByObject": {
+        "sam3_nightstand_01": 48203,
+        "sam3_nightstand_02": 24874,
+        "sam3_pillow_front": 16485,
+        "sam3_plant_01": 6151,
+        "sam3_plant_02": 6555
+      },
+      "removedFaces": 102268,
+      "retainedIntersectingFaces": 2797,
+      "retainedUnprotectedIntersectingFaces": 0,
+      "staticFaces": 1249186,
+      "status": "passed",
+      "supportProtection": {
+        "classification": "down_side_near_world_up_support_surface",
+        "inwardBand": 0.1,
+        "minimumNormalAlignment": 0.75,
+        "objectDownSideCoordinate": 1.1346495540655943,
+        "outwardBand": 0.1,
+        "worldUp": [
+          0.0,
+          -1.0,
+          0.0
+        ]
+      }
+    },
+    "objectFaceRemovalRequired": true,
+    "replacementMode": "baseline_static_carve_plus_front_split_completed_union_aabb_intersection",
+    "sceneAssetKey": "colliderStaticCarved",
+    "sceneAssetTransport": {
+      "chunkSize": 1048576,
+      "directOversizedAssetPublished": false,
+      "mode": "verified_chunks",
+      "parts": [
+        {
+          "sha256": "1c0daeffcb439364fda392035b610e6d449ee1a8568c3da3a45f50cd8eab79fe",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk000"
+        },
+        {
+          "sha256": "4e19cd1365df7f491992fb6a19930d167e81651d8e120a7f955fa07ea800e328",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk001"
+        },
+        {
+          "sha256": "9dbd05e6a6d53090a6075e2d837e5804d7ccb44833b754a0d3fa66d7d00e57d4",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk002"
+        },
+        {
+          "sha256": "a33dbba833a762a853ec37e508ea62f6262e0dcc95f157928e16d78577ad9938",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk003"
+        },
+        {
+          "sha256": "2bbf40b82b6081c456c7d82bccca041d34ea13e675e3afac351511268d898cba",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk004"
+        },
+        {
+          "sha256": "238815ccf3f07dda17069bca0fd87d69e1aa915d4e3a6d830328fa028fa42002",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk005"
+        },
+        {
+          "sha256": "23528973f6be60ab3bc0848687ded783bc9da640bf81362d01d9ccfefc708666",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk006"
+        },
+        {
+          "sha256": "ca30f539e456c16eb32a5cccfa926589b8d05c1b2d04d69790cf339ad33d339f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk007"
+        },
+        {
+          "sha256": "4fca732268e6dc8c7ea7ca85284aec1ca9d9ed0f473e89b30768cacccb126344",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk008"
+        },
+        {
+          "sha256": "1620cd1404b9c2a56b1dd063b85af9fb845997bc11a6d7b929fe66fa35f03f31",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk009"
+        },
+        {
+          "sha256": "62b0ea801740ed3c5f854b67e3539de3c977ccc47da598458535751865de958a",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk010"
+        },
+        {
+          "sha256": "03680f32255002b222f2fa31a45eb4c885715ee51212d664c700f74d50503e57",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk011"
+        },
+        {
+          "sha256": "8f2eedcc49b1c30f7fa93956d24cd88008631681af3179f121f8cd83888524d9",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk012"
+        },
+        {
+          "sha256": "a6067b36f9a6b645c65cfd4fdbbfc146835be17ba186e1bc70102c854f3d6359",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk013"
+        },
+        {
+          "sha256": "f179a29356da62858ef80af62073ab824db8811b4416b89d4208c5417d91260f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk014"
+        },
+        {
+          "sha256": "3ce6495907faa12ea73be3e17f9b3808ffb18c0ca70005aec204b32118d58ca5",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk015"
+        },
+        {
+          "sha256": "beac57b7b98a7a0ef34640bd3f509a870bbb652686be52cb730a5bf97ae85e46",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk016"
+        },
+        {
+          "sha256": "4682320d6fd1dd000769256dcb50bbd1bcfa0465c9fedaf33891c3150f2dc12e",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk017"
+        },
+        {
+          "sha256": "c185f3eb6f58a76779f27e1ce8eca0fa6f02018b40043623e1586e9a7bcd557d",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk018"
+        },
+        {
+          "sha256": "d23d3eee3fa0e157ac3934953753b38f44970b2959017869d0f036791461ba5f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk019"
+        },
+        {
+          "sha256": "b3c17be35992095a014e7ced4ed0eb6dd2f9e7ada77234639b2e7e70e020352b",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk020"
+        },
+        {
+          "sha256": "ccce2aa9072eb89987051a2b7e46823400ce9ea581cf0f0332e5aaff20c091a7",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk021"
+        },
+        {
+          "sha256": "184625ec98242986c9ff81b1131bf6cdd4f1f756b7ed2b3fb16b3b9a5fc9ac34",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk022"
+        },
+        {
+          "sha256": "565967b3df4ab2d11e0fd90e3f7eb691c49443306010ce1299c02751bffbca9c",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk023"
+        },
+        {
+          "sha256": "ef254c626eb10147754dd4fd7aced8272466fe18e91804b69a200c332bf02326",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk024"
+        },
+        {
+          "sha256": "80a8336209fdba72679e0ccb8ef417b3982012b83c8c092ba009c4dcd99e9d30",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk025"
+        },
+        {
+          "sha256": "0bc6c235224fd1d9744c321f4bed13e0ca1ec98feff6b31281ce494aecedbbe9",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk026"
+        },
+        {
+          "sha256": "940d8f3184ccf4b986b89c76418b1c6dea164927db56c415785ad1a433b768e0",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk027"
+        },
+        {
+          "sha256": "1373ca29617df80eeaceaa2f593b81733e17cad8f1e1ddac0a8560df13e6cd6f",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk028"
+        },
+        {
+          "sha256": "f6f1782bf71d6acdd6ecca9ffcdfb4f427ef4d6b3e8b113858be708487901f85",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk029"
+        },
+        {
+          "sha256": "2f0004865dd4aafa775ed9230d816d7982d4f660ea4ee98336c57009b68c5d44",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk030"
+        },
+        {
+          "sha256": "709faeaaa763c34f67b33e904e8287913f83b03e81f0557431bd96a673f782ae",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk031"
+        },
+        {
+          "sha256": "989e57f8ac58693319787af4a8f580478dd94692d74d465a0d2fa722ad7e4951",
+          "size": 1048576,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk032"
+        },
+        {
+          "sha256": "7fbbcb511480d3e7c9f05ea7df6a6f7c2f435a533b9f4592d2ac6b0b801f0494",
+          "size": 395551,
+          "url": "./worlds/bedroom4/chunks/collider_bedroom4_tsdf_static_carved_unified_pillow_ply.chunk033"
+        }
+      ],
+      "sha256": "0d746bab37d0b5e6fd0c625f56e0917d80c60d402a0812c66f161239cbd7f35e",
+      "size": 34998559
+    }
+  },
+  "contract": "video2world-web-manifest-1.0.0",
+  "coordinateSystem": {
+    "source": "pgsr_input_camera_000018_image_up",
+    "worldUp": [
+      0,
+      -1,
+      0
+    ]
+  },
+  "initialState": {
+    "cameraFocusObjectId": "sam3_bed_01",
+    "cameraPreset": "reference",
+    "robotObstacleCollision": true,
+    "robotSpawn": {
+      "coordinateFrame": "visual_native",
+      "forward": [
+        0.31380919609254937,
+        0,
+        0.9494679394693233
+      ],
+      "groundPoint": [
+        5.968559,
+        6.051313,
+        7.851893
+      ],
+      "id": "fixed-user-approved-interior-20260716"
+    }
+  },
+  "interactiveObjectBuild": {
+    "carveDistance": 0.18,
+    "collidableObjectCount": 5,
+    "existingObjectColliderFaceCount": 67660,
+    "frontMeshVertexCount": 60237,
+    "frontSurfaceColliderFaceCount": 97082,
+    "maxObjectGaussians": 120000,
+    "method": "semantic_anchor_carve_plus_affine_baked_trellis_lod_plus_unified_pbr_front_plus_split_rgb_rear_plus_front_residual_semantic_covariance_recarve",
+    "objectGaussianCount": 480000,
+    "objectPlacementBakedIntoPly": true,
+    "objectRgbPointCount": 138926,
+    "objectUnifiedGlbCount": 1,
+    "originalSceneGaussianCount": 871317,
+    "pillowRestoration": {
+      "backgroundAndBedCompletion": "not_proven",
+      "frontUnifiedGlb": "sam3_pillow_front",
+      "oldEnsembleRetained": false,
+      "rearRgbPointCount": 138926,
+      "rearVisibleSurfaceObjects": [
+        "sam3_pillow_left",
+        "sam3_pillow_right"
+      ],
+      "status": "passed_current_demo_only"
+    },
+    "pillowVisualCarve": {
+      "acceptedAabb": {
+        "center": [
+          -1.4561858415603641,
+          -0.5146498405933381,
+          15.301824736595151
+        ],
+        "coordinateFrame": "visual_native",
+        "extent": [
+          7.262578554153441,
+          3.1900772786140443,
+          4.079373254775994
+        ],
+        "max": [
+          2.1751034355163563,
+          1.080388798713684,
+          17.341511363983148
+        ],
+        "min": [
+          -5.087475118637085,
+          -2.10968847990036,
+          13.262138109207154
+        ],
+        "sourceCoordinateFrame": "video2mesh_da3_world",
+        "transform": "identity_holi_da3_to_pgsr_shared_frame"
+      },
+      "anchorInsideAcceptedAabbCount": 203705,
+      "anchorInsideAcceptedAabbRatio": 0.972436378,
+      "anchorOutsideAcceptedAabbCount": 5774,
+      "anchorPointCount": 209479,
+      "anchorRawBounds": {
+        "max": [
+          2.568901,
+          1.194091,
+          18.424143
+        ],
+        "min": [
+          -5.435565,
+          -2.275802,
+          12.965193
+        ]
+      },
+      "anchorSha256": "7590a8d9ae719e2af6d0017d9c1152772f99d726d414a5c4e84cb8ce017a1452",
+      "distance": 0.08,
+      "inputAssetSha256": "d956e6895b1dfbce3fd18d1cd7d1ab0152e0a0534879b0ef40617c2179c0597c",
+      "inputStaticGaussianCount": 850122,
+      "insideAcceptedAabbCount": 30769,
+      "method": "accepted_mask_projected_point_nearest_neighbor_within_exact_aabb",
+      "objectId": "merged_three_pillow_anchor",
+      "outputAssetSha256": "0983b53eeeeefe7d41e3024a5ac9d5001171423da52beb1c8a542c3d02368c23",
+      "removedGaussianCount": 26731,
+      "removedOutsideAcceptedAabbCount": 0,
+      "replacement": {
+        "front": "sam3_pillow_front",
+        "oldEnsembleRetained": false,
+        "rearVisibleSurfaces": [
+          "sam3_pillow_left",
+          "sam3_pillow_right"
+        ]
+      },
+      "retainedInsideAcceptedAabbCount": 4038,
+      "retainedStaticGaussianCount": 823391,
+      "safetyGate": {
+        "exactAabbRequired": true,
+        "nearestAcceptedPointRequired": true,
+        "note": "Conservative identity-frame carve; unmatched bed/headboard Gaussians inside the broad pillow AABB remain static.",
+        "unmatchedInsideAabbRetained": 4038,
+        "wholeAabbDeletionForbidden": true
+      },
+      "sensitivityRemovedCounts": {
+        "0.04": 21851,
+        "0.06": 24922,
+        "0.08": 26731,
+        "0.1": 27880,
+        "0.12": 28593,
+        "0.15": 29236,
+        "0.18": 29593
+      },
+      "status": "passed",
+      "units": "scene_scale_not_metric"
+    },
+    "recognizedObjectCount": 7,
+    "removedByObject": {
+      "merged_three_pillow_anchor": 26731,
+      "sam3_nightstand_01": 7895,
+      "sam3_nightstand_02": 7747,
+      "sam3_pillow_front_static_residual": 1606,
+      "sam3_plant_01": 3288,
+      "sam3_plant_02": 2265
+    },
+    "removedSceneGaussianCount": 49532,
+    "schemaVersion": 2,
+    "staticSceneGaussianCount": 821785,
+    "staticSceneSource": "artifact://video2mesh/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/point_cloud/iteration_30000/point_cloud.ply",
+    "totalObjectColliderFaceCount": 164742,
+    "totalVisualPrimitiveCount": 1500948,
+    "unrecognizedSceneGaussiansRemainStatic": true,
+    "visualObjectCount": 7
+  },
+  "interactiveObjects": [
+    {
+      "aliases": [
+        "nightstand",
+        "bedside table",
+        "床头柜"
+      ],
+      "bbox": {
+        "center": [
+          -8.857548,
+          2.9190715,
+          14.5170345
+        ],
+        "coordinateFrame": "visual_native",
+        "extent": [
+          4.876246,
+          4.019931,
+          4.307599
+        ],
+        "max": [
+          -6.419425,
+          4.929037,
+          16.670834
+        ],
+        "min": [
+          -11.295671,
+          0.909106,
+          12.363235
+        ]
+      },
+      "carve": {
+        "distance": 0.18,
+        "method": "semantic_anchor_radius_nearest_neighbor",
+        "removedSceneGaussianCount": 7895
+      },
+      "category": "nightstand",
+      "colliderProxy": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          4.876246,
+          4.019931,
+          4.307599
+        ],
+        "provenance": "robust source-anchor bounds; proxy mesh, not a reconstructed object surface",
+        "type": "box"
+      },
+      "collision": {
+        "asset": {
+          "blenderBounds": {
+            "center": [
+              -0.0010185539722442627,
+              0.0002885758876800537,
+              -0.00038222968578338623
+            ],
+            "coordinateSystem": "blender_world_z_up",
+            "max": [
+              0.4975041449069977,
+              0.3475518524646759,
+              0.499860554933548
+            ],
+            "min": [
+              -0.4995412528514862,
+              -0.3469747006893158,
+              -0.5006250143051147
+            ],
+            "size": [
+              0.9970453977584839,
+              0.6945265531539917,
+              1.0004855692386627
+            ]
+          },
+          "bounds": [
+            [
+              -0.4995412528514862,
+              -0.5006250143051147,
+              -0.3475518524646759
+            ],
+            [
+              0.4975041449069977,
+              0.499860554933548,
+              0.3469747006893158
+            ]
+          ],
+          "faces": 17910,
+          "fileName": "sam3_nightstand_01.collision.glb",
+          "fileType": "glb",
+          "format": "gltf-binary",
+          "id": "sam3_nightstand_01_simplified_collision_glb",
+          "label": "Nightstand 01 simplified collision GLB",
+          "sha256": "3ea3743069279544163c6588caa23aab0932ae156803e8efefd70dba26b74274",
+          "simplification": {
+            "originalFaces": 315438,
+            "ratio": 0.056778,
+            "simplifiedFaces": 17910,
+            "targetFaces": 18000,
+            "tool": "blender_headless_decimate"
+          },
+          "size": 320484,
+          "url": "./worlds/bedroom4/colliders/sam3_nightstand_01.collision.glb",
+          "vertices": 17690
+        },
+        "characterCollision": true,
+        "gate": {
+          "boundsFit": "passed",
+          "browserOverlayReview": "passed",
+          "collisionTechnicalQa": "passed",
+          "note": "Automated browser collision QA and screenshot overlay review passed.",
+          "orientationEvidence": "browser_gaussian_collision_overlay_reviewed",
+          "status": "passed"
+        },
+        "mode": "kinematic",
+        "objectLocalMatrix": [
+          4.890696062,
+          0,
+          0,
+          0,
+          0,
+          4.017979993,
+          0,
+          0,
+          0,
+          0,
+          6.202209232,
+          0,
+          0.004981438,
+          0.001535791,
+          0.001789808,
+          1
+        ],
+        "placement": {
+          "fittedLocalCenter": [
+            0,
+            0,
+            0
+          ],
+          "fittedLocalExtent": [
+            4.876246,
+            4.019931,
+            4.307599
+          ],
+          "matrix": [
+            4.890696062,
+            0,
+            0,
+            0,
+            0,
+            4.017979993,
+            0,
+            0,
+            0,
+            0,
+            6.202209232,
+            0,
+            0.004981438,
+            0.001535791,
+            0.001789808,
+            1
+          ],
+          "scale": [
+            4.8906961,
+            4.01798,
+            6.2022092
+          ],
+          "sourceCenter": [
+            -0.0010186,
+            -0.0003822,
+            -0.0002886
+          ],
+          "sourceExtent": [
+            0.9970454,
+            1.0004856,
+            0.6945266
+          ],
+          "targetExtent": [
+            4.876246,
+            4.019931,
+            4.307599
+          ]
+        },
+        "renderAsset": {
+          "fileName": "sam3_nightstand_01.glb",
+          "fileType": "glb",
+          "format": "gltf-binary",
+          "sha256": "3c2dffeaa2ffc82bd77b22cb92d0488bf6e2504d9ed333cc4bd565d1caa77af9",
+          "size": 8514908,
+          "url": "./worlds/bedroom4/render-meshes/sam3_nightstand_01.glb"
+        },
+        "source": {
+          "blenderBounds": {
+            "center": [
+              -0.001240953803062439,
+              -0.00046882033348083496,
+              -0.0001874864101409912
+            ],
+            "coordinateSystem": "blender_world_z_up",
+            "max": [
+              0.4974953234195709,
+              0.34668946266174316,
+              0.5001336932182312
+            ],
+            "min": [
+              -0.4999772310256958,
+              -0.34762710332870483,
+              -0.5005086660385132
+            ],
+            "size": [
+              0.9974725544452667,
+              0.694316565990448,
+              1.0006423592567444
+            ]
+          },
+          "bounds": [
+            [
+              -0.4999772310256958,
+              -0.5005086660385132,
+              -0.34668946266174316
+            ],
+            [
+              0.4974953234195709,
+              0.5001336932182312,
+              0.34762710332870483
+            ]
+          ],
+          "faces": 315438,
+          "path": "artifact://video2mesh/embodiedgen_v2_bedroom4_mesh_exports_20260716/output/sam3_nightstand_01/sam3_nightstand_01.glb",
+          "sha256": "3c2dffeaa2ffc82bd77b22cb92d0488bf6e2504d9ed333cc4bd565d1caa77af9",
+          "size": 8514908,
+          "vertices": 188390
+        },
+        "walkable": true
+      },
+      "description": {
+        "appearance": {
+          "en": "A plain dark warm-brown nightstand has a smooth wood-like finish, a rectangular top and apron, and four straight square-section legs, with no visible drawer or handle.",
+          "zh": "这件素面深暖棕色床头柜呈平滑木质观感，具有矩形柜面、围板和四条方截面直腿，未见抽屉或把手。"
+        },
+        "confidence": null,
+        "detailed": {
+          "en": "Colors: dark warm brown; Material appearance: smooth wood-like finish; Geometry: rectangular top and apron, four straight square-section legs; Visible components: top, apron, four legs; Style or pattern: plain with minimal ornament",
+          "zh": "颜色: 深暖棕色; 材质观感: 平滑的木质观感表面; 几何形态: 矩形柜面与围板, 四条方截面直腿; 可见组件: 柜面, 围板, 四条柜腿; 风格或纹理: 素面、装饰极少"
+        },
+        "evidence_frames": [],
+        "fidelity_caveat": {
+          "en": "Metric scale cannot be inferred from the visual evidence. The exact substrate is not visually confirmed; no drawer or handle is visible from this view.",
+          "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认确切基材；此视角未见抽屉或把手。"
+        },
+        "location": {
+          "en": "Shown upright on its visible legs; room support and placement cannot be inferred. Scene position cannot be inferred from this isolated reference.",
+          "zh": "图中以可见柜腿直立展示；无法推断其在房间中的支撑面与摆放位置。 无法从这张孤立参考图推断场景位置。"
+        },
+        "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "provider": "local_huggingface_transformers+agent_visual_audit",
+        "short": {
+          "en": "A plain dark warm-brown nightstand has a smooth wood-like finish, a rectangular top and apron, and four straight square-section legs, with no visible drawer or handle.",
+          "zh": "这件素面深暖棕色床头柜呈平滑木质观感，具有矩形柜面、围板和四条方截面直腿，未见抽屉或把手。"
+        }
+      },
+      "fidelity": "generated_completion_from_scanned_instance_evidence",
+      "id": "sam3_nightstand_01",
+      "interaction": {
+        "degrees": 360,
+        "durationMs": 1250,
+        "kind": "spin"
+      },
+      "label": "Nightstand 01",
+      "placement": {
+        "bakedCovarianceMethod": "axis_scale_times_covariance_then_symmetric_eigendecomposition",
+        "bakedSourceGeneratedCenter": [
+          -0.0001595,
+          -0.0122926,
+          0.002121
+        ],
+        "bakedSourceScale": [
+          5.1030021,
+          4.1461088,
+          6.4602246
+        ],
+        "coordinateFrame": "visual_native",
+        "eulerOrder": "XYZ",
+        "generatedCenter": [
+          0,
+          0,
+          0
+        ],
+        "method": "robust_axis_aligned_extent_fit_baked_into_gaussians",
+        "note": "The TRELLIS export and PGSR scene both use -Y world-up. Non-uniform extent fitting is baked into Gaussian centers and covariances so Spark uses a runtime identity scale.",
+        "pivot": [
+          -8.857548,
+          2.9190715,
+          14.5170345
+        ],
+        "rotationEulerDeg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "sourceAnchor": {
+        "fileName": "sam3_nightstand_01.source-anchor.ply",
+        "path": "./worlds/bedroom4/evidence/sam3_nightstand_01.source-anchor.ply",
+        "pointCount": 75728,
+        "robustBounds": {
+          "center": [
+            -8.857548,
+            2.9190715,
+            14.5170345
+          ],
+          "extent": [
+            4.876246,
+            4.019931,
+            4.307599
+          ],
+          "max": [
+            -6.419425,
+            4.929037,
+            16.670834
+          ],
+          "min": [
+            -11.295671,
+            0.909106,
+            12.363235
+          ],
+          "quantileHigh": 0.99,
+          "quantileLow": 0.01
+        },
+        "sha256": "6f374ebbd9507aa737c692c449dc612fa4a1db9984f997bd662a4795ef5365b5",
+        "size": 2791798
+      },
+      "visual": {
+        "bbox": {
+          "max": [
+            2.529541815677171,
+            2.1179729987475593,
+            2.2156685332675625
+          ],
+          "min": [
+            -2.533231916694926,
+            -2.0173518891025917,
+            -2.255777089992458
+          ]
+        },
+        "chunkSize": 1048576,
+        "fileName": "sam3_nightstand_01_trellis_gaussian_web_lod.ply",
+        "fileType": "ply",
+        "format": "graphdeco-gaussian-ply",
+        "headerByteLength": 416,
+        "id": "sam3_nightstand_01_trellis_gaussian_web_lod",
+        "label": "Nightstand 01 TRELLIS Gaussian web LOD",
+        "parts": [
+          {
+            "sha256": "ea7a34705df1e62894061ee590de11d27bf5b755123f4d98c5ed59e1b09f5fbc",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_01_gaussian_lod.chunk000"
+          },
+          {
+            "sha256": "843bb3d11188e3ccf85f412fc536d3314a788c9fb38a47f1b2df012904c489b6",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_01_gaussian_lod.chunk001"
+          },
+          {
+            "sha256": "d3e988c8764796d5b5c56c452f6c015998ecf80e3d35a55cf68270c3f67713e7",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_01_gaussian_lod.chunk002"
+          },
+          {
+            "sha256": "59575aed0d34d2454d480281521b2222741faabcdfc3f9ccf6b78171d9870de8",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_01_gaussian_lod.chunk003"
+          },
+          {
+            "sha256": "02fc3aa95e9121b690c4ea7fd5ea42060607fc62e7d97ed1603af6a9542cf017",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_01_gaussian_lod.chunk004"
+          },
+          {
+            "sha256": "ab540e0a9f0bba1eb43fa8c579a8cf8831d87f49de49c6bedb28d7a10e2a5384",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_01_gaussian_lod.chunk005"
+          },
+          {
+            "sha256": "15ee5516ca2e73c580d3b45205c21867d9a91a2a770e76e45918d38f156228b9",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_01_gaussian_lod.chunk006"
+          },
+          {
+            "sha256": "d0bbd864c67ad209e58ffa27f5d00b59d2246732163d769592729c49bb544ec7",
+            "size": 820384,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_01_gaussian_lod.chunk007"
+          }
+        ],
+        "selectionMethod": "deterministic_even_sample_positive_opacity_first_plus_affine_covariance_bake",
+        "shDegree": 0,
+        "sha256": "a9e380fea98029c04792368890abc07b19a73fa46afd88f779e3e3b93c07041f",
+        "size": 8160416,
+        "sourcePath": "artifact://video2mesh/embodiedgen_v2_bedroom4_auto_completion_20260714/run/final_output/sam3_nightstand_01_trellis_gaussian.ply",
+        "sourceSha256": "455e9ec7c9f92e53cfbcb61d5c9d275185fc6e9baec4199ba8cef9ae4942fb7c",
+        "sourceVertexCount": 733856,
+        "vertexCount": 120000,
+        "vertexProperties": [
+          "x",
+          "y",
+          "z",
+          "nx",
+          "ny",
+          "nz",
+          "f_dc_0",
+          "f_dc_1",
+          "f_dc_2",
+          "opacity",
+          "scale_0",
+          "scale_1",
+          "scale_2",
+          "rot_0",
+          "rot_1",
+          "rot_2",
+          "rot_3"
+        ],
+        "vertexStride": 68
+      }
+    },
+    {
+      "aliases": [
+        "nightstand",
+        "bedside table",
+        "床头柜"
+      ],
+      "bbox": {
+        "center": [
+          5.6283455,
+          1.3599195,
+          21.160014
+        ],
+        "coordinateFrame": "visual_native",
+        "extent": [
+          5.425765,
+          2.602103,
+          5.475722
+        ],
+        "max": [
+          8.341228,
+          2.660971,
+          23.897875
+        ],
+        "min": [
+          2.915463,
+          0.058868,
+          18.422153
+        ]
+      },
+      "carve": {
+        "distance": 0.18,
+        "method": "semantic_anchor_radius_nearest_neighbor",
+        "removedSceneGaussianCount": 7747
+      },
+      "category": "nightstand",
+      "colliderProxy": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          5.425765,
+          2.602103,
+          5.475722
+        ],
+        "provenance": "robust source-anchor bounds; proxy mesh, not a reconstructed object surface",
+        "type": "box"
+      },
+      "collision": {
+        "asset": {
+          "blenderBounds": {
+            "center": [
+              0.0029356777667999268,
+              0.001956447958946228,
+              0.0016789287328720093
+            ],
+            "coordinateSystem": "blender_world_z_up",
+            "max": [
+              0.5060003995895386,
+              0.4000324606895447,
+              0.4331164062023163
+            ],
+            "min": [
+              -0.5001290440559387,
+              -0.3961195647716522,
+              -0.42975854873657227
+            ],
+            "size": [
+              1.0061294436454773,
+              0.7961520254611969,
+              0.8628749549388885
+            ]
+          },
+          "bounds": [
+            [
+              -0.5001290440559387,
+              -0.42975854873657227,
+              -0.4000324606895447
+            ],
+            [
+              0.5060003995895386,
+              0.4331164062023163,
+              0.3961195647716522
+            ]
+          ],
+          "faces": 17910,
+          "fileName": "sam3_nightstand_02.collision.glb",
+          "fileType": "glb",
+          "format": "gltf-binary",
+          "id": "sam3_nightstand_02_simplified_collision_glb",
+          "label": "Nightstand 02 simplified collision GLB",
+          "sha256": "abe26edfcc045c2b58d8cffba5202189453f2a78fd8ff358935b4e7fed211d37",
+          "simplification": {
+            "originalFaces": 284494,
+            "ratio": 0.062954,
+            "simplifiedFaces": 17910,
+            "targetFaces": 18000,
+            "tool": "blender_headless_decimate"
+          },
+          "size": 301656,
+          "url": "./worlds/bedroom4/colliders/sam3_nightstand_02.collision.glb",
+          "vertices": 16121
+        },
+        "characterCollision": true,
+        "gate": {
+          "boundsFit": "passed",
+          "browserOverlayReview": "passed",
+          "collisionTechnicalQa": "passed",
+          "note": "Automated browser collision QA and screenshot overlay review passed.",
+          "orientationEvidence": "browser_gaussian_collision_overlay_reviewed",
+          "status": "passed"
+        },
+        "mode": "kinematic",
+        "objectLocalMatrix": [
+          5.392710684,
+          0,
+          0,
+          0,
+          0,
+          3.015620033,
+          0,
+          0,
+          0,
+          0,
+          6.877734183,
+          0,
+          -0.015831261,
+          -0.005063011,
+          0.013455929,
+          1
+        ],
+        "placement": {
+          "fittedLocalCenter": [
+            0,
+            0,
+            0
+          ],
+          "fittedLocalExtent": [
+            5.425765,
+            2.602103,
+            5.475722
+          ],
+          "matrix": [
+            5.392710684,
+            0,
+            0,
+            0,
+            0,
+            3.015620033,
+            0,
+            0,
+            0,
+            0,
+            6.877734183,
+            0,
+            -0.015831261,
+            -0.005063011,
+            0.013455929,
+            1
+          ],
+          "scale": [
+            5.3927107,
+            3.01562,
+            6.8777342
+          ],
+          "sourceCenter": [
+            0.0029357,
+            0.0016789,
+            -0.0019564
+          ],
+          "sourceExtent": [
+            1.0061294,
+            0.862875,
+            0.796152
+          ],
+          "targetExtent": [
+            5.425765,
+            2.602103,
+            5.475722
+          ]
+        },
+        "renderAsset": {
+          "fileName": "sam3_nightstand_02.glb",
+          "fileType": "glb",
+          "format": "gltf-binary",
+          "sha256": "c34fbca42dfc543f0863a060640c0b1920cfc47c7b9868171a40a4cdb51c63e6",
+          "size": 8130760,
+          "url": "./worlds/bedroom4/render-meshes/sam3_nightstand_02.glb"
+        },
+        "source": {
+          "blenderBounds": {
+            "center": [
+              0.0001716315746307373,
+              0.00012318789958953857,
+              0.0013715922832489014
+            ],
+            "coordinateSystem": "blender_world_z_up",
+            "max": [
+              0.500598132610321,
+              0.3976700007915497,
+              0.43280088901519775
+            ],
+            "min": [
+              -0.5002548694610596,
+              -0.3974236249923706,
+              -0.43005770444869995
+            ],
+            "size": [
+              1.0008530020713806,
+              0.7950936257839203,
+              0.8628585934638977
+            ]
+          },
+          "bounds": [
+            [
+              -0.5002548694610596,
+              -0.43005770444869995,
+              -0.3976700007915497
+            ],
+            [
+              0.500598132610321,
+              0.43280088901519775,
+              0.3974236249923706
+            ]
+          ],
+          "faces": 284494,
+          "path": "artifact://video2mesh/embodiedgen_v2_bedroom4_mesh_exports_20260716/output/sam3_nightstand_02/sam3_nightstand_02.glb",
+          "sha256": "c34fbca42dfc543f0863a060640c0b1920cfc47c7b9868171a40a4cdb51c63e6",
+          "size": 8130760,
+          "vertices": 176570
+        },
+        "walkable": true
+      },
+      "description": {
+        "appearance": {
+          "en": "A warm reddish-brown nightstand with a smooth wood-like finish has one front drawer with a round dark knob, a raised curved back-and-side lip, and four legs.",
+          "zh": "这件暖红棕色床头柜呈平滑木质观感，正面有一只带深色圆形旋钮的抽屉，并带抬高的弧形后沿与侧沿和四条柜腿。"
+        },
+        "confidence": null,
+        "detailed": {
+          "en": "Colors: warm reddish brown, dark knob; Material appearance: smooth wood-like finish; Geometry: rectangular body, raised curved back and side lip, four straight legs; Visible components: top, one front drawer, round dark knob, curved lip, four legs; Style or pattern: simple furniture profile with curved trim",
+          "zh": "颜色: 暖红棕色, 深色旋钮; 材质观感: 平滑的木质观感表面; 几何形态: 矩形柜体, 抬高的弧形后沿与侧沿, 四条直腿; 可见组件: 柜面, 一只正面抽屉, 深色圆形旋钮, 弧形围沿, 四条柜腿; 风格或纹理: 带弧形收边的简洁家具轮廓"
+        },
+        "evidence_frames": [],
+        "fidelity_caveat": {
+          "en": "Metric scale cannot be inferred from the visual evidence. The exact substrate and hidden rear geometry are not visually confirmed.",
+          "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认确切基材与背面隐藏几何。"
+        },
+        "location": {
+          "en": "Shown upright on its visible legs; room support and placement cannot be inferred. Scene position cannot be inferred from this isolated reference.",
+          "zh": "图中以可见柜腿直立展示；无法推断其在房间中的支撑面与摆放位置。 无法从这张孤立参考图推断场景位置。"
+        },
+        "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "provider": "local_huggingface_transformers+agent_visual_audit",
+        "short": {
+          "en": "A warm reddish-brown nightstand with a smooth wood-like finish has one front drawer with a round dark knob, a raised curved back-and-side lip, and four legs.",
+          "zh": "这件暖红棕色床头柜呈平滑木质观感，正面有一只带深色圆形旋钮的抽屉，并带抬高的弧形后沿与侧沿和四条柜腿。"
+        }
+      },
+      "fidelity": "generated_completion_from_scanned_instance_evidence",
+      "id": "sam3_nightstand_02",
+      "interaction": {
+        "degrees": 360,
+        "durationMs": 1250,
+        "kind": "spin"
+      },
+      "label": "Nightstand 02",
+      "placement": {
+        "bakedCovarianceMethod": "axis_scale_times_covariance_then_symmetric_eigendecomposition",
+        "bakedSourceGeneratedCenter": [
+          0.0011116,
+          0.0202925,
+          0.0046912
+        ],
+        "bakedSourceScale": [
+          5.7531848,
+          3.3003276,
+          7.1793342
+        ],
+        "coordinateFrame": "visual_native",
+        "eulerOrder": "XYZ",
+        "generatedCenter": [
+          0,
+          0,
+          0
+        ],
+        "method": "robust_axis_aligned_extent_fit_baked_into_gaussians",
+        "note": "The TRELLIS export and PGSR scene both use -Y world-up. Non-uniform extent fitting is baked into Gaussian centers and covariances so Spark uses a runtime identity scale.",
+        "pivot": [
+          5.6283455,
+          1.3599195,
+          21.160014
+        ],
+        "rotationEulerDeg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "sourceAnchor": {
+        "fileName": "sam3_nightstand_02.source-anchor.ply",
+        "path": "./worlds/bedroom4/evidence/sam3_nightstand_02.source-anchor.ply",
+        "pointCount": 25498,
+        "robustBounds": {
+          "center": [
+            5.6283455,
+            1.3599195,
+            21.160014
+          ],
+          "extent": [
+            5.425765,
+            2.602103,
+            5.475722
+          ],
+          "max": [
+            8.341228,
+            2.660971,
+            23.897875
+          ],
+          "min": [
+            2.915463,
+            0.058868,
+            18.422153
+          ],
+          "quantileHigh": 0.99,
+          "quantileLow": 0.01
+        },
+        "sha256": "0356ad6285b97eb7aac917a35b08ae6d7a31395cfb64bfefc6f6734c0524ce23",
+        "size": 949162
+      },
+      "visual": {
+        "bbox": {
+          "max": [
+            2.8623769638796106,
+            1.3503268993183368,
+            2.8149446691433346
+          ],
+          "min": [
+            -2.869486480962726,
+            -1.4850886735506708,
+            -2.8453322424256315
+          ]
+        },
+        "chunkSize": 1048576,
+        "fileName": "sam3_nightstand_02_trellis_gaussian_web_lod.ply",
+        "fileType": "ply",
+        "format": "graphdeco-gaussian-ply",
+        "headerByteLength": 416,
+        "id": "sam3_nightstand_02_trellis_gaussian_web_lod",
+        "label": "Nightstand 02 TRELLIS Gaussian web LOD",
+        "parts": [
+          {
+            "sha256": "9a3d331409ed1c011c9c54b7e4cbb83a6bfe1f9f908878119218492321778e61",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_02_gaussian_lod.chunk000"
+          },
+          {
+            "sha256": "30e26623b480a81d2e2e08a19d6302bd65427d776ff760b80a2bee8e996d77ca",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_02_gaussian_lod.chunk001"
+          },
+          {
+            "sha256": "fce5bfd40d50edbc671d9aaf0ab34c5658380d9f7126a740df3716d261309a22",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_02_gaussian_lod.chunk002"
+          },
+          {
+            "sha256": "228568ebcdd6b1aee60f219871077d396294b99fd0fc824e0ba52fed800aac90",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_02_gaussian_lod.chunk003"
+          },
+          {
+            "sha256": "bb10c2ee69a9848dcfbea8a3e3ca0e2deb7fb9bb793bcce95a3e658abcec2303",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_02_gaussian_lod.chunk004"
+          },
+          {
+            "sha256": "47a7e2b13049333d638e8efcee0aec08a31c7721090b7dc3f33bb0bd6b8956e3",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_02_gaussian_lod.chunk005"
+          },
+          {
+            "sha256": "0f71276ecf48c9332f687bdc2a6f9fa3fc83d005331b99a4dc87626b54d00b91",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_02_gaussian_lod.chunk006"
+          },
+          {
+            "sha256": "ed6d6d27b35b22478e739a7eba58b06104ee08026b9f4b4a69bc553f049bf741",
+            "size": 820384,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_nightstand_02_gaussian_lod.chunk007"
+          }
+        ],
+        "selectionMethod": "deterministic_even_sample_positive_opacity_first_plus_affine_covariance_bake",
+        "shDegree": 0,
+        "sha256": "70d6537ad37c72b26742c7476583209cc5432700c828b80a89e2a24633ad5bd7",
+        "size": 8160416,
+        "sourcePath": "artifact://video2mesh/embodiedgen_v2_bedroom4_auto_completion_20260714/run/final_output/sam3_nightstand_02_trellis_gaussian.ply",
+        "sourceSha256": "65fee0de3e25c6092cc3fb1e750993e523695e6c6f68c37799515d2f420ca566",
+        "sourceVertexCount": 726289,
+        "vertexCount": 120000,
+        "vertexProperties": [
+          "x",
+          "y",
+          "z",
+          "nx",
+          "ny",
+          "nz",
+          "f_dc_0",
+          "f_dc_1",
+          "f_dc_2",
+          "opacity",
+          "scale_0",
+          "scale_1",
+          "scale_2",
+          "rot_0",
+          "rot_1",
+          "rot_2",
+          "rot_3"
+        ],
+        "vertexStride": 68
+      }
+    },
+    {
+      "aliases": [
+        "plant",
+        "potted plant",
+        "植物",
+        "盆栽",
+        "绿植"
+      ],
+      "bbox": {
+        "center": [
+          5.606413,
+          -0.5816215,
+          21.7986965
+        ],
+        "coordinateFrame": "visual_native",
+        "extent": [
+          1.61465,
+          0.931801,
+          3.432319
+        ],
+        "max": [
+          6.413738,
+          -0.115721,
+          23.514856
+        ],
+        "min": [
+          4.799088,
+          -1.047522,
+          20.082537
+        ]
+      },
+      "carve": {
+        "distance": 0.18,
+        "method": "semantic_anchor_radius_nearest_neighbor",
+        "removedSceneGaussianCount": 3288
+      },
+      "category": "plant",
+      "colliderProxy": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          1.61465,
+          0.931801,
+          3.432319
+        ],
+        "provenance": "robust source-anchor bounds; proxy mesh, not a reconstructed object surface",
+        "type": "box"
+      },
+      "collision": {
+        "asset": {
+          "blenderBounds": {
+            "center": [
+              -0.00042267143726348877,
+              0.001358911395072937,
+              -0.004707932472229004
+            ],
+            "coordinateSystem": "blender_world_z_up",
+            "max": [
+              0.3838813602924347,
+              0.3819236159324646,
+              0.49556559324264526
+            ],
+            "min": [
+              -0.38472670316696167,
+              -0.3792057931423187,
+              -0.5049814581871033
+            ],
+            "size": [
+              0.7686080634593964,
+              0.7611294090747833,
+              1.0005470514297485
+            ]
+          },
+          "bounds": [
+            [
+              -0.38472670316696167,
+              -0.5049814581871033,
+              -0.3819236159324646
+            ],
+            [
+              0.3838813602924347,
+              0.49556559324264526,
+              0.3792057931423187
+            ]
+          ],
+          "faces": 9950,
+          "fileName": "sam3_plant_01.collision.glb",
+          "fileType": "glb",
+          "format": "gltf-binary",
+          "id": "sam3_plant_01_simplified_collision_glb",
+          "label": "Plant 01 simplified collision GLB",
+          "sha256": "9f11e32b29224b5d6a0a90a8ab5406e3d0c2a5a7b8320d6d662da78ab0679d09",
+          "simplification": {
+            "originalFaces": 30750,
+            "ratio": 0.323577,
+            "simplifiedFaces": 9950,
+            "targetFaces": 10000,
+            "tool": "blender_headless_decimate"
+          },
+          "size": 245520,
+          "url": "./worlds/bedroom4/colliders/sam3_plant_01.collision.glb",
+          "vertices": 15423
+        },
+        "characterCollision": true,
+        "gate": {
+          "boundsFit": "passed",
+          "browserOverlayReview": "passed",
+          "collisionTechnicalQa": "passed",
+          "note": "Automated browser collision QA and screenshot overlay review passed.",
+          "orientationEvidence": "browser_gaussian_collision_overlay_reviewed",
+          "status": "passed"
+        },
+        "mode": "kinematic",
+        "objectLocalMatrix": [
+          2.10074559,
+          0,
+          0,
+          0,
+          0,
+          0.931291536,
+          0,
+          0,
+          0,
+          0,
+          4.509507791,
+          0,
+          0.000887925,
+          0.004384458,
+          0.006128022,
+          1
+        ],
+        "placement": {
+          "fittedLocalCenter": [
+            0,
+            0,
+            0
+          ],
+          "fittedLocalExtent": [
+            1.61465,
+            0.931801,
+            3.432319
+          ],
+          "matrix": [
+            2.10074559,
+            0,
+            0,
+            0,
+            0,
+            0.931291536,
+            0,
+            0,
+            0,
+            0,
+            4.509507791,
+            0,
+            0.000887925,
+            0.004384458,
+            0.006128022,
+            1
+          ],
+          "scale": [
+            2.1007456,
+            0.9312915,
+            4.5095078
+          ],
+          "sourceCenter": [
+            -0.0004227,
+            -0.0047079,
+            -0.0013589
+          ],
+          "sourceExtent": [
+            0.7686081,
+            1.0005471,
+            0.7611294
+          ],
+          "targetExtent": [
+            1.61465,
+            0.931801,
+            3.432319
+          ]
+        },
+        "renderAsset": {
+          "fileName": "sam3_plant_01.glb",
+          "fileType": "glb",
+          "format": "gltf-binary",
+          "sha256": "1e0feecc50319ebc4a6c8668d111d60a9d6a9d9c4cdae45d8601467937a74470",
+          "size": 2538504,
+          "url": "./worlds/bedroom4/render-meshes/sam3_plant_01.glb"
+        },
+        "source": {
+          "blenderBounds": {
+            "center": [
+              -0.0020734071731567383,
+              0.0012528151273727417,
+              -0.00165557861328125
+            ],
+            "coordinateSystem": "blender_world_z_up",
+            "max": [
+              0.380258172750473,
+              0.3819236159324646,
+              0.4967260956764221
+            ],
+            "min": [
+              -0.3844049870967865,
+              -0.3794179856777191,
+              -0.5000372529029846
+            ],
+            "size": [
+              0.7646631598472595,
+              0.7613416016101837,
+              0.9967633485794067
+            ]
+          },
+          "bounds": [
+            [
+              -0.3844049870967865,
+              -0.5000372529029846,
+              -0.3819236159324646
+            ],
+            [
+              0.380258172750473,
+              0.4967260956764221,
+              0.3794179856777191
+            ]
+          ],
+          "faces": 30750,
+          "path": "artifact://video2mesh/embodiedgen_v2_bedroom4_mesh_exports_20260716/output/sam3_plant_01/sam3_plant_01.glb",
+          "sha256": "1e0feecc50319ebc4a6c8668d111d60a9d6a9d9c4cdae45d8601467937a74470",
+          "size": 2538504,
+          "vertices": 36139
+        },
+        "walkable": true
+      },
+      "description": {
+        "appearance": {
+          "en": "A dense rounded topiary-like plant has many small oval dark-green leaves with lighter edges, multiple woody-looking stems, and a smooth off-white cylindrical pot.",
+          "zh": "这株浓密的圆冠造型植物由许多带浅色叶缘的深绿色小椭圆叶、数根木质观感枝干和一个光滑的灰白色圆柱形花盆组成。"
+        },
+        "confidence": null,
+        "detailed": {
+          "en": "Colors: dark green leaves, lighter leaf edges, off-white pot; Material appearance: matte leaf surfaces, woody-looking stems, smooth off-white pot; Geometry: dense rounded crown, small oval leaves, cylindrical pot; Visible components: many leaves, multiple stems, pot; Style or pattern: lighter leaf edging, compact topiary-like silhouette",
+          "zh": "颜色: 深绿色叶片, 浅色叶缘, 灰白色花盆; 材质观感: 哑光叶面, 木质观感枝干, 光滑灰白色花盆; 几何形态: 浓密圆形冠幅, 小椭圆叶片, 圆柱形花盆; 可见组件: 大量叶片, 数根枝干, 花盆; 风格或纹理: 浅色叶缘, 紧凑的圆冠造型轮廓"
+        },
+        "evidence_frames": [],
+        "fidelity_caveat": {
+          "en": "Metric scale cannot be inferred from the visual evidence. The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+          "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+        },
+        "location": {
+          "en": "Visible stems emerge from and are supported within the pot. Scene position cannot be inferred from this isolated reference.",
+          "zh": "可见枝干从花盆内部伸出并由花盆承托。 无法从这张孤立参考图推断场景位置。"
+        },
+        "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "provider": "local_huggingface_transformers+agent_visual_audit",
+        "short": {
+          "en": "A dense rounded topiary-like plant has many small oval dark-green leaves with lighter edges, multiple woody-looking stems, and a smooth off-white cylindrical pot.",
+          "zh": "这株浓密的圆冠造型植物由许多带浅色叶缘的深绿色小椭圆叶、数根木质观感枝干和一个光滑的灰白色圆柱形花盆组成。"
+        }
+      },
+      "fidelity": "category_proxy_from_low_detail_evidence",
+      "id": "sam3_plant_01",
+      "interaction": {
+        "degrees": 360,
+        "durationMs": 1250,
+        "kind": "spin"
+      },
+      "label": "Plant 01",
+      "placement": {
+        "bakedCovarianceMethod": "axis_scale_times_covariance_then_symmetric_eigendecomposition",
+        "bakedSourceGeneratedCenter": [
+          0.0051967,
+          0.0297559,
+          -0.0127069
+        ],
+        "bakedSourceScale": [
+          2.6794435,
+          1.0192434,
+          5.8442174
+        ],
+        "coordinateFrame": "visual_native",
+        "eulerOrder": "XYZ",
+        "generatedCenter": [
+          0,
+          0,
+          0
+        ],
+        "method": "robust_axis_aligned_extent_fit_baked_into_gaussians",
+        "note": "The TRELLIS export and PGSR scene both use -Y world-up. Non-uniform extent fitting is baked into Gaussian centers and covariances so Spark uses a runtime identity scale.",
+        "pivot": [
+          5.606413,
+          -0.5816215,
+          21.7986965
+        ],
+        "rotationEulerDeg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "sourceAnchor": {
+        "fileName": "sam3_plant_01.source-anchor.ply",
+        "path": "./worlds/bedroom4/evidence/sam3_plant_01.source-anchor.ply",
+        "pointCount": 5284,
+        "robustBounds": {
+          "center": [
+            5.606413,
+            -0.5816215,
+            21.7986965
+          ],
+          "extent": [
+            1.61465,
+            0.931801,
+            3.432319
+          ],
+          "max": [
+            6.413738,
+            -0.115721,
+            23.514856
+          ],
+          "min": [
+            4.799088,
+            -1.047522,
+            20.082537
+          ],
+          "quantileHigh": 0.99,
+          "quantileLow": 0.01
+        },
+        "sha256": "badfec3efea8373c79e66de15e09472e3a9ae19785a0308c25042dfdf4202340",
+        "size": 207895
+      },
+      "visual": {
+        "bbox": {
+          "max": [
+            0.9626317033436701,
+            0.4771986647504081,
+            2.2670499307250553
+          ],
+          "min": [
+            -1.0285026506052044,
+            -0.5326013658779568,
+            -2.108925599356024
+          ]
+        },
+        "chunkSize": 1048576,
+        "fileName": "sam3_plant_01_trellis_gaussian_web_lod.ply",
+        "fileType": "ply",
+        "format": "graphdeco-gaussian-ply",
+        "headerByteLength": 416,
+        "id": "sam3_plant_01_trellis_gaussian_web_lod",
+        "label": "Plant 01 TRELLIS Gaussian web LOD",
+        "parts": [
+          {
+            "sha256": "32656476cfc9a97690ef83416869d54d7cd9a2bc59e2621b4c1c1e7e99b4e59f",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_01_gaussian_lod.chunk000"
+          },
+          {
+            "sha256": "a0b4f3e91250c0fa9588423739d1fe4fa31487befad3ccc1b2e3d6e811092fb0",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_01_gaussian_lod.chunk001"
+          },
+          {
+            "sha256": "75d2a7020e040745321bf8688b226d51053fd050855e797c21dbc9ed4363a570",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_01_gaussian_lod.chunk002"
+          },
+          {
+            "sha256": "2aae1a93ce8f213a7a206b80d3d2b9ddd22506f60d633b924523488489dba3c4",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_01_gaussian_lod.chunk003"
+          },
+          {
+            "sha256": "cb9355b6b80642431099c953bff4a637bfb4fbaa1c5c8502bee3ba72ab70554b",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_01_gaussian_lod.chunk004"
+          },
+          {
+            "sha256": "518110dbbf01f3c75064928d6ca76a0e4fe5e842e5b9618d0073ffa3b8365127",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_01_gaussian_lod.chunk005"
+          },
+          {
+            "sha256": "7df1761f9a2fd50db55c8c0eb8d82cfb268d09407a4e147817047723097f1ac6",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_01_gaussian_lod.chunk006"
+          },
+          {
+            "sha256": "862cba06718e4551827f71c1cc5bb9f2e54502692f1b9181e4b636cc9bb31431",
+            "size": 820384,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_01_gaussian_lod.chunk007"
+          }
+        ],
+        "selectionMethod": "deterministic_even_sample_positive_opacity_first_plus_affine_covariance_bake",
+        "shDegree": 0,
+        "sha256": "8e88b67c78d6c1204913f70717c527dea3edb13d6fa5201d94d0748decd5384b",
+        "size": 8160416,
+        "sourcePath": "artifact://video2mesh/embodiedgen_v2_bedroom4_auto_completion_20260714/run/final_output/sam3_plant_01_trellis_gaussian.ply",
+        "sourceSha256": "4f16ef3885d28e7c2d2c89501e8db6f28581195c25c0bf37cd3f79ab13879db2",
+        "sourceVertexCount": 1281643,
+        "vertexCount": 120000,
+        "vertexProperties": [
+          "x",
+          "y",
+          "z",
+          "nx",
+          "ny",
+          "nz",
+          "f_dc_0",
+          "f_dc_1",
+          "f_dc_2",
+          "opacity",
+          "scale_0",
+          "scale_1",
+          "scale_2",
+          "rot_0",
+          "rot_1",
+          "rot_2",
+          "rot_3"
+        ],
+        "vertexStride": 68
+      }
+    },
+    {
+      "aliases": [
+        "plant",
+        "potted plant",
+        "植物",
+        "盆栽",
+        "绿植"
+      ],
+      "bbox": {
+        "center": [
+          -10.1043695,
+          0.195119,
+          14.9292585
+        ],
+        "coordinateFrame": "visual_native",
+        "extent": [
+          1.753715,
+          0.798368,
+          2.248233
+        ],
+        "max": [
+          -9.227512,
+          0.594303,
+          16.053375
+        ],
+        "min": [
+          -10.981227,
+          -0.204065,
+          13.805142
+        ]
+      },
+      "carve": {
+        "distance": 0.18,
+        "method": "semantic_anchor_radius_nearest_neighbor",
+        "removedSceneGaussianCount": 2265
+      },
+      "category": "plant",
+      "colliderProxy": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          1.753715,
+          0.798368,
+          2.248233
+        ],
+        "provenance": "robust source-anchor bounds; proxy mesh, not a reconstructed object surface",
+        "type": "box"
+      },
+      "collision": {
+        "asset": {
+          "blenderBounds": {
+            "center": [
+              0.0066389888525009155,
+              0.0013551563024520874,
+              -0.0011664032936096191
+            ],
+            "coordinateSystem": "blender_world_z_up",
+            "max": [
+              0.39738816022872925,
+              0.38037070631980896,
+              0.4997386336326599
+            ],
+            "min": [
+              -0.3841101825237274,
+              -0.3776603937149048,
+              -0.5020714402198792
+            ],
+            "size": [
+              0.7814983427524567,
+              0.7580311000347137,
+              1.001810073852539
+            ]
+          },
+          "bounds": [
+            [
+              -0.3841101825237274,
+              -0.5020714402198792,
+              -0.38037070631980896
+            ],
+            [
+              0.39738816022872925,
+              0.4997386336326599,
+              0.3776603937149048
+            ]
+          ],
+          "faces": 21890,
+          "fileName": "sam3_plant_02.collision.glb",
+          "fileType": "glb",
+          "format": "gltf-binary",
+          "id": "sam3_plant_02_simplified_collision_glb",
+          "label": "Plant 02 simplified collision GLB",
+          "sha256": "f00ae900878e1a995627dff4c169b527d3f21c6da5cf45d783042fccca5a1d32",
+          "simplification": {
+            "originalFaces": 736036,
+            "ratio": 0.02974,
+            "simplifiedFaces": 21890,
+            "targetFaces": 22000,
+            "tool": "blender_headless_decimate"
+          },
+          "size": 473824,
+          "url": "./worlds/bedroom4/colliders/sam3_plant_02.collision.glb",
+          "vertices": 28478
+        },
+        "characterCollision": true,
+        "gate": {
+          "boundsFit": "passed",
+          "browserOverlayReview": "passed",
+          "collisionTechnicalQa": "passed",
+          "note": "Automated browser collision QA and screenshot overlay review passed.",
+          "orientationEvidence": "browser_gaussian_collision_overlay_reviewed",
+          "status": "passed"
+        },
+        "mode": "kinematic",
+        "objectLocalMatrix": [
+          2.244041867,
+          0,
+          0,
+          0,
+          0,
+          0.796925506,
+          0,
+          0,
+          0,
+          0,
+          2.965884909,
+          0,
+          -0.014898169,
+          0.000929537,
+          0.004019238,
+          1
+        ],
+        "placement": {
+          "fittedLocalCenter": [
+            0,
+            0,
+            0
+          ],
+          "fittedLocalExtent": [
+            1.753715,
+            0.798368,
+            2.248233
+          ],
+          "matrix": [
+            2.244041867,
+            0,
+            0,
+            0,
+            0,
+            0.796925506,
+            0,
+            0,
+            0,
+            0,
+            2.965884909,
+            0,
+            -0.014898169,
+            0.000929537,
+            0.004019238,
+            1
+          ],
+          "scale": [
+            2.2440419,
+            0.7969255,
+            2.9658849
+          ],
+          "sourceCenter": [
+            0.006639,
+            -0.0011664,
+            -0.0013552
+          ],
+          "sourceExtent": [
+            0.7814983,
+            1.0018101,
+            0.7580311
+          ],
+          "targetExtent": [
+            1.753715,
+            0.798368,
+            2.248233
+          ]
+        },
+        "renderAsset": {
+          "fileName": "sam3_plant_02.glb",
+          "fileType": "glb",
+          "format": "gltf-binary",
+          "sha256": "e264ab00554e963ddcaf6ce49fc9dc5c77ce913d4c7f5bf6269795ab6ecf2c1d",
+          "size": 20451292,
+          "url": "./worlds/bedroom4/render-meshes/sam3_plant_02.glb"
+        },
+        "source": {
+          "blenderBounds": {
+            "center": [
+              0.005712792277336121,
+              0.0005128383636474609,
+              -0.00047391653060913086
+            ],
+            "coordinateSystem": "blender_world_z_up",
+            "max": [
+              0.3963920772075653,
+              0.38172173500061035,
+              0.49947255849838257
+            ],
+            "min": [
+              -0.38496649265289307,
+              -0.38069605827331543,
+              -0.5004203915596008
+            ],
+            "size": [
+              0.7813585698604584,
+              0.7624177932739258,
+              0.9998929500579834
+            ]
+          },
+          "bounds": [
+            [
+              -0.38496649265289307,
+              -0.5004203915596008,
+              -0.38172173500061035
+            ],
+            [
+              0.3963920772075653,
+              0.49947255849838257,
+              0.38069605827331543
+            ]
+          ],
+          "faces": 736036,
+          "path": "artifact://video2mesh/embodiedgen_v2_bedroom4_mesh_exports_20260716/output/sam3_plant_02/sam3_plant_02.glb",
+          "sha256": "e264ab00554e963ddcaf6ce49fc9dc5c77ce913d4c7f5bf6269795ab6ecf2c1d",
+          "size": 20451292,
+          "vertices": 495125
+        },
+        "walkable": true
+      },
+      "description": {
+        "appearance": {
+          "en": "A dense rounded potted plant has palmate-looking green-and-cream variegated leaves, multiple upright stems, and a smooth off-white cylindrical pot.",
+          "zh": "这株浓密的圆冠盆栽具有掌状观感的绿奶油色斑锦叶、数根直立枝干和一个光滑的灰白色圆柱形花盆。"
+        },
+        "confidence": null,
+        "detailed": {
+          "en": "Colors: green and cream variegated leaves, off-white pot; Material appearance: smooth leaf surfaces, woody-looking stems, smooth off-white pot; Geometry: dense rounded crown, palmate-looking leaf clusters, cylindrical pot; Visible components: variegated leaves, multiple stems, pot; Style or pattern: green-and-cream variegation",
+          "zh": "颜色: 绿奶油色斑锦叶, 灰白色花盆; 材质观感: 平滑叶面, 木质观感枝干, 光滑灰白色花盆; 几何形态: 浓密圆形冠幅, 掌状观感叶簇, 圆柱形花盆; 可见组件: 斑锦叶片, 数根枝干, 花盆; 风格或纹理: 绿奶油色斑锦纹理"
+        },
+        "evidence_frames": [],
+        "fidelity_caveat": {
+          "en": "Metric scale cannot be inferred from the visual evidence. The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+          "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+        },
+        "location": {
+          "en": "Visible stems emerge from and are supported within the pot. Scene position cannot be inferred from this isolated reference.",
+          "zh": "可见枝干从花盆内部伸出并由花盆承托。 无法从这张孤立参考图推断场景位置。"
+        },
+        "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+        "provider": "local_huggingface_transformers+agent_visual_audit",
+        "short": {
+          "en": "A dense rounded potted plant has palmate-looking green-and-cream variegated leaves, multiple upright stems, and a smooth off-white cylindrical pot.",
+          "zh": "这株浓密的圆冠盆栽具有掌状观感的绿奶油色斑锦叶、数根直立枝干和一个光滑的灰白色圆柱形花盆。"
+        }
+      },
+      "fidelity": "category_proxy_from_low_detail_evidence",
+      "id": "sam3_plant_02",
+      "interaction": {
+        "degrees": 360,
+        "durationMs": 1250,
+        "kind": "spin"
+      },
+      "label": "Plant 02",
+      "placement": {
+        "bakedCovarianceMethod": "axis_scale_times_covariance_then_symmetric_eigendecomposition",
+        "bakedSourceGeneratedCenter": [
+          -0.0047552,
+          0.0405949,
+          0.0077996
+        ],
+        "bakedSourceScale": [
+          2.8378602,
+          0.8758355,
+          4.4605109
+        ],
+        "coordinateFrame": "visual_native",
+        "eulerOrder": "XYZ",
+        "generatedCenter": [
+          0,
+          0,
+          0
+        ],
+        "method": "robust_axis_aligned_extent_fit_baked_into_gaussians",
+        "note": "The TRELLIS export and PGSR scene both use -Y world-up. Non-uniform extent fitting is baked into Gaussian centers and covariances so Spark uses a runtime identity scale.",
+        "pivot": [
+          -10.1043695,
+          0.195119,
+          14.9292585
+        ],
+        "rotationEulerDeg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "sourceAnchor": {
+        "fileName": "sam3_plant_02.source-anchor.ply",
+        "path": "./worlds/bedroom4/evidence/sam3_plant_02.source-anchor.ply",
+        "pointCount": 4630,
+        "robustBounds": {
+          "center": [
+            -10.1043695,
+            0.195119,
+            14.9292585
+          ],
+          "extent": [
+            1.753715,
+            0.798368,
+            2.248233
+          ],
+          "max": [
+            -9.227512,
+            0.594303,
+            16.053375
+          ],
+          "min": [
+            -10.981227,
+            -0.204065,
+            13.805142
+          ],
+          "quantileHigh": 0.99,
+          "quantileLow": 0.01
+        },
+        "sha256": "87ab2b3946cee1009b97e9193e950c5e6741e85d06416dcceb5a20a6e360941c",
+        "size": 178418
+      },
+      "visual": {
+        "bbox": {
+          "max": [
+            1.128160261623429,
+            0.4016324657216128,
+            1.642307564416261
+          ],
+          "min": [
+            -1.0444878492861716,
+            -0.4714369695079343,
+            -1.6636770369256006
+          ]
+        },
+        "chunkSize": 1048576,
+        "fileName": "sam3_plant_02_trellis_gaussian_web_lod.ply",
+        "fileType": "ply",
+        "format": "graphdeco-gaussian-ply",
+        "headerByteLength": 416,
+        "id": "sam3_plant_02_trellis_gaussian_web_lod",
+        "label": "Plant 02 TRELLIS Gaussian web LOD",
+        "parts": [
+          {
+            "sha256": "25a0d8cf85f8ebba03e09bc2193d59e85d4026aa088ab73d31cf7015dd71b76d",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_02_gaussian_lod.chunk000"
+          },
+          {
+            "sha256": "d3e8dad3d0ef0cfd83826d704c009f4b8f4f1982206bab8c398409cd64317190",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_02_gaussian_lod.chunk001"
+          },
+          {
+            "sha256": "bfcd3fcfb29fdfe4d650ecb70768542d616e54c1a20b927a7baf9811824aa61a",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_02_gaussian_lod.chunk002"
+          },
+          {
+            "sha256": "b4f8596a6a5ef4d78c784c0117ecbc78657a9eded6a033d60805dc55da95c349",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_02_gaussian_lod.chunk003"
+          },
+          {
+            "sha256": "cb49d4d6243e72d18e8fd3b1e7e502bbb45818e129baab576f2790df1ec99787",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_02_gaussian_lod.chunk004"
+          },
+          {
+            "sha256": "78ba607f4d699717d2b7bcba9c78c2e7071e17741534fbb9c3c0034c7985bee2",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_02_gaussian_lod.chunk005"
+          },
+          {
+            "sha256": "61900f544a314cd3843b5e7d082d2416a83bf81c29803245890f4b5afa72e087",
+            "size": 1048576,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_02_gaussian_lod.chunk006"
+          },
+          {
+            "sha256": "8ec71a93d9acbf9cd5eecbecfc4d666ea8371d22d376672a0187e3cc14d5658c",
+            "size": 820384,
+            "url": "./worlds/bedroom4/chunks/interactive_sam3_plant_02_gaussian_lod.chunk007"
+          }
+        ],
+        "selectionMethod": "deterministic_even_sample_positive_opacity_first_plus_affine_covariance_bake",
+        "shDegree": 0,
+        "sha256": "63e6446b621083879e55f381aa749b24c8817ab917d096e36b520188bd8fa884",
+        "size": 8160416,
+        "sourcePath": "artifact://video2mesh/embodiedgen_v2_bedroom4_auto_completion_20260714/run/final_output/sam3_plant_02_trellis_gaussian.ply",
+        "sourceSha256": "95d94c8166e12e4609af990c95fa7ca68eafc1ae504318d144a7cee4804bfc09",
+        "sourceVertexCount": 710528,
+        "vertexCount": 120000,
+        "vertexProperties": [
+          "x",
+          "y",
+          "z",
+          "nx",
+          "ny",
+          "nz",
+          "f_dc_0",
+          "f_dc_1",
+          "f_dc_2",
+          "opacity",
+          "scale_0",
+          "scale_1",
+          "scale_2",
+          "rot_0",
+          "rot_1",
+          "rot_2",
+          "rot_3"
+        ],
+        "vertexStride": 68
+      }
+    },
+    {
+      "aliases": [
+        "pillow",
+        "front pillow",
+        "small pillow",
+        "枕头",
+        "前排枕头",
+        "小白枕"
+      ],
+      "bbox": {
+        "center": [
+          -1.0426454650120087,
+          -0.16895576776650567,
+          14.813889577996441
+        ],
+        "coordinateFrame": "visual_native",
+        "extent": [
+          2.9432804584503174,
+          2.607210636138916,
+          1.8959510922431946
+        ],
+        "max": [
+          0.4289947642131502,
+          1.1346495503029523,
+          15.761865124118039
+        ],
+        "min": [
+          -2.5142856942371674,
+          -1.4725610858359637,
+          13.865914031874844
+        ]
+      },
+      "category": "pillow",
+      "childObjectIds": [],
+      "collision": {
+        "asset": {
+          "bounds": [
+            [
+              -1.601073145866394,
+              -1.3301100730895996,
+              -0.8948002457618713
+            ],
+            [
+              1.3422073125839233,
+              1.2771005630493164,
+              1.0011508464813232
+            ]
+          ],
+          "faces": 97082,
+          "fileName": "sam3_pillow_front.scene-fit.glb",
+          "fileType": "glb",
+          "finite": true,
+          "format": "gltf-binary",
+          "id": "sam3_pillow_front_unified_pbr_glb",
+          "label": "前排浅色枕头 / Front light pillow unified PBR GLB",
+          "logicalRoot": "world",
+          "nondegenerate": true,
+          "sha256": "9d84ab4561d7c017c24c07a94abe5400073b0fafb97893a8a1eafca320c391d6",
+          "size": 3979924,
+          "sourcePath": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/sam3_pillow_front.scene-fit.glb",
+          "url": "./worlds/bedroom4/objects/sam3_pillow_front.scene-fit.glb",
+          "vertices": 60237,
+          "watertight": false,
+          "windingConsistent": true
+        },
+        "characterCollision": true,
+        "gate": {
+          "candidateBrowserQa": "pending",
+          "jointQaReceiptSha256": "48c4ba43baa8b0767772e70fbf0165aeb6531018d4e0c172a0525d2760456d28",
+          "pairwiseQaReceiptSha256": "b8928ffa92aaee81ef2abf76f2237da1bb893770fd6e50e4f642db8620204c74",
+          "reason": "The exact GLB and its scene-fit/joint QA receipts passed geometry and surface-collision gates. Candidate transport/browser QA remains pending.",
+          "sceneFitReceiptSha256": "da26014b1ecc29eb1dfcf8d45b74d98bd539b69945e029a6512ea6a2ab8769cd",
+          "status": "passed",
+          "supportAdjustmentReceiptSha256": null,
+          "surfaceCollision": "passed"
+        },
+        "mode": "unified-glb",
+        "topology": "surface_bvh",
+        "walkable": false
+      },
+      "description": {
+        "appearance": {
+          "en": "An off-white stuffed form with a soft fabric PBR surface.",
+          "zh": "主体为灰白或米白色, 保留了柔软填充形态。"
+        },
+        "confidence": null,
+        "detailed": {
+          "en": "A completed PBR mesh with accepted minor generated texture variation.",
+          "zh": "可见面与背面已形成完整 PBR 网格; 轻微生成纹理差异按当前验收口径保留。"
+        },
+        "evidence_frames": [
+          "000064"
+        ],
+        "location": {
+          "en": "At the 前排 position on the mattress.",
+          "zh": "位于床垫上的前排位置。"
+        },
+        "model": "TRELLIS.2 PBR completion",
+        "provider": "TRELLIS.2+scene_fit+joint_QA",
+        "short": {
+          "en": "A light-colored 前排 pillow on the bed.",
+          "zh": "床上的前排浅色软枕。"
+        }
+      },
+      "fidelity": "accepted_unified_pbr_completion_candidate",
+      "id": "sam3_pillow_front",
+      "independentlyMovable": true,
+      "independentlyRecognized": true,
+      "interaction": {
+        "degrees": 360,
+        "drag": "horizontal_yaw",
+        "durationMs": 1250,
+        "kind": "spin"
+      },
+      "label": "前排浅色枕头 / Front light pillow",
+      "limitations": [
+        "Candidate asset transport and browser QA are pending.",
+        "The inherited static scene is not a clean plate and can still contain old object residuals."
+      ],
+      "movesWithParent": true,
+      "name": "前排浅色枕头",
+      "parentObjectId": "sam3_bed_01",
+      "placement": {
+        "assetCoordinatesBaked": true,
+        "coordinateFrame": "visual_native",
+        "eulerOrder": "XYZ",
+        "generatedCenter": [
+          0,
+          0,
+          0
+        ],
+        "pivot": [
+          -0.9132125483707731,
+          -0.1424510127463641,
+          14.760714277636716
+        ],
+        "rotationEulerDeg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "sourceCoordinateFrame": "scene_fit_local",
+        "transform": "scene_fit_baked_glb_plus_runtime_pivot"
+      },
+      "semanticGranularity": "independent_child_asset",
+      "visualOnly": false
+    },
+    {
+      "aliases": [
+        "left pillow",
+        "left rear pillow",
+        "左枕头",
+        "左侧后排枕头"
+      ],
+      "bbox": {
+        "center": [
+          -3.7651317937692195,
+          -0.5993330113454497,
+          14.9120649317423
+        ],
+        "coordinateFrame": "visual_native",
+        "extent": [
+          4.187768936157227,
+          3.686658024787903,
+          2.1875244379043597
+        ],
+        "max": [
+          -1.6712473256906066,
+          1.2439960010485016,
+          16.00582715069448
+        ],
+        "min": [
+          -5.859016261847833,
+          -2.442662023739401,
+          13.81830271279012
+        ]
+      },
+      "category": "pillow",
+      "childObjectIds": [],
+      "collision": {
+        "asset": {
+          "bounds": [
+            [
+              -2.1247365474700928,
+              -1.7836108207702637,
+              -1.0862932205200195
+            ],
+            [
+              2.063032388687134,
+              1.9030472040176392,
+              1.1012312173843384
+            ]
+          ],
+          "faces": 98230,
+          "fileName": "sam3_pillow_left.scene-fit.glb",
+          "fileType": "glb",
+          "finite": true,
+          "format": "gltf-binary",
+          "id": "sam3_pillow_left_unified_pbr_glb",
+          "label": "左侧后排浅色枕头 / Left rear light pillow unified PBR GLB",
+          "logicalRoot": "world",
+          "nondegenerate": true,
+          "sha256": "43f95a5756ccecb9a1ca36ba583c2ad4fd5dd1a4e66b1d591be935f2bd59b600",
+          "size": 3440992,
+          "sourcePath": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined_v6/sam3_pillow_left.scene-fit.glb",
+          "url": "./worlds/bedroom4/objects/sam3_pillow_left.scene-fit.glb",
+          "vertices": 52981,
+          "watertight": false,
+          "windingConsistent": true
+        },
+        "characterCollision": true,
+        "gate": {
+          "candidateBrowserQa": "pending",
+          "jointQaReceiptSha256": "48c4ba43baa8b0767772e70fbf0165aeb6531018d4e0c172a0525d2760456d28",
+          "pairwiseQaReceiptSha256": "b8928ffa92aaee81ef2abf76f2237da1bb893770fd6e50e4f642db8620204c74",
+          "reason": "The exact GLB and its scene-fit/joint QA receipts passed geometry and surface-collision gates. Candidate transport/browser QA remains pending.",
+          "sceneFitReceiptSha256": "1f551500f5a540dfd46b9aaba33a503f36efc47c5e7169dc953ed779f40a98c7",
+          "status": "passed",
+          "supportAdjustmentReceiptSha256": null,
+          "surfaceCollision": "passed"
+        },
+        "mode": "unified-glb",
+        "topology": "surface_bvh",
+        "walkable": false
+      },
+      "description": {
+        "appearance": {
+          "en": "An off-white stuffed form with a soft fabric PBR surface.",
+          "zh": "主体为灰白或米白色, 保留了柔软填充形态。"
+        },
+        "confidence": null,
+        "detailed": {
+          "en": "A completed PBR mesh with accepted minor generated texture variation.",
+          "zh": "可见面与背面已形成完整 PBR 网格; 轻微生成纹理差异按当前验收口径保留。"
+        },
+        "evidence_frames": [
+          "000064"
+        ],
+        "location": {
+          "en": "At the 左后排 position on the mattress.",
+          "zh": "位于床垫上的左后排位置。"
+        },
+        "model": "TRELLIS.2 PBR completion",
+        "provider": "TRELLIS.2+scene_fit+joint_QA",
+        "short": {
+          "en": "A light-colored 左后排 pillow on the bed.",
+          "zh": "床上的左后排浅色软枕。"
+        }
+      },
+      "fidelity": "accepted_unified_pbr_completion_candidate",
+      "id": "sam3_pillow_left",
+      "independentlyMovable": true,
+      "independentlyRecognized": true,
+      "interaction": {
+        "degrees": 360,
+        "drag": "horizontal_yaw",
+        "durationMs": 1250,
+        "kind": "spin"
+      },
+      "label": "左侧后排浅色枕头 / Left rear light pillow",
+      "limitations": [
+        "Candidate asset transport and browser QA are pending.",
+        "The inherited static scene is not a clean plate and can still contain old object residuals."
+      ],
+      "movesWithParent": true,
+      "name": "左侧后排浅色枕头",
+      "parentObjectId": "sam3_bed_01",
+      "placement": {
+        "assetCoordinatesBaked": true,
+        "coordinateFrame": "visual_native",
+        "eulerOrder": "XYZ",
+        "generatedCenter": [
+          0,
+          0,
+          0
+        ],
+        "pivot": [
+          -3.7342797143777404,
+          -0.6590512029691376,
+          14.904595933310139
+        ],
+        "rotationEulerDeg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "sourceCoordinateFrame": "scene_fit_local",
+        "transform": "scene_fit_baked_glb_plus_runtime_pivot"
+      },
+      "semanticGranularity": "independent_child_asset",
+      "visualOnly": false
+    },
+    {
+      "aliases": [
+        "right pillow",
+        "right rear pillow",
+        "右枕头",
+        "右侧后排枕头"
+      ],
+      "bbox": {
+        "center": [
+          0.6863510980794847,
+          -0.8818624744979973,
+          16.956092051846884
+        ],
+        "coordinateFrame": "visual_native",
+        "extent": [
+          4.19227409362793,
+          3.6626994609832764,
+          1.855754017829895
+        ],
+        "max": [
+          2.7824881448934495,
+          0.9494872559936409,
+          17.88396906076183
+        ],
+        "min": [
+          -1.4097859487344802,
+          -2.7132122049896354,
+          16.028215042931937
+        ]
+      },
+      "category": "pillow",
+      "childObjectIds": [],
+      "collision": {
+        "asset": {
+          "bounds": [
+            [
+              -2.1120827198028564,
+              -1.7829582691192627,
+              -0.9168562889099121
+            ],
+            [
+              2.0801913738250732,
+              1.8797411918640137,
+              0.9388977289199829
+            ]
+          ],
+          "faces": 98226,
+          "fileName": "sam3_pillow_right.scene-fit.glb",
+          "fileType": "glb",
+          "finite": true,
+          "format": "gltf-binary",
+          "id": "sam3_pillow_right_unified_pbr_glb",
+          "label": "右侧后排浅色枕头 / Right rear light pillow unified PBR GLB",
+          "logicalRoot": "world",
+          "nondegenerate": true,
+          "sha256": "eb4ad2cb0398602865ff3511039e440ce9cb50ace016fffeaaf3ce3944280f1e",
+          "size": 3406068,
+          "sourcePath": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/sam3_pillow_right.scene-fit.glb",
+          "url": "./worlds/bedroom4/objects/sam3_pillow_right.scene-fit.glb",
+          "vertices": 54968,
+          "watertight": false,
+          "windingConsistent": true
+        },
+        "characterCollision": true,
+        "gate": {
+          "candidateBrowserQa": "pending",
+          "jointQaReceiptSha256": "48c4ba43baa8b0767772e70fbf0165aeb6531018d4e0c172a0525d2760456d28",
+          "pairwiseQaReceiptSha256": "b8928ffa92aaee81ef2abf76f2237da1bb893770fd6e50e4f642db8620204c74",
+          "reason": "The exact GLB and its scene-fit/joint QA receipts passed geometry and surface-collision gates. Candidate transport/browser QA remains pending.",
+          "sceneFitReceiptSha256": "d9ec2811d33372cfda174b7073e574385da283bc191a09fa89cbc6175da41155",
+          "status": "passed",
+          "supportAdjustmentReceiptSha256": null,
+          "surfaceCollision": "passed"
+        },
+        "mode": "unified-glb",
+        "topology": "surface_bvh",
+        "walkable": false
+      },
+      "description": {
+        "appearance": {
+          "en": "An off-white stuffed form with a soft fabric PBR surface.",
+          "zh": "主体为灰白或米白色, 保留了柔软填充形态。"
+        },
+        "confidence": null,
+        "detailed": {
+          "en": "A completed PBR mesh with accepted minor generated texture variation.",
+          "zh": "可见面与背面已形成完整 PBR 网格; 轻微生成纹理差异按当前验收口径保留。"
+        },
+        "evidence_frames": [
+          "000064"
+        ],
+        "location": {
+          "en": "At the 右后排 position on the mattress.",
+          "zh": "位于床垫上的右后排位置。"
+        },
+        "model": "TRELLIS.2 PBR completion",
+        "provider": "TRELLIS.2+scene_fit+joint_QA",
+        "short": {
+          "en": "A light-colored 右后排 pillow on the bed.",
+          "zh": "床上的右后排浅色软枕。"
+        }
+      },
+      "fidelity": "accepted_unified_pbr_completion_candidate",
+      "id": "sam3_pillow_right",
+      "independentlyMovable": true,
+      "independentlyRecognized": true,
+      "interaction": {
+        "degrees": 360,
+        "drag": "horizontal_yaw",
+        "durationMs": 1250,
+        "kind": "spin"
+      },
+      "label": "右侧后排浅色枕头 / Right rear light pillow",
+      "limitations": [
+        "Candidate asset transport and browser QA are pending.",
+        "The inherited static scene is not a clean plate and can still contain old object residuals."
+      ],
+      "movesWithParent": true,
+      "name": "右侧后排浅色枕头",
+      "parentObjectId": "sam3_bed_01",
+      "placement": {
+        "assetCoordinatesBaked": true,
+        "coordinateFrame": "visual_native",
+        "eulerOrder": "XYZ",
+        "generatedCenter": [
+          0,
+          0,
+          0
+        ],
+        "pivot": [
+          0.7022967710683762,
+          -0.9302539358703728,
+          16.94507133184185
+        ],
+        "rotationEulerDeg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "sourceCoordinateFrame": "scene_fit_local",
+        "transform": "scene_fit_baked_glb_plus_runtime_pivot"
+      },
+      "semanticGranularity": "independent_child_asset",
+      "visualOnly": false
+    },
+    {
+      "aliases": [
+        "bed",
+        "double bed",
+        "床",
+        "双人床",
+        "床架",
+        "床垫"
+      ],
+      "bbox": {
+        "center": [
+          0.5512032005178886,
+          1.1493947935754947,
+          10.652915506271459
+        ],
+        "coordinateFrame": "visual_native",
+        "extent": [
+          15.071468376336364,
+          11.482184396598988,
+          20.88049451680081
+        ],
+        "max": [
+          8.08693738868607,
+          6.8904869918749885,
+          21.093162764671863
+        ],
+        "min": [
+          -6.9845309876502935,
+          -4.591697404723999,
+          0.21266824787105598
+        ]
+      },
+      "category": "bed",
+      "childObjectIds": [
+        "sam3_pillow_front",
+        "sam3_pillow_left",
+        "sam3_pillow_right"
+      ],
+      "collision": {
+        "asset": {
+          "bounds": [
+            [
+              -0.7894068360328674,
+              0.0,
+              -1.107337236404419
+            ],
+            [
+              0.7894068360328674,
+              0.7295557260513306,
+              1.100000023841858
+            ]
+          ],
+          "faces": 4976,
+          "fileName": "sam3_bed_01.support-adjusted.glb",
+          "fileType": "glb",
+          "finite": true,
+          "format": "gltf-binary",
+          "id": "sam3_bed_01_unified_pbr_glb",
+          "label": "双人床 / Bed unified PBR GLB",
+          "logicalRoot": "sam3_bed_01",
+          "nondegenerate": true,
+          "sha256": "ad9eca71a676cf8fa5cad7a38d0ff5a623149de01e61ae91ba651ea07d37790e",
+          "size": 113468,
+          "sourcePath": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v2_support_adjusted/sam3_bed_01.support-adjusted.glb",
+          "url": "./worlds/bedroom4/objects/sam3_bed_01.support-adjusted.glb",
+          "vertices": 2500,
+          "watertight": true,
+          "windingConsistent": true
+        },
+        "characterCollision": true,
+        "gate": {
+          "candidateBrowserQa": "pending",
+          "jointQaReceiptSha256": "48c4ba43baa8b0767772e70fbf0165aeb6531018d4e0c172a0525d2760456d28",
+          "pairwiseQaReceiptSha256": "b8928ffa92aaee81ef2abf76f2237da1bb893770fd6e50e4f642db8620204c74",
+          "reason": "The exact GLB and its scene-fit/joint QA receipts passed geometry and surface-collision gates. Candidate transport/browser QA remains pending.",
+          "sceneFitReceiptSha256": "2f3b8b29d2270964fe8931c4826b2b126e60266cfd97d157af5b8cdd971a6adc",
+          "status": "passed",
+          "supportAdjustmentReceiptSha256": "9d51f3ec09869ee6ca9ca4ffc21e77f25cf350d02665f682b241dda34778b320",
+          "surfaceCollision": "passed"
+        },
+        "mode": "unified-glb",
+        "topology": "closed_volume",
+        "walkable": false
+      },
+      "description": {
+        "appearance": {
+          "en": "Light bedding over a dark wooden frame and headboard.",
+          "zh": "浅色床垫与床品配深色木质床架和床头板。"
+        },
+        "confidence": null,
+        "detailed": {
+          "en": "Six closed PBR parts act as one selectable, rotatable, collidable root.",
+          "zh": "床由六个闭合 PBR 部件组成, 但在场景中由一个根节点统一选择、旋转和碰撞。"
+        },
+        "evidence_frames": [
+          "000064",
+          "000067",
+          "000071"
+        ],
+        "location": {
+          "en": "In the bedroom center, supporting the three pillows.",
+          "zh": "位于卧室中央, 三只枕头在床垫上。"
+        },
+        "model": "deterministic PBR fixture assembly",
+        "provider": "component_assembly+support_adjustment+joint_QA",
+        "short": {
+          "en": "A double bed with mattress, frame, and headboard.",
+          "zh": "一张带软垫、床架和床头板的双人床。"
+        }
+      },
+      "fidelity": "accepted_unified_pbr_completion_candidate",
+      "id": "sam3_bed_01",
+      "independentlyMovable": true,
+      "independentlyRecognized": true,
+      "interaction": {
+        "degrees": 360,
+        "drag": "horizontal_yaw",
+        "durationMs": 1250,
+        "kind": "spin"
+      },
+      "label": "双人床 / Bed",
+      "limitations": [
+        "Candidate asset transport and browser QA are pending.",
+        "The inherited static scene is not a clean plate and can still contain old object residuals."
+      ],
+      "movesWithParent": false,
+      "name": "双人床",
+      "parentObjectId": null,
+      "placement": {
+        "assetCoordinatesBaked": false,
+        "coordinateFrame": "visual_native",
+        "eulerOrder": "XYZ",
+        "generatedCenter": [
+          0,
+          0,
+          0
+        ],
+        "matrixRowMajor": [
+          [
+            6.0940405667591,
+            0.06831981888678311,
+            2.648131223143048,
+            0.639241276163562
+          ],
+          [
+            -0.20072433617157628,
+            -12.444750282849224,
+            0.9540323820267776,
+            5.6921053762733935
+          ],
+          [
+            1.9936905918532148,
+            -1.4617654309371404,
+            -7.998393355783393,
+            10.762354974571135
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "pivot": [
+          0.639241276163562,
+          5.6921053762733935,
+          10.762354974571135
+        ],
+        "rotationEulerDeg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "sourceCoordinateFrame": "scene_fit_local",
+        "transform": "unbaked_glb_plus_runtime_matrix_row_major"
+      },
+      "semanticGranularity": "independent_root_asset",
+      "visualOnly": false
+    }
+  ],
+  "presentation": {
+    "pivot": [
+      2.250915668599896,
+      -3.375,
+      12.605660413500916
+    ],
+    "referenceBoundsAssetKey": "collider",
+    "sourceCommit": "252a85c52106838b9bd796f4e70253f7e68af488",
+    "yawDeg": 180
+  },
+  "productionBuild": {
+    "baselineHistory": {
+      "browserQaReport": "./worlds/bedroom4/qa/browser-qa.json",
+      "statement": "This QA predates the unified-pillow candidate and does not validate it.",
+      "status": "passed_for_base_manifest_only"
+    },
+    "blender": "tool://blender",
+    "candidatePillowIntegration": {
+      "frontObjectId": "sam3_pillow_front",
+      "priorRecarveBrowserEvidence": "passed",
+      "rearObjectIds": [
+        "sam3_pillow_left",
+        "sam3_pillow_right"
+      ],
+      "rootProxyBrowserQa": "pending_promoted_manifest_recheck",
+      "staticVisualSha256": "7f8a7d9a1fc07cee34754469d5fffe95d90640bfa9d5883b4432e83698e55c0d",
+      "staticVisualVertexCount": 821785,
+      "status": "materialized_current_demo_candidate"
+    },
+    "cognitionManifest": "repo://video2world/examples/bedroom4/cognition/outputs/cognition_manifest.json",
+    "cognitionManifestSha256": "ee1816665d3088f909a714d43e3a769daa480968c844330ffcb4df5be77a38a3",
+    "collisionSimplifier": "repo://video2world/scripts/simplify_collision_glb.mjs",
+    "collisionWorldGate": "passed",
+    "createdAt": "2026-07-16T15:16:48.625Z",
+    "meshRoot": "artifact://video2mesh/embodiedgen_v2_bedroom4_mesh_exports_20260716/output",
+    "objectPlacementGate": "passed_browser_overlay_and_robot_collision",
+    "pillowVisualCarve": {
+      "acceptedAabb": {
+        "center": [
+          -1.4561858415603641,
+          -0.5146498405933381,
+          15.301824736595151
+        ],
+        "coordinateFrame": "visual_native",
+        "extent": [
+          7.262578554153441,
+          3.1900772786140443,
+          4.079373254775994
+        ],
+        "max": [
+          2.1751034355163563,
+          1.080388798713684,
+          17.341511363983148
+        ],
+        "min": [
+          -5.087475118637085,
+          -2.10968847990036,
+          13.262138109207154
+        ],
+        "sourceCoordinateFrame": "video2mesh_da3_world",
+        "transform": "identity_holi_da3_to_pgsr_shared_frame"
+      },
+      "anchorInsideAcceptedAabbCount": 203705,
+      "anchorInsideAcceptedAabbRatio": 0.972436378,
+      "anchorOutsideAcceptedAabbCount": 5774,
+      "anchorPointCount": 209479,
+      "anchorRawBounds": {
+        "max": [
+          2.568901,
+          1.194091,
+          18.424143
+        ],
+        "min": [
+          -5.435565,
+          -2.275802,
+          12.965193
+        ]
+      },
+      "anchorSha256": "7590a8d9ae719e2af6d0017d9c1152772f99d726d414a5c4e84cb8ce017a1452",
+      "distance": 0.08,
+      "inputAssetSha256": "d956e6895b1dfbce3fd18d1cd7d1ab0152e0a0534879b0ef40617c2179c0597c",
+      "inputStaticGaussianCount": 850122,
+      "insideAcceptedAabbCount": 30769,
+      "method": "accepted_mask_projected_point_nearest_neighbor_within_exact_aabb",
+      "objectId": "merged_three_pillow_anchor",
+      "outputAssetSha256": "0983b53eeeeefe7d41e3024a5ac9d5001171423da52beb1c8a542c3d02368c23",
+      "removedGaussianCount": 26731,
+      "removedOutsideAcceptedAabbCount": 0,
+      "retainedInsideAcceptedAabbCount": 4038,
+      "retainedStaticGaussianCount": 823391,
+      "safetyGate": {
+        "exactAabbRequired": true,
+        "nearestAcceptedPointRequired": true,
+        "note": "Conservative identity-frame carve; unmatched bed/headboard Gaussians inside the broad pillow AABB remain static.",
+        "unmatchedInsideAabbRetained": 4038,
+        "wholeAabbDeletionForbidden": true
+      },
+      "sensitivityRemovedCounts": {
+        "0.04": 21851,
+        "0.06": 24922,
+        "0.08": 26731,
+        "0.1": 27880,
+        "0.12": 28593,
+        "0.15": 29236,
+        "0.18": 29593
+      },
+      "status": "passed",
+      "units": "scene_scale_not_metric"
+    },
+    "pillowVisualCarveDistance": 0.08,
+    "schemaVersion": 1,
+    "sourceChunkDir": "repo://relumeow/static/video2mesh/web-demo/assets/chunks",
+    "sourceManifest": "repo://relumeow/static/video2mesh/web-demo/assets/web-demo-assets.json",
+    "sourceManifestSha256": "127465979f67f74d4bbc077c78215ea5ec3eca14b9ac4eab097651a7a6cf9156",
+    "tsdfPath": "artifact://video2mesh/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/mesh/tsdf_fusion_post.ply",
+    "tsdfSha256": "1cd9faf084a51f3959cd19dfc3ef05fb2dba9d6e1cdca944bfbeba6c33a1859d",
+    "unifiedPbrFourObjectCandidate": {
+      "objectIds": [
+        "sam3_pillow_front",
+        "sam3_pillow_left",
+        "sam3_pillow_right",
+        "sam3_bed_01"
+      ],
+      "promotionAllowed": false,
+      "status": "candidate_only_clean_scene_pending"
+    }
+  },
+  "sceneKnowledge": {
+    "coordinateFrame": "visual_native",
+    "missingInstances": [],
+    "objects": [
+      {
+        "aliases": [
+          "nightstand",
+          "bedside table",
+          "床头柜"
+        ],
+        "bbox": {
+          "center": [
+            -8.857548,
+            2.9190715,
+            14.5170345
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            4.876246,
+            4.019931,
+            4.307599
+          ],
+          "max": [
+            -6.419425,
+            4.929037,
+            16.670834
+          ],
+          "min": [
+            -11.295671,
+            0.909106,
+            12.363235
+          ]
+        },
+        "category": "nightstand",
+        "description": {
+          "appearance": {
+            "en": "A plain dark warm-brown nightstand has a smooth wood-like finish, a rectangular top and apron, and four straight square-section legs, with no visible drawer or handle.",
+            "zh": "这件素面深暖棕色床头柜呈平滑木质观感，具有矩形柜面、围板和四条方截面直腿，未见抽屉或把手。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "Colors: dark warm brown; Material appearance: smooth wood-like finish; Geometry: rectangular top and apron, four straight square-section legs; Visible components: top, apron, four legs; Style or pattern: plain with minimal ornament",
+            "zh": "颜色: 深暖棕色; 材质观感: 平滑的木质观感表面; 几何形态: 矩形柜面与围板, 四条方截面直腿; 可见组件: 柜面, 围板, 四条柜腿; 风格或纹理: 素面、装饰极少"
+          },
+          "evidence_frames": [],
+          "fidelity_caveat": {
+            "en": "Metric scale cannot be inferred from the visual evidence. The exact substrate is not visually confirmed; no drawer or handle is visible from this view.",
+            "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认确切基材；此视角未见抽屉或把手。"
+          },
+          "location": {
+            "en": "Shown upright on its visible legs; room support and placement cannot be inferred. Scene position cannot be inferred from this isolated reference.",
+            "zh": "图中以可见柜腿直立展示；无法推断其在房间中的支撑面与摆放位置。 无法从这张孤立参考图推断场景位置。"
+          },
+          "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+          "provider": "local_huggingface_transformers+agent_visual_audit",
+          "short": {
+            "en": "A plain dark warm-brown nightstand has a smooth wood-like finish, a rectangular top and apron, and four straight square-section legs, with no visible drawer or handle.",
+            "zh": "这件素面深暖棕色床头柜呈平滑木质观感，具有矩形柜面、围板和四条方截面直腿，未见抽屉或把手。"
+          }
+        },
+        "id": "sam3_nightstand_01",
+        "independentlyRecognized": true,
+        "interactiveObjectId": "sam3_nightstand_01",
+        "name": "Nightstand 01",
+        "visualOnly": false
+      },
+      {
+        "aliases": [
+          "nightstand",
+          "bedside table",
+          "床头柜"
+        ],
+        "bbox": {
+          "center": [
+            5.6283455,
+            1.3599195,
+            21.160014
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            5.425765,
+            2.602103,
+            5.475722
+          ],
+          "max": [
+            8.341228,
+            2.660971,
+            23.897875
+          ],
+          "min": [
+            2.915463,
+            0.058868,
+            18.422153
+          ]
+        },
+        "category": "nightstand",
+        "description": {
+          "appearance": {
+            "en": "A warm reddish-brown nightstand with a smooth wood-like finish has one front drawer with a round dark knob, a raised curved back-and-side lip, and four legs.",
+            "zh": "这件暖红棕色床头柜呈平滑木质观感，正面有一只带深色圆形旋钮的抽屉，并带抬高的弧形后沿与侧沿和四条柜腿。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "Colors: warm reddish brown, dark knob; Material appearance: smooth wood-like finish; Geometry: rectangular body, raised curved back and side lip, four straight legs; Visible components: top, one front drawer, round dark knob, curved lip, four legs; Style or pattern: simple furniture profile with curved trim",
+            "zh": "颜色: 暖红棕色, 深色旋钮; 材质观感: 平滑的木质观感表面; 几何形态: 矩形柜体, 抬高的弧形后沿与侧沿, 四条直腿; 可见组件: 柜面, 一只正面抽屉, 深色圆形旋钮, 弧形围沿, 四条柜腿; 风格或纹理: 带弧形收边的简洁家具轮廓"
+          },
+          "evidence_frames": [],
+          "fidelity_caveat": {
+            "en": "Metric scale cannot be inferred from the visual evidence. The exact substrate and hidden rear geometry are not visually confirmed.",
+            "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认确切基材与背面隐藏几何。"
+          },
+          "location": {
+            "en": "Shown upright on its visible legs; room support and placement cannot be inferred. Scene position cannot be inferred from this isolated reference.",
+            "zh": "图中以可见柜腿直立展示；无法推断其在房间中的支撑面与摆放位置。 无法从这张孤立参考图推断场景位置。"
+          },
+          "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+          "provider": "local_huggingface_transformers+agent_visual_audit",
+          "short": {
+            "en": "A warm reddish-brown nightstand with a smooth wood-like finish has one front drawer with a round dark knob, a raised curved back-and-side lip, and four legs.",
+            "zh": "这件暖红棕色床头柜呈平滑木质观感，正面有一只带深色圆形旋钮的抽屉，并带抬高的弧形后沿与侧沿和四条柜腿。"
+          }
+        },
+        "id": "sam3_nightstand_02",
+        "independentlyRecognized": true,
+        "interactiveObjectId": "sam3_nightstand_02",
+        "name": "Nightstand 02",
+        "visualOnly": false
+      },
+      {
+        "aliases": [
+          "plant",
+          "potted plant",
+          "植物",
+          "盆栽",
+          "绿植"
+        ],
+        "bbox": {
+          "center": [
+            5.606413,
+            -0.5816215,
+            21.7986965
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            1.61465,
+            0.931801,
+            3.432319
+          ],
+          "max": [
+            6.413738,
+            -0.115721,
+            23.514856
+          ],
+          "min": [
+            4.799088,
+            -1.047522,
+            20.082537
+          ]
+        },
+        "category": "plant",
+        "description": {
+          "appearance": {
+            "en": "A dense rounded topiary-like plant has many small oval dark-green leaves with lighter edges, multiple woody-looking stems, and a smooth off-white cylindrical pot.",
+            "zh": "这株浓密的圆冠造型植物由许多带浅色叶缘的深绿色小椭圆叶、数根木质观感枝干和一个光滑的灰白色圆柱形花盆组成。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "Colors: dark green leaves, lighter leaf edges, off-white pot; Material appearance: matte leaf surfaces, woody-looking stems, smooth off-white pot; Geometry: dense rounded crown, small oval leaves, cylindrical pot; Visible components: many leaves, multiple stems, pot; Style or pattern: lighter leaf edging, compact topiary-like silhouette",
+            "zh": "颜色: 深绿色叶片, 浅色叶缘, 灰白色花盆; 材质观感: 哑光叶面, 木质观感枝干, 光滑灰白色花盆; 几何形态: 浓密圆形冠幅, 小椭圆叶片, 圆柱形花盆; 可见组件: 大量叶片, 数根枝干, 花盆; 风格或纹理: 浅色叶缘, 紧凑的圆冠造型轮廓"
+          },
+          "evidence_frames": [],
+          "fidelity_caveat": {
+            "en": "Metric scale cannot be inferred from the visual evidence. The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+            "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+          },
+          "location": {
+            "en": "Visible stems emerge from and are supported within the pot. Scene position cannot be inferred from this isolated reference.",
+            "zh": "可见枝干从花盆内部伸出并由花盆承托。 无法从这张孤立参考图推断场景位置。"
+          },
+          "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+          "provider": "local_huggingface_transformers+agent_visual_audit",
+          "short": {
+            "en": "A dense rounded topiary-like plant has many small oval dark-green leaves with lighter edges, multiple woody-looking stems, and a smooth off-white cylindrical pot.",
+            "zh": "这株浓密的圆冠造型植物由许多带浅色叶缘的深绿色小椭圆叶、数根木质观感枝干和一个光滑的灰白色圆柱形花盆组成。"
+          }
+        },
+        "id": "sam3_plant_01",
+        "independentlyRecognized": true,
+        "interactiveObjectId": "sam3_plant_01",
+        "name": "Plant 01",
+        "visualOnly": false
+      },
+      {
+        "aliases": [
+          "plant",
+          "potted plant",
+          "植物",
+          "盆栽",
+          "绿植"
+        ],
+        "bbox": {
+          "center": [
+            -10.1043695,
+            0.195119,
+            14.9292585
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            1.753715,
+            0.798368,
+            2.248233
+          ],
+          "max": [
+            -9.227512,
+            0.594303,
+            16.053375
+          ],
+          "min": [
+            -10.981227,
+            -0.204065,
+            13.805142
+          ]
+        },
+        "category": "plant",
+        "description": {
+          "appearance": {
+            "en": "A dense rounded potted plant has palmate-looking green-and-cream variegated leaves, multiple upright stems, and a smooth off-white cylindrical pot.",
+            "zh": "这株浓密的圆冠盆栽具有掌状观感的绿奶油色斑锦叶、数根直立枝干和一个光滑的灰白色圆柱形花盆。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "Colors: green and cream variegated leaves, off-white pot; Material appearance: smooth leaf surfaces, woody-looking stems, smooth off-white pot; Geometry: dense rounded crown, palmate-looking leaf clusters, cylindrical pot; Visible components: variegated leaves, multiple stems, pot; Style or pattern: green-and-cream variegation",
+            "zh": "颜色: 绿奶油色斑锦叶, 灰白色花盆; 材质观感: 平滑叶面, 木质观感枝干, 光滑灰白色花盆; 几何形态: 浓密圆形冠幅, 掌状观感叶簇, 圆柱形花盆; 可见组件: 斑锦叶片, 数根枝干, 花盆; 风格或纹理: 绿奶油色斑锦纹理"
+          },
+          "evidence_frames": [],
+          "fidelity_caveat": {
+            "en": "Metric scale cannot be inferred from the visual evidence. The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+            "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+          },
+          "location": {
+            "en": "Visible stems emerge from and are supported within the pot. Scene position cannot be inferred from this isolated reference.",
+            "zh": "可见枝干从花盆内部伸出并由花盆承托。 无法从这张孤立参考图推断场景位置。"
+          },
+          "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+          "provider": "local_huggingface_transformers+agent_visual_audit",
+          "short": {
+            "en": "A dense rounded potted plant has palmate-looking green-and-cream variegated leaves, multiple upright stems, and a smooth off-white cylindrical pot.",
+            "zh": "这株浓密的圆冠盆栽具有掌状观感的绿奶油色斑锦叶、数根直立枝干和一个光滑的灰白色圆柱形花盆。"
+          }
+        },
+        "id": "sam3_plant_02",
+        "independentlyRecognized": true,
+        "interactiveObjectId": "sam3_plant_02",
+        "name": "Plant 02",
+        "visualOnly": false
+      },
+      {
+        "aliases": [
+          "pillow",
+          "front pillow",
+          "small pillow",
+          "枕头",
+          "前排枕头",
+          "小白枕"
+        ],
+        "bbox": {
+          "center": [
+            -1.0426454650120087,
+            -0.16895576776650567,
+            14.813889577996441
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            2.9432804584503174,
+            2.607210636138916,
+            1.8959510922431946
+          ],
+          "max": [
+            0.4289947642131502,
+            1.1346495503029523,
+            15.761865124118039
+          ],
+          "min": [
+            -2.5142856942371674,
+            -1.4725610858359637,
+            13.865914031874844
+          ]
+        },
+        "category": "pillow",
+        "description": {
+          "appearance": {
+            "en": "An off-white stuffed form with a soft fabric PBR surface.",
+            "zh": "主体为灰白或米白色, 保留了柔软填充形态。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "A completed PBR mesh with accepted minor generated texture variation.",
+            "zh": "可见面与背面已形成完整 PBR 网格; 轻微生成纹理差异按当前验收口径保留。"
+          },
+          "evidence_frames": [
+            "000064"
+          ],
+          "location": {
+            "en": "At the 前排 position on the mattress.",
+            "zh": "位于床垫上的前排位置。"
+          },
+          "model": "TRELLIS.2 PBR completion",
+          "provider": "TRELLIS.2+scene_fit+joint_QA",
+          "short": {
+            "en": "A light-colored 前排 pillow on the bed.",
+            "zh": "床上的前排浅色软枕。"
+          }
+        },
+        "id": "sam3_pillow_front",
+        "interaction": {
+          "double_click_action": "spin_360",
+          "drag_action": "rotate_yaw",
+          "movable": true,
+          "selectable": true
+        },
+        "name": "前排浅色枕头"
+      },
+      {
+        "aliases": [
+          "left pillow",
+          "left rear pillow",
+          "左枕头",
+          "左侧后排枕头"
+        ],
+        "bbox": {
+          "center": [
+            -3.7651317937692195,
+            -0.5993330113454497,
+            14.9120649317423
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            4.187768936157227,
+            3.686658024787903,
+            2.1875244379043597
+          ],
+          "max": [
+            -1.6712473256906066,
+            1.2439960010485016,
+            16.00582715069448
+          ],
+          "min": [
+            -5.859016261847833,
+            -2.442662023739401,
+            13.81830271279012
+          ]
+        },
+        "category": "pillow",
+        "description": {
+          "appearance": {
+            "en": "An off-white stuffed form with a soft fabric PBR surface.",
+            "zh": "主体为灰白或米白色, 保留了柔软填充形态。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "A completed PBR mesh with accepted minor generated texture variation.",
+            "zh": "可见面与背面已形成完整 PBR 网格; 轻微生成纹理差异按当前验收口径保留。"
+          },
+          "evidence_frames": [
+            "000064"
+          ],
+          "location": {
+            "en": "At the 左后排 position on the mattress.",
+            "zh": "位于床垫上的左后排位置。"
+          },
+          "model": "TRELLIS.2 PBR completion",
+          "provider": "TRELLIS.2+scene_fit+joint_QA",
+          "short": {
+            "en": "A light-colored 左后排 pillow on the bed.",
+            "zh": "床上的左后排浅色软枕。"
+          }
+        },
+        "id": "sam3_pillow_left",
+        "interaction": {
+          "double_click_action": "spin_360",
+          "drag_action": "rotate_yaw",
+          "movable": true,
+          "selectable": true
+        },
+        "name": "左侧后排浅色枕头"
+      },
+      {
+        "aliases": [
+          "right pillow",
+          "right rear pillow",
+          "右枕头",
+          "右侧后排枕头"
+        ],
+        "bbox": {
+          "center": [
+            0.6863510980794847,
+            -0.8818624744979973,
+            16.956092051846884
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            4.19227409362793,
+            3.6626994609832764,
+            1.855754017829895
+          ],
+          "max": [
+            2.7824881448934495,
+            0.9494872559936409,
+            17.88396906076183
+          ],
+          "min": [
+            -1.4097859487344802,
+            -2.7132122049896354,
+            16.028215042931937
+          ]
+        },
+        "category": "pillow",
+        "description": {
+          "appearance": {
+            "en": "An off-white stuffed form with a soft fabric PBR surface.",
+            "zh": "主体为灰白或米白色, 保留了柔软填充形态。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "A completed PBR mesh with accepted minor generated texture variation.",
+            "zh": "可见面与背面已形成完整 PBR 网格; 轻微生成纹理差异按当前验收口径保留。"
+          },
+          "evidence_frames": [
+            "000064"
+          ],
+          "location": {
+            "en": "At the 右后排 position on the mattress.",
+            "zh": "位于床垫上的右后排位置。"
+          },
+          "model": "TRELLIS.2 PBR completion",
+          "provider": "TRELLIS.2+scene_fit+joint_QA",
+          "short": {
+            "en": "A light-colored 右后排 pillow on the bed.",
+            "zh": "床上的右后排浅色软枕。"
+          }
+        },
+        "id": "sam3_pillow_right",
+        "interaction": {
+          "double_click_action": "spin_360",
+          "drag_action": "rotate_yaw",
+          "movable": true,
+          "selectable": true
+        },
+        "name": "右侧后排浅色枕头"
+      },
+      {
+        "aliases": [
+          "bed",
+          "double bed",
+          "床",
+          "双人床",
+          "床架",
+          "床垫"
+        ],
+        "bbox": {
+          "center": [
+            0.5512032005178886,
+            1.1493947935754947,
+            10.652915506271459
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            15.071468376336364,
+            11.482184396598988,
+            20.88049451680081
+          ],
+          "max": [
+            8.08693738868607,
+            6.8904869918749885,
+            21.093162764671863
+          ],
+          "min": [
+            -6.9845309876502935,
+            -4.591697404723999,
+            0.21266824787105598
+          ]
+        },
+        "category": "bed",
+        "description": {
+          "appearance": {
+            "en": "Light bedding over a dark wooden frame and headboard.",
+            "zh": "浅色床垫与床品配深色木质床架和床头板。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "Six closed PBR parts act as one selectable, rotatable, collidable root.",
+            "zh": "床由六个闭合 PBR 部件组成, 但在场景中由一个根节点统一选择、旋转和碰撞。"
+          },
+          "evidence_frames": [
+            "000064",
+            "000067",
+            "000071"
+          ],
+          "location": {
+            "en": "In the bedroom center, supporting the three pillows.",
+            "zh": "位于卧室中央, 三只枕头在床垫上。"
+          },
+          "model": "deterministic PBR fixture assembly",
+          "provider": "component_assembly+support_adjustment+joint_QA",
+          "short": {
+            "en": "A double bed with mattress, frame, and headboard.",
+            "zh": "一张带软垫、床架和床头板的双人床。"
+          }
+        },
+        "id": "sam3_bed_01",
+        "interaction": {
+          "double_click_action": "spin_360",
+          "drag_action": "rotate_yaw",
+          "movable": true,
+          "selectable": true
+        },
+        "name": "双人床"
+      }
+    ],
+    "relations": [
+      {
+        "confidence": 0.9723717570304871,
+        "evidence": "scene_fit_front_surface_anchor_and_user_current_demo_acceptance",
+        "object": "sam3_bed_01",
+        "predicate": "OnTopOf",
+        "subject": "sam3_pillow_front",
+        "targetLabel": {
+          "en": "the bed",
+          "zh": "床"
+        },
+        "verified": true
+      },
+      {
+        "confidence": 0.9660567045211792,
+        "evidence": "sam3_frame_000064_geometry_split",
+        "object": "sam3_bed_01",
+        "predicate": "OnTopOf",
+        "subject": "sam3_pillow_left",
+        "targetLabel": {
+          "en": "the bed",
+          "zh": "床"
+        },
+        "verified": true
+      },
+      {
+        "confidence": 0.9715292453765869,
+        "evidence": "sam3_frame_000064_geometry_split",
+        "object": "sam3_bed_01",
+        "predicate": "OnTopOf",
+        "subject": "sam3_pillow_right",
+        "targetLabel": {
+          "en": "the bed",
+          "zh": "床"
+        },
+        "verified": true
+      }
+    ]
+  },
+  "schemaVersion": 1,
+  "sourceWorld": {
+    "adoptionMode": "legacy_web_assets_adopted_then_canonical_manifest_validated",
+    "runId": "bedroom4-production-20260716",
+    "schemaVersion": "world-manifest-1.0.0",
+    "worldId": "bedroom_4"
+  },
+  "version": "bedroom4-candidate-unified-pbr-four-objects-20260717"
+}

@@ -1,0 +1,23 @@
+{
+  "all_rebased_artifacts_sha256_revalidated": true,
+  "contact_sheet": "multiview_prefill_contact_sheet.png",
+  "contact_sheet_sha256": "d77c4cd380a3f41b20b76dc81085c87fac6c073f19e5543119775747f3cbd0e1",
+  "frame_artifacts_are_hashed_in_report": true,
+  "frame_count": 25,
+  "fused_metric_depth_artifacts_are_hashed_in_report": true,
+  "kind": "video2world.multiview_prefill_receipt",
+  "measured_provenance_excludes_generated_pixels": true,
+  "measured_provenance_excludes_propainter_pixels": true,
+  "path_rebased": true,
+  "report": "round01_measured_report.json",
+  "report_sha256": "24bfdaad146a5ab7b2c6d5421f9f96bc50814ea7ff1d0662c42a7f2c7734883a",
+  "schema_version": 2,
+  "source_receipt": {
+    "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round01_front_pillow/output/multiview_prefill_receipt.json",
+    "sha256": "578c9658d944833783450595140c275094a0f46c0080d780f14f2089a1d0cb73"
+  },
+  "source_report": {
+    "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round01_front_pillow/output/multiview_prefill_report.json",
+    "sha256": "aae81c30666f54afeeffe0911b2cc7b90035d6aabf3c85332aee1b9bc1cf6aec"
+  }
+}

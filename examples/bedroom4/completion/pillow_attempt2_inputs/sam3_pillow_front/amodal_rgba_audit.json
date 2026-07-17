@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.amodal_rgba_retry_input",
+  "status": "held_before_generation",
+  "generation_eligible": false,
+  "hold": {
+    "reason_code": "batch_requires_multiframe_identity_revalidation",
+    "reason": "The front pillow crop is visually light/white and unchanged, but the three-pillow batch is held until multi-frame same-instance revalidation is complete."
+  },
+  "created_at": "2026-07-16T18:39:42.163716+00:00",
+  "object_id": "sam3_pillow_front",
+  "category": "pillow",
+  "attempt": 2,
+  "source": {
+    "path": "/private/tmp/video2world_pillow_completion_20260717/input/sam3_pillow_front_rgba.png",
+    "sha256": "80307817ae95f281710b4fd56ea70eccc2d7b05699896704328f5be5cb31da3f",
+    "size_bytes": 52486,
+    "width": 219,
+    "height": 208
+  },
+  "config": {
+    "object_id": "sam3_pillow_front",
+    "category": "pillow",
+    "attempt": 2,
+    "shape_policy": "auto",
+    "alpha_threshold": 127,
+    "corner_radius_ratio": 0.1,
+    "min_candidate_add_ratio": 0.24,
+    "min_occlusion_depth_ratio": 0.16,
+    "min_occlusion_depth_px": 8,
+    "min_component_area_ratio": 0.002,
+    "seed": 20260717,
+    "provider": "video2world.amodal_rgba.soft_rectangle_nearest_v1",
+    "retry_prompt": "Retry image-to-3D reconstruction for exactly one pillow (sam3_pillow_front). The supplied RGBA is an auditable amodal front-view condition: its original visible pixels are unchanged and only a likely occlusion notch was filled from nearby visible foreground texture. Do not reinterpret the category or merge adjacent objects. Preserve the smaller light off-white square pillow: warm white fabric, subtle tuft dots and wrinkles, soft rounded corners, and its observed nearly square proportions. Do not recolor it or make it round. Generate a closed, connected, volumetric object with plausible front, back, left, right, top, and bottom surfaces. The rear must not be an open hole or a flat copy of the front. Keep thickness plausible for the category; avoid detached pieces, unexpected openings, severe color shifts, shape changes, and texture from the transparent background. Review all six orthographic views before accepting the result."
+  },
+  "config_sha256": "362b68e7ee2de1a33d3eeacd6402f4e327e19e23c30d6a5f32f560d9ccc2bb84",
+  "method_trace": {
+    "requested_shape_policy": "auto",
+    "resolved_shape_policy": "soft_rectangle",
+    "policy_reason": "known_soft_object_category_profile",
+    "completion_applied": false,
+    "completion_reason": "candidate_difference_below_occlusion_threshold",
+    "candidate_add_pixels": 4093,
+    "candidate_add_ratio": 0.17745501842618686,
+    "minimum_candidate_add_ratio": 0.24,
+    "minimum_occlusion_depth_px": 26,
+    "minimum_component_area_pixels": 46,
+    "deep_candidate_pixels": 0,
+    "accepted_deep_components": [],
+    "prior_bbox_xyxy": [
+      24,
+      24,
+      194,
+      183
+    ],
+    "corner_radius_px": 16,
+    "corner_radius_ratio": 0.1,
+    "candidate_area_pixels": 27158
+  },
+  "shape_metrics": {
+    "original": {
+      "area_pixels": 23065,
+      "bbox_xyxy": [
+        24,
+        24,
+        194,
+        183
+      ],
+      "bbox_width": 171,
+      "bbox_height": 160,
+      "bbox_aspect_ratio": 1.06875,
+      "bbox_fill_ratio": 0.8430190058479532,
+      "connected_components": 1,
+      "perimeter_pixels": 716,
+      "compactness": 0.5653758821123606
+    },
+    "completed": {
+      "area_pixels": 23065,
+      "bbox_xyxy": [
+        24,
+        24,
+        194,
+        183
+      ],
+      "bbox_width": 171,
+      "bbox_height": 160,
+      "bbox_aspect_ratio": 1.06875,
+      "bbox_fill_ratio": 0.8430190058479532,
+      "connected_components": 1,
+      "perimeter_pixels": 716,
+      "compactness": 0.5653758821123606
+    },
+    "added_pixels": 0,
+    "added_to_original_area_ratio": 0.0,
+    "alpha_iou_original_to_completed": 1.0,
+    "original_pixels_removed": 0
+  },
+  "color_metrics": {
+    "texture_provider": "nearest_visible_foreground",
+    "original_visible": {
+      "count": 23065,
+      "mean_rgb": [
+        141.41894645566876,
+        141.06130500758726,
+        142.30171255148494
+      ],
+      "median_rgb": [
+        139.0,
+        142.0,
+        145.0
+      ],
+      "std_rgb": [
+        20.463691225946516,
+        27.07894482345418,
+        34.90683483569482
+      ],
+      "min_rgb": [
+        43,
+        29,
+        15
+      ],
+      "max_rgb": [
+        229,
+        228,
+        241
+      ],
+      "mean_luminance": 141.2268970041188,
+      "p05_luminance": 106.2556,
+      "p95_luminance": 189.89000000000001
+    },
+    "added_region": null,
+    "mean_rgb_delta_l2": null,
+    "original_visible_pixels_byte_identical": true,
+    "added_pixels_source_only_original_foreground": true,
+    "transparent_rgb_nonzero_pixels": 0
+  },
+  "acceptance_gates": {
+    "original_visible_pixels_preserved": true,
+    "no_original_alpha_removed": true,
+    "added_texture_comes_from_visible_foreground": true,
+    "transparent_background_rgb_is_zero": true,
+    "completed_alpha_is_nonempty": true,
+    "completed_alpha_single_component": true
+  },
+  "all_acceptance_gates_passed": false,
+  "artifacts": {
+    "source_rgba": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/pillow_attempt2_inputs/sam3_pillow_front/source_rgba.png",
+      "sha256": "80307817ae95f281710b4fd56ea70eccc2d7b05699896704328f5be5cb31da3f",
+      "size_bytes": 52486
+    },
+    "original_alpha": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/pillow_attempt2_inputs/sam3_pillow_front/original_alpha.png",
+      "sha256": "c594e728f01d3d706dee533da313c4b751210bbb9a760f260f59cbe18b5ac1c6",
+      "size_bytes": 621
+    },
+    "completed_alpha": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/pillow_attempt2_inputs/sam3_pillow_front/completed_alpha.png",
+      "sha256": "c594e728f01d3d706dee533da313c4b751210bbb9a760f260f59cbe18b5ac1c6",
+      "size_bytes": 621
+    },
+    "added_region": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/pillow_attempt2_inputs/sam3_pillow_front/added_region.png",
+      "sha256": "1c296bb4f48b79966c58e61db54ca4742f60df7a93ab98d392ba2223d08f9bc2",
+      "size_bytes": 124
+    },
+    "completed_rgba": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/pillow_attempt2_inputs/sam3_pillow_front/completed_rgba.png",
+      "sha256": "b071b12702d0821e7803a9faa8b9aae30eece468c0c1031d659dd6bd5e288dd9",
+      "size_bytes": 23339
+    },
+    "contact_sheet": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/pillow_attempt2_inputs/sam3_pillow_front/before_after_contact_sheet.png",
+      "sha256": "b6517d51732184c60687d7ab37570dab931443b9d78f3f129de820095d17694b",
+      "size_bytes": 39397
+    }
+  },
+  "runtime": {
+    "python": "3.12.13",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "numpy": "2.3.1",
+    "pillow": "11.3.0",
+    "scipy": "1.16.0"
+  }
+}

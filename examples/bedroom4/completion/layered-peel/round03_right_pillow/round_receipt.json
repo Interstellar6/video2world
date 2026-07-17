@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.layered_peel_round_receipt",
+  "created_at": "2026-07-17T10:35:00+08:00",
+  "scene_id": "bedroom_4",
+  "round_index": 3,
+  "target_object_id": "sam3_pillow_right",
+  "status": "passed_with_limitations",
+  "acceptance_scope": "usable_for_reinspection_only",
+  "input_lineage": {
+    "preceding_round": 2,
+    "clean_plate_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/propainter_output/frames/inpaint_out.mp4",
+    "clean_plate_sha256": "112b1eddad50553a93251e4df1865a65792af0e9f54164a57af3aaee1e85e600",
+    "selection_association_sha256": "c6a92999959df69986527baac0e083b834a98de0f5417c28fc698c887718fe20",
+    "object_input_report_sha256": "442b0b8e98c4483b6a981d1a1a3208684a4fdd436832fe98d4e8c72589f41967",
+    "scene_reference_manifest_sha256": "bc65030e487fd12ddb278209a0a1ac101ca825d516b048ec046ad5a72dd8ecb9"
+  },
+  "amodal_input": {
+    "status": "passed",
+    "audit_sha256": "f818204786a5c551aa29472303544085cf1899be62be9756c28cfa3af9c9e463",
+    "completed_rgba_sha256": "1fc55136212448940331dee2c32fa290130e4b752d74d9ba7bee48d9453a1210",
+    "added_pixels": 11544,
+    "added_to_original_area_ratio": 0.6487215509974712,
+    "visible_pixels_preserved_byte_identical": true,
+    "multiframe_identity_gate_passed": true
+  },
+  "object_asset_decision": {
+    "status": "accepted_with_warnings",
+    "accepted_candidate": {
+      "candidate_id": "trellis2_seed43",
+      "asset_sha256": "a239242865ccd598ae1ba9d8b897c08fa6594451c416ad682fb4b5d9c2419296",
+      "provider_receipt_sha256": "15541bdb2e4a38e9201b4a3dd2bb81305ae718c5cafa697f94ba50ab94bb9256",
+      "visual_review_sha256": "9a97ae64c4343a33f1813f1c71f4d1ebb4211d66be3f2c40ed9cb3fa308fdc30",
+      "contact_sheet_sha256": "eaa92b5095329f603f8342ba422fe1c443e4ab61966826fa42263fade17f0c87"
+    },
+    "warnings": [
+      "dark backside patch",
+      "minor side and underside pattern drift"
+    ],
+    "scene_fit_status": "pending"
+  },
+  "clean_plate": {
+    "technical_status": "passed",
+    "semantic_status": "accepted_for_reinspection_only",
+    "output_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/propainter_output/frames/inpaint_out.mp4",
+    "output_sha256": "4887216b24fff38c4f845193bfbab4dfb0057c995b51e752ce9537948a3d967e",
+    "input_manifest_sha256": "83941fbde20a6553d9c66cece72225fcc42420052e574757b072588145e01c66",
+    "technical_qa_sha256": "473258b2350106d742c288fe910b2b2451a23899af3accd10d36fbb36e813a3c",
+    "visual_review_sha256": "4507ea28bd4d80ce1423d86ba25aa5f372f170799c2140f5b9872dab9a66b594",
+    "contact_sheet_sha256": "37a70ac05d8384cc9d403dffc9fe74fb24be003844239502de1686b6c70677d9",
+    "usage": "next_round_input",
+    "scene_promotion_allowed": false
+  },
+  "pillow_residual_reinspection": {
+    "status": "passed",
+    "association_sha256": "2ffe1fd6c0c2e7a2a726cf805b334f074de2337a9624db28c76a59ea92a87bee",
+    "source_set_sha256": "8535b225c562a1b34fa5822fe87ddf373d01098a4d3986e9afdee4117a79963b",
+    "peeled_object_ids": [
+      "sam3_pillow_front",
+      "sam3_pillow_left",
+      "sam3_pillow_right"
+    ],
+    "next_layer_target_ids": [],
+    "result": "right pillow absent as expected; front and left residual detections remain warnings and are excluded"
+  },
+  "bed_reinspection": {
+    "status": "passed",
+    "association_sha256": "bb4f620b9e33b978ebe050970ddbe37a10fc5545e04fe6c2e94f03b1d1e2bd61",
+    "mask_index_sha256": "4040ba3f345c936751523828a44c615df19250c4877049552e03f4e1b4b89078",
+    "source_set_sha256": "321ebe171ff9848060d7c92311db4ad59ba24b6bcf6a74d172563bab922267a4",
+    "minimum_mask_hit_ratio": 0.52,
+    "next_layer_target_ids": [
+      "sam3_bed_01"
+    ],
+    "selected_frames": [
+      "000071",
+      "000067"
+    ],
+    "camera_baseline_scene_units": 0.6705744393134153,
+    "object_view_angle_degrees": 4.8647585497149
+  },
+  "limitations": [
+    "The accepted seed-43 asset still requires scene fit and interpenetration review.",
+    "The clean plate is blurred in the removed region and is allowed only for bed reinspection.",
+    "The bed-specific 0.52 mask-hit threshold is calibrated and recorded; the default object threshold remains 0.55.",
+    "No PGSR, TSDF, depth, or normal scene reconstruction may consume this clean plate as a promoted background."
+  ]
+}

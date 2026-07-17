@@ -1,0 +1,109 @@
+{
+  "schema_version": 2,
+  "kind": "video2world.cumulative_rgbd_reprojection_summary",
+  "status": "technical_passed_not_promotable",
+  "frame_range": {
+    "first": "000048",
+    "last": "000072",
+    "count": 25
+  },
+  "method": {
+    "order": [
+      "sam3_pillow_front",
+      "sam3_pillow_left",
+      "sam3_pillow_right"
+    ],
+    "donor_rgb_role": "original_observed_rgb_only",
+    "depth_role": "DA3 donor evidence fused into sparse target-camera metric Z",
+    "fused_depth_materialized": true,
+    "fused_depth_validity": "positive finite only on measured_multiview pixels; NaN elsewhere",
+    "camera_extrinsic_type": "world_to_camera",
+    "sample_stride": 2,
+    "splat_radius": 1,
+    "minimum_cross_donor_support": 2,
+    "absolute_depth_tolerance": 0.08,
+    "relative_depth_tolerance": 0.01,
+    "donor_mask_dilation": 4,
+    "generated_or_prefilled_rgb_as_donor": false,
+    "unresolved_residual_as_donor": false,
+    "propainter_rgb_as_donor": false
+  },
+  "rounds": [
+    {
+      "round_index": 1,
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "cumulative_removal_pixels": 532888,
+      "measured_multiview_pixels": 69,
+      "measured_multiview_fraction": 0.00012948311840386723,
+      "unresolved_unobserved_pixels": 532819,
+      "unresolved_unobserved_fraction": 0.9998705168815961,
+      "per_frame_coverage_min": 0.0,
+      "per_frame_coverage_median": 0.0,
+      "per_frame_coverage_mean": 0.00014354911129081186,
+      "per_frame_coverage_max": 0.001150026136957658,
+      "outside_removal_mask_rgb_exact": true,
+      "residual_masks_are_subsets_of_removal_masks": true,
+      "manifest_sha256": "87a21ae22eba35d890accc0b4b532d711d0bd53ac112ae73fda3c7e6b50ea0af",
+      "report_sha256": "aae81c30666f54afeeffe0911b2cc7b90035d6aabf3c85332aee1b9bc1cf6aec",
+      "contact_sheet_sha256": "d77c4cd380a3f41b20b76dc81085c87fac6c073f19e5543119775747f3cbd0e1"
+    },
+    {
+      "round_index": 2,
+      "removed_object_ids": [
+        "sam3_pillow_front",
+        "sam3_pillow_left"
+      ],
+      "cumulative_removal_pixels": 1233510,
+      "measured_multiview_pixels": 9669,
+      "measured_multiview_fraction": 0.007838606902254542,
+      "unresolved_unobserved_pixels": 1223841,
+      "unresolved_unobserved_fraction": 0.9921613930977454,
+      "per_frame_coverage_min": 6.197450781911707e-05,
+      "per_frame_coverage_median": 0.009831403615681494,
+      "per_frame_coverage_mean": 0.008074566511683165,
+      "per_frame_coverage_max": 0.022997673645729477,
+      "outside_removal_mask_rgb_exact": true,
+      "residual_masks_are_subsets_of_removal_masks": true,
+      "manifest_sha256": "e310958cb8d0caaa2c6c12f00eb3667b1997aad3949973494ae5bb16673d66ed",
+      "report_sha256": "2be4c23e52d46f928b0aa41e80dd60af9d6ce9af333dab7fe2c28e656da45573",
+      "contact_sheet_sha256": "58596d3266ef4e1d892905caa55e6b2f7c1cb56566303963e6be787016169580"
+    },
+    {
+      "round_index": 3,
+      "removed_object_ids": [
+        "sam3_pillow_front",
+        "sam3_pillow_left",
+        "sam3_pillow_right"
+      ],
+      "cumulative_removal_pixels": 1636824,
+      "measured_multiview_pixels": 12443,
+      "measured_multiview_fraction": 0.007601916882939155,
+      "unresolved_unobserved_pixels": 1624381,
+      "unresolved_unobserved_fraction": 0.9923980831170608,
+      "per_frame_coverage_min": 4.762660739799968e-05,
+      "per_frame_coverage_median": 0.0076581542954200065,
+      "per_frame_coverage_mean": 0.007789830097754631,
+      "per_frame_coverage_max": 0.0272984441301273,
+      "outside_removal_mask_rgb_exact": true,
+      "residual_masks_are_subsets_of_removal_masks": true,
+      "manifest_sha256": "445dfc643a916b0aa61853a35a0f7f5833fc49d9ebdbaae1babbbfa4ea647129",
+      "report_sha256": "67369ef4d8aec9ca643025dd6173449c15627c1d92475a9a78bdc51dce24fecc",
+      "contact_sheet_sha256": "d8b642af39ed43322aadf2094f9dbf3ce3e0bcfac5ee067c9ee999368f0e736d"
+    }
+  ],
+  "pixel_provenance": {
+    "outside_cumulative_mask": "original observed scene RGB preserved exactly",
+    "measured_multiview": "depth-consistent RGB-D donor reprojection from original frames",
+    "unresolved_unobserved": "not visible with sufficient support; forbidden as donor or geometry evidence",
+    "generated": "zero pixels in this measurement stage",
+    "propainter": "zero pixels in this measurement stage"
+  },
+  "blocking": {
+    "clean_plate_rgb": "cross-view-consistent background surface and texture atlas",
+    "clean_plate_geometry": "new depth and normal estimation after final RGB, then PGSR and TSDF rerun",
+    "interactive_object_replacement": "accepted scene-fit PBR GLBs and support/interpenetration QA"
+  },
+  "promotion_approved": false
+}

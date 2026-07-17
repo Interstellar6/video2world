@@ -1,0 +1,1078 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-16T18:41:24.286816+00:00",
+  "purpose": "video2world layered clean-plate input",
+  "method": "tracked single-instance masks from filtered SAM mask index",
+  "semantic_scope": "pillow",
+  "tracking": {
+    "mode": "single_instance_bbox_continuity",
+    "anchor_frame": "000064",
+    "anchor_mask_name": "pillow_03.png",
+    "max_cost": 0.5,
+    "per_frame": [
+      {
+        "frame_id": "000048",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000048/pillow_03.png",
+        "bbox": [
+          468.01397705078125,
+          341.8124694824219,
+          620.8099975585938,
+          483.9850769042969
+        ],
+        "tracking_cost_from_adjacent": 0.03754732607614201
+      },
+      {
+        "frame_id": "000049",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000049/pillow_03.png",
+        "bbox": [
+          466.60968017578125,
+          347.94537353515625,
+          621.9813842773438,
+          491.1720886230469
+        ],
+        "tracking_cost_from_adjacent": 0.035487770468702856
+      },
+      {
+        "frame_id": "000050",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000050/pillow_03.png",
+        "bbox": [
+          467.0869445800781,
+          352.1294860839844,
+          623.19287109375,
+          498.9315490722656
+        ],
+        "tracking_cost_from_adjacent": 0.030654327610632484
+      },
+      {
+        "frame_id": "000051",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000051/pillow_03.png",
+        "bbox": [
+          468.5204772949219,
+          357.4349365234375,
+          625.2030639648438,
+          505.2166748046875
+        ],
+        "tracking_cost_from_adjacent": 0.03354212791867274
+      },
+      {
+        "frame_id": "000052",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000052/pillow_03.png",
+        "bbox": [
+          469.8965148925781,
+          362.57147216796875,
+          627.2559204101562,
+          512.2940063476562
+        ],
+        "tracking_cost_from_adjacent": 0.03674534849221831
+      },
+      {
+        "frame_id": "000053",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000053/pillow_03.png",
+        "bbox": [
+          470.555419921875,
+          369.3271484375,
+          628.9453125,
+          520.0057373046875
+        ],
+        "tracking_cost_from_adjacent": 0.036017898120115154
+      },
+      {
+        "frame_id": "000054",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000054/pillow_03.png",
+        "bbox": [
+          472.218017578125,
+          375.9178161621094,
+          631.671875,
+          527.3171997070312
+        ],
+        "tracking_cost_from_adjacent": 0.03339785454201252
+      },
+      {
+        "frame_id": "000055",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000055/pillow_03.png",
+        "bbox": [
+          472.98046875,
+          379.904296875,
+          634.68359375,
+          534.041015625
+        ],
+        "tracking_cost_from_adjacent": 0.028850227790067157
+      },
+      {
+        "frame_id": "000056",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000056/pillow_03.png",
+        "bbox": [
+          474.2639465332031,
+          384.08306884765625,
+          637.619140625,
+          539.7551879882812
+        ],
+        "tracking_cost_from_adjacent": 0.022941114956151937
+      },
+      {
+        "frame_id": "000057",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000057/pillow_03.png",
+        "bbox": [
+          474.1661071777344,
+          386.7279052734375,
+          639.2874755859375,
+          544.5987548828125
+        ],
+        "tracking_cost_from_adjacent": 0.017239521558110295
+      },
+      {
+        "frame_id": "000058",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000058/pillow_03.png",
+        "bbox": [
+          474.2763977050781,
+          388.7176208496094,
+          641.492431640625,
+          547.7611083984375
+        ],
+        "tracking_cost_from_adjacent": 0.01700717839954382
+      },
+      {
+        "frame_id": "000059",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000059/pillow_03.png",
+        "bbox": [
+          475.68115234375,
+          390.0482482910156,
+          644.5154418945312,
+          550.3260498046875
+        ],
+        "tracking_cost_from_adjacent": 0.02060879524421564
+      },
+      {
+        "frame_id": "000060",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000060/pillow_03.png",
+        "bbox": [
+          478.0451965332031,
+          391.5903625488281,
+          648.1876220703125,
+          553.4427490234375
+        ],
+        "tracking_cost_from_adjacent": 0.03194385355614241
+      },
+      {
+        "frame_id": "000061",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000061/pillow_03.png",
+        "bbox": [
+          482.95770263671875,
+          392.7900390625,
+          655.5693359375,
+          555.6060180664062
+        ],
+        "tracking_cost_from_adjacent": 0.04710787309805328
+      },
+      {
+        "frame_id": "000062",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000062/pillow_03.png",
+        "bbox": [
+          493.40771484375,
+          392.8957214355469,
+          666.859619140625,
+          555.8507080078125
+        ],
+        "tracking_cost_from_adjacent": 0.06432537130387887
+      },
+      {
+        "frame_id": "000063",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000063/pillow_03.png",
+        "bbox": [
+          507.9116516113281,
+          390.5016174316406,
+          681.70166015625,
+          552.7666625976562
+        ],
+        "tracking_cost_from_adjacent": 0.0581814208077867
+      },
+      {
+        "frame_id": "000064",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000064/pillow_03.png",
+        "bbox": [
+          520.74658203125,
+          387.1203918457031,
+          694.6969604492188,
+          548.5791015625
+        ],
+        "tracking_cost_from_adjacent": 0.0
+      },
+      {
+        "frame_id": "000065",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000065/pillow_03.png",
+        "bbox": [
+          539.2891845703125,
+          385.87786865234375,
+          712.6300659179688,
+          544.8870239257812
+        ],
+        "tracking_cost_from_adjacent": 0.08224395381941622
+      },
+      {
+        "frame_id": "000066",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000066/pillow_02.png",
+        "bbox": [
+          558.5912475585938,
+          382.785888671875,
+          731.5216674804688,
+          539.1240234375
+        ],
+        "tracking_cost_from_adjacent": 0.08816646085746706
+      },
+      {
+        "frame_id": "000067",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000067/pillow_02.png",
+        "bbox": [
+          578.8228759765625,
+          377.1546936035156,
+          750.2860107421875,
+          532.7985229492188
+        ],
+        "tracking_cost_from_adjacent": 0.0907242094850018
+      },
+      {
+        "frame_id": "000068",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000068/pillow_03.png",
+        "bbox": [
+          599.4166259765625,
+          371.29046630859375,
+          770.8402099609375,
+          525.379638671875
+        ],
+        "tracking_cost_from_adjacent": 0.09592754736636155
+      },
+      {
+        "frame_id": "000069",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000069/pillow_03.png",
+        "bbox": [
+          620.708251953125,
+          364.8834228515625,
+          790.75830078125,
+          516.3364868164062
+        ],
+        "tracking_cost_from_adjacent": 0.10179386572803574
+      },
+      {
+        "frame_id": "000070",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000070/pillow_03.png",
+        "bbox": [
+          638.0394897460938,
+          358.482666015625,
+          808.3697509765625,
+          509.83026123046875
+        ],
+        "tracking_cost_from_adjacent": 0.08237643903631586
+      },
+      {
+        "frame_id": "000071",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000071/pillow_03.png",
+        "bbox": [
+          660.096923828125,
+          350.10723876953125,
+          831.43603515625,
+          502.7277526855469
+        ],
+        "tracking_cost_from_adjacent": 0.10825124988192442
+      },
+      {
+        "frame_id": "000072",
+        "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000072/pillow_03.png",
+        "bbox": [
+          683.6341552734375,
+          343.25628662109375,
+          855.4986572265625,
+          495.18414306640625
+        ],
+        "tracking_cost_from_adjacent": 0.1102648516666366
+      }
+    ]
+  },
+  "frames_dir": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames",
+  "mask_index": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/refinements/top3_score090_erode5_depth005_minvotes2/sam3_masks/bedroom_4/mask_index.json",
+  "mask_index_sha256": "83ebbce43e4e179b9c14cfd801e3a0ce58291611e3589b89bf1377a232d66770",
+  "output_root": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input",
+  "frame_count": 25,
+  "frame_ids": [
+    "000048",
+    "000049",
+    "000050",
+    "000051",
+    "000052",
+    "000053",
+    "000054",
+    "000055",
+    "000056",
+    "000057",
+    "000058",
+    "000059",
+    "000060",
+    "000061",
+    "000062",
+    "000063",
+    "000064",
+    "000065",
+    "000066",
+    "000067",
+    "000068",
+    "000069",
+    "000070",
+    "000071",
+    "000072"
+  ],
+  "frame_records": [
+    {
+      "sequence_index": 0,
+      "frame_id": "000048",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000048.png",
+      "source_frame_sha256": "fd898eec479773edbd603a91c56e1d721fbe77f492d6de0c8e0761b04f3d1271",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0000.png",
+      "input_frame_sha256": "fd898eec479773edbd603a91c56e1d721fbe77f492d6de0c8e0761b04f3d1271",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0000.png",
+      "union_mask_sha256": "7c4daaf90d913d92f2b0218c373af513954c8e2145b91723811557a5ed49301e",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 18346,
+      "union_mask_fraction": 0.019906684027777777,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000048/pillow_03.png",
+          "sha256": "7c4daaf90d913d92f2b0218c373af513954c8e2145b91723811557a5ed49301e",
+          "score": 0.9580643773078918,
+          "bbox": [
+            468.01397705078125,
+            341.8124694824219,
+            620.8099975585938,
+            483.9850769042969
+          ],
+          "label": "pillow",
+          "pixels": 18346
+        }
+      ]
+    },
+    {
+      "sequence_index": 1,
+      "frame_id": "000049",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000049.png",
+      "source_frame_sha256": "b492f6fd0194bff43291dbe3aae2507f660dbce5d172b385f96053282bff04cf",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0001.png",
+      "input_frame_sha256": "b492f6fd0194bff43291dbe3aae2507f660dbce5d172b385f96053282bff04cf",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0001.png",
+      "union_mask_sha256": "0ac42010b6abf8999df055c7da16bc24f8d2e5ecd0353005e1e48077ecb276e6",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 18620,
+      "union_mask_fraction": 0.020203993055555557,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000049/pillow_03.png",
+          "sha256": "0ac42010b6abf8999df055c7da16bc24f8d2e5ecd0353005e1e48077ecb276e6",
+          "score": 0.9603968262672424,
+          "bbox": [
+            466.60968017578125,
+            347.94537353515625,
+            621.9813842773438,
+            491.1720886230469
+          ],
+          "label": "pillow",
+          "pixels": 18620
+        }
+      ]
+    },
+    {
+      "sequence_index": 2,
+      "frame_id": "000050",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000050.png",
+      "source_frame_sha256": "2105aa0784b35b40e404924e87133347df2cc1698b25cc90a73922105f58d079",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0002.png",
+      "input_frame_sha256": "2105aa0784b35b40e404924e87133347df2cc1698b25cc90a73922105f58d079",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0002.png",
+      "union_mask_sha256": "2f45bc720311fc848722fdc2ec415cf55e5757da8a385da62dec8b6fce1aaea9",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 19130,
+      "union_mask_fraction": 0.020757378472222223,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000050/pillow_03.png",
+          "sha256": "2f45bc720311fc848722fdc2ec415cf55e5757da8a385da62dec8b6fce1aaea9",
+          "score": 0.9680683016777039,
+          "bbox": [
+            467.0869445800781,
+            352.1294860839844,
+            623.19287109375,
+            498.9315490722656
+          ],
+          "label": "pillow",
+          "pixels": 19130
+        }
+      ]
+    },
+    {
+      "sequence_index": 3,
+      "frame_id": "000051",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000051.png",
+      "source_frame_sha256": "7f37cd722b92e0beb73464941ffcb89d9e3c31a2fc2d868cafc2a143a9fa9e35",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0003.png",
+      "input_frame_sha256": "7f37cd722b92e0beb73464941ffcb89d9e3c31a2fc2d868cafc2a143a9fa9e35",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0003.png",
+      "union_mask_sha256": "44e365f2a35f0b4b9c3309e15e580268a8a69b9d9a92441e20c2235fc55ceb1e",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 19317,
+      "union_mask_fraction": 0.020960286458333335,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000051/pillow_03.png",
+          "sha256": "44e365f2a35f0b4b9c3309e15e580268a8a69b9d9a92441e20c2235fc55ceb1e",
+          "score": 0.9656412601470947,
+          "bbox": [
+            468.5204772949219,
+            357.4349365234375,
+            625.2030639648438,
+            505.2166748046875
+          ],
+          "label": "pillow",
+          "pixels": 19317
+        }
+      ]
+    },
+    {
+      "sequence_index": 4,
+      "frame_id": "000052",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000052.png",
+      "source_frame_sha256": "c2d51786982fe51c8d9ae9d07f9abc64e7520e5706aa0bb6a66df38ad218acc7",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0004.png",
+      "input_frame_sha256": "c2d51786982fe51c8d9ae9d07f9abc64e7520e5706aa0bb6a66df38ad218acc7",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0004.png",
+      "union_mask_sha256": "17892d9412b7bf5f6b466d81fe37fe2062ed9a8ee9ca6a30d4e12c984d5783ca",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 19658,
+      "union_mask_fraction": 0.02133029513888889,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000052/pillow_03.png",
+          "sha256": "17892d9412b7bf5f6b466d81fe37fe2062ed9a8ee9ca6a30d4e12c984d5783ca",
+          "score": 0.9676534533500671,
+          "bbox": [
+            469.8965148925781,
+            362.57147216796875,
+            627.2559204101562,
+            512.2940063476562
+          ],
+          "label": "pillow",
+          "pixels": 19658
+        }
+      ]
+    },
+    {
+      "sequence_index": 5,
+      "frame_id": "000053",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000053.png",
+      "source_frame_sha256": "b681ba697632ffc94ded9123d927cd9896a51e316769b354147964b818935483",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0005.png",
+      "input_frame_sha256": "b681ba697632ffc94ded9123d927cd9896a51e316769b354147964b818935483",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0005.png",
+      "union_mask_sha256": "95fd0ba0338a65cfa1692a2ffa86934322452116e4fad02121a6c9a70e4191ee",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 19891,
+      "union_mask_fraction": 0.021583116319444446,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000053/pillow_03.png",
+          "sha256": "95fd0ba0338a65cfa1692a2ffa86934322452116e4fad02121a6c9a70e4191ee",
+          "score": 0.9685747623443604,
+          "bbox": [
+            470.555419921875,
+            369.3271484375,
+            628.9453125,
+            520.0057373046875
+          ],
+          "label": "pillow",
+          "pixels": 19891
+        }
+      ]
+    },
+    {
+      "sequence_index": 6,
+      "frame_id": "000054",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000054.png",
+      "source_frame_sha256": "75d7224152e018eaafa72d06ab4cc37c910491906cbf294208218d47e3dff542",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0006.png",
+      "input_frame_sha256": "75d7224152e018eaafa72d06ab4cc37c910491906cbf294208218d47e3dff542",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0006.png",
+      "union_mask_sha256": "41a28b003b69b1e8b91bdbc67c7c6a31a96e31816c56f7255caffe626647d049",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 20152,
+      "union_mask_fraction": 0.021866319444444445,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000054/pillow_03.png",
+          "sha256": "41a28b003b69b1e8b91bdbc67c7c6a31a96e31816c56f7255caffe626647d049",
+          "score": 0.9693486094474792,
+          "bbox": [
+            472.218017578125,
+            375.9178161621094,
+            631.671875,
+            527.3171997070312
+          ],
+          "label": "pillow",
+          "pixels": 20152
+        }
+      ]
+    },
+    {
+      "sequence_index": 7,
+      "frame_id": "000055",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000055.png",
+      "source_frame_sha256": "bdb9d3222d59cb43c9e0dd770ab0b5eaa0665a346f22dcdab5eed38e7ad6fdae",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0007.png",
+      "input_frame_sha256": "bdb9d3222d59cb43c9e0dd770ab0b5eaa0665a346f22dcdab5eed38e7ad6fdae",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0007.png",
+      "union_mask_sha256": "4ab86cd90875547efd8c8210762c395b1edc8384f40e97d7809e58628a37c324",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 20518,
+      "union_mask_fraction": 0.02226345486111111,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000055/pillow_03.png",
+          "sha256": "4ab86cd90875547efd8c8210762c395b1edc8384f40e97d7809e58628a37c324",
+          "score": 0.9708517789840698,
+          "bbox": [
+            472.98046875,
+            379.904296875,
+            634.68359375,
+            534.041015625
+          ],
+          "label": "pillow",
+          "pixels": 20518
+        }
+      ]
+    },
+    {
+      "sequence_index": 8,
+      "frame_id": "000056",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000056.png",
+      "source_frame_sha256": "3518cd5553fe19ec4db8df855a3dd577fcd8df0c1c8f257558f3759eac841ced",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0008.png",
+      "input_frame_sha256": "3518cd5553fe19ec4db8df855a3dd577fcd8df0c1c8f257558f3759eac841ced",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0008.png",
+      "union_mask_sha256": "6fca708a239dde80d818abf29bb21dfb14211ab606e6dabde80f297b96d0c1a8",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 20939,
+      "union_mask_fraction": 0.02272026909722222,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000056/pillow_03.png",
+          "sha256": "6fca708a239dde80d818abf29bb21dfb14211ab606e6dabde80f297b96d0c1a8",
+          "score": 0.9694069027900696,
+          "bbox": [
+            474.2639465332031,
+            384.08306884765625,
+            637.619140625,
+            539.7551879882812
+          ],
+          "label": "pillow",
+          "pixels": 20939
+        }
+      ]
+    },
+    {
+      "sequence_index": 9,
+      "frame_id": "000057",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000057.png",
+      "source_frame_sha256": "aba06073005f0295581f8d4113c8f5225046665e59b1d2a28fbadc3aa78ee11f",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0009.png",
+      "input_frame_sha256": "aba06073005f0295581f8d4113c8f5225046665e59b1d2a28fbadc3aa78ee11f",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0009.png",
+      "union_mask_sha256": "f0a3558a20850d4d50a02e9558cf22abb456132f15829de177455ebbd2074455",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 21309,
+      "union_mask_fraction": 0.023121744791666666,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000057/pillow_03.png",
+          "sha256": "f0a3558a20850d4d50a02e9558cf22abb456132f15829de177455ebbd2074455",
+          "score": 0.9718163013458252,
+          "bbox": [
+            474.1661071777344,
+            386.7279052734375,
+            639.2874755859375,
+            544.5987548828125
+          ],
+          "label": "pillow",
+          "pixels": 21309
+        }
+      ]
+    },
+    {
+      "sequence_index": 10,
+      "frame_id": "000058",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000058.png",
+      "source_frame_sha256": "ab17232a20d141d2726f41301182b33eeb0058a61c17e95d89b1e446b3eb67d3",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0010.png",
+      "input_frame_sha256": "ab17232a20d141d2726f41301182b33eeb0058a61c17e95d89b1e446b3eb67d3",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0010.png",
+      "union_mask_sha256": "8732435fec608ae4814596f56af5043e30a4006a58bb3b369eaf8df04fdb9a08",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 21763,
+      "union_mask_fraction": 0.023614366319444444,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000058/pillow_03.png",
+          "sha256": "8732435fec608ae4814596f56af5043e30a4006a58bb3b369eaf8df04fdb9a08",
+          "score": 0.9713951349258423,
+          "bbox": [
+            474.2763977050781,
+            388.7176208496094,
+            641.492431640625,
+            547.7611083984375
+          ],
+          "label": "pillow",
+          "pixels": 21763
+        }
+      ]
+    },
+    {
+      "sequence_index": 11,
+      "frame_id": "000059",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000059.png",
+      "source_frame_sha256": "9e2e4e676426fbccd07d09d5e7a498574b012abdbcaff44fc83d3e12e04983c4",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0011.png",
+      "input_frame_sha256": "9e2e4e676426fbccd07d09d5e7a498574b012abdbcaff44fc83d3e12e04983c4",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0011.png",
+      "union_mask_sha256": "e79c04032a6bffd5aaf1c441511332651dc860f6abcafbe61e69b0543a3143cb",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 22219,
+      "union_mask_fraction": 0.024109157986111112,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000059/pillow_03.png",
+          "sha256": "e79c04032a6bffd5aaf1c441511332651dc860f6abcafbe61e69b0543a3143cb",
+          "score": 0.9698779582977295,
+          "bbox": [
+            475.68115234375,
+            390.0482482910156,
+            644.5154418945312,
+            550.3260498046875
+          ],
+          "label": "pillow",
+          "pixels": 22219
+        }
+      ]
+    },
+    {
+      "sequence_index": 12,
+      "frame_id": "000060",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000060.png",
+      "source_frame_sha256": "d6fcf5020b8ba320c424d18e9743cd62ba32aee89e816e967a35d45810d3e8d7",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0012.png",
+      "input_frame_sha256": "d6fcf5020b8ba320c424d18e9743cd62ba32aee89e816e967a35d45810d3e8d7",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0012.png",
+      "union_mask_sha256": "e495d3b0920aaebb2c27c0325d3ddfe4cae85627f1ce0b466fdd5ffea2a44946",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 22622,
+      "union_mask_fraction": 0.024546440972222222,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000060/pillow_03.png",
+          "sha256": "e495d3b0920aaebb2c27c0325d3ddfe4cae85627f1ce0b466fdd5ffea2a44946",
+          "score": 0.9689043760299683,
+          "bbox": [
+            478.0451965332031,
+            391.5903625488281,
+            648.1876220703125,
+            553.4427490234375
+          ],
+          "label": "pillow",
+          "pixels": 22622
+        }
+      ]
+    },
+    {
+      "sequence_index": 13,
+      "frame_id": "000061",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000061.png",
+      "source_frame_sha256": "bb0b213216747a4af8d3072e8ea17c69eb5084f59b71e9f3b877daba2b739dbc",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0013.png",
+      "input_frame_sha256": "bb0b213216747a4af8d3072e8ea17c69eb5084f59b71e9f3b877daba2b739dbc",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0013.png",
+      "union_mask_sha256": "7105a1e33a9e3af16008bf88f0bb964e535a9e99da180bc0df3a7248db804d4c",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 22968,
+      "union_mask_fraction": 0.024921875,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000061/pillow_03.png",
+          "sha256": "7105a1e33a9e3af16008bf88f0bb964e535a9e99da180bc0df3a7248db804d4c",
+          "score": 0.9685919880867004,
+          "bbox": [
+            482.95770263671875,
+            392.7900390625,
+            655.5693359375,
+            555.6060180664062
+          ],
+          "label": "pillow",
+          "pixels": 22968
+        }
+      ]
+    },
+    {
+      "sequence_index": 14,
+      "frame_id": "000062",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000062.png",
+      "source_frame_sha256": "938b7196853c7757ddc9a190fdf05e6b7a1f6f87df7b557395a65703a352654a",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0014.png",
+      "input_frame_sha256": "938b7196853c7757ddc9a190fdf05e6b7a1f6f87df7b557395a65703a352654a",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0014.png",
+      "union_mask_sha256": "a678a68550a454bfd570549aeaf6cb9922a7d72e05049dee24a5d2e9bba61fea",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 23185,
+      "union_mask_fraction": 0.025157335069444446,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000062/pillow_03.png",
+          "sha256": "a678a68550a454bfd570549aeaf6cb9922a7d72e05049dee24a5d2e9bba61fea",
+          "score": 0.9690995812416077,
+          "bbox": [
+            493.40771484375,
+            392.8957214355469,
+            666.859619140625,
+            555.8507080078125
+          ],
+          "label": "pillow",
+          "pixels": 23185
+        }
+      ]
+    },
+    {
+      "sequence_index": 15,
+      "frame_id": "000063",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000063.png",
+      "source_frame_sha256": "29706947c8c90221281a94243152d0b34f865038dcccbd3869c43d7a70c18919",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0015.png",
+      "input_frame_sha256": "29706947c8c90221281a94243152d0b34f865038dcccbd3869c43d7a70c18919",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0015.png",
+      "union_mask_sha256": "2338599f77facca44131dd611b8fa94267f3588d2cc20398c785b9ddcba570bc",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 23209,
+      "union_mask_fraction": 0.02518337673611111,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000063/pillow_03.png",
+          "sha256": "2338599f77facca44131dd611b8fa94267f3588d2cc20398c785b9ddcba570bc",
+          "score": 0.9677409529685974,
+          "bbox": [
+            507.9116516113281,
+            390.5016174316406,
+            681.70166015625,
+            552.7666625976562
+          ],
+          "label": "pillow",
+          "pixels": 23209
+        }
+      ]
+    },
+    {
+      "sequence_index": 16,
+      "frame_id": "000064",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000064.png",
+      "source_frame_sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0016.png",
+      "input_frame_sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0016.png",
+      "union_mask_sha256": "bdcd739f36d4c129f12bc42964195ce17522fa030900b7427f78b8e8f73d24d6",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 23065,
+      "union_mask_fraction": 0.02502712673611111,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000064/pillow_03.png",
+          "sha256": "bdcd739f36d4c129f12bc42964195ce17522fa030900b7427f78b8e8f73d24d6",
+          "score": 0.9723717570304871,
+          "bbox": [
+            520.74658203125,
+            387.1203918457031,
+            694.6969604492188,
+            548.5791015625
+          ],
+          "label": "pillow",
+          "pixels": 23065
+        }
+      ]
+    },
+    {
+      "sequence_index": 17,
+      "frame_id": "000065",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000065.png",
+      "source_frame_sha256": "23ea18aefdcc69d23f0ab46e2d675c6f84e2f3ff7e22866ea1d8a55125e41406",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0017.png",
+      "input_frame_sha256": "23ea18aefdcc69d23f0ab46e2d675c6f84e2f3ff7e22866ea1d8a55125e41406",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0017.png",
+      "union_mask_sha256": "c330b7584a74ba818d8575b35ed22a1a3cee33a89a6d46bf52352abf392671ee",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 22825,
+      "union_mask_fraction": 0.024766710069444444,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000065/pillow_03.png",
+          "sha256": "c330b7584a74ba818d8575b35ed22a1a3cee33a89a6d46bf52352abf392671ee",
+          "score": 0.9715925455093384,
+          "bbox": [
+            539.2891845703125,
+            385.87786865234375,
+            712.6300659179688,
+            544.8870239257812
+          ],
+          "label": "pillow",
+          "pixels": 22825
+        }
+      ]
+    },
+    {
+      "sequence_index": 18,
+      "frame_id": "000066",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000066.png",
+      "source_frame_sha256": "b39de626c7656cacf4a8e932343e36cc54a46901804d9999806323e638d428cf",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0018.png",
+      "input_frame_sha256": "b39de626c7656cacf4a8e932343e36cc54a46901804d9999806323e638d428cf",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0018.png",
+      "union_mask_sha256": "2233d34fb934dd8e99c0464453ca2f1db633538589e190b3d1894513fcd8a8c1",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 22481,
+      "union_mask_fraction": 0.024393446180555556,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000066/pillow_02.png",
+          "sha256": "2233d34fb934dd8e99c0464453ca2f1db633538589e190b3d1894513fcd8a8c1",
+          "score": 0.9680482149124146,
+          "bbox": [
+            558.5912475585938,
+            382.785888671875,
+            731.5216674804688,
+            539.1240234375
+          ],
+          "label": "pillow",
+          "pixels": 22481
+        }
+      ]
+    },
+    {
+      "sequence_index": 19,
+      "frame_id": "000067",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000067.png",
+      "source_frame_sha256": "e31bc25f5f2e3191800b223157561e41212b35000391d01c501f7d07980ab792",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0019.png",
+      "input_frame_sha256": "e31bc25f5f2e3191800b223157561e41212b35000391d01c501f7d07980ab792",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0019.png",
+      "union_mask_sha256": "ce16b5363cdb8cd1d33404aef55495184c5e299d4cea4de87523fbef1d08c654",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 22295,
+      "union_mask_fraction": 0.02419162326388889,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000067/pillow_02.png",
+          "sha256": "ce16b5363cdb8cd1d33404aef55495184c5e299d4cea4de87523fbef1d08c654",
+          "score": 0.970328688621521,
+          "bbox": [
+            578.8228759765625,
+            377.1546936035156,
+            750.2860107421875,
+            532.7985229492188
+          ],
+          "label": "pillow",
+          "pixels": 22295
+        }
+      ]
+    },
+    {
+      "sequence_index": 20,
+      "frame_id": "000068",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000068.png",
+      "source_frame_sha256": "e0dd873ab695350cdb67fb65ab268a7ac36d9391d7cfccca97e48deebeee930b",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0020.png",
+      "input_frame_sha256": "e0dd873ab695350cdb67fb65ab268a7ac36d9391d7cfccca97e48deebeee930b",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0020.png",
+      "union_mask_sha256": "7ebe64208add5d1c8a128b19a37d23817943843ab5a9c51fe750a4d16d8f2a9d",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 22091,
+      "union_mask_fraction": 0.023970269097222222,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000068/pillow_03.png",
+          "sha256": "7ebe64208add5d1c8a128b19a37d23817943843ab5a9c51fe750a4d16d8f2a9d",
+          "score": 0.9654616713523865,
+          "bbox": [
+            599.4166259765625,
+            371.29046630859375,
+            770.8402099609375,
+            525.379638671875
+          ],
+          "label": "pillow",
+          "pixels": 22091
+        }
+      ]
+    },
+    {
+      "sequence_index": 21,
+      "frame_id": "000069",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000069.png",
+      "source_frame_sha256": "0ff93ca8cddf4ba56ddf4c5874ff6867a419e030002ecf0ec9f90b7cdf921f7d",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0021.png",
+      "input_frame_sha256": "0ff93ca8cddf4ba56ddf4c5874ff6867a419e030002ecf0ec9f90b7cdf921f7d",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0021.png",
+      "union_mask_sha256": "67e2f98245c515a7aaaaa7e51fe908731bd0ca1bda76fa014b6006e99111e412",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 21759,
+      "union_mask_fraction": 0.023610026041666666,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000069/pillow_03.png",
+          "sha256": "67e2f98245c515a7aaaaa7e51fe908731bd0ca1bda76fa014b6006e99111e412",
+          "score": 0.9648169875144958,
+          "bbox": [
+            620.708251953125,
+            364.8834228515625,
+            790.75830078125,
+            516.3364868164062
+          ],
+          "label": "pillow",
+          "pixels": 21759
+        }
+      ]
+    },
+    {
+      "sequence_index": 22,
+      "frame_id": "000070",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000070.png",
+      "source_frame_sha256": "a5d99a128d82706c70fdcf5b5bea9e80d63c8e20b3d3c01a62b73972ddedfc5c",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0022.png",
+      "input_frame_sha256": "a5d99a128d82706c70fdcf5b5bea9e80d63c8e20b3d3c01a62b73972ddedfc5c",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0022.png",
+      "union_mask_sha256": "cb43bcc3714603c43e21bce71e528ac5fff1845e030ada33cc72db529bbc220d",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 21517,
+      "union_mask_fraction": 0.02334743923611111,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000070/pillow_03.png",
+          "sha256": "cb43bcc3714603c43e21bce71e528ac5fff1845e030ada33cc72db529bbc220d",
+          "score": 0.9647093415260315,
+          "bbox": [
+            638.0394897460938,
+            358.482666015625,
+            808.3697509765625,
+            509.83026123046875
+          ],
+          "label": "pillow",
+          "pixels": 21517
+        }
+      ]
+    },
+    {
+      "sequence_index": 23,
+      "frame_id": "000071",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000071.png",
+      "source_frame_sha256": "03a1e7ee7ce03c508bfa173ec62320d42b170797d1b3db0b06cb44db768a6af3",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0023.png",
+      "input_frame_sha256": "03a1e7ee7ce03c508bfa173ec62320d42b170797d1b3db0b06cb44db768a6af3",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0023.png",
+      "union_mask_sha256": "28b610dde0e576900081a44cf28d2bb49e37e9f2165c7571fb19cdee735c1bb1",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 21569,
+      "union_mask_fraction": 0.023403862847222224,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000071/pillow_03.png",
+          "sha256": "28b610dde0e576900081a44cf28d2bb49e37e9f2165c7571fb19cdee735c1bb1",
+          "score": 0.9619250297546387,
+          "bbox": [
+            660.096923828125,
+            350.10723876953125,
+            831.43603515625,
+            502.7277526855469
+          ],
+          "label": "pillow",
+          "pixels": 21569
+        }
+      ]
+    },
+    {
+      "sequence_index": 24,
+      "frame_id": "000072",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000072.png",
+      "source_frame_sha256": "df1dccbe91f762e0ff2ed1851b97814bab5991bd8bc29581a0916a098ef2a3e8",
+      "input_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/frames/0024.png",
+      "input_frame_sha256": "df1dccbe91f762e0ff2ed1851b97814bab5991bd8bc29581a0916a098ef2a3e8",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0024.png",
+      "union_mask_sha256": "c251805bdd7c14129bc31d46d5b6cedae2442b78101bb0f239fecaf1e67a82bf",
+      "width": 1280,
+      "height": 720,
+      "union_mask_pixels": 21440,
+      "union_mask_fraction": 0.02326388888888889,
+      "source_mask_count": 1,
+      "source_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000072/pillow_03.png",
+          "sha256": "c251805bdd7c14129bc31d46d5b6cedae2442b78101bb0f239fecaf1e67a82bf",
+          "score": 0.9585384130477905,
+          "bbox": [
+            683.6341552734375,
+            343.25628662109375,
+            855.4986572265625,
+            495.18414306640625
+          ],
+          "label": "pillow",
+          "pixels": 21440
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "BBox-continuity tracking is deterministic but should be validated against multi-view 3D identity before promotion.",
+    "RGB clean plates do not repair depth, geometry, or Gaussian splats by themselves."
+  ]
+}

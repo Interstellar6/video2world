@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.source_camera_pbr_batch_status",
+  "updated_at": "2026-07-17T07:28:29Z",
+  "status": "rejected_superseded",
+  "promotion_approved": false,
+  "reason": "64-sample coverage alpha and single-sample Blender Z disagree at subpixel component gaps; bounded sanitization correctly stopped on bed frame 000060",
+  "retention_policy": "preserve_failed_run_evidence_without_overwrite",
+  "successor": "../pbr-layer-render-batch-v2-geometry-matte",
+  "successor_alpha_depth_alignment_mode": "geometry-derived-binary-matte",
+  "diagnostics": [
+    "bed_000056_alpha_depth_stop_diagnosis.json",
+    "bed_000058_alpha_depth_stop_diagnosis.json",
+    "bed_000060_geometry_matte_contact.png"
+  ]
+}

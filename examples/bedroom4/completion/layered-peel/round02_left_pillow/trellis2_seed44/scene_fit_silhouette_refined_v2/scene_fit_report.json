@@ -1,0 +1,498 @@
+{
+  "acceptance_gates": {
+    "collision_face_budget": true,
+    "mesh_finite": true,
+    "mesh_no_degenerate_faces": true,
+    "mesh_nonempty": true,
+    "mesh_winding_consistent": true,
+    "positive_refinement_determinant": true,
+    "scene_anchor_tangent_envelope": false,
+    "scene_no_additional_front_plane_overshoot": true,
+    "scene_source_camera_support_edge": true,
+    "scene_support_plane_drift": true,
+    "source_camera_bbox_iou": true,
+    "source_camera_center_error_px": true,
+    "source_camera_mask_iou": true
+  },
+  "all_acceptance_gates_passed": false,
+  "baked_relative_transform": {
+    "linear_row_major": [
+      [
+        1.0309631140321935,
+        7.535953662738674,
+        1.1887307112853327
+      ],
+      [
+        3.2493034522033133,
+        -1.3887197818414116,
+        -1.806766896273841
+      ],
+      [
+        -1.1486154325891884,
+        2.8355167287952527,
+        -4.044170281663107
+      ]
+    ],
+    "runtime_pivot": [
+      -3.82123968329259,
+      -0.640556138622737,
+      14.902526217547626
+    ],
+    "runtime_rotation_euler_deg": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "runtime_scale": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "scale_before_rotation": [
+      3.4259481073779527,
+      6.408342091054915,
+      4.58615313618189
+    ],
+    "silhouette_refinement_linear_row_major": [
+      [
+        1.0604094644144786,
+        0.5954211147710194,
+        -0.24825279451291637
+      ],
+      [
+        -0.5805458992079341,
+        0.8673326103505975,
+        -0.11137357245016893
+      ],
+      [
+        0.27712030404351135,
+        0.2342864783428508,
+        0.9767864282068303
+      ]
+    ],
+    "silhouette_refinement_translation_world": [
+      0.041670677020434546,
+      -0.01074541754299484,
+      0.01704915308591091
+    ]
+  },
+  "collision_semantics": {
+    "asset_mode": "unified_glb",
+    "closed_volume_claim": false,
+    "fallback_proxy_allowed": false,
+    "inside_outside_queries_allowed": false,
+    "max_faces": 100000,
+    "surface_blocking": true,
+    "topology": "surface_bvh"
+  },
+  "completed_obb": {
+    "axes_columns": [
+      [
+        0.28659792899288417,
+        0.9223215315852603,
+        0.25919996039970594
+      ],
+      [
+        0.9032754202317841,
+        -0.16996470698377972,
+        -0.3939613097564437
+      ],
+      [
+        -0.3193041532803547,
+        0.3470374486336269,
+        -0.8818219020549322
+      ]
+    ],
+    "center": [
+      -3.82123968329259,
+      -0.640556138622737,
+      14.902526217547626
+    ],
+    "extents": [
+      3.6008993168573014,
+      3.5575329263837814,
+      0.8230627009959545
+    ]
+  },
+  "created_at": "2026-07-17T03:30:30.964945+00:00",
+  "fit": {
+    "aabb_center_relative_to_pivot": [
+      -0.046629158426436335,
+      0.05371241536166571,
+      0.008110146191135592
+    ],
+    "aabb_extents": [
+      3.5478323982504616,
+      3.902765387358722,
+      2.093780717035635
+    ],
+    "projected_fitted_extents": [
+      3.4294279612643512,
+      2.790221865472132,
+      0.8230626894416936
+    ],
+    "relative_extent_error": [
+      1.1794350216130787e-08,
+      1.3466301931232351e-08,
+      1.4038129619305351e-08
+    ],
+    "source_extents": [
+      1.0010157227516174,
+      0.4354046434164047,
+      0.17946690320968628
+    ]
+  },
+  "gaussian": null,
+  "kind": "video2world.silhouette_refined_object_scene_fit",
+  "material_profile": "nonmetal_fabric",
+  "mesh": {
+    "bounds": [
+      [
+        -2.1951335167984736,
+        -1.8132750865800886,
+        -1.2674839627207821
+      ],
+      [
+        2.1170929730396804,
+        1.9854892273833191,
+        1.2849020131144286
+      ]
+    ],
+    "degenerate_face_count": 0,
+    "extents": [
+      4.312226489838154,
+      3.7987643139634075,
+      2.552385975835211
+    ],
+    "faces": 98230,
+    "finite_vertices": true,
+    "glb_bytes": 3440992,
+    "glb_sha256": "9683329b1ea7fa9497f3708ffe95f2d5381e0314532093a27006bba4c8ce15b6",
+    "material_profile": "nonmetal_fabric",
+    "materials": [
+      {
+        "metallic_factor_after": 0.0,
+        "metallic_factor_before": 1.0,
+        "roughness_factor_after": 1.0,
+        "roughness_factor_before": 1.0,
+        "type": "PBRMaterial"
+      }
+    ],
+    "obj_bytes": 6865624,
+    "obj_sha256": "94badee51a7682484a8465bc70caefe47ba7e3719addd93815957fde97806b6b",
+    "valid_face_indices": true,
+    "vertices": 52981,
+    "watertight": false,
+    "winding_consistent": true
+  },
+  "object_id": "sam3_pillow_left",
+  "placement_evidence": {
+    "completion_direction_sign": -1.0,
+    "front_surface_anchor_error": 0.046288043191103884,
+    "max_thickness_ratio": 0.24,
+    "mode": "observed_front_surface",
+    "observed_thickness": 2.2600879541145495,
+    "refinement_preserves_thickness": true,
+    "refinement_translation_is_tangent_to_thickness_axis": true,
+    "target_extent_scale": [
+      0.7,
+      0.7,
+      1.0
+    ],
+    "thickness_axis": 2,
+    "thickness_reference": 3.4294279208164773,
+    "view_direction": [
+      -0.144243418601856,
+      0.01242499148478777,
+      0.9894642266280539
+    ]
+  },
+  "promotion_blockers": [
+    "anchor_tangent_envelope"
+  ],
+  "promotion_status": "rejected_by_refinement_gates",
+  "representation_mode": "unified_mesh_visual_logic_collision",
+  "scene_geometry_review": {
+    "claim_scope": "Anchor-envelope, source-camera support-edge, and preserved-front-plane proxies; not a signed scene-mesh penetration proof.",
+    "gates": {
+      "anchor_tangent_envelope": false,
+      "no_additional_front_plane_overshoot": true,
+      "source_camera_support_edge": true,
+      "support_plane_drift": true
+    },
+    "gravity_direction": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "metrics": {
+      "additional_front_plane_overshoot": 7.216449660063518e-16,
+      "fitted_front_plane_min": 0.029619379754746822,
+      "fitted_support_coordinate": 1.3449330887605822,
+      "maximum_tangent_anchor_ratio": 1.2605620593669071,
+      "source_camera_support_edge_error_px": 3,
+      "source_front_plane_min": 0.029619379754747543,
+      "source_support_coordinate": 1.3752842839556583,
+      "support_drift": 0.03035119519507612,
+      "tangent_overflow_vertex_fraction": 0.0699118551933712
+    },
+    "status": "rejected",
+    "thresholds": {
+      "maximum_anchor_overflow_ratio": 0.1,
+      "maximum_support_drift": 0.41853328545691537,
+      "maximum_support_edge_error_px": 12.0
+    }
+  },
+  "schema_version": 1,
+  "silhouette_refinement": {
+    "constraints": {
+      "manual_target_bbox_used": false,
+      "maximum_angle_deg": 55.0,
+      "maximum_scale": 1.35,
+      "maximum_translation_fraction": 0.08,
+      "maximum_translation_world": 0.22321775224368823,
+      "minimum_scale": 0.75,
+      "rotation_axis": "target_obb_thickness_axis",
+      "thickness_optimized": false,
+      "translation_plane": "target_obb_tangent_plane"
+    },
+    "exact_full_mesh_metrics": {
+      "bbox_iou": 0.8722805114620054,
+      "center_error_px": 0.08821678761500983,
+      "intersection_pixels": 25368,
+      "mask_iou": 0.7106877713965541,
+      "observed_bbox_xyxy": [
+        368,
+        338,
+        593,
+        541
+      ],
+      "observed_pixels": 30198,
+      "observed_recall": 0.8400556328233658,
+      "rendered_bbox_xyxy": [
+        369,
+        330,
+        575,
+        544
+      ],
+      "rendered_pixels": 30865,
+      "rendered_precision": 0.8219018305524056,
+      "union_pixels": 35695
+    },
+    "search": {
+      "coarse_candidate_count": 300,
+      "coarse_search_mesh": {
+        "faces": 4747,
+        "resolution": 24,
+        "vertices": 1635
+      },
+      "fine_candidates": [
+        {
+          "angle_deg": 35.0,
+          "metrics": {
+            "bbox_iou": 0.875736531986532,
+            "center_error_px": 0.07345404001933267,
+            "intersection_pixels": 25210,
+            "mask_iou": 0.7119658843796774,
+            "observed_bbox_xyxy": [
+              368,
+              338,
+              593,
+              541
+            ],
+            "observed_pixels": 30198,
+            "observed_recall": 0.8348234982449169,
+            "rendered_bbox_xyxy": [
+              369,
+              331,
+              574,
+              543
+            ],
+            "rendered_pixels": 30421,
+            "rendered_precision": 0.8287038558890241,
+            "union_pixels": 35409
+          },
+          "scale_axis_0": 1.05,
+          "scale_axis_1": 1.2750000000000001,
+          "score": 4.4280477638549645,
+          "translation_coefficients": [
+            -0.02911311414033089,
+            0.035986240808308444
+          ],
+          "translation_length": 0.046288043191103884
+        },
+        {
+          "angle_deg": -55.0,
+          "metrics": {
+            "bbox_iou": 0.875736531986532,
+            "center_error_px": 0.10444431274054165,
+            "intersection_pixels": 25432,
+            "mask_iou": 0.7142616412964107,
+            "observed_bbox_xyxy": [
+              368,
+              338,
+              593,
+              541
+            ],
+            "observed_pixels": 30198,
+            "observed_recall": 0.8421749784753957,
+            "rendered_bbox_xyxy": [
+              369,
+              329,
+              574,
+              541
+            ],
+            "rendered_pixels": 30840,
+            "rendered_precision": 0.8246433203631647,
+            "union_pixels": 35606
+          },
+          "scale_axis_0": 1.06875,
+          "scale_axis_1": 1.25625,
+          "score": 4.423710708892895,
+          "translation_coefficients": [
+            -0.027735376806223684,
+            0.07101196159808124
+          ],
+          "translation_length": 0.07623614507955248
+        },
+        {
+          "angle_deg": -50.0,
+          "metrics": {
+            "bbox_iou": 0.8592999747283295,
+            "center_error_px": 0.03217919245632973,
+            "intersection_pixels": 23491,
+            "mask_iou": 0.697496956560468,
+            "observed_bbox_xyxy": [
+              368,
+              338,
+              593,
+              541
+            ],
+            "observed_pixels": 30198,
+            "observed_recall": 0.7778991986224253,
+            "rendered_bbox_xyxy": [
+              370,
+              330,
+              571,
+              542
+            ],
+            "rendered_pixels": 26972,
+            "rendered_precision": 0.8709402343170696,
+            "union_pixels": 33679
+          },
+          "scale_axis_0": 0.9750000000000001,
+          "scale_axis_1": 1.2000000000000002,
+          "score": 4.336645374763784,
+          "translation_coefficients": [
+            -0.012439111272821277,
+            0.061091615440848346
+          ],
+          "translation_length": 0.06234514388811794
+        }
+      ],
+      "fine_search_mesh": {
+        "faces": 14144,
+        "resolution": 40,
+        "vertices": 4687
+      },
+      "fine_start_count": 3,
+      "selected_from_passing_pool": true
+    },
+    "selected": {
+      "angle_deg": 35.0,
+      "metrics": {
+        "bbox_iou": 0.875736531986532,
+        "center_error_px": 0.07345404001933267,
+        "intersection_pixels": 25210,
+        "mask_iou": 0.7119658843796774,
+        "observed_bbox_xyxy": [
+          368,
+          338,
+          593,
+          541
+        ],
+        "observed_pixels": 30198,
+        "observed_recall": 0.8348234982449169,
+        "rendered_bbox_xyxy": [
+          369,
+          331,
+          574,
+          543
+        ],
+        "rendered_pixels": 30421,
+        "rendered_precision": 0.8287038558890241,
+        "union_pixels": 35409
+      },
+      "scale_axis_0": 1.05,
+      "scale_axis_1": 1.2750000000000001,
+      "score": 4.4280477638549645,
+      "translation_coefficients": [
+        -0.02911311414033089,
+        0.035986240808308444
+      ],
+      "translation_length": 0.046288043191103884
+    },
+    "silhouette_gates": {
+      "bbox_iou": true,
+      "center_error_px": true,
+      "mask_iou": true
+    }
+  },
+  "sources": {
+    "cameras": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/cameras.json",
+      "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+    },
+    "gaussian": null,
+    "instance_report": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/bedroom4_frame64_three_pillows/instance_cloud_split_report.json",
+      "sha256": "2d3386f690c71b88d1236756d865f4504095b3465244e688ac8ecfd2c1b931ac"
+    },
+    "mesh": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/asset_pbr.glb",
+      "sha256": "c76e26f14cc68b17fd588984fdae289110d18dee6316f54214d39e0cdd3f4998"
+    },
+    "observed_mask": {
+      "path": "/private/tmp/video2world_pillow_split_20260717/input/pillow_02.png",
+      "sha256": "457ca7bbb0963a17fee6e129d12a826b8c90b6767128325f0aa7228126853e6f"
+    },
+    "source_scene_fit_mesh": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined/sam3_pillow_left.scene-fit.glb",
+      "sha256": "db286bd63b4348c8ad7144e3c0cc9e033eb9b3872ce97aa7b8c4d063bf642a2e"
+    },
+    "source_scene_fit_report": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined/scene_fit_report.json",
+      "sha256": "dce093d7b9ead42de70393c5737c04dba98cd2e238bb04f0474b703ca999086c"
+    }
+  },
+  "status": "rejected",
+  "target_obb": {
+    "axes_columns": [
+      [
+        -0.2942546178330003,
+        0.9199073868671485,
+        0.259199960399706
+      ],
+      [
+        0.8374076579760703,
+        0.3788705593972973,
+        -0.3939613097564438
+      ],
+      [
+        -0.4606111529772031,
+        0.10113109714243732,
+        -0.8818219020549324
+      ]
+    ],
+    "center": [
+      -3.7562414505607116,
+      -0.7919381509277634,
+      14.522579706210355
+    ],
+    "extents": [
+      4.899182744023539,
+      3.986031290065861,
+      2.2600879541145495
+    ]
+  }
+}

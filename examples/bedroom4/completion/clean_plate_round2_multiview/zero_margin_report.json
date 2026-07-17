@@ -1,0 +1,3601 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-16T19:13:59.158331+00:00",
+  "purpose": "calibrated multi-view donor prefill before residual video inpainting",
+  "status": "technical_passed",
+  "promotion_approved": false,
+  "promotion_blocker": "semantic texture continuity review is required",
+  "input_manifest": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/input_manifest.json",
+  "input_manifest_sha256": "bd83259bd9c3bd335f8093f68b0515e82a7bc642b0ead27a960891ed33fabd83",
+  "camera_info": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/video2mesh/scene/cameras/camera_info.json",
+  "camera_info_sha256": "2901497f144c7378961ad6116a48474dfec475acd35a7a80258db18d36b87568",
+  "camera_extrinsic_type": "world_to_camera",
+  "donor_frames_dir": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames",
+  "depth_dir": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3",
+  "donor_mask_index": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/mask_index.json",
+  "donor_mask_index_sha256": "5de1e75c9252c8cdc429238209f4a9546c35ee6229b1f19ae4e4eee59956df38",
+  "config": {
+    "target_frame_ids": [
+      "000048",
+      "000064",
+      "000072"
+    ],
+    "donor_frame_ids": [
+      "000000",
+      "000001",
+      "000002",
+      "000003",
+      "000004",
+      "000005",
+      "000006",
+      "000007",
+      "000008",
+      "000009",
+      "000010",
+      "000011",
+      "000012",
+      "000013",
+      "000014",
+      "000015",
+      "000016",
+      "000017",
+      "000018",
+      "000019",
+      "000020",
+      "000021",
+      "000022",
+      "000023",
+      "000024",
+      "000025",
+      "000026",
+      "000027",
+      "000028",
+      "000029",
+      "000030",
+      "000031",
+      "000032",
+      "000033",
+      "000034",
+      "000035",
+      "000036",
+      "000037",
+      "000038",
+      "000039",
+      "000040",
+      "000041",
+      "000042",
+      "000043",
+      "000044",
+      "000045",
+      "000046",
+      "000047",
+      "000048",
+      "000049",
+      "000050",
+      "000051",
+      "000052",
+      "000053",
+      "000054",
+      "000055",
+      "000056",
+      "000057",
+      "000058",
+      "000059",
+      "000060",
+      "000061",
+      "000062",
+      "000063",
+      "000064",
+      "000065",
+      "000066",
+      "000067",
+      "000068",
+      "000069",
+      "000070",
+      "000071",
+      "000072",
+      "000073",
+      "000074",
+      "000075",
+      "000076",
+      "000077",
+      "000078",
+      "000079"
+    ],
+    "donor_mask_label": "pillow",
+    "donor_mask_min_score": null,
+    "donor_mask_dilation": 0,
+    "exclude_same_frame": true,
+    "sample_stride": 2,
+    "splat_radius": 1,
+    "min_support": 3,
+    "absolute_depth_tolerance": 0.12,
+    "relative_depth_tolerance": 0.015,
+    "fusion": "per_donor_nearest_z_then_cross_donor_median_depth_cluster"
+  },
+  "gates": {
+    "outside_removal_mask_rgb_exact": true,
+    "all_residual_masks_subset_of_removal_masks": true,
+    "semantic_texture_continuity": "pending_human_or_vlm_review",
+    "new_depth_normal_estimation": "required_before_scene_reconstruction"
+  },
+  "donor_assets": {
+    "000000": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000000.png",
+      "frame_sha256": "2d81a039f42f107337c9265c1f918fb5fab466ff372601ce4ba19eeb27158365",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000000.npy",
+      "depth_sha256": "d9ad6890330f23d981dfafe6407efb8052fa400dcddff032112751bd444db6ba",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000000/pillow_01.png",
+          "sha256": "68254cc57208c85905bbc7a3b939558a9374bcfd98dfd0b7bcdde758463df850"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000000/pillow_02.png",
+          "sha256": "cfd83d812d01c23d8f9c62294394e95ff8285c1f46a44df72a44d3b5049995a7"
+        }
+      ],
+      "excluded_pixels_after_dilation": 6700
+    },
+    "000001": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000001.png",
+      "frame_sha256": "dcfb3de2c74fd07cba99de6e1a535c5c21f3dd76cc412b9c34446e38011edc23",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000001.npy",
+      "depth_sha256": "2c7206a67fbfa37fc60557304792661f0a6694494f413d0384ca95620152ce1b",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000001/pillow_01.png",
+          "sha256": "8fe84c3b6d55a9cd8e4daf27c4b04cc89196dfaabaf5aa6a0b3cc832e76dee30"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000001/pillow_02.png",
+          "sha256": "726e768dd49bc7b0857b8f498a586db15a09d4be4d565293c8650679ad61c9b2"
+        }
+      ],
+      "excluded_pixels_after_dilation": 7221
+    },
+    "000002": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000002.png",
+      "frame_sha256": "3dd4ad24f1ce82057cc5f95f82a58fdbcbb41d095717dadfab2150575c88798a",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000002.npy",
+      "depth_sha256": "24be9dba702d424f0bc7b5e326d96f218f8ffb299ba60d4f8e0d4cf4785656ba",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000002/pillow_01.png",
+          "sha256": "786c98e58f6ca18c0970f5363d9adc6be82dbf642587da0636eb668e878cf5af"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000002/pillow_02.png",
+          "sha256": "86edf6c4c6f05b17468c098dfd2daeb3a2f04deffe1a0fab526bd982faf3c510"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000002/pillow_03.png",
+          "sha256": "00167375e2c38b757b3f71bd5a4d32d27e929103fa2d7a732e65c37613514036"
+        }
+      ],
+      "excluded_pixels_after_dilation": 8299
+    },
+    "000003": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000003.png",
+      "frame_sha256": "3f9bcc4101b7bbd04d5c25339a9cc5db17f70361d63789b2973819806b723ce6",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000003.npy",
+      "depth_sha256": "d7966e1daf13bfef5db67dd783c981295d999114dc6461f3822036363773b623",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000003/pillow_01.png",
+          "sha256": "ad1ce003e41d3abcdc8034ae29c99e6bdb6124da449559d5611d033abb02423d"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000003/pillow_02.png",
+          "sha256": "7155c51b17bfa3d84d55ea9f0fe43a944f2e0fb8600e28fcc8f8f6f2e9a97101"
+        }
+      ],
+      "excluded_pixels_after_dilation": 9543
+    },
+    "000004": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000004.png",
+      "frame_sha256": "f0e32e471c20d49ae9d1d2fd31e9963797ac82657bb1415029b1b3ccd3cf1af3",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000004.npy",
+      "depth_sha256": "06d5c40124a0d52b2270cfd4231fd304efd7a77e464e47f75a6896b4da6fe365",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000004/pillow_01.png",
+          "sha256": "bb23575aee15c488087b77a82d423e6384d8d73a9c1e27f586116d7f17fa9975"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000004/pillow_02.png",
+          "sha256": "e337841d6c0801f228e2780f5313e82b26d01a88d3a69503c7674f3da47da104"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000004/pillow_03.png",
+          "sha256": "6e3b3f498353cd8a7be32d7614924409254d0910ab358026475844534e6781e1"
+        }
+      ],
+      "excluded_pixels_after_dilation": 10823
+    },
+    "000005": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000005.png",
+      "frame_sha256": "92b38a6a2b10244758150bb2b06d72af2ba11ea2bd6444cee73be0124042f1f0",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000005.npy",
+      "depth_sha256": "52d185aa6bc1d1f692bc06ff4ec57f42640c774844e8e4f896cda9accc93aa03",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000005/pillow_01.png",
+          "sha256": "6a1f75f1ca451ca4ac7d1ca7bd6efdf96ae4a334616bae50002a51920909e750"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000005/pillow_02.png",
+          "sha256": "5f30977e81a42433d20ab423aea03299e27d3793c19fc9219464ed85d7259b84"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000005/pillow_03.png",
+          "sha256": "4476bf840df92263f7647fa384a78a136eacbdff8535542d690594de3ef062dd"
+        }
+      ],
+      "excluded_pixels_after_dilation": 12993
+    },
+    "000006": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000006.png",
+      "frame_sha256": "036f1baf2730ba464ccdb2002012dc0bee5c7edd037c95a729031374af3486e6",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000006.npy",
+      "depth_sha256": "02ee437030f6f86b1d9a5118daf8031c6ddae995a13beb56a446989b64ad75f2",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000006/pillow_01.png",
+          "sha256": "d986fb604aa4e0405721e26f3f6401a6a973319782074a332b00bef57b96f24f"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000006/pillow_02.png",
+          "sha256": "2dd526230efbeb8b80611fdd64d212232bedf0a3d2b416638debe545acccac95"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000006/pillow_03.png",
+          "sha256": "00b8393e0e6cfe0aeb391e81b7a5e823e9c4f92b5d0d7f1105924e808c4fe361"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000006/pillow_04.png",
+          "sha256": "385f652b958d8dfc6051410be2dab51fc05915da5c2f62fddd56c6b6fac26ee8"
+        }
+      ],
+      "excluded_pixels_after_dilation": 15826
+    },
+    "000007": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000007.png",
+      "frame_sha256": "8e124f7c1c70cfebedd32eab9c77bad78fd05cbb8cc8990acc813d4e0c53ccee",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000007.npy",
+      "depth_sha256": "f5c18ce0c117b3db80ccc231ffd9dda481725b5f9b4d06c4a451a536c42bc513",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000007/pillow_01.png",
+          "sha256": "6e9e3b99934a4c37acbc7a13575f03da78f0f676a76576e715aa55f54737bfb1"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000007/pillow_02.png",
+          "sha256": "0be539592c4369fc105c1dd662be5120a392a1b11c3cb54fc6589d1ced26f68e"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000007/pillow_03.png",
+          "sha256": "a8d070ad3a87d6d9be23947c74f3250ab95c9130bf4d02a3feb0dc9c0102e6a3"
+        }
+      ],
+      "excluded_pixels_after_dilation": 19621
+    },
+    "000008": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000008.png",
+      "frame_sha256": "8ad93e2ccbf0660bd3726506fd71096481f6e67ef4d4145ad56b06d198d27460",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000008.npy",
+      "depth_sha256": "7c7db95dec61f9ff1f23bf91013b813842edaca78d4e4f5a47519c0e193f670e",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000008/pillow_01.png",
+          "sha256": "5203df213e5e7ab2aea0897343fb2ee245f327bcf25162a574961b5aed23533c"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000008/pillow_02.png",
+          "sha256": "cea82a50b765a1db877be78bf7ec25ceb47c3e51ccd4d15b8c4b64ce5c6f1c8d"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000008/pillow_03.png",
+          "sha256": "bef12115ae481bdddab6a47fc0ce6d9e1add6838c7f4d4c9a1f0f1d8335ddc38"
+        }
+      ],
+      "excluded_pixels_after_dilation": 24264
+    },
+    "000009": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000009.png",
+      "frame_sha256": "e872013dda67777eb19fdcdc694bb2e46ccbfd8929576c7a6131e8dc06473f2f",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000009.npy",
+      "depth_sha256": "9de579ea71953096c326cd080c38b486420b99091ae0b9a5fdf2f7062defab4a",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000009/pillow_01.png",
+          "sha256": "83eb23b53ef1b073a37f97d60dbb353326f3f70163abcb7f13c163f4af0933a2"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000009/pillow_02.png",
+          "sha256": "7995edc5410940b44d1413650ad3269c4f45f3e457fe4b7a43456ee174078022"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000009/pillow_03.png",
+          "sha256": "565a4ce34f88068fdb3930f01f862e72e25f5c21abd43fea45d2f92e25e3a9bf"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000009/pillow_04.png",
+          "sha256": "6353e706b1992e78bd73a73d6bf3f304ad4decb050404f427a4734181cd52a9e"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000009/pillow_05.png",
+          "sha256": "e114a51ee228ad33db75baddd9977a4b2d0cb1016a8aea6130c5538e4c3e6888"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000009/pillow_06.png",
+          "sha256": "78f00e8ba25ca9b8e51d9edbc71e62636d1eea732adf95d70f33ab8bf422596e"
+        }
+      ],
+      "excluded_pixels_after_dilation": 28386
+    },
+    "000010": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000010.png",
+      "frame_sha256": "dc3a7fb2526827c0b73095810b510fd7115bf57f6f163bceff53b970002e7ca0",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000010.npy",
+      "depth_sha256": "b23a46ed1e6d9f4ea9cb819bcdada6607f9154b2d7c2ebc9e53d743999e9ca26",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000010/pillow_01.png",
+          "sha256": "56df4e92233aa94356abc6ab80bf9748fa9ff0bd9f9cbdbaf87bf62f5cbf27cf"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000010/pillow_02.png",
+          "sha256": "3a9e3ed2ce31684b13762626558ad1c8d42c149a7c0dd656ef27938e9448e9f7"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000010/pillow_03.png",
+          "sha256": "d24ee6bc4e89af173b03521fe76aa64d57ce28fe6995715e7eb961994aab4f96"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000010/pillow_04.png",
+          "sha256": "17766b98b27e3e0b28bcc18a55f924dc912486e2d5d89fb80e76645b7ef000e8"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000010/pillow_05.png",
+          "sha256": "e1288d6b068c904e6e8e69736636a3dcffaf846dcd2c7bdcdddee761f6b49cbd"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000010/pillow_06.png",
+          "sha256": "42a160d12fc6058c1c2f838c1ae03664f0019cd1731d80d2557073284088cfa9"
+        }
+      ],
+      "excluded_pixels_after_dilation": 29274
+    },
+    "000011": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000011.png",
+      "frame_sha256": "4b7c3d6c562c11cd981070055105fce72eb2381faa8842b244113579a341ef1b",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000011.npy",
+      "depth_sha256": "dd7456ed82e09cef1b1ea8b04eb397d786cb54adc1c07df25e75f8a7a3edb2e3",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000011/pillow_01.png",
+          "sha256": "03007d68eaee4bc80dc257806f4b6a111a573de6a3dd2ad4ccc454ea31e58e78"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000011/pillow_02.png",
+          "sha256": "bfc1df3913c02cf5beb4cce0cba25b99b9d0c4e7bbaf0452d211233b310778cc"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000011/pillow_03.png",
+          "sha256": "c54e375a0533798a2ecd13214d3e01fd2632bf9acccf9a0fe0bdb91c0a2e9c48"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000011/pillow_04.png",
+          "sha256": "cc86dee247e927fc393b75f8e6d40a3a0400d942bf88649a21bb9f45dcfec34a"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000011/pillow_05.png",
+          "sha256": "70c98654037b6b900abf00dc7d1d61e4ca1518d94bf0bce82ba73290248c2023"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000011/pillow_06.png",
+          "sha256": "aeb5881c1232c559abcfee11d2ce6b085cc3f474608f50cbd262242b338b671a"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000011/pillow_07.png",
+          "sha256": "c69316a79fa3bb552f0207549afc208ff2c7a3da267ba6c456f19356e687fb79"
+        }
+      ],
+      "excluded_pixels_after_dilation": 30419
+    },
+    "000012": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000012.png",
+      "frame_sha256": "8624e7ab04cac3d65975063b8f65e5983efe02382508d986f9435ec83569f8c0",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000012.npy",
+      "depth_sha256": "3210cdad107fbfb6194682631bfc213f8f72485737c76458c5acf34847cfc14e",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000012/pillow_01.png",
+          "sha256": "a1f858ec54e0c4738109bed3322b67ea2b008c1a00c4bedc45406695562dceeb"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000012/pillow_02.png",
+          "sha256": "eaa4f97fd52f2b6e2e510c2a003f3a940d16f5ffcdb655e296dd5ee474d025e3"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000012/pillow_03.png",
+          "sha256": "3f667b2f901174b2b4a0e94ed56b5fe78027ab7f23f1e5aec1e6e839efa40f04"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000012/pillow_04.png",
+          "sha256": "3b1ae908fde58e071bb6e56717d3ec255fd9f06a348aa0e904d8371b58496022"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000012/pillow_05.png",
+          "sha256": "5d907bba8be00fa88fadc81c1c2f21ca67e09d3bacee94111f2c3077f93ec08a"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000012/pillow_06.png",
+          "sha256": "30ae62656e222d100fc2ce50997827389605c88a13cffaba33d30f6001c27247"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000012/pillow_07.png",
+          "sha256": "62e5460b1028bd4febd8a1f8c0ddf07ba0d6e8cc845e89b0000491bad926f57c"
+        }
+      ],
+      "excluded_pixels_after_dilation": 31492
+    },
+    "000013": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000013.png",
+      "frame_sha256": "4603a1e5e4b9d88e3acb457ff4daf867abce3c52bc06b8617e4a8aebf16908fb",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000013.npy",
+      "depth_sha256": "f0bb64bb42314f5f2f6a41b6e3fd48b4f743035b6f8e07d8508679254c45d11a",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000013/pillow_01.png",
+          "sha256": "6095d4dc165d5625518bb6675a8a3082ea912f5d28bcd4b436ed871fd8f54d2c"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000013/pillow_02.png",
+          "sha256": "83300c3247c38e6648d567d464e91a5f46f3c5c8078f0d6e46c973dab3172a9f"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000013/pillow_03.png",
+          "sha256": "a6592edc377afe7bb03bcc99f3d2a4cdc20b66c78ef41b4e0d5a107f73eafc48"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000013/pillow_04.png",
+          "sha256": "cd3d263ecd1badb2db5e721aa3af89ca824010cd068b61ca170c37f20b61ee42"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000013/pillow_05.png",
+          "sha256": "fcc149c42e21831a1d48032525987ce7aa44edb454127566475126e30527c4fb"
+        }
+      ],
+      "excluded_pixels_after_dilation": 32293
+    },
+    "000014": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000014.png",
+      "frame_sha256": "6ee6917f73544e568c818cca668b3e809a627b3ad815c68b450f1d286e39cf12",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000014.npy",
+      "depth_sha256": "e7335b1632fd5663d0c987e43c42693cb6c5c28b151a65dd29a9855111ad80db",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000014/pillow_01.png",
+          "sha256": "fb48f82a1846e8417ab0bdd9438c816c3442223ef1fe840a05a070b2957ea307"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000014/pillow_02.png",
+          "sha256": "845ff76619b4970ef4fa302cbc843d1009f4060a1027dac7a7008bb6809569cc"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000014/pillow_03.png",
+          "sha256": "ce98aafa4f61f3994bf7c2c0a704e81a02b24f1efbca7b0e5f51b01467969f3c"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000014/pillow_04.png",
+          "sha256": "85f2a9c1787cc9789a0ed2423a075f51015e4ed0752bad4c5fc2d6a96a39deff"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000014/pillow_05.png",
+          "sha256": "004c710ac149ee3a9c4e9e103dd65948e093f3519ed2d5ec32867120db9815db"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000014/pillow_06.png",
+          "sha256": "6c57f1d396d6accaeb0aa415ad4dcae742fc029ae0f8220360118516d4429e58"
+        }
+      ],
+      "excluded_pixels_after_dilation": 33522
+    },
+    "000015": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000015.png",
+      "frame_sha256": "bddc16153778cf87b31a1903e7faf1983c31f1d37bc491c763648b709c81bdc7",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000015.npy",
+      "depth_sha256": "91b140cb4bbeedaf51762f03b9f1162639348997bc0b9030c92ac922a98e4b3b",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000015/pillow_01.png",
+          "sha256": "1e3084f1cee8c293f278eac7867487c751080d8957d43c78819c16da499a3033"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000015/pillow_02.png",
+          "sha256": "315436eba75fb53fc5bfcae9dd5472672fbdbae5db0ca3f6dcf2b837091d998f"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000015/pillow_03.png",
+          "sha256": "63ce96531ca1dedee50a834d7f1841916436ab13b59a28020b10355004445014"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000015/pillow_04.png",
+          "sha256": "2b8616de8b4eb6c0c68369da4edd66195d06d766604aca2b160327f728c0c9ec"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000015/pillow_05.png",
+          "sha256": "83fa747233c31aab61eefb26a91ad21c27915cd32d8a4ced5adc65cd6e5b443d"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000015/pillow_06.png",
+          "sha256": "2301c91376dc2ef670766170d88cdf1d316e02062afd6ade683855fede26a802"
+        }
+      ],
+      "excluded_pixels_after_dilation": 34592
+    },
+    "000016": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000016.png",
+      "frame_sha256": "dc47fe64667a88bf77b4626fa54cd0f5253360822a2dcec70f91ef6352bbe227",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000016.npy",
+      "depth_sha256": "72799c2ebb08ba3e6e3b3b31e25cc90629821ac4921aafccd506ef0cc153832e",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000016/pillow_01.png",
+          "sha256": "7330b38cb30859845f715807191c05e88cc1f78e535585dd33706b4787d5d2ff"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000016/pillow_02.png",
+          "sha256": "db2a465a5747da1c6e10fa91dd61729f40e484c4055a7edf81204c99b953d0ee"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000016/pillow_03.png",
+          "sha256": "07b8cdc218e72387b5525081a8c9b08e02405b92b2867c8df9da56a39c169f0a"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000016/pillow_04.png",
+          "sha256": "f85a136db13f0c721d6b2139dca2395f02ee1439c5c97adf75937c3effa840bf"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000016/pillow_05.png",
+          "sha256": "9a2edc489332ebf3d495d1eb938e3294cdf89edd68525b5f2e706844238980bc"
+        }
+      ],
+      "excluded_pixels_after_dilation": 35532
+    },
+    "000017": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000017.png",
+      "frame_sha256": "4e52138fb253d17ce649f58a7f8fe4a31436cdfbf5651429332f4e6f23747601",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000017.npy",
+      "depth_sha256": "f1edfaeecbe3f9046e97aa151802b0b40f3bb2a075cce97cfc570095366bba0e",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000017/pillow_01.png",
+          "sha256": "641ad3ef13ee1f7ef656d3308aeb9b25f68f90cda6d9a8d3340fba4a8c91fafa"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000017/pillow_02.png",
+          "sha256": "251cc18d7b24b3506f365de257c043829f03be602a24b65a5544873256aa0f7f"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000017/pillow_03.png",
+          "sha256": "668383bb40a3a65bf7e4ff992ec62952f27626e6ced2fb3f5fe9d15667bed2ea"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000017/pillow_04.png",
+          "sha256": "f22a760e79aefebc8264660a35c86a8b67a113b903f6ed18e03f04b5d20b9cf0"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000017/pillow_05.png",
+          "sha256": "12808b9fd0d8cd7fffa313cf06998e964a55affee8a3644740dc056406a0f4e3"
+        }
+      ],
+      "excluded_pixels_after_dilation": 36791
+    },
+    "000018": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000018.png",
+      "frame_sha256": "35567fc141c08b5ce5e92141a0888ca9f7fcfa428640807311385b76bdedb9cb",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000018.npy",
+      "depth_sha256": "fc3054f2cc8a6a34fc93499739a876aad2377266fefd46339ffd715173ba64c2",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000018/pillow_01.png",
+          "sha256": "d724393b13bc849d13e216ef69d84273dbe94133ac98e6e0be79c69b96729d92"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000018/pillow_02.png",
+          "sha256": "a336af5d320968e1440732fc0330178a33dbeaca281a9351089aded4726efc73"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000018/pillow_03.png",
+          "sha256": "d3ff4b35b1f511c5276f36fc7ef0043a4e6ab483d04886e71fc12a9a4313aca0"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000018/pillow_04.png",
+          "sha256": "8f4113cd92efd5e15e5b0818234eb16a0cbf9a36df585d1d059d44d8d3c94d03"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000018/pillow_05.png",
+          "sha256": "2e76e9049cd8e24bc70390bbfb23851465af44af3399ccba8cd3da6f0b50dae4"
+        }
+      ],
+      "excluded_pixels_after_dilation": 38030
+    },
+    "000019": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000019.png",
+      "frame_sha256": "43738e17ef7899da7134f6f60ad85aa571cdf167a21d914b643a0d2c76c1314b",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000019.npy",
+      "depth_sha256": "644d9f9142e8a871a7374a415ad1c7fb3e01554fe8b90f1e4be2503142a73fde",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000019/pillow_01.png",
+          "sha256": "3ffe9eae99ff92a43b54a90900ba75e9db5a1e032cd4706ec87d300f4866348b"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000019/pillow_02.png",
+          "sha256": "52b510f596e4e42106262df49a3b9f0479412508cda6640a567913a2019c3f2f"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000019/pillow_03.png",
+          "sha256": "90ccab9f53ff39739c66ae2384fb9b687219689a326bc4b3ef9adfa576370969"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000019/pillow_04.png",
+          "sha256": "2350e29b98cad57fc7aecef93600512ab7a6d8947803a3f14b838b790addc979"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000019/pillow_05.png",
+          "sha256": "4a51f32904b659f29a307111e6990fc0bed96cbe916738a807d693babfca446c"
+        }
+      ],
+      "excluded_pixels_after_dilation": 39505
+    },
+    "000020": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000020.png",
+      "frame_sha256": "c585158cd62f32fb3dfe8a271585eaa373235630f5b3e567145417ef7fdb1c22",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000020.npy",
+      "depth_sha256": "96256e95a9862fc145c22e85b6d0962bf842024ce3ee60f64b673d8b0496b496",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000020/pillow_01.png",
+          "sha256": "24b2781aa2af73ca73a42cefc84e5cd225245d91117a1b29cf68bd2d96654b9e"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000020/pillow_02.png",
+          "sha256": "a6e8832204bfe1f53d8676d1ec1fb775d0c661ccd24c2e4d46483b8cb8911219"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000020/pillow_03.png",
+          "sha256": "70589fd06f6e1a7003a851a3183e879029522a10711a5792db0d420aed6b6e51"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000020/pillow_04.png",
+          "sha256": "91cc73ff60cb27fe3acd9b47a27da258272a0be43e87c4978160ed589f65de7f"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000020/pillow_05.png",
+          "sha256": "4bbf31bbecf7469f0544c1f238149464ba7d08c37b8787ffefd4304bd972e3c3"
+        }
+      ],
+      "excluded_pixels_after_dilation": 40728
+    },
+    "000021": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000021.png",
+      "frame_sha256": "b4496b4dc554826df28cc2a8f349a352cf1ec587f6dffc673f2f522c70cd7fd1",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000021.npy",
+      "depth_sha256": "a37decaa5b3672bd649ce73c9cf6a47d1d79f402b0fbae6e9c4d95573e455469",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000021/pillow_01.png",
+          "sha256": "4d254b025561a06fa93373a7cfcecd67ed349248d723b522d766c7f3c3189537"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000021/pillow_02.png",
+          "sha256": "1898482e600a3d5aa8be92071d04d2ad0b5f4efbfe8b5197dd37ef8914e83175"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000021/pillow_03.png",
+          "sha256": "4dcd74023d840ef1af92d16b5f934156276382e411a104f7293f21658968d572"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000021/pillow_04.png",
+          "sha256": "fcdedc56b0bb861f0e717956488c597e00278c40a726b1aae8c09c571c78d197"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000021/pillow_05.png",
+          "sha256": "2a1c4174ea3b87c8730611505e677411aa5b5e6db6dcb0834036ec66e4ef4d43"
+        }
+      ],
+      "excluded_pixels_after_dilation": 41742
+    },
+    "000022": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000022.png",
+      "frame_sha256": "0b3cc804586061738df2f7465b40f3fe1e108775d0c972ed5d1512b780ffcbe4",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000022.npy",
+      "depth_sha256": "b8b2dc0d651e12e69fa075f0eaee7d302f9256a3ec6767684714f0f9c8a0dd11",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000022/pillow_01.png",
+          "sha256": "a7d265523d388c564968129d7f5e5f2f8514a328e91fca1d3720709e2b40bae7"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000022/pillow_02.png",
+          "sha256": "65d0f37611e9efacb841ba8f03287ff51298daa10b58940798c90cefef8a5402"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000022/pillow_03.png",
+          "sha256": "8261e2a3928bbf36d1b06b160bde867680b9049a7ead1aa59a1c47b6743f76cb"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000022/pillow_04.png",
+          "sha256": "f8a5e328278732d29bd4205745f39689f874386818572c4c174ce86e3e6f5721"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000022/pillow_05.png",
+          "sha256": "68adda80a0134fddbf77ddc32409ee7f946157471270163ac81c1859293c50e2"
+        }
+      ],
+      "excluded_pixels_after_dilation": 42402
+    },
+    "000023": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000023.png",
+      "frame_sha256": "d730e434bae73a0b159b7f74ae86231f79ee123b553fd898ac416eeff6c5e9b5",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000023.npy",
+      "depth_sha256": "81d8e98adf8d257a09dd0dd5fa815eae3bfc4b1fea963855e57a8a23a14483f2",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000023/pillow_01.png",
+          "sha256": "5a9518fd86a4749d9eb967aaa3d86a941df03a747743ac6f5b12d3f38e42c599"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000023/pillow_02.png",
+          "sha256": "98ee3d823887370810199f103187e614b6a8368816e98dabba23d67c4fe6c4df"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000023/pillow_03.png",
+          "sha256": "446bfefdc07274a9a22f17fbdb1a06cbf1252b8ac5169e83909484fd4c3788a8"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000023/pillow_04.png",
+          "sha256": "9b2a3ba14f5c1c35b31eb2d64c2d4a3193b5461df3d5db5c63c3f69943d8197d"
+        }
+      ],
+      "excluded_pixels_after_dilation": 42872
+    },
+    "000024": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000024.png",
+      "frame_sha256": "f875c1c9ec0b02426f0bb1c8139e70b7c454579d25d76a48697da8ca829a985d",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000024.npy",
+      "depth_sha256": "56c2203c920cd044a88f7c6ff9df9257b901f04723770f988cbc8e5a5005791b",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000024/pillow_01.png",
+          "sha256": "07ab4cb35fe9dbf2a0b0e51342ca78f6c11127e811d1812267afe68fe79f4686"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000024/pillow_02.png",
+          "sha256": "787da694eb932c9fd9b06d4ac0d65ce0889b5c2da4465f160dd43dc3c7ded429"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000024/pillow_03.png",
+          "sha256": "c167b79e3f7e89de814b44cfd81124cb20c117ffeae6ada4d4b5dec170aaa9c3"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000024/pillow_04.png",
+          "sha256": "6b1adebbb80813081001b1729eb796c3ae8723e35503ba8694710a0f03d9d805"
+        }
+      ],
+      "excluded_pixels_after_dilation": 43668
+    },
+    "000025": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000025.png",
+      "frame_sha256": "1727a6c271d7840a76a02246edb1c4570a1f6a57ef139c11f6888187d4b411a1",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000025.npy",
+      "depth_sha256": "df8208e07546b4edac9a63118b18d4ed2ecaaae42c329658f7efe6e3412f85bd",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000025/pillow_01.png",
+          "sha256": "cc5636c78722a918e44f80844c600b26773ca846f77d7d67df01be777c35f61c"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000025/pillow_02.png",
+          "sha256": "386fa91e40b41694c07da13c5b24a8a2570271681ba7ada1de0475a84b180b4a"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000025/pillow_03.png",
+          "sha256": "bdc9c50daf67a2217dbcb9c6d6980471dfb1e5aac86073f3180083f3ff51dea0"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000025/pillow_04.png",
+          "sha256": "2b581dffe4816dbdba3792eb86bdb3fa1b9dc9b72fe8d003d4fb12b378ef32b0"
+        }
+      ],
+      "excluded_pixels_after_dilation": 44213
+    },
+    "000026": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000026.png",
+      "frame_sha256": "6155070b1a46941fef03e1985f8504997b99968cec979ef671cfaa7931fa079d",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000026.npy",
+      "depth_sha256": "8a56d5d6034eb34a7f4eb70a5c8175eb96012eefcff2f65c2c263a15926225c8",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000026/pillow_01.png",
+          "sha256": "dfe89ecd00a64dc0130eaeab7bbb6570c34f1a6f7971b9baeebf91bdae0d363d"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000026/pillow_02.png",
+          "sha256": "c3c6ce241985a7f4a85804ec25073d285c4aa62305c74a4c8e0efa0f075df411"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000026/pillow_03.png",
+          "sha256": "acb90e03866dc4f9c95af04d64243144b8773404c70565e57abefff8f465fbb3"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000026/pillow_04.png",
+          "sha256": "701467511547983544969319c286122d033f20d786cfe35ea0cd4da922582575"
+        }
+      ],
+      "excluded_pixels_after_dilation": 44936
+    },
+    "000027": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000027.png",
+      "frame_sha256": "2f90111fcc942b6e5d4af6f00d7e57bcac075223b48cc252d611db754fa7ae25",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000027.npy",
+      "depth_sha256": "d3d208b4669f81cd3e379196d22a353b47befe39abc357df0281618bf034b944",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000027/pillow_01.png",
+          "sha256": "7310ebb4bc133ad28e540430276fa8d498aaa40f1690ad8f7414d390c89ca3b6"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000027/pillow_02.png",
+          "sha256": "d15e35b22767f42192df439e2b425e0b874bde68ed395c517b31b914390e8ada"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000027/pillow_03.png",
+          "sha256": "016cb8aa417710a47165f2fdfc6700e028694324aa2e62180d0e69b9099b6e65"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000027/pillow_04.png",
+          "sha256": "3d1ae60d576681ea6db4bac361fb281fdeb7ed7fbb22adb5fcc454b67ac88738"
+        }
+      ],
+      "excluded_pixels_after_dilation": 45424
+    },
+    "000028": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000028.png",
+      "frame_sha256": "9e7bed191b7c37a3afdc161b781e0d572d70e4dc45d1dad4a46fcd09b1a2af41",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000028.npy",
+      "depth_sha256": "9305eff53d2acea58f475362e04ecb94dfe10388e2975d0abfe5a4d0a473c6f8",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000028/pillow_01.png",
+          "sha256": "73c8d58bf246de2c8dbc4d4a48368c483c2ec1ca11cb58a9cc60ef337a06a2d7"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000028/pillow_02.png",
+          "sha256": "b01b481f9a846d58f8169438737e64a4949ec2bc732b78f342bc5cb138859b77"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000028/pillow_03.png",
+          "sha256": "44d2e5a0969211bf2e1890e94ebe9b1f92c215675189fd900298b94d2197349d"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000028/pillow_04.png",
+          "sha256": "ad82f456c059dff89f991f1d0e4eb42dafa45b75ae535eb2f160bdf0da3f102d"
+        }
+      ],
+      "excluded_pixels_after_dilation": 46061
+    },
+    "000029": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000029.png",
+      "frame_sha256": "6f9df9470b14e3be47844b72cec44fd3f0ab5d06a815bf6aa7b998d84e7c4165",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000029.npy",
+      "depth_sha256": "30629582fb74d64437c02b745f46b2169fcc9902a28fa283dcae0935526014e5",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000029/pillow_01.png",
+          "sha256": "24c6b87abf4ab228914d8c795fba333943e89c0221b958274498cb899abcdcbc"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000029/pillow_02.png",
+          "sha256": "0c336f02d2f2d349e9f5f99e7a0e0d66c73c605d1d74d0f3e3a05dacdd63f789"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000029/pillow_03.png",
+          "sha256": "a3a9e28b5a7be7986aa2640556a423af6dda48ee391c0bb8198f017f8d27e98b"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000029/pillow_04.png",
+          "sha256": "124e320ea21ac900b3542057260e6f69f204687faac1b1a0f9cb34b6f7bbf8be"
+        }
+      ],
+      "excluded_pixels_after_dilation": 46950
+    },
+    "000030": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000030.png",
+      "frame_sha256": "6f10381691b9b11db957c42da0d071cde5e9556ff0ee2c87cf6dca7917937440",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000030.npy",
+      "depth_sha256": "0bd75e1f477b55e4e26e78e18cb19bb75915bfa8af4f643b2e2fc4cd1068ea1a",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000030/pillow_01.png",
+          "sha256": "f692321ceb30150f53a638185c17caca1611a63c7fb39f7e033e7e735a00c0ba"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000030/pillow_02.png",
+          "sha256": "c82f0438141bde2524141962e7c8f620cac405eac58b041f74a29f65588e4aa3"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000030/pillow_03.png",
+          "sha256": "68beeefb448b25bb7c2b688eafdea3a2194d65dd65692000e66f280a1cdf4a57"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000030/pillow_04.png",
+          "sha256": "da12f8100589655325fdf8234ab98b6d9149d96cbb26798c35f39b4aec0686f2"
+        }
+      ],
+      "excluded_pixels_after_dilation": 47750
+    },
+    "000031": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000031.png",
+      "frame_sha256": "4f350fdc457db9dc7b515da4dd5a13e26cdfeda67ad0dfe19111c901398b5c20",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000031.npy",
+      "depth_sha256": "2eb5f8896da89e673a30a04e023c776bc9f18ae833d94976e499f6a0dd0e2c60",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000031/pillow_01.png",
+          "sha256": "ac1894f6a51c70af6f5e5cd4d6aa9ddc2828a4fd4b4ec853ea35a8a089bc2ef5"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000031/pillow_02.png",
+          "sha256": "db825b352a4b1e3bb8519ed6b1b6d9103ce984eb6739b016353f97f90ba2043e"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000031/pillow_03.png",
+          "sha256": "f477c5af7829697e988a17040cb28177126d80caaec872855b5debe5d1c5b963"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000031/pillow_04.png",
+          "sha256": "543a7cb925f5eb9d4f5c8c5e3d5b07a04439d49d83a00bc16e6142825dd5df6b"
+        }
+      ],
+      "excluded_pixels_after_dilation": 48454
+    },
+    "000032": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000032.png",
+      "frame_sha256": "a146fab8b6590083b27795a95fc689f26a7f5024158242522bfbc34c86b51e78",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000032.npy",
+      "depth_sha256": "c35041e8febe684d919db52404ea3ca87b2484b7f4ad09fa93f2d3d55fe569be",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000032/pillow_01.png",
+          "sha256": "2aef9cb3cebff9e7ead92f710b77e5c3537255a343bf02850afff1f3622d4db1"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000032/pillow_02.png",
+          "sha256": "97127dbdb0c529b3205e8310122ab8f88d2da49837a13a45739aa5dfc2b092f5"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000032/pillow_03.png",
+          "sha256": "01fb13a21499ec11ec70443f5359092c6323b1c8cc340e7a248e414a941a065b"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000032/pillow_04.png",
+          "sha256": "d30e89218e76c1db60d63963d764173b1f334d761f2c5196bd946224f8ba165e"
+        }
+      ],
+      "excluded_pixels_after_dilation": 49455
+    },
+    "000033": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000033.png",
+      "frame_sha256": "2f9351f5ab81feb1b609a68cb5d1f730f494257d053de877516c4e86ec792b07",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000033.npy",
+      "depth_sha256": "d9f9204016b68fc981001ffd4544b59e6f732022c25b64a40c3a5a3bcae7b910",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000033/pillow_01.png",
+          "sha256": "91bd9450419f34d2dcfb1a69c8c4a0d06d3db3aecfa74fcb93a60c9ba816bfa4"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000033/pillow_02.png",
+          "sha256": "c8bd55cefae91ef77233113c95ee0b8d39efbf171ee9d22cb8a1c0a30665775e"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000033/pillow_03.png",
+          "sha256": "eb227aadb2e4b308289dcf47c274dc334a8dc6de2ce5acb6f83699c01a5e978e"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000033/pillow_04.png",
+          "sha256": "0d04184dec7e53488e344a4c21975c937b7f5ee42393919784603e5f42dfa2fe"
+        }
+      ],
+      "excluded_pixels_after_dilation": 50262
+    },
+    "000034": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000034.png",
+      "frame_sha256": "538bef400708020a20959b37448ac2af309fc2119f2eebc6ef8ab3a57b6202ca",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000034.npy",
+      "depth_sha256": "eeeeb58fa4368f4fc1af87076a2ef0f3cc5bfc2a0ed8b5f87ccf6876be57d73d",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000034/pillow_01.png",
+          "sha256": "9158039713f0af563df0ecd0be39687c1a93fb05f157982a422a6f4433937bb0"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000034/pillow_02.png",
+          "sha256": "ef52d848b5bcf1f8a8d2f462bc1d0db385f095cf4413cf478276edfb6bde3ae0"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000034/pillow_03.png",
+          "sha256": "44d0dec6deecbf755b14f9dd57945fd1ddee0a6879ae0b557d731f7c8a90fcb2"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000034/pillow_04.png",
+          "sha256": "0477816bca5b9bcf0d106b5df89c021b2ab39eba35cb2c69ec34c3e9365cf38b"
+        }
+      ],
+      "excluded_pixels_after_dilation": 50951
+    },
+    "000035": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000035.png",
+      "frame_sha256": "8315fe7b38c312e4570a68e4692faefa16c097093cb5503ec08c43958473191c",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000035.npy",
+      "depth_sha256": "ed8271cdf59149942493f6d7acb0984f58cce544bd3921b16df29b8e34bb932f",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000035/pillow_01.png",
+          "sha256": "51e7072b3d4ef90e63c2f6e6b22fe1cbde436b6bffcdecf724e1f7b7f0b84ca0"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000035/pillow_02.png",
+          "sha256": "425c400da41129c193906f631e4813bb637aecb00630666cb853d63301de8de0"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000035/pillow_03.png",
+          "sha256": "8cc25f237203fb2697d578517f913c180f126ba58972ecc47d64e72d28c060f1"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000035/pillow_04.png",
+          "sha256": "b08aca2ffc1a03b373b6c7feb7601fde844f21b7c02d180265b6aab4cf35ba0e"
+        }
+      ],
+      "excluded_pixels_after_dilation": 51415
+    },
+    "000036": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000036.png",
+      "frame_sha256": "d15e2445286dd4a6dbe9671629a2f672d50e1855628b6e2c5184c420dfa8a26b",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000036.npy",
+      "depth_sha256": "3ba86ca7619ecf7515a59382305b0a5363cedd66c0ae86284cd037960ca8711e",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000036/pillow_01.png",
+          "sha256": "86c757f4099ca8436673b5d1fb6e3a859057854b834ecd0f1b80e6f8d0f3d254"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000036/pillow_02.png",
+          "sha256": "deb2910440dd196df8d4b60197e8e7d4ad7b116a1b08523cdc8e1f3003bbf812"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000036/pillow_03.png",
+          "sha256": "4513ff286c2882a3b054fce57e4d4c3ce511115f721f546b674befaa4e580df0"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000036/pillow_04.png",
+          "sha256": "5b0c0d6ea259a75ec3261e32f889e7bcec78d851810584575ed412a82c95c8c7"
+        }
+      ],
+      "excluded_pixels_after_dilation": 51937
+    },
+    "000037": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000037.png",
+      "frame_sha256": "5a5b81d2386634c85d0b7e93eeb3d4e7b6dc5af1330feb45c8385055faf04fa5",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000037.npy",
+      "depth_sha256": "f5ebf60d43be4a6df1ccd00ebf4a99289182e359f9a0b078c39b61d65fe2ab94",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000037/pillow_01.png",
+          "sha256": "935672e06171bbbb15c7c649bf33a6916bf7700b7f3ed320486920bd35089a1a"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000037/pillow_02.png",
+          "sha256": "1d300050f121a996cb5d5cd0adc3221913714c29c6aa2e887f98c1997191f9a3"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000037/pillow_03.png",
+          "sha256": "0eeefe60fad56b280b9a74627bf9f6239627b567bac0963bc1ab7ad1aec19a92"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000037/pillow_04.png",
+          "sha256": "75b9d95d034391dc969c67cb09a684d22fd4d91f269efe0777e8acc1e725c9ec"
+        }
+      ],
+      "excluded_pixels_after_dilation": 52070
+    },
+    "000038": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000038.png",
+      "frame_sha256": "1cfbcef7d0b13c8258933fe154fb7396b3f17a5debb4f59c44dfd61305fede54",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000038.npy",
+      "depth_sha256": "53d292a3ac841baf201c4e6a3a45ddc9aaa04187d391851ee11d8366465e024e",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000038/pillow_01.png",
+          "sha256": "afb95bf9c9fa6e4cbf4240f3e7520880bdcac6f14b843f57be5dccfa7c7ba134"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000038/pillow_02.png",
+          "sha256": "2dbe66d0dbb1b3f29f7a6b768830cf6dc70b70795debabf94d683e5a6dc9e914"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000038/pillow_03.png",
+          "sha256": "59490e881bb447f1b757f80d6f9533422fb1e1950291a9d2e78b06862262e466"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000038/pillow_04.png",
+          "sha256": "26b8ca860522245a74f50c707f1c028ded6783f03926c2a387de6fa504a629b2"
+        }
+      ],
+      "excluded_pixels_after_dilation": 52380
+    },
+    "000039": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000039.png",
+      "frame_sha256": "39b78f56bfc7156bba0867d88fee66b30f3c73d3c7625a6e74d6f92a7cddc2ec",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000039.npy",
+      "depth_sha256": "1a19fdc97f7b661685669bf8aca18ebde6c7019fc1a24f6fc62fe25dee66e31e",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000039/pillow_01.png",
+          "sha256": "4bd7690b2057a1ed922bf775c8ace2dc7eb0080b03edc448cf3b471104566cdf"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000039/pillow_02.png",
+          "sha256": "d59f79b4af892006d63a9d3ba9a6ea84adf89f24f2df5820b064d21bddef6dfc"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000039/pillow_03.png",
+          "sha256": "ebad1563e065469a7e07082e55f2320b84fa4c86c016679718b712b476821b1d"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000039/pillow_04.png",
+          "sha256": "1ef553a8d35b17f79e30ca959cabe7360e8a982ba8cd63d522a361c6091df86e"
+        }
+      ],
+      "excluded_pixels_after_dilation": 52455
+    },
+    "000040": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000040.png",
+      "frame_sha256": "3305ed5645331a6a075b813fe2023021a6e73f7281bfa617754f378f88b5b92c",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000040.npy",
+      "depth_sha256": "6e37593c23c6c100d36b3c0c8da28d65806e65c56529f3309255db17191a9bd4",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000040/pillow_01.png",
+          "sha256": "3acbbfbb4fd6c7b2d8dc954eef0b1f2fbe78aac5b20cc91674b67ae873350fb1"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000040/pillow_02.png",
+          "sha256": "21a06e504deff32b433f86840e9e7767d0f7348734582fb26924565e69cc2688"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000040/pillow_03.png",
+          "sha256": "505be1f92b91a4b8640eb5cf5669e524189255fe15339623f13ab9d71d60926d"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000040/pillow_04.png",
+          "sha256": "8473ba785a58dbad98389dc4a26b7beebc06ee56114e0725289491d8a65867b9"
+        }
+      ],
+      "excluded_pixels_after_dilation": 52607
+    },
+    "000041": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000041.png",
+      "frame_sha256": "c010a7ed13f340a32c6a47dbe75fc3d2340c34c6b28ab374d1c0fa3ec5e97722",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000041.npy",
+      "depth_sha256": "214fc588ed7eca063962c3a5fae7f30d47798c246cb8487742b0e6e0850790b8",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000041/pillow_01.png",
+          "sha256": "dc01f80bbbfd70795443049e62ebb1247601761717755e66befe0baa7142ebb7"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000041/pillow_02.png",
+          "sha256": "2da8ae71de99fec18679df70f04a759ce3e070a30395075256dc072a7c1c0644"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000041/pillow_03.png",
+          "sha256": "a64f36687be696c907007c2a6816001b7830201a45e7c8d5aca5b8ccd2757539"
+        }
+      ],
+      "excluded_pixels_after_dilation": 52272
+    },
+    "000042": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000042.png",
+      "frame_sha256": "cf63f4f7c62ef26f0d9ccd98d28b0b30e29c6f94673ff50b5c81170d401caebc",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000042.npy",
+      "depth_sha256": "bb1671c1b3a7de270abcb3cbfbd609934e7169ac18e76bd869c77c192d522647",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000042/pillow_01.png",
+          "sha256": "f870f621f48df2ee422d7e96e41bce7e6b63ea2df1704a24ae49ff0b931b5599"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000042/pillow_02.png",
+          "sha256": "1aee54890246b9a602c6f3c0170dd8aba1c432f7edf6a57dd85e6817f984739d"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000042/pillow_03.png",
+          "sha256": "3b26b25450b516202ca584024ad8f8b12671189d35298b88b16ad3cdd254388d"
+        }
+      ],
+      "excluded_pixels_after_dilation": 52584
+    },
+    "000043": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000043.png",
+      "frame_sha256": "386f83e70e5f316a7bee2dafe2abb222b6ea0be5c6386ede217ceb85d3e47e8f",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000043.npy",
+      "depth_sha256": "0af5cc8c84268ed34d2add4d52e80252acf5ea82bbaa31d86c461ca280fca09f",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000043/pillow_01.png",
+          "sha256": "732c7db9a04de56f0d6c5f528ae93b4e3f666c7b27b19ff36333b5df4cbd7d9f"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000043/pillow_02.png",
+          "sha256": "ab9e7557165a5f836aa20ccad841df3f7e7180071780533d3ae2d67845848054"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000043/pillow_03.png",
+          "sha256": "bae96e0ab04d29ab9a0256927c9e4c78be84fb07467ce76a58929bafb40742b8"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000043/pillow_04.png",
+          "sha256": "39220961d3a472c7f45ec2521d1c1ba82da51787bc2dbf9fec034eb67262b363"
+        }
+      ],
+      "excluded_pixels_after_dilation": 53599
+    },
+    "000044": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000044.png",
+      "frame_sha256": "04967bdacb143a27cc917c7381f8a8c00e6634424c094110a8fd484d5b18cced",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000044.npy",
+      "depth_sha256": "623b3dcc75f5a1f9c459d041d69f5a255727f94d02373b3c500c923b76640360",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000044/pillow_01.png",
+          "sha256": "d76c1a77f833b6ae55a952945f6a1ac167a4e15110eb20d74ead076c33da61c6"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000044/pillow_02.png",
+          "sha256": "8e273b9b797bea10cc248de9669213c12d3ac56eddffe24862336e1c48e725e5"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000044/pillow_03.png",
+          "sha256": "3c747a0ab29aa88e69ed258a9f2110034ae3f6e927a5e77bae176cb86b26958e"
+        }
+      ],
+      "excluded_pixels_after_dilation": 53971
+    },
+    "000045": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000045.png",
+      "frame_sha256": "9c46e22f77c76b817c8a9ff5e70eea196e8495bcf67b8e5201cd0000e316b28b",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000045.npy",
+      "depth_sha256": "0c23435477385936d1cca351f678d53a0f12070c90c2c4f1e6f2f180e9dcde21",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000045/pillow_01.png",
+          "sha256": "5b410cc4a3e2cc49c3028e7562a1a74509594cf35dc4e3f17b69549ea6ffe951"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000045/pillow_02.png",
+          "sha256": "5f45d58e35e27be57401bedde54fb3ca2ab08e4c4d78f6366226f820aee81c6b"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000045/pillow_03.png",
+          "sha256": "02dfda9e66c5830eba587a16c53302d078a81519746d07df28405258e5b8323e"
+        }
+      ],
+      "excluded_pixels_after_dilation": 55016
+    },
+    "000046": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000046.png",
+      "frame_sha256": "2aa66077bcb9c8d85695eecf6de14b7bcc61668b514434fc48790fb1c237e713",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000046.npy",
+      "depth_sha256": "0319759714db6df6c9f6e315963c376bb41d6d82ca94b920a4c2f22c9cb125d1",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000046/pillow_01.png",
+          "sha256": "d304f9dbff3091e8f066fd16c4571268a4213458b6e245c105e3ae816ce1cc43"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000046/pillow_02.png",
+          "sha256": "6fe886a1b13cd22b54f74c09fc6a13d408230cede60fc66cad05a71c3ce88efb"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000046/pillow_03.png",
+          "sha256": "cc773b4a4b72dfb20ccaa7aa796656a311699e6ffe820513cd8228b91cf949dc"
+        }
+      ],
+      "excluded_pixels_after_dilation": 56074
+    },
+    "000047": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000047.png",
+      "frame_sha256": "eed02043a625bd88949485706202905ab96a949cb108dc06cd006aa0aecd6ab3",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000047.npy",
+      "depth_sha256": "5fe2d1e03a2f496c8c116e4a13348e103eebc5fd28258e7c329afbf4e1521f73",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000047/pillow_01.png",
+          "sha256": "65f90397107bc76578eb235eaf90fa0442870501a22f13cd994acf987971b2c5"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000047/pillow_02.png",
+          "sha256": "00b888fa44a93c324b6916b5dd4c37407a236068a7a297976b1b0e38ccf9f951"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000047/pillow_03.png",
+          "sha256": "12e46945e7468df8d961319e42b2bca6b3a918e11e5542f6a864e4c3d32d9f89"
+        }
+      ],
+      "excluded_pixels_after_dilation": 57060
+    },
+    "000048": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000048.png",
+      "frame_sha256": "fd898eec479773edbd603a91c56e1d721fbe77f492d6de0c8e0761b04f3d1271",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000048.npy",
+      "depth_sha256": "da2465d05069911407686a36de2b3f4bbbf1578ffe0ff848d1ce77adc0b118cf",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000048/pillow_01.png",
+          "sha256": "ce289e08624d98c12ad4bf9e081b2c1aa49ac069f6b3590b6002214e34de01aa"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000048/pillow_02.png",
+          "sha256": "793c5d6a77df995594504478c0e5b8beabbe1cf9156e948b3da16402a53bf042"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000048/pillow_03.png",
+          "sha256": "7c4daaf90d913d92f2b0218c373af513954c8e2145b91723811557a5ed49301e"
+        }
+      ],
+      "excluded_pixels_after_dilation": 58217
+    },
+    "000049": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000049.png",
+      "frame_sha256": "b492f6fd0194bff43291dbe3aae2507f660dbce5d172b385f96053282bff04cf",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000049.npy",
+      "depth_sha256": "9f4b208dd9b85727eaaa3c6d0195d5b849304ebba724ec560c05bc3b3589a3ab",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000049/pillow_01.png",
+          "sha256": "57ce44507bc8ca9878047633b0a8f88636509e0f8d781a8cd0bf2196bdc0161e"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000049/pillow_02.png",
+          "sha256": "c223e1f1fa75a6e3d0f17442223132b781064e9c9bc06566d8da68a8d2a7ef52"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000049/pillow_03.png",
+          "sha256": "0ac42010b6abf8999df055c7da16bc24f8d2e5ecd0353005e1e48077ecb276e6"
+        }
+      ],
+      "excluded_pixels_after_dilation": 59202
+    },
+    "000050": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000050.png",
+      "frame_sha256": "2105aa0784b35b40e404924e87133347df2cc1698b25cc90a73922105f58d079",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000050.npy",
+      "depth_sha256": "0e043f565dd944f41537e83f3aef2c7874c1705f97f43b46315039b299ed2457",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000050/pillow_01.png",
+          "sha256": "5ce8f7793b4bf69e12d320052359b8c9ddb252f936dd3c7b7c1ac75947f35e53"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000050/pillow_02.png",
+          "sha256": "3ee520fa19e3ad2a58c54c00671dd179268839e9c6e09d69aa05c1d1d5576092"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000050/pillow_03.png",
+          "sha256": "2f45bc720311fc848722fdc2ec415cf55e5757da8a385da62dec8b6fce1aaea9"
+        }
+      ],
+      "excluded_pixels_after_dilation": 60413
+    },
+    "000051": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000051.png",
+      "frame_sha256": "7f37cd722b92e0beb73464941ffcb89d9e3c31a2fc2d868cafc2a143a9fa9e35",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000051.npy",
+      "depth_sha256": "602df2045f8bf08cef3ab57c8c6bf2a996f3fb0202b4741c86a7ec2074850a06",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000051/pillow_01.png",
+          "sha256": "3d710415298e3af3fb28eda8909dcbe26b04eceb2eef4ff5991e8d4a9d0ec6c5"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000051/pillow_02.png",
+          "sha256": "e3564e883737d5d9aa95c62e91431ae4f485264c82333370cac6326024090c49"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000051/pillow_03.png",
+          "sha256": "44e365f2a35f0b4b9c3309e15e580268a8a69b9d9a92441e20c2235fc55ceb1e"
+        }
+      ],
+      "excluded_pixels_after_dilation": 61187
+    },
+    "000052": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000052.png",
+      "frame_sha256": "c2d51786982fe51c8d9ae9d07f9abc64e7520e5706aa0bb6a66df38ad218acc7",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000052.npy",
+      "depth_sha256": "1f63dc60e2db75f7c5e8eeda67017aa4df060338a43bffad4022b6d5bbd621f0",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000052/pillow_01.png",
+          "sha256": "df9a19bdf7e6e210d275cfb604d1af56fcd66cec7607379a8d142388ea54fdc9"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000052/pillow_02.png",
+          "sha256": "16745a693c10f8be7ac2819245e6cc71103ad7333a0c84a6c7c60b11c5c3b0e9"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000052/pillow_03.png",
+          "sha256": "17892d9412b7bf5f6b466d81fe37fe2062ed9a8ee9ca6a30d4e12c984d5783ca"
+        }
+      ],
+      "excluded_pixels_after_dilation": 61945
+    },
+    "000053": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000053.png",
+      "frame_sha256": "b681ba697632ffc94ded9123d927cd9896a51e316769b354147964b818935483",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000053.npy",
+      "depth_sha256": "a3a40f84226452199bdd33e591adda856daf6cfadb29ee00c6b95eaeb07d8784",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000053/pillow_01.png",
+          "sha256": "797cbe385b94b10896546113ca235b910686ef0280c20e6d8fc08ecf3faf83a0"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000053/pillow_02.png",
+          "sha256": "568b2d2042965d99db188e7d1b040dbbb2448743c6e8e5bd0e7f14b988d7d6b1"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000053/pillow_03.png",
+          "sha256": "95fd0ba0338a65cfa1692a2ffa86934322452116e4fad02121a6c9a70e4191ee"
+        }
+      ],
+      "excluded_pixels_after_dilation": 62892
+    },
+    "000054": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000054.png",
+      "frame_sha256": "75d7224152e018eaafa72d06ab4cc37c910491906cbf294208218d47e3dff542",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000054.npy",
+      "depth_sha256": "07803c5badeb544d5b37eacaf24c4bc3c02169bf8c0cee662e08cf223f7b4d34",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000054/pillow_01.png",
+          "sha256": "e01cf9f2ce4c4220294e2b97a7245b76f1364735b2308d7877151829e164925b"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000054/pillow_02.png",
+          "sha256": "a0599cf6f4d257447470ca268e582a4f28c04a16433bcaa10c3462334b73b77a"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000054/pillow_03.png",
+          "sha256": "41a28b003b69b1e8b91bdbc67c7c6a31a96e31816c56f7255caffe626647d049"
+        }
+      ],
+      "excluded_pixels_after_dilation": 63788
+    },
+    "000055": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000055.png",
+      "frame_sha256": "bdb9d3222d59cb43c9e0dd770ab0b5eaa0665a346f22dcdab5eed38e7ad6fdae",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000055.npy",
+      "depth_sha256": "80e849202eb18f9c381781fde5aee0b73d43cbb0dbd06a13507cb07ee7052c95",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000055/pillow_01.png",
+          "sha256": "2c75fd7215d33236bffd1e0f453f87598d2343b2313788d3cded1f4e7ed9fdf2"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000055/pillow_02.png",
+          "sha256": "3bbb5bbd3ac9ec232029ed15c9f3ff4556903da4340d7ac46c171c062300a0e8"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000055/pillow_03.png",
+          "sha256": "4ab86cd90875547efd8c8210762c395b1edc8384f40e97d7809e58628a37c324"
+        }
+      ],
+      "excluded_pixels_after_dilation": 65054
+    },
+    "000056": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000056.png",
+      "frame_sha256": "3518cd5553fe19ec4db8df855a3dd577fcd8df0c1c8f257558f3759eac841ced",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000056.npy",
+      "depth_sha256": "b106feb03f2151a484bb604128e072282e8c7d775e3e59add15a86feb5c40ad9",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000056/pillow_01.png",
+          "sha256": "065c7a98030b53606e01fc1446c99d7d1d89e81a3125cf263461202d2015355e"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000056/pillow_02.png",
+          "sha256": "46f3c11f9f05bd14ce2ae5c77a7d5d465d1492cbd1fa99f9140ac986ad71a9cd"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000056/pillow_03.png",
+          "sha256": "6fca708a239dde80d818abf29bb21dfb14211ab606e6dabde80f297b96d0c1a8"
+        }
+      ],
+      "excluded_pixels_after_dilation": 66462
+    },
+    "000057": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000057.png",
+      "frame_sha256": "aba06073005f0295581f8d4113c8f5225046665e59b1d2a28fbadc3aa78ee11f",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000057.npy",
+      "depth_sha256": "668725f4ddaafd96b6a38f3ccb2b9a3b3b61698124d712378eafa68c55f8b18f",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000057/pillow_01.png",
+          "sha256": "5c0f7a033cdc4fb72fa3ff6365506dc9ecf0ba0828e3ff63bfc94b41a997e2a8"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000057/pillow_02.png",
+          "sha256": "d341fbbe84fb4bfb33028f03762b7e098a5b02b621aa191bb710e2ab8735b930"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000057/pillow_03.png",
+          "sha256": "f0a3558a20850d4d50a02e9558cf22abb456132f15829de177455ebbd2074455"
+        }
+      ],
+      "excluded_pixels_after_dilation": 67828
+    },
+    "000058": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000058.png",
+      "frame_sha256": "ab17232a20d141d2726f41301182b33eeb0058a61c17e95d89b1e446b3eb67d3",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000058.npy",
+      "depth_sha256": "14c4c24cff842b7f2b1f661ae42c2a5692565ae1ecbb7aebcf78547f44a3e87b",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000058/pillow_01.png",
+          "sha256": "c36031ad1f14c003dbd3f211b4f727acb7de54eff3708458beace99cc25522a0"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000058/pillow_02.png",
+          "sha256": "5e243bd44990dd4a6429a11b142bf21ed4943c0dad872486012fae468f6057ed"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000058/pillow_03.png",
+          "sha256": "8732435fec608ae4814596f56af5043e30a4006a58bb3b369eaf8df04fdb9a08"
+        }
+      ],
+      "excluded_pixels_after_dilation": 69041
+    },
+    "000059": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000059.png",
+      "frame_sha256": "9e2e4e676426fbccd07d09d5e7a498574b012abdbcaff44fc83d3e12e04983c4",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000059.npy",
+      "depth_sha256": "f1c2118656d2e71d5f6eb1f717efc134e14c23819f49fa8e8c3efba20a18a784",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000059/pillow_01.png",
+          "sha256": "78d0e572d6c93a766e8507c34af7ffb1d858bff9078bcd8dbc0e32ccfd710682"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000059/pillow_02.png",
+          "sha256": "eb532e244c2fae27b696ffe6aa23bd172e0bdcd8474a87f8a929f0b06a58aa32"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000059/pillow_03.png",
+          "sha256": "e79c04032a6bffd5aaf1c441511332651dc860f6abcafbe61e69b0543a3143cb"
+        }
+      ],
+      "excluded_pixels_after_dilation": 70170
+    },
+    "000060": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000060.png",
+      "frame_sha256": "d6fcf5020b8ba320c424d18e9743cd62ba32aee89e816e967a35d45810d3e8d7",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000060.npy",
+      "depth_sha256": "63e845287c634f8d9f81de310d5e4e1896810376a2826497a05daac433873c8a",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000060/pillow_01.png",
+          "sha256": "c369003d4cea5180bca1ff318ceb8cf6c0082b2cf6cbde39376a82b930a5252c"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000060/pillow_02.png",
+          "sha256": "d8e15689671463c7524a785b174605fcb12b5923831c774b5ca6725e38235db3"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000060/pillow_03.png",
+          "sha256": "e495d3b0920aaebb2c27c0325d3ddfe4cae85627f1ce0b466fdd5ffea2a44946"
+        }
+      ],
+      "excluded_pixels_after_dilation": 71405
+    },
+    "000061": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000061.png",
+      "frame_sha256": "bb0b213216747a4af8d3072e8ea17c69eb5084f59b71e9f3b877daba2b739dbc",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000061.npy",
+      "depth_sha256": "4ccfdf9e20a8d44269a23ebae3a96f46bb72fa1e11395092bb426319f6d82ec1",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000061/pillow_01.png",
+          "sha256": "b2203085f94d3ef1771eeaeaec330568ade9a6157a5aebae06cfea14f3d5d7d6"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000061/pillow_02.png",
+          "sha256": "8d448c691d7bed51dcf032e6c89e01fdd1fa609e9895cbbfaec59ed1f17c26d3"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000061/pillow_03.png",
+          "sha256": "7105a1e33a9e3af16008bf88f0bb964e535a9e99da180bc0df3a7248db804d4c"
+        }
+      ],
+      "excluded_pixels_after_dilation": 72109
+    },
+    "000062": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000062.png",
+      "frame_sha256": "938b7196853c7757ddc9a190fdf05e6b7a1f6f87df7b557395a65703a352654a",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000062.npy",
+      "depth_sha256": "b238968b23fd7f886cf901a7cbde79f5ca9920b5652b8c0fd64baca680d0837d",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000062/pillow_01.png",
+          "sha256": "97e8ab8f270458723ff6790f4940c6a4541d411eeafc92e7b95290f221a3addc"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000062/pillow_02.png",
+          "sha256": "a7db455e7a8ec707df19abb8b1ff7a6403ec8be1b50583d75806215fbfe270eb"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000062/pillow_03.png",
+          "sha256": "a678a68550a454bfd570549aeaf6cb9922a7d72e05049dee24a5d2e9bba61fea"
+        }
+      ],
+      "excluded_pixels_after_dilation": 72500
+    },
+    "000063": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000063.png",
+      "frame_sha256": "29706947c8c90221281a94243152d0b34f865038dcccbd3869c43d7a70c18919",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000063.npy",
+      "depth_sha256": "ba3ac1fc7a469854a903214b552066fae4a2ae3a6ca121f2d4b29c62a3e02f8d",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000063/pillow_01.png",
+          "sha256": "21aa530b946a4e6f18d67002bbacb45b3b69cc77969071568266311c26350768"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000063/pillow_02.png",
+          "sha256": "ddd351497ce2e8a149d4c2dd4b538b3148b6e797a9fb2e4e09c020429740ab77"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000063/pillow_03.png",
+          "sha256": "2338599f77facca44131dd611b8fa94267f3588d2cc20398c785b9ddcba570bc"
+        }
+      ],
+      "excluded_pixels_after_dilation": 71988
+    },
+    "000064": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000064.png",
+      "frame_sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000064.npy",
+      "depth_sha256": "a215cacec04bfd1b374130e2e83b8af4eabd4a97e83780f310ce1809c7ac4dc9",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000064/pillow_01.png",
+          "sha256": "ebf444538c714b5ab96cfe2e23a9445be86cf799012356ccb509af96d4a325fa"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000064/pillow_02.png",
+          "sha256": "457ca7bbb0963a17fee6e129d12a826b8c90b6767128325f0aa7228126853e6f"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000064/pillow_03.png",
+          "sha256": "bdcd739f36d4c129f12bc42964195ce17522fa030900b7427f78b8e8f73d24d6"
+        }
+      ],
+      "excluded_pixels_after_dilation": 71391
+    },
+    "000065": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000065.png",
+      "frame_sha256": "23ea18aefdcc69d23f0ab46e2d675c6f84e2f3ff7e22866ea1d8a55125e41406",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000065.npy",
+      "depth_sha256": "c4ed2d0bcc107a5498d22f4fabe15bbd8750d1eedb9c7c2b781b46ad74549aaf",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000065/pillow_01.png",
+          "sha256": "a60f31c2b86c07c7e8580426c1bc6a056c3ac62bda2f3b0ce9499b1b1ba772d6"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000065/pillow_02.png",
+          "sha256": "a0d7db2789a377ad52027c9617b8fba6c74a45c1a2c813c537f31710946b360e"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000065/pillow_03.png",
+          "sha256": "c330b7584a74ba818d8575b35ed22a1a3cee33a89a6d46bf52352abf392671ee"
+        }
+      ],
+      "excluded_pixels_after_dilation": 70264
+    },
+    "000066": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000066.png",
+      "frame_sha256": "b39de626c7656cacf4a8e932343e36cc54a46901804d9999806323e638d428cf",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000066.npy",
+      "depth_sha256": "e91d8942c25094fcb14d4ccbd0f8087567bb37e1b09880353657dc6a3a6536af",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000066/pillow_01.png",
+          "sha256": "c0f46264170887a2bd328e247b17665741081e6f41e43b774c5eced9a816046c"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000066/pillow_02.png",
+          "sha256": "2233d34fb934dd8e99c0464453ca2f1db633538589e190b3d1894513fcd8a8c1"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000066/pillow_03.png",
+          "sha256": "8c92bbd4c7a1a85dbbdc33ee8ba592768833673807abfeb9045a63f7733af41c"
+        }
+      ],
+      "excluded_pixels_after_dilation": 68850
+    },
+    "000067": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000067.png",
+      "frame_sha256": "e31bc25f5f2e3191800b223157561e41212b35000391d01c501f7d07980ab792",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000067.npy",
+      "depth_sha256": "48f8cf247ccc21f2a569c53c531197f2b23762f0911aaab5c1659e34b4763f9f",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000067/pillow_01.png",
+          "sha256": "c9e66464e7e9acde2ef3e16d683db7ef3c455f62946347776f4a9b1d3f0bb68e"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000067/pillow_02.png",
+          "sha256": "ce16b5363cdb8cd1d33404aef55495184c5e299d4cea4de87523fbef1d08c654"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000067/pillow_03.png",
+          "sha256": "b3e7c28fef7ddd309dae3058f8338ad5782c81d19d73a6a5f5fb8b8f70409b16"
+        }
+      ],
+      "excluded_pixels_after_dilation": 67811
+    },
+    "000068": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000068.png",
+      "frame_sha256": "e0dd873ab695350cdb67fb65ab268a7ac36d9391d7cfccca97e48deebeee930b",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000068.npy",
+      "depth_sha256": "73ee746fa0bbfea4e8cfa2acef8f9da189c90f7379583304a632335caf891fc9",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000068/pillow_01.png",
+          "sha256": "2c44ecf5065a16c68b1f13e09e9769967a2af93277fa4a55947de8ef9f8387f3"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000068/pillow_02.png",
+          "sha256": "2156116b7f63eca801e534567bfb1104e19aca50dbc089a3c991ac34de9864ac"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000068/pillow_03.png",
+          "sha256": "7ebe64208add5d1c8a128b19a37d23817943843ab5a9c51fe750a4d16d8f2a9d"
+        }
+      ],
+      "excluded_pixels_after_dilation": 66738
+    },
+    "000069": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000069.png",
+      "frame_sha256": "0ff93ca8cddf4ba56ddf4c5874ff6867a419e030002ecf0ec9f90b7cdf921f7d",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000069.npy",
+      "depth_sha256": "86b3af11372fc46416185ec5a37448cf33254d85d531611d837edc6180b762bc",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000069/pillow_01.png",
+          "sha256": "e2c2e4ea0001d1c46a6ac902b124c1264801644e599699775dc6180022c456c6"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000069/pillow_02.png",
+          "sha256": "096d3b6ba5dfd6a400289e4e0dbefdc2f14bfbaa6fa59194b00ec74921632d97"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000069/pillow_03.png",
+          "sha256": "67e2f98245c515a7aaaaa7e51fe908731bd0ca1bda76fa014b6006e99111e412"
+        }
+      ],
+      "excluded_pixels_after_dilation": 65586
+    },
+    "000070": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000070.png",
+      "frame_sha256": "a5d99a128d82706c70fdcf5b5bea9e80d63c8e20b3d3c01a62b73972ddedfc5c",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000070.npy",
+      "depth_sha256": "6ab16072950d66d17310d346712ec9bc39be8b7d43a07087d4f9bf8466ad9525",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000070/pillow_01.png",
+          "sha256": "3bfce7f0969ab94352c766a56496d04a3a14ff57d91424c46d448485d23396b9"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000070/pillow_02.png",
+          "sha256": "2cfaecfc4e27f630e6333ed0616fb5610855eb8c39e9c4b8f3508958e1d7e947"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000070/pillow_03.png",
+          "sha256": "cb43bcc3714603c43e21bce71e528ac5fff1845e030ada33cc72db529bbc220d"
+        }
+      ],
+      "excluded_pixels_after_dilation": 64896
+    },
+    "000071": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000071.png",
+      "frame_sha256": "03a1e7ee7ce03c508bfa173ec62320d42b170797d1b3db0b06cb44db768a6af3",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000071.npy",
+      "depth_sha256": "f951344926dc4358331385ead732cee834fe67320463ed8ff565169a14215233",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000071/pillow_01.png",
+          "sha256": "37e0ff7a5d3493ffef473f32cd05465b6778c1c5e8187232bc779324ff52eb0a"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000071/pillow_02.png",
+          "sha256": "cea181a4fca30e565fce4b0f3a4afae41327b3f718fc8ed4e221f3b46a744cf4"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000071/pillow_03.png",
+          "sha256": "28b610dde0e576900081a44cf28d2bb49e37e9f2165c7571fb19cdee735c1bb1"
+        }
+      ],
+      "excluded_pixels_after_dilation": 64443
+    },
+    "000072": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000072.png",
+      "frame_sha256": "df1dccbe91f762e0ff2ed1851b97814bab5991bd8bc29581a0916a098ef2a3e8",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000072.npy",
+      "depth_sha256": "62336deb9139d6b3e3b0c74f5d9653adf284b2e5b1ddc5429921091b76e0e399",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000072/pillow_01.png",
+          "sha256": "c1929d6cbe18390add95e8f8511bb337d9124ed7d3ccfc4c173efa652ac28748"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000072/pillow_02.png",
+          "sha256": "6b08f3012727550eab2f2e215d8c79111d063e3f48c9bafcd0f62ecc67831e8a"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000072/pillow_03.png",
+          "sha256": "c251805bdd7c14129bc31d46d5b6cedae2442b78101bb0f239fecaf1e67a82bf"
+        }
+      ],
+      "excluded_pixels_after_dilation": 64001
+    },
+    "000073": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000073.png",
+      "frame_sha256": "01a045379aef45e32e6f0ac2a223cae599cce0219bf3eb85f7b5492fa1beff8d",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000073.npy",
+      "depth_sha256": "03c6d83331a8a5a97e9350a6e526a925c0c7e953c014062384af0a7b84c2eb18",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000073/pillow_01.png",
+          "sha256": "aae93c7cd3842fc236e7c35f0786f0b982d13aed3b5c528a1bf65dae2214e5cf"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000073/pillow_02.png",
+          "sha256": "d092daee77fea5c2cfc3408124eef2cbaa05fc8baf25ab92935e99603dda7760"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000073/pillow_03.png",
+          "sha256": "f5e8d3faa01cd6f22d3d3e2154408b9eb8da2d49395ead925b5245c2e17b3196"
+        }
+      ],
+      "excluded_pixels_after_dilation": 63729
+    },
+    "000074": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000074.png",
+      "frame_sha256": "fb84b532bd90aef2c4350b54ff5f563615192cc7a0c428936ccde7ebd5344aaa",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000074.npy",
+      "depth_sha256": "10b6d14aad1c1a917ae08ac004e48422c21f6fd48671fc420cf4b6e12ace856b",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000074/pillow_01.png",
+          "sha256": "bd06a145fd310189b88e1ee799aaea3b00d75e0096590361ff1383dee70dade5"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000074/pillow_02.png",
+          "sha256": "b65f3e56a6a452fd1dd16780417ec9548d687039b794c4d1307d7494b84e44bc"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000074/pillow_03.png",
+          "sha256": "a93b2e1dca81eaa0b5f10a82c6ca563822d7b34c4746fca024e8cb9694984d57"
+        }
+      ],
+      "excluded_pixels_after_dilation": 63364
+    },
+    "000075": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000075.png",
+      "frame_sha256": "02df986e0f7611a64935269b3f83fe5e50504d976f4c4530419129d0fb3c07cd",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000075.npy",
+      "depth_sha256": "18b4a194f68f3870614b20d616a0231c11d06b9a7d7e90dbf437dd4406e2f4f4",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000075/pillow_01.png",
+          "sha256": "b2a3573129d404726b8530438bce9b95d35213580c95fe40a934897add0e603a"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000075/pillow_02.png",
+          "sha256": "06104d2d729e966e789dd37c4971fea1f473c6039b727751dcb592b952807775"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000075/pillow_03.png",
+          "sha256": "38323aa3ef2a3c7620b47f59cb469d04f5631b7b18cd326e53ea32f8187ad1b9"
+        }
+      ],
+      "excluded_pixels_after_dilation": 63787
+    },
+    "000076": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000076.png",
+      "frame_sha256": "b2a5f9770e070650b4b537cf0a5a4c2067940a635e3ff292166d659bcb21e4b2",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000076.npy",
+      "depth_sha256": "55dba2edffd9b4c355fa6219bb93f2d51faa58afcf31ce2c864fd6e0efe7b671",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000076/pillow_01.png",
+          "sha256": "391dd52facb42517164151d882be53f65af021e2012b1947ae6379df4523d68d"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000076/pillow_02.png",
+          "sha256": "89514c293f230d62527753d0557600679ccf45802b1e71537866c4a01901c50c"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000076/pillow_03.png",
+          "sha256": "5b105a83c137a0a1e5ea4a4119fa2444afe423f8992af3298a906e9ba5eec624"
+        }
+      ],
+      "excluded_pixels_after_dilation": 64223
+    },
+    "000077": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000077.png",
+      "frame_sha256": "44a488f5d79270ba4118b7275e8fdc70dd1be55fce97b5ab8561b9f1cd10109d",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000077.npy",
+      "depth_sha256": "1f1dc5e0e955f47cea35751b665a9c597b85255c4430d966635434ecad017ba9",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000077/pillow_01.png",
+          "sha256": "08c310c88c6b978ae2fc4a3509e65b7fd1e14329e6a668499d50005cdca254ec"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000077/pillow_02.png",
+          "sha256": "f5d76449b0c9181c53cd9942bfc126f443808bcca3a041dace02fa26f0545e19"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000077/pillow_03.png",
+          "sha256": "6615db2b2a6ce3c272fdd437267582e4d3833bf08c6d1c052dd3060d94713999"
+        }
+      ],
+      "excluded_pixels_after_dilation": 65483
+    },
+    "000078": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000078.png",
+      "frame_sha256": "1b6f8e62f696d605d2158ed5c058cecebdef53a7a74ac00e8bc0cfd503fe7eed",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000078.npy",
+      "depth_sha256": "63fbf730ee3e453a504fd4dd5bfb810a547e55a28181dd892c0ef980082972a0",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000078/pillow_01.png",
+          "sha256": "fdbe2d3739b31bff22c4b4dccf80b8d0d5ccc3d058ec747a5993c9da60dc0f20"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000078/pillow_02.png",
+          "sha256": "b8ab57f19d1c2062a62dde3422857b718e83d2d2d368cad805a24df7899ecc7b"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000078/pillow_03.png",
+          "sha256": "fe26df95e0e56f6847f4643a28c3f07ef21f5c7188f79cd4ba203e68fd01b734"
+        }
+      ],
+      "excluded_pixels_after_dilation": 67590
+    },
+    "000079": {
+      "frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000079.png",
+      "frame_sha256": "f60124b6a9840596b88198b146a1383d5a78d96a4fd39cca2599cef57d0dcf07",
+      "depth": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3/000079.npy",
+      "depth_sha256": "fd335d3102965c4037594fd2557ef7d161f75039f0a79e784268e611ca340cd2",
+      "depth_role": "reprojection_evidence_only",
+      "exclusion_masks": [
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000079/pillow_01.png",
+          "sha256": "344d336a7c6bfe580bb0e5eea5f80534bfecac453944fbe2004be5bd2ea9d91c"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000079/pillow_02.png",
+          "sha256": "7187099c7d1f9ff653963f35d2561bf438b98653914e0ebb03dbaf34bbcd611d"
+        },
+        {
+          "path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000079/pillow_03.png",
+          "sha256": "c2550f4e8d984f93e76243f80c2d3ed99232335ac5a4b927bf15804b7ccb0210"
+        }
+      ],
+      "excluded_pixels_after_dilation": 70799
+    }
+  },
+  "frame_records": [
+    {
+      "sequence_index": 0,
+      "frame_id": "000048",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000048.png",
+      "source_frame_sha256": "fd898eec479773edbd603a91c56e1d721fbe77f492d6de0c8e0761b04f3d1271",
+      "removal_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0000.png",
+      "removal_mask_sha256": "7c4daaf90d913d92f2b0218c373af513954c8e2145b91723811557a5ed49301e",
+      "removal_mask_pixels": 18346,
+      "prefill_frame": "/root/autodl-tmp/video2world_clean_plate_multiview_20260717/runs/representative_v3_zero_margin/frames/0000.png",
+      "prefill_frame_sha256": "83e8ab4b3409a48edcd17d509dc2211e26a061a2620122e26f253fb31fc5f8e8",
+      "residual_mask": "/root/autodl-tmp/video2world_clean_plate_multiview_20260717/runs/representative_v3_zero_margin/masks/0000.png",
+      "residual_mask_sha256": "ab3218400371b7ce29cd9bfbb738312c0e85c5b72e4237520334861c4191c48a",
+      "residual_mask_pixels": 16305,
+      "support_visualization": "/root/autodl-tmp/video2world_clean_plate_multiview_20260717/runs/representative_v3_zero_margin/support/0000.png",
+      "support_visualization_sha256": "891da01062fcdd1e79b78371b65f31322ab6eb0c7495cc9f5b4075507c4eae02",
+      "covered_pixels": 2041,
+      "coverage_fraction": 0.11125040880845961,
+      "support_min_accepted": 3,
+      "support_median_accepted": 10.0,
+      "support_max": 51,
+      "outside_removal_mask_rgb_exact": true,
+      "donors": [
+        {
+          "frame_id": "000000",
+          "camera_baseline": 10.201021447076567,
+          "projected_mask_pixels": 36,
+          "excluded_object_pixels": 6700
+        },
+        {
+          "frame_id": "000001",
+          "camera_baseline": 9.990597591279853,
+          "projected_mask_pixels": 82,
+          "excluded_object_pixels": 7221
+        },
+        {
+          "frame_id": "000002",
+          "camera_baseline": 9.769125515948911,
+          "projected_mask_pixels": 18,
+          "excluded_object_pixels": 8299
+        },
+        {
+          "frame_id": "000003",
+          "camera_baseline": 9.570855487344147,
+          "projected_mask_pixels": 98,
+          "excluded_object_pixels": 9543
+        },
+        {
+          "frame_id": "000004",
+          "camera_baseline": 9.403899359048436,
+          "projected_mask_pixels": 116,
+          "excluded_object_pixels": 10823
+        },
+        {
+          "frame_id": "000005",
+          "camera_baseline": 9.195665511966121,
+          "projected_mask_pixels": 184,
+          "excluded_object_pixels": 12993
+        },
+        {
+          "frame_id": "000006",
+          "camera_baseline": 8.969398261032515,
+          "projected_mask_pixels": 304,
+          "excluded_object_pixels": 15826
+        },
+        {
+          "frame_id": "000007",
+          "camera_baseline": 8.722833628323286,
+          "projected_mask_pixels": 257,
+          "excluded_object_pixels": 19621
+        },
+        {
+          "frame_id": "000008",
+          "camera_baseline": 8.459547525259792,
+          "projected_mask_pixels": 277,
+          "excluded_object_pixels": 24264
+        },
+        {
+          "frame_id": "000009",
+          "camera_baseline": 8.166664698534456,
+          "projected_mask_pixels": 377,
+          "excluded_object_pixels": 28386
+        },
+        {
+          "frame_id": "000010",
+          "camera_baseline": 7.909740515506191,
+          "projected_mask_pixels": 262,
+          "excluded_object_pixels": 29274
+        },
+        {
+          "frame_id": "000011",
+          "camera_baseline": 7.625462251805022,
+          "projected_mask_pixels": 266,
+          "excluded_object_pixels": 30419
+        },
+        {
+          "frame_id": "000012",
+          "camera_baseline": 7.351159739172021,
+          "projected_mask_pixels": 440,
+          "excluded_object_pixels": 31492
+        },
+        {
+          "frame_id": "000013",
+          "camera_baseline": 7.0873113207153855,
+          "projected_mask_pixels": 457,
+          "excluded_object_pixels": 32293
+        },
+        {
+          "frame_id": "000014",
+          "camera_baseline": 6.831743104859491,
+          "projected_mask_pixels": 400,
+          "excluded_object_pixels": 33522
+        },
+        {
+          "frame_id": "000015",
+          "camera_baseline": 6.5753505390917395,
+          "projected_mask_pixels": 341,
+          "excluded_object_pixels": 34592
+        },
+        {
+          "frame_id": "000016",
+          "camera_baseline": 6.356364707211411,
+          "projected_mask_pixels": 377,
+          "excluded_object_pixels": 35532
+        },
+        {
+          "frame_id": "000017",
+          "camera_baseline": 6.094294069213952,
+          "projected_mask_pixels": 348,
+          "excluded_object_pixels": 36791
+        },
+        {
+          "frame_id": "000018",
+          "camera_baseline": 5.820605678345378,
+          "projected_mask_pixels": 620,
+          "excluded_object_pixels": 38030
+        },
+        {
+          "frame_id": "000019",
+          "camera_baseline": 5.537377074822353,
+          "projected_mask_pixels": 517,
+          "excluded_object_pixels": 39505
+        },
+        {
+          "frame_id": "000020",
+          "camera_baseline": 5.259724498801925,
+          "projected_mask_pixels": 503,
+          "excluded_object_pixels": 40728
+        },
+        {
+          "frame_id": "000021",
+          "camera_baseline": 5.012439773611088,
+          "projected_mask_pixels": 500,
+          "excluded_object_pixels": 41742
+        },
+        {
+          "frame_id": "000022",
+          "camera_baseline": 4.811350310903256,
+          "projected_mask_pixels": 506,
+          "excluded_object_pixels": 42402
+        },
+        {
+          "frame_id": "000023",
+          "camera_baseline": 4.57983138019986,
+          "projected_mask_pixels": 514,
+          "excluded_object_pixels": 42872
+        },
+        {
+          "frame_id": "000024",
+          "camera_baseline": 4.355868740765806,
+          "projected_mask_pixels": 496,
+          "excluded_object_pixels": 43668
+        },
+        {
+          "frame_id": "000025",
+          "camera_baseline": 4.152534150557539,
+          "projected_mask_pixels": 737,
+          "excluded_object_pixels": 44213
+        },
+        {
+          "frame_id": "000026",
+          "camera_baseline": 3.9626293596817876,
+          "projected_mask_pixels": 522,
+          "excluded_object_pixels": 44936
+        },
+        {
+          "frame_id": "000027",
+          "camera_baseline": 3.7715058607018954,
+          "projected_mask_pixels": 530,
+          "excluded_object_pixels": 45424
+        },
+        {
+          "frame_id": "000028",
+          "camera_baseline": 3.5998249407101715,
+          "projected_mask_pixels": 564,
+          "excluded_object_pixels": 46061
+        },
+        {
+          "frame_id": "000029",
+          "camera_baseline": 3.3889532092756576,
+          "projected_mask_pixels": 336,
+          "excluded_object_pixels": 46950
+        },
+        {
+          "frame_id": "000030",
+          "camera_baseline": 3.17098839033026,
+          "projected_mask_pixels": 565,
+          "excluded_object_pixels": 47750
+        },
+        {
+          "frame_id": "000031",
+          "camera_baseline": 2.9457455651538544,
+          "projected_mask_pixels": 489,
+          "excluded_object_pixels": 48454
+        },
+        {
+          "frame_id": "000032",
+          "camera_baseline": 2.715484646156036,
+          "projected_mask_pixels": 299,
+          "excluded_object_pixels": 49455
+        },
+        {
+          "frame_id": "000033",
+          "camera_baseline": 2.4804720799964586,
+          "projected_mask_pixels": 375,
+          "excluded_object_pixels": 50262
+        },
+        {
+          "frame_id": "000034",
+          "camera_baseline": 2.2904630175341367,
+          "projected_mask_pixels": 289,
+          "excluded_object_pixels": 50951
+        },
+        {
+          "frame_id": "000035",
+          "camera_baseline": 2.0705151459575077,
+          "projected_mask_pixels": 285,
+          "excluded_object_pixels": 51415
+        },
+        {
+          "frame_id": "000036",
+          "camera_baseline": 1.8557276757470687,
+          "projected_mask_pixels": 297,
+          "excluded_object_pixels": 51937
+        },
+        {
+          "frame_id": "000037",
+          "camera_baseline": 1.661761326020192,
+          "projected_mask_pixels": 229,
+          "excluded_object_pixels": 52070
+        },
+        {
+          "frame_id": "000038",
+          "camera_baseline": 1.4966484987656472,
+          "projected_mask_pixels": 195,
+          "excluded_object_pixels": 52380
+        },
+        {
+          "frame_id": "000039",
+          "camera_baseline": 1.3436884478864184,
+          "projected_mask_pixels": 238,
+          "excluded_object_pixels": 52455
+        },
+        {
+          "frame_id": "000040",
+          "camera_baseline": 1.2203426436472016,
+          "projected_mask_pixels": 261,
+          "excluded_object_pixels": 52607
+        },
+        {
+          "frame_id": "000041",
+          "camera_baseline": 1.0865385082736037,
+          "projected_mask_pixels": 256,
+          "excluded_object_pixels": 52272
+        },
+        {
+          "frame_id": "000042",
+          "camera_baseline": 0.9649633482360397,
+          "projected_mask_pixels": 258,
+          "excluded_object_pixels": 52584
+        },
+        {
+          "frame_id": "000043",
+          "camera_baseline": 0.8325914462713793,
+          "projected_mask_pixels": 242,
+          "excluded_object_pixels": 53599
+        },
+        {
+          "frame_id": "000044",
+          "camera_baseline": 0.6756900359273762,
+          "projected_mask_pixels": 178,
+          "excluded_object_pixels": 53971
+        },
+        {
+          "frame_id": "000045",
+          "camera_baseline": 0.506282308287731,
+          "projected_mask_pixels": 164,
+          "excluded_object_pixels": 55016
+        },
+        {
+          "frame_id": "000046",
+          "camera_baseline": 0.35497279810944005,
+          "projected_mask_pixels": 346,
+          "excluded_object_pixels": 56074
+        },
+        {
+          "frame_id": "000047",
+          "camera_baseline": 0.17271619542194203,
+          "projected_mask_pixels": 219,
+          "excluded_object_pixels": 57060
+        },
+        {
+          "frame_id": "000049",
+          "camera_baseline": 0.15244119085553798,
+          "projected_mask_pixels": 580,
+          "excluded_object_pixels": 59202
+        },
+        {
+          "frame_id": "000050",
+          "camera_baseline": 0.2966429964279392,
+          "projected_mask_pixels": 386,
+          "excluded_object_pixels": 60413
+        },
+        {
+          "frame_id": "000051",
+          "camera_baseline": 0.43099760142910043,
+          "projected_mask_pixels": 487,
+          "excluded_object_pixels": 61187
+        },
+        {
+          "frame_id": "000052",
+          "camera_baseline": 0.5505206430166942,
+          "projected_mask_pixels": 442,
+          "excluded_object_pixels": 61945
+        },
+        {
+          "frame_id": "000053",
+          "camera_baseline": 0.6960792174585105,
+          "projected_mask_pixels": 435,
+          "excluded_object_pixels": 62892
+        },
+        {
+          "frame_id": "000054",
+          "camera_baseline": 0.8388938354466081,
+          "projected_mask_pixels": 511,
+          "excluded_object_pixels": 63788
+        },
+        {
+          "frame_id": "000055",
+          "camera_baseline": 0.9772413781371441,
+          "projected_mask_pixels": 547,
+          "excluded_object_pixels": 65054
+        },
+        {
+          "frame_id": "000056",
+          "camera_baseline": 1.1068059694635801,
+          "projected_mask_pixels": 589,
+          "excluded_object_pixels": 66462
+        },
+        {
+          "frame_id": "000057",
+          "camera_baseline": 1.2322905070692804,
+          "projected_mask_pixels": 655,
+          "excluded_object_pixels": 67828
+        },
+        {
+          "frame_id": "000058",
+          "camera_baseline": 1.3333868216444824,
+          "projected_mask_pixels": 677,
+          "excluded_object_pixels": 69041
+        },
+        {
+          "frame_id": "000059",
+          "camera_baseline": 1.4391813869309562,
+          "projected_mask_pixels": 716,
+          "excluded_object_pixels": 70170
+        },
+        {
+          "frame_id": "000060",
+          "camera_baseline": 1.542963488474781,
+          "projected_mask_pixels": 624,
+          "excluded_object_pixels": 71405
+        },
+        {
+          "frame_id": "000061",
+          "camera_baseline": 1.6309906623234203,
+          "projected_mask_pixels": 736,
+          "excluded_object_pixels": 72109
+        },
+        {
+          "frame_id": "000062",
+          "camera_baseline": 1.6949021241813098,
+          "projected_mask_pixels": 749,
+          "excluded_object_pixels": 72500
+        },
+        {
+          "frame_id": "000063",
+          "camera_baseline": 1.7070929582363465,
+          "projected_mask_pixels": 672,
+          "excluded_object_pixels": 71988
+        },
+        {
+          "frame_id": "000064",
+          "camera_baseline": 1.6971620942402912,
+          "projected_mask_pixels": 651,
+          "excluded_object_pixels": 71391
+        },
+        {
+          "frame_id": "000065",
+          "camera_baseline": 1.6472605269640495,
+          "projected_mask_pixels": 589,
+          "excluded_object_pixels": 70264
+        },
+        {
+          "frame_id": "000066",
+          "camera_baseline": 1.568550952774806,
+          "projected_mask_pixels": 663,
+          "excluded_object_pixels": 68850
+        },
+        {
+          "frame_id": "000067",
+          "camera_baseline": 1.4588565876397501,
+          "projected_mask_pixels": 555,
+          "excluded_object_pixels": 67811
+        },
+        {
+          "frame_id": "000068",
+          "camera_baseline": 1.3258644721441575,
+          "projected_mask_pixels": 456,
+          "excluded_object_pixels": 66738
+        },
+        {
+          "frame_id": "000069",
+          "camera_baseline": 1.1845060565451357,
+          "projected_mask_pixels": 543,
+          "excluded_object_pixels": 65586
+        },
+        {
+          "frame_id": "000070",
+          "camera_baseline": 1.0602873194819968,
+          "projected_mask_pixels": 532,
+          "excluded_object_pixels": 64896
+        },
+        {
+          "frame_id": "000071",
+          "camera_baseline": 0.9110550864139662,
+          "projected_mask_pixels": 367,
+          "excluded_object_pixels": 64443
+        },
+        {
+          "frame_id": "000072",
+          "camera_baseline": 0.7539409142206785,
+          "projected_mask_pixels": 308,
+          "excluded_object_pixels": 64001
+        },
+        {
+          "frame_id": "000073",
+          "camera_baseline": 0.6117608641422403,
+          "projected_mask_pixels": 261,
+          "excluded_object_pixels": 63729
+        },
+        {
+          "frame_id": "000074",
+          "camera_baseline": 0.5058438332682584,
+          "projected_mask_pixels": 256,
+          "excluded_object_pixels": 63364
+        },
+        {
+          "frame_id": "000075",
+          "camera_baseline": 0.4777065165962133,
+          "projected_mask_pixels": 178,
+          "excluded_object_pixels": 63787
+        },
+        {
+          "frame_id": "000076",
+          "camera_baseline": 0.521542175718839,
+          "projected_mask_pixels": 59,
+          "excluded_object_pixels": 64223
+        },
+        {
+          "frame_id": "000077",
+          "camera_baseline": 0.6392705073211399,
+          "projected_mask_pixels": 90,
+          "excluded_object_pixels": 65483
+        },
+        {
+          "frame_id": "000078",
+          "camera_baseline": 0.8035045687715605,
+          "projected_mask_pixels": 68,
+          "excluded_object_pixels": 67590
+        },
+        {
+          "frame_id": "000079",
+          "camera_baseline": 0.9807482134885678,
+          "projected_mask_pixels": 55,
+          "excluded_object_pixels": 70799
+        }
+      ]
+    },
+    {
+      "sequence_index": 1,
+      "frame_id": "000064",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000064.png",
+      "source_frame_sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+      "removal_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0016.png",
+      "removal_mask_sha256": "bdcd739f36d4c129f12bc42964195ce17522fa030900b7427f78b8e8f73d24d6",
+      "removal_mask_pixels": 23065,
+      "prefill_frame": "/root/autodl-tmp/video2world_clean_plate_multiview_20260717/runs/representative_v3_zero_margin/frames/0001.png",
+      "prefill_frame_sha256": "cd58125f18d9af264a0966add2d015da431f02a24fbbfca77f2ffd7d072aa70e",
+      "residual_mask": "/root/autodl-tmp/video2world_clean_plate_multiview_20260717/runs/representative_v3_zero_margin/masks/0001.png",
+      "residual_mask_sha256": "8d6a60ee73a832d68d7d47d90cccce6134ce8dab5029c95646a6011619e51e3d",
+      "residual_mask_pixels": 20791,
+      "support_visualization": "/root/autodl-tmp/video2world_clean_plate_multiview_20260717/runs/representative_v3_zero_margin/support/0001.png",
+      "support_visualization_sha256": "b8fa37496391f42d6823fc9b7421a7fc75926d504b1fc1fa7bb763a3ed4689b4",
+      "covered_pixels": 2274,
+      "coverage_fraction": 0.09859093865163668,
+      "support_min_accepted": 3,
+      "support_median_accepted": 8.0,
+      "support_max": 55,
+      "outside_removal_mask_rgb_exact": true,
+      "donors": [
+        {
+          "frame_id": "000000",
+          "camera_baseline": 11.695824002811309,
+          "projected_mask_pixels": 36,
+          "excluded_object_pixels": 6700
+        },
+        {
+          "frame_id": "000001",
+          "camera_baseline": 11.484519671823856,
+          "projected_mask_pixels": 81,
+          "excluded_object_pixels": 7221
+        },
+        {
+          "frame_id": "000002",
+          "camera_baseline": 11.263932159977909,
+          "projected_mask_pixels": 18,
+          "excluded_object_pixels": 8299
+        },
+        {
+          "frame_id": "000003",
+          "camera_baseline": 11.068184829739483,
+          "projected_mask_pixels": 92,
+          "excluded_object_pixels": 9543
+        },
+        {
+          "frame_id": "000004",
+          "camera_baseline": 10.903474330279225,
+          "projected_mask_pixels": 116,
+          "excluded_object_pixels": 10823
+        },
+        {
+          "frame_id": "000005",
+          "camera_baseline": 10.698688760336696,
+          "projected_mask_pixels": 179,
+          "excluded_object_pixels": 12993
+        },
+        {
+          "frame_id": "000006",
+          "camera_baseline": 10.477276160589417,
+          "projected_mask_pixels": 305,
+          "excluded_object_pixels": 15826
+        },
+        {
+          "frame_id": "000007",
+          "camera_baseline": 10.235723142337397,
+          "projected_mask_pixels": 253,
+          "excluded_object_pixels": 19621
+        },
+        {
+          "frame_id": "000008",
+          "camera_baseline": 9.977667064793415,
+          "projected_mask_pixels": 313,
+          "excluded_object_pixels": 24264
+        },
+        {
+          "frame_id": "000009",
+          "camera_baseline": 9.688862384627674,
+          "projected_mask_pixels": 387,
+          "excluded_object_pixels": 28386
+        },
+        {
+          "frame_id": "000010",
+          "camera_baseline": 9.436101107799914,
+          "projected_mask_pixels": 272,
+          "excluded_object_pixels": 29274
+        },
+        {
+          "frame_id": "000011",
+          "camera_baseline": 9.156124572890036,
+          "projected_mask_pixels": 272,
+          "excluded_object_pixels": 30419
+        },
+        {
+          "frame_id": "000012",
+          "camera_baseline": 8.886142888815806,
+          "projected_mask_pixels": 453,
+          "excluded_object_pixels": 31492
+        },
+        {
+          "frame_id": "000013",
+          "camera_baseline": 8.6256039727566,
+          "projected_mask_pixels": 457,
+          "excluded_object_pixels": 32293
+        },
+        {
+          "frame_id": "000014",
+          "camera_baseline": 8.371960374048948,
+          "projected_mask_pixels": 403,
+          "excluded_object_pixels": 33522
+        },
+        {
+          "frame_id": "000015",
+          "camera_baseline": 8.117873638688048,
+          "projected_mask_pixels": 325,
+          "excluded_object_pixels": 34592
+        },
+        {
+          "frame_id": "000016",
+          "camera_baseline": 7.90254295430304,
+          "projected_mask_pixels": 390,
+          "excluded_object_pixels": 35532
+        },
+        {
+          "frame_id": "000017",
+          "camera_baseline": 7.647145588372189,
+          "projected_mask_pixels": 362,
+          "excluded_object_pixels": 36791
+        },
+        {
+          "frame_id": "000018",
+          "camera_baseline": 7.381406988136374,
+          "projected_mask_pixels": 627,
+          "excluded_object_pixels": 38030
+        },
+        {
+          "frame_id": "000019",
+          "camera_baseline": 7.104776568862231,
+          "projected_mask_pixels": 529,
+          "excluded_object_pixels": 39505
+        },
+        {
+          "frame_id": "000020",
+          "camera_baseline": 6.832410212234333,
+          "projected_mask_pixels": 532,
+          "excluded_object_pixels": 40728
+        },
+        {
+          "frame_id": "000021",
+          "camera_baseline": 6.5895015735417495,
+          "projected_mask_pixels": 545,
+          "excluded_object_pixels": 41742
+        },
+        {
+          "frame_id": "000022",
+          "camera_baseline": 6.392114292817882,
+          "projected_mask_pixels": 555,
+          "excluded_object_pixels": 42402
+        },
+        {
+          "frame_id": "000023",
+          "camera_baseline": 6.164522209286526,
+          "projected_mask_pixels": 557,
+          "excluded_object_pixels": 42872
+        },
+        {
+          "frame_id": "000024",
+          "camera_baseline": 5.943591427383441,
+          "projected_mask_pixels": 528,
+          "excluded_object_pixels": 43668
+        },
+        {
+          "frame_id": "000025",
+          "camera_baseline": 5.7402071025095935,
+          "projected_mask_pixels": 789,
+          "excluded_object_pixels": 44213
+        },
+        {
+          "frame_id": "000026",
+          "camera_baseline": 5.54957161267981,
+          "projected_mask_pixels": 549,
+          "excluded_object_pixels": 44936
+        },
+        {
+          "frame_id": "000027",
+          "camera_baseline": 5.357748774768397,
+          "projected_mask_pixels": 553,
+          "excluded_object_pixels": 45424
+        },
+        {
+          "frame_id": "000028",
+          "camera_baseline": 5.186172087866254,
+          "projected_mask_pixels": 591,
+          "excluded_object_pixels": 46061
+        },
+        {
+          "frame_id": "000029",
+          "camera_baseline": 4.974973137215264,
+          "projected_mask_pixels": 350,
+          "excluded_object_pixels": 46950
+        },
+        {
+          "frame_id": "000030",
+          "camera_baseline": 4.758022631795688,
+          "projected_mask_pixels": 611,
+          "excluded_object_pixels": 47750
+        },
+        {
+          "frame_id": "000031",
+          "camera_baseline": 4.536766233753013,
+          "projected_mask_pixels": 562,
+          "excluded_object_pixels": 48454
+        },
+        {
+          "frame_id": "000032",
+          "camera_baseline": 4.311908077733536,
+          "projected_mask_pixels": 319,
+          "excluded_object_pixels": 49455
+        },
+        {
+          "frame_id": "000033",
+          "camera_baseline": 4.080721513182838,
+          "projected_mask_pixels": 422,
+          "excluded_object_pixels": 50262
+        },
+        {
+          "frame_id": "000034",
+          "camera_baseline": 3.891765078208621,
+          "projected_mask_pixels": 316,
+          "excluded_object_pixels": 50951
+        },
+        {
+          "frame_id": "000035",
+          "camera_baseline": 3.6730245687214613,
+          "projected_mask_pixels": 304,
+          "excluded_object_pixels": 51415
+        },
+        {
+          "frame_id": "000036",
+          "camera_baseline": 3.46120232464273,
+          "projected_mask_pixels": 361,
+          "excluded_object_pixels": 51937
+        },
+        {
+          "frame_id": "000037",
+          "camera_baseline": 3.270725340271036,
+          "projected_mask_pixels": 244,
+          "excluded_object_pixels": 52070
+        },
+        {
+          "frame_id": "000038",
+          "camera_baseline": 3.1113200038905697,
+          "projected_mask_pixels": 237,
+          "excluded_object_pixels": 52380
+        },
+        {
+          "frame_id": "000039",
+          "camera_baseline": 2.9663269122105915,
+          "projected_mask_pixels": 262,
+          "excluded_object_pixels": 52455
+        },
+        {
+          "frame_id": "000040",
+          "camera_baseline": 2.850603192166604,
+          "projected_mask_pixels": 313,
+          "excluded_object_pixels": 52607
+        },
+        {
+          "frame_id": "000041",
+          "camera_baseline": 2.728097363258982,
+          "projected_mask_pixels": 296,
+          "excluded_object_pixels": 52272
+        },
+        {
+          "frame_id": "000042",
+          "camera_baseline": 2.616671929841682,
+          "projected_mask_pixels": 289,
+          "excluded_object_pixels": 52584
+        },
+        {
+          "frame_id": "000043",
+          "camera_baseline": 2.4944550751527204,
+          "projected_mask_pixels": 307,
+          "excluded_object_pixels": 53599
+        },
+        {
+          "frame_id": "000044",
+          "camera_baseline": 2.3462612096777042,
+          "projected_mask_pixels": 156,
+          "excluded_object_pixels": 53971
+        },
+        {
+          "frame_id": "000045",
+          "camera_baseline": 2.1823489339160416,
+          "projected_mask_pixels": 192,
+          "excluded_object_pixels": 55016
+        },
+        {
+          "frame_id": "000046",
+          "camera_baseline": 2.0353622082275256,
+          "projected_mask_pixels": 297,
+          "excluded_object_pixels": 56074
+        },
+        {
+          "frame_id": "000047",
+          "camera_baseline": 1.860505582109043,
+          "projected_mask_pixels": 250,
+          "excluded_object_pixels": 57060
+        },
+        {
+          "frame_id": "000048",
+          "camera_baseline": 1.6971620942402912,
+          "projected_mask_pixels": 313,
+          "excluded_object_pixels": 58217
+        },
+        {
+          "frame_id": "000049",
+          "camera_baseline": 1.5525743490634252,
+          "projected_mask_pixels": 345,
+          "excluded_object_pixels": 59202
+        },
+        {
+          "frame_id": "000050",
+          "camera_baseline": 1.4174451732631597,
+          "projected_mask_pixels": 281,
+          "excluded_object_pixels": 60413
+        },
+        {
+          "frame_id": "000051",
+          "camera_baseline": 1.3016968145230983,
+          "projected_mask_pixels": 281,
+          "excluded_object_pixels": 61187
+        },
+        {
+          "frame_id": "000052",
+          "camera_baseline": 1.213713916402793,
+          "projected_mask_pixels": 261,
+          "excluded_object_pixels": 61945
+        },
+        {
+          "frame_id": "000053",
+          "camera_baseline": 1.1141590044803242,
+          "projected_mask_pixels": 252,
+          "excluded_object_pixels": 62892
+        },
+        {
+          "frame_id": "000054",
+          "camera_baseline": 1.0138362046670297,
+          "projected_mask_pixels": 344,
+          "excluded_object_pixels": 63788
+        },
+        {
+          "frame_id": "000055",
+          "camera_baseline": 0.9069426451163105,
+          "projected_mask_pixels": 341,
+          "excluded_object_pixels": 65054
+        },
+        {
+          "frame_id": "000056",
+          "camera_baseline": 0.7957232392681335,
+          "projected_mask_pixels": 360,
+          "excluded_object_pixels": 66462
+        },
+        {
+          "frame_id": "000057",
+          "camera_baseline": 0.6849878367251552,
+          "projected_mask_pixels": 467,
+          "excluded_object_pixels": 67828
+        },
+        {
+          "frame_id": "000058",
+          "camera_baseline": 0.586577662239252,
+          "projected_mask_pixels": 353,
+          "excluded_object_pixels": 69041
+        },
+        {
+          "frame_id": "000059",
+          "camera_baseline": 0.474464489755566,
+          "projected_mask_pixels": 508,
+          "excluded_object_pixels": 70170
+        },
+        {
+          "frame_id": "000060",
+          "camera_baseline": 0.3595104169508626,
+          "projected_mask_pixels": 409,
+          "excluded_object_pixels": 71405
+        },
+        {
+          "frame_id": "000061",
+          "camera_baseline": 0.24977494327459404,
+          "projected_mask_pixels": 491,
+          "excluded_object_pixels": 72109
+        },
+        {
+          "frame_id": "000062",
+          "camera_baseline": 0.1683078505903301,
+          "projected_mask_pixels": 465,
+          "excluded_object_pixels": 72500
+        },
+        {
+          "frame_id": "000063",
+          "camera_baseline": 0.07261690272427698,
+          "projected_mask_pixels": 465,
+          "excluded_object_pixels": 71988
+        },
+        {
+          "frame_id": "000065",
+          "camera_baseline": 0.07842175928349016,
+          "projected_mask_pixels": 339,
+          "excluded_object_pixels": 70264
+        },
+        {
+          "frame_id": "000066",
+          "camera_baseline": 0.17141729211098342,
+          "projected_mask_pixels": 457,
+          "excluded_object_pixels": 68850
+        },
+        {
+          "frame_id": "000067",
+          "camera_baseline": 0.281719995005346,
+          "projected_mask_pixels": 331,
+          "excluded_object_pixels": 67811
+        },
+        {
+          "frame_id": "000068",
+          "camera_baseline": 0.42165779041333623,
+          "projected_mask_pixels": 250,
+          "excluded_object_pixels": 66738
+        },
+        {
+          "frame_id": "000069",
+          "camera_baseline": 0.5857747768385435,
+          "projected_mask_pixels": 322,
+          "excluded_object_pixels": 65586
+        },
+        {
+          "frame_id": "000070",
+          "camera_baseline": 0.7367154231851575,
+          "projected_mask_pixels": 369,
+          "excluded_object_pixels": 64896
+        },
+        {
+          "frame_id": "000071",
+          "camera_baseline": 0.9294499187167338,
+          "projected_mask_pixels": 191,
+          "excluded_object_pixels": 64443
+        },
+        {
+          "frame_id": "000072",
+          "camera_baseline": 1.1418056713558833,
+          "projected_mask_pixels": 230,
+          "excluded_object_pixels": 64001
+        },
+        {
+          "frame_id": "000073",
+          "camera_baseline": 1.3590803426536995,
+          "projected_mask_pixels": 165,
+          "excluded_object_pixels": 63729
+        },
+        {
+          "frame_id": "000074",
+          "camera_baseline": 1.5797798373024954,
+          "projected_mask_pixels": 194,
+          "excluded_object_pixels": 63364
+        },
+        {
+          "frame_id": "000075",
+          "camera_baseline": 1.7882341293648012,
+          "projected_mask_pixels": 138,
+          "excluded_object_pixels": 63787
+        },
+        {
+          "frame_id": "000076",
+          "camera_baseline": 1.9667385888128264,
+          "projected_mask_pixels": 53,
+          "excluded_object_pixels": 64223
+        },
+        {
+          "frame_id": "000077",
+          "camera_baseline": 2.175689300281715,
+          "projected_mask_pixels": 78,
+          "excluded_object_pixels": 65483
+        },
+        {
+          "frame_id": "000078",
+          "camera_baseline": 2.3931357703646987,
+          "projected_mask_pixels": 95,
+          "excluded_object_pixels": 67590
+        },
+        {
+          "frame_id": "000079",
+          "camera_baseline": 2.609524830563791,
+          "projected_mask_pixels": 50,
+          "excluded_object_pixels": 70799
+        }
+      ]
+    },
+    {
+      "sequence_index": 2,
+      "frame_id": "000072",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000072.png",
+      "source_frame_sha256": "df1dccbe91f762e0ff2ed1851b97814bab5991bd8bc29581a0916a098ef2a3e8",
+      "removal_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0024.png",
+      "removal_mask_sha256": "c251805bdd7c14129bc31d46d5b6cedae2442b78101bb0f239fecaf1e67a82bf",
+      "removal_mask_pixels": 21440,
+      "prefill_frame": "/root/autodl-tmp/video2world_clean_plate_multiview_20260717/runs/representative_v3_zero_margin/frames/0002.png",
+      "prefill_frame_sha256": "26263ba8a861c6e294dd4e8603239a42f1851451714d24623a963cbfee4e2906",
+      "residual_mask": "/root/autodl-tmp/video2world_clean_plate_multiview_20260717/runs/representative_v3_zero_margin/masks/0002.png",
+      "residual_mask_sha256": "df2857dc7f03405c43b244c16699aab672a8ea6aa91f0d26359c495f8e7ad410",
+      "residual_mask_pixels": 18890,
+      "support_visualization": "/root/autodl-tmp/video2world_clean_plate_multiview_20260717/runs/representative_v3_zero_margin/support/0002.png",
+      "support_visualization_sha256": "e42a8a068308848e3bb123c0940e1bcb09c811a21ded060f7ea1c8077c9448a4",
+      "covered_pixels": 2550,
+      "coverage_fraction": 0.11893656716417911,
+      "support_min_accepted": 3,
+      "support_median_accepted": 10.0,
+      "support_max": 66,
+      "outside_removal_mask_rgb_exact": true,
+      "donors": [
+        {
+          "frame_id": "000000",
+          "camera_baseline": 10.831448520661676,
+          "projected_mask_pixels": 37,
+          "excluded_object_pixels": 6700
+        },
+        {
+          "frame_id": "000001",
+          "camera_baseline": 10.616535406888735,
+          "projected_mask_pixels": 81,
+          "excluded_object_pixels": 7221
+        },
+        {
+          "frame_id": "000002",
+          "camera_baseline": 10.390713693143288,
+          "projected_mask_pixels": 19,
+          "excluded_object_pixels": 8299
+        },
+        {
+          "frame_id": "000003",
+          "camera_baseline": 10.189171110548648,
+          "projected_mask_pixels": 93,
+          "excluded_object_pixels": 9543
+        },
+        {
+          "frame_id": "000004",
+          "camera_baseline": 10.01979681668588,
+          "projected_mask_pixels": 117,
+          "excluded_object_pixels": 10823
+        },
+        {
+          "frame_id": "000005",
+          "camera_baseline": 9.808999123904272,
+          "projected_mask_pixels": 176,
+          "excluded_object_pixels": 12993
+        },
+        {
+          "frame_id": "000006",
+          "camera_baseline": 9.580445865910328,
+          "projected_mask_pixels": 310,
+          "excluded_object_pixels": 15826
+        },
+        {
+          "frame_id": "000007",
+          "camera_baseline": 9.331374803506147,
+          "projected_mask_pixels": 301,
+          "excluded_object_pixels": 19621
+        },
+        {
+          "frame_id": "000008",
+          "camera_baseline": 9.06520382772175,
+          "projected_mask_pixels": 323,
+          "excluded_object_pixels": 24264
+        },
+        {
+          "frame_id": "000009",
+          "camera_baseline": 8.768664495998761,
+          "projected_mask_pixels": 387,
+          "excluded_object_pixels": 28386
+        },
+        {
+          "frame_id": "000010",
+          "camera_baseline": 8.508702982883461,
+          "projected_mask_pixels": 293,
+          "excluded_object_pixels": 29274
+        },
+        {
+          "frame_id": "000011",
+          "camera_baseline": 8.221034381543696,
+          "projected_mask_pixels": 288,
+          "excluded_object_pixels": 30419
+        },
+        {
+          "frame_id": "000012",
+          "camera_baseline": 7.943055267090547,
+          "projected_mask_pixels": 485,
+          "excluded_object_pixels": 31492
+        },
+        {
+          "frame_id": "000013",
+          "camera_baseline": 7.674444971107573,
+          "projected_mask_pixels": 516,
+          "excluded_object_pixels": 32293
+        },
+        {
+          "frame_id": "000014",
+          "camera_baseline": 7.414557639944209,
+          "projected_mask_pixels": 438,
+          "excluded_object_pixels": 33522
+        },
+        {
+          "frame_id": "000015",
+          "camera_baseline": 7.154503854755002,
+          "projected_mask_pixels": 380,
+          "excluded_object_pixels": 34592
+        },
+        {
+          "frame_id": "000016",
+          "camera_baseline": 6.93284587622127,
+          "projected_mask_pixels": 432,
+          "excluded_object_pixels": 35532
+        },
+        {
+          "frame_id": "000017",
+          "camera_baseline": 6.668391369525705,
+          "projected_mask_pixels": 361,
+          "excluded_object_pixels": 36791
+        },
+        {
+          "frame_id": "000018",
+          "camera_baseline": 6.391685906439681,
+          "projected_mask_pixels": 651,
+          "excluded_object_pixels": 38030
+        },
+        {
+          "frame_id": "000019",
+          "camera_baseline": 6.104412137736727,
+          "projected_mask_pixels": 544,
+          "excluded_object_pixels": 39505
+        },
+        {
+          "frame_id": "000020",
+          "camera_baseline": 5.822817832578016,
+          "projected_mask_pixels": 539,
+          "excluded_object_pixels": 40728
+        },
+        {
+          "frame_id": "000021",
+          "camera_baseline": 5.5726501499535805,
+          "projected_mask_pixels": 511,
+          "excluded_object_pixels": 41742
+        },
+        {
+          "frame_id": "000022",
+          "camera_baseline": 5.369031677777663,
+          "projected_mask_pixels": 514,
+          "excluded_object_pixels": 42402
+        },
+        {
+          "frame_id": "000023",
+          "camera_baseline": 5.13583905408215,
+          "projected_mask_pixels": 535,
+          "excluded_object_pixels": 42872
+        },
+        {
+          "frame_id": "000024",
+          "camera_baseline": 4.909990136685147,
+          "projected_mask_pixels": 525,
+          "excluded_object_pixels": 43668
+        },
+        {
+          "frame_id": "000025",
+          "camera_baseline": 4.702379093336588,
+          "projected_mask_pixels": 714,
+          "excluded_object_pixels": 44213
+        },
+        {
+          "frame_id": "000026",
+          "camera_baseline": 4.507555226384089,
+          "projected_mask_pixels": 575,
+          "excluded_object_pixels": 44936
+        },
+        {
+          "frame_id": "000027",
+          "camera_baseline": 4.311846458099889,
+          "projected_mask_pixels": 534,
+          "excluded_object_pixels": 45424
+        },
+        {
+          "frame_id": "000028",
+          "camera_baseline": 4.136728181548255,
+          "projected_mask_pixels": 578,
+          "excluded_object_pixels": 46061
+        },
+        {
+          "frame_id": "000029",
+          "camera_baseline": 3.9205091553818767,
+          "projected_mask_pixels": 455,
+          "excluded_object_pixels": 46950
+        },
+        {
+          "frame_id": "000030",
+          "camera_baseline": 3.6971020629730424,
+          "projected_mask_pixels": 652,
+          "excluded_object_pixels": 47750
+        },
+        {
+          "frame_id": "000031",
+          "camera_baseline": 3.468415982838799,
+          "projected_mask_pixels": 553,
+          "excluded_object_pixels": 48454
+        },
+        {
+          "frame_id": "000032",
+          "camera_baseline": 3.235239156169801,
+          "projected_mask_pixels": 489,
+          "excluded_object_pixels": 49455
+        },
+        {
+          "frame_id": "000033",
+          "camera_baseline": 2.994303219946,
+          "projected_mask_pixels": 571,
+          "excluded_object_pixels": 50262
+        },
+        {
+          "frame_id": "000034",
+          "camera_baseline": 2.798353233404558,
+          "projected_mask_pixels": 396,
+          "excluded_object_pixels": 50951
+        },
+        {
+          "frame_id": "000035",
+          "camera_baseline": 2.573259701270058,
+          "projected_mask_pixels": 482,
+          "excluded_object_pixels": 51415
+        },
+        {
+          "frame_id": "000036",
+          "camera_baseline": 2.3570828149962026,
+          "projected_mask_pixels": 536,
+          "excluded_object_pixels": 51937
+        },
+        {
+          "frame_id": "000037",
+          "camera_baseline": 2.1640863640455934,
+          "projected_mask_pixels": 474,
+          "excluded_object_pixels": 52070
+        },
+        {
+          "frame_id": "000038",
+          "camera_baseline": 2.0045534648555505,
+          "projected_mask_pixels": 443,
+          "excluded_object_pixels": 52380
+        },
+        {
+          "frame_id": "000039",
+          "camera_baseline": 1.8613648204669775,
+          "projected_mask_pixels": 452,
+          "excluded_object_pixels": 52455
+        },
+        {
+          "frame_id": "000040",
+          "camera_baseline": 1.7487822895176945,
+          "projected_mask_pixels": 500,
+          "excluded_object_pixels": 52607
+        },
+        {
+          "frame_id": "000041",
+          "camera_baseline": 1.6325158128920039,
+          "projected_mask_pixels": 481,
+          "excluded_object_pixels": 52272
+        },
+        {
+          "frame_id": "000042",
+          "camera_baseline": 1.5292553375302838,
+          "projected_mask_pixels": 495,
+          "excluded_object_pixels": 52584
+        },
+        {
+          "frame_id": "000043",
+          "camera_baseline": 1.4187462659338113,
+          "projected_mask_pixels": 480,
+          "excluded_object_pixels": 53599
+        },
+        {
+          "frame_id": "000044",
+          "camera_baseline": 1.2855753174465634,
+          "projected_mask_pixels": 343,
+          "excluded_object_pixels": 53971
+        },
+        {
+          "frame_id": "000045",
+          "camera_baseline": 1.1386112635695338,
+          "projected_mask_pixels": 419,
+          "excluded_object_pixels": 55016
+        },
+        {
+          "frame_id": "000046",
+          "camera_baseline": 1.0105022986266115,
+          "projected_mask_pixels": 551,
+          "excluded_object_pixels": 56074
+        },
+        {
+          "frame_id": "000047",
+          "camera_baseline": 0.8690535403522544,
+          "projected_mask_pixels": 537,
+          "excluded_object_pixels": 57060
+        },
+        {
+          "frame_id": "000048",
+          "camera_baseline": 0.7539409142206785,
+          "projected_mask_pixels": 636,
+          "excluded_object_pixels": 58217
+        },
+        {
+          "frame_id": "000049",
+          "camera_baseline": 0.6674611144016654,
+          "projected_mask_pixels": 636,
+          "excluded_object_pixels": 59202
+        },
+        {
+          "frame_id": "000050",
+          "camera_baseline": 0.6072160028947812,
+          "projected_mask_pixels": 646,
+          "excluded_object_pixels": 60413
+        },
+        {
+          "frame_id": "000051",
+          "camera_baseline": 0.595346659437419,
+          "projected_mask_pixels": 718,
+          "excluded_object_pixels": 61187
+        },
+        {
+          "frame_id": "000052",
+          "camera_baseline": 0.6316002312630773,
+          "projected_mask_pixels": 696,
+          "excluded_object_pixels": 61945
+        },
+        {
+          "frame_id": "000053",
+          "camera_baseline": 0.6969411789538503,
+          "projected_mask_pixels": 650,
+          "excluded_object_pixels": 62892
+        },
+        {
+          "frame_id": "000054",
+          "camera_baseline": 0.7640780659695697,
+          "projected_mask_pixels": 738,
+          "excluded_object_pixels": 63788
+        },
+        {
+          "frame_id": "000055",
+          "camera_baseline": 0.8272773077372403,
+          "projected_mask_pixels": 794,
+          "excluded_object_pixels": 65054
+        },
+        {
+          "frame_id": "000056",
+          "camera_baseline": 0.8842914073095159,
+          "projected_mask_pixels": 808,
+          "excluded_object_pixels": 66462
+        },
+        {
+          "frame_id": "000057",
+          "camera_baseline": 0.9439753413212889,
+          "projected_mask_pixels": 944,
+          "excluded_object_pixels": 67828
+        },
+        {
+          "frame_id": "000058",
+          "camera_baseline": 0.9913947174976179,
+          "projected_mask_pixels": 926,
+          "excluded_object_pixels": 69041
+        },
+        {
+          "frame_id": "000059",
+          "camera_baseline": 1.042452360810875,
+          "projected_mask_pixels": 1000,
+          "excluded_object_pixels": 70170
+        },
+        {
+          "frame_id": "000060",
+          "camera_baseline": 1.0992614682268982,
+          "projected_mask_pixels": 868,
+          "excluded_object_pixels": 71405
+        },
+        {
+          "frame_id": "000061",
+          "camera_baseline": 1.1442964299504799,
+          "projected_mask_pixels": 978,
+          "excluded_object_pixels": 72109
+        },
+        {
+          "frame_id": "000062",
+          "camera_baseline": 1.1792029291349606,
+          "projected_mask_pixels": 994,
+          "excluded_object_pixels": 72500
+        },
+        {
+          "frame_id": "000063",
+          "camera_baseline": 1.166172334236943,
+          "projected_mask_pixels": 898,
+          "excluded_object_pixels": 71988
+        },
+        {
+          "frame_id": "000064",
+          "camera_baseline": 1.1418056713558833,
+          "projected_mask_pixels": 923,
+          "excluded_object_pixels": 71391
+        },
+        {
+          "frame_id": "000065",
+          "camera_baseline": 1.084624159139146,
+          "projected_mask_pixels": 821,
+          "excluded_object_pixels": 70264
+        },
+        {
+          "frame_id": "000066",
+          "camera_baseline": 0.9999411924190889,
+          "projected_mask_pixels": 903,
+          "excluded_object_pixels": 68850
+        },
+        {
+          "frame_id": "000067",
+          "camera_baseline": 0.8847033475513146,
+          "projected_mask_pixels": 772,
+          "excluded_object_pixels": 67811
+        },
+        {
+          "frame_id": "000068",
+          "camera_baseline": 0.7337886156179513,
+          "projected_mask_pixels": 681,
+          "excluded_object_pixels": 66738
+        },
+        {
+          "frame_id": "000069",
+          "camera_baseline": 0.5663187278744142,
+          "projected_mask_pixels": 694,
+          "excluded_object_pixels": 65586
+        },
+        {
+          "frame_id": "000070",
+          "camera_baseline": 0.4115797748197293,
+          "projected_mask_pixels": 736,
+          "excluded_object_pixels": 64896
+        },
+        {
+          "frame_id": "000071",
+          "camera_baseline": 0.21560724986470226,
+          "projected_mask_pixels": 517,
+          "excluded_object_pixels": 64443
+        },
+        {
+          "frame_id": "000073",
+          "camera_baseline": 0.2224613286272748,
+          "projected_mask_pixels": 323,
+          "excluded_object_pixels": 63729
+        },
+        {
+          "frame_id": "000074",
+          "camera_baseline": 0.4496226935643834,
+          "projected_mask_pixels": 320,
+          "excluded_object_pixels": 63364
+        },
+        {
+          "frame_id": "000075",
+          "camera_baseline": 0.6634038412307127,
+          "projected_mask_pixels": 169,
+          "excluded_object_pixels": 63787
+        },
+        {
+          "frame_id": "000076",
+          "camera_baseline": 0.8471053608761459,
+          "projected_mask_pixels": 129,
+          "excluded_object_pixels": 64223
+        },
+        {
+          "frame_id": "000077",
+          "camera_baseline": 1.0611112049288016,
+          "projected_mask_pixels": 112,
+          "excluded_object_pixels": 65483
+        },
+        {
+          "frame_id": "000078",
+          "camera_baseline": 1.2836585679233907,
+          "projected_mask_pixels": 133,
+          "excluded_object_pixels": 67590
+        },
+        {
+          "frame_id": "000079",
+          "camera_baseline": 1.5077087060154784,
+          "projected_mask_pixels": 101,
+          "excluded_object_pixels": 70799
+        }
+      ]
+    }
+  ],
+  "next_stage": {
+    "residual_inpainting": "run ProPainter only on masks/*.png residual holes",
+    "geometry": "rerun depth and normal estimation on accepted clean plates before PGSR/TSDF; the recorded DA3 arrays are evidence only and must not be reused as output depth"
+  },
+  "limitations": [
+    "Forward splatting cannot reveal a surface that is absent from every donor view.",
+    "DA3 depth noise can misregister high-frequency bedding texture across views.",
+    "Technical coverage and exact outside-mask preservation do not certify semantic quality."
+  ]
+}

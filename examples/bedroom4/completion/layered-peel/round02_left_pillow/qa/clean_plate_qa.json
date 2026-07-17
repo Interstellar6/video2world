@@ -1,0 +1,808 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-17T01:28:34.023175+00:00",
+  "status": "technical_passed",
+  "input_manifest": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input_manifest.json",
+  "input_manifest_sha256": "ca427cbb1b19ea5237e6b5b6c09ef2911a5de622d830be3c89877fa25373e014",
+  "output_frames": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames",
+  "frame_count": 25,
+  "mask_dilation": 4,
+  "gates": {
+    "frame_count_matches": true,
+    "dimensions_match": true,
+    "outside_dilated_mask_mean_abs_delta_lte": {
+      "threshold": 0.5,
+      "observed_max_frame_mean": 0.0,
+      "passed": true
+    },
+    "inside_mask_mean_abs_delta_gte": {
+      "threshold": 2.0,
+      "observed_min_frame_mean": 25.344051010717678,
+      "passed": true
+    }
+  },
+  "frame_records": [
+    {
+      "sequence_index": 0,
+      "frame_id": "000048",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0000.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0000.png",
+      "union_mask_pixels": 25916,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0000.png",
+      "output_sha256": "be16b59961e055a89a36b64000d5f6537b170b86ffa158ea93b6a23966ba5a08",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 25916,
+        "mean": 28.196236559139784,
+        "p95": 77.0,
+        "max": 141.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 892733,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        105.62837629263775,
+        92.36865256984102,
+        70.5441812008026
+      ],
+      "output_mask_mean_rgb": [
+        103.21488655656736,
+        87.70338786849823,
+        69.41244790862787
+      ]
+    },
+    {
+      "sequence_index": 1,
+      "frame_id": "000049",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0001.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0001.png",
+      "union_mask_pixels": 26005,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0001.png",
+      "output_sha256": "c727e42b86aa15302a2a62eaa0af60d36ed075f8bf4361de774aadcd1f0c34a7",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 26005,
+        "mean": 27.640005127219123,
+        "p95": 75.33333333333333,
+        "max": 139.0
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 892634,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        105.64018457988848,
+        92.09986541049798,
+        70.46337242837916
+      ],
+      "output_mask_mean_rgb": [
+        103.81622764852914,
+        88.08294558738704,
+        69.89244376081523
+      ]
+    },
+    {
+      "sequence_index": 2,
+      "frame_id": "000050",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0002.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0002.png",
+      "union_mask_pixels": 26627,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0002.png",
+      "output_sha256": "855676df81d80f8eafa40aecd6cc882657e718df73c8fe189419b0cec4040061",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 26627,
+        "mean": 27.418822999211326,
+        "p95": 75.0,
+        "max": 144.0
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 891963,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        105.04807150636572,
+        91.96879107672663,
+        69.85803883276374
+      ],
+      "output_mask_mean_rgb": [
+        103.7365080557329,
+        88.48785067788336,
+        70.03511473316559
+      ]
+    },
+    {
+      "sequence_index": 3,
+      "frame_id": "000051",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0003.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0003.png",
+      "union_mask_pixels": 26892,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0003.png",
+      "output_sha256": "0596b2018a3a37c6d47b4e4153b1e1d8e25d338bc1a9b986a43ec55b3aaca013",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 26892,
+        "mean": 27.046383063116664,
+        "p95": 73.66666666666667,
+        "max": 138.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 891695,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        105.79473449352967,
+        92.2572140413506,
+        70.62661758143686
+      ],
+      "output_mask_mean_rgb": [
+        103.88253012048193,
+        88.3385393425554,
+        69.87814219842332
+      ]
+    },
+    {
+      "sequence_index": 4,
+      "frame_id": "000052",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0004.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0004.png",
+      "union_mask_pixels": 27370,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0004.png",
+      "output_sha256": "35a04a789a7a9076c437b5cf9f8b218a05981a8e9d878d727c09265f05d78a2a",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 27370,
+        "mean": 27.16384118864937,
+        "p95": 74.0,
+        "max": 136.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 891187,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        105.8639751552795,
+        92.33138472780416,
+        70.74683960540737
+      ],
+      "output_mask_mean_rgb": [
+        104.33178662769456,
+        88.73240774570698,
+        70.34775301424918
+      ]
+    },
+    {
+      "sequence_index": 5,
+      "frame_id": "000053",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0005.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0005.png",
+      "union_mask_pixels": 27804,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0005.png",
+      "output_sha256": "f93ae14c650b65b9d0f8ffb12c16c550815ad65dedb1a5ff016cd45b545cde31",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 27804,
+        "mean": 26.677828130245047,
+        "p95": 69.66666666666667,
+        "max": 146.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 890733,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        104.77136383254208,
+        91.66227880880449,
+        69.53013954826643
+      ],
+      "output_mask_mean_rgb": [
+        102.26147316932816,
+        86.71763055675443,
+        68.01686807653574
+      ]
+    },
+    {
+      "sequence_index": 6,
+      "frame_id": "000054",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0006.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0006.png",
+      "union_mask_pixels": 28255,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0006.png",
+      "output_sha256": "ac2c5a315fb7b090bfc04703c92dc9869429dc7568fb50c98492f20dbb65ee9c",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 28255,
+        "mean": 26.09914469415443,
+        "p95": 67.66666666666667,
+        "max": 142.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 890257,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        105.30419394797381,
+        91.91438683418863,
+        70.15137143868341
+      ],
+      "output_mask_mean_rgb": [
+        102.11169704477084,
+        85.91035215006194,
+        67.50023004777916
+      ]
+    },
+    {
+      "sequence_index": 7,
+      "frame_id": "000055",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0007.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0007.png",
+      "union_mask_pixels": 28847,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0007.png",
+      "output_sha256": "7f4acbf4a0c231f6a5a7dfe90970277c7696e37e4db3ffb16149b3d49a849ff5",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 28847,
+        "mean": 25.579205232202074,
+        "p95": 65.33333333333333,
+        "max": 149.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 889633,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        105.30419107706174,
+        91.7379276874545,
+        69.90685339896696
+      ],
+      "output_mask_mean_rgb": [
+        101.90189621104447,
+        85.89489374978334,
+        67.50750511318334
+      ]
+    },
+    {
+      "sequence_index": 8,
+      "frame_id": "000056",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0008.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0008.png",
+      "union_mask_pixels": 29484,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0008.png",
+      "output_sha256": "44bee81e74baba746634f7e764ac07b90ad7a9f5c6ad3330086009fcf6aba704",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 29484,
+        "mean": 25.344051010717678,
+        "p95": 65.0,
+        "max": 145.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 888964,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        105.53025369692037,
+        91.96011396011396,
+        70.14886039886039
+      ],
+      "output_mask_mean_rgb": [
+        101.80335097001763,
+        85.73209198209199,
+        67.23416090082756
+      ]
+    },
+    {
+      "sequence_index": 9,
+      "frame_id": "000057",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0009.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0009.png",
+      "union_mask_pixels": 30140,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0009.png",
+      "output_sha256": "dbc70e9ff4d2d90dfc46a0e4b41e706b57aa19f12a9f91c906416bbf48ff14fe",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 30140,
+        "mean": 25.944459190444594,
+        "p95": 66.66666666666667,
+        "max": 147.0
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 888261,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        104.82929661579297,
+        91.75232249502322,
+        69.22919708029197
+      ],
+      "output_mask_mean_rgb": [
+        101.25315195753151,
+        85.23274717982747,
+        66.39459190444592
+      ]
+    },
+    {
+      "sequence_index": 10,
+      "frame_id": "000058",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0010.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0010.png",
+      "union_mask_pixels": 30658,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0010.png",
+      "output_sha256": "a19af08fa782931637c17c503707d6a7321789093d3a406e1ade8e6e1f7f517a",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 30658,
+        "mean": 27.079413747363382,
+        "p95": 68.0,
+        "max": 140.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 887737,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        105.14218148607215,
+        91.7760127862222,
+        69.63927849174767
+      ],
+      "output_mask_mean_rgb": [
+        104.00861112923218,
+        88.4138560897645,
+        69.56327875269098
+      ]
+    },
+    {
+      "sequence_index": 11,
+      "frame_id": "000059",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0011.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0011.png",
+      "union_mask_pixels": 31040,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0011.png",
+      "output_sha256": "eef6d653920a556a8860a114f60ef4573369d2064fde61165fdd24bf86ae8794",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 31040,
+        "mean": 27.132549398625432,
+        "p95": 66.66666666666667,
+        "max": 136.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 887326,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        105.33869201030927,
+        91.85850515463918,
+        69.77309922680412
+      ],
+      "output_mask_mean_rgb": [
+        104.34784149484535,
+        88.856668814433,
+        70.17960695876289
+      ]
+    },
+    {
+      "sequence_index": 12,
+      "frame_id": "000060",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0012.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0012.png",
+      "union_mask_pixels": 31453,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0012.png",
+      "output_sha256": "aff9f4fa8586ec4cf5e1b37cf289eca679d527085c924b8c13101cb937856193",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 31453,
+        "mean": 27.073601882173403,
+        "p95": 67.0,
+        "max": 140.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 886872,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        104.69980605983531,
+        91.55193463262646,
+        69.02880488347694
+      ],
+      "output_mask_mean_rgb": [
+        103.44062569548215,
+        88.07461927320128,
+        69.46726862302484
+      ]
+    },
+    {
+      "sequence_index": 13,
+      "frame_id": "000061",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0013.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0013.png",
+      "union_mask_pixels": 31389,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0013.png",
+      "output_sha256": "29dcfe638300dfc3264545523587a86693dc86eb719a0ffe55afa2bb0152ce8c",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 31389,
+        "mean": 26.422302929901132,
+        "p95": 64.66666666666667,
+        "max": 139.0
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 886926,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        105.30341839497913,
+        91.74347701424065,
+        69.88824110357132
+      ],
+      "output_mask_mean_rgb": [
+        102.65175698493103,
+        87.21504348657173,
+        68.99445665679059
+      ]
+    },
+    {
+      "sequence_index": 14,
+      "frame_id": "000062",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0014.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0014.png",
+      "union_mask_pixels": 31319,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0014.png",
+      "output_sha256": "2edadc9fed5e0741d0275b1fc19722564281727a95566c83386ff3e47c87b312",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 31319,
+        "mean": 26.128079866321833,
+        "p95": 63.0,
+        "max": 140.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 887009,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        105.39464861585618,
+        92.12858009514991,
+        69.5109039241355
+      ],
+      "output_mask_mean_rgb": [
+        101.82470704684057,
+        86.29180369743607,
+        68.02985408218653
+      ]
+    },
+    {
+      "sequence_index": 15,
+      "frame_id": "000063",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0015.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0015.png",
+      "union_mask_pixels": 30560,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0015.png",
+      "output_sha256": "ccdfa2084071cd3634e827c787d28ecbed74a238374d3a3a89997f0fc94059e7",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 30560,
+        "mean": 27.108191535776616,
+        "p95": 66.33333333333333,
+        "max": 146.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 887819,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        106.15307591623036,
+        92.52126963350786,
+        70.45543193717278
+      ],
+      "output_mask_mean_rgb": [
+        102.14829842931937,
+        84.74031413612566,
+        65.30022905759162
+      ]
+    },
+    {
+      "sequence_index": 16,
+      "frame_id": "000064",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0016.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0016.png",
+      "union_mask_pixels": 29830,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0016.png",
+      "output_sha256": "a0b5b065c9829b92597e0fa3fe0476b553b8ed629c4069596aee370e48a5f604",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 29830,
+        "mean": 26.705263157894738,
+        "p95": 64.0,
+        "max": 136.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 888579,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        106.38893731143145,
+        92.59430103922226,
+        70.77318136104593
+      ],
+      "output_mask_mean_rgb": [
+        101.2225947033188,
+        83.59892725444183,
+        64.36862219242373
+      ]
+    },
+    {
+      "sequence_index": 17,
+      "frame_id": "000065",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0017.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0017.png",
+      "union_mask_pixels": 28824,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0017.png",
+      "output_sha256": "2bfae58969974b3fb203e6ccfadf578bf37f0bed4712b158407f199b653eb818",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 28824,
+        "mean": 26.28485521324822,
+        "p95": 63.666666666666664,
+        "max": 139.0
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 889598,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        105.85713294476825,
+        92.37330002775465,
+        69.83825978351373
+      ],
+      "output_mask_mean_rgb": [
+        98.33350679988898,
+        80.67037885095753,
+        61.23077990563419
+      ]
+    },
+    {
+      "sequence_index": 18,
+      "frame_id": "000066",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0018.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0018.png",
+      "union_mask_pixels": 27771,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0018.png",
+      "output_sha256": "b3505edf8fb6b117497a811749ada267159d55d314c134794e05d04973483825",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 27771,
+        "mean": 26.835739920540615,
+        "p95": 66.0,
+        "max": 137.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 890736,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        107.23866623456124,
+        93.03816931331245,
+        71.24824457167549
+      ],
+      "output_mask_mean_rgb": [
+        88.2100392495769,
+        70.40409059810594,
+        52.648734291167045
+      ]
+    },
+    {
+      "sequence_index": 19,
+      "frame_id": "000067",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0019.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0019.png",
+      "union_mask_pixels": 26938,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0019.png",
+      "output_sha256": "cf631fe6420e1f3d2e0cb940a352b96701416a9ade05ad50b4930e2614db594a",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 26938,
+        "mean": 28.33810973346203,
+        "p95": 67.33333333333333,
+        "max": 135.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 891618,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        106.75339668869255,
+        92.92404781349767,
+        70.52450070532333
+      ],
+      "output_mask_mean_rgb": [
+        84.88384438339892,
+        67.560954785062,
+        49.846536491202016
+      ]
+    },
+    {
+      "sequence_index": 20,
+      "frame_id": "000068",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0020.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0020.png",
+      "union_mask_pixels": 26169,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0020.png",
+      "output_sha256": "0a76a24d00eb115145f253f355aa466fd66660c72e95fedef2fb073bc7db7c85",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 26169,
+        "mean": 30.94059128485358,
+        "p95": 71.33333333333333,
+        "max": 134.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 892426,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        110.54488134816003,
+        96.07256677748481,
+        73.93526691887348
+      ],
+      "output_mask_mean_rgb": [
+        83.5597462646643,
+        66.30295387672437,
+        49.37147005999465
+      ]
+    },
+    {
+      "sequence_index": 21,
+      "frame_id": "000069",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0021.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0021.png",
+      "union_mask_pixels": 25311,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0021.png",
+      "output_sha256": "d17a5026a3d7c74d97e78609ce76f23be6c851fdda7c0fba8be64b803c3af7ca",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 25311,
+        "mean": 40.78957765398444,
+        "p95": 91.33333333333333,
+        "max": 144.0
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 893291,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        116.07795029828928,
+        101.37236774524911,
+        78.48200387183438
+      ],
+      "output_mask_mean_rgb": [
+        79.06981154438782,
+        60.881672000316065,
+        44.604480265497216
+      ]
+    },
+    {
+      "sequence_index": 22,
+      "frame_id": "000070",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0022.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0022.png",
+      "union_mask_pixels": 24529,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0022.png",
+      "output_sha256": "77efd5deb3a5451e43fb01d31388aa67a69afb76db250d6b605b425b96fc4a96",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 24529,
+        "mean": 42.84417084539389,
+        "p95": 95.0,
+        "max": 149.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 894179,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        123.26385095193444,
+        107.90827184149374,
+        84.32092625056056
+      ],
+      "output_mask_mean_rgb": [
+        85.17359044396429,
+        65.88083493008276,
+        49.2483590851645
+      ]
+    },
+    {
+      "sequence_index": 23,
+      "frame_id": "000071",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0023.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0023.png",
+      "union_mask_pixels": 24055,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0023.png",
+      "output_sha256": "7ac6107641a0d835d267fe61d1e6f66b9f7cd0e69cd2b6ab21905845296d6442",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 24055,
+        "mean": 44.27809880135799,
+        "p95": 100.33333333333333,
+        "max": 154.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 894683,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        131.93415090417793,
+        115.45229681978799,
+        91.18216586988152
+      ],
+      "output_mask_mean_rgb": [
+        93.48455622531698,
+        72.82760340885471,
+        55.01874870089379
+      ]
+    },
+    {
+      "sequence_index": 24,
+      "frame_id": "000072",
+      "source_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/frames/0024.png",
+      "union_mask": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2/input/masks/0024.png",
+      "union_mask_pixels": 23747,
+      "output_frame": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_output/frames/frames/0024.png",
+      "output_sha256": "7d43fff90e0df00738c581dde75bcb82307da12a8e97c4a80278b13d2f2d9866",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 23747,
+        "mean": 46.54175264243904,
+        "p95": 104.66666666666667,
+        "max": 159.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 895001,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        137.32669389817661,
+        120.49745230976545,
+        95.42173748262938
+      ],
+      "output_mask_mean_rgb": [
+        95.9933044174001,
+        74.65696719585632,
+        56.179854297384935
+      ]
+    }
+  ],
+  "semantic_review_required": true,
+  "geometry_reconstruction_required": true,
+  "limitations": [
+    "Pixel-delta gates verify I/O integrity, not semantic plausibility of synthesized content.",
+    "RGB output must receive multi-view review and feed depth/normal reconstruction before PGSR or TSDF rebuild.",
+    "This report does not certify cross-view 3D consistency or absence of object/background interpenetration."
+  ]
+}

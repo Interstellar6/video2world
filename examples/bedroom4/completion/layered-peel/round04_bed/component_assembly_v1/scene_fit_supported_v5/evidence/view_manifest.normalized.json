@@ -1,0 +1,33 @@
+{
+  "kind": "video2world.scene_fit_view_evidence",
+  "object_id": "sam3_bed_01",
+  "schema_version": 1,
+  "views": [
+    {
+      "frame_id": "000067",
+      "observed_mask": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/000067.observed.png",
+      "observed_mask_sha256": "adb82c0cbc6aaacfb4de31c36255c0647e1efeac3ff25c9fa451eb0b1fda3cbc",
+      "occluder_masks": [
+        {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/000067.occluder_00.png",
+          "sha256": "6b0d90144c00b51596ca01247df33bf41ad4e8b2f8318173ba58afabc2524c83"
+        }
+      ],
+      "source_frame": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/000067.source.png",
+      "source_frame_sha256": "60be517419c5080bb9002b7891ffb6caf7ed4bacda39ed71686c7bafab2c1a6b"
+    },
+    {
+      "frame_id": "000071",
+      "observed_mask": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/000071.observed.png",
+      "observed_mask_sha256": "231a21a77a056999c8e9e19ad23aa405b3c8d9e4740cc8c9b9af8ea83c972d2b",
+      "occluder_masks": [
+        {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/000071.occluder_00.png",
+          "sha256": "ec3cdfc144b087655031091d5fa50e36a76ef34b8ae771dbaf0867cc29953edf"
+        }
+      ],
+      "source_frame": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/000071.source.png",
+      "source_frame_sha256": "1fce932342e454f23255c6bac988d12f046dcc18f9797e3af9fb0798b2f77f9b"
+    }
+  ]
+}

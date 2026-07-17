@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.amodal_rgba_batch_generation_decision",
+  "batch_id": "bedroom4_pillow_attempt2_inputs_20260717",
+  "status": "rejected_before_generation",
+  "generation_eligible": false,
+  "reason_code": "appearance_contract_requires_multiframe_identity_revalidation",
+  "reason": "expected appearance contract conflicts with user-confirmed light/white scene appearance; requires multi-frame identity revalidation",
+  "interpretation": "The rear pillows may genuinely contain light gray-green patchwork and brown floral details. This decision does not claim confirmed background contamination; it rejects single-frame identity/color evidence as insufficient.",
+  "objects": [
+    {
+      "object_id": "sam3_pillow_left",
+      "status": "rejected_before_generation",
+      "audit": "./sam3_pillow_left/amodal_rgba_audit.json"
+    },
+    {
+      "object_id": "sam3_pillow_front",
+      "status": "held_before_generation",
+      "audit": "./sam3_pillow_front/amodal_rgba_audit.json"
+    },
+    {
+      "object_id": "sam3_pillow_right",
+      "status": "rejected_before_generation",
+      "audit": "./sam3_pillow_right/amodal_rgba_audit.json"
+    }
+  ],
+  "required_before_retry": [
+    "At least two original-video scene frames for each physical pillow instance",
+    "A per-frame target mask and bbox with exactly one source-frame reference",
+    "Source RGBA alpha/RGB alignment against the source video frame",
+    "Cross-frame foreground chromaticity and expected-appearance checks",
+    "An explicit same-instance identity revalidation decision"
+  ],
+  "consumer_instruction": "Do not pass any completed_rgba.png in this directory to TRELLIS while this batch status is rejected_before_generation."
+}

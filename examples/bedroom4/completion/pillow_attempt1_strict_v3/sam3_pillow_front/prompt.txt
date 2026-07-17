@@ -1,0 +1,45 @@
+You are the fail-closed geometry supervisor for a video-to-world pipeline.
+
+Image 1 is the observed source crop. It may contain occlusion and therefore is evidence
+for identity, texture, visible silhouette and scale. It is not evidence that an
+occlusion-shaped notch belongs to the object. Image 2 is a deterministic
+FRONT/RIGHT/BACK/LEFT/TOP/BOTTOM review of the generated textured mesh.
+
+First compare the generated FRONT view against the visible, unoccluded pixels in Image 1.
+The front must preserve identity, silhouette where observed, dominant color, material,
+surface pattern, part layout, and aspect ratio. Evidence-compatible refinement is allowed,
+such as clearer plant leaves, but unsupported changes are not. Then inspect the other five
+views for complete geometry and consistent style, material, color, and connected parts.
+
+Object id: sam3_pillow_front
+Expected semantic category: pillow
+Generation attempt: 1
+Technical gates: {"finite_geometry": true, "front_color_fidelity": false, "front_silhouette_aspect_fidelity": true, "nonempty_triangle_mesh": true, "pillow_thickness_ratio": true, "positive_3d_extents": true, "raw_parts_connected": true, "raw_surface_closed": true, "source_material_color_fidelity": true, "source_silhouette_aspect_fidelity": true}
+Mesh report: {"appearance_comparison": {"aspect_log_error": 0.03901843374302295, "front_alpha_bbox_aspect": 1.116182572614108, "front_aspect_log_error": 0.043424704842351176, "front_mean_luma_delta": 101.07272018443835, "front_mean_rgb_distance": 173.46207982416269, "front_median_rgb_distance": 182.45547402037573, "front_render": {"alpha_bbox_aspect": 1.116182572614108, "alpha_bbox_xyxy": [184, 93, 425, 362], "mean_luma": 40.154176819680444, "mean_rgb": [38.90094561791239, 39.982718017463135, 45.542878881199954], "median_rgb": [35.0, 35.0, 40.0], "sample_count": 27601}, "generated_planar_aspect": 1.1112751891735653, "material": {"mean_luma": 112.34291622234956, "mean_rgb": [130.03232664756447, 107.49540974212034, 108.27322063037249], "median_rgb": [131.0, 107.0, 110.0], "sample_count": 174500}, "material_mean_luma_delta": 28.88398078176924, "material_mean_rgb_distance": 49.135147278214426, "material_median_rgb_distance": 50.1398045468867, "source": {"alpha_bbox_aspect": 1.06875, "alpha_bbox_xyxy": [24, 24, 195, 184], "mean_luma": 141.2268970041188, "mean_rgb": [141.41894645566876, 141.06130500758726, 142.30171255148494], "median_rgb": [139.0, 142.0, 145.0], "sample_count": 23065}, "source_alpha_bbox_aspect": 1.06875}, "artifacts": [{"bytes": 2119196, "path": "/root/autodl-tmp/video2world_pillow_completion_20260717/mesh/sam3_pillow_front/sam3_pillow_front.glb", "sha256": "39f4c933777d13ff8cf12c8b9dfe43541bc731ecec2a4b832cddfe30483993e2"}, {"bytes": 5086985, "path": "/root/autodl-tmp/video2world_pillow_completion_20260717/mesh/sam3_pillow_front/sam3_pillow_front_decoder_raw.obj", "sha256": "c4712002cedeb1e0b907c8231ae53b0edbcfe32650f15ab2c5380abf6de38270"}, {"bytes": 5076564, "path": "/root/autodl-tmp/video2world_pillow_completion_20260717/mesh/sam3_pillow_front/sam3_pillow_front.obj", "sha256": "5ee7549f071a82001f4157082e94180be9503f4ec2cc9dcdfab401aafe3eef0e"}, {"bytes": 1019548, "path": "/root/autodl-tmp/video2world_pillow_completion_20260717/mesh/sam3_pillow_front/material_0.png", "sha256": "a40c6acf43aa1c942cb7de900ac68ef42b0c27c27d20fb90252550498503626b"}, {"bytes": 198, "path": "/root/autodl-tmp/video2world_pillow_completion_20260717/mesh/sam3_pillow_front/sam3_pillow_front.mtl", "sha256": "ca4deadbb314a7d180f552345fc0411e5becebcbb61fac04171a2f364eb9f396"}], "created_at": "2026-07-16T17:22:04.889502+00:00", "elapsed_seconds": 103.69317625183612, "fill_holes": true, "formats": ["mesh", "gaussian"], "gpu": 1, "input_image": "/root/autodl-tmp/video2world_pillow_completion_20260717/input/sam3_pillow_front_rgba.png", "input_image_sha256": "80307817ae95f281710b4fd56ea70eccc2d7b05699896704328f5be5cb31da3f", "input_manifest": "/root/autodl-tmp/video2world_pillow_completion_20260717/input/input_selection_manifest.json", "method": "TRELLIS image-to-3D mesh+gaussian decode with textured GLB/OBJ export", "obj_mesh": {"bounds": [[-0.209259, -0.22809279, -0.07069697], [0.22503033, 0.25452217, 0.08108804]], "component_analysis": "completed", "connected_components": 12, "extents": [0.43428933000000003, 0.48261496, 0.15178501], "faces": 48862, "finite_faces": true, "finite_vertices": true, "trimesh_version": "4.12.2", "vertices": 25599, "visual_type": "TextureVisuals", "watertight": false, "winding_consistent": true}, "object_id": "sam3_pillow_front", "peak_decode_vram_gb": 9.537491798400879, "peak_total_vram_gb": 9.537491798400879, "processed_mesh": {"bounds": [[-0.2092590034008026, -0.22809278964996338, -0.07069697231054306], [0.2250303328037262, 0.2545221745967865, 0.08108803629875183]], "component_analysis": "completed", "connected_components": 12, "extents": [0.4342893362045288, 0.4826149642467499, 0.1517850086092949], "faces": 48862, "finite_faces": true, "finite_vertices": true, "trimesh_version": "4.12.2", "vertices": 25599, "visual_type": "TextureVisuals", "watertight": false, "winding_consistent": true}, "raw_mesh": {"bounds": [[-0.2092590034008026, -0.08108803629875183, -0.22809278964996338], [0.2250303328037262, 0.07069554924964905, 0.2544216513633728]], "component_analysis": "completed", "connected_components": 2, "extents": [0.4342893362045288, 0.15178358554840088, 0.4825144410133362], "faces": 134756, "finite_faces": true, "finite_vertices": true, "trimesh_version": "4.12.2", "vertices": 67382, "visual_type": "ColorVisuals", "watertight": true, "winding_consistent": true}, "schema_version": 1, "seed": 20260718, "simplify_remove_ratio": 0.3, "status": "completed", "texture_size": 1024, "trellis_root": "/root/autodl-tmp/physx-anything-official-repro-20260713", "weights": "/root/autodl-tmp/physx-anything-trellis"}
+
+Review the completed 3D object, not only its front texture. Reject or retry when any of these apply:
+- back or side remains sheet-like, empty, open, or copied from an occlusion boundary;
+- an implausible hole/notch was created where another foreground object hid the source;
+- thickness or overall proportions are implausible for the category or conflict with the source;
+- parts that should be connected are detached or floating, such as a head separated from its base;
+- semantic identity, visible silhouette, support surface, shape, color, material, or
+  texture drifts from the source. For example, a white rectangular pillow cannot
+  become black or round;
+- the front departs from observed evidence, adds unsupported parts, or changes part layout;
+- any of the other five sides changes style/material/color or breaks continuity with front;
+- technical_gates contains false. A false technical gate can never be accepted.
+
+Return exactly one JSON object, no markdown:
+{
+  "decision": "accept|retry|reject",
+  "issues": [
+    {
+      "issue_type": "color_mismatch|cross_view_style_inconsistency|disconnected_parts|floating_parts|front_fidelity_error|identity_drift|implausible_proportions|implausible_thickness|material_mismatch|missing_back_surface|other|part_merge|part_missing|scene_interpenetration|self_intersection|shape_mismatch|support_surface_error|texture_hallucination|unexpected_opening|unsupported_detail",
+      "severity": "blocking|warning",
+      "evidence_view_ids": ["source|front|right|back|left|top|bottom|technical"],
+      "explanation": {"en": "specific evidence", "zh": "specific evidence"},
+      "retry_prompt_instruction": "specific repair instruction, required for blocking issues"
+    }
+  ],
+  "retry_prompt": "A detailed image-to-3D prompt that preserves observed identity while explicitly reconstructing hidden geometry. Required for retry; null otherwise."
+}

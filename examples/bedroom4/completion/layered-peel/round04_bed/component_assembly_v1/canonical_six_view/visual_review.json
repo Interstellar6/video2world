@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.object_six_view_visual_review",
+  "created_at": "2026-07-17T11:19:41+08:00",
+  "object_id": "sam3_bed_01",
+  "status": "accepted_for_scene_fit",
+  "promotion_allowed": true,
+  "promotion_scope": "scene_fit_candidate_only",
+  "selected_backend": "component_assembly",
+  "acceptance_policy": "usability_first_minor_artifacts",
+  "decision_summary_zh": "六视图中床头、床垫和底座的深度层次清楚，棕色木质床头与浅色床体符合两帧证据；被移除枕头的位置保持真实净空，没有深蓝实体、破面或明显内部穿插。该单-root GLB 可进入场景落位与独立枕头回放验证。",
+  "asset": {
+    "path": "../sam3_bed_01.component-assembly.glb",
+    "sha256": "3e96994ede80bd6cfd37fa9398a3ad17b524799a0d8f6535c6fcff67925ab0de",
+    "size_bytes": 113200,
+    "mesh_count": 6,
+    "triangle_count": 4976,
+    "material_profile": "multi_component_pbr",
+    "collision_topology": "closed_internal_components_under_one_root"
+  },
+  "logical_entity": {
+    "root_node": "sam3_bed_01",
+    "single_logical_root": true,
+    "internal_components_are_independent_scene_objects": false,
+    "selection_owner": "sam3_bed_01",
+    "motion_owner": "sam3_bed_01",
+    "collision_owner": "sam3_bed_01",
+    "internal_component_names": [
+      "base_frame",
+      "foot_cover",
+      "headboard_panel",
+      "headboard_post_left",
+      "headboard_post_right",
+      "mattress"
+    ]
+  },
+  "technical_receipt": {
+    "path": "../component_assembly_receipt.json",
+    "sha256": "ec331c1987ffcb45ab8b0fa4c2101d17e01899819f0387414ac4a1dbcae33754",
+    "status": "technical_passed_visual_pending",
+    "all_technical_acceptance_gates_passed": true
+  },
+  "canonical_review": {
+    "receipt": "object_six_view_review.json",
+    "receipt_sha256": "24cf87a9cd4862ae3647574c52715c10f48da3508e52748cca8d6ec64e45701b",
+    "contact_sheet": "object_six_view_contact_sheet.png",
+    "contact_sheet_sha256": "540bb144a287ad6063aa25eb5446237d364f7007673f95860ceab86c8f877c4e",
+    "views": [
+      "front",
+      "right",
+      "back",
+      "left",
+      "top",
+      "bottom"
+    ],
+    "horizontal_orbit_accepted_as_six_view": false,
+    "browser_console_errors": [],
+    "browser_console_warnings": []
+  },
+  "gates": {
+    "all_required_views_rendered": true,
+    "bed_category_recognizable": true,
+    "overall_shape_usable": true,
+    "primary_color_basically_correct": true,
+    "complete_six_side_surface": true,
+    "negative_space_preserved": true,
+    "extra_foreground_mass_absent": true,
+    "internal_component_alignment_valid": true,
+    "significant_internal_interpenetration_absent": true,
+    "single_logical_asset_root": true,
+    "usable_as_unified_visual_logic_collision_candidate": true,
+    "scene_placement_verified": false
+  },
+  "blocking_issues": [],
+  "warnings": [
+    {
+      "issue_type": "procedural_material_detail",
+      "views": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "top",
+        "bottom"
+      ],
+      "explanation": "The PBR materials preserve the observed color families but use flat procedural albedo instead of reconstructing the source wood grain and quilt pattern. This is accepted as a non-blocking appearance simplification."
+    },
+    {
+      "issue_type": "scene_fit_pending",
+      "views": [],
+      "explanation": "The canonical asset has not yet been placed against the Bedroom4 scene, floor, static carve, or independent pillow GLBs. Acceptance is limited to the scene-fit candidate stage."
+    }
+  ],
+  "positive_evidence": [
+    "All six object-local views show a complete bed rather than a one-sided sheet.",
+    "The headboard is a separate vertical wooden depth layer behind the horizontal mattress and base.",
+    "The pillow footprint above the mattress is empty in the top and side views.",
+    "The prior dark-blue positive-volume hallucination is absent.",
+    "All internal meshes are PBR, watertight, winding-consistent, nondegenerate, and parented to one logical root.",
+    "The technical audit records zero positive AABB intersections among internal components."
+  ],
+  "prior_failed_route_evidence": {
+    "rejected_trellis_candidate_count": 3,
+    "verified_by": "../component_assembly_receipt.json",
+    "reason": "Seed45, seed46, and seed47 remain preserved as fail-closed evidence for selecting component assembly over another single-image seed."
+  },
+  "scene_review": {
+    "status": "pending",
+    "required_next_gates": [
+      "anchor transform and floor support",
+      "static scene carve alignment",
+      "independent pillow placement without overlap",
+      "browser selection and collision ownership on the sam3_bed_01 root"
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+# Copy this file and provide every named root explicitly to `video2world site-init`.
+# Paths are never guessed from the current machine. The referenced site drivers
+# are deployment-owned wrappers that must call the real upstream repositories.
+schema_version: "1.0"
+profile_id: holi-pgsr-sam3-qwen-trellis2-site
+description: Full twelve-stage provider execution; no stage adopts historical outputs.
+provider_environment:
+  SITE_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: video2world/bin/python
+    expected_kind: executable
+  SITE_DRIVERS_ROOT:
+    root_kind: checkout
+    root: site_drivers
+    expected_kind: directory
+  VIDEO2WORLD_ROOT:
+    root_kind: checkout
+    root: video2world
+    expected_kind: directory
+  HOLI_ROOT:
+    root_kind: checkout
+    root: holi
+    expected_kind: directory
+  HOLI_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: holi/bin/python
+    expected_kind: executable
+  DA3_ROOT:
+    root_kind: checkout
+    root: da3
+    expected_kind: directory
+  DA3_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: da3/bin/python
+    expected_kind: executable
+  PGSR_ROOT:
+    root_kind: checkout
+    root: pgsr
+    expected_kind: directory
+  PGSR_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: pgsr/bin/python
+    expected_kind: executable
+  SAM3_ROOT:
+    root_kind: checkout
+    root: sam3
+    expected_kind: directory
+  SAM3_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: sam3/bin/python
+    expected_kind: executable
+  SAM3_CHECKPOINT:
+    root_kind: artifact
+    root: models
+    relative_path: sam3/model.pt
+    expected_kind: file
+  QWEN_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: qwen/bin/python
+    expected_kind: executable
+  QWEN_MODEL_ROOT:
+    root_kind: artifact
+    root: models
+    relative_path: Qwen2.5-VL
+    expected_kind: directory
+  VIDEO2MESH_ROOT:
+    root_kind: checkout
+    root: video2mesh
+    expected_kind: directory
+  VIDEO2MESH_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: video2mesh/bin/python
+    expected_kind: executable
+  TRELLIS_ROOT:
+    root_kind: checkout
+    root: trellis2
+    expected_kind: directory
+    expected_git_commit: 75fbf0183001ed9876c8dbb35de6b68552ee08bd
+  TRELLIS_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: trellis2/bin/python
+    expected_kind: executable
+  TRELLIS_WEIGHTS:
+    root_kind: artifact
+    root: models
+    relative_path: TRELLIS.2-4B
+    expected_kind: directory
+stages:
+  ingest: {mode: execute, provider_stage: ingest}
+  inventory: {mode: execute, provider_stage: inventory}
+  da3: {mode: execute, provider_stage: da3}
+  pgsr: {mode: execute, provider_stage: pgsr}
+  sam3: {mode: execute, provider_stage: sam3}
+  fusion: {mode: execute, provider_stage: fusion}
+  cognition: {mode: execute, provider_stage: cognition}
+  completion_plan: {mode: execute, provider_stage: completion_plan}
+  layered_completion: {mode: execute, provider_stage: layered_completion}
+  placement: {mode: execute, provider_stage: placement}
+  bundle: {mode: execute, provider_stage: bundle}
+  web: {mode: execute, provider_stage: web}

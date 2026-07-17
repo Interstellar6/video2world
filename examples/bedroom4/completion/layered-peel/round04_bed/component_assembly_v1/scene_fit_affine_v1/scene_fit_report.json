@@ -1,0 +1,198 @@
+{
+  "acceptance_gates": {
+    "collision_face_budget": true,
+    "collision_topology_ready": true,
+    "component_parenting": true,
+    "finite_affine_transform": true,
+    "orthonormal_rotation": true,
+    "pbr_materials": true,
+    "receipt_asset_hash_match": true,
+    "right_handed_rotation": true,
+    "single_logical_root": true,
+    "uniform_scale": true,
+    "world_vertices_finite": true
+  },
+  "all_acceptance_gates_passed": true,
+  "collision_semantics": {
+    "asset_mode": "unified_glb",
+    "fallback_proxy_allowed": false,
+    "max_faces": 100000,
+    "topology": "closed_volume"
+  },
+  "created_at": "2026-07-17T03:38:22.773497+00:00",
+  "kind": "video2world.affine_object_scene_fit",
+  "logical_entity": {
+    "collision_owner": "sam3_bed_01",
+    "component_nodes": [
+      "sam3_bed_01__base_frame",
+      "sam3_bed_01__foot_cover",
+      "sam3_bed_01__headboard_panel",
+      "sam3_bed_01__headboard_post_left",
+      "sam3_bed_01__headboard_post_right",
+      "sam3_bed_01__mattress"
+    ],
+    "motion_owner": "sam3_bed_01",
+    "root_node": "sam3_bed_01",
+    "root_nodes": [
+      "sam3_bed_01"
+    ],
+    "selection_owner": "sam3_bed_01"
+  },
+  "mesh": {
+    "faces": 4976,
+    "materials": [
+      {
+        "geometry": "sam3_bed_01.base_frame",
+        "metallic_factor": 0.0,
+        "roughness_factor": 0.93,
+        "type": "PBRMaterial"
+      },
+      {
+        "geometry": "sam3_bed_01.mattress",
+        "metallic_factor": 0.0,
+        "roughness_factor": 0.96,
+        "type": "PBRMaterial"
+      },
+      {
+        "geometry": "sam3_bed_01.headboard_panel",
+        "metallic_factor": 0.0,
+        "roughness_factor": 0.74,
+        "type": "PBRMaterial"
+      },
+      {
+        "geometry": "sam3_bed_01.headboard_post_left",
+        "metallic_factor": 0.0,
+        "roughness_factor": 0.74,
+        "type": "PBRMaterial"
+      },
+      {
+        "geometry": "sam3_bed_01.headboard_post_right",
+        "metallic_factor": 0.0,
+        "roughness_factor": 0.74,
+        "type": "PBRMaterial"
+      },
+      {
+        "geometry": "sam3_bed_01.foot_cover",
+        "metallic_factor": 0.0,
+        "roughness_factor": 0.98,
+        "type": "PBRMaterial"
+      }
+    ],
+    "vertices": 2500,
+    "watertight": true,
+    "winding_consistent": true
+  },
+  "object_id": "sam3_bed_01",
+  "promotion_blockers": [
+    "source_camera_silhouette_review",
+    "scene_interpenetration_gate",
+    "support_contact_review",
+    "accepted_clean_plate_or_static_scene_carve"
+  ],
+  "promotion_status": "held_pending_scene_browser_review",
+  "representation_mode": "unified_mesh_visual_logic_collision",
+  "runtime_transform": {
+    "asset_coordinates_baked": false,
+    "determinant": 440.5781946998973,
+    "linear_row_major": [
+      [
+        7.245957401283493,
+        -0.5426067335119572,
+        -2.258791117175344
+      ],
+      [
+        -0.4276755559512813,
+        6.960703367346832,
+        -3.044036841128243
+      ],
+      [
+        2.2833425054346344,
+        3.0256643244173227,
+        6.597890605210239
+      ]
+    ],
+    "matrix_row_major": [
+      [
+        7.245957401283493,
+        -0.5426067335119572,
+        -2.258791117175344,
+        0.5491912028669282
+      ],
+      [
+        -0.4276755559512813,
+        6.960703367346832,
+        -3.044036841128243,
+        -1.3414701151096375
+      ],
+      [
+        2.2833425054346344,
+        3.0256643244173227,
+        6.597890605210239,
+        11.514488332555553
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "orthonormal_rotation": true,
+    "right_handed_rotation": true,
+    "rotation_matrix_row_major": [
+      [
+        0.9522583221686187,
+        -0.07130897258103762,
+        -0.296848645423967
+      ],
+      [
+        -0.05620480286988161,
+        0.9147704495929064,
+        -0.4000450533201848
+      ],
+      [
+        0.30007517057391625,
+        0.3976305508647803,
+        0.8670898667520031
+      ]
+    ],
+    "scale_xyz": [
+      7.609235049562984,
+      7.609235049562983,
+      7.609235049562984
+    ],
+    "translation": [
+      0.5491912028669282,
+      -1.3414701151096375,
+      11.514488332555553
+    ],
+    "uniform_scale": 7.609235049562983,
+    "uniform_scale_verified": true
+  },
+  "schema_version": 1,
+  "sources": {
+    "mesh": {
+      "bytes": 113200,
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/sam3_bed_01.component-assembly.glb",
+      "sha256": "3e96994ede80bd6cfd37fa9398a3ad17b524799a0d8f6535c6fcff67925ab0de"
+    },
+    "transform_receipt": {
+      "matrix_key": "sources.anchor.canonical_to_anchor_row_major",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/component_assembly_receipt.json",
+      "sha256": "ec331c1987ffcb45ab8b0fa4c2101d17e01899819f0387414ac4a1dbcae33754"
+    }
+  },
+  "status": "technical_gates_passed",
+  "world_bounds": [
+    [
+      -7.413272026121981,
+      -5.007264118420484,
+      2.514572526496446
+    ],
+    [
+      8.659840554681658,
+      7.422246232299908,
+      21.29618634078691
+    ]
+  ]
+}

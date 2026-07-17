@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.layered_completion_ordering_evidence",
+  "scene_id": "bedroom_4",
+  "created_at": "2026-07-17T08:00:00+08:00",
+  "frame_id": "000064",
+  "sources": {
+    "instance_split_report": {
+      "uri": "repo://video2world/examples/bedroom4/completion/bedroom4_frame64_three_pillows/instance_cloud_split_report.json",
+      "sha256": "2d3386f690c71b88d1236756d865f4504095b3465244e688ac8ecfd2c1b931ac",
+      "size_bytes": 25533
+    },
+    "frame_rgb": {
+      "uri": "artifact://video2mesh/bedroom_4/frames/000064.png",
+      "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+      "width": 1280,
+      "height": 720
+    },
+    "camera_info": {
+      "uri": "artifact://video2mesh/bedroom_4/cameras/camera_info.json",
+      "sha256": "2901497f144c7378961ad6116a48474dfec475acd35a7a80258db18d36b87568",
+      "extrinsic_type": "world_to_camera"
+    },
+    "holi_sam3_mask_index": {
+      "uri": "artifact://video2mesh/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/mask_index.json",
+      "sha256": "08a0bb11dab795cb77f1648a1d2b55cea9a722360710d5e711e055f5146dfa75",
+      "size_bytes": 1819614
+    },
+    "holi_object_cloud_manifest": {
+      "uri": "artifact://video2mesh/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/video2mesh/simulator_assets/object_masks_3d/object_mask_clouds.json",
+      "sha256": "8d4710e19b3cd6c457bbd719111a6aef811779dc2ecb637ab6d08620278b799d",
+      "size_bytes": 9140
+    }
+  },
+  "verified_relations": [
+    {
+      "foreground_id": "sam3_pillow_front",
+      "background_id": "sam3_pillow_left",
+      "decision": "geometry_verified_for_ordering_only",
+      "ordering_source": "combined",
+      "confidence": 0.61,
+      "bbox_intersection_xyxy": [522, 388, 593, 541],
+      "bbox_intersection_area_px2": 10863,
+      "foreground_projected_depth_median_raw": 11.321836364304826,
+      "background_projected_depth_median_raw": 11.461064491612461,
+      "background_minus_foreground_depth_raw": 0.13922812730763567,
+      "semantic_adjacency_evidence": "The audited instance record labels the smaller pillow as front and this larger pillow as left rear.",
+      "claim_scope": "Only establishes peel order for the audited frame; it does not establish metric separation or complete hidden geometry.",
+      "limitations": [
+        "The projected depth ranges overlap and the median gap is small.",
+        "The inherited report field uses an _m suffix, but Bedroom4 scene scale is not independently metric-validated."
+      ]
+    },
+    {
+      "foreground_id": "sam3_pillow_front",
+      "background_id": "sam3_pillow_right",
+      "decision": "geometry_verified_for_ordering_only",
+      "ordering_source": "combined",
+      "confidence": 0.9,
+      "bbox_intersection_xyxy": [595, 388, 693, 518],
+      "bbox_intersection_area_px2": 12740,
+      "foreground_projected_depth_median_raw": 11.321836364304826,
+      "background_projected_depth_median_raw": 12.92689737586321,
+      "background_minus_foreground_depth_raw": 1.6050610115583837,
+      "semantic_adjacency_evidence": "The audited instance record labels the smaller pillow as front and this larger pillow as right rear.",
+      "claim_scope": "Only establishes peel order for the audited frame; it does not establish metric separation or complete hidden geometry.",
+      "limitations": [
+        "The inherited report field uses an _m suffix, but Bedroom4 scene scale is not independently metric-validated."
+      ]
+    }
+  ],
+  "adjacency_without_verified_depth": [
+    {
+      "candidate_foreground_ids": ["sam3_pillow_left", "sam3_pillow_right"],
+      "candidate_background_id": "sam3_bed_01",
+      "frame_id": "000064",
+      "bed_mask_bbox_xyxy": [
+        241.73281860351562,
+        228.8917999267578,
+        1237.29638671875,
+        719.0777587890625
+      ],
+      "bed_mask_score": 0.9251797199249268,
+      "bed_object_cloud_manifest_point_count": 1062892,
+      "decision": "unresolved_not_an_occlusion_edge",
+      "reason": "Mask overlap and support semantics show adjacency, but no locally synced content-addressed bed depth receipt proves rear-pillow-to-bed ordering."
+    }
+  ],
+  "limitations": [
+    "Only front-pillow-to-rear-pillow edges are geometry verified.",
+    "Rear pillows, bed, and final background remain pending and must be re-audited from the immediately preceding clean plate.",
+    "This evidence does not claim that the whole Bedroom4 scene has been completed."
+  ]
+}

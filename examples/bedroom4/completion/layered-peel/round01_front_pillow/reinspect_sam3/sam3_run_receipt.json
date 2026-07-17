@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.layered_peel.sam3_reinspection",
+  "created_at": "2026-07-17T08:26:09+08:00",
+  "scene_id": "bedroom_4_round01_peeled",
+  "status": "completed",
+  "claim_scope": "SAM3 reinspection of the 25 ProPainter frames produced after removing only sam3_pillow_front; physical instance identity is assigned separately by association.json.",
+  "input_clean_plate": {
+    "round": 1,
+    "method": "ProPainter",
+    "source_frame_range": [
+      "000048",
+      "000072"
+    ],
+    "frame_count": 25,
+    "qa_receipt": "repo://video2world/examples/bedroom4/completion/clean_plate_round1/clean_plate_qa.json",
+    "qa_receipt_sha256": "5e796cbf413f17bfcfa90c029f592942a82522c58ff46d40581ce125acab5f63",
+    "visual_status": "rejected_for_scene_promotion_usable_for_reinspection_only"
+  },
+  "invocation": {
+    "working_directory": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/sam3_runtime",
+    "argv": [
+      "/data/anaconda3/envs/sam3d-objects/bin/python",
+      "sam3_holi_runner.py",
+      "--data-root",
+      "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round01_front_pillow/reinspect_sam3/data",
+      "--scene-json",
+      "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round01_front_pillow/reinspect_sam3/scene.json",
+      "--output-dir",
+      "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round01_front_pillow/reinspect_sam3/sam3_output",
+      "--sam3-checkpoint",
+      "/data/zyx/workspace/third_party/sam3_from_wzj/checkpoints/sam3/sam3.pt",
+      "--save-mask-images"
+    ],
+    "pythonpath": "/data/zyx/workspace/third_party/sam3_from_wzj"
+  },
+  "runtime": {
+    "host": "mil8",
+    "python": "3.11.0",
+    "torch": "2.5.1+cu121",
+    "cuda": "12.1",
+    "pillow": "12.0.0",
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "driver": "530.30.02"
+  },
+  "sources": {
+    "runner": {
+      "path": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/sam3_runtime/sam3_holi_runner.py",
+      "sha256": "93b34a5fe50a8ff000b047479ca3ecea1f16f65b74e5cda6b20461120d1f3e44"
+    },
+    "checkpoint": {
+      "path": "/data/zyx/workspace/third_party/sam3_from_wzj/checkpoints/sam3/sam3.pt",
+      "bytes": 3450062241,
+      "sha256": "9999e2341ceef5e136daa386eecb55cb414446a00ac2b55eb2dfd2f7c3cf8c9e"
+    },
+    "scene_json": {
+      "path": "repo://video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/reinspect_sam3/scene.json",
+      "sha256": "86b0656df0dd43e50dc1f5820ae503ba9f927599387628a8eb1382d2ba33b27b"
+    }
+  },
+  "outputs": {
+    "mask_index": {
+      "path": "repo://video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/reinspect_sam3/mask_index.json",
+      "bytes": 74933,
+      "sha256": "f93067d48886ef6a11bc4525ed8aee1d2ef42e8ca65572f2e2455566c5709b26",
+      "frame_count": 25,
+      "detection_count": 76,
+      "missing_images": []
+    },
+    "physical_instance_association": {
+      "path": "repo://video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/reinspect_sam3/association.json",
+      "sha256": "25ce62f3c83af0438510a2864b7daeafc0ef254815864b52a66be45e780c1ecb",
+      "status": "passed",
+      "next_layer_target_ids": [
+        "sam3_pillow_left",
+        "sam3_pillow_right"
+      ],
+      "peeled_residual_warning_count": 25
+    }
+  },
+  "limitations": [
+    "The ProPainter frames contain a blurred residual where the front pillow was removed and are not accepted final clean plates.",
+    "SAM3 class detections are not physical identities; association.json supplies identity from calibrated projection of explicit 3D anchors.",
+    "This receipt authorizes the next peel round only and does not claim that the bed or final background has been reconstructed."
+  ]
+}

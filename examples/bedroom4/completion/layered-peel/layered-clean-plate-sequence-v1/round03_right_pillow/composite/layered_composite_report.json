@@ -1,0 +1,2541 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.layered_clean_plate_composite_report",
+  "status": "technical_passed_complete_partition",
+  "created_at": "2026-07-17T08:49:54.152431+00:00",
+  "round_index": 3,
+  "round_kind": "object_peel",
+  "removed_object_ids": [
+    "sam3_pillow_front",
+    "sam3_pillow_left",
+    "sam3_pillow_right"
+  ],
+  "newly_removed_object_id": "sam3_pillow_right",
+  "remaining_object_ids": [
+    "sam3_bed_01"
+  ],
+  "input_manifest": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/output/layered-clean-plate-sequence-v1/round03_right_pillow/compositor_input_manifest.json",
+  "input_manifest_sha256": "8971f7008c66a3b7c041edc463084910ba62fa6c7139707ecdbdcbb78cf86bd1",
+  "measured_donor_contract": {
+    "role": "calibrated_rgbd_donor_prefill",
+    "claims_original_observed_rgb_donor": true,
+    "measured_pixels": 12443,
+    "generated_pixels": 0,
+    "propainter_pixels": 0
+  },
+  "measured_donor_report": {
+    "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/output/layered-clean-plate-sequence-v1/normalized_inputs/round03_measured_report.json",
+    "sha256": "8f8f30db843df7f50e2481c8be4447ac3db612eaaa77cb23bc79be007ff222f2",
+    "generated_pixels": 0,
+    "propainter_pixels": 0
+  },
+  "previous_round_binding": {
+    "round_index": 2,
+    "report_path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/output/layered-clean-plate-sequence-v1/round02_left_pillow/composite/layered_composite_report.json",
+    "report_sha256": "156df1ea29e770c59bc1e744547ee273b318af22403823ec22b3bbd42f087985",
+    "receipt_path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/output/layered-clean-plate-sequence-v1/round02_left_pillow/composite/layered_composite_receipt.json",
+    "receipt_sha256": "f7031350b367f8d7032fca2b187d3d5f9d5760159f3d5d722ca56c8b0a42e96f",
+    "output_frame_set_sha256": "feac1e67c06a15054ed0ff29beb279fff912421abec145e4bde6930740be17d1"
+  },
+  "structural_background_acceptance": null,
+  "acceptance_status": null,
+  "accepted_with_limitations": false,
+  "demo_use_approved": null,
+  "eligible_as_round04_clean_plate": null,
+  "eligible_as_current_demo_round04_clean_plate": null,
+  "acceptance_scope": null,
+  "limitations": [],
+  "override_gate_keys": [],
+  "overridden_gates": [],
+  "failed_metrics": {},
+  "config": {
+    "alpha_threshold": 0.5,
+    "depth_tie_epsilon": 1e-06,
+    "z_buffer": "nearest_positive_finite_depth; manifest depth_order breaks ties"
+  },
+  "provenance_labels": {
+    "outside_source": 0,
+    "measured_donor": 1,
+    "downstream_object_render": 2,
+    "structural_background": 3,
+    "unresolved": 4
+  },
+  "frame_records": [
+    {
+      "sequence_index": 0,
+      "frame_id": "000048",
+      "inputs": {
+        "source_rgb_sha256": "62cabf4e01a07cfd4bffb5ccc56ac04d94886a4fbe2ac1a6bcd51d0ceb4cfda0",
+        "cumulative_removal_mask_sha256": "790f9db3d41585d5056e8ea825d8e14b8c232b69d1abd7f1fe8587857b7e354e",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "da89925085f7cf8d1dd5ffaab606f897cb295dd668ff4f6cc5d75e9c1499922c",
+        "donor_measured_mask_sha256": "7a142bd817db553f58e034fd348cdb4cba4ae9b277d4054aebd9c89eb2d08c60",
+        "donor_measured_depth_sha256": "b803c8503d8921517cf488eda48970e97e4e7d15dc4469cdad35b878c95f1792",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 56050,
+            "rgba_sha256": "6567e0819010bc43ec0a46a8e41a15a06912c006bc239ff659bb0e9262b5ec47",
+            "depth_sha256": "76bf15b0f2bb592f0e748046377367df7f35fa812e4896b29acb9a9cb0c3a33f",
+            "receipt_sha256": "6b4334b6128782bce1a6c6b441003eb4b1644580144d42d7c17ee614187a5e60"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "682ea39d8911350b56fcd3cd16d23904494c66df7aa537669d66ba882bf04f7c",
+          "depth_sha256": "b68ec21f0f900189995834bb7c6aa690318d7b9a10b08eaf78bf715bc211aa1c",
+          "receipt_sha256": "551df0cca1ab8bf7130d4dc70f5210f3528b26a7a1e4129f30dd993eb343562e",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 56186
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0000.png",
+          "sha256": "bcf48cc4e10c454414639812dfffa4841d3295c267d70075cc1e91261ba2626a"
+        },
+        "composite_depth": {
+          "path": "depth/0000.npy",
+          "sha256": "21eaa3eacc08c7b6d4d34aa408a7bea1c2542ab98383704d3e00bc0bd50aa2d2",
+          "valid_pixels": 57399,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0000.png",
+          "sha256": "e6f6279174e6637bc9721d0a9abd9f40ed70a17be98ccf4469131b41d6d89497"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0000.png",
+          "sha256": "1fd44ab4a4d66455cac0b63f436d1c660da5d2698fd4e04ceb9a65b40e16a298",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0000.png",
+            "sha256": "86418ddacdd25a0b644d7fdb1f29bdfe3e50397f8daef4f71f224ab1b46fccff",
+            "pixels": 864201
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0000.png",
+            "sha256": "7a142bd817db553f58e034fd348cdb4cba4ae9b277d4054aebd9c89eb2d08c60",
+            "pixels": 1213
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0000.png",
+            "sha256": "3f7d7d3f8f9a61ffb996aeecceb287e4efbab14a44310fc4792c0deef35d982f",
+            "pixels": 56050
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0000.png",
+            "sha256": "99f90a05d94dfd8b02d3992c6d44b76bf8b824dbf9977870da8ce653616a5ac7",
+            "pixels": 136
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0000.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 57399,
+        "measured_donor_pixels": 1213,
+        "downstream_object_render_pixels": 56050,
+        "structural_background_pixels": 136,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 864201
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 1,
+      "frame_id": "000049",
+      "inputs": {
+        "source_rgb_sha256": "7fdc67ddaec2eafa5daba024e010406a3beacfb1a32c63342644ad63d0c4d31a",
+        "cumulative_removal_mask_sha256": "50fae7013c938c49ae962bc18e97218c29bee5dcbe92f4d69c5bf4590736b142",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "a0036c9356a2bddb7e3e51c2fb9dc77341acbb35a7b9e01dbc2d0caaab6abae8",
+        "donor_measured_mask_sha256": "d089ec0733283eb42bf2793f9e7c9d0f695b67d3f2ab6d7d1e5819369134b537",
+        "donor_measured_depth_sha256": "23a254b21b0d7a6933d830e7ee1208bf8f521cb409e984171aeadbc03688adef",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 56883,
+            "rgba_sha256": "8f45b565f29fc8828ff51ed78680b91b6263d6e3de02982ab4c42373639d1ad4",
+            "depth_sha256": "2967f09051b1678c159b14c7db80ecc28a46ec7d2cc4790eb8ba28b6e803814c",
+            "receipt_sha256": "a583763ad92b4ad09ac97cf084359882329ef2d5607f9959af51b21633ffec96"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "794959ea7984ef78584d5b7745a3e0062f17a33a4fa031950263248d0021e389",
+          "depth_sha256": "5ee94a002d4f8889b9b6dbff88859df1e9171a8dd27a83cee36a7fc6b5d90093",
+          "receipt_sha256": "cc16ef8bc46c96b5dd55d1c31782494de3c9d7a5a681a294d9aaf8e8da8a6e07",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 57012
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0001.png",
+          "sha256": "2b7829ae8531719a9cd0da508f4e758b665903e394794ac0943e08941d52afdb"
+        },
+        "composite_depth": {
+          "path": "depth/0001.npy",
+          "sha256": "e6bbb179be1e68fed831d44c225fe4977c12ce158b18f39e994e73d0623f15c7",
+          "valid_pixels": 57944,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0001.png",
+          "sha256": "3d7ab1c363ba31429244c4a6f97e2ea5af0569588e9b8a64d28a82425b9af99c"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0001.png",
+          "sha256": "6dd5186f41a4c782fd4075e28725c777338b29cca73139d2f7062a11391c10ae",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0001.png",
+            "sha256": "ffef68eb20faec7f9c3db8d47de101cb0cbe20bd16f1b09b6324c79369f6d2b3",
+            "pixels": 863656
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0001.png",
+            "sha256": "d089ec0733283eb42bf2793f9e7c9d0f695b67d3f2ab6d7d1e5819369134b537",
+            "pixels": 932
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0001.png",
+            "sha256": "d4d604b4b4f734b8b1b593b51e3fe9a28f4a427a14c25216589cdb30fd5774a9",
+            "pixels": 56883
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0001.png",
+            "sha256": "a2a9d4781212ece1e1eb6ce8352d83c9f923b24d4a451272bee20bf6da2ffa23",
+            "pixels": 129
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0001.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 57944,
+        "measured_donor_pixels": 932,
+        "downstream_object_render_pixels": 56883,
+        "structural_background_pixels": 129,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 863656
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 2,
+      "frame_id": "000050",
+      "inputs": {
+        "source_rgb_sha256": "d99405635d281261780cd995073b03f7bacdb9f57cca39bacd2a6d2d144b8f57",
+        "cumulative_removal_mask_sha256": "ef94d1586f5f23464e4e3788d0db1fefa1eeba138dfff0a5fef69303547f4b20",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "eb22dab929979ad2927bd14fee5d97650385de738ad8d5af015b03b2a9ba8253",
+        "donor_measured_mask_sha256": "3f9b0f31a4c9ac6fcb1b712c1fa132a1f4e09ca47cdb0887e311516bb7f8f7f8",
+        "donor_measured_depth_sha256": "9104c37f4906e4f769f5590112769f7965f8b56b2892f29f918c29bb1b7a2c99",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 58556,
+            "rgba_sha256": "3f7d98f46b2acf21da23996333aec44facf6d6f60e63df52855f3bd0d7668091",
+            "depth_sha256": "fa70d57d38a721cae4b2beee82d9d0a560b30ad6d37ac3b917f94de3118421cf",
+            "receipt_sha256": "ab72619bf9cd1e35b8a9a205cc88982bf2faa5af5b5bedea915d358ebb73f4d9"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "c23d0545955849e9055867f87d8ce2c59979b8ffec6b8b8a3c6c0c21f697ee14",
+          "depth_sha256": "ee58e0e92e52eaa30941e4a936a8b4e1c6b1824d87347bebf1ebc56182cb7188",
+          "receipt_sha256": "8f9232a1d21b6d4b46e7633c594fca1e90299986cdc78a2b412f3b34cc086674",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 58678
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0002.png",
+          "sha256": "c869d6750a63390ebccb48d59acb561c73a50fa66e7ab2179129de8115372889"
+        },
+        "composite_depth": {
+          "path": "depth/0002.npy",
+          "sha256": "95331851349cbadbc50bf02e088dcdb378d6f8dea20080a2c8b0dd66eacd8885",
+          "valid_pixels": 59412,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0002.png",
+          "sha256": "da843bc7ce0ef2ef1b6d8d50cb63fd2ffac3c1c1793c7196bd1db40c35af4581"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0002.png",
+          "sha256": "2044b6fb98953fb130a9b698be0146f808070a1f72fd8371d13bbee1a27d19b0",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0002.png",
+            "sha256": "2a89c0f5653787efb272e441a85f54632f50c34e6a1826db1d45a84f4113ad96",
+            "pixels": 862188
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0002.png",
+            "sha256": "3f9b0f31a4c9ac6fcb1b712c1fa132a1f4e09ca47cdb0887e311516bb7f8f7f8",
+            "pixels": 734
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0002.png",
+            "sha256": "b85e7e229a53ac9ced583193ffd6c57f9db89b8a6271b5644cf6fea9a257e7da",
+            "pixels": 58556
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0002.png",
+            "sha256": "b8bbede29e64d396635706d7127b736b089afe22709afbe4f4ad1dd528dc6299",
+            "pixels": 122
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0002.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 59412,
+        "measured_donor_pixels": 734,
+        "downstream_object_render_pixels": 58556,
+        "structural_background_pixels": 122,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 862188
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 3,
+      "frame_id": "000051",
+      "inputs": {
+        "source_rgb_sha256": "a2d936b522ededc3a888f02c7ac1a783cce7f1faa7a25485d5272b4f046f06f9",
+        "cumulative_removal_mask_sha256": "7ac888e1a03632ab4976b84b53d60bfd775d1b669f03269a258de4259d3a9313",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "025be3db591654e11d803d5b292ee4bf19240e31296ee4207e2fd1eaaf28eae4",
+        "donor_measured_mask_sha256": "91ea2c766eba6b37d5c029c763596faea8c10a2e9c9e28591142d0f0019ade90",
+        "donor_measured_depth_sha256": "5e41a0b6b4fb3ac5793ae5ceeb14fbb4a5aab529a5fd2edb2e041ba36f55cabc",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 59449,
+            "rgba_sha256": "5d09e47cdf99f50b82a0de2f2815f38c6da0b4776ba0b76afd6e7fbed966353e",
+            "depth_sha256": "2530b32b15280a61a2b45175a54e4f3e975078668187dd6dd67363021ee113dc",
+            "receipt_sha256": "944789c60180bc69bc6da04a61b9d755b91485a7d9d39f5c19b01a5f5b8d66f4"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "2698590da3cafa5d2141c2d222bcd2174613480afc69394cc7fd9fd50be1dd63",
+          "depth_sha256": "033d87091d0da611a0d85058b10fd96abb60957855c80b481ea6cb27bc5e86be",
+          "receipt_sha256": "fc3a4ae4448ef761d28e06a603bae01dd6996b3e49347f236889dbc8c929cedb",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 59576
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0003.png",
+          "sha256": "7b4f9777922b70c4d7d51c98b10a63b916545116f4f05424af187a699510242c"
+        },
+        "composite_depth": {
+          "path": "depth/0003.npy",
+          "sha256": "04263632fbef021759a968ab26e4c846865a0eab2947cefcd5ca25a65496307d",
+          "valid_pixels": 60046,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0003.png",
+          "sha256": "5b47f263ee54656cdc044761461e61c763cb1af987e57920f2f9bc0af0d054ae"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0003.png",
+          "sha256": "74269deaa465f8927e5c6efb230fb57ade856d6cebf12dfa83ebeb58d242d6e1",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0003.png",
+            "sha256": "7de3b536852e08950db65578668d3ce0d529051ff3ab0e8e7748b1aaf8b4eaf5",
+            "pixels": 861554
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0003.png",
+            "sha256": "91ea2c766eba6b37d5c029c763596faea8c10a2e9c9e28591142d0f0019ade90",
+            "pixels": 470
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0003.png",
+            "sha256": "a8cedbcf950bfe598d4c3e0309be5961e12d73f4fc9aeb6b2b3e38c135a24299",
+            "pixels": 59449
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0003.png",
+            "sha256": "f6416dc1e3dd8f66d9d222b364a71c2f1bc79aae71781348dcc61a3fd35069f5",
+            "pixels": 127
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0003.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 60046,
+        "measured_donor_pixels": 470,
+        "downstream_object_render_pixels": 59449,
+        "structural_background_pixels": 127,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 861554
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 4,
+      "frame_id": "000052",
+      "inputs": {
+        "source_rgb_sha256": "24527186c44d8f087d9b8d752aa2f294eab2d4379e5101b9a5b7a5bcaa9a071a",
+        "cumulative_removal_mask_sha256": "9c632a65264e3be292a9063c1f5535b980991a2e8bc347209fb3978f3e2c23e7",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "97b769cd6bf1b83c3949ebcce05e115728afcf6e529be6726ee9727d82dcbb44",
+        "donor_measured_mask_sha256": "2e79bbec7d289ed1b46ff6acbf5423a9883fa736544334ae79055bf95255827b",
+        "donor_measured_depth_sha256": "0e6f5b8d83f0041687fce2e9330e0299ef3cc48a5c0e827d7ef396f8caf8ed95",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 60688,
+            "rgba_sha256": "74ebedb4503ae1a8d64655087a3bb492dd962598a50d3b0e53de42d1a26de8e9",
+            "depth_sha256": "9db055afc087cfb99d2bda8e3bd3843860523776240a161faef7ddd423fb4676",
+            "receipt_sha256": "91abfee32c832655e91ee6c308f71a0fe73bbbb69748510c7fade021c5e0c4e0"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "cc7c56a29e4833103f555f59d6830a7e21cfcf5956f04879a58d503d65fded16",
+          "depth_sha256": "6af28d0f6b07ac1c7bd3141e7d5b80616908a2b83034250581c8d5ac425ea7a0",
+          "receipt_sha256": "06d1e9fc27afae977ae3334beaaa0a4795a34466fa092279e2dd61c6ac5000d4",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 60815
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0004.png",
+          "sha256": "6921672e20aee5c5452559285b1cf9b5b4874c218e4116a259f1a83aca85fb41"
+        },
+        "composite_depth": {
+          "path": "depth/0004.npy",
+          "sha256": "f47451725139a5cc17223746b164f337ba35023cf3d6d1164a3f170a93b707bf",
+          "valid_pixels": 61028,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0004.png",
+          "sha256": "80f54ed41f28918ba12ecc22d8af19988f6d0f709771dea1ae0779d1c403bbeb"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0004.png",
+          "sha256": "b613ead119f7cb6269d67055097420ee7bc88df4977aaeddbf8d90479f7e6c56",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0004.png",
+            "sha256": "b354fc33aa401d16756edd7e9cf6d5c206a3e46317776243877e898ea699fed9",
+            "pixels": 860572
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0004.png",
+            "sha256": "2e79bbec7d289ed1b46ff6acbf5423a9883fa736544334ae79055bf95255827b",
+            "pixels": 213
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0004.png",
+            "sha256": "6497efc100e2e81359e68498ca6647a450b76c41347fc12330dbe3ed7c152e88",
+            "pixels": 60688
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0004.png",
+            "sha256": "462c7087e06010187c3141edfde2e77ec85ca6c6b68fae8522f5a8e12bc6b6a2",
+            "pixels": 127
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0004.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 61028,
+        "measured_donor_pixels": 213,
+        "downstream_object_render_pixels": 60688,
+        "structural_background_pixels": 127,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 860572
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 5,
+      "frame_id": "000053",
+      "inputs": {
+        "source_rgb_sha256": "6fb4815011ccf48f2b7318d6b8c2f29c587a96bb3ba41860a7c6d20645bf719e",
+        "cumulative_removal_mask_sha256": "86063669ffe697543446b3f91b05fcb67d39a88a4fa6794e479d52d18254f707",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "bf00fd4096e21fc7d70a18809b8f01f51bef3da2aeb5d739746fdb1b5a7e94b2",
+        "donor_measured_mask_sha256": "cf1c3b0ad3ee0f99f035f773b7040133c67d23c87e9b2647e60beeb5efcfe5ca",
+        "donor_measured_depth_sha256": "18526d518d7bd741e2886aebb1ab75240873455e127d4e666f19cb6994b59558",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 61759,
+            "rgba_sha256": "f4b865eb189ebe0bd6d5efa77f3a437716d920974a15b475db522d53fe5bc0c6",
+            "depth_sha256": "836286cecfb46a0ab407d37202b7097e01862aec550a435864daefafdad36c53",
+            "receipt_sha256": "5da5c810852bf4baacd335a9d205fcd84dd140855c5679061fb2588b41329025"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "1dcc19b82ff4dac0c4fb9fc3c174e7a0cba77391cc46350d9d647c47e3219f60",
+          "depth_sha256": "afff32a943caa410bca422ca1b3dfeb63093eb6e26290f329505b9366750f880",
+          "receipt_sha256": "7a770638eef0f3bf3d6f63c79bf1be8d5064da66f0cf6ad7493a05ecfd49f839",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 61887
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0005.png",
+          "sha256": "a68d9af20101fea16bdfd3583f441d967d3620cedc10d9901dcdee7f581c07f2"
+        },
+        "composite_depth": {
+          "path": "depth/0005.npy",
+          "sha256": "1158f786795145af1c12f5af0493b80d3963136438d7e3a260617ef05cd83942",
+          "valid_pixels": 61921,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0005.png",
+          "sha256": "392620f54aaa51611847dd3fdeb91da4138314986a6dea038d702168c1ebdf92"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0005.png",
+          "sha256": "72f572c784e6c579371b8aaca5533066b4faaa14e12c855f851347f2a7d05077",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0005.png",
+            "sha256": "f0fb1f0d6f9505e7debb4824dc3324e28e3ab1313a1cbdbecd618024af83a38a",
+            "pixels": 859679
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0005.png",
+            "sha256": "cf1c3b0ad3ee0f99f035f773b7040133c67d23c87e9b2647e60beeb5efcfe5ca",
+            "pixels": 34
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0005.png",
+            "sha256": "9261fb076ec13216411fd0b5fef25f18ee5bb90a0ffad0dd470fa357f99c73d4",
+            "pixels": 61759
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0005.png",
+            "sha256": "32bf2e250808f5d18a58fe7590e9f66668373ae5de81b23983e40e9600a0542e",
+            "pixels": 128
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0005.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 61921,
+        "measured_donor_pixels": 34,
+        "downstream_object_render_pixels": 61759,
+        "structural_background_pixels": 128,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 859679
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 6,
+      "frame_id": "000054",
+      "inputs": {
+        "source_rgb_sha256": "8c5d18720eab7581f8109a40a15d39b0f1ebfee31b51f970a575df0e271cdd11",
+        "cumulative_removal_mask_sha256": "82f780e7326a8503149fb072fa51987e0ad912253ac468ad97f848eda82c5700",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "54a49eacaadbc82e676457cb928a997fc6ada09bcb3b9ee3ab9d8f73ce8c621c",
+        "donor_measured_mask_sha256": "bace0a497205b79c3bffc5887b26a802c03d2a48926054bada16f1db0cce9690",
+        "donor_measured_depth_sha256": "fb0461459d6ab4531d1ff43a9949a46cc4dbb9402337edff21ddf88baaf2cb33",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 62862,
+            "rgba_sha256": "0de23f0e32d75ec081b82cf5ba1d3d4b4effe438a302f67437d29918c13ac5fd",
+            "depth_sha256": "c9548096618d21d475b8edb619fd58c2073d0daa94e85bc153e1d7ee5d91c724",
+            "receipt_sha256": "96b9465f78a0a3a212ccaa471ffb0b75fff35f3cddbdfde06d850e1624bd6359"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "f720fda74263789bd3fede054ad81e21902146f58faa19a465367b3e0c98df27",
+          "depth_sha256": "ed761b068e4a12f26ee4fc5515474a38d03277b95d61ccfbfa8e14ea151d2a6e",
+          "receipt_sha256": "dba755a8d03a7f62512dbeee3883083061c69635415a0eb8542e557f42df7aff",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 62987
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0006.png",
+          "sha256": "8756d23629134fbba1594335b9a120bf9bf35262e1806a365f7e360d8dfaacac"
+        },
+        "composite_depth": {
+          "path": "depth/0006.npy",
+          "sha256": "53673046a817f6d3d83356aec8838325ac14934c1d26fb48a99fbd614bd2c52c",
+          "valid_pixels": 62990,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0006.png",
+          "sha256": "44cf08e3c09ed05930b9b4c8f499d68351b6dab16896f5c7159a71793e0b0cdb"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0006.png",
+          "sha256": "64e5b3e7a4ef1114d6023cf0245ac9d1bf44c0e9e4276f2ff3cc7dcec5a0626a",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0006.png",
+            "sha256": "884991f88b226dd744848d5b481f431725ef0cd5f5b0fa19acc73e893f0301ab",
+            "pixels": 858610
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0006.png",
+            "sha256": "bace0a497205b79c3bffc5887b26a802c03d2a48926054bada16f1db0cce9690",
+            "pixels": 3
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0006.png",
+            "sha256": "8868ffa2e1a523fccfb95abca373ae51e0175fb6ffd9f3eaf2844a6ea53b9309",
+            "pixels": 62862
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0006.png",
+            "sha256": "7c27c2b876b204ec95ac8395448fe3e4370f6acd03a808b30b61cd8a376bfdc2",
+            "pixels": 125
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0006.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 62990,
+        "measured_donor_pixels": 3,
+        "downstream_object_render_pixels": 62862,
+        "structural_background_pixels": 125,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 858610
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 7,
+      "frame_id": "000055",
+      "inputs": {
+        "source_rgb_sha256": "bbddfc6ea9d13d799fc09df70cda8ef49ce486d4211abbdb2dbf5ad2157b314b",
+        "cumulative_removal_mask_sha256": "b7838c14ec5d0268add7d15af633b98b3dd1ed21376ec7ea415eae1dba40a4bf",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "020fda2718203aa5d2ac6d9a805c8a0d3b1602a69e49a42f63e2230089cc01ca",
+        "donor_measured_mask_sha256": "7953cffef23e31a97b43e3c9fae954b4f1329ad1bb24d316b7eaaac12f9ec9d0",
+        "donor_measured_depth_sha256": "ba062a5b74f780757a5de09ab73b49ef8503518339eea35430ce54c05cf91b92",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 64045,
+            "rgba_sha256": "961e9619ebdf1d7f264d7bc9ba0fa77198639aec69317cce011c05f40a28f789",
+            "depth_sha256": "5a859d823965ad9ec1757c74a9a94804cfdab8534f4723a6a0528f6498c9481f",
+            "receipt_sha256": "9786ed06a32a599acdfb9a30d6a757d6b089b86d3adeea6d23f4e55be483f00f"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "926086d34fe1418fe96c07596b2824ecb7370ddd083fdd41ca171b7b171813d4",
+          "depth_sha256": "876e6c1fba4cde52ef63bc5e1756d241988feca802d930799af25d02167eb3a6",
+          "receipt_sha256": "e9fa6df9f53391b8f1897f9aa2916de64199f16ed9400c69cdbd5819addf0327",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 64171
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0007.png",
+          "sha256": "6074032aa130e01924993692553defa755f88158b136750d2e9ece6b24214b68"
+        },
+        "composite_depth": {
+          "path": "depth/0007.npy",
+          "sha256": "6514ee83ffbfc859e3909d3b54d76d4d8b01268234ea4825ad3217dd71fde1a4",
+          "valid_pixels": 64184,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0007.png",
+          "sha256": "043bab73c140da49c6dac77ab604852fdde016962f1bcdd9d88db39e4229aaa7"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0007.png",
+          "sha256": "40998bc7d0ef3c122a701e75aa9d97ccce5d6108b6b378fc9fa0e03ce164c09c",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0007.png",
+            "sha256": "d117132155856c052e6dbde75e36af1eff38c86607e8d06159f8720a18671716",
+            "pixels": 857416
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0007.png",
+            "sha256": "7953cffef23e31a97b43e3c9fae954b4f1329ad1bb24d316b7eaaac12f9ec9d0",
+            "pixels": 13
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0007.png",
+            "sha256": "d959ac96ca0c95e1017b17583bbd37f10f8f02ee7662590cbcc1dcf5c5244b89",
+            "pixels": 64045
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0007.png",
+            "sha256": "ab1d71ca34105d92173f17894429e7ef08d2640a45a3dc241d1ac0a0a19f1d0d",
+            "pixels": 126
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0007.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 64184,
+        "measured_donor_pixels": 13,
+        "downstream_object_render_pixels": 64045,
+        "structural_background_pixels": 126,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 857416
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 8,
+      "frame_id": "000056",
+      "inputs": {
+        "source_rgb_sha256": "0d6e1048c3f7ad72be42f92e4d54d1b4d6942d7a25bd146ec9b1c3beb0bc55fa",
+        "cumulative_removal_mask_sha256": "0e0caa14b878118f46ffbc89db9fc7a5cde2e1d6e05c7b64c3434bbcc88cb0c8",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "0b10ab55e681d0aa9bb4d8605968819b84483adc9784869b45c0e4dc640def28",
+        "donor_measured_mask_sha256": "b50529856eb3f20205097686be670a3d3478462b701a4ffa5b6dcab24df764e7",
+        "donor_measured_depth_sha256": "95ac45cb6f839becf26933ff8c6700eff3658ac76631c853782b5d04866fa9ef",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 65216,
+            "rgba_sha256": "1cfc9ae24397b561289d1162537f0487899f1e5d49d47cd9db9a211e250b377e",
+            "depth_sha256": "4b700342597dee28c830feb58594a12f374229e05a1d721c1bdb79e0f4314e98",
+            "receipt_sha256": "b8b096dd47044cfe3b8ead832efe3e560b2caa1f75a4e4fbb52cc34d4dc54bc9"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "1ff9b3b5e53ee12798249d34bde2e8055478f21d809dc5e82abb7702fb2bc6e7",
+          "depth_sha256": "02d24797164d5c46a0eb8f468c3d9c6b4e7dcc8fd1c7fe3609307fed9596b586",
+          "receipt_sha256": "3634c6a267b01346a206ca7b21f39952b095ae7e6c9ce9a8c63b391eb187b452",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 65332
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0008.png",
+          "sha256": "3d1eb3877795a0d313be84f40799f64cd4c8aec4ff96d2f35b641ab1fb49024b"
+        },
+        "composite_depth": {
+          "path": "depth/0008.npy",
+          "sha256": "e91b267c86115c901493feb671dbd72ef731fab352eea2a2d17d055ba9a8cb06",
+          "valid_pixels": 65340,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0008.png",
+          "sha256": "88b784a2e984266772fe5e39773e8020fcb8c456b6fd03300aca79a1dffbf6ef"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0008.png",
+          "sha256": "155516df93f540557ffa53890a4fd54b11a261881c0202b1b0ff9720f61e538d",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0008.png",
+            "sha256": "371f53279922b1908bd7dc07e0d7ab67d7036890abc73f4bc9ab2bf169c4e5d1",
+            "pixels": 856260
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0008.png",
+            "sha256": "b50529856eb3f20205097686be670a3d3478462b701a4ffa5b6dcab24df764e7",
+            "pixels": 8
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0008.png",
+            "sha256": "ea0ca656488589310f3f1a50bd66b2cbb944ec6052b201c3096cb3817fa3a043",
+            "pixels": 65216
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0008.png",
+            "sha256": "3d9c7fd3048203f0dac738e989530c1fa2098504fb55bd56ee2ec11d17c940cd",
+            "pixels": 116
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0008.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 65340,
+        "measured_donor_pixels": 8,
+        "downstream_object_render_pixels": 65216,
+        "structural_background_pixels": 116,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 856260
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 9,
+      "frame_id": "000057",
+      "inputs": {
+        "source_rgb_sha256": "90168c419fe4d54fd6b5c743463466790e091befbb71c111d5e296c31ea2c397",
+        "cumulative_removal_mask_sha256": "904546ebb9aff31d0b0497dbf4a07109bdf2a33fca99f9910da054c813f5b17e",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "38fadb6379bfa53519f6ffe9def38d002a37dfb39a27145c1536bac33b6deb96",
+        "donor_measured_mask_sha256": "e7bef96355c15f9c351e9840db4309bb43367014d51870def4d0969b5ca315c6",
+        "donor_measured_depth_sha256": "ce502810978661627cba6a2f6121045b4c2f5a0a8306a093855cb33a25d3ea28",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 66556,
+            "rgba_sha256": "df6fb24bd3bc813e739a58f1e6863f607a47df6ccd27c7069f73a7cc9f45e67e",
+            "depth_sha256": "92a2e6203eaee5f2cc0abceadf824ec78b2c95cd44da0b4e0206e627ddde8be1",
+            "receipt_sha256": "57ab24773b7a139a8f2cb847ef9bf88af126c1caf97ff1da17ca835ab0a106ef"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "520e193821a9554a96a5eed6df79f34ec5e8a7717e061ecb942d83cc3b63776f",
+          "depth_sha256": "e5350dde7b8e1d59d56555aaf026b9710f8ad741ec858355ad891bf04a1a6678",
+          "receipt_sha256": "dc304edcce94511b0868b726e165e767fb5915b5cdc9c14c31a28feb7868a243",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 66667
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0009.png",
+          "sha256": "f2de5b5b1b7c0409fff9eaf6f519fee9ea8f76653b2592234986c5f3b46c5982"
+        },
+        "composite_depth": {
+          "path": "depth/0009.npy",
+          "sha256": "7f798c39d163a7ef7ac76fbbe681cf7cd5c320d4eeec9dcfd402333e6480cd96",
+          "valid_pixels": 66685,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0009.png",
+          "sha256": "435e370f765cc4a84b165912eecd66d6410ccd26b6f036dcf48bbba56e569463"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0009.png",
+          "sha256": "3986fe26b6329b754110d188e92230ab2bede65de68a281929f3e808c5a42372",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0009.png",
+            "sha256": "f3ef77ec4e7734cf1bdd3e4174bb95a2369d895ffd10a2651cdcf65eb3ccdd59",
+            "pixels": 854915
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0009.png",
+            "sha256": "e7bef96355c15f9c351e9840db4309bb43367014d51870def4d0969b5ca315c6",
+            "pixels": 18
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0009.png",
+            "sha256": "99ae53660a1e7d0d917d572e6c1a6370016050a2d92114782c7c28db1fa4e87f",
+            "pixels": 66556
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0009.png",
+            "sha256": "fdc3dcfcfa2dd15b4bbeb48c2cec80a7ffa862e243183f4b41fcd11241d03c92",
+            "pixels": 111
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0009.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 66685,
+        "measured_donor_pixels": 18,
+        "downstream_object_render_pixels": 66556,
+        "structural_background_pixels": 111,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 854915
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 10,
+      "frame_id": "000058",
+      "inputs": {
+        "source_rgb_sha256": "04aced0dbeed9a9d2d079d4863dfcf62e98c4f4c8115ab02d75fc3b4a7258380",
+        "cumulative_removal_mask_sha256": "07655870fe758988241377af0ee06fc14b0d2cc980b851f1a51a054fe3cbfb8a",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "4f531b8f4d1d20ca7977ce94eb29652eacba7b8937a7b4eb5c8c27b726048af3",
+        "donor_measured_mask_sha256": "b98ab54a3df616d03766cab414f7c08533b6b7ce1646527a9c3dbdebb2fb98e5",
+        "donor_measured_depth_sha256": "0a08bb77d17463da3eef0ea7f92e3ddb74b20fd1235a774c26c4b5c8dc2de260",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 68029,
+            "rgba_sha256": "f06b24af58dfac9ef8e747e3253713f743689cacf966ab51069651d2b3c71b01",
+            "depth_sha256": "425237d7bb2a2f7172e5170e5f1d7f9b5a1c4bdeee32ea843156e4673351e9fd",
+            "receipt_sha256": "2179544f547f2b9a58e34ef4e4315597c2aba2c63706a1b7894605e8aad19d4d"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "7890fccb0ce397d119befb9e9007dd1c3b923aee76cfde3f932faa73513612c1",
+          "depth_sha256": "6187b36ab93574eb84e19051524f8be551a8600638e515d0f28c0906d85e1a24",
+          "receipt_sha256": "049cf61cd3d45b37ead394eec07dd21d33466bb9cca20c4339d26900fcee8b1b",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 68127
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0010.png",
+          "sha256": "d38b9e5ff3a01a349a863cd6b0f1f84b4b24c05c4e5bfdef4d62d29f2497541e"
+        },
+        "composite_depth": {
+          "path": "depth/0010.npy",
+          "sha256": "d72e3022ab0f431051a9deece638cd86e94f6975355462686c4fd9c999a5fe17",
+          "valid_pixels": 68140,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0010.png",
+          "sha256": "a956229d19996fa7d4709b31cadb235df87b7f88ee18d4a2e480d8eefc8d1b74"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0010.png",
+          "sha256": "ce59ebc7b26a7edf41c445f6e6f25838660015b860a1b049730e67b71067eb90",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0010.png",
+            "sha256": "6da9359cbb424f3dbf71f3d08affa4d024d7be9784c5f199fc5791f98d2fd746",
+            "pixels": 853460
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0010.png",
+            "sha256": "b98ab54a3df616d03766cab414f7c08533b6b7ce1646527a9c3dbdebb2fb98e5",
+            "pixels": 13
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0010.png",
+            "sha256": "e8e5564c9456f4743bdd0fdf5e073744e5f97400c6c1bb347f6f0dac8c0dee42",
+            "pixels": 68029
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0010.png",
+            "sha256": "7da1170cd4fe935f7fa72d0debd21bce623274749bb62fd1836eec1d9cd568f6",
+            "pixels": 98
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0010.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 68140,
+        "measured_donor_pixels": 13,
+        "downstream_object_render_pixels": 68029,
+        "structural_background_pixels": 98,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 853460
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 11,
+      "frame_id": "000059",
+      "inputs": {
+        "source_rgb_sha256": "7100cb743baeed5deb32a7f681a009673d1bfe01e89e574dd16476f4d578ccc4",
+        "cumulative_removal_mask_sha256": "c8dc00683c82860ef5bc9e15f1e31e57a8124c34deaae61e647bfb43b9ffdb71",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "2f03130521c3b3250ebc63b96ea2ecc4683179556c5a7e9228e60a41af9143df",
+        "donor_measured_mask_sha256": "1c84b4d15271f7c4eb105fb9647ed575458ae744ff28f45c0bee79531cfdc559",
+        "donor_measured_depth_sha256": "8d92d4be8fb770b081118a74c25d2177c03ba068c6ccbc10d56bd07ab566d9e3",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 69173,
+            "rgba_sha256": "8fa02fcd882e36470e7fc8563ede564f82f99c59a7ba9a5407ecc3938db4c41c",
+            "depth_sha256": "0567b7692cc3bd34960a7ea435610d43d120244d6988bc395cefe9df83ddddd3",
+            "receipt_sha256": "a8ca9d8c5e73e095ae871c794cdecf0a0aac483f3dbc7fa6537b604b7b23c48c"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "0c2532f8e641c04193fc6d59f287fb3a66e57e5a0984fad4b355e8573382b49a",
+          "depth_sha256": "00bfe6bac363d7adc2753562927f575cee880cd0e14d68c39fbdfdafdc75b00e",
+          "receipt_sha256": "51dbe4af8995a60066a61b394954ec7c95cfbf7f319d2bafcbf1ccc32af6468a",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 69249
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0011.png",
+          "sha256": "9de9808dd7011ef752f90c2b03fba771ab60db3ac23c1ddf01669b31d844f25f"
+        },
+        "composite_depth": {
+          "path": "depth/0011.npy",
+          "sha256": "d1c6fd8c865e68065b85ffb6fb5890f88963560ff2c903d48a6a184083bc3cb9",
+          "valid_pixels": 69268,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0011.png",
+          "sha256": "e0149634662ebd2b0635c2347f8b09556cc1fd626eeb2b52f6a4460c56e98914"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0011.png",
+          "sha256": "a908e8a78d2a973505e47a4e57234fbd66d2082b32dbfbd5439eb7eb16cfc976",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0011.png",
+            "sha256": "399ee997f9fb00ed44a62b0a9d190e46ab3af397423358c295d4afe38d1d5e94",
+            "pixels": 852332
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0011.png",
+            "sha256": "1c84b4d15271f7c4eb105fb9647ed575458ae744ff28f45c0bee79531cfdc559",
+            "pixels": 19
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0011.png",
+            "sha256": "745713726d48ad839d256908678f650f9f460ce3e0219df3c7e382b23b6406e6",
+            "pixels": 69173
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0011.png",
+            "sha256": "0d037d3eb3d8d8019824253f6896fe02817796c26da5d2ddbe3f37f13bbc4cf7",
+            "pixels": 76
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0011.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 69268,
+        "measured_donor_pixels": 19,
+        "downstream_object_render_pixels": 69173,
+        "structural_background_pixels": 76,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 852332
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 12,
+      "frame_id": "000060",
+      "inputs": {
+        "source_rgb_sha256": "2e89dcfad8b3642ca7e8bc497e1cbe0ba2c25844bad2151802b412189badaa72",
+        "cumulative_removal_mask_sha256": "7b4d77af6d0d6467c391d5bca13c3657a29b98c2c23e40ca8a0b27e929d5307c",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "a46d8863fba02067f5f7ddaec1ce5103bb90a52f45193b848800de836b351ee7",
+        "donor_measured_mask_sha256": "3373d23e3ec50787b1ede0c84ba4a8f09ece30da47fdd0badadf08fdb0ad919e",
+        "donor_measured_depth_sha256": "4b19c49fe1c012b89592c85cdc9a4bf0c6c1a47add0d82f1ff72d5b7a3c6496a",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 70386,
+            "rgba_sha256": "2566c2182edecf1260b326029b1fb27eca7785fa68d6fb29899a9c123c83f098",
+            "depth_sha256": "3ccc1997160d62fea3d1628ac50aa3b98b2841cd8a57e1a802984e80af6ca658",
+            "receipt_sha256": "4e8455d5b75bb88b880aff00bd55d0a11f623ae24f9a56b9dd302946de4b45f0"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "ab7d16a1d75212438c06af6d75cd37b1da469b7da98bc808730bf72f5429183a",
+          "depth_sha256": "d9babc067c48e58956748cbadca093e0b0706f322bfa240aeadefb06fe2414d4",
+          "receipt_sha256": "80dfc421b339bcc3c2e561a878d1db722513958e6a554d23f2d3fba10a7125e0",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 70450
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0012.png",
+          "sha256": "7fe92840b9628eed401c550fc662b976f2c13da48536db7de4939a3f04e97078"
+        },
+        "composite_depth": {
+          "path": "depth/0012.npy",
+          "sha256": "c7cda76556e1b4a4f94f22e496245076c24d151d320fdcd01b30eb8129679d0d",
+          "valid_pixels": 70588,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0012.png",
+          "sha256": "2b490238a81cb598a44f2e4c4fae3a357394571650b7f35c1afeb45a98dafbef"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0012.png",
+          "sha256": "f95c16d7bd0d1f9b784ed4229fe1469a32e1a3c5c96fd17ea3fb2c6b0536d0ba",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0012.png",
+            "sha256": "a7187c40efa3991c8a8b24128113db20746610814bb4c9b62df8dd58b61d0bdf",
+            "pixels": 851012
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0012.png",
+            "sha256": "3373d23e3ec50787b1ede0c84ba4a8f09ece30da47fdd0badadf08fdb0ad919e",
+            "pixels": 138
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0012.png",
+            "sha256": "519f7c715f0b6748c25737f0f3a6f248940837db0ca356811fe183711f1a75bc",
+            "pixels": 70386
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0012.png",
+            "sha256": "da24ea4c736e76baee2219d82044431186e32bedb2b1f9c6d964127de90f6feb",
+            "pixels": 64
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0012.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 70588,
+        "measured_donor_pixels": 138,
+        "downstream_object_render_pixels": 70386,
+        "structural_background_pixels": 64,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 851012
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 13,
+      "frame_id": "000061",
+      "inputs": {
+        "source_rgb_sha256": "12d55d2c6ef8476b679eb62321b959f5776dfd07eed1a1b597f2a3f0a5bf74f6",
+        "cumulative_removal_mask_sha256": "3030b8f3af516588fa75f90f98bae876e04ae34a4218bfbbf4132ad5c083e073",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "67ad412afd896a49f5c957408aed235163883f1ac0d3229dfc148c42c47294bd",
+        "donor_measured_mask_sha256": "1ebbf7bd55d20e4a7c684661fc819d7d286787c55d84cabcec2e08d6cba34cfe",
+        "donor_measured_depth_sha256": "b29766c3bf5307457a76067f97e5915a9b600a54944258d5e986162a7a450da8",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 70898,
+            "rgba_sha256": "e88fd60dec3be3be21130f54e50698aaae75a7ee420b97e167dcfb8d35480984",
+            "depth_sha256": "79c59e1dc9ff1b0e4c3c40c01d75204772aa28be506a38dd52606509ad2d120b",
+            "receipt_sha256": "509fa556fc59e57efb9858f33760e4ac55ccc63669751de9ef95f2fa2fd0768b"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "1a619dc4fb9fd6e3a1eac74634886e126f7126c10f57925899e3cd5280a8b542",
+          "depth_sha256": "1d9493cae597db5417ec05609751d697ab43ac2504d7903a8fdea299754a32b1",
+          "receipt_sha256": "0d973ba35f9ec56acd1c0b46d0e675e023605248a9b22e6966e6b13f3d0a3c21",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 70934
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0013.png",
+          "sha256": "8e9967a69676dc60f284a8b046927278e38434f263eff59c49d300b8c40aa90b"
+        },
+        "composite_depth": {
+          "path": "depth/0013.npy",
+          "sha256": "1a6c60f566b93ba0c5f59d65589f3401f7d356502992fd484443247be8813e6a",
+          "valid_pixels": 71151,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0013.png",
+          "sha256": "aec983c57f9066abbaee81dc28127380877842c84410c6a8a6478b3834ddf1b1"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0013.png",
+          "sha256": "9e77ce5a0f2c2db98893a6e81c2527a5cf199367507350f3bf5a54f08ec64c3c",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0013.png",
+            "sha256": "7b69408081d88ba8bd291dd91914c65f3264b8d7b7f30957b61883edc1373e02",
+            "pixels": 850449
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0013.png",
+            "sha256": "1ebbf7bd55d20e4a7c684661fc819d7d286787c55d84cabcec2e08d6cba34cfe",
+            "pixels": 217
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0013.png",
+            "sha256": "97895eed7c0ae771a5b134687c2544709d007f11912a6d3492f697662cf9a83d",
+            "pixels": 70898
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0013.png",
+            "sha256": "4ec4fc9e17c86036a0e431825447359b8dc70fe9de3f49329927c2f919c1b7f5",
+            "pixels": 36
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0013.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 71151,
+        "measured_donor_pixels": 217,
+        "downstream_object_render_pixels": 70898,
+        "structural_background_pixels": 36,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 850449
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 14,
+      "frame_id": "000062",
+      "inputs": {
+        "source_rgb_sha256": "4b2a977c8aea317cec45dfe354326938285021e511843703c45db67ba8676fdb",
+        "cumulative_removal_mask_sha256": "0d71d6211fa779b61704409d7864137b93efd26aaa144c0c5d699e2d31285f6c",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "111e27510b8e7b92881ecb92ea9c27f7b39de69953eeab30cb08458b882b788a",
+        "donor_measured_mask_sha256": "d1e01fd53ad8d98c41b904fff5257a97cf9aa16a28579d34e07285ffd3e2128e",
+        "donor_measured_depth_sha256": "0c1c0b893ee8e90907275cf9ad73a39bf718e3f4e563487d29f74b914b5aafa9",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 71224,
+            "rgba_sha256": "5337dd99bf91795f27496e9f40bde6b7d38d0c1c16da002776bf7bc4db062334",
+            "depth_sha256": "5192893ca08894eef3b695c33b78280ea99c8690ae166fb1053ca2b9e050c020",
+            "receipt_sha256": "e6e0b65dfc668ee79bfa4fda5604fe25a9a4fd9ce69f0465202e2c0980f8b3ed"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "5a9297417813a99946bbe035c481f838c9488d7d331ce27b1c1ac3f67d5338af",
+          "depth_sha256": "dc9844eb9d82260dd069039c38afca54db7c7e2e7a23acae620cfa80efd9788a",
+          "receipt_sha256": "4d457e3b73ebab69ee2fee18ef429ff24ec0bcba31e3a4a5243f9675b01c8a3a",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 71243
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0014.png",
+          "sha256": "297276c86f5ab5d36c2245701eeb8b4157664a7922da0ad1599203dac24abac4"
+        },
+        "composite_depth": {
+          "path": "depth/0014.npy",
+          "sha256": "3844dbc2cd06125da0d948cc312fef07989c5471d0e8ac22711eca0b97408dc4",
+          "valid_pixels": 71666,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0014.png",
+          "sha256": "66b62d407bbdef136050ad205f783ab49132f6986502ffdd1a8175b3da93271d"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0014.png",
+          "sha256": "67aa6a9900b7c94796e075e32c5bf7795398e38ecf6af49ca6fba2473333af68",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0014.png",
+            "sha256": "b3e5a038b39448628aad5d504916680d5474c3144a4982e505279e0798c79964",
+            "pixels": 849934
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0014.png",
+            "sha256": "d1e01fd53ad8d98c41b904fff5257a97cf9aa16a28579d34e07285ffd3e2128e",
+            "pixels": 423
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0014.png",
+            "sha256": "4ac4c97d757f12243bc393bdbe011853562869870ddc395b69f019f07d67abe9",
+            "pixels": 71224
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0014.png",
+            "sha256": "c40f9209ca62c970606afcf6ab488ae8e6683569a710d5e25ef6931e64eb9d0f",
+            "pixels": 19
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0014.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 71666,
+        "measured_donor_pixels": 423,
+        "downstream_object_render_pixels": 71224,
+        "structural_background_pixels": 19,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 849934
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 15,
+      "frame_id": "000063",
+      "inputs": {
+        "source_rgb_sha256": "d13f4aaad62e3c211430fe33d68a3d0d2a6e7da47661aa112197232eae34d350",
+        "cumulative_removal_mask_sha256": "e89c0e2c53ee98602c92246c67891b79c4a97acbb0920d843b6c9668a741aa09",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "26dca122aca9616d6b3c10cbf3e08bb5317b0523dbd0343e7edf768395036ac5",
+        "donor_measured_mask_sha256": "5cc3a7fa23386fd44ee3560c4eb2cea34a1817fbfd63858b451fcbe8c23e2632",
+        "donor_measured_depth_sha256": "a5fd1f11569712f400eed981da0d7fde62ddd17477f1ea93b432a58c9cfb31af",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 70699,
+            "rgba_sha256": "1aca085f7df8532a9f36f5cbc9b2cf68ae6f7f172be897e23910798df8fce0df",
+            "depth_sha256": "f5d9bb76568a96b7c47f9546b3e7ca3799b632459f880e9f3a0926b4949698d8",
+            "receipt_sha256": "888bde86308b6dd5de64a66f7eff5deac49759a57288e1ec52e3e04a30e34d0a"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "e56e9f95c70fe13268c9e11c39bcf4febb30ed4753fdf47304e4c89b691e90fe",
+          "depth_sha256": "399cc4e55217bc01a72e1cd1205eb62ce33bd4c59d67a057fef87a509e3308fc",
+          "receipt_sha256": "fe06004b96209fa19205dd69afcba933cffda786afc083860a50d00d411629f7",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 70699
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0015.png",
+          "sha256": "b5b9f048460f8db9b4053f20991398643d39681ec56230a67576d6f3cd86b0e2"
+        },
+        "composite_depth": {
+          "path": "depth/0015.npy",
+          "sha256": "21801f3ce62c65223928ecb7c2f2dcc8066e4fedf4b31e6fec348299c14cc8a7",
+          "valid_pixels": 71259,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0015.png",
+          "sha256": "69d8679934f1b442ce350f0aa12fbc3faa3a2e183c4ede3a1f8d32fc9ec7800f"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0015.png",
+          "sha256": "fc1559194ce8808a86dc211df890cd5de5b4d71406b174ab7c7dcb2441aeb148",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0015.png",
+            "sha256": "051ee89bfe69b123414c9c78a7a5d744808543ec90dfb7d3d19390f853e3392b",
+            "pixels": 850341
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0015.png",
+            "sha256": "5cc3a7fa23386fd44ee3560c4eb2cea34a1817fbfd63858b451fcbe8c23e2632",
+            "pixels": 560
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0015.png",
+            "sha256": "de8b0093c79d908f2a6962a096113f00cd68bff5b61844c4b50329a680032b39",
+            "pixels": 70699
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0015.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0015.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 71259,
+        "measured_donor_pixels": 560,
+        "downstream_object_render_pixels": 70699,
+        "structural_background_pixels": 0,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 850341
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 16,
+      "frame_id": "000064",
+      "inputs": {
+        "source_rgb_sha256": "6e62489fea598e259112c74ee55455a10d7aa0d04b7e25fa216904ce30d19e6b",
+        "cumulative_removal_mask_sha256": "efb071fb00580e5570832287fd8d2172949bd524a262c03e69f8e101071d7e56",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "1afabf711fb3007993c3063966f6fe12a8ad540c84e8c30830dc58ec320629ba",
+        "donor_measured_mask_sha256": "9f313a0eed93333ca23baca1fda020212911adaa68bbc5b6ece2771d5a1eff75",
+        "donor_measured_depth_sha256": "34191931eb69793b32838e9516723698ac8ba6141adec3258729d604e20b2ef6",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 70007,
+            "rgba_sha256": "1010e16d001e9991871bf5ad4fb164a0e28a084c6b27916a565e30a32015b0e3",
+            "depth_sha256": "62368bec5a38f010bcf0be7048bf0bd113081dd63087b5903997418db0e2bf49",
+            "receipt_sha256": "e69879c44d48aaf2c52671ac5e2d7878cda2d31fa3a6ca3437e3a1451bff5c9a"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "4f9d8aa225ff218e4aa1c3d29e329a294767b55dd4ee022a4707281c789c847a",
+          "depth_sha256": "53eae956d01924e8a3749aa68a33741bacb1df19eaeebc2d54b5f72eebcba97e",
+          "receipt_sha256": "786de073f296dcf5f29a7a04846153e845fd48debef4f1d7c648e337f1e320ea",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 70007
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0016.png",
+          "sha256": "638e09b7676c5d7707a691d6ab0a20ae6a401546a01ce72e9d9ca3a07d47f20c"
+        },
+        "composite_depth": {
+          "path": "depth/0016.npy",
+          "sha256": "41020297d1b0b56e1779ff0d5e4103355b0f8454273239a43ee423329638d43c",
+          "valid_pixels": 70633,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0016.png",
+          "sha256": "0694d0ab6956e5ca584786796d353b5785054d18a2f476f5c86f30e23f2bcdeb"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0016.png",
+          "sha256": "40f9f93f6a6138eca512a8e2c25563e05c76461328a0c13dc30074a80b4aeb03",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0016.png",
+            "sha256": "179eead90a5fef1e34b6a180f9576db9e4573acda137f8a2e1183797e4281bfc",
+            "pixels": 850967
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0016.png",
+            "sha256": "9f313a0eed93333ca23baca1fda020212911adaa68bbc5b6ece2771d5a1eff75",
+            "pixels": 626
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0016.png",
+            "sha256": "9fbfb099c72f0e04147ffeebc5edfc388dc9b5689f4d9919b916919909a67e21",
+            "pixels": 70007
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0016.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0016.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 70633,
+        "measured_donor_pixels": 626,
+        "downstream_object_render_pixels": 70007,
+        "structural_background_pixels": 0,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 850967
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 17,
+      "frame_id": "000065",
+      "inputs": {
+        "source_rgb_sha256": "4d5dbaabdb90e2e976e3bde0e4bca24e9429b28a245de7f2a0ce493dffb6380e",
+        "cumulative_removal_mask_sha256": "97d2988563e60a3ef47d2a12213323c0bdd757048a8c32258fb59e26cfe92a42",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "d5ebf262af4db3c0c7899550166417f145ce63548810894142a9319056ca0778",
+        "donor_measured_mask_sha256": "f0276b65b5cf3a85442270aae9f7c4cefd96fdad1879081b06599f2bed5703ba",
+        "donor_measured_depth_sha256": "fa7ca82a8978845c27f860ccdb516635b24540fa78cbb93e46359e676b90c023",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 68808,
+            "rgba_sha256": "74309aa386c7d7ac2d29db7d02cf8a18646923f8f3377f2119265e150c611118",
+            "depth_sha256": "89544c4430b2471586a1b42ecc32d8529db8f6f6ca01099d1e7ab4dc82b5ada8",
+            "receipt_sha256": "e982bcdb5bd84af20965401dcd0b8143c3cfceb4300e79edbf0509235bf018e1"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "1c6e18f02d1703dc1adb346c8f32485f9c629886d0ea73856011741dee4e3064",
+          "depth_sha256": "30844bce7fba02331b83cb59cc8191b085df61e9f1bf038a9a86ba49cb03fc42",
+          "receipt_sha256": "a7253b9f2aab0b783edbc92afbad22277d14d7c7f3be973d217a4784572be8f5",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 68808
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0017.png",
+          "sha256": "5e4d73fe07415dae4d9334fec4775379f7ca7138a36ca540730443f9a8abb1db"
+        },
+        "composite_depth": {
+          "path": "depth/0017.npy",
+          "sha256": "67424ce1dcb52e605dac2e2c23de49aa06af55ccf450b573b3784981b69995e9",
+          "valid_pixels": 69389,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0017.png",
+          "sha256": "35492dbcf63958336b2666309735227ac4ff41856875ce309b2b0d7cec12d149"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0017.png",
+          "sha256": "81a350d4fe5675123d572f7b05366ba64872038649c289d7556b6e20057ed194",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0017.png",
+            "sha256": "371ec9c3233013277b7ad8afef14acef8bb6432884c11da18aa2e1fbd722a87a",
+            "pixels": 852211
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0017.png",
+            "sha256": "f0276b65b5cf3a85442270aae9f7c4cefd96fdad1879081b06599f2bed5703ba",
+            "pixels": 581
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0017.png",
+            "sha256": "9031d3681233b9a1ab9f4d135050eb03e3de109d30d346d7316f33ccc0a10555",
+            "pixels": 68808
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0017.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0017.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 69389,
+        "measured_donor_pixels": 581,
+        "downstream_object_render_pixels": 68808,
+        "structural_background_pixels": 0,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 852211
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 18,
+      "frame_id": "000066",
+      "inputs": {
+        "source_rgb_sha256": "94dbe34a1526fbf104ad5c5eb0eafa9459657427eea146bf8a74daeb408aa2e5",
+        "cumulative_removal_mask_sha256": "57c35734fdab5741d0817ef48c4f0a93e9a5e945a1fcf8e56a260300edf12784",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "29bd441d306a8760628ba8a6018e38e1840932709ee3f5384b82183c84aa3d0b",
+        "donor_measured_mask_sha256": "57598a750ba3bb043c3f8454746568367697b531ea91a8111fdb71b375f54470",
+        "donor_measured_depth_sha256": "dc8f1c3a7a522835bf45ae21b93708425a3098af62ddfa54ddb07ac5851ce9ee",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 67395,
+            "rgba_sha256": "7b914050a8b38e77e622dbf59c88b2e1d850d8c2a1c6aa27b68832eebe26dc37",
+            "depth_sha256": "ed7e880b5f863c4c56cba0ea13e6439404851855543b2b4443c8d745b6ae9592",
+            "receipt_sha256": "55c798187a1c3b7a993aa1a36c88fea97716ddb4605318b41b4fa9e2d4532813"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "415e7eb16c2cdd3b2e818257eada83c67a1ed107b4170338293eeebe4f592a6a",
+          "depth_sha256": "2512c6b97be40c77261e22d8a17cda1dcb306d9e2759db5a78141b6d10a07c12",
+          "receipt_sha256": "333348ea42e45b6e3ac9f736af4c28c231d32bef305a9a3c2b9b5bc17009a55b",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 67395
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0018.png",
+          "sha256": "4424ea77870b00084ea94eb0e13d75b8022c7d9aa5216a10ece8c0603bbf4197"
+        },
+        "composite_depth": {
+          "path": "depth/0018.npy",
+          "sha256": "a904669ea937ba324c22b54823a24c9c45f00e11fdf673e7cc6a2919a6d8bdba",
+          "valid_pixels": 67938,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0018.png",
+          "sha256": "4a2f4b9dad84a1a5b19c380f7c69a2d10b83bd72d12b0d952a878a5f03bb4894"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0018.png",
+          "sha256": "6ca26cbb6889b8457aa8c1a5e3bde91559e5b30ad557eebb73ff10d1cc952560",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0018.png",
+            "sha256": "6817f4201744ea14e992db8a50a516aeae860894bd6f31bfb56dce3cac38d806",
+            "pixels": 853662
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0018.png",
+            "sha256": "57598a750ba3bb043c3f8454746568367697b531ea91a8111fdb71b375f54470",
+            "pixels": 543
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0018.png",
+            "sha256": "b624830b60ada01b5d6e1f4b79d8391653212e4efa2be9bdb705b6c933c20faa",
+            "pixels": 67395
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0018.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0018.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 67938,
+        "measured_donor_pixels": 543,
+        "downstream_object_render_pixels": 67395,
+        "structural_background_pixels": 0,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 853662
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 19,
+      "frame_id": "000067",
+      "inputs": {
+        "source_rgb_sha256": "76e4f748ebdd3c6d494f71fab02149f82ef640f716a9e6d4f08a1910b4f472a1",
+        "cumulative_removal_mask_sha256": "5306cd80d60b20bb67eb600ed5a94cef35d1bcd3cf3662d073c00a1b80f32abd",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "efeb558b9ecf94b956fae94c1f950cec38d0663e3591a8cb867758864d2c9ff2",
+        "donor_measured_mask_sha256": "a2ca47c15b0c617c4583b4536447dd8648df3bd8bb72dbfec956904e30fb2407",
+        "donor_measured_depth_sha256": "493f05a3375fe5db80d4b6f159da7f2cce133a53884dc91aadec61d43b6018c7",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 66604,
+            "rgba_sha256": "d8514d068eaed73f70cfbb049f2629414af3f1359299b0bb6e5601b16786f23b",
+            "depth_sha256": "b439d3cadca7a52df821ca52d11967589cd7c81678bd32b1fdfcdedf833b919e",
+            "receipt_sha256": "9268c07be92e7c963ae3bdd71118ea087d9826ec7b3236584723f4076546bec9"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "4d60f3a23988a3106ddebd7cc80b7ccc1c447ab635802b2fff852d90d4578eff",
+          "depth_sha256": "0cf6f2e50d7ca4c261375a169d7800fc85e2eb673282c8a500fdcb22d5cd6a22",
+          "receipt_sha256": "d9be8609a2ea4648c0112a21634a8dd7c8fa1d9446223f39b80b408e8b673af7",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 66604
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0019.png",
+          "sha256": "e28b0e6ce7868d89d0925009af83d59b3c16a0027db488d664713e22d9e1714c"
+        },
+        "composite_depth": {
+          "path": "depth/0019.npy",
+          "sha256": "ea816cccf2fc2cbb5ec7f756984c4c30fe0c029e1fc28f75c6d50f0904c34f45",
+          "valid_pixels": 67118,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0019.png",
+          "sha256": "d3d8b9decbb95cdbc91ba4b095935097994eec63c1c8e98ed18b164262e3d0fa"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0019.png",
+          "sha256": "4d484c29694d52b00f279cb839d931af212982943b158fd8d87885552f28371b",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0019.png",
+            "sha256": "65a1e90131d4fffc087bb8d1158dd760e12195dbd75e4859b369d1bad5c2d128",
+            "pixels": 854482
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0019.png",
+            "sha256": "a2ca47c15b0c617c4583b4536447dd8648df3bd8bb72dbfec956904e30fb2407",
+            "pixels": 514
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0019.png",
+            "sha256": "5c96e21bb906daf9132e01c72b18a00091d69db6bda12f94ffcedc271bb20842",
+            "pixels": 66604
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0019.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0019.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 67118,
+        "measured_donor_pixels": 514,
+        "downstream_object_render_pixels": 66604,
+        "structural_background_pixels": 0,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 854482
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 20,
+      "frame_id": "000068",
+      "inputs": {
+        "source_rgb_sha256": "3ea5f606cd7e153651c661a011064250e02ccdfbf3715115faa088b8860d535b",
+        "cumulative_removal_mask_sha256": "99681d8f766c35f4ef871f1f36b6bb47b2c1b9709c1881d7b252e630a88b762c",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "3faaca23fd0da0a12370ddfa9c56de0881f34d549dd8a7b90eeb178a904d480e",
+        "donor_measured_mask_sha256": "7b54223b440d2ccd71925775c34a3ba1ce17f3f4a94d24c9ed43b3013c1b5839",
+        "donor_measured_depth_sha256": "8871a923f4e947350e80d195a08981f1cf793ac133139b0971862f0bae2d7db7",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 65634,
+            "rgba_sha256": "51f85aa0496b42eaa87028ea50a9329a694cf3aa4575469f27768fcad5aeb48c",
+            "depth_sha256": "3a291b46664ad1abb8003fd4b800abb1074db0e5f32ac94cd81b548f76a876b6",
+            "receipt_sha256": "7653cf44802e96f8d020d413988e893650df832cddea06dbf7683f6e4e834a4e"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "8a290c34ad6b122542f27e4a2f5d87b5079b0ffc42cddf162ab0ff3a9b3d1448",
+          "depth_sha256": "09dfd05539ccf75f01c54a7cb3c3b7d5796b5f0431c408fb1b690c1a01ad7c01",
+          "receipt_sha256": "ce33c9ebe278140e2acbc5da8178e61fa80c3863e1e513a0b53d5e13a4d93af9",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 65634
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0020.png",
+          "sha256": "ca6c4a35cdf1a38eb3fa0265b6e6d850d0a3c6a489e3933edd8f711b50560089"
+        },
+        "composite_depth": {
+          "path": "depth/0020.npy",
+          "sha256": "97d700430ee0ed4235f7fa0a90f583da084de9bc1cd9bfddcc5c0a61f6e31158",
+          "valid_pixels": 66129,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0020.png",
+          "sha256": "934149e7685818fabc9b89cb7d3aafc4153112325ad0f6475cba2057626b6cc8"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0020.png",
+          "sha256": "86a05cd6425ef13142572d1fc20e4bf47b1477c8ac712cc82d5b1f4a24d58e3a",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0020.png",
+            "sha256": "c168100e445b802405c8476d5e9599fc96750fa7bc48ee4aa8afafc1871d79b3",
+            "pixels": 855471
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0020.png",
+            "sha256": "7b54223b440d2ccd71925775c34a3ba1ce17f3f4a94d24c9ed43b3013c1b5839",
+            "pixels": 495
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0020.png",
+            "sha256": "cba2f46a16d20b39325209f721bc560202a85edcb1e08a45c207aae8a566ce68",
+            "pixels": 65634
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0020.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0020.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 66129,
+        "measured_donor_pixels": 495,
+        "downstream_object_render_pixels": 65634,
+        "structural_background_pixels": 0,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 855471
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 21,
+      "frame_id": "000069",
+      "inputs": {
+        "source_rgb_sha256": "4e1d55415e41973e6db2c0f1827131f9489f6174e3a610e506fb19b75b895b3b",
+        "cumulative_removal_mask_sha256": "f1fcef135f04fafea0c6afab3881f12c42f16c2eb7ecac57f1282435f9d0fd00",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "3953695909115a476b09b157a37babf0bc7352dae56b323becfd64b6ae025e35",
+        "donor_measured_mask_sha256": "22f07cbc51380d894e600327404d1fb83f78605339c164471426374c49f8f51e",
+        "donor_measured_depth_sha256": "bf9bea9ff2bf7e83ede15b480d652884ad001ffa6b1c1aa9d6e59047ac5bef03",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 64236,
+            "rgba_sha256": "e20f60f79107a1f60c37f7bee23a910700f53c0ae940179d6ac1e95b005a968d",
+            "depth_sha256": "03fcd71807a758a4fcb717abe906807e09d4813909eec4a6cf1903f47ed2fb5b",
+            "receipt_sha256": "4e18aa31a374de6d898c5ea2a79458fc49d25541c21d064221c13939596e7330"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "cf845b7e55ad7c364232bc2cdfbe8c47660a555421f2ae7de57ecc0a1a6c6f27",
+          "depth_sha256": "4bc9f78220fe80e76aef60d7aba94731d825909dea0577ae83fe74473eee6780",
+          "receipt_sha256": "366125e5bb7ecdbde7b69591cb85847b0476d333dbc4b9d458c7cb217d86d7ce",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 64236
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0021.png",
+          "sha256": "318fa5c4102d5b71199245e37f89479981d840b6612be612c6b60cbc82e892b6"
+        },
+        "composite_depth": {
+          "path": "depth/0021.npy",
+          "sha256": "2ca7fc3450cf7541339f7d1d14c32f7204c2c8f60b1c805332c54f9cc4ecd5d2",
+          "valid_pixels": 64912,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0021.png",
+          "sha256": "331f6cce7ccd0df843520cc190725d11341732de61bdb37b174d063694324ab5"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0021.png",
+          "sha256": "c542a65306d6c3d8b8458b4ed51929ec30b43a088f4efd98eaa4acfbec174168",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0021.png",
+            "sha256": "165b44e0c73c14679c80c890577063006f892c4979b0b8abe7aeebb97d244486",
+            "pixels": 856688
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0021.png",
+            "sha256": "22f07cbc51380d894e600327404d1fb83f78605339c164471426374c49f8f51e",
+            "pixels": 676
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0021.png",
+            "sha256": "e9084980f3dbe18cde62e260f4b3c2c6d61526aedb41e94bc6d6fca20bb8329e",
+            "pixels": 64236
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0021.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0021.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 64912,
+        "measured_donor_pixels": 676,
+        "downstream_object_render_pixels": 64236,
+        "structural_background_pixels": 0,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 856688
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 22,
+      "frame_id": "000070",
+      "inputs": {
+        "source_rgb_sha256": "0f2671f9a4ca48bc60004939adf8861e8c723f182dbf949b4e03acc45ecef970",
+        "cumulative_removal_mask_sha256": "077a07853a4f9126fd30fa181dc1c7644d24de0d71fd6f2d7157c565c512a223",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "695ed318152c7814c07ac94f4bdbf3af473b0ed0c40901b16b67e84f34e8101b",
+        "donor_measured_mask_sha256": "fa4c387ea403c34204550aa569e4bf90b336c4b286ead7ff323d8ac0481202a9",
+        "donor_measured_depth_sha256": "08dababee265ebce63aba8ba81f231f5518fe70ab7a742004860c0e31a9b5873",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 63113,
+            "rgba_sha256": "6da5121ff9ff71fa617940e57044ee6dccae2e4fabe93140911038ff3909afa1",
+            "depth_sha256": "76d2170074a605256062c794c469e2994eb39859bf8b629c6517d784f05599e7",
+            "receipt_sha256": "8af0a15eeb79f7637cda57b272f2096061d54a6146870e1f63c4a24f602146ba"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "81029cd6a960d2bf00e48b1bf153a56bb36bb7df3b934d7729c755e897c57599",
+          "depth_sha256": "6564a6a55f1069a1b92bcd5c1cbc9075a312d69780062c70621782179509f341",
+          "receipt_sha256": "434063cc9bb9fabcf91633b910b7e98dce25deeefb1759f1c959c56afff11425",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 63113
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0022.png",
+          "sha256": "53ee89edca809454c0f5670b8f1cfe1994afe6394aaf7d2d3175d71d58682865"
+        },
+        "composite_depth": {
+          "path": "depth/0022.npy",
+          "sha256": "4801aa5a6c5c192b531b4ada36a49f25ce924d0a8fe8ac9927b52c6362f7949e",
+          "valid_pixels": 64096,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0022.png",
+          "sha256": "87d7bcbcbad93f5abbda259431da874799369b9c3e830ef05417b5e6b44c4198"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0022.png",
+          "sha256": "12df600ef444a80b4e38769e29e0eef04a24ebd6589be0c7c7c5c2e3378d9498",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0022.png",
+            "sha256": "84b0d63b3ef67421d6e7a2eac65ed48a585edcbefc5c6bcd1cf66de65ce36279",
+            "pixels": 857504
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0022.png",
+            "sha256": "fa4c387ea403c34204550aa569e4bf90b336c4b286ead7ff323d8ac0481202a9",
+            "pixels": 983
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0022.png",
+            "sha256": "24ef885aa2ce7c2a260ad94e87a080c508e5e79056f249fda9729a7505416df5",
+            "pixels": 63113
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0022.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0022.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 64096,
+        "measured_donor_pixels": 983,
+        "downstream_object_render_pixels": 63113,
+        "structural_background_pixels": 0,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 857504
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 23,
+      "frame_id": "000071",
+      "inputs": {
+        "source_rgb_sha256": "90034202712fbca082f9474cccd5c9758aec77a3f5e86a5ec38856013c5012ed",
+        "cumulative_removal_mask_sha256": "d2a3632cf970be70053d92f9249839b5c06d1a19910837bf4227162ecb93a664",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "1a10a07db150d80c0aff8231a41bd951c942589ca2e17dff71e30aaa83fab43e",
+        "donor_measured_mask_sha256": "bcb2cd4b4a5d0751869ef70a7644afc5bfcfd2d18ebaf0f51aab64f7aedb7d96",
+        "donor_measured_depth_sha256": "be36fe26af6e34c473fe366cbc4eacd667b2dcc67a121785332b9c547c81fb49",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 62643,
+            "rgba_sha256": "8c54fe8dbd24da45f1dd4c1db7ca0a56da193acaecbe523b32a135c4da4db6a7",
+            "depth_sha256": "9ec74480148a5ba32b1ce9974a8d8b4077c7303990776e1a06e505d8b898ad52",
+            "receipt_sha256": "ef0882832a4654e8115f6cb03e399f6ae3ad18b8718bade3b6ec7fe3ee9227cb"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "94f46e0ff2957cc5930d1560a4ca50eb2710dee7b863953e98eff372ac331b65",
+          "depth_sha256": "6b345721294835c46e4c48e3542451adcd3408886502e47894fa57deed98f8fc",
+          "receipt_sha256": "fe37b2f7da431d4ac9ccd885cbdac1b24b8a5cefa0abc74fc2cdbcce45298e81",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 62678
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0023.png",
+          "sha256": "6116993823ca7d9de391c47b21f6b9eb2615e0b2db6858619d4dc675bfa80484"
+        },
+        "composite_depth": {
+          "path": "depth/0023.npy",
+          "sha256": "ae9d316575c5f04cd48f06cc34af7c3b3f0364d6903b04c32ca5de07768503b4",
+          "valid_pixels": 63958,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0023.png",
+          "sha256": "b647c641335e62440ee5bd819829ce1e9d669cae179ac63d877b86526a65c9f0"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0023.png",
+          "sha256": "d798e2aa794429af2dd88c518e07cacce3a4724f167a109dd1f7615da3af31e9",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0023.png",
+            "sha256": "893fca1e128d0c07e5dff0ea68d2050d90850de83d333f1a372eff982deca760",
+            "pixels": 857642
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0023.png",
+            "sha256": "bcb2cd4b4a5d0751869ef70a7644afc5bfcfd2d18ebaf0f51aab64f7aedb7d96",
+            "pixels": 1280
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0023.png",
+            "sha256": "fa556d248c2cd8590e4793d1c1a7614e30fbfaa860d3dcce771ff6d126526dc7",
+            "pixels": 62643
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0023.png",
+            "sha256": "9b2f3a477b4aaf9ac8adb982d71bf9908c1bcf15a9cf3a4826560cbf85fc62ff",
+            "pixels": 35
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0023.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 63958,
+        "measured_donor_pixels": 1280,
+        "downstream_object_render_pixels": 62643,
+        "structural_background_pixels": 35,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 857642
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 24,
+      "frame_id": "000072",
+      "inputs": {
+        "source_rgb_sha256": "bfa4177fa8071c4f63cac7b5b93e93ebe6f9a9403d080e70d6a7df4e88e8ab99",
+        "cumulative_removal_mask_sha256": "cc7c7e4123ccef5e2cef363dcf0d3800fbd6de74d73dbc63d8ca2a290ceaeb2d",
+        "measured_donor_contract_role": "calibrated_rgbd_donor_prefill",
+        "claims_original_observed_rgb_donor": true,
+        "donor_prefill_rgb_sha256": "40a1cf4a5d77a9e3f770f33ff0a1ea2bee8fa7c2c137fcbe74d517f704c7da26",
+        "donor_measured_mask_sha256": "51741a45c57123cbd364da592533ea4fbfc2f468083dd28f1ca5d8694c4ff9c0",
+        "donor_measured_depth_sha256": "9bd20fe9f1463c9903afd6e88a38cc28453cdfc239570a665d59a4d5468c3727",
+        "downstream_layers": [
+          {
+            "layer_id": "sam3_bed_01",
+            "depth_order": 0,
+            "candidate_pixels": 61844,
+            "rgba_sha256": "88c3989ac73b6435597144fef213ca63ce98e2aa9b7749a8c67d1bba8c82257a",
+            "depth_sha256": "2dfd48336ce6010ecb7ac6061dcae135b175061cb08d1aac5b8c923b9ff6216e",
+            "receipt_sha256": "30a7002568cef78307d5d65453ab6ae6493660704d3f0a7986c5f2f6d362d3fe"
+          }
+        ],
+        "structural_background": {
+          "rgba_sha256": "29d8584e0dfbbdc03616b40e987a2f76e54d8aa726226b2a3ff8d9b7498676a1",
+          "depth_sha256": "2b09ae45f4ee5e9d62fd30af941a29b71974188f51aeac077e71985656b907c4",
+          "receipt_sha256": "04c9d193d1582564f135400242be6d80d20dad4fb41f0726b057e9adcc0d3c97",
+          "accepted_texture_report_sha256": null,
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": null,
+          "candidate_pixels": 61893
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0024.png",
+          "sha256": "7849f2a3c93c97691d4d5d3e0525b4ff9e248cf6114352782e17f6a1842f5d92"
+        },
+        "composite_depth": {
+          "path": "depth/0024.npy",
+          "sha256": "7c6da13fcfd7667a8b7ff99e40d6cdc09367c1aacd3c57e20b4874dcd98ab3af",
+          "valid_pixels": 63630,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0024.png",
+          "sha256": "0e106395563ef860a6afc2edfc61a8f4f0b9406db0cfbb88910175ca910fa81a"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0024.png",
+          "sha256": "b8424b0c8b17c5ba339a65bac2533ca720638e787abe424ce8215d3266234068",
+          "mapping": {
+            "1": "sam3_bed_01"
+          }
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0024.png",
+            "sha256": "e7ac06294a86a58f432876d964bfa499cc3b97156daaa27177af0c5d7ac56929",
+            "pixels": 857970
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0024.png",
+            "sha256": "51741a45c57123cbd364da592533ea4fbfc2f468083dd28f1ca5d8694c4ff9c0",
+            "pixels": 1737
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0024.png",
+            "sha256": "85b97eabc83ceb7ec97b8f1594514839b3f5b009d40133e754e99a1c05248560",
+            "pixels": 61844
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0024.png",
+            "sha256": "1a8f5728db8f1d5ffc5fc86c0799d1f28ad591670ec6246797766907e8d351a1",
+            "pixels": 49
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0024.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 63630,
+        "measured_donor_pixels": 1737,
+        "downstream_object_render_pixels": 61844,
+        "structural_background_pixels": 49,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 857970
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_match_donor_report": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    }
+  ],
+  "aggregate_counts": {
+    "removal_pixels": 1636824,
+    "measured_donor_pixels": 12443,
+    "downstream_object_render_pixels": 1622757,
+    "structural_background_pixels": 1624,
+    "unresolved_pixels": 0,
+    "outside_source_pixels": 21403176
+  },
+  "output_frame_set_sha256": "e2230aa445ad049246b39049a92b53145547146d9cf1bfa05b6a43c136bd0f19",
+  "gates": {
+    "outside_removal_mask_rgb_exact": true,
+    "removal_provenance_partition_exact": true,
+    "render_composite_only_inside_measured_residual": true,
+    "generated_or_propainter_claimed_as_measured": false,
+    "original_measured_donor_claimed_without_evidence": false,
+    "no_measured_donor_evidence_has_zero_measured_pixels": true,
+    "final_background_entire_removal_is_structural": true,
+    "previous_round_output_hash_bound": true,
+    "limited_acceptance_scope_and_failures_propagated": true
+  },
+  "promotion_approved": false,
+  "promotion_blockers": [
+    "visual and cross-view consistency review is required",
+    "depth and normal estimation must be rerun after final RGB acceptance"
+  ],
+  "output_receipt": "layered_composite_receipt.json"
+}

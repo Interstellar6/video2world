@@ -1,0 +1,3908 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-17T03:55:50.852495+00:00",
+  "purpose": "TSDF-fitted structural-plane completion after front-to-back object peeling",
+  "status": "geometry_completed_texture_pending",
+  "promotion_approved": false,
+  "promotion_blocker": "generative texture and cross-view RGB review remain required; geometry success alone cannot promote a final clean plate",
+  "input_manifest": "/private/tmp/video2world-planar-background/upstream-prefill/multiview_prefill_report.json",
+  "input_manifest_sha256": "8c68f7e2fec8958b8b73f149a8a0fc2485eacc0e2f2c8e9388712ddc90222538",
+  "upstream_multiview_prefill": {
+    "path": "/private/tmp/video2world-planar-background/upstream-prefill/multiview_prefill_report.json",
+    "sha256": "8c68f7e2fec8958b8b73f149a8a0fc2485eacc0e2f2c8e9388712ddc90222538",
+    "schema_version": 1,
+    "status": "technical_passed",
+    "purpose": "calibrated multi-view donor prefill before residual video inpainting",
+    "gates": {
+      "outside_removal_mask_rgb_exact": true,
+      "all_residual_masks_subset_of_removal_masks": true
+    },
+    "frame_count": 25,
+    "coverage_fraction": {
+      "minimum": 0.01240674535155166,
+      "mean": 0.1703154320424864,
+      "median": 0.16909518472121493,
+      "maximum": 0.3268723423014059
+    },
+    "lineage_role": "measured multi-view donor prefill; planar completion consumes only its residual masks"
+  },
+  "camera_info": "/private/tmp/video2world-planar-background/camera_info.json",
+  "camera_info_sha256": "2901497f144c7378961ad6116a48474dfec475acd35a7a80258db18d36b87568",
+  "camera_extrinsic_type": "world_to_camera",
+  "tsdf_mesh": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/mesh/tsdf_fusion_post.ply",
+  "tsdf_mesh_sha256": "1cd9faf084a51f3959cd19dfc3ef05fb2dba9d6e1cdca944bfbeba6c33a1859d",
+  "mesh_sample": {
+    "vertices": 694773,
+    "faces_loaded": 350000,
+    "valid_faces": 349995,
+    "maximum_sampled_faces": 350000
+  },
+  "structure_anchors": [
+    {
+      "role": "ceiling",
+      "path": "/private/tmp/video2world-planar-background/structure-anchors/sam3_structure_ceiling.ply",
+      "sha256": "46e6e08460e4b3317e21529a78651e6dc0dbc3a8b699427702bd719e44781a0d",
+      "point_count": 3294,
+      "sampled_point_count": 3294,
+      "bounds": [
+        [
+          0.20571300387382507,
+          -11.782329559326172,
+          17.417604446411133
+        ],
+        [
+          10.153606414794922,
+          -11.039475440979004,
+          23.223434448242188
+        ]
+      ]
+    },
+    {
+      "role": "floor",
+      "path": "/private/tmp/video2world-planar-background/structure-anchors/sam3_structure_floor.ply",
+      "sha256": "a213f7edcc72d1b4996107580bb3168db53ce5f895e6f62d97d9c4d50fc2e27b",
+      "point_count": 264937,
+      "sampled_point_count": 250000,
+      "bounds": [
+        [
+          -12.500296592712402,
+          1.07122004032135,
+          -1.852552056312561
+        ],
+        [
+          16.524150848388672,
+          6.879249095916748,
+          17.29448699951172
+        ]
+      ]
+    },
+    {
+      "role": "wall",
+      "path": "/private/tmp/video2world-planar-background/structure-anchors/sam3_structure_wall.ply",
+      "sha256": "5551938e04f745fed60b38655cc735c6643138b4cd829f5d781c2f9524eb1f5e",
+      "point_count": 1379152,
+      "sampled_point_count": 250000,
+      "bounds": [
+        [
+          -13.153778076171875,
+          -11.682619094848633,
+          -3.0680010318756104
+        ],
+        [
+          16.864242553710938,
+          6.133353233337402,
+          24.78901481628418
+        ]
+      ]
+    }
+  ],
+  "structure_anchor_axis_diagnostics": {
+    "ceiling": {
+      "projection_spans": [
+        7.407953115300792,
+        6.013468972175975,
+        0.19626354588791983
+      ],
+      "planar_anchor": true,
+      "compatible_axis_indices": [
+        2
+      ]
+    },
+    "floor": {
+      "projection_spans": [
+        22.594995713817656,
+        21.21296060430351,
+        3.2923526701311534
+      ],
+      "planar_anchor": true,
+      "compatible_axis_indices": [
+        2
+      ]
+    },
+    "wall": {
+      "projection_spans": [
+        24.547951966733237,
+        20.45468342811914,
+        15.441253849521484
+      ],
+      "planar_anchor": false,
+      "compatible_axis_indices": [
+        0,
+        1,
+        2
+      ]
+    }
+  },
+  "structure_anchor_mode": "preferred",
+  "manhattan_axes": [
+    [
+      0.9043383843619952,
+      -0.045070987294607574,
+      0.4244298442308516
+    ],
+    [
+      -0.4267981475025681,
+      -0.10464355833358682,
+      0.8982722677382736
+    ],
+    [
+      0.003927831196956217,
+      -0.9934879625861472,
+      -0.11386940036073612
+    ]
+  ],
+  "manhattan_diagnostics": {
+    "bucket_candidate_count": 38,
+    "top_bucket_weights": [
+      15.617432689533466,
+      15.51155731110702,
+      13.002276340461458,
+      0.38577182198480336,
+      0.27055332059328785,
+      0.25605291442670824,
+      0.2428685269933417,
+      0.19473760177849392,
+      0.1558267494710042,
+      0.15297618137917626
+    ],
+    "axis_support_area": [
+      98.79509753951609,
+      52.872382998018054,
+      73.70508046564719
+    ],
+    "maximum_axis_dot_error": 7.771561172376096e-16
+  },
+  "plane_candidates": [
+    [
+      {
+        "offset": -5.727518222167368,
+        "support_area": 35.91358369342767,
+        "inlier_faces": 39558,
+        "rms_residual": 0.0652030360595896,
+        "bounds_uv": [
+          5.153607729032599,
+          18.74183978080309,
+          -6.637643314066406,
+          6.756735936772762
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 38373,
+            "fraction": 0.153492,
+            "axis_compatible": true,
+            "median_abs_residual": 0.07240626403059736
+          }
+        },
+        "anchor_score": 0.153492
+      },
+      {
+        "offset": -4.381848451423569,
+        "support_area": 0.010247971175000963,
+        "inlier_faces": 10,
+        "rms_residual": 0.03938728454941068,
+        "bounds_uv": [
+          16.055481290334644,
+          16.852213227581295,
+          -6.771388416364022,
+          -5.650650181485155
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 6426,
+            "fraction": 0.025704,
+            "axis_compatible": true,
+            "median_abs_residual": 0.16806504828292512
+          }
+        },
+        "anchor_score": 0.025704
+      },
+      {
+        "offset": -3.6089741289089687,
+        "support_area": 0.14016293451179224,
+        "inlier_faces": 144,
+        "rms_residual": 0.02976437026383997,
+        "bounds_uv": [
+          15.30124999551279,
+          18.593313410746646,
+          -6.702428817838812,
+          -3.8185305319802048
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 7381,
+            "fraction": 0.029524,
+            "axis_compatible": true,
+            "median_abs_residual": 0.18244380946034955
+          }
+        },
+        "anchor_score": 0.029524
+      },
+      {
+        "offset": -3.1455200196516166,
+        "support_area": 0.011730053962856236,
+        "inlier_faces": 9,
+        "rms_residual": 0.009991673533768789,
+        "bounds_uv": [
+          16.967346692757822,
+          18.57461507187046,
+          -2.746791459717514,
+          -2.443256701203795
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 9129,
+            "fraction": 0.036516,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17465792381746859
+          }
+        },
+        "anchor_score": 0.036516
+      },
+      {
+        "offset": -2.4874147619310163,
+        "support_area": 0.06187278794679844,
+        "inlier_faces": 63,
+        "rms_residual": 0.0566010996325163,
+        "bounds_uv": [
+          16.71825334102978,
+          18.498982435937585,
+          -2.76831767082143,
+          -0.3042464877061373
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 10279,
+            "fraction": 0.041116,
+            "axis_compatible": true,
+            "median_abs_residual": 0.16866599203562682
+          }
+        },
+        "anchor_score": 0.041116
+      },
+      {
+        "offset": -1.1618017376037093,
+        "support_area": 0.041078748507191835,
+        "inlier_faces": 37,
+        "rms_residual": 0.08125946008515757,
+        "bounds_uv": [
+          17.701469569343605,
+          18.74349526084205,
+          -2.460528142439239,
+          -0.2866402952773892
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 10192,
+            "fraction": 0.040768,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17200064828454042
+          }
+        },
+        "anchor_score": 0.040768
+      },
+      {
+        "offset": 0.13260547203178819,
+        "support_area": 2.2446729351546946,
+        "inlier_faces": 2282,
+        "rms_residual": 0.06466969022263198,
+        "bounds_uv": [
+          4.905554987474364,
+          18.67125169961629,
+          -6.842777171583493,
+          1.679191402034369
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 8733,
+            "fraction": 0.034932,
+            "axis_compatible": true,
+            "median_abs_residual": 0.1800610214529974
+          }
+        },
+        "anchor_score": 0.034932
+      },
+      {
+        "offset": 1.4610440244407963,
+        "support_area": 1.1610985999759005,
+        "inlier_faces": 1247,
+        "rms_residual": 0.035245928323663654,
+        "bounds_uv": [
+          14.606033976327842,
+          17.76783140805791,
+          -2.377203213372264,
+          0.24184794400243914
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 4187,
+            "fraction": 0.016748,
+            "axis_compatible": true,
+            "median_abs_residual": 0.1551760800670916
+          }
+        },
+        "anchor_score": 0.016748
+      },
+      {
+        "offset": 2.0813236944889746,
+        "support_area": 0.011338769201891164,
+        "inlier_faces": 12,
+        "rms_residual": 0.025631338934877148,
+        "bounds_uv": [
+          3.6424582944665342,
+          17.38343720269443,
+          -4.063207849759808,
+          -0.0671709629031675
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 1713,
+            "fraction": 0.006852,
+            "axis_compatible": true,
+            "median_abs_residual": 0.16893466780406508
+          }
+        },
+        "anchor_score": 0.006852
+      },
+      {
+        "offset": 10.576752921408469,
+        "support_area": 0.012895008691389055,
+        "inlier_faces": 14,
+        "rms_residual": 0.00801112895100608,
+        "bounds_uv": [
+          17.971922143122175,
+          18.28903934500477,
+          1.4779713884574273,
+          1.6826602263530324
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 3721,
+            "fraction": 0.014884,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17373905687680669
+          }
+        },
+        "anchor_score": 0.014884
+      },
+      {
+        "offset": 12.13285538426021,
+        "support_area": 0.017964163344592908,
+        "inlier_faces": 19,
+        "rms_residual": 0.08860291629894394,
+        "bounds_uv": [
+          16.951395536197733,
+          17.30188195402458,
+          -2.6356627360896523,
+          -0.6668272965130816
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 4128,
+            "fraction": 0.016512,
+            "axis_compatible": true,
+            "median_abs_residual": 0.18367885703218523
+          }
+        },
+        "anchor_score": 0.016512
+      },
+      {
+        "offset": 12.805867883999204,
+        "support_area": 0.013675425957876278,
+        "inlier_faces": 18,
+        "rms_residual": 0.09313512363984716,
+        "bounds_uv": [
+          18.692746016133608,
+          18.965628980773722,
+          -2.5594808446237862,
+          -0.7049694667717813
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 5137,
+            "fraction": 0.020548,
+            "axis_compatible": true,
+            "median_abs_residual": 0.16693955210751632
+          }
+        },
+        "anchor_score": 0.020548
+      },
+      {
+        "offset": 13.679798002877586,
+        "support_area": 0.02119729026269075,
+        "inlier_faces": 24,
+        "rms_residual": 0.03359062154119462,
+        "bounds_uv": [
+          15.651119464544458,
+          16.610323589077506,
+          -2.343329059990665,
+          10.165670244055537
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 4060,
+            "fraction": 0.01624,
+            "axis_compatible": true,
+            "median_abs_residual": 0.1786592156583815
+          }
+        },
+        "anchor_score": 0.01624
+      },
+      {
+        "offset": 15.298928024283384,
+        "support_area": 0.027796576824742923,
+        "inlier_faces": 37,
+        "rms_residual": 0.04318672586174342,
+        "bounds_uv": [
+          14.911116165067465,
+          15.075034210578774,
+          -5.105801962993025,
+          -3.7392135012149175
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 4372,
+            "fraction": 0.017488,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17265418298966217
+          }
+        },
+        "anchor_score": 0.017488
+      },
+      {
+        "offset": 17.471745528369595,
+        "support_area": 28.70096029151233,
+        "inlier_faces": 31905,
+        "rms_residual": 0.06730485646620499,
+        "bounds_uv": [
+          -2.427890851651226,
+          16.21194402800646,
+          -6.660207316021737,
+          9.168871150912388
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 66392,
+            "fraction": 0.265568,
+            "axis_compatible": true,
+            "median_abs_residual": 0.0718936469607776
+          }
+        },
+        "anchor_score": 0.265568
+      },
+      {
+        "offset": 18.651277547330004,
+        "support_area": 0.00509877206463702,
+        "inlier_faces": 7,
+        "rms_residual": 0.02916577805792259,
+        "bounds_uv": [
+          -1.3307811642570115,
+          1.4266605633916545,
+          5.808716585382019,
+          6.4025832098216
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          }
+        },
+        "anchor_score": 0.0
+      }
+    ],
+    [
+      {
+        "offset": -2.38587980786248,
+        "support_area": 6.570418362755432e-05,
+        "inlier_faces": 1,
+        "rms_residual": 0.0,
+        "bounds_uv": [
+          16.84589753709411,
+          16.84589753709411,
+          -6.757012510170193,
+          -6.757012510170193
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 79,
+            "fraction": 0.000316,
+            "axis_compatible": true,
+            "median_abs_residual": 0.24641428507032703
+          }
+        },
+        "anchor_score": 0.000316
+      },
+      {
+        "offset": 3.0367921386655228,
+        "support_area": 0.0027635009516691006,
+        "inlier_faces": 2,
+        "rms_residual": 0.01142558931076711,
+        "bounds_uv": [
+          10.953590758831677,
+          11.019274233396171,
+          -4.549325242874002,
+          -4.500498463988403
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 1188,
+            "fraction": 0.004752,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17569516102705363
+          }
+        },
+        "anchor_score": 0.004752
+      },
+      {
+        "offset": 4.217609959389151,
+        "support_area": 1.5182636949787416,
+        "inlier_faces": 1718,
+        "rms_residual": 0.07569169627581836,
+        "bounds_uv": [
+          1.325688885557289,
+          10.968571891069713,
+          -6.839757388462857,
+          -2.691137444011516
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 2617,
+            "fraction": 0.010468,
+            "axis_compatible": true,
+            "median_abs_residual": 0.20605116295582793
+          }
+        },
+        "anchor_score": 0.010468
+      },
+      {
+        "offset": 5.488236209493056,
+        "support_area": 0.006716004964492555,
+        "inlier_faces": 5,
+        "rms_residual": 0.06344241288239662,
+        "bounds_uv": [
+          14.390016055009026,
+          16.055132043513325,
+          -6.711636971147618,
+          -6.60394942293595
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 5512,
+            "fraction": 0.022048,
+            "axis_compatible": true,
+            "median_abs_residual": 0.18055321883982955
+          }
+        },
+        "anchor_score": 0.022048
+      },
+      {
+        "offset": 7.00611691251766,
+        "support_area": 0.001441065787439153,
+        "inlier_faces": 1,
+        "rms_residual": 0.0,
+        "bounds_uv": [
+          9.942857029278784,
+          9.942857029278784,
+          -2.5059314392882186,
+          -2.5059314392882186
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 7426,
+            "fraction": 0.029704,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17660740109295103
+          }
+        },
+        "anchor_score": 0.029704
+      },
+      {
+        "offset": 11.076682871278901,
+        "support_area": 0.008894510389814078,
+        "inlier_faces": 9,
+        "rms_residual": 0.006995254473388667,
+        "bounds_uv": [
+          17.682604332404438,
+          17.729840000461706,
+          3.0540262076056615,
+          3.6068109439207015
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 2755,
+            "fraction": 0.01102,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17830617019175676
+          }
+        },
+        "anchor_score": 0.01102
+      },
+      {
+        "offset": 12.714263049879673,
+        "support_area": 0.1928450553518683,
+        "inlier_faces": 218,
+        "rms_residual": 0.029323383348240233,
+        "bounds_uv": [
+          4.31811766486986,
+          6.334602077995789,
+          -2.69504702068661,
+          -1.7540733993924758
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 2829,
+            "fraction": 0.011316,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17661949680377376
+          }
+        },
+        "anchor_score": 0.011316
+      },
+      {
+        "offset": 13.588805058996085,
+        "support_area": 0.3992037822069169,
+        "inlier_faces": 458,
+        "rms_residual": 0.03824145128960557,
+        "bounds_uv": [
+          1.8659936186361332,
+          8.841587237917341,
+          -2.614978198421558,
+          -1.640626507658368
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 2957,
+            "fraction": 0.011828,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17977914318592347
+          }
+        },
+        "anchor_score": 0.011828
+      },
+      {
+        "offset": 15.04493461831832,
+        "support_area": 0.5129120494614279,
+        "inlier_faces": 617,
+        "rms_residual": 0.04354917534217979,
+        "bounds_uv": [
+          -3.834219346457242,
+          15.582199407154603,
+          -5.549381939243565,
+          -2.9444872742322463
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 2946,
+            "fraction": 0.011784,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17666179121218928
+          }
+        },
+        "anchor_score": 0.011784
+      },
+      {
+        "offset": 16.19719093223538,
+        "support_area": 0.041099916231439854,
+        "inlier_faces": 47,
+        "rms_residual": 0.03327463831949707,
+        "bounds_uv": [
+          -4.39965360437048,
+          17.26300849497581,
+          -6.540931430574709,
+          -1.7986931903925887
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 3023,
+            "fraction": 0.012092,
+            "axis_compatible": true,
+            "median_abs_residual": 0.18910544184138445
+          }
+        },
+        "anchor_score": 0.012092
+      },
+      {
+        "offset": 16.63485883756913,
+        "support_area": 0.05667013104701625,
+        "inlier_faces": 65,
+        "rms_residual": 0.06261080674997715,
+        "bounds_uv": [
+          -4.320426986640341,
+          13.007204057911975,
+          -5.941258296369257,
+          -0.865237005201536
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 3754,
+            "fraction": 0.015016,
+            "axis_compatible": true,
+            "median_abs_residual": 0.1338009645322611
+          }
+        },
+        "anchor_score": 0.015016
+      },
+      {
+        "offset": 17.16459087605682,
+        "support_area": 0.03671960119832041,
+        "inlier_faces": 45,
+        "rms_residual": 0.10294237978233517,
+        "bounds_uv": [
+          -3.0846072077780495,
+          11.404274286822723,
+          -2.8027921892200895,
+          -0.8126263639040363
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 2720,
+            "fraction": 0.01088,
+            "axis_compatible": true,
+            "median_abs_residual": 0.1845039549102232
+          }
+        },
+        "anchor_score": 0.01088
+      },
+      {
+        "offset": 18.04883730291546,
+        "support_area": 3.8368993025255724,
+        "inlier_faces": 4346,
+        "rms_residual": 0.03820711002405023,
+        "bounds_uv": [
+          0.9968494328375509,
+          10.354703072095857,
+          -1.5459126415443818,
+          2.6050986031254117
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 9154,
+            "fraction": 0.036616,
+            "axis_compatible": true,
+            "median_abs_residual": 0.1682486564682879
+          }
+        },
+        "anchor_score": 0.036616
+      },
+      {
+        "offset": 18.88324422783417,
+        "support_area": 38.658268303009045,
+        "inlier_faces": 44266,
+        "rms_residual": 0.09146496927851137,
+        "bounds_uv": [
+          -5.507554553861604,
+          17.001208449839467,
+          -6.5435072571456585,
+          8.935089147851981
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": false,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 130504,
+            "fraction": 0.522016,
+            "axis_compatible": true,
+            "median_abs_residual": 0.06344563648310775
+          }
+        },
+        "anchor_score": 0.522016
+      }
+    ],
+    [
+      {
+        "offset": -6.90165695126174,
+        "support_area": 42.86268715804685,
+        "inlier_faces": 39378,
+        "rms_residual": 0.039465395432344445,
+        "bounds_uv": [
+          -5.473737319509321,
+          17.286181500350825,
+          -2.4410944034466064,
+          18.627973608750338
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 247163,
+            "fraction": 0.988652,
+            "axis_compatible": true,
+            "median_abs_residual": 0.0325828298793569
+          },
+          "wall": {
+            "inliers": 1354,
+            "fraction": 0.005416,
+            "axis_compatible": true,
+            "median_abs_residual": 0.2148843058659593
+          }
+        },
+        "anchor_score": 0.994068
+      },
+      {
+        "offset": -5.9888901777911965,
+        "support_area": 0.003809543077174093,
+        "inlier_faces": 3,
+        "rms_residual": 0.006098588648857828,
+        "bounds_uv": [
+          17.150510629269128,
+          17.216686464161082,
+          12.522364463896498,
+          12.657339348116434
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 877,
+            "fraction": 0.003508,
+            "axis_compatible": true,
+            "median_abs_residual": 0.18731189291112216
+          },
+          "wall": {
+            "inliers": 7107,
+            "fraction": 0.028428,
+            "axis_compatible": true,
+            "median_abs_residual": 0.16380542407985565
+          }
+        },
+        "anchor_score": 0.031936
+      },
+      {
+        "offset": -5.574353331301285,
+        "support_area": 0.0007087787525947514,
+        "inlier_faces": 1,
+        "rms_residual": 0.0,
+        "bounds_uv": [
+          -3.7472917342833396,
+          -3.7472917342833396,
+          15.58255925872612,
+          15.58255925872612
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 589,
+            "fraction": 0.002356,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17713071740164565
+          },
+          "wall": {
+            "inliers": 9529,
+            "fraction": 0.038116,
+            "axis_compatible": true,
+            "median_abs_residual": 0.1747832491746122
+          }
+        },
+        "anchor_score": 0.040471999999999994
+      },
+      {
+        "offset": -4.791596270517771,
+        "support_area": 0.017759984637557322,
+        "inlier_faces": 14,
+        "rms_residual": 0.05209877876110343,
+        "bounds_uv": [
+          0.1102814428025068,
+          9.222389040162362,
+          3.2587688386790585,
+          11.08715186850516
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 336,
+            "fraction": 0.001344,
+            "axis_compatible": true,
+            "median_abs_residual": 0.19910057181659235
+          },
+          "wall": {
+            "inliers": 9951,
+            "fraction": 0.039804,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17802911040252756
+          }
+        },
+        "anchor_score": 0.041148
+      },
+      {
+        "offset": -3.644075462457667,
+        "support_area": 0.087108198344368,
+        "inlier_faces": 73,
+        "rms_residual": 0.06387261768112072,
+        "bounds_uv": [
+          -3.071206223582337,
+          15.578233058777837,
+          15.082965442382871,
+          15.89053331123279
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 298,
+            "fraction": 0.001192,
+            "axis_compatible": true,
+            "median_abs_residual": 0.1741106244021191
+          },
+          "wall": {
+            "inliers": 8529,
+            "fraction": 0.034116,
+            "axis_compatible": true,
+            "median_abs_residual": 0.1643667049121813
+          }
+        },
+        "anchor_score": 0.035308
+      },
+      {
+        "offset": -2.6460573760352357,
+        "support_area": 19.462529123635502,
+        "inlier_faces": 17734,
+        "rms_residual": 0.07478939289841623,
+        "bounds_uv": [
+          0.7155510318427184,
+          13.55018566076398,
+          4.51236480203917,
+          17.59263803692974
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 219,
+            "fraction": 0.000876,
+            "axis_compatible": true,
+            "median_abs_residual": 0.145866050604464
+          },
+          "wall": {
+            "inliers": 12879,
+            "fraction": 0.051516,
+            "axis_compatible": true,
+            "median_abs_residual": 0.16067823280054627
+          }
+        },
+        "anchor_score": 0.052392
+      },
+      {
+        "offset": -1.4621322725341062,
+        "support_area": 0.2145951304911072,
+        "inlier_faces": 185,
+        "rms_residual": 0.04268214476540876,
+        "bounds_uv": [
+          -2.917560101515009,
+          14.508236144746931,
+          16.493088046701505,
+          18.565502219330703
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 1,
+            "fraction": 4e-06,
+            "axis_compatible": true,
+            "median_abs_residual": 0.23222317463256936
+          },
+          "wall": {
+            "inliers": 14197,
+            "fraction": 0.056788,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17599860188286587
+          }
+        },
+        "anchor_score": 0.056791999999999995
+      },
+      {
+        "offset": 0.25105538460893095,
+        "support_area": 0.9400998211949804,
+        "inlier_faces": 793,
+        "rms_residual": 0.09154044575750377,
+        "bounds_uv": [
+          1.9302573230211975,
+          9.03641143391824,
+          15.041359406270233,
+          18.006698436643784
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 12871,
+            "fraction": 0.051484,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17410226031464116
+          }
+        },
+        "anchor_score": 0.051484
+      },
+      {
+        "offset": 1.3931413237459715,
+        "support_area": 0.07070324325243851,
+        "inlier_faces": 58,
+        "rms_residual": 0.05606597507472806,
+        "bounds_uv": [
+          1.0402491267242902,
+          10.551105114508292,
+          18.155701340983295,
+          18.685058994497414
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 13669,
+            "fraction": 0.054676,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17815498683838693
+          }
+        },
+        "anchor_score": 0.054676
+      },
+      {
+        "offset": 1.868158689581874,
+        "support_area": 0.13821347305064735,
+        "inlier_faces": 112,
+        "rms_residual": 0.031366095448352616,
+        "bounds_uv": [
+          0.0830539800597245,
+          11.835986251109945,
+          17.95714428717062,
+          18.8548551414234
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 15863,
+            "fraction": 0.063452,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17506147730752986
+          }
+        },
+        "anchor_score": 0.063452
+      },
+      {
+        "offset": 2.779221099478759,
+        "support_area": 0.08961396545207809,
+        "inlier_faces": 73,
+        "rms_residual": 0.04805115590295554,
+        "bounds_uv": [
+          4.6362750556555365,
+          7.178570150298277,
+          18.26902425168451,
+          18.740865690422602
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 19813,
+            "fraction": 0.079252,
+            "axis_compatible": true,
+            "median_abs_residual": 0.17461291191873007
+          }
+        },
+        "anchor_score": 0.079252
+      },
+      {
+        "offset": 9.030488881507814,
+        "support_area": 3.1552085901635962,
+        "inlier_faces": 2871,
+        "rms_residual": 0.0317337938088541,
+        "bounds_uv": [
+          11.836832129286515,
+          17.177623035902876,
+          14.381571673106226,
+          18.87869766387767
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 3294,
+            "fraction": 1.0,
+            "axis_compatible": true,
+            "median_abs_residual": 0.048181426852447196
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 595,
+            "fraction": 0.00238,
+            "axis_compatible": true,
+            "median_abs_residual": 0.21523523619975649
+          }
+        },
+        "anchor_score": 1.00238
+      },
+      {
+        "offset": 10.094611553598547,
+        "support_area": 0.002901148580445944,
+        "inlier_faces": 3,
+        "rms_residual": 0.02464945505922517,
+        "bounds_uv": [
+          12.319772561781539,
+          12.713800757888796,
+          18.26940191810949,
+          18.761508931072594
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          }
+        },
+        "anchor_score": 0.0
+      },
+      {
+        "offset": 10.763664962949314,
+        "support_area": 0.0012893497899899818,
+        "inlier_faces": 1,
+        "rms_residual": 0.0,
+        "bounds_uv": [
+          13.946486219503033,
+          13.946486219503033,
+          18.774575415870054,
+          18.774575415870054
+        ],
+        "anchor_support": {
+          "ceiling": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "floor": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          },
+          "wall": {
+            "inliers": 0,
+            "fraction": 0.0,
+            "axis_compatible": true,
+            "median_abs_residual": null
+          }
+        },
+        "anchor_score": 0.0
+      }
+    ]
+  ],
+  "selected_envelope_planes": [
+    {
+      "plane_id": 1,
+      "axis_index": 0,
+      "side": "negative",
+      "semantic_role": "wall",
+      "normal": [
+        0.9043383843619952,
+        -0.045070987294607574,
+        0.4244298442308516
+      ],
+      "offset": -5.724607997587319,
+      "equation": "normal dot world_xyz = offset",
+      "basis_u": [
+        -0.4267981475025681,
+        -0.10464355833358682,
+        0.8982722677382736
+      ],
+      "basis_v": [
+        0.003927831196956217,
+        -0.9934879625861472,
+        -0.11386940036073612
+      ],
+      "bounds_uv": [
+        -0.7250850522862792,
+        19.544705450718805,
+        -7.389113372664743,
+        7.356735936772762
+      ],
+      "support_area_sampled": 35.91358369342767,
+      "inlier_faces_sampled": 39558,
+      "rms_plane_residual": 0.0652030360595896,
+      "tsdf_candidate_offset": -5.727518222167368,
+      "anchor_role": "wall",
+      "anchor_inliers_sampled": 38373,
+      "anchor_fraction_sampled": 0.153492,
+      "anchor_offset_correction": 0.002910224580048748
+    },
+    {
+      "plane_id": 2,
+      "axis_index": 0,
+      "side": "positive",
+      "semantic_role": "wall",
+      "normal": [
+        0.9043383843619952,
+        -0.045070987294607574,
+        0.4244298442308516
+      ],
+      "offset": 17.420028554008777,
+      "equation": "normal dot world_xyz = offset",
+      "basis_u": [
+        -0.4267981475025681,
+        -0.10464355833358682,
+        0.8982722677382736
+      ],
+      "basis_v": [
+        0.003927831196956217,
+        -0.9934879625861472,
+        -0.11386940036073612
+      ],
+      "bounds_uv": [
+        -3.027890851651226,
+        19.617938510293882,
+        -7.260207316021737,
+        9.768871150912387
+      ],
+      "support_area_sampled": 28.70096029151233,
+      "inlier_faces_sampled": 31905,
+      "rms_plane_residual": 0.06730485646620499,
+      "tsdf_candidate_offset": 17.471745528369595,
+      "anchor_role": "wall",
+      "anchor_inliers_sampled": 66392,
+      "anchor_fraction_sampled": 0.265568,
+      "anchor_offset_correction": -0.05171697436081857
+    },
+    {
+      "plane_id": 3,
+      "axis_index": 1,
+      "side": "positive",
+      "semantic_role": "wall",
+      "normal": [
+        -0.4267981475025681,
+        -0.10464355833358682,
+        0.8982722677382736
+      ],
+      "offset": 18.881917311062683,
+      "equation": "normal dot world_xyz = offset",
+      "basis_u": [
+        0.9043383843619952,
+        -0.045070987294607574,
+        0.4244298442308516
+      ],
+      "basis_v": [
+        0.003927831196956217,
+        -0.9934879625861472,
+        -0.11386940036073612
+      ],
+      "bounds_uv": [
+        -6.2095571828683624,
+        17.883714578548595,
+        -7.329115097699322,
+        9.53508914785198
+      ],
+      "support_area_sampled": 38.658268303009045,
+      "inlier_faces_sampled": 44266,
+      "rms_plane_residual": 0.09146496927851137,
+      "tsdf_candidate_offset": 18.88324422783417,
+      "anchor_role": "wall",
+      "anchor_inliers_sampled": 130504,
+      "anchor_fraction_sampled": 0.522016,
+      "anchor_offset_correction": -0.0013269167714859975
+    },
+    {
+      "plane_id": 4,
+      "axis_index": 2,
+      "side": "negative",
+      "semantic_role": "floor",
+      "normal": [
+        0.003927831196956217,
+        -0.9934879625861472,
+        -0.11386940036073612
+      ],
+      "offset": -6.895469405194829,
+      "equation": "normal dot world_xyz = offset",
+      "basis_u": [
+        0.9043383843619952,
+        -0.045070987294607574,
+        0.4244298442308516
+      ],
+      "basis_v": [
+        -0.4267981475025681,
+        -0.10464355833358682,
+        0.8982722677382736
+      ],
+      "bounds_uv": [
+        -6.073737319509321,
+        17.886181500350826,
+        -3.0416227115043357,
+        19.344563891949512
+      ],
+      "support_area_sampled": 42.86268715804685,
+      "inlier_faces_sampled": 39378,
+      "rms_plane_residual": 0.039465395432344445,
+      "tsdf_candidate_offset": -6.90165695126174,
+      "anchor_role": "floor",
+      "anchor_inliers_sampled": 247163,
+      "anchor_fraction_sampled": 0.988652,
+      "anchor_offset_correction": 0.006187546066910521
+    },
+    {
+      "plane_id": 5,
+      "axis_index": 2,
+      "side": "positive",
+      "semantic_role": "ceiling",
+      "normal": [
+        0.003927831196956217,
+        -0.9934879625861472,
+        -0.11386940036073612
+      ],
+      "offset": 8.989990261697008,
+      "equation": "normal dot world_xyz = offset",
+      "basis_u": [
+        0.9043383843619952,
+        -0.045070987294607574,
+        0.4244298442308516
+      ],
+      "basis_v": [
+        -0.4267981475025681,
+        -0.10464355833358682,
+        0.8982722677382736
+      ],
+      "bounds_uv": [
+        9.246029691361718,
+        17.85398280666251,
+        12.456407506299271,
+        19.669876478475246
+      ],
+      "support_area_sampled": 3.1552085901635962,
+      "inlier_faces_sampled": 2871,
+      "rms_plane_residual": 0.0317337938088541,
+      "tsdf_candidate_offset": 9.030488881507814,
+      "anchor_role": "ceiling",
+      "anchor_inliers_sampled": 3294,
+      "anchor_fraction_sampled": 1.0,
+      "anchor_offset_correction": -0.0404986198108066
+    }
+  ],
+  "support_plane": {
+    "plane_id": 4,
+    "semantic_role": "floor",
+    "normal": [
+      0.003927831196956217,
+      -0.9934879625861472,
+      -0.11386940036073612
+    ],
+    "interior_normal": [
+      0.003927831196956217,
+      -0.9934879625861472,
+      -0.11386940036073612
+    ],
+    "offset": -6.895469405194829,
+    "equation": "normal dot world_xyz = offset",
+    "source": "Holi structure anchor fixes offset; TSDF fixes Manhattan normal/topology",
+    "anchor": {
+      "role": "floor",
+      "path": "/private/tmp/video2world-planar-background/structure-anchors/sam3_structure_floor.ply",
+      "sha256": "a213f7edcc72d1b4996107580bb3168db53ce5f895e6f62d97d9c4d50fc2e27b",
+      "point_count": 264937,
+      "sampled_point_count": 250000,
+      "bounds": [
+        [
+          -12.500296592712402,
+          1.07122004032135,
+          -1.852552056312561
+        ],
+        [
+          16.524150848388672,
+          6.879249095916748,
+          17.29448699951172
+        ]
+      ]
+    },
+    "anchor_fraction_sampled": 0.988652,
+    "anchor_inliers_sampled": 247163,
+    "rms_tsdf_plane_residual": 0.039465395432344445,
+    "scene_fit_role": "gravity/support constraint for grounded object placement"
+  },
+  "texture_atlases": [
+    {
+      "plane_id": 1,
+      "measured_rgb": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_01_measured_rgb.png",
+      "measured_rgb_sha256": "c1090d9ab474b59fa75a5e4185e82729e6f412ff9f7a426e07d1f9d16a413b70",
+      "frame_support": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_01_frame_support.png",
+      "observed_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_01_observed_mask.png",
+      "observed_mask_sha256": "0733c9b340781414c9c8fd61e050eb666c09ae2dd8afaab892f61813c18227d2",
+      "dimensions": [
+        254,
+        185
+      ],
+      "origin_uv": [
+        -0.7250850522862792,
+        -7.389113372664743
+      ],
+      "texel_size_world_units": 0.08,
+      "observed_texels": 14492,
+      "total_texels": 46990
+    },
+    {
+      "plane_id": 2,
+      "measured_rgb": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_02_measured_rgb.png",
+      "measured_rgb_sha256": "0479d38bbd96562c350bd2d3c09521ee4e7f2fdb07910076d1c05ac202be3152",
+      "frame_support": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_02_frame_support.png",
+      "observed_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_02_observed_mask.png",
+      "observed_mask_sha256": "4823bdcdaeec6e69471958f7eef7f723ccb7c1b171cb1ea8652cc9dc6341468a",
+      "dimensions": [
+        284,
+        213
+      ],
+      "origin_uv": [
+        -3.027890851651226,
+        -7.260207316021737
+      ],
+      "texel_size_world_units": 0.08,
+      "observed_texels": 25741,
+      "total_texels": 60492
+    },
+    {
+      "plane_id": 3,
+      "measured_rgb": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_03_measured_rgb.png",
+      "measured_rgb_sha256": "0454288a2bb2684c792bb7f72a8df768810297106e733d9e94d2b993ae2498d6",
+      "frame_support": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_03_frame_support.png",
+      "observed_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_03_observed_mask.png",
+      "observed_mask_sha256": "3c453428f08e765257b014684daa895d4aded81e37eacd32ee3d1b647a4e2c14",
+      "dimensions": [
+        302,
+        211
+      ],
+      "origin_uv": [
+        -6.2095571828683624,
+        -7.329115097699322
+      ],
+      "texel_size_world_units": 0.08,
+      "observed_texels": 30612,
+      "total_texels": 63722
+    },
+    {
+      "plane_id": 4,
+      "measured_rgb": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_04_measured_rgb.png",
+      "measured_rgb_sha256": "07ce0194e2e24878bbfe6a920a2ef229c527b58472a9e067eb20b243a6de6572",
+      "frame_support": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_04_frame_support.png",
+      "observed_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_04_observed_mask.png",
+      "observed_mask_sha256": "9131e7938c0616435f44c5aa4c6350e181725d04bba485587d454fe3c474ffeb",
+      "dimensions": [
+        300,
+        280
+      ],
+      "origin_uv": [
+        -6.073737319509321,
+        -3.0416227115043357
+      ],
+      "texel_size_world_units": 0.08,
+      "observed_texels": 3218,
+      "total_texels": 84000
+    },
+    {
+      "plane_id": 5,
+      "measured_rgb": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_05_measured_rgb.png",
+      "measured_rgb_sha256": "61d5b2cbfe7bfe88dd46f37f0b7b041465461a0b95537946cb03e524d692a821",
+      "frame_support": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_05_frame_support.png",
+      "observed_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/atlases/plane_05_observed_mask.png",
+      "observed_mask_sha256": "5886b53fd0d8c1e836f91ca70ce92dc2106538e0b367a7351af33234ccb29a70",
+      "dimensions": [
+        108,
+        91
+      ],
+      "origin_uv": [
+        9.246029691361718,
+        12.456407506299271
+      ],
+      "texel_size_world_units": 0.08,
+      "observed_texels": 2232,
+      "total_texels": 9828
+    }
+  ],
+  "texture_coverage": {
+    "denominator": "original removal-mask pixels across selected frames",
+    "original_mask_pixels": 6588585,
+    "observed_pixels": 1214559,
+    "observed_fraction": 0.18434292036909292,
+    "synthetic_pending_pixels": 5374026,
+    "synthetic_pending_fraction": 0.8156570796309071,
+    "unresolved_geometry_pixels": 0
+  },
+  "donor_records": [
+    {
+      "frame_id": "000048",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0000.png",
+      "frame_sha256": "127b68a7d52a5f6b455ac86d495dc1099e2127d6f04fb4feb7e697263b457839",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0000.png",
+      "mask_sha256": "01b3618547115694c20ef2206d10cb3804e5baf26e13543489f3918a5fabbd30",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000048.npy",
+      "depth_sha256": "da2465d05069911407686a36de2b3f4bbbf1578ffe0ff848d1ce77adc0b118cf",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 3,
+        "2": 19565,
+        "3": 22506,
+        "4": 1378,
+        "5": 488
+      }
+    },
+    {
+      "frame_id": "000049",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0001.png",
+      "frame_sha256": "5092e7c8ce2db485a6953e5879e8577844ace1d6467e1ad3c89196d9e9ac11ca",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0001.png",
+      "mask_sha256": "285f698155d32a9c7385d5bdb53505a335b9aebbe35920593d9e3d09df4692ee",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000049.npy",
+      "depth_sha256": "9f4b208dd9b85727eaaa3c6d0195d5b849304ebba724ec560c05bc3b3589a3ab",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 0,
+        "2": 19742,
+        "3": 22629,
+        "4": 1328,
+        "5": 547
+      }
+    },
+    {
+      "frame_id": "000050",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0002.png",
+      "frame_sha256": "685b3d9b33d123fc5cdd2b5b7eeb8f53a1c04e6c0a2058fb3afa8f5ef4bbbce0",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0002.png",
+      "mask_sha256": "457a2e1afc5bd8f72f4d249a204aab834fb7a4c28c47362c549e3f3b4ead0858",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000050.npy",
+      "depth_sha256": "0e043f565dd944f41537e83f3aef2c7874c1705f97f43b46315039b299ed2457",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 0,
+        "2": 19835,
+        "3": 22740,
+        "4": 1228,
+        "5": 612
+      }
+    },
+    {
+      "frame_id": "000051",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0003.png",
+      "frame_sha256": "2ba9225efc5769d677b680cc3d54d60dd9fbff0f9c8fbfe686d2dd52b8196eb2",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0003.png",
+      "mask_sha256": "25fc381abdd0ce579a517ae5cefdfe7aa52e637cea5279b8f49125c04a258f02",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000051.npy",
+      "depth_sha256": "602df2045f8bf08cef3ab57c8c6bf2a996f3fb0202b4741c86a7ec2074850a06",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 0,
+        "2": 19911,
+        "3": 22896,
+        "4": 1187,
+        "5": 647
+      }
+    },
+    {
+      "frame_id": "000052",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0004.png",
+      "frame_sha256": "816375e44aa23a02c4a5e81e01594a60119fd8958a4223fe39cc8267a5fb5583",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0004.png",
+      "mask_sha256": "11fd5b1c5abd7f24358295b9b1b056537d2623ceacb9ae850ba2ec41a1599e4b",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000052.npy",
+      "depth_sha256": "1f63dc60e2db75f7c5e8eeda67017aa4df060338a43bffad4022b6d5bbd621f0",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 0,
+        "2": 19941,
+        "3": 23153,
+        "4": 1132,
+        "5": 774
+      }
+    },
+    {
+      "frame_id": "000053",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0005.png",
+      "frame_sha256": "6c330d5e6ef3727109b4c738e4170d1f2130ba1d3514509b445d40e83e0b3fa9",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0005.png",
+      "mask_sha256": "7a15a19d34e072b53677ec2985d4c853621e44f5ceccf9c2fcc21794eb93a7f4",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000053.npy",
+      "depth_sha256": "a3a40f84226452199bdd33e591adda856daf6cfadb29ee00c6b95eaeb07d8784",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 0,
+        "2": 20002,
+        "3": 23188,
+        "4": 1061,
+        "5": 834
+      }
+    },
+    {
+      "frame_id": "000054",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0006.png",
+      "frame_sha256": "12cb2c49189fd9781629da5dd5932362defe0c42be13779c01d55f79fd8f497a",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0006.png",
+      "mask_sha256": "7d59cdfd98a9b67762d182e7a8c23876f51e1eb26b12c8930d8708fdafbc4cf3",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000054.npy",
+      "depth_sha256": "07803c5badeb544d5b37eacaf24c4bc3c02169bf8c0cee662e08cf223f7b4d34",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 0,
+        "2": 20050,
+        "3": 23428,
+        "4": 983,
+        "5": 944
+      }
+    },
+    {
+      "frame_id": "000055",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0007.png",
+      "frame_sha256": "a9fa053a95eec6c1ff2ba99a05da1ffdaf1e50b11e8d0a0bedd322540aca0989",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0007.png",
+      "mask_sha256": "3a962e59df9185f111691b43dde0059271abe270d33ef4df4c0b0dca45a88403",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000055.npy",
+      "depth_sha256": "80e849202eb18f9c381781fde5aee0b73d43cbb0dbd06a13507cb07ee7052c95",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 0,
+        "2": 20096,
+        "3": 23477,
+        "4": 952,
+        "5": 956
+      }
+    },
+    {
+      "frame_id": "000056",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0008.png",
+      "frame_sha256": "e280de69ed37e7d205e9811ded450357e69a36e9dc0d2fb54a5aeca9aaf76653",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0008.png",
+      "mask_sha256": "b2b71195bec3a2caadb894223435e22ca2e01e4aac05bcbd9317ce19dafc7dc1",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000056.npy",
+      "depth_sha256": "b106feb03f2151a484bb604128e072282e8c7d775e3e59add15a86feb5c40ad9",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 0,
+        "2": 19898,
+        "3": 23467,
+        "4": 853,
+        "5": 941
+      }
+    },
+    {
+      "frame_id": "000057",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0009.png",
+      "frame_sha256": "581a501a0949275973467f8c639921bb14db335d1e0a1c37d91d0a5e19f97eb6",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0009.png",
+      "mask_sha256": "3baf927b0f48391f764e1e595c4270a30667e0cc3473279cbb80f1afce36817f",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000057.npy",
+      "depth_sha256": "668725f4ddaafd96b6a38f3ccb2b9a3b3b61698124d712378eafa68c55f8b18f",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 0,
+        "2": 19930,
+        "3": 23611,
+        "4": 794,
+        "5": 938
+      }
+    },
+    {
+      "frame_id": "000058",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0010.png",
+      "frame_sha256": "965e50082096dece083d298f1871acb8f911c141ae7843d600b3b4361ff44e29",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0010.png",
+      "mask_sha256": "024efead42c51f89bec4e1a973a5047c8685e419f3a755fc9a299c6ce0694f8b",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000058.npy",
+      "depth_sha256": "14c4c24cff842b7f2b1f661ae42c2a5692565ae1ecbb7aebcf78547f44a3e87b",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 0,
+        "2": 19702,
+        "3": 23646,
+        "4": 763,
+        "5": 874
+      }
+    },
+    {
+      "frame_id": "000059",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0011.png",
+      "frame_sha256": "400ad11e4d24cc98452f194bf06e11b59893788630b3d7c1a54db4fcc40cded8",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0011.png",
+      "mask_sha256": "e2caf8bd34a70c85b0024983b81db878f226fdd1e6e7feeeeb1fe69c53f88324",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000059.npy",
+      "depth_sha256": "f1c2118656d2e71d5f6eb1f717efc134e14c23819f49fa8e8c3efba20a18a784",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 0,
+        "2": 19676,
+        "3": 23714,
+        "4": 741,
+        "5": 830
+      }
+    },
+    {
+      "frame_id": "000060",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0012.png",
+      "frame_sha256": "e4c2da1a34fcd2dbb1aa4b3a8cc4cad7c89db3233681491ad3aca88a7ce35b5b",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0012.png",
+      "mask_sha256": "92db422d9bddf9f28e6e25da7dad2b69414ecd956858e772fa48895a7b397097",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000060.npy",
+      "depth_sha256": "63e845287c634f8d9f81de310d5e4e1896810376a2826497a05daac433873c8a",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 0,
+        "2": 19338,
+        "3": 23879,
+        "4": 701,
+        "5": 783
+      }
+    },
+    {
+      "frame_id": "000061",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0013.png",
+      "frame_sha256": "10dfa91be7b44d26e0c28dc8ddb752bfa195a88626dbb6fa470f48fe5338ed92",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0013.png",
+      "mask_sha256": "b76ce704be1f4805fcd9193528134b5f19261a10bf0f561737aa560707d83eec",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000061.npy",
+      "depth_sha256": "4ccfdf9e20a8d44269a23ebae3a96f46bb72fa1e11395092bb426319f6d82ec1",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 0,
+        "2": 18791,
+        "3": 24356,
+        "4": 711,
+        "5": 714
+      }
+    },
+    {
+      "frame_id": "000062",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0014.png",
+      "frame_sha256": "debcab8781664022d6423b0b7502330d98c9b400efffbcef9ee08443b2d4805f",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0014.png",
+      "mask_sha256": "d2eacbf69ddfa275546c344fe29d5f3e24f6876544326982d74b415e6f1dae26",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000062.npy",
+      "depth_sha256": "b238968b23fd7f886cf901a7cbde79f5ca9920b5652b8c0fd64baca680d0837d",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 170,
+        "2": 18022,
+        "3": 25163,
+        "4": 780,
+        "5": 612
+      }
+    },
+    {
+      "frame_id": "000063",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0015.png",
+      "frame_sha256": "6a29cb3de9c485cb275ab48193e80469f9153ac5eb1b7e10d562c22c808fb895",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0015.png",
+      "mask_sha256": "d579141560289cda026a183bf6fadc7963f124e2bf10c7736f6b15566f50e6cf",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000063.npy",
+      "depth_sha256": "ba3ac1fc7a469854a903214b552066fae4a2ae3a6ca121f2d4b29c62a3e02f8d",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 1195,
+        "2": 17165,
+        "3": 25644,
+        "4": 872,
+        "5": 476
+      }
+    },
+    {
+      "frame_id": "000064",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0016.png",
+      "frame_sha256": "3e906d437ef602e9f1928bbad457770d3a0cbddb6107ec1a1ee9c6daaa7ad6b7",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0016.png",
+      "mask_sha256": "57b7bf69f519808169e7b68aef36958c8b8e51816c9ac71a6953410ad8b7144f",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000064.npy",
+      "depth_sha256": "a215cacec04bfd1b374130e2e83b8af4eabd4a97e83780f310ce1809c7ac4dc9",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 2771,
+        "2": 16320,
+        "3": 26093,
+        "4": 995,
+        "5": 362
+      }
+    },
+    {
+      "frame_id": "000065",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0017.png",
+      "frame_sha256": "d134f7c29a30875e53a329ce43fda4bc46cf8c71497f264ca9a7852c87c720fb",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0017.png",
+      "mask_sha256": "9c7605770b1541e8133a5a651af2edfe5971020573d91d4fefa5061edad381b0",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000065.npy",
+      "depth_sha256": "c4ed2d0bcc107a5498d22f4fabe15bbd8750d1eedb9c7c2b781b46ad74549aaf",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 4645,
+        "2": 15382,
+        "3": 26368,
+        "4": 1076,
+        "5": 302
+      }
+    },
+    {
+      "frame_id": "000066",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0018.png",
+      "frame_sha256": "eb263e4ecb8c095fd720f058f984fc2e6e1e4b68edb520fc733af51579628da6",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0018.png",
+      "mask_sha256": "920e2ead0d5cf00f1353b38502d66d367b414183f31989f59d45eff83a6058f4",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000066.npy",
+      "depth_sha256": "e91d8942c25094fcb14d4ccbd0f8087567bb37e1b09880353657dc6a3a6536af",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 6477,
+        "2": 13873,
+        "3": 26733,
+        "4": 1216,
+        "5": 197
+      }
+    },
+    {
+      "frame_id": "000067",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0019.png",
+      "frame_sha256": "60be517419c5080bb9002b7891ffb6caf7ed4bacda39ed71686c7bafab2c1a6b",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0019.png",
+      "mask_sha256": "adb82c0cbc6aaacfb4de31c36255c0647e1efeac3ff25c9fa451eb0b1fda3cbc",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000067.npy",
+      "depth_sha256": "48f8cf247ccc21f2a569c53c531197f2b23762f0911aaab5c1659e34b4763f9f",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 7997,
+        "2": 12934,
+        "3": 26888,
+        "4": 1378,
+        "5": 140
+      }
+    },
+    {
+      "frame_id": "000068",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0020.png",
+      "frame_sha256": "996e96fc6f1854454ea855c64aa60507069c116c2daeadc63206ec9a7b378e2b",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0020.png",
+      "mask_sha256": "9ece2da09589008ffab0012949807ccf64ffd250a7bfcb75fd1783950db09002",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000068.npy",
+      "depth_sha256": "73ee746fa0bbfea4e8cfa2acef8f9da189c90f7379583304a632335caf891fc9",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 9240,
+        "2": 11830,
+        "3": 26977,
+        "4": 1557,
+        "5": 85
+      }
+    },
+    {
+      "frame_id": "000069",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0021.png",
+      "frame_sha256": "71fd2a6c4043d034ce18faba48a2b9c30728a99175fb9ed368425a9c18f08cbb",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0021.png",
+      "mask_sha256": "8b42c243d703862089c75c2c99e8d946bc0491ba0967cec6a53969ec67c7d9ac",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000069.npy",
+      "depth_sha256": "86b3af11372fc46416185ec5a37448cf33254d85d531611d837edc6180b762bc",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 10375,
+        "2": 10445,
+        "3": 26951,
+        "4": 1761,
+        "5": 26
+      }
+    },
+    {
+      "frame_id": "000070",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0022.png",
+      "frame_sha256": "bbbd5f8ef72d3fbb5b49eddbac059cb303f1c94fa146d7de7ba7d67d464a5bc9",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0022.png",
+      "mask_sha256": "579811c83c1de9bef18b1174258f8ff125deef34e48dbbcb86a09af7b4b240b5",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000070.npy",
+      "depth_sha256": "6ab16072950d66d17310d346712ec9bc39be8b7d43a07087d4f9bf8466ad9525",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 11292,
+        "2": 9169,
+        "3": 26815,
+        "4": 1895,
+        "5": 0
+      }
+    },
+    {
+      "frame_id": "000071",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0023.png",
+      "frame_sha256": "1fce932342e454f23255c6bac988d12f046dcc18f9797e3af9fb0798b2f77f9b",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0023.png",
+      "mask_sha256": "31cfe6fca0a7e4305409f9badc7a875fcdbcdf4641ec6e5e68c59e5c0306e303",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000071.npy",
+      "depth_sha256": "f951344926dc4358331385ead732cee834fe67320463ed8ff565169a14215233",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 12312,
+        "2": 7455,
+        "3": 26731,
+        "4": 2061,
+        "5": 0
+      }
+    },
+    {
+      "frame_id": "000072",
+      "frame": "/private/tmp/video2world-planar-background/round04/input/frames/0024.png",
+      "frame_sha256": "91a021f61e4224c4f4486e69c55ac70105d72343529c1b053b50b9c678315485",
+      "mask": "/private/tmp/video2world-planar-background/round04/input/masks/0024.png",
+      "mask_sha256": "0be4801a5bc3f83ac5531640c69b2e6f69cd3c82d93f735ae1479b9c8e10499b",
+      "depth": "/private/tmp/video2world-planar-background/depth_da3/000072.npy",
+      "depth_sha256": "62336deb9139d6b3e3b0c74f5d9653adf284b2e5b1ddc5429921091b76e0e399",
+      "depth_role": "measured_texture_visibility_evidence_only",
+      "atlas_texels_contributed": {
+        "1": 13116,
+        "2": 5310,
+        "3": 26738,
+        "4": 2245,
+        "5": 0
+      }
+    }
+  ],
+  "planar_completion_patch": {
+    "path": "/private/tmp/video2world-planar-background/planar-v5-nosupp/planar_completion_patch.ply",
+    "sha256": "fad1f66c9f4764f3dfa5e2e984ddbde42b105cade3d6c8c819c8c5aaf140b0f0",
+    "vertices": 102664,
+    "faces": 51332,
+    "role": "geometry-only hidden-surface patch; not final textured scene mesh"
+  },
+  "config": {
+    "target_frame_record_key": "prefill_frame",
+    "target_mask_record_key": "residual_mask",
+    "texture_frame_record_key": "source_frame",
+    "texture_mask_record_key": "removal_mask",
+    "normal_angle_tolerance_degrees": 12.0,
+    "offset_bin_size": 0.1,
+    "plane_fit_tolerance": 0.15,
+    "texture_plane_tolerance": 0.35,
+    "minimum_relative_plane_support": 0.05,
+    "camera_clearance": 0.5,
+    "plane_extent_margin": 0.6,
+    "texture_sample_stride": 3,
+    "texture_texel_size": 0.08,
+    "minimum_texture_frame_support": 2,
+    "geometry_grid_size": 0.1,
+    "minimum_anchor_fraction": 0.01,
+    "anchor_assignment_tolerance": 0.35,
+    "original_removal_masks_dir": "/private/tmp/video2world-planar-background/round04/input/masks",
+    "supplement_mask_dirs": []
+  },
+  "gates": {
+    "manhattan_axes_orthonormal": true,
+    "minimum_geometry_coverage": {
+      "threshold": 0.95,
+      "observed": 1.0,
+      "passed": true
+    },
+    "outside_removal_mask_rgb_exact": true,
+    "texture_masks_partition_removal_mask": true,
+    "upstream_observed_plus_residual_partition_original_mask": true,
+    "cumulative_supplement_union_partition_exact": true,
+    "generated_texture_present": false,
+    "cross_view_rgb_continuity": "pending",
+    "new_depth_normal_estimation_before_pgsr": "required_after_final_rgb_acceptance"
+  },
+  "texture_provenance_contract": {
+    "measured_texture": "only DA3-depth samples outside the current removal mask and within the fitted TSDF plane tolerance",
+    "generative_texture": "only generative_texture_masks/*.png; a later model may fill these pixels but must preserve plane geometry and report synthetic provenance",
+    "forbidden": [
+      "painting unresolved_geometry_masks as if geometry were known",
+      "using ProPainter blur as structural evidence",
+      "reusing old DA3 depth as final reconstructed depth after RGB generation"
+    ]
+  },
+  "frame_records": [
+    {
+      "sequence_index": 0,
+      "frame_id": "000048",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0000.png",
+      "source_frame_sha256": "f0702496942f25a3b088b9db0e7d7feaac287f9429c585020354c318764249b6",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0000.png",
+      "base_residual_mask_sha256": "c1b2e38d5097976a6b5dd96b2c8b2d18527e4c0c79a3cb00846649573b8dccf2",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0000.png",
+      "original_removal_mask_sha256": "01b3618547115694c20ef2206d10cb3804e5baf26e13543489f3918a5fabbd30",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 180865,
+        "original_removal_pixels": 183427,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 2562,
+        "cumulative_removal_pixels": 180865,
+        "cumulative_original_union_pixels": 183427,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0000.png",
+      "removal_mask_sha256": "cedc806cc32a706ba5aaaaa2c55f6b57b07480a7ededb5cc76b7c2523394e9f4",
+      "removal_mask_pixels": 180865,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0000.png",
+      "prefill_frame_sha256": "e123ab6b1cd5c9669c76b63ae70835283dbdd1f9af91fe08f7bb1a215a97a732",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0000.npz",
+      "geometry_depth_sha256": "844bb9d698e942552f9499f3f551c20e0f625562a5ca38ce866181961fc42914",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0000.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0000.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0000.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0000.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0000.png",
+      "geometry_assigned_pixels": 180865,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2087,
+      "observed_texture_fraction": 0.011538993171702651,
+      "generative_texture_pixels": 178778,
+      "generative_texture_fraction": 0.9884610068282973,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 183427,
+      "upstream_measured_texture_pixels": 2562,
+      "final_measured_texture_pixels": 4649,
+      "final_measured_texture_fraction_of_original": 0.025345232708379902,
+      "synthetic_texture_pending_pixels": 178778,
+      "synthetic_texture_pending_fraction_of_original": 0.9746547672916201,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 4092,
+        "3": 153845,
+        "4": 22928,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 1,
+      "frame_id": "000049",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0001.png",
+      "source_frame_sha256": "e6b1cd5e5a8c2562b70b029d333384054f4b6293f283ba3c9c5276b830ff4b00",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0001.png",
+      "base_residual_mask_sha256": "8dcba5638a1a0a1617e233354fd992857647e374eedc012d641676cbf6a9470c",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0001.png",
+      "original_removal_mask_sha256": "285f698155d32a9c7385d5bdb53505a335b9aebbe35920593d9e3d09df4692ee",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 181491,
+        "original_removal_pixels": 183771,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 2280,
+        "cumulative_removal_pixels": 181491,
+        "cumulative_original_union_pixels": 183771,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0001.png",
+      "removal_mask_sha256": "9ef009a3a231d55e32cdbfee16def82b20353d91e59f054c50cd40c2bbd7168b",
+      "removal_mask_pixels": 181491,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0001.png",
+      "prefill_frame_sha256": "f57f36d5a9e150e26731467d365ccabe6dfc5b6add2a969656d0ff8c0f7e3273",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0001.npz",
+      "geometry_depth_sha256": "716380b361a631a67b3d035ee76183e7d6da29fc00cf2d1cfd7f416ea5988b20",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0001.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0001.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0001.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0001.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0001.png",
+      "geometry_assigned_pixels": 181491,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2147,
+      "observed_texture_fraction": 0.011829787702971497,
+      "generative_texture_pixels": 179344,
+      "generative_texture_fraction": 0.9881702122970285,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 183771,
+      "upstream_measured_texture_pixels": 2280,
+      "final_measured_texture_pixels": 4427,
+      "final_measured_texture_fraction_of_original": 0.024089763890929473,
+      "synthetic_texture_pending_pixels": 179344,
+      "synthetic_texture_pending_fraction_of_original": 0.9759102361090706,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 3097,
+        "3": 155412,
+        "4": 22982,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 2,
+      "frame_id": "000050",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0002.png",
+      "source_frame_sha256": "7890c68181cac65a87f92831e7713f052c8880ffc57c708f641dfbe5f9b3c825",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0002.png",
+      "base_residual_mask_sha256": "fb799bf7963c082a162e9577e25803c48218eeff7ff0346be5ecf49cc486b6b8",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0002.png",
+      "original_removal_mask_sha256": "457a2e1afc5bd8f72f4d249a204aab834fb7a4c28c47362c549e3f3b4ead0858",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 189898,
+        "original_removal_pixels": 225345,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 35447,
+        "cumulative_removal_pixels": 189898,
+        "cumulative_original_union_pixels": 225345,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0002.png",
+      "removal_mask_sha256": "0a195288209caea4d40297188676b14c527cd1f59a924603e754876a9389d174",
+      "removal_mask_pixels": 189898,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0002.png",
+      "prefill_frame_sha256": "2c090e08c0f172113771ff4e714f2d5088f29a468b6b3a6cf1570c953a4cfb74",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0002.npz",
+      "geometry_depth_sha256": "f4a3e560586c9b762d3c1de98cb03a6fc9c7dcd406995349719db8cb36100c47",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0002.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0002.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0002.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0002.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0002.png",
+      "geometry_assigned_pixels": 189898,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2115,
+      "observed_texture_fraction": 0.01113755805748349,
+      "generative_texture_pixels": 187783,
+      "generative_texture_fraction": 0.9888624419425165,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 225345,
+      "upstream_measured_texture_pixels": 35447,
+      "final_measured_texture_pixels": 37562,
+      "final_measured_texture_fraction_of_original": 0.16668663604695022,
+      "synthetic_texture_pending_pixels": 187783,
+      "synthetic_texture_pending_fraction_of_original": 0.8333133639530498,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2631,
+        "3": 156292,
+        "4": 30975,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 3,
+      "frame_id": "000051",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0003.png",
+      "source_frame_sha256": "cce8fa6e1a308625ce51a58e9ed7f0a9ec2e34e1b3dbf6d401942c7f959efc88",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0003.png",
+      "base_residual_mask_sha256": "fd9d72ec570a3703ea2381c956f058f1e8391eb3e5260da5c4cf92e6c490cc9c",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0003.png",
+      "original_removal_mask_sha256": "25fc381abdd0ce579a517ae5cefdfe7aa52e637cea5279b8f49125c04a258f02",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 193464,
+        "original_removal_pixels": 255679,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 62215,
+        "cumulative_removal_pixels": 193464,
+        "cumulative_original_union_pixels": 255679,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0003.png",
+      "removal_mask_sha256": "fe51744a8ea7ed5d1b1aa32fcc035ca2ff9c8aca8d3575ad5d39ea01d7d9b02e",
+      "removal_mask_pixels": 193464,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0003.png",
+      "prefill_frame_sha256": "94373083852494eb37f4c64477ca97fec6eb2b9f345573ab8cfc1461f828bdd5",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0003.npz",
+      "geometry_depth_sha256": "65626433e0952bada9bdd3fb5a7135a08a57cd164113581a231f3802e0379f2e",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0003.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0003.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0003.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0003.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0003.png",
+      "geometry_assigned_pixels": 193464,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2140,
+      "observed_texture_fraction": 0.011061489476078237,
+      "generative_texture_pixels": 191324,
+      "generative_texture_fraction": 0.9889385105239218,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 255679,
+      "upstream_measured_texture_pixels": 62215,
+      "final_measured_texture_pixels": 64355,
+      "final_measured_texture_fraction_of_original": 0.2517023298745693,
+      "synthetic_texture_pending_pixels": 191324,
+      "synthetic_texture_pending_fraction_of_original": 0.7482976701254307,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 1679,
+        "3": 157428,
+        "4": 34357,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 4,
+      "frame_id": "000052",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0004.png",
+      "source_frame_sha256": "df0ce28df4d5486b09976e5c110404948d0d71553af7e11137472e79e3d49fa0",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0004.png",
+      "base_residual_mask_sha256": "597bcaabd9e69c37565e1dff85c5af36c3971bb4c40b9c64e8b8670fb340e521",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0004.png",
+      "original_removal_mask_sha256": "11fd5b1c5abd7f24358295b9b1b056537d2623ceacb9ae850ba2ec41a1599e4b",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 198504,
+        "original_removal_pixels": 294898,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 96394,
+        "cumulative_removal_pixels": 198504,
+        "cumulative_original_union_pixels": 294898,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0004.png",
+      "removal_mask_sha256": "39e72d2ac633ad3522525ca0d791ccb462b5698561d2eef39b1176c833a5eaea",
+      "removal_mask_pixels": 198504,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0004.png",
+      "prefill_frame_sha256": "ac9b38bb5cb07c6ffd12bb994ba9148aef358659e032344c157d43da9e7d59ee",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0004.npz",
+      "geometry_depth_sha256": "43240f019097ff2899f48389b43861e08b45f88a3a18ef93a956b81dc0b80c89",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0004.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0004.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0004.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0004.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0004.png",
+      "geometry_assigned_pixels": 198504,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2359,
+      "observed_texture_fraction": 0.011883891508483456,
+      "generative_texture_pixels": 196145,
+      "generative_texture_fraction": 0.9881161084915165,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 294898,
+      "upstream_measured_texture_pixels": 96394,
+      "final_measured_texture_pixels": 98753,
+      "final_measured_texture_fraction_of_original": 0.3348717183568556,
+      "synthetic_texture_pending_pixels": 196145,
+      "synthetic_texture_pending_fraction_of_original": 0.6651282816431444,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2097,
+        "3": 157950,
+        "4": 38457,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 5,
+      "frame_id": "000053",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0005.png",
+      "source_frame_sha256": "232b97459853c6fe9085290157c7b40e2373429bbb9f8568be1e40aada61fea7",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0005.png",
+      "base_residual_mask_sha256": "9ac70c2569db9c96c15309e2a36d2203b6927dd68da0d9ab56d6708a0584fb54",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0005.png",
+      "original_removal_mask_sha256": "7a15a19d34e072b53677ec2985d4c853621e44f5ceccf9c2fcc21794eb93a7f4",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 204055,
+        "original_removal_pixels": 288747,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 84692,
+        "cumulative_removal_pixels": 204055,
+        "cumulative_original_union_pixels": 288747,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0005.png",
+      "removal_mask_sha256": "6fd8d3e65ea6c47e69dc2a6f04cfe8cf2a7f33c7402dabe1fb0aa108323676ce",
+      "removal_mask_pixels": 204055,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0005.png",
+      "prefill_frame_sha256": "b38b195c02e11607edbbfb3df28506cb80411d2c082becb3bf883863a2968dcd",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0005.npz",
+      "geometry_depth_sha256": "ec5b2c205ab31b2bdf20ba93d6ffc0ec03a324815bf94d32cf1086b4645ad95a",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0005.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0005.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0005.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0005.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0005.png",
+      "geometry_assigned_pixels": 204055,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 1923,
+      "observed_texture_fraction": 0.00942392982284188,
+      "generative_texture_pixels": 202132,
+      "generative_texture_fraction": 0.9905760701771581,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 288747,
+      "upstream_measured_texture_pixels": 84692,
+      "final_measured_texture_pixels": 86615,
+      "final_measured_texture_fraction_of_original": 0.2999684845210513,
+      "synthetic_texture_pending_pixels": 202132,
+      "synthetic_texture_pending_fraction_of_original": 0.7000315154789487,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2158,
+        "3": 158513,
+        "4": 43384,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 6,
+      "frame_id": "000054",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0006.png",
+      "source_frame_sha256": "0ab59188ca05e60e850e75db535a39560b742cafe18e21c769ae5c3e2847ad95",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0006.png",
+      "base_residual_mask_sha256": "5ee99f4a17761078d6e02a9b97f82ca2bee694cbbbb4a4352cbb336285bf4315",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0006.png",
+      "original_removal_mask_sha256": "7d59cdfd98a9b67762d182e7a8c23876f51e1eb26b12c8930d8708fdafbc4cf3",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 209873,
+        "original_removal_pixels": 281553,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 71680,
+        "cumulative_removal_pixels": 209873,
+        "cumulative_original_union_pixels": 281553,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0006.png",
+      "removal_mask_sha256": "16ffd49a351c984218c6f58e7610d7f01259eb4f249cfc785e5df9315ed28bb6",
+      "removal_mask_pixels": 209873,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0006.png",
+      "prefill_frame_sha256": "e07fd0069573788d412db1f15f9fe391cb40fbf575d159f18156a1905f3b9668",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0006.npz",
+      "geometry_depth_sha256": "2c7ef57d905b63f41c80ab7c2a77d97195d8917a58cd2ff83c65473f7be90aa6",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0006.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0006.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0006.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0006.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0006.png",
+      "geometry_assigned_pixels": 209873,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 1740,
+      "observed_texture_fraction": 0.008290728202293767,
+      "generative_texture_pixels": 208133,
+      "generative_texture_fraction": 0.9917092717977062,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 281553,
+      "upstream_measured_texture_pixels": 71680,
+      "final_measured_texture_pixels": 73420,
+      "final_measured_texture_fraction_of_original": 0.26076795487883275,
+      "synthetic_texture_pending_pixels": 208133,
+      "synthetic_texture_pending_fraction_of_original": 0.7392320451211672,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2250,
+        "3": 159461,
+        "4": 48162,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 7,
+      "frame_id": "000055",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0007.png",
+      "source_frame_sha256": "9812b4cac27b8f278ecead3ab6b9e820bdbd0750b8c6d0240d56636bd97a46d9",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0007.png",
+      "base_residual_mask_sha256": "71953532c7c553ccbb64594269bbcd55a5fbb2bd59e6ca2493500d976d778b46",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0007.png",
+      "original_removal_mask_sha256": "3a962e59df9185f111691b43dde0059271abe270d33ef4df4c0b0dca45a88403",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 216005,
+        "original_removal_pixels": 274969,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 58964,
+        "cumulative_removal_pixels": 216005,
+        "cumulative_original_union_pixels": 274969,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0007.png",
+      "removal_mask_sha256": "7e2ae03f872a0539035f6af896f35454c0dc1b658056d4e2e3915bccd944fc47",
+      "removal_mask_pixels": 216005,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0007.png",
+      "prefill_frame_sha256": "55d5304e15803c1be59813112c5d051e858967687ead8d79e0d5c2b929438af7",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0007.npz",
+      "geometry_depth_sha256": "699e60637945dd5a89031490d3c8846f2d318510e445e26ba86281c81c57cbc2",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0007.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0007.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0007.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0007.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0007.png",
+      "geometry_assigned_pixels": 216005,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 1744,
+      "observed_texture_fraction": 0.008073887178537534,
+      "generative_texture_pixels": 214261,
+      "generative_texture_fraction": 0.9919261128214625,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 274969,
+      "upstream_measured_texture_pixels": 58964,
+      "final_measured_texture_pixels": 60708,
+      "final_measured_texture_fraction_of_original": 0.2207812517047376,
+      "synthetic_texture_pending_pixels": 214261,
+      "synthetic_texture_pending_fraction_of_original": 0.7792187482952624,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2345,
+        "3": 161191,
+        "4": 52469,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 8,
+      "frame_id": "000056",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0008.png",
+      "source_frame_sha256": "1053760e3634628c6a6ff85d96520abe111f78ae9e3071f0119efb97290634c9",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0008.png",
+      "base_residual_mask_sha256": "91bc2b8d51aea206accf651f0648122465c117ec8534221ca5c92a4a95c5bb85",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0008.png",
+      "original_removal_mask_sha256": "b2b71195bec3a2caadb894223435e22ca2e01e4aac05bcbd9317ce19dafc7dc1",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 221458,
+        "original_removal_pixels": 273687,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 52229,
+        "cumulative_removal_pixels": 221458,
+        "cumulative_original_union_pixels": 273687,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0008.png",
+      "removal_mask_sha256": "1537bc5b7e920c18fc876c834c471346e13a200ed45379413382897a6b57337d",
+      "removal_mask_pixels": 221458,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0008.png",
+      "prefill_frame_sha256": "5d28ba8d4c7a214c7b59f9f7299cc252316a49eb1eb6bb35987ed0ffa2ccfb3f",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0008.npz",
+      "geometry_depth_sha256": "d7d62667fac1a7e0e3b2e97cb854250987d52d56604e7e9a0a6c2dd0439f6f6a",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0008.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0008.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0008.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0008.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0008.png",
+      "geometry_assigned_pixels": 221458,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 1659,
+      "observed_texture_fraction": 0.007491262451570953,
+      "generative_texture_pixels": 219799,
+      "generative_texture_fraction": 0.992508737548429,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 273687,
+      "upstream_measured_texture_pixels": 52229,
+      "final_measured_texture_pixels": 53888,
+      "final_measured_texture_fraction_of_original": 0.1968964547092116,
+      "synthetic_texture_pending_pixels": 219799,
+      "synthetic_texture_pending_fraction_of_original": 0.8031035452907884,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2401,
+        "3": 163176,
+        "4": 55881,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 9,
+      "frame_id": "000057",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0009.png",
+      "source_frame_sha256": "33eaf0e6bb2df70c3187f5828a5af33ba3bdd08ce92714a486ff8bbd20f6ebc1",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0009.png",
+      "base_residual_mask_sha256": "67256fdcf59abfa9804c86664befda89f81b68eab39d8290dfaa352a102d6b48",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0009.png",
+      "original_removal_mask_sha256": "3baf927b0f48391f764e1e595c4270a30667e0cc3473279cbb80f1afce36817f",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 226842,
+        "original_removal_pixels": 273006,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 46164,
+        "cumulative_removal_pixels": 226842,
+        "cumulative_original_union_pixels": 273006,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0009.png",
+      "removal_mask_sha256": "04340478ce8435babf1a6c1c78b2c4d8fd323057f1c3e68b2519bd8f09e93e18",
+      "removal_mask_pixels": 226842,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0009.png",
+      "prefill_frame_sha256": "76a40be33c7d170b8f4b79a100756ef53aa48f93ffd0b8ea631b83cacd4ccd1a",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0009.npz",
+      "geometry_depth_sha256": "2a5cd0758d160e0352671b4a4bf4d1948a5eb48db3d7df38ddc92bda6c565f1d",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0009.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0009.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0009.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0009.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0009.png",
+      "geometry_assigned_pixels": 226842,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 1721,
+      "observed_texture_fraction": 0.00758677846254221,
+      "generative_texture_pixels": 225121,
+      "generative_texture_fraction": 0.9924132215374578,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 273006,
+      "upstream_measured_texture_pixels": 46164,
+      "final_measured_texture_pixels": 47885,
+      "final_measured_texture_fraction_of_original": 0.1753990754781946,
+      "synthetic_texture_pending_pixels": 225121,
+      "synthetic_texture_pending_fraction_of_original": 0.8246009245218053,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2488,
+        "3": 164995,
+        "4": 59359,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 10,
+      "frame_id": "000058",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0010.png",
+      "source_frame_sha256": "e8498088b89ff89f356e99757582b72a5f6846b8f701adefa9e7cd4fe458b785",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0010.png",
+      "base_residual_mask_sha256": "fb33b91cee126f3f59c3a425bb26382356d382af02d703122e18bffcc2bd6094",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0010.png",
+      "original_removal_mask_sha256": "024efead42c51f89bec4e1a973a5047c8685e419f3a755fc9a299c6ce0694f8b",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 231578,
+        "original_removal_pixels": 273767,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 42189,
+        "cumulative_removal_pixels": 231578,
+        "cumulative_original_union_pixels": 273767,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0010.png",
+      "removal_mask_sha256": "76b68c354414f6cbaeda0353533f8d0f6b47430ad79d7c31aa8215f461ef85b8",
+      "removal_mask_pixels": 231578,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0010.png",
+      "prefill_frame_sha256": "8d8cfa71d013069d331012c03386349fb8ec0f1fff2a36ee335148dfc01eb4e7",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0010.npz",
+      "geometry_depth_sha256": "ba7fe4b9b168f3253e050e46836573065e7d445c28998a43740248059531c206",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0010.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0010.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0010.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0010.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0010.png",
+      "geometry_assigned_pixels": 231578,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 1772,
+      "observed_texture_fraction": 0.0076518494848388015,
+      "generative_texture_pixels": 229806,
+      "generative_texture_fraction": 0.9923481505151612,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 273767,
+      "upstream_measured_texture_pixels": 42189,
+      "final_measured_texture_pixels": 43961,
+      "final_measured_texture_fraction_of_original": 0.16057815587707797,
+      "synthetic_texture_pending_pixels": 229806,
+      "synthetic_texture_pending_fraction_of_original": 0.8394218441229221,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2710,
+        "3": 166966,
+        "4": 61902,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 11,
+      "frame_id": "000059",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0011.png",
+      "source_frame_sha256": "c29630d2c35b3fe0f0a8774941112bc0f371cd48620b30fb1f6d146640337b07",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0011.png",
+      "base_residual_mask_sha256": "4c714d99e772de1db3088b398281606158b8fa15eb1c72bf5b0fcd275bac6831",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0011.png",
+      "original_removal_mask_sha256": "e2caf8bd34a70c85b0024983b81db878f226fdd1e6e7feeeeb1fe69c53f88324",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 236466,
+        "original_removal_pixels": 273497,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 37031,
+        "cumulative_removal_pixels": 236466,
+        "cumulative_original_union_pixels": 273497,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0011.png",
+      "removal_mask_sha256": "9b0824dd306ce4f560433693b60a9cab183422bbcb24d90fedb374679194adac",
+      "removal_mask_pixels": 236466,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0011.png",
+      "prefill_frame_sha256": "152f36c016c4184475ad27e87cb105d39f2394eb224dd95609cf5a1a852d0b1a",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0011.npz",
+      "geometry_depth_sha256": "b78b8a49768099dc32ab02fce5bfbda5e29608832604560407b2e0fe05d3c205",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0011.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0011.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0011.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0011.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0011.png",
+      "geometry_assigned_pixels": 236466,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 1976,
+      "observed_texture_fraction": 0.008356381044209316,
+      "generative_texture_pixels": 234490,
+      "generative_texture_fraction": 0.9916436189557907,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 273497,
+      "upstream_measured_texture_pixels": 37031,
+      "final_measured_texture_pixels": 39007,
+      "final_measured_texture_fraction_of_original": 0.14262313663403986,
+      "synthetic_texture_pending_pixels": 234490,
+      "synthetic_texture_pending_fraction_of_original": 0.8573768633659601,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2872,
+        "3": 169034,
+        "4": 64560,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 12,
+      "frame_id": "000060",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0012.png",
+      "source_frame_sha256": "cae81d7c85f43ef8ead4fa9139c2a29bd7405967b72debafbc0ca7a1c81885e6",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0012.png",
+      "base_residual_mask_sha256": "059f8f3ce42123cd81a3811ae586315397caa354f11dfffb829f96d13f38c96e",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0012.png",
+      "original_removal_mask_sha256": "92db422d9bddf9f28e6e25da7dad2b69414ecd956858e772fa48895a7b397097",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 240259,
+        "original_removal_pixels": 272103,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 31844,
+        "cumulative_removal_pixels": 240259,
+        "cumulative_original_union_pixels": 272103,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0012.png",
+      "removal_mask_sha256": "a5b2794f8966b375e8c1810dabbd80c60edec6b56139750ddec18c4ae9538cb9",
+      "removal_mask_pixels": 240259,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0012.png",
+      "prefill_frame_sha256": "ee594bfc74e2b8f220e47a87e1bd43d5dae79176a83c62fae46a8c1acbc54a3b",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0012.npz",
+      "geometry_depth_sha256": "600550744796f93baa11a49bca84a83049337ccd38908a94709a49d977508ed0",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0012.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0012.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0012.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0012.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0012.png",
+      "geometry_assigned_pixels": 240259,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 1938,
+      "observed_texture_fraction": 0.008066295123179568,
+      "generative_texture_pixels": 238321,
+      "generative_texture_fraction": 0.9919337048768204,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 272103,
+      "upstream_measured_texture_pixels": 31844,
+      "final_measured_texture_pixels": 33782,
+      "final_measured_texture_fraction_of_original": 0.1241515161538094,
+      "synthetic_texture_pending_pixels": 238321,
+      "synthetic_texture_pending_fraction_of_original": 0.8758484838461906,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2825,
+        "3": 170504,
+        "4": 66930,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 13,
+      "frame_id": "000061",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0013.png",
+      "source_frame_sha256": "98613bbed00c1ed3ecf9b6bda257de8cc3753e81af9750376a26fcd94446e695",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0013.png",
+      "base_residual_mask_sha256": "19079ae73014b4485bd6d1d14bc0eba6d66bef85520222971ecaddb83c359d4c",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0013.png",
+      "original_removal_mask_sha256": "b76ce704be1f4805fcd9193528134b5f19261a10bf0f561737aa560707d83eec",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 243257,
+        "original_removal_pixels": 271107,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 27850,
+        "cumulative_removal_pixels": 243257,
+        "cumulative_original_union_pixels": 271107,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0013.png",
+      "removal_mask_sha256": "112ccd8162b43ef3180115b21bf09bde0fdb90a00ab78f7b2629a881869c7d55",
+      "removal_mask_pixels": 243257,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0013.png",
+      "prefill_frame_sha256": "a2c78a617ac2872252ff49c06a45a7ed0250b023c55240a49c3cb31797b86c88",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0013.npz",
+      "geometry_depth_sha256": "ed33bbd5bd9970c829ee4d864b479e5dae4582352ab9c21b7775fcf47e9534fd",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0013.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0013.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0013.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0013.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0013.png",
+      "geometry_assigned_pixels": 243257,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2174,
+      "observed_texture_fraction": 0.008937050115721233,
+      "generative_texture_pixels": 241083,
+      "generative_texture_fraction": 0.9910629498842788,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 271107,
+      "upstream_measured_texture_pixels": 27850,
+      "final_measured_texture_pixels": 30024,
+      "final_measured_texture_fraction_of_original": 0.11074594163927895,
+      "synthetic_texture_pending_pixels": 241083,
+      "synthetic_texture_pending_fraction_of_original": 0.889254058360721,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2815,
+        "3": 171746,
+        "4": 68696,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 14,
+      "frame_id": "000062",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0014.png",
+      "source_frame_sha256": "8ac9f403f0c3f44d673b52f8720539c1284697a7f86d2da43f530b03fff98e9b",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0014.png",
+      "base_residual_mask_sha256": "6e477fd0564d75ba6ca665308b9d5a9f38c11abb871f1aeea52542fc32f1b310",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0014.png",
+      "original_removal_mask_sha256": "d2eacbf69ddfa275546c344fe29d5f3e24f6876544326982d74b415e6f1dae26",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 244018,
+        "original_removal_pixels": 268796,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 24778,
+        "cumulative_removal_pixels": 244018,
+        "cumulative_original_union_pixels": 268796,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0014.png",
+      "removal_mask_sha256": "dce4a13143f694f107a5c29a440c69c7214f00197453d7aecb2c5439272e64f0",
+      "removal_mask_pixels": 244018,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0014.png",
+      "prefill_frame_sha256": "00cef626fad8511725cff35d7f50c6c67523373bc15bd7860323b2049351e6f3",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0014.npz",
+      "geometry_depth_sha256": "370e5d82c4060bd66c305d6db5f17a3c8b88fcb957e6e4cfbd41d6a2c6b7a9c3",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0014.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0014.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0014.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0014.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0014.png",
+      "geometry_assigned_pixels": 244018,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2121,
+      "observed_texture_fraction": 0.008691981739052038,
+      "generative_texture_pixels": 241897,
+      "generative_texture_fraction": 0.9913080182609479,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 268796,
+      "upstream_measured_texture_pixels": 24778,
+      "final_measured_texture_pixels": 26899,
+      "final_measured_texture_fraction_of_original": 0.10007217369306091,
+      "synthetic_texture_pending_pixels": 241897,
+      "synthetic_texture_pending_fraction_of_original": 0.8999278263069391,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2554,
+        "3": 171352,
+        "4": 70112,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 15,
+      "frame_id": "000063",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0015.png",
+      "source_frame_sha256": "f943eb4280539341f243a3c3cab1bfc79de1c38530c5a42174ea4fdc5c511fd0",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0015.png",
+      "base_residual_mask_sha256": "c8c44b1cb164f0ff9ab13bff451cb999bfc758f29be5857a9970bb69eb0e490d",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0015.png",
+      "original_removal_mask_sha256": "d579141560289cda026a183bf6fadc7963f124e2bf10c7736f6b15566f50e6cf",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 244576,
+        "original_removal_pixels": 269103,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 24527,
+        "cumulative_removal_pixels": 244576,
+        "cumulative_original_union_pixels": 269103,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0015.png",
+      "removal_mask_sha256": "4369f3964e89ddac3bbe629480e3343f794c0f16ca9eac8349d033b63ffce7b6",
+      "removal_mask_pixels": 244576,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0015.png",
+      "prefill_frame_sha256": "4fe652690348b2eef7ee4066e3583565611b6fc4a4167f42bea260fec3b8b44b",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0015.npz",
+      "geometry_depth_sha256": "61a2c2952e69e4f10f446ada85191e11b0cbb736801eac249c44d508aa5b9963",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0015.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0015.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0015.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0015.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0015.png",
+      "geometry_assigned_pixels": 244576,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2298,
+      "observed_texture_fraction": 0.00939585241397357,
+      "generative_texture_pixels": 242278,
+      "generative_texture_fraction": 0.9906041475860264,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 269103,
+      "upstream_measured_texture_pixels": 24527,
+      "final_measured_texture_pixels": 26825,
+      "final_measured_texture_fraction_of_original": 0.09968302099939429,
+      "synthetic_texture_pending_pixels": 242278,
+      "synthetic_texture_pending_fraction_of_original": 0.9003169790006057,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2699,
+        "3": 170351,
+        "4": 71526,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 16,
+      "frame_id": "000064",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0016.png",
+      "source_frame_sha256": "6e2ccafd582e6dbc3e5e7ba30ae0c875e723238e7689bca93203923f7ecafa66",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0016.png",
+      "base_residual_mask_sha256": "412e248726aadb9a1e14de61aa9d2959b6dfdf458153e8b225e561ad774173aa",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0016.png",
+      "original_removal_mask_sha256": "57b7bf69f519808169e7b68aef36958c8b8e51816c9ac71a6953410ad8b7144f",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 244001,
+        "original_removal_pixels": 268611,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 24610,
+        "cumulative_removal_pixels": 244001,
+        "cumulative_original_union_pixels": 268611,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0016.png",
+      "removal_mask_sha256": "3f9e5b132428454f8ac72755c85c3c2aa4cb7425540e345b39c3ef5adfd932f7",
+      "removal_mask_pixels": 244001,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0016.png",
+      "prefill_frame_sha256": "47fd39ebcea240efe5271895343ee1eead7b25f0e5eea1a417dcc45b5a0f6bd5",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0016.npz",
+      "geometry_depth_sha256": "99f50a03f9bcfe10247755ce28744eba942a83bec44966a6437b0a494cae35c3",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0016.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0016.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0016.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0016.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0016.png",
+      "geometry_assigned_pixels": 244001,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2208,
+      "observed_texture_fraction": 0.009049143241216225,
+      "generative_texture_pixels": 241793,
+      "generative_texture_fraction": 0.9909508567587838,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 268611,
+      "upstream_measured_texture_pixels": 24610,
+      "final_measured_texture_pixels": 26818,
+      "final_measured_texture_fraction_of_original": 0.0998395449181158,
+      "synthetic_texture_pending_pixels": 241793,
+      "synthetic_texture_pending_fraction_of_original": 0.9001604550818842,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2733,
+        "3": 168864,
+        "4": 72404,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 17,
+      "frame_id": "000065",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0017.png",
+      "source_frame_sha256": "8105a96d3192dab89bfb271cc777636d7a04cb2279909494d6c2750603dd0439",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0017.png",
+      "base_residual_mask_sha256": "15485981b36cfb72a58b213078a713d8a526bb211316ad615ea41210ba992889",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0017.png",
+      "original_removal_mask_sha256": "9c7605770b1541e8133a5a651af2edfe5971020573d91d4fefa5061edad381b0",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 241646,
+        "original_removal_pixels": 267304,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 25658,
+        "cumulative_removal_pixels": 241646,
+        "cumulative_original_union_pixels": 267304,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0017.png",
+      "removal_mask_sha256": "655742e904ef3c0bb445d452a0b17d296bc953ace48ceea91bb4e7bccb81dcc8",
+      "removal_mask_pixels": 241646,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0017.png",
+      "prefill_frame_sha256": "a64df130c370ca6b414bacd1583ec64995334bcd19803bed3dd8211425a29ae7",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0017.npz",
+      "geometry_depth_sha256": "6182671f126e5a87f1d6965b9066267e86e98c859839c690cf51cead45b32725",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0017.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0017.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0017.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0017.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0017.png",
+      "geometry_assigned_pixels": 241646,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2141,
+      "observed_texture_fraction": 0.008860068033404236,
+      "generative_texture_pixels": 239505,
+      "generative_texture_fraction": 0.9911399319665958,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 267304,
+      "upstream_measured_texture_pixels": 25658,
+      "final_measured_texture_pixels": 27799,
+      "final_measured_texture_fraction_of_original": 0.1039976955077365,
+      "synthetic_texture_pending_pixels": 239505,
+      "synthetic_texture_pending_fraction_of_original": 0.8960023044922635,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2942,
+        "3": 166830,
+        "4": 71874,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 18,
+      "frame_id": "000066",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0018.png",
+      "source_frame_sha256": "8f94f83f64cf4b4e1351d580511487b56928150f43d581f010f87e6f5fa104ab",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0018.png",
+      "base_residual_mask_sha256": "0dc04faeb09f123860607706c4823caa5319c87b3352f858187c3056ab658e2f",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0018.png",
+      "original_removal_mask_sha256": "920e2ead0d5cf00f1353b38502d66d367b414183f31989f59d45eff83a6058f4",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 238634,
+        "original_removal_pixels": 267892,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 29258,
+        "cumulative_removal_pixels": 238634,
+        "cumulative_original_union_pixels": 267892,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0018.png",
+      "removal_mask_sha256": "c28d4981634f51dec87548bf63178b2501f324ecc55f58b8c4d797681fced8c6",
+      "removal_mask_pixels": 238634,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0018.png",
+      "prefill_frame_sha256": "e08eb9b65f78131ff8dd0e2d9a22cfcae2671a91fd60736cde13b22a4cc531d2",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0018.npz",
+      "geometry_depth_sha256": "ee440bafb952d41387f85fd26cbc9ad287d8744c5e09b93b967dfeba04716c5b",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0018.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0018.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0018.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0018.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0018.png",
+      "geometry_assigned_pixels": 238634,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2210,
+      "observed_texture_fraction": 0.009261044109389273,
+      "generative_texture_pixels": 236424,
+      "generative_texture_fraction": 0.9907389558906107,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 267892,
+      "upstream_measured_texture_pixels": 29258,
+      "final_measured_texture_pixels": 31468,
+      "final_measured_texture_fraction_of_original": 0.11746524718916579,
+      "synthetic_texture_pending_pixels": 236424,
+      "synthetic_texture_pending_fraction_of_original": 0.8825347528108343,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 3160,
+        "3": 165047,
+        "4": 70427,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 19,
+      "frame_id": "000067",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0019.png",
+      "source_frame_sha256": "5243c5dab9c90b0e86738ac78e00a91c9d753e3c7fb644676570900a84661ab6",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0019.png",
+      "base_residual_mask_sha256": "d9380df4db95652a4850841ce2d70c781e6290274ec183d70cb8f215b4fb9d3c",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0019.png",
+      "original_removal_mask_sha256": "adb82c0cbc6aaacfb4de31c36255c0647e1efeac3ff25c9fa451eb0b1fda3cbc",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 168802,
+        "original_removal_pixels": 205408,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 36606,
+        "cumulative_removal_pixels": 168802,
+        "cumulative_original_union_pixels": 205408,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0019.png",
+      "removal_mask_sha256": "2b8a5e747a04db91b245ed028d929d26f48542cb18fc7b9a8431f6a2b227e620",
+      "removal_mask_pixels": 168802,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0019.png",
+      "prefill_frame_sha256": "9d0f35da8b51feba8fefe046af63280d57038a9573d2b7f2d99592150a0ce634",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0019.npz",
+      "geometry_depth_sha256": "7ecedb50746c9d6ab42965d96270cc7b9dbd0234384f295784191f1a285669fe",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0019.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0019.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0019.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0019.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0019.png",
+      "geometry_assigned_pixels": 168802,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2182,
+      "observed_texture_fraction": 0.012926387128114596,
+      "generative_texture_pixels": 166620,
+      "generative_texture_fraction": 0.9870736128718854,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 205408,
+      "upstream_measured_texture_pixels": 36606,
+      "final_measured_texture_pixels": 38788,
+      "final_measured_texture_fraction_of_original": 0.1888339305187724,
+      "synthetic_texture_pending_pixels": 166620,
+      "synthetic_texture_pending_fraction_of_original": 0.8111660694812276,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 3413,
+        "3": 99593,
+        "4": 65796,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 20,
+      "frame_id": "000068",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0020.png",
+      "source_frame_sha256": "50761e2dd87b1c25dde325301d73c92088a71a0e25a7b08846393c2b5dac879b",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0020.png",
+      "base_residual_mask_sha256": "3571f0428dacc53d9fc145a1f28729757f6f2416ca10a95c5a1b8be031990ce9",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0020.png",
+      "original_removal_mask_sha256": "9ece2da09589008ffab0012949807ccf64ffd250a7bfcb75fd1783950db09002",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 225620,
+        "original_removal_pixels": 273873,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 48253,
+        "cumulative_removal_pixels": 225620,
+        "cumulative_original_union_pixels": 273873,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0020.png",
+      "removal_mask_sha256": "1956c1214f6f21ea3de6a2319a668018bc922a70ff4fe147390d1c9bee2bfc9e",
+      "removal_mask_pixels": 225620,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0020.png",
+      "prefill_frame_sha256": "53df7cc95ff3a61bc08860b6f5d6f87211aeaffe44ef8e127c40f25245f2896f",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0020.npz",
+      "geometry_depth_sha256": "e4843a347c2938f81b4b24f0bca6033e7e857f721f599971a4e7b546a3f9361b",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0020.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0020.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0020.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0020.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0020.png",
+      "geometry_assigned_pixels": 225620,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2432,
+      "observed_texture_fraction": 0.010779186242354402,
+      "generative_texture_pixels": 223188,
+      "generative_texture_fraction": 0.9892208137576456,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 273873,
+      "upstream_measured_texture_pixels": 48253,
+      "final_measured_texture_pixels": 50685,
+      "final_measured_texture_fraction_of_original": 0.18506753130100448,
+      "synthetic_texture_pending_pixels": 223188,
+      "synthetic_texture_pending_fraction_of_original": 0.8149324686989955,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 3317,
+        "3": 163369,
+        "4": 58934,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 21,
+      "frame_id": "000069",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0021.png",
+      "source_frame_sha256": "16e19483105d1f956c10d2819ae4b74aa9fda49fbc38d310180891a6818e74e3",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0021.png",
+      "base_residual_mask_sha256": "66217b0d2299cda271662ffa5c64211fb56a7c0f9d15a8ff34171a74e58189f0",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0021.png",
+      "original_removal_mask_sha256": "8b42c243d703862089c75c2c99e8d946bc0491ba0967cec6a53969ec67c7d9ac",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 217110,
+        "original_removal_pixels": 279727,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 62617,
+        "cumulative_removal_pixels": 217110,
+        "cumulative_original_union_pixels": 279727,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0021.png",
+      "removal_mask_sha256": "7435c220b7aaceeb3db087ea5d709aa7237ee0e68e557a8211068f68330e7d41",
+      "removal_mask_pixels": 217110,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0021.png",
+      "prefill_frame_sha256": "672255d3611059c7567685ead13b372a127c306530574c2e81435c1a47b24126",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0021.npz",
+      "geometry_depth_sha256": "328f568fc460fd8b72153c2ccf8bfdfa401bea5167c357aeb4c2a17c0dae989f",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0021.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0021.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0021.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0021.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0021.png",
+      "geometry_assigned_pixels": 217110,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2331,
+      "observed_texture_fraction": 0.01073649302197043,
+      "generative_texture_pixels": 214779,
+      "generative_texture_fraction": 0.9892635069780296,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 279727,
+      "upstream_measured_texture_pixels": 62617,
+      "final_measured_texture_pixels": 64948,
+      "final_measured_texture_fraction_of_original": 0.23218352179088897,
+      "synthetic_texture_pending_pixels": 214779,
+      "synthetic_texture_pending_fraction_of_original": 0.767816478209111,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 3191,
+        "3": 162739,
+        "4": 51180,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 22,
+      "frame_id": "000070",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0022.png",
+      "source_frame_sha256": "53a7e924b7b6b3188239c81fea143000b93dad0decf5d3c944d78c80f275de4b",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0022.png",
+      "base_residual_mask_sha256": "a9583ec41de92006617e90da4587512c10fef906070de6c4a4df56f85f076eee",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0022.png",
+      "original_removal_mask_sha256": "579811c83c1de9bef18b1174258f8ff125deef34e48dbbcb86a09af7b4b240b5",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 211516,
+        "original_removal_pixels": 283216,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 71700,
+        "cumulative_removal_pixels": 211516,
+        "cumulative_original_union_pixels": 283216,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0022.png",
+      "removal_mask_sha256": "803b58d90f14192559e7f47e4e3fdc8d04c739045e44fd1af1b6b85999dc1f06",
+      "removal_mask_pixels": 211516,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0022.png",
+      "prefill_frame_sha256": "df20e9d53f49840c31db041d04e3583cba2453b66ca51b401572bb5cd9f1de44",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0022.npz",
+      "geometry_depth_sha256": "da24c9e19891f1734efb0b8edcc1e0e41c77519785620aa562d07b9427cfe413",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0022.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0022.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0022.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0022.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0022.png",
+      "geometry_assigned_pixels": 211516,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2283,
+      "observed_texture_fraction": 0.010793509710849298,
+      "generative_texture_pixels": 209233,
+      "generative_texture_fraction": 0.9892064902891508,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 283216,
+      "upstream_measured_texture_pixels": 71700,
+      "final_measured_texture_pixels": 73983,
+      "final_measured_texture_fraction_of_original": 0.2612246483249534,
+      "synthetic_texture_pending_pixels": 209233,
+      "synthetic_texture_pending_fraction_of_original": 0.7387753516750466,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2998,
+        "3": 162406,
+        "4": 46112,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 23,
+      "frame_id": "000071",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0023.png",
+      "source_frame_sha256": "7a662dec2df7da56a05bc12c606f726bf266bd910e37f6a9500e70bcaa2ec8a2",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0023.png",
+      "base_residual_mask_sha256": "77cd82d6e714a88729335115c951a947ae441c3c121319029a918bb280a0eebc",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0023.png",
+      "original_removal_mask_sha256": "31cfe6fca0a7e4305409f9badc7a875fcdbcdf4641ec6e5e68c59e5c0306e303",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 208173,
+        "original_removal_pixels": 287481,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 79308,
+        "cumulative_removal_pixels": 208173,
+        "cumulative_original_union_pixels": 287481,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0023.png",
+      "removal_mask_sha256": "6dbe1372185b640575bc4e65015a1afacd5c8cff576cf8905639d86cbb6e829a",
+      "removal_mask_pixels": 208173,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0023.png",
+      "prefill_frame_sha256": "40c7fac8664712183e2ab3e424afaa290bd6f8743b0d15e93ac23c584d3eb866",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0023.npz",
+      "geometry_depth_sha256": "19ad979ecd4021eaaad799f4be48d332d4c332aa60808a628dedae9b8282f9a5",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0023.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0023.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0023.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0023.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0023.png",
+      "geometry_assigned_pixels": 208173,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2442,
+      "observed_texture_fraction": 0.011730627891225087,
+      "generative_texture_pixels": 205731,
+      "generative_texture_fraction": 0.988269372108775,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 287481,
+      "upstream_measured_texture_pixels": 79308,
+      "final_measured_texture_pixels": 81750,
+      "final_measured_texture_fraction_of_original": 0.28436661901134336,
+      "synthetic_texture_pending_pixels": 205731,
+      "synthetic_texture_pending_fraction_of_original": 0.7156333809886566,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2652,
+        "3": 163068,
+        "4": 42453,
+        "5": 0
+      }
+    },
+    {
+      "sequence_index": 24,
+      "frame_id": "000072",
+      "source_frame": "/private/tmp/video2world-planar-background/upstream-prefill/frames/0024.png",
+      "source_frame_sha256": "226f64c94602abf5bab69f4b8eff250e784abb9bc7b69ba1dedcbf0d98836085",
+      "base_residual_mask": "/private/tmp/video2world-planar-background/upstream-prefill/masks/0024.png",
+      "base_residual_mask_sha256": "cbd73d29965833504645fb206e43460dae329621292dd64885af40bfa7d59ed5",
+      "original_removal_mask": "/private/tmp/video2world-planar-background/round04/input/masks/0024.png",
+      "original_removal_mask_sha256": "0be4801a5bc3f83ac5531640c69b2e6f69cd3c82d93f735ae1479b9c8e10499b",
+      "supplement_masks": [],
+      "cumulative_mask_receipt": {
+        "base_residual_pixels": 208493,
+        "original_removal_pixels": 291618,
+        "supplement_union_pixels": 0,
+        "supplement_added_outside_base_pixels": 0,
+        "supplement_overlaps_base_pixels": 0,
+        "upstream_measured_pixels_kept": 83125,
+        "cumulative_removal_pixels": 208493,
+        "cumulative_original_union_pixels": 291618,
+        "partition_exact": true,
+        "identity_precedence": "supplement residual overrides upstream measured donor prefill"
+      },
+      "removal_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/cumulative_masks/0024.png",
+      "removal_mask_sha256": "8d22907643683d23ed1e581b787ae99b40413aae80a43b27da0e65511255fba4",
+      "removal_mask_pixels": 208493,
+      "prefill_frame": "/private/tmp/video2world-planar-background/planar-v5-nosupp/frames/0024.png",
+      "prefill_frame_sha256": "1fc60cb05d0088dfd5f063ba5108d02de3696f3869a0000746b2426637b6bb38",
+      "geometry_depth": "/private/tmp/video2world-planar-background/planar-v5-nosupp/geometry_depth/0024.npz",
+      "geometry_depth_sha256": "23b971f6a1359984a5fa8e95a72c301588be1a34b543b3bd9806fe7b34ff5823",
+      "plane_ids": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_ids/0024.png",
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v5-nosupp/plane_labels/0024.png",
+      "observed_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/observed_texture_masks/0024.png",
+      "generative_texture_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/generative_texture_masks/0024.png",
+      "unresolved_geometry_mask": "/private/tmp/video2world-planar-background/planar-v5-nosupp/unresolved_geometry_masks/0024.png",
+      "geometry_assigned_pixels": 208493,
+      "geometry_coverage_fraction": 1.0,
+      "observed_texture_pixels": 2435,
+      "observed_texture_fraction": 0.01167904917671097,
+      "generative_texture_pixels": 206058,
+      "generative_texture_fraction": 0.9883209508232891,
+      "unresolved_geometry_pixels": 0,
+      "original_removal_mask_pixels": 291618,
+      "upstream_measured_texture_pixels": 83125,
+      "final_measured_texture_pixels": 85560,
+      "final_measured_texture_fraction_of_original": 0.29339752690163157,
+      "synthetic_texture_pending_pixels": 206058,
+      "synthetic_texture_pending_fraction_of_original": 0.7066024730983684,
+      "original_texture_partition_exact": true,
+      "outside_removal_mask_rgb_exact": true,
+      "texture_partition_exact": true,
+      "plane_pixel_counts": {
+        "1": 0,
+        "2": 2277,
+        "3": 163420,
+        "4": 42796,
+        "5": 0
+      }
+    }
+  ],
+  "next_stage": {
+    "texture_generation": "fill only generative_texture_masks with geometry-conditioned, plane-coordinate consistent texture; keep measured texels and outside-mask RGB fixed",
+    "validation": "warp accepted texture across calibrated views, reject seams or plane-boundary drift, then rerun depth/normal estimation and PGSR/TSDF"
+  },
+  "limitations": [
+    "The method completes planar room structure, not curved or articulated hidden geometry.",
+    "A plane can be geometrically complete while its hidden texture remains unobserved.",
+    "TSDF and DA3 errors are recorded separately and cannot certify final RGB quality."
+  ]
+}

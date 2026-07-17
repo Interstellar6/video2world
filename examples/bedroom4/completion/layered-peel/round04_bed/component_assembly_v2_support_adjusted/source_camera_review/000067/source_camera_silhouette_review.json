@@ -1,0 +1,85 @@
+{
+  "camera_convention": {
+    "image_y_axis": "down",
+    "rotation": "camera_to_world"
+  },
+  "created_at": "2026-07-17T04:50:19.058277+00:00",
+  "frame_id": "000067",
+  "gates": {
+    "bbox_iou": true,
+    "center_error_px": true,
+    "mask_iou": true
+  },
+  "kind": "video2world.source_camera_silhouette_review",
+  "metrics": {
+    "bbox_iou": 0.8617860874591494,
+    "center_error_px": 16.939910310437423,
+    "intersection_pixels": 175291,
+    "mask_iou": 0.7986431936433304,
+    "observed_bbox_xyxy": [
+      299,
+      225,
+      1280,
+      720
+    ],
+    "observed_occluded_pixels": 802,
+    "observed_pixels": 204606,
+    "observed_raw_pixels": 205408,
+    "observed_recall": 0.8567246317312298,
+    "rendered_bbox_xyxy": [
+      280,
+      236,
+      1180,
+      720
+    ],
+    "rendered_occluded_pixels": 56476,
+    "rendered_pixels": 190171,
+    "rendered_precision": 0.9217546313580935,
+    "rendered_raw_pixels": 246647,
+    "union_pixels": 219486
+  },
+  "outputs": {
+    "overlay": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v2_support_adjusted/source_camera_review/000067/source_camera_silhouette_overlay.png",
+      "sha256": "a512cfb5975019ceaad3f537f1cdface1f799546cc4b2dbccbaf16b3ca4bb80a"
+    },
+    "rendered_mask": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v2_support_adjusted/source_camera_review/000067/rendered_silhouette.png",
+      "sha256": "0b171d98c42f48190044e91068540f55bfe2bdf3b47427e5ebde0af12805d325"
+    }
+  },
+  "promotion_allowed": true,
+  "scene_transform_mode": "full_affine_runtime_transform",
+  "schema_version": 1,
+  "sources": {
+    "cameras": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/cameras.json",
+      "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+    },
+    "mesh": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v2_support_adjusted/sam3_bed_01.support-adjusted.glb",
+      "sha256": "ad9eca71a676cf8fa5cad7a38d0ff5a623149de01e61ae91ba651ea07d37790e"
+    },
+    "observed_mask": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/000067.observed.png",
+      "sha256": "adb82c0cbc6aaacfb4de31c36255c0647e1efeac3ff25c9fa451eb0b1fda3cbc"
+    },
+    "occluder_masks": [
+      {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/000067.occluder_00.png",
+        "pixels": 56625,
+        "sha256": "6b0d90144c00b51596ca01247df33bf41ad4e8b2f8318173ba58afabc2524c83"
+      }
+    ],
+    "scene_fit_report": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v2_support_adjusted/scene_fit_validated/scene_fit_report.json",
+      "sha256": "2f3b8b29d2270964fe8931c4826b2b126e60266cfd97d157af5b8cdd971a6adc"
+    }
+  },
+  "status": "passed",
+  "thresholds": {
+    "maximum_center_error_px": 20.0,
+    "minimum_bbox_iou": 0.8,
+    "minimum_mask_iou": 0.65
+  }
+}

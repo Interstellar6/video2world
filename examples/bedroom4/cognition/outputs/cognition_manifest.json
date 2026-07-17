@@ -1487,8 +1487,8 @@
       "category": "pillow",
       "status": "passed",
       "description": {
-        "caption_en": "This accepted ensemble contains three touching pillows on the bed: two larger pale-green patchwork pillows behind one smaller light square pillow, in front of a dark carved wood-like headboard.",
-        "caption_zh": "这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。",
+        "caption_en": "This accepted ensemble contains three touching light-colored pillows on the bed: two larger off-white or cream quilted pillows with muted brown floral panels behind one smaller white or off-white square pillow, in front of a dark carved wood-like headboard. Their apparent tint varies under the warm room lighting.",
+        "caption_zh": "这个已接受整体由床上三只相接的浅色枕头组成：两只较大的灰白/米白色绗缝枕头带低饱和棕色花卉拼接，位于一只较小的白色/灰白色方枕后方；整体处在深色雕花木质观感床头板前，暖色室内光会使表面略显偏黄。",
         "visible_attributes": {
           "object_type": {
             "en": "three-pillow ensemble",
@@ -1496,13 +1496,13 @@
           },
           "colors": {
             "en": [
-              "pale green",
-              "light off-white",
+              "off-white and cream under warm lighting",
+              "white to off-white front pillow",
               "muted brown floral accents"
             ],
             "zh": [
-              "浅绿色",
-              "浅灰白色",
+              "暖光下的灰白与米白色",
+              "白色至灰白色前排枕头",
               "低饱和棕色花卉点缀"
             ]
           },
@@ -1689,7 +1689,15 @@
           "agent_visual_audit_correction:uncertainties"
         ],
         "final_description_method": "local_vlm_generation_then_explicit_schema_and_agent_visual_audit_corrections",
-        "agent_visual_audit_checklist": "Verify exactly three touching pillows treated as one ensemble: two larger pale-green patchwork/floral pillows behind one smaller light square pillow, resting on the bed in front of a dark carved wooden headboard. Never state that the pillow count is uncertain."
+        "agent_visual_audit_checklist": "Verify exactly three touching pillows treated as one ensemble: two larger off-white or cream quilted/floral pillows behind one smaller white or off-white square pillow, resting on the bed in front of a dark carved wooden headboard. Warm room lighting may shift their apparent tint; do not label the pillows pale green. Never state that the pillow count is uncertain.",
+        "agent_visual_audit_revision": {
+          "revised_at": "2026-07-17T05:20:00+08:00",
+          "reason": "Source-frame reinspection corrected the original VLM pale-green color label.",
+          "evidence_frames": [
+            "000064"
+          ],
+          "raw_model_output_preserved": true
+        }
       },
       "provenance": {
         "model_repo": "Qwen/Qwen2.5-VL-3B-Instruct",
@@ -1814,16 +1822,16 @@
       },
       "description_evidence": {
         "short": {
-          "en": "This accepted ensemble contains three touching pillows on the bed: two larger pale-green patchwork pillows behind one smaller light square pillow, in front of a dark carved wood-like headboard.",
-          "zh": "这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。"
+          "en": "This accepted ensemble contains three touching light-colored pillows on the bed: two larger off-white or cream quilted pillows with muted brown floral panels behind one smaller white or off-white square pillow, in front of a dark carved wood-like headboard. Their apparent tint varies under the warm room lighting.",
+          "zh": "这个已接受整体由床上三只相接的浅色枕头组成：两只较大的灰白/米白色绗缝枕头带低饱和棕色花卉拼接，位于一只较小的白色/灰白色方枕后方；整体处在深色雕花木质观感床头板前，暖色室内光会使表面略显偏黄。"
         },
         "appearance": {
-          "en": "This accepted ensemble contains three touching pillows on the bed: two larger pale-green patchwork pillows behind one smaller light square pillow, in front of a dark carved wood-like headboard.",
-          "zh": "这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。"
+          "en": "This accepted ensemble contains three touching light-colored pillows on the bed: two larger off-white or cream quilted pillows with muted brown floral panels behind one smaller white or off-white square pillow, in front of a dark carved wood-like headboard. Their apparent tint varies under the warm room lighting.",
+          "zh": "这个已接受整体由床上三只相接的浅色枕头组成：两只较大的灰白/米白色绗缝枕头带低饱和棕色花卉拼接，位于一只较小的白色/灰白色方枕后方；整体处在深色雕花木质观感床头板前，暖色室内光会使表面略显偏黄。"
         },
         "detailed": {
-          "en": "Colors: pale green, light off-white, muted brown floral accents; Material appearance: soft quilted fabric-like covers; Geometry: two larger near-square rear pillows, one smaller square front pillow, soft rounded corners; Visible components: two larger rear pillows, one smaller front pillow; Style or pattern: patchwork and quilted panels, muted floral motifs on the rear pillows",
-          "zh": "颜色: 浅绿色, 浅灰白色, 低饱和棕色花卉点缀; 材质观感: 柔软绗缝织物观感枕套; 几何形态: 两只较大的近方形后排枕头, 一只较小的方形前排枕头, 柔和圆角; 可见组件: 两只较大的后排枕头, 一只较小的前排枕头; 风格或纹理: 拼接与绗缝分区, 后排枕头上的低饱和花卉图案"
+          "en": "Colors: off-white and cream under warm lighting, white to off-white front pillow, muted brown floral accents; Material appearance: soft quilted fabric-like covers; Geometry: two larger near-square rear pillows, one smaller square front pillow, soft rounded corners; Visible components: two larger rear pillows, one smaller front pillow; Style or pattern: patchwork and quilted panels, muted floral motifs on the rear pillows",
+          "zh": "颜色: 暖光下的灰白与米白色, 白色至灰白色前排枕头, 低饱和棕色花卉点缀; 材质观感: 柔软绗缝织物观感枕套; 几何形态: 两只较大的近方形后排枕头, 一只较小的方形前排枕头, 柔和圆角; 可见组件: 两只较大的后排枕头, 一只较小的前排枕头; 风格或纹理: 拼接与绗缝分区, 后排枕头上的低饱和花卉图案"
         },
         "location": {
           "en": "The three pillows rest together on the bed. On the bed in front of a dark carved wood-like headboard.",

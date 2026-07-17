@@ -1,0 +1,59 @@
+{
+  "attempt": 1,
+  "created_at": "2026-07-16T18:30:29.067366Z",
+  "decision": "retry",
+  "issues": [
+    {
+      "evidence_view_ids": [
+        "source",
+        "front",
+        "right",
+        "back",
+        "left",
+        "top",
+        "bottom",
+        "technical"
+      ],
+      "explanation": {
+        "en": "The front view does not match the observed source crop in terms of color, texture, and material.",
+        "zh": "前视图与观察到的源裁剪在颜色、纹理和材质上不匹配。"
+      },
+      "issue_type": "front_fidelity_error",
+      "retry_prompt_instruction": "Preserve the observed identity and texture of the pillow in the front view by adjusting the material and color to match the source.",
+      "severity": "blocking"
+    },
+    {
+      "evidence_view_ids": [
+        "technical"
+      ],
+      "explanation": {
+        "en": "Deterministic technical gates failed: front_color_fidelity.",
+        "zh": "确定性技术门槛未通过: front_color_fidelity."
+      },
+      "issue_type": "front_fidelity_error",
+      "retry_prompt_instruction": "Regenerate a closed, volumetric object with plausible category proportions and connected parts, then rerun all technical gates.",
+      "severity": "blocking"
+    }
+  ],
+  "kind": "video2world.geometry_review",
+  "model": "qwen2.5-vl-3b-instruct",
+  "object_id": "sam3_pillow_left",
+  "provider": "Qwen2.5-VL",
+  "raw_response_sha256": "ebb022084dde0f14bd57f5625d73b486d72413ba2122df13d8859c2d3bc36ff6",
+  "retry_prompt": "Preserve the observed identity and texture of the pillow in the front view by adjusting the material and color to match the source. Regenerate a closed, volumetric object with plausible category proportions and connected parts, then rerun all technical gates.",
+  "schema_version": "1.0",
+  "source_asset_sha256": "7ddfa54c55a4695cf286dfe5a6cac197b4e44d4165a14125fc5056462b844f3f",
+  "technical_gates": {
+    "finite_geometry": true,
+    "front_color_fidelity": false,
+    "front_silhouette_aspect_fidelity": true,
+    "nonempty_triangle_mesh": true,
+    "pillow_thickness_ratio": true,
+    "positive_3d_extents": true,
+    "raw_parts_connected": true,
+    "raw_surface_closed": true,
+    "source_material_color_fidelity": true,
+    "source_silhouette_aspect_fidelity": true
+  },
+  "turntable_sha256": "83ead632498d0419c5ee96dbcd56557942afe067525bba0ea73036f38b4f98c0"
+}

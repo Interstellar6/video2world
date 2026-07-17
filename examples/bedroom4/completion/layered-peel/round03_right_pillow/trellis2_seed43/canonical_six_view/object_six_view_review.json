@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "video2world.canonical_object_six_view_review",
+  "createdAt": "2026-07-17T01:49:16.405Z",
+  "state": "captured_visual_pending",
+  "promotionAllowed": false,
+  "sourcePageUrl": "http://127.0.0.1:4179/object-review.html?objectId=sam3_pillow_right&asset=/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/asset_pbr.glb",
+  "canonicalViews": [
+    "front",
+    "right",
+    "back",
+    "left",
+    "top",
+    "bottom"
+  ],
+  "canonicalViewAxes": {
+    "front": {
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "orientationContract": "web/object-review.js VIEW_SPECS orthogonal object-local axes",
+  "horizontalOrbitAcceptedAsSixViewEvidence": false,
+  "visualGate": {
+    "status": "pending",
+    "blocking": [
+      "shape_mismatch",
+      "primary_color_category_error",
+      "missing_surface_or_sheet_geometry",
+      "disconnected_or_floating_parts",
+      "significant_scene_interpenetration"
+    ],
+    "warning": [
+      "minor_backside_texture_hallucination",
+      "minor_material_or_pattern_drift"
+    ]
+  },
+  "objectId": "sam3_pillow_right",
+  "renderMode": "neutral-albedo",
+  "bounds": {
+    "min": [
+      -0.5018203258514404,
+      -0.3437372148036957,
+      -0.31933820247650146
+    ],
+    "max": [
+      0.5018523931503296,
+      0.3446519374847412,
+      0.32251304388046265
+    ],
+    "size": [
+      1.00367271900177,
+      0.6883891522884369,
+      0.6418512463569641
+    ],
+    "radius": 0.6879701254972462
+  },
+  "meshCount": 1,
+  "triangleCount": 98226,
+  "asset": {
+    "url": "http://127.0.0.1:4179/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/asset_pbr.glb",
+    "sizeBytes": 3057972,
+    "sha256": "a239242865ccd598ae1ba9d8b897c08fa6594451c416ad682fb4b5d9c2419296"
+  },
+  "views": {
+    "front": {
+      "file": "front_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/canonical_six_view/front_object.png",
+      "sizeBytes": 116405,
+      "sha256": "6641d26469592af3e6bdb14fda7284b0396e34aa80604254d28a97bfeeb2fb6e",
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "file": "right_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/canonical_six_view/right_object.png",
+      "sizeBytes": 74435,
+      "sha256": "3b1fbedcad5b6ee66835d6e79426266a4dafed95ec8d6e91fac9a60bef621be6",
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "file": "back_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/canonical_six_view/back_object.png",
+      "sizeBytes": 108221,
+      "sha256": "4f319bfbfdead956577d6204b114e31bed39f7aa15b1e7f67524427ccc547b6a",
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "file": "left_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/canonical_six_view/left_object.png",
+      "sizeBytes": 72573,
+      "sha256": "8623a665b6c456bc502c03be46965b14933c05ab29a70096ef91cd1d79e7679c",
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "file": "top_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/canonical_six_view/top_object.png",
+      "sizeBytes": 103902,
+      "sha256": "e95108dffffd412e6f917715a5709bda4f01d6c44ff8d72092877aaf3d8dee22",
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "file": "bottom_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/canonical_six_view/bottom_object.png",
+      "sizeBytes": 103897,
+      "sha256": "203b1502e2f646b4030c382a6b0a929fda406b8417cb978090795ac0d12a3075",
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "contactSheet": {
+    "file": "object_six_view_contact_sheet.png",
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/canonical_six_view/object_six_view_contact_sheet.png",
+    "sizeBytes": 390079,
+    "sha256": "eaa92b5095329f603f8342ba422fe1c443e4ab61966826fa42263fade17f0c87",
+    "layout": "3x2",
+    "viewport": [
+      1440,
+      1280
+    ]
+  },
+  "browser": {
+    "consoleWarnings": [],
+    "consoleErrors": []
+  }
+}

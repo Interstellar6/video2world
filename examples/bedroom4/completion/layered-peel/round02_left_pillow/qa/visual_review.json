@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.clean_plate_visual_review",
+  "created_at": "2026-07-17T10:30:00+08:00",
+  "round_index": 2,
+  "peeled_object_id": "sam3_pillow_left",
+  "technical_status": "passed",
+  "semantic_status": "accepted_for_reinspection_only",
+  "scene_promotion_allowed": false,
+  "next_round_reinspection_allowed": true,
+  "final_background_allowed": false,
+  "output_sha256": "112b1eddad50553a93251e4df1865a65792af0e9f54164a57af3aaee1e85e600",
+  "technical_qa_sha256": "40a9b1ba5f2ec29170f5633cefcce54ece0ee1a9e5a29b1d650d242e2521d73e",
+  "contact_sheet_sha256": "2e00717526134090ddc1a605fe96294c71e5316a8344af350887470bd99418db",
+  "preserved_properties": [
+    "25 output frames retain their 1280x720 dimensions",
+    "pixels outside the dilated removal mask are unchanged",
+    "the remaining right pillow is still detectable for calibrated 3D-anchor association"
+  ],
+  "blocking_for_scene_promotion": [
+    "the removed left-pillow region is a low-frequency blurred residual rather than reconstructed bedding",
+    "no cross-view depth or normal consistency has been established",
+    "the result cannot be used to rebuild PGSR or TSDF geometry"
+  ],
+  "allowed_use": "SAM3 reinspection and association for selecting the next object layer only",
+  "forbidden_use": "scene promotion, final background, PGSR retraining, or TSDF reconstruction"
+}

@@ -1,0 +1,9 @@
+{
+  "claims_measured_donor": false,
+  "frame_count": 25,
+  "frame_receipts_are_hashed_in_manifest": true,
+  "kind": "video2world.source_camera_pbr_layer_render_set_receipt",
+  "manifest": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v1/layers/sam3_pillow_front/render_manifest.json",
+  "manifest_sha256": "fd8ed20eaaca6934b8290b21eaea11e308de2928996cb1cfbfb1482bcf7631a7",
+  "schema_version": 1
+}

@@ -1,0 +1,230 @@
+{
+  "claim_scope": "Calibrated full-projection separation plus vertex-bin front-depth order and per-object support/anchor gates. Non-watertight surface meshes do not permit an exact signed-volume penetration claim.",
+  "created_at": "2026-07-17T04:11:44.419972+00:00",
+  "frame_id": "000064",
+  "kind": "video2world.scene_fit_pairwise_review",
+  "object_gates": {
+    "sam3_pillow_front": {
+      "scene_fit": true,
+      "source_camera": true,
+      "support_and_anchor": true
+    },
+    "sam3_pillow_left": {
+      "scene_fit": true,
+      "source_camera": true,
+      "support_and_anchor": true
+    },
+    "sam3_pillow_right": {
+      "scene_fit": true,
+      "source_camera": true,
+      "support_and_anchor": true
+    }
+  },
+  "outputs": {
+    "projection_overlay": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pairwise-scene-fit-review-v1/pairwise_projection_overlay.png",
+      "sha256": "29c0e91ca0b6b50eec19db4d5c78e0c1d5a8d7fa3cb9dd24286fe3e6c858b899"
+    }
+  },
+  "parameters": {
+    "bin_size_px": 4,
+    "minimum_depth_margin_m": 0.05,
+    "minimum_shared_bins": 16
+  },
+  "promotion_allowed": true,
+  "relations": [
+    {
+      "aabb_overlap": {
+        "advisory_only": true,
+        "extents": [
+          0.8430383685465608,
+          2.607210636138916,
+          1.8959510922431946
+        ],
+        "volume": 4.167259929573327
+      },
+      "claim_scope": "Frontmost mesh-vertex depth in calibrated image bins; this detects obvious depth inversion but is not an exact triangle-volume boolean intersection.",
+      "front": "sam3_pillow_front",
+      "full_projection_overlap_pixels": 1568,
+      "gates": {
+        "front_is_nearer_in_every_shared_bin": true,
+        "minimum_shared_depth_bins": true,
+        "no_depth_order_inversion": true
+      },
+      "kind": "front_before_rear",
+      "metrics": {
+        "minimum_rear_minus_front_depth_m": 0.4997048308282217,
+        "rear_minus_front_depth_quantiles_m": {
+          "max": 0.925892830579107,
+          "median": 0.6732992072413122,
+          "min": 0.4997048308282217,
+          "p01": 0.5310915845168119,
+          "p05": 0.5613920106781983,
+          "p95": 0.8629329605658617,
+          "p99": 0.8967158576774132
+        },
+        "shared_depth_bins": 118,
+        "wrong_order_fraction": 0.0
+      },
+      "rear": "sam3_pillow_left",
+      "status": "passed",
+      "thresholds": {
+        "minimum_depth_margin_m": 0.05,
+        "minimum_shared_bins": 16
+      }
+    },
+    {
+      "aabb_overlap": {
+        "advisory_only": true,
+        "extents": [
+          1.8387807129476303,
+          2.422048341829605,
+          0.0
+        ],
+        "volume": 0.0
+      },
+      "claim_scope": "Frontmost mesh-vertex depth in calibrated image bins; this detects obvious depth inversion but is not an exact triangle-volume boolean intersection.",
+      "front": "sam3_pillow_front",
+      "full_projection_overlap_pixels": 3715,
+      "gates": {
+        "front_is_nearer_in_every_shared_bin": true,
+        "minimum_shared_depth_bins": true,
+        "no_depth_order_inversion": true
+      },
+      "kind": "front_before_rear",
+      "metrics": {
+        "minimum_rear_minus_front_depth_m": 0.841256778393765,
+        "rear_minus_front_depth_quantiles_m": {
+          "max": 1.6943307362888156,
+          "median": 1.3104767212506037,
+          "min": 0.841256778393765,
+          "p01": 0.9264366437406115,
+          "p05": 0.956123786277488,
+          "p95": 1.603304881191554,
+          "p99": 1.6632156065892605
+        },
+        "shared_depth_bins": 262,
+        "wrong_order_fraction": 0.0
+      },
+      "rear": "sam3_pillow_right",
+      "status": "passed",
+      "thresholds": {
+        "minimum_depth_margin_m": 0.05,
+        "minimum_shared_bins": 16
+      }
+    },
+    {
+      "aabb_overlap": {
+        "advisory_only": true,
+        "extents": [
+          0.0,
+          3.392149279733042,
+          0.0
+        ],
+        "volume": 0.0
+      },
+      "claim_scope": "Zero overlap of two full calibrated projections excludes a common 3D point for this camera frustum.",
+      "gates": {
+        "full_projection_disjoint": true
+      },
+      "kind": "disjoint",
+      "left": "sam3_pillow_left",
+      "metrics": {
+        "full_projection_overlap_pixels": 0
+      },
+      "right": "sam3_pillow_right",
+      "status": "passed"
+    }
+  ],
+  "schema_version": 1,
+  "sources": {
+    "cameras": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+      "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+    },
+    "objects": {
+      "sam3_pillow_front": {
+        "baseline_scene_review": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/static-recarve-browser-comparison.json",
+          "sha256": "e97d5554d1508b66722e946ddf0206297295c7dae5c316c41346b873ca15df2c"
+        },
+        "full_silhouette": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/source_camera_review/rendered_silhouette.png",
+          "sha256": "b4f9b7342f6604fb3ac8a3d17c4ab53eb6d00dbed4a14eb45c20064ab0fc0380"
+        },
+        "mesh": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/sam3_pillow_front.scene-fit.glb",
+          "sha256": "9d84ab4561d7c017c24c07a94abe5400073b0fafb97893a8a1eafca320c391d6"
+        },
+        "scene_fit_report": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/scene_fit_report.json",
+          "sha256": "da26014b1ecc29eb1dfcf8d45b74d98bd539b69945e029a6512ea6a2ab8769cd"
+        },
+        "scene_geometry_review": null,
+        "source_camera_review": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/source_camera_review/source_camera_silhouette_review.json",
+          "sha256": "5c0ea401fa4ce1ba0dddb07efe5849d9038b1d28a4111ef4106850cdcaa814a6"
+        }
+      },
+      "sam3_pillow_left": {
+        "baseline_scene_review": null,
+        "full_silhouette": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined_v6/source_camera_review/rendered_silhouette_full.png",
+          "sha256": "75cbfc296277150d9055632f7a1eaa9a51ed77ca47257387d0021c0f6b2c64a1"
+        },
+        "mesh": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined_v6/sam3_pillow_left.scene-fit.glb",
+          "sha256": "43f95a5756ccecb9a1ca36ba583c2ad4fd5dd1a4e66b1d591be935f2bd59b600"
+        },
+        "scene_fit_report": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined_v6/scene_fit_report.json",
+          "sha256": "1f551500f5a540dfd46b9aaba33a503f36efc47c5e7169dc953ed779f40a98c7"
+        },
+        "scene_geometry_review": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined_v6/scene_geometry_review.json",
+          "sha256": "02898b1f9bede33f8f88e283cb8b7e2fb04f8ee05cdd468ac2b560354dfd69fc"
+        },
+        "source_camera_review": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined_v6/source_camera_review/source_camera_silhouette_review.json",
+          "sha256": "eb6da0e59cce93909de563ae2f8083f52c4c511a6585b29e390a707d4a872ea1"
+        }
+      },
+      "sam3_pillow_right": {
+        "baseline_scene_review": null,
+        "full_silhouette": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/source_camera_review/rendered_silhouette_full.png",
+          "sha256": "a939a304e8cc2b7962fca51a7a174015efe5e68590585ba13221d7125cd0c451"
+        },
+        "mesh": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/sam3_pillow_right.scene-fit.glb",
+          "sha256": "eb4ad2cb0398602865ff3511039e440ce9cb50ace016fffeaaf3ce3944280f1e"
+        },
+        "scene_fit_report": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/scene_fit_report.json",
+          "sha256": "d9ec2811d33372cfda174b7073e574385da283bc191a09fa89cbc6175da41155"
+        },
+        "scene_geometry_review": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/scene_geometry_review.json",
+          "sha256": "050b3c83460010ef7cb18a1ef286dc7234a47a151d7b44fa951e82629f081373"
+        },
+        "source_camera_review": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/source_camera_review/source_camera_silhouette_review.json",
+          "sha256": "0a5b24d40e2791755981d10e7864e37911716a2e8a2047955fe8adbee68fab07"
+        }
+      }
+    },
+    "script": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/scripts/qa_scene_fit_relations.py",
+      "sha256": "f6ba1097c0daadf60d50fc5709b9d8ed7ab5823bf7573aa4de506db9a5f2992e"
+    },
+    "source_frame": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/000064.png",
+      "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3"
+    },
+    "spec": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pillow-scene-fit-relations.json",
+      "sha256": "5a851dee3e8dd3caccf0775946fc17f3fb84ecd2d9dd30e522b7e4cd4e5c8431"
+    }
+  },
+  "status": "passed"
+}

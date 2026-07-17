@@ -1,0 +1,95 @@
+{
+  "contract": {
+    "previous_round_unresolved_must_not_feed_next_round": true,
+    "removed_object_must_not_reappear_in_same_or_later_round": true,
+    "this_index_is_not_a_final_composite": true
+  },
+  "frame_ids": [
+    "000067"
+  ],
+  "frames": {
+    "000067": {
+      "sam3_bed_01": {
+        "depth": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_bed_01/depth/000067.npy",
+          "sha256": "935bd0d7f7218bdc5121014d8c477f07a0900454a4d43c565e0bdfc3a9086aa6"
+        },
+        "receipt": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_bed_01/receipts/000067.json",
+          "sha256": "32676c47bec6789600d1a7a9532a8d4bfc16b5a6502763ea50c2ee2419bd5c02"
+        },
+        "rgba": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_bed_01/rgba/000067.png",
+          "sha256": "e4a1567408fcafe6430a157ee02374a434c76de875a7157df3428a6814d14527"
+        }
+      },
+      "sam3_pillow_front": {
+        "depth": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_front/depth/000067.npy",
+          "sha256": "9326ff1084eb7de29d1ab46912937746dc368bc428ddb45f27200c074852808d"
+        },
+        "receipt": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_front/receipts/000067.json",
+          "sha256": "83a9944a934d260039a247ad52c3555c1dc645060a545b0d729aa98413b1d085"
+        },
+        "rgba": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_front/rgba/000067.png",
+          "sha256": "b91082fa0f3aeff53ef16198f789e61e3430c4821f3258a26b4e3fa02b4c0c0a"
+        }
+      },
+      "sam3_pillow_left": {
+        "depth": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_left/depth/000067.npy",
+          "sha256": "e793d515e4959343553828410285c8eaffe06da6b11e70f5d0d3a16460935a1a"
+        },
+        "receipt": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_left/receipts/000067.json",
+          "sha256": "b5923d79a809b0e1ae6bd4318abafdbcc84bfb492179966d9b64e995e645f363"
+        },
+        "rgba": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_left/rgba/000067.png",
+          "sha256": "79a8eb6bbf2a6c016459e0d70e2ceca37e020aed4aaf506b38897a607076ee1c"
+        }
+      },
+      "sam3_pillow_right": {
+        "depth": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_right/depth/000067.npy",
+          "sha256": "a32bf4a255bf942f35ed66eaa6e450225510380de4530f0433ae27966903b2a0"
+        },
+        "receipt": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_right/receipts/000067.json",
+          "sha256": "1e6d209c081c025e56b95833a9b832d675441723835f61c289c85adad45fd445"
+        },
+        "rgba": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_right/rgba/000067.png",
+          "sha256": "9e5466ee471c4b32ce802d7601fff6b937b1210d02567b7ac4c9181706e12a11"
+        }
+      }
+    }
+  },
+  "kind": "video2world.pbr_layer_render_index",
+  "layer_order": [
+    "sam3_pillow_front",
+    "sam3_pillow_left",
+    "sam3_pillow_right",
+    "sam3_bed_01"
+  ],
+  "promotion_approved": false,
+  "round_remaining_object_ids": {
+    "round01_front_pillow": [
+      "sam3_pillow_left",
+      "sam3_pillow_right",
+      "sam3_bed_01"
+    ],
+    "round02_left_pillow": [
+      "sam3_pillow_right",
+      "sam3_bed_01"
+    ],
+    "round03_right_pillow": [
+      "sam3_bed_01"
+    ],
+    "round04_bed": []
+  },
+  "schema_version": 1,
+  "status": "qa_passed_single_frame_only"
+}

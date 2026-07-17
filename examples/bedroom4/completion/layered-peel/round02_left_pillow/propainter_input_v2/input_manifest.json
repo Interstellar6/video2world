@@ -1,0 +1,1768 @@
+{
+  "schema_version": 1,
+  "status": "ready_for_propainter",
+  "created_at": "2026-07-17T01:12:07.373572+00:00",
+  "purpose": "identity-safe front-to-back object peel input",
+  "method": "explicit 3D anchor assignment -> detection_id -> exact SAM3 mask",
+  "object_id": "sam3_pillow_left",
+  "object_gate": {
+    "disposition": "accepted_next_layer_target",
+    "evidence_gate_passed": true,
+    "explicit_anchor_sha256": "b8c45454d887a77a99b17558c0fa0f0e49d81ab00099e346aeffc940eacdb400",
+    "explicit_anchor_point_count": 89763
+  },
+  "identity_contract": {
+    "physical_identity_source": "explicit --anchor object_id=PLY only",
+    "selected_mask_key": "association.frames[].assignments[].detection_id",
+    "forbidden_identity_sources": [
+      "SAM3 mask filename",
+      "SAM3 per-frame ordinal suffix",
+      "cross-frame item order"
+    ]
+  },
+  "previous_clean_plate_source_set_sha256": "bc873ff8acbf6af43b1d59dd152b15cea1fe096b49866baf5ae65a54311cb7de",
+  "association": {
+    "path": "provenance/association.json",
+    "sha256": "25ce62f3c83af0438510a2864b7daeafc0ef254815864b52a66be45e780c1ecb",
+    "schema_version": 1,
+    "thresholds": {
+      "minimum_visible_projected_pixels": 25,
+      "minimum_mask_hit_ratio": 0.55,
+      "minimum_dilated_support_ratio": 0.2,
+      "minimum_bbox_iou": 0.3,
+      "minimum_sam3_score": 0.5,
+      "projection_support_dilation_pixels": 4,
+      "occlusion_absolute_depth_tolerance": 0.02,
+      "occlusion_relative_depth_tolerance": 0.005,
+      "minimum_evidence_frames": 2,
+      "minimum_camera_baseline_scene_units": 0.1,
+      "minimum_object_view_angle_degrees": 4.0,
+      "separation_mode": "both",
+      "maximum_rotation_orthonormal_error": 0.001,
+      "assignment_weights": {
+        "mask_hit_ratio": 0.45,
+        "dilated_support_ratio": 0.3,
+        "bbox_iou": 0.2,
+        "sam3_score": 0.05
+      }
+    },
+    "thresholds_sha256": "25e572b90c823aec1e57f8bdbcdb087976e1087738a9c78fb0412684ae34c2d3",
+    "source_set_sha256": "bc873ff8acbf6af43b1d59dd152b15cea1fe096b49866baf5ae65a54311cb7de"
+  },
+  "portable_layout": {
+    "paths_are_relative_to": "input_manifest.json parent",
+    "frames_dir": "input/frames",
+    "masks_dir": "input/masks",
+    "association_snapshot": "provenance/association.json"
+  },
+  "frame_count": 25,
+  "frame_ids": [
+    "000048",
+    "000049",
+    "000050",
+    "000051",
+    "000052",
+    "000053",
+    "000054",
+    "000055",
+    "000056",
+    "000057",
+    "000058",
+    "000059",
+    "000060",
+    "000061",
+    "000062",
+    "000063",
+    "000064",
+    "000065",
+    "000066",
+    "000067",
+    "000068",
+    "000069",
+    "000070",
+    "000071",
+    "000072"
+  ],
+  "frame_records": [
+    {
+      "sequence_index": 0,
+      "frame_id": "000048",
+      "detection_id": "000048:mask:000000",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9866094420996393,
+        "frame_sha256": "af8062aa496d1c1a855e0efa3719445512e81906fee43d8279285d473d922039",
+        "mask_sha256": "cd49735ba4bf464b681a8106a5664d34f85e2a5601b02770e6beee7df71a744f",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "af8062aa496d1c1a855e0efa3719445512e81906fee43d8279285d473d922039",
+        "bytes": 1173549,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "cd49735ba4bf464b681a8106a5664d34f85e2a5601b02770e6beee7df71a744f",
+        "bytes": 1727,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 25916,
+        "bbox_xyxy_exclusive": [
+          320,
+          298,
+          526,
+          483
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0000.png",
+        "sha256": "b906eac43f579012f53a65dd9607cc5e9f675790a84c83511b9d8d710b145ea4",
+        "bytes": 853609,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0000.png",
+        "sha256": "cd49735ba4bf464b681a8106a5664d34f85e2a5601b02770e6beee7df71a744f",
+        "bytes": 1727,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 25916,
+        "bbox_xyxy_exclusive": [
+          320,
+          298,
+          526,
+          483
+        ]
+      }
+    },
+    {
+      "sequence_index": 1,
+      "frame_id": "000049",
+      "detection_id": "000049:mask:000003",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9834833064483306,
+        "frame_sha256": "2b61d69ef90315efb883819e0d22156dd2f7145221316170914ccb4b8b4d407f",
+        "mask_sha256": "6d69ba24fae4530531a4af8524079fa938c63f7d212d975929e3c4aa0e2466d2",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "2b61d69ef90315efb883819e0d22156dd2f7145221316170914ccb4b8b4d407f",
+        "bytes": 1166019,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "6d69ba24fae4530531a4af8524079fa938c63f7d212d975929e3c4aa0e2466d2",
+        "bytes": 1714,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 26005,
+        "bbox_xyxy_exclusive": [
+          319,
+          303,
+          526,
+          489
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0001.png",
+        "sha256": "08c41d94dbe6b319160acb267959a8c89a504dbe06b83e01ac7e0e70f4f8cd47",
+        "bytes": 848753,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0001.png",
+        "sha256": "6d69ba24fae4530531a4af8524079fa938c63f7d212d975929e3c4aa0e2466d2",
+        "bytes": 1714,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 26005,
+        "bbox_xyxy_exclusive": [
+          319,
+          303,
+          526,
+          489
+        ]
+      }
+    },
+    {
+      "sequence_index": 2,
+      "frame_id": "000050",
+      "detection_id": "000050:mask:000006",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9844263211690207,
+        "frame_sha256": "736bfb68abf9ca7d80072b173899629bda28a7469e2dd77738fd9ca541b3b259",
+        "mask_sha256": "41b17ec59ced8f384b57f2c8c0090616fcd0070aff683c9c414dcfab67b87576",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "736bfb68abf9ca7d80072b173899629bda28a7469e2dd77738fd9ca541b3b259",
+        "bytes": 1181623,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "41b17ec59ced8f384b57f2c8c0090616fcd0070aff683c9c414dcfab67b87576",
+        "bytes": 1738,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 26627,
+        "bbox_xyxy_exclusive": [
+          316,
+          308,
+          527,
+          497
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0002.png",
+        "sha256": "f0aedc0d4854cb851d477cc93d8b9df6ba4a96b2ac1dee6fb27927a448a79ae3",
+        "bytes": 875429,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0002.png",
+        "sha256": "41b17ec59ced8f384b57f2c8c0090616fcd0070aff683c9c414dcfab67b87576",
+        "bytes": 1738,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 26627,
+        "bbox_xyxy_exclusive": [
+          316,
+          308,
+          527,
+          497
+        ]
+      }
+    },
+    {
+      "sequence_index": 3,
+      "frame_id": "000051",
+      "detection_id": "000051:mask:000009",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9835488664903015,
+        "frame_sha256": "d5a4848925df47a069d45cb9b72fc1214fdca06ec06292a4e589462a6edd86e5",
+        "mask_sha256": "69bd8dd7427f7e3d4d649411e4e88c12e08d58e1523df56e74d06de2a69529d7",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "d5a4848925df47a069d45cb9b72fc1214fdca06ec06292a4e589462a6edd86e5",
+        "bytes": 1156214,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "69bd8dd7427f7e3d4d649411e4e88c12e08d58e1523df56e74d06de2a69529d7",
+        "bytes": 1735,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 26892,
+        "bbox_xyxy_exclusive": [
+          316,
+          313,
+          528,
+          503
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0003.png",
+        "sha256": "a32532da99f81f81cfbe02dfae1ea6f09afb5581401679d273199da32d54e737",
+        "bytes": 844785,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0003.png",
+        "sha256": "69bd8dd7427f7e3d4d649411e4e88c12e08d58e1523df56e74d06de2a69529d7",
+        "bytes": 1735,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 26892,
+        "bbox_xyxy_exclusive": [
+          316,
+          313,
+          528,
+          503
+        ]
+      }
+    },
+    {
+      "sequence_index": 4,
+      "frame_id": "000052",
+      "detection_id": "000052:mask:000012",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9849705295081218,
+        "frame_sha256": "813ea4e883037e2ae8f8ea8517db2f4418559a7e1bbd8fa27ff16933df592637",
+        "mask_sha256": "954bb4d18a8006a8654ab370574d8fde77b649f99465f8c7214b3f881067141e",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "813ea4e883037e2ae8f8ea8517db2f4418559a7e1bbd8fa27ff16933df592637",
+        "bytes": 1145956,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "954bb4d18a8006a8654ab370574d8fde77b649f99465f8c7214b3f881067141e",
+        "bytes": 1746,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 27370,
+        "bbox_xyxy_exclusive": [
+          317,
+          318,
+          530,
+          510
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0004.png",
+        "sha256": "dada24f619caa54b5c115a0abb2f8db3ff1c53f09f946750f5762476572f33b9",
+        "bytes": 836047,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0004.png",
+        "sha256": "954bb4d18a8006a8654ab370574d8fde77b649f99465f8c7214b3f881067141e",
+        "bytes": 1746,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 27370,
+        "bbox_xyxy_exclusive": [
+          317,
+          318,
+          530,
+          510
+        ]
+      }
+    },
+    {
+      "sequence_index": 5,
+      "frame_id": "000053",
+      "detection_id": "000053:mask:000016",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9852676141981471,
+        "frame_sha256": "34a72bf1c3388f1954b2d00a62228fa00a1dd02b958a98ae109368bf34ff31bf",
+        "mask_sha256": "842d058beed95b429289c1d75c6393f3e390394c17c7a857b99f9824fe2303e3",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "34a72bf1c3388f1954b2d00a62228fa00a1dd02b958a98ae109368bf34ff31bf",
+        "bytes": 1151028,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "842d058beed95b429289c1d75c6393f3e390394c17c7a857b99f9824fe2303e3",
+        "bytes": 1773,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 27804,
+        "bbox_xyxy_exclusive": [
+          318,
+          324,
+          531,
+          518
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0005.png",
+        "sha256": "e88149c8592dbe3df78de49c0cd0a3dedda8c3c7790fd30f348e45ca79409bac",
+        "bytes": 855743,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0005.png",
+        "sha256": "842d058beed95b429289c1d75c6393f3e390394c17c7a857b99f9824fe2303e3",
+        "bytes": 1773,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 27804,
+        "bbox_xyxy_exclusive": [
+          318,
+          324,
+          531,
+          518
+        ]
+      }
+    },
+    {
+      "sequence_index": 6,
+      "frame_id": "000054",
+      "detection_id": "000054:mask:000019",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.985274740363776,
+        "frame_sha256": "9859fd2ad92930fd7cf3cb6b11a9110b4edaa9b6ba5335c792359d253d8653c3",
+        "mask_sha256": "f9b87696781027e22af64081f4b78e2a85eea8171fec6e87ca86c6362fedb2fd",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "9859fd2ad92930fd7cf3cb6b11a9110b4edaa9b6ba5335c792359d253d8653c3",
+        "bytes": 1131660,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "f9b87696781027e22af64081f4b78e2a85eea8171fec6e87ca86c6362fedb2fd",
+        "bytes": 1751,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 28255,
+        "bbox_xyxy_exclusive": [
+          319,
+          330,
+          533,
+          526
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0006.png",
+        "sha256": "92b77eda203c808b11792fcec6b721728c8e6f34ecdd79146befb3e05b89c654",
+        "bytes": 833506,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0006.png",
+        "sha256": "f9b87696781027e22af64081f4b78e2a85eea8171fec6e87ca86c6362fedb2fd",
+        "bytes": 1751,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 28255,
+        "bbox_xyxy_exclusive": [
+          319,
+          330,
+          533,
+          526
+        ]
+      }
+    },
+    {
+      "sequence_index": 7,
+      "frame_id": "000055",
+      "detection_id": "000055:mask:000022",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9840376211356109,
+        "frame_sha256": "b321e0cbbcaa068d64435598d0beef63932a26988a15d155b3972ae40996faad",
+        "mask_sha256": "79be5b5ca6709633a1ae5381eb97418eef734686d896d6a61b33d9d2fc3e5ebf",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "b321e0cbbcaa068d64435598d0beef63932a26988a15d155b3972ae40996faad",
+        "bytes": 1130898,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "79be5b5ca6709633a1ae5381eb97418eef734686d896d6a61b33d9d2fc3e5ebf",
+        "bytes": 1785,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 28847,
+        "bbox_xyxy_exclusive": [
+          317,
+          334,
+          535,
+          533
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0007.png",
+        "sha256": "a4a0373b5362887c051910fb47e84a960ddf527ad7f5d08bc29254fdcbd05b4c",
+        "bytes": 835593,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0007.png",
+        "sha256": "79be5b5ca6709633a1ae5381eb97418eef734686d896d6a61b33d9d2fc3e5ebf",
+        "bytes": 1785,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 28847,
+        "bbox_xyxy_exclusive": [
+          317,
+          334,
+          535,
+          533
+        ]
+      }
+    },
+    {
+      "sequence_index": 8,
+      "frame_id": "000056",
+      "detection_id": "000056:mask:000025",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9853705661549587,
+        "frame_sha256": "c2e3f3af8ff35ab6d43c75b060e7b179b1af314ff809c08149c8e80ef1331f4c",
+        "mask_sha256": "4732bf3e6a76ebaec85120e1b2e4a2ef81b5335f479b3dd1dede1a05027e473c",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "c2e3f3af8ff35ab6d43c75b060e7b179b1af314ff809c08149c8e80ef1331f4c",
+        "bytes": 1129636,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "4732bf3e6a76ebaec85120e1b2e4a2ef81b5335f479b3dd1dede1a05027e473c",
+        "bytes": 1779,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 29484,
+        "bbox_xyxy_exclusive": [
+          317,
+          338,
+          536,
+          539
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0008.png",
+        "sha256": "41dbaa2e340e8f377214e6022e61b0c4ad9e4737c9676a769999210a8bdfc85f",
+        "bytes": 833040,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0008.png",
+        "sha256": "4732bf3e6a76ebaec85120e1b2e4a2ef81b5335f479b3dd1dede1a05027e473c",
+        "bytes": 1779,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 29484,
+        "bbox_xyxy_exclusive": [
+          317,
+          338,
+          536,
+          539
+        ]
+      }
+    },
+    {
+      "sequence_index": 9,
+      "frame_id": "000057",
+      "detection_id": "000057:mask:000028",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.986261854263462,
+        "frame_sha256": "20470dffda1bd48e8f0c0aa1412c5c824ac6ffe1cf3ceaaeb456df0cd987328a",
+        "mask_sha256": "45feef12021d8c633f90b6e45f1c7ba5b40f1b493c6ef640e03669d819dbcb74",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "20470dffda1bd48e8f0c0aa1412c5c824ac6ffe1cf3ceaaeb456df0cd987328a",
+        "bytes": 1157383,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "45feef12021d8c633f90b6e45f1c7ba5b40f1b493c6ef640e03669d819dbcb74",
+        "bytes": 1807,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 30140,
+        "bbox_xyxy_exclusive": [
+          315,
+          340,
+          539,
+          543
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0009.png",
+        "sha256": "5875325e4a1d671fd843b17ee5dd95098f8f1d0770c7db48956f68eb74a0d085",
+        "bytes": 867335,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0009.png",
+        "sha256": "45feef12021d8c633f90b6e45f1c7ba5b40f1b493c6ef640e03669d819dbcb74",
+        "bytes": 1807,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 30140,
+        "bbox_xyxy_exclusive": [
+          315,
+          340,
+          539,
+          543
+        ]
+      }
+    },
+    {
+      "sequence_index": 10,
+      "frame_id": "000058",
+      "detection_id": "000058:mask:000031",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9856791391315631,
+        "frame_sha256": "5ea1fac460dd7e3878ff8d0223827787d6f304df71291084c3590b3b2525ccde",
+        "mask_sha256": "c3aace1c7c9e66523e61b26111bb8f4af0b6aae357c636303089fcc24be97cea",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "5ea1fac460dd7e3878ff8d0223827787d6f304df71291084c3590b3b2525ccde",
+        "bytes": 1141453,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "c3aace1c7c9e66523e61b26111bb8f4af0b6aae357c636303089fcc24be97cea",
+        "bytes": 1801,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 30658,
+        "bbox_xyxy_exclusive": [
+          315,
+          342,
+          539,
+          547
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0010.png",
+        "sha256": "9f8c34750d3798d607ec467a707dad209f3f675b90c149de59e1e13f13aaf8fe",
+        "bytes": 850672,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0010.png",
+        "sha256": "c3aace1c7c9e66523e61b26111bb8f4af0b6aae357c636303089fcc24be97cea",
+        "bytes": 1801,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 30658,
+        "bbox_xyxy_exclusive": [
+          315,
+          342,
+          539,
+          547
+        ]
+      }
+    },
+    {
+      "sequence_index": 11,
+      "frame_id": "000059",
+      "detection_id": "000059:mask:000034",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9852026138654013,
+        "frame_sha256": "d3dd9f94c9111fe4b6bad755a6d713dfe845dcb091bda4873da143d8901043e0",
+        "mask_sha256": "f1819d5b59b868f713874bbfc79b7cfa30870ab0c8aaa1011a1d2c3b6ffb2f44",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "d3dd9f94c9111fe4b6bad755a6d713dfe845dcb091bda4873da143d8901043e0",
+        "bytes": 1130246,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "f1819d5b59b868f713874bbfc79b7cfa30870ab0c8aaa1011a1d2c3b6ffb2f44",
+        "bytes": 1821,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 31040,
+        "bbox_xyxy_exclusive": [
+          314,
+          342,
+          541,
+          549
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0011.png",
+        "sha256": "1190eb556f7dfa884167c01a29dbbfffc1d5499780380562f0ef2748dce0b488",
+        "bytes": 842156,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0011.png",
+        "sha256": "f1819d5b59b868f713874bbfc79b7cfa30870ab0c8aaa1011a1d2c3b6ffb2f44",
+        "bytes": 1821,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 31040,
+        "bbox_xyxy_exclusive": [
+          314,
+          342,
+          541,
+          549
+        ]
+      }
+    },
+    {
+      "sequence_index": 12,
+      "frame_id": "000060",
+      "detection_id": "000060:mask:000037",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9839597580129809,
+        "frame_sha256": "a5a3923246c2916241f5039b92919d3ade0c42bb6ec39ab12ca5ac88f3d272ed",
+        "mask_sha256": "360f6fef1ce39e6ac454f64aa018610e19798b3685423d94d1eae84cf242d738",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "a5a3923246c2916241f5039b92919d3ade0c42bb6ec39ab12ca5ac88f3d272ed",
+        "bytes": 1156501,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "360f6fef1ce39e6ac454f64aa018610e19798b3685423d94d1eae84cf242d738",
+        "bytes": 1823,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 31453,
+        "bbox_xyxy_exclusive": [
+          315,
+          343,
+          546,
+          551
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0012.png",
+        "sha256": "b8befd6cd97eb95a2bc5d1a5da772ad7c82d65715fcf815a87f46bfef168ad16",
+        "bytes": 871791,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0012.png",
+        "sha256": "360f6fef1ce39e6ac454f64aa018610e19798b3685423d94d1eae84cf242d738",
+        "bytes": 1823,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 31453,
+        "bbox_xyxy_exclusive": [
+          315,
+          343,
+          546,
+          551
+        ]
+      }
+    },
+    {
+      "sequence_index": 13,
+      "frame_id": "000061",
+      "detection_id": "000061:mask:000040",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9855569790722881,
+        "frame_sha256": "a4a820c82a28b611c30c1cba142722e753249cc169765590cb9ed92fe9ee77be",
+        "mask_sha256": "cb7812bb47a55c2029dcc96c47f2a79d8929433476adf660772715e34bd51aad",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "a4a820c82a28b611c30c1cba142722e753249cc169765590cb9ed92fe9ee77be",
+        "bytes": 1129203,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "cb7812bb47a55c2029dcc96c47f2a79d8929433476adf660772715e34bd51aad",
+        "bytes": 1808,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 31389,
+        "bbox_xyxy_exclusive": [
+          322,
+          344,
+          552,
+          552
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0013.png",
+        "sha256": "b85b88b02da979c150bd0c4b630e6fe454bed33a495195fb7355926948505646",
+        "bytes": 849411,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0013.png",
+        "sha256": "cb7812bb47a55c2029dcc96c47f2a79d8929433476adf660772715e34bd51aad",
+        "bytes": 1808,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 31389,
+        "bbox_xyxy_exclusive": [
+          322,
+          344,
+          552,
+          552
+        ]
+      }
+    },
+    {
+      "sequence_index": 14,
+      "frame_id": "000062",
+      "detection_id": "000062:mask:000043",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9878225897363864,
+        "frame_sha256": "03f4b7277c57b0a0a88179fe00537facfcfc605ac074dbba8dd4ac081eb1b95d",
+        "mask_sha256": "ebefef7d1c5388915b084ff513c5c0825a87b455444abf365d302fcfe2b07d34",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "03f4b7277c57b0a0a88179fe00537facfcfc605ac074dbba8dd4ac081eb1b95d",
+        "bytes": 1114022,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "ebefef7d1c5388915b084ff513c5c0825a87b455444abf365d302fcfe2b07d34",
+        "bytes": 1803,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 31319,
+        "bbox_xyxy_exclusive": [
+          334,
+          344,
+          564,
+          551
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0014.png",
+        "sha256": "202fbed8465cf0cad6147854f2aec174dd9c0996120f1bb2612d0451ebf52838",
+        "bytes": 843618,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0014.png",
+        "sha256": "ebefef7d1c5388915b084ff513c5c0825a87b455444abf365d302fcfe2b07d34",
+        "bytes": 1803,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 31319,
+        "bbox_xyxy_exclusive": [
+          334,
+          344,
+          564,
+          551
+        ]
+      }
+    },
+    {
+      "sequence_index": 15,
+      "frame_id": "000063",
+      "detection_id": "000063:mask:000047",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9875318684356308,
+        "frame_sha256": "e94cf871d946a597e84be7fb0b8e150bf45c9d804fb2c64439caae76ad0aaa7a",
+        "mask_sha256": "930e9cfea69b6ce11598b7e8d37c31cfb14e8d75a40bb0be52eaad331faaba23",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "e94cf871d946a597e84be7fb0b8e150bf45c9d804fb2c64439caae76ad0aaa7a",
+        "bytes": 1097329,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "930e9cfea69b6ce11598b7e8d37c31cfb14e8d75a40bb0be52eaad331faaba23",
+        "bytes": 1814,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 30560,
+        "bbox_xyxy_exclusive": [
+          352,
+          340,
+          579,
+          546
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0015.png",
+        "sha256": "fdfa45cc3cd3b3594d59314d60a97a5a18365bee857e80a375be701deda2d70c",
+        "bytes": 823961,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0015.png",
+        "sha256": "930e9cfea69b6ce11598b7e8d37c31cfb14e8d75a40bb0be52eaad331faaba23",
+        "bytes": 1814,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 30560,
+        "bbox_xyxy_exclusive": [
+          352,
+          340,
+          579,
+          546
+        ]
+      }
+    },
+    {
+      "sequence_index": 16,
+      "frame_id": "000064",
+      "detection_id": "000064:mask:000050",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9891701433471215,
+        "frame_sha256": "5012feaabbe17a79e82c48ad6480b2cbd481b391f0e6f36deaf18157083f4007",
+        "mask_sha256": "7aa8eb7d1e76de69b4b03f8dbaf599d3eede8de4c059b171b2968dbaad2a417b",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "5012feaabbe17a79e82c48ad6480b2cbd481b391f0e6f36deaf18157083f4007",
+        "bytes": 1084799,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "7aa8eb7d1e76de69b4b03f8dbaf599d3eede8de4c059b171b2968dbaad2a417b",
+        "bytes": 1765,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 29830,
+        "bbox_xyxy_exclusive": [
+          368,
+          338,
+          593,
+          541
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0016.png",
+        "sha256": "5ce3e785f098ee8eec34e5afdca4a7b81e1c45da49154a9caa91520b2b101814",
+        "bytes": 807534,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0016.png",
+        "sha256": "7aa8eb7d1e76de69b4b03f8dbaf599d3eede8de4c059b171b2968dbaad2a417b",
+        "bytes": 1765,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 29830,
+        "bbox_xyxy_exclusive": [
+          368,
+          338,
+          593,
+          541
+        ]
+      }
+    },
+    {
+      "sequence_index": 17,
+      "frame_id": "000065",
+      "detection_id": "000065:mask:000053",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9852014178945295,
+        "frame_sha256": "8cac0390b0e6e9ab602a4afe903aea4f6d971634ffd19489aaaa232fa7ec7260",
+        "mask_sha256": "70466d88c48b16589186d341f23f8c63d53e1e010298be119bd3639f6d3e4107",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "8cac0390b0e6e9ab602a4afe903aea4f6d971634ffd19489aaaa232fa7ec7260",
+        "bytes": 1086948,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "70466d88c48b16589186d341f23f8c63d53e1e010298be119bd3639f6d3e4107",
+        "bytes": 1786,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 28824,
+        "bbox_xyxy_exclusive": [
+          388,
+          336,
+          612,
+          535
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0017.png",
+        "sha256": "4cabde3d013f683b4698db24fbf1536f560db5d9ee3a9e5fb2331ec602880338",
+        "bytes": 810432,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0017.png",
+        "sha256": "70466d88c48b16589186d341f23f8c63d53e1e010298be119bd3639f6d3e4107",
+        "bytes": 1786,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 28824,
+        "bbox_xyxy_exclusive": [
+          388,
+          336,
+          612,
+          535
+        ]
+      }
+    },
+    {
+      "sequence_index": 18,
+      "frame_id": "000066",
+      "detection_id": "000066:mask:000057",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9860453583867976,
+        "frame_sha256": "fb528cee3fd1f2a6f2cf8bd47fe0989d38699499af6aa21263fdbf7b448551c7",
+        "mask_sha256": "e89c909899b4b88f1e277acad02edd2ea1c769a4ec942054ef2c86585f2bc446",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "fb528cee3fd1f2a6f2cf8bd47fe0989d38699499af6aa21263fdbf7b448551c7",
+        "bytes": 1041605,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "e89c909899b4b88f1e277acad02edd2ea1c769a4ec942054ef2c86585f2bc446",
+        "bytes": 1811,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 27771,
+        "bbox_xyxy_exclusive": [
+          411,
+          332,
+          632,
+          528
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0018.png",
+        "sha256": "37e4907cbc129be052f7ff2042dfc12a702f7be8f881e96ffcc3a49409a3a0a4",
+        "bytes": 764696,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0018.png",
+        "sha256": "e89c909899b4b88f1e277acad02edd2ea1c769a4ec942054ef2c86585f2bc446",
+        "bytes": 1811,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 27771,
+        "bbox_xyxy_exclusive": [
+          411,
+          332,
+          632,
+          528
+        ]
+      }
+    },
+    {
+      "sequence_index": 19,
+      "frame_id": "000067",
+      "detection_id": "000067:mask:000060",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9892950670662792,
+        "frame_sha256": "584e9e6a68ee560e759aede2f42fd5a4be71850cd4f8878886c179ee642d14bc",
+        "mask_sha256": "a049842761cb9ec1d4a985d44829a54758ef1f8ab491160a60424d4aca4c08b2",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "584e9e6a68ee560e759aede2f42fd5a4be71850cd4f8878886c179ee642d14bc",
+        "bytes": 1036859,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "a049842761cb9ec1d4a985d44829a54758ef1f8ab491160a60424d4aca4c08b2",
+        "bytes": 1746,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 26938,
+        "bbox_xyxy_exclusive": [
+          436,
+          328,
+          651,
+          520
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0019.png",
+        "sha256": "be69f5ddcb7f87a870ab48b9cb1cbe81db50010fb50f1d10da626a0ee3d696a1",
+        "bytes": 759638,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0019.png",
+        "sha256": "a049842761cb9ec1d4a985d44829a54758ef1f8ab491160a60424d4aca4c08b2",
+        "bytes": 1746,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 26938,
+        "bbox_xyxy_exclusive": [
+          436,
+          328,
+          651,
+          520
+        ]
+      }
+    },
+    {
+      "sequence_index": 20,
+      "frame_id": "000068",
+      "detection_id": "000068:mask:000062",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.986822119706527,
+        "frame_sha256": "e00766bb75ced19b343274e6334dc1af1c7c895dc020d4bdfeafe4f0f273a7ef",
+        "mask_sha256": "68c55718ffb214505f52db7eb2af39bf6cb1e5afef579fcb18cdad49908c2bea",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "e00766bb75ced19b343274e6334dc1af1c7c895dc020d4bdfeafe4f0f273a7ef",
+        "bytes": 982308,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "68c55718ffb214505f52db7eb2af39bf6cb1e5afef579fcb18cdad49908c2bea",
+        "bytes": 1745,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 26169,
+        "bbox_xyxy_exclusive": [
+          458,
+          322,
+          671,
+          511
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0020.png",
+        "sha256": "479d5d46106b6e70a959c4c1a9261846f6f01bdfc98da090bcb60a08e4efe867",
+        "bytes": 705695,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0020.png",
+        "sha256": "68c55718ffb214505f52db7eb2af39bf6cb1e5afef579fcb18cdad49908c2bea",
+        "bytes": 1745,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 26169,
+        "bbox_xyxy_exclusive": [
+          458,
+          322,
+          671,
+          511
+        ]
+      }
+    },
+    {
+      "sequence_index": 21,
+      "frame_id": "000069",
+      "detection_id": "000069:mask:000065",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9797098938364962,
+        "frame_sha256": "c766e7de6f298baa236e9f4b378de09c00b75c0ce4eddf4b5e08e3b6d9cfeae6",
+        "mask_sha256": "d31cd3025b8dfbde9b51284b73b89fb5040bf3781035a56242f6c336e900ffd0",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "c766e7de6f298baa236e9f4b378de09c00b75c0ce4eddf4b5e08e3b6d9cfeae6",
+        "bytes": 955504,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "d31cd3025b8dfbde9b51284b73b89fb5040bf3781035a56242f6c336e900ffd0",
+        "bytes": 1727,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 25311,
+        "bbox_xyxy_exclusive": [
+          485,
+          314,
+          692,
+          500
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0021.png",
+        "sha256": "a9555e4fa935e3a4b6b9c0b330d84cd4cae0d16f3702f684f3dc551f36a5af3d",
+        "bytes": 683331,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0021.png",
+        "sha256": "d31cd3025b8dfbde9b51284b73b89fb5040bf3781035a56242f6c336e900ffd0",
+        "bytes": 1727,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 25311,
+        "bbox_xyxy_exclusive": [
+          485,
+          314,
+          692,
+          500
+        ]
+      }
+    },
+    {
+      "sequence_index": 22,
+      "frame_id": "000070",
+      "detection_id": "000070:mask:000068",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9766912837723812,
+        "frame_sha256": "930e17cc5a6a8685aeb553af95a13175e0735fd5827d3bc8af6b8b680ec1741b",
+        "mask_sha256": "f29be167eed3967dfe15feee72235e44222721087981ebb3508fa418685200ae",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "930e17cc5a6a8685aeb553af95a13175e0735fd5827d3bc8af6b8b680ec1741b",
+        "bytes": 944712,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "f29be167eed3967dfe15feee72235e44222721087981ebb3508fa418685200ae",
+        "bytes": 1711,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 24529,
+        "bbox_xyxy_exclusive": [
+          505,
+          308,
+          710,
+          491
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0022.png",
+        "sha256": "c9d86157755aa36e241dcfd82b257749452a69552e2ead8fd5f89179476e523d",
+        "bytes": 670623,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0022.png",
+        "sha256": "f29be167eed3967dfe15feee72235e44222721087981ebb3508fa418685200ae",
+        "bytes": 1711,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 24529,
+        "bbox_xyxy_exclusive": [
+          505,
+          308,
+          710,
+          491
+        ]
+      }
+    },
+    {
+      "sequence_index": 23,
+      "frame_id": "000071",
+      "detection_id": "000071:mask:000071",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9840736797285783,
+        "frame_sha256": "7bf857ff6dda351f81c624581b3db742f8cd4887189ae2767b5d39f2c78ae328",
+        "mask_sha256": "073399a9df55350b08d9e17e16702d89bb0fe901f281224ecb13d6ca396c9d9c",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "7bf857ff6dda351f81c624581b3db742f8cd4887189ae2767b5d39f2c78ae328",
+        "bytes": 927822,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "073399a9df55350b08d9e17e16702d89bb0fe901f281224ecb13d6ca396c9d9c",
+        "bytes": 1698,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 24055,
+        "bbox_xyxy_exclusive": [
+          528,
+          301,
+          730,
+          481
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0023.png",
+        "sha256": "25269c683b834613541abe3c75856e41fbd3caee0346888455188ef50f5583d3",
+        "bytes": 658322,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0023.png",
+        "sha256": "073399a9df55350b08d9e17e16702d89bb0fe901f281224ecb13d6ca396c9d9c",
+        "bytes": 1698,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 24055,
+        "bbox_xyxy_exclusive": [
+          528,
+          301,
+          730,
+          481
+        ]
+      }
+    },
+    {
+      "sequence_index": 24,
+      "frame_id": "000072",
+      "detection_id": "000072:mask:000074",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9847332857159256,
+        "frame_sha256": "5b2d5ac0338e3f444e72574d18fef004fd5a03d81d7ee08b7722430eee71269b",
+        "mask_sha256": "dae6fffbe94b63dc84e8f18fd81438b8a8e4b788ede521fa188e9c31a04bca6c",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "5b2d5ac0338e3f444e72574d18fef004fd5a03d81d7ee08b7722430eee71269b",
+        "bytes": 915515,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "dae6fffbe94b63dc84e8f18fd81438b8a8e4b788ede521fa188e9c31a04bca6c",
+        "bytes": 1750,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 23747,
+        "bbox_xyxy_exclusive": [
+          553,
+          295,
+          755,
+          472
+        ]
+      },
+      "input_frame": {
+        "path": "input/frames/0024.png",
+        "sha256": "1525cfd09b30a6179f70ba9dda177957cca08dddc1489b7b55a14cc25f7e0d8f",
+        "bytes": 649930,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0024.png",
+        "sha256": "dae6fffbe94b63dc84e8f18fd81438b8a8e4b788ede521fa188e9c31a04bca6c",
+        "bytes": 1750,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 23747,
+        "bbox_xyxy_exclusive": [
+          553,
+          295,
+          755,
+          472
+        ]
+      }
+    }
+  ],
+  "prepared_source_set_sha256": "7a373ccceb3f8121652075a9d83833483599fde7d454b22c581ffec67955ee94",
+  "gates": {
+    "association_passed": true,
+    "object_accepted_next_layer_target": true,
+    "explicit_3d_anchor_present": true,
+    "one_assignment_per_frame": true,
+    "assignment_and_source_hashes_verified": true,
+    "frame_and_mask_dimensions_verified": true,
+    "portable_assets_copied": true
+  },
+  "execution": {
+    "script": {
+      "path": "prepare_propainter_peel_round.py",
+      "sha256": "68077319161ca68c96d4f2aa94bb50fc4d5bdfcd93a17524272f4404176161c0"
+    },
+    "argv": [
+      "/root/autodl-tmp/video2world_layered_bedroom4_20260717/prepare_propainter_peel_round.py",
+      "--association",
+      "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round01_front_pillow/reinspect_sam3/association.json",
+      "--object-id",
+      "sam3_pillow_left",
+      "--frames-dir",
+      "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round01_front_pillow/reinspect_sam3/data/bedroom_4_round01_peeled/dslr/resized_undistorted_images",
+      "--output-dir",
+      "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/propainter_input_v2"
+    ],
+    "python": "3.11.0",
+    "pillow": "12.0.0",
+    "copy_mode": "decoded PNG copy; no symlink dependency"
+  }
+}

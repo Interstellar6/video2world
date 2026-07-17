@@ -1,0 +1,240 @@
+{
+  "acceptance_gates": {
+    "collision_face_budget": true,
+    "collision_topology_ready": true,
+    "component_parenting": true,
+    "finite_affine_transform": true,
+    "orthonormal_rotation": true,
+    "pbr_materials": true,
+    "receipt_asset_hash_match": true,
+    "right_handed_rotation": true,
+    "runtime_scale_supported": true,
+    "scale_anisotropy_within_limit": true,
+    "single_logical_root": true,
+    "world_vertices_finite": true
+  },
+  "all_acceptance_gates_passed": true,
+  "collision_semantics": {
+    "asset_mode": "unified_glb",
+    "fallback_proxy_allowed": false,
+    "max_faces": 100000,
+    "topology": "closed_volume"
+  },
+  "created_at": "2026-07-17T04:49:50.952695+00:00",
+  "kind": "video2world.affine_object_scene_fit",
+  "logical_entity": {
+    "collision_owner": "sam3_bed_01",
+    "component_nodes": [
+      "sam3_bed_01__base_frame",
+      "sam3_bed_01__foot_cover",
+      "sam3_bed_01__headboard_panel",
+      "sam3_bed_01__headboard_post_left",
+      "sam3_bed_01__headboard_post_right",
+      "sam3_bed_01__mattress"
+    ],
+    "motion_owner": "sam3_bed_01",
+    "root_node": "sam3_bed_01",
+    "root_nodes": [
+      "sam3_bed_01"
+    ],
+    "selection_owner": "sam3_bed_01"
+  },
+  "mesh": {
+    "faces": 4976,
+    "materials": [
+      {
+        "geometry": "sam3_bed_01.base_frame",
+        "metallic_factor": 0.0,
+        "roughness_factor": 0.93,
+        "type": "PBRMaterial"
+      },
+      {
+        "geometry": "sam3_bed_01.mattress",
+        "metallic_factor": 0.0,
+        "roughness_factor": 0.96,
+        "type": "PBRMaterial"
+      },
+      {
+        "geometry": "sam3_bed_01.headboard_panel",
+        "metallic_factor": 0.0,
+        "roughness_factor": 0.74,
+        "type": "PBRMaterial"
+      },
+      {
+        "geometry": "sam3_bed_01.headboard_post_left",
+        "metallic_factor": 0.0,
+        "roughness_factor": 0.74,
+        "type": "PBRMaterial"
+      },
+      {
+        "geometry": "sam3_bed_01.headboard_post_right",
+        "metallic_factor": 0.0,
+        "roughness_factor": 0.74,
+        "type": "PBRMaterial"
+      },
+      {
+        "geometry": "sam3_bed_01.foot_cover",
+        "metallic_factor": 0.0,
+        "roughness_factor": 0.98,
+        "type": "PBRMaterial"
+      }
+    ],
+    "vertices": 2500,
+    "watertight": true,
+    "winding_consistent": true
+  },
+  "object_id": "sam3_bed_01",
+  "promotion_blockers": [
+    "source_camera_silhouette_review",
+    "scene_interpenetration_gate",
+    "support_contact_review",
+    "accepted_clean_plate_or_static_scene_carve"
+  ],
+  "promotion_status": "held_pending_scene_browser_review",
+  "representation_mode": "unified_mesh_visual_logic_collision",
+  "runtime_transform": {
+    "asset_coordinates_baked": false,
+    "base_matrix_row_major": [
+      [
+        6.0940405667591,
+        0.06831981888678311,
+        2.648131223143048,
+        0.639241276163562
+      ],
+      [
+        -0.20072433617157628,
+        -12.444750282849224,
+        0.9540323820267776,
+        5.6921053762733935
+      ],
+      [
+        1.9936905918532148,
+        -1.4617654309371404,
+        -7.998393355783393,
+        10.762354974571135
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "determinant": 681.587224146789,
+    "linear_row_major": [
+      [
+        6.0940405667591,
+        0.06831981888678311,
+        2.648131223143048
+      ],
+      [
+        -0.20072433617157628,
+        -12.444750282849224,
+        0.9540323820267776
+      ],
+      [
+        1.9936905918532148,
+        -1.4617654309371404,
+        -7.998393355783393
+      ]
+    ],
+    "matrix_row_major": [
+      [
+        6.0940405667591,
+        0.06831981888678311,
+        2.648131223143048,
+        0.639241276163562
+      ],
+      [
+        -0.20072433617157628,
+        -12.444750282849224,
+        0.9540323820267776,
+        5.6921053762733935
+      ],
+      [
+        1.9936905918532148,
+        -1.4617654309371404,
+        -7.998393355783393,
+        10.762354974571135
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "orthonormal_rotation": true,
+    "refinement": {
+      "allow_nonuniform_scale": true,
+      "canonical_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_scale_anisotropy": 2.0,
+      "scale_factors": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "right_handed_rotation": true,
+    "rotation_matrix_row_major": [
+      [
+        0.949965068807334,
+        0.005452285326512544,
+        0.31230856637402
+      ],
+      [
+        -0.031289766737464454,
+        -0.9931573365516944,
+        0.11251424510283015
+      ],
+      [
+        0.31078500372989754,
+        -0.11665666478287012,
+        -0.943294176817786
+      ]
+    ],
+    "scale_anisotropy_ratio": 1.953306640699464,
+    "scale_xyz": [
+      6.415015421998696,
+      12.530492223979527,
+      8.479214175546028
+    ],
+    "translation": [
+      0.639241276163562,
+      5.6921053762733935,
+      10.762354974571135
+    ],
+    "uniform_scale": 9.141573940508083,
+    "uniform_scale_verified": false
+  },
+  "schema_version": 1,
+  "sources": {
+    "mesh": {
+      "bytes": 113468,
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v2_support_adjusted/sam3_bed_01.support-adjusted.glb",
+      "sha256": "ad9eca71a676cf8fa5cad7a38d0ff5a623149de01e61ae91ba651ea07d37790e"
+    },
+    "transform_receipt": {
+      "matrix_key": "scene_fit_transform.matrix_row_major",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v2_support_adjusted/support_adjustment_receipt.json",
+      "sha256": "9d51f3ec09869ee6ca9ca4ffc21e77f25cf350d02665f682b241dda34778b320"
+    }
+  },
+  "status": "technical_gates_passed",
+  "world_bounds": [
+    [
+      -6.9845309876502935,
+      -4.591697404723999,
+      0.21266824787105598
+    ],
+    [
+      8.08693738868607,
+      6.8904869918749885,
+      21.093162764671863
+    ]
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "blender_version": "5.1.2",
+  "depth_semantics": "positive_camera_axis_z",
+  "engine": "BLENDER_EEVEE",
+  "expected_depth": 5.0,
+  "kind": "video2world.blender_depth_semantics_probe",
+  "maximum_absolute_error": 8.058547973632812e-05,
+  "maximum_allowed_error": 0.005,
+  "observed_max": 5.000080585479736,
+  "observed_median": 5.000080585479736,
+  "observed_min": 5.000080585479736,
+  "off_axis_spread": 0.0,
+  "probe_geometry": "fronto_parallel_plane_at_camera_axis_z_5",
+  "raw_exr": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_left/calibration/blender_depth_probe.exr",
+  "raw_exr_sha256": "6e7e678ff135d0b8c4ca0a4204c2ac2233a6b5a174b0242482a4225739954c73",
+  "schema_version": 1,
+  "status": "passed"
+}

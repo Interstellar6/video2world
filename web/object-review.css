@@ -1,0 +1,145 @@
+:root {
+  color: #17191d;
+  background: #e8eaec;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.review-shell {
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.review-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.review-kicker {
+  margin: 0 0 4px;
+  color: #6a4318;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 680;
+  letter-spacing: 0;
+}
+
+.review-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(96px, auto));
+  gap: 12px;
+  margin: 0;
+}
+
+.review-stat {
+  min-width: 96px;
+  border-left: 1px solid #a7aaae;
+  padding-left: 12px;
+}
+
+.review-stat dt {
+  color: #62666b;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.review-stat dd {
+  margin: 3px 0 0;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.review-view {
+  position: relative;
+  overflow: hidden;
+  min-height: 360px;
+  aspect-ratio: 4 / 3;
+  border: 1px solid #b8bbbf;
+  background: #f4f5f6;
+}
+
+.review-view canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.review-label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  margin: 0;
+  padding: 5px 8px;
+  border: 1px solid rgb(23 25 29 / 22%);
+  border-radius: 4px;
+  background: rgb(250 250 250 / 88%);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.review-status {
+  margin: 12px 0 0;
+  color: #55595e;
+  font-size: 13px;
+}
+
+.review-status[data-state="error"] {
+  color: #a72b1d;
+}
+
+.review-artifact {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .review-shell {
+    padding: 14px;
+  }
+
+  .review-header {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .review-stats {
+    grid-template-columns: repeat(2, minmax(96px, 1fr));
+    width: 100%;
+  }
+
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .review-view {
+    min-height: 260px;
+  }
+}

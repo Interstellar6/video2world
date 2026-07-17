@@ -1,0 +1,748 @@
+{
+  "acceptance_gates": {
+    "collision_topology_ready": true,
+    "multi_view_silhouette": true,
+    "pbr_materials": true,
+    "scale_anisotropy_within_limit": true,
+    "single_logical_root": true,
+    "support_constrained_rotation": true,
+    "support_contact": true,
+    "support_plane_finite": true
+  },
+  "all_acceptance_gates_passed": true,
+  "created_at": "2026-07-17T04:19:17.979535+00:00",
+  "kind": "video2world.support_constrained_multiview_scene_fit",
+  "logical_entity": {
+    "collision_owner": "sam3_bed_01",
+    "motion_owner": "sam3_bed_01",
+    "root_node": "sam3_bed_01",
+    "selection_owner": "sam3_bed_01"
+  },
+  "mesh": {
+    "faces": 4976,
+    "material_types": [
+      "PBRMaterial",
+      "PBRMaterial",
+      "PBRMaterial",
+      "PBRMaterial",
+      "PBRMaterial",
+      "PBRMaterial"
+    ],
+    "vertices": 2500,
+    "watertight": true
+  },
+  "object_id": "sam3_bed_01",
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "scene_interpenetration_gate",
+    "support_contact_browser_review",
+    "independent_pillow_replay",
+    "accepted_clean_plate_or_static_scene_carve"
+  ],
+  "promotion_status": "held_pending_scene_browser_review",
+  "representation_mode": "unified_mesh_visual_logic_collision",
+  "runtime_transform": {
+    "asset_coordinates_baked": false,
+    "matrix_row_major": [
+      [
+        6.0940405667591,
+        0.06831981888678311,
+        2.648131223143048,
+        0.639241276163562
+      ],
+      [
+        -0.20072433617157628,
+        -12.444750282849224,
+        0.9540323820267776,
+        5.6921053762733935
+      ],
+      [
+        1.9936905918532148,
+        -1.4617654309371404,
+        -7.998393355783393,
+        10.762354974571135
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "rotation_matrix_row_major": [
+      [
+        0.949965068807334,
+        0.005452285326512544,
+        0.31230856637402
+      ],
+      [
+        -0.031289766737464454,
+        -0.9931573365516944,
+        0.11251424510283015
+      ],
+      [
+        0.31078500372989754,
+        -0.11665666478287012,
+        -0.943294176817786
+      ]
+    ],
+    "scale_anisotropy_ratio": 1.953306640699464,
+    "scale_xyz": [
+      6.415015421998696,
+      12.530492223979527,
+      8.479214175546028
+    ],
+    "translation": [
+      0.639241276163562,
+      5.6921053762733935,
+      10.762354974571135
+    ]
+  },
+  "schema_version": 1,
+  "search": {
+    "cycles": 5,
+    "final_dimensions_xyz": [
+      10.128114054764081,
+      9.141692352245938,
+      18.716485387291165
+    ],
+    "final_offset_xyz": [
+      -0.46003026627573784,
+      0.0,
+      2.047339417404985
+    ],
+    "initial_dimensions_xyz": [
+      11.979954850930675,
+      9.150109633258712,
+      15.559182099685255
+    ],
+    "method": "shared_transform_coordinate_descent",
+    "objective": "minimum_view_iou_plus_mean_iou_bbox_and_center_terms",
+    "score": 1.1954297610299474,
+    "shrink": 0.48,
+    "trace": [
+      {
+        "cycle": -1,
+        "dimensions_xyz": [
+          11.979954850930675,
+          9.150109633258712,
+          15.559182099685255
+        ],
+        "offset_xyz": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "score": 0.9953382018742184,
+        "views": [
+          {
+            "bbox_iou": 0.8091571375876061,
+            "center_error_px": 12.36098460856365,
+            "frame_id": "000067",
+            "intersection_pixels": 194293,
+            "mask_iou": 0.7141470909311446,
+            "observed_bbox_xyxy": [
+              299,
+              225,
+              1280,
+              720
+            ],
+            "observed_pixels": 204606,
+            "rendered_bbox_xyxy": [
+              92,
+              237,
+              1280,
+              720
+            ],
+            "rendered_occluded_pixels": 56625,
+            "rendered_pixels": 261750,
+            "rendered_raw_pixels": 318375,
+            "union_pixels": 272063
+          },
+          {
+            "bbox_iou": 0.7653716353212034,
+            "center_error_px": 30.41596761432907,
+            "frame_id": "000071",
+            "intersection_pixels": 224185,
+            "mask_iou": 0.7213345259852249,
+            "observed_bbox_xyxy": [
+              357,
+              206,
+              1280,
+              720
+            ],
+            "observed_pixels": 234035,
+            "rendered_bbox_xyxy": [
+              98,
+              219,
+              1280,
+              720
+            ],
+            "rendered_occluded_pixels": 47071,
+            "rendered_pixels": 300942,
+            "rendered_raw_pixels": 348013,
+            "union_pixels": 310792
+          }
+        ]
+      },
+      {
+        "cycle": 0,
+        "dimensions_xyz": [
+          11.261157559874833,
+          8.60110305526319,
+          19.293385803609716
+        ],
+        "offset_xyz": [
+          0.0,
+          0.0,
+          2.489469135949641
+        ],
+        "score": 1.0970889290925891,
+        "views": [
+          {
+            "bbox_iou": 0.8951210348344157,
+            "center_error_px": 29.238598569278707,
+            "frame_id": "000067",
+            "intersection_pixels": 183331,
+            "mask_iou": 0.7771588688379348,
+            "observed_bbox_xyxy": [
+              299,
+              225,
+              1280,
+              720
+            ],
+            "observed_pixels": 204606,
+            "rendered_bbox_xyxy": [
+              261,
+              261,
+              1280,
+              720
+            ],
+            "rendered_occluded_pixels": 56625,
+            "rendered_pixels": 214624,
+            "rendered_raw_pixels": 271249,
+            "union_pixels": 235899
+          },
+          {
+            "bbox_iou": 0.8871224707648102,
+            "center_error_px": 22.806463248380567,
+            "frame_id": "000071",
+            "intersection_pixels": 214210,
+            "mask_iou": 0.803847178598099,
+            "observed_bbox_xyxy": [
+              357,
+              206,
+              1280,
+              720
+            ],
+            "observed_pixels": 234035,
+            "rendered_bbox_xyxy": [
+              307,
+              241,
+              1280,
+              720
+            ],
+            "rendered_occluded_pixels": 47071,
+            "rendered_pixels": 246656,
+            "rendered_raw_pixels": 293727,
+            "union_pixels": 266481
+          }
+        ]
+      },
+      {
+        "cycle": 1,
+        "dimensions_xyz": [
+          11.261157559874833,
+          8.86462621270104,
+          17.500968025725975
+        ],
+        "offset_xyz": [
+          -0.46003026627573784,
+          0.0,
+          2.190732839635684
+        ],
+        "score": 1.1422813912985597,
+        "views": [
+          {
+            "bbox_iou": 0.8683109764892543,
+            "center_error_px": 13.700954014917164,
+            "frame_id": "000067",
+            "intersection_pixels": 192649,
+            "mask_iou": 0.7939868526799514,
+            "observed_bbox_xyxy": [
+              299,
+              225,
+              1280,
+              720
+            ],
+            "observed_pixels": 204606,
+            "rendered_bbox_xyxy": [
+              197,
+              247,
+              1279,
+              720
+            ],
+            "rendered_occluded_pixels": 56625,
+            "rendered_pixels": 230678,
+            "rendered_raw_pixels": 287303,
+            "union_pixels": 242635
+          },
+          {
+            "bbox_iou": 0.8496603517105651,
+            "center_error_px": 15.460328837904695,
+            "frame_id": "000071",
+            "intersection_pixels": 224077,
+            "mask_iou": 0.8078514929301233,
+            "observed_bbox_xyxy": [
+              357,
+              206,
+              1280,
+              720
+            ],
+            "observed_pixels": 234035,
+            "rendered_bbox_xyxy": [
+              233,
+              227,
+              1280,
+              720
+            ],
+            "rendered_occluded_pixels": 47071,
+            "rendered_pixels": 267416,
+            "rendered_raw_pixels": 314487,
+            "union_pixels": 277374
+          }
+        ]
+      },
+      {
+        "cycle": 2,
+        "dimensions_xyz": [
+          10.598713976437772,
+          8.991117328271208,
+          18.36132855911017
+        ],
+        "offset_xyz": [
+          -0.46003026627573784,
+          0.0,
+          2.047339417404985
+        ],
+        "score": 1.1751629102695942,
+        "views": [
+          {
+            "bbox_iou": 0.8800214247455811,
+            "center_error_px": 12.279980922992292,
+            "frame_id": "000067",
+            "intersection_pixels": 189193,
+            "mask_iou": 0.8155503444232742,
+            "observed_bbox_xyxy": [
+              299,
+              225,
+              1280,
+              720
+            ],
+            "observed_pixels": 204606,
+            "rendered_bbox_xyxy": [
+              225,
+              243,
+              1260,
+              720
+            ],
+            "rendered_occluded_pixels": 56625,
+            "rendered_pixels": 216569,
+            "rendered_raw_pixels": 273194,
+            "union_pixels": 231982
+          },
+          {
+            "bbox_iou": 0.881927381927382,
+            "center_error_px": 11.790228104382953,
+            "frame_id": "000071",
+            "intersection_pixels": 222269,
+            "mask_iou": 0.8370830948148594,
+            "observed_bbox_xyxy": [
+              357,
+              206,
+              1280,
+              720
+            ],
+            "observed_pixels": 234035,
+            "rendered_bbox_xyxy": [
+              265,
+              223,
+              1280,
+              720
+            ],
+            "rendered_occluded_pixels": 47071,
+            "rendered_pixels": 253762,
+            "rendered_raw_pixels": 300833,
+            "union_pixels": 265528
+          }
+        ]
+      },
+      {
+        "cycle": 3,
+        "dimensions_xyz": [
+          10.280741056387981,
+          9.11254879921857,
+          18.567815087122376
+        ],
+        "offset_xyz": [
+          -0.46003026627573784,
+          0.0,
+          2.047339417404985
+        ],
+        "score": 1.1904283222129792,
+        "views": [
+          {
+            "bbox_iou": 0.8958523311397523,
+            "center_error_px": 9.842659552350874,
+            "frame_id": "000067",
+            "intersection_pixels": 189184,
+            "mask_iou": 0.825745175834872,
+            "observed_bbox_xyxy": [
+              299,
+              225,
+              1280,
+              720
+            ],
+            "observed_pixels": 204606,
+            "rendered_bbox_xyxy": [
+              235,
+              237,
+              1257,
+              720
+            ],
+            "rendered_occluded_pixels": 56625,
+            "rendered_pixels": 213685,
+            "rendered_raw_pixels": 270310,
+            "union_pixels": 229107
+          },
+          {
+            "bbox_iou": 0.8995542474625497,
+            "center_error_px": 10.115449530062483,
+            "frame_id": "000071",
+            "intersection_pixels": 222413,
+            "mask_iou": 0.8486260235189976,
+            "observed_bbox_xyxy": [
+              357,
+              206,
+              1280,
+              720
+            ],
+            "observed_pixels": 234035,
+            "rendered_bbox_xyxy": [
+              276,
+              218,
+              1280,
+              720
+            ],
+            "rendered_occluded_pixels": 47071,
+            "rendered_pixels": 250464,
+            "rendered_raw_pixels": 297535,
+            "union_pixels": 262086
+          }
+        ]
+      },
+      {
+        "cycle": 4,
+        "dimensions_xyz": [
+          10.128114054764081,
+          9.141692352245938,
+          18.716485387291165
+        ],
+        "offset_xyz": [
+          -0.46003026627573784,
+          0.0,
+          2.047339417404985
+        ],
+        "score": 1.1954297610299474,
+        "views": [
+          {
+            "bbox_iou": 0.8996545731511082,
+            "center_error_px": 9.616276455006536,
+            "frame_id": "000067",
+            "intersection_pixels": 188144,
+            "mask_iou": 0.8287953341056963,
+            "observed_bbox_xyxy": [
+              299,
+              225,
+              1280,
+              720
+            ],
+            "observed_pixels": 204606,
+            "rendered_bbox_xyxy": [
+              243,
+              236,
+              1252,
+              720
+            ],
+            "rendered_occluded_pixels": 56625,
+            "rendered_pixels": 210547,
+            "rendered_raw_pixels": 267172,
+            "union_pixels": 227009
+          },
+          {
+            "bbox_iou": 0.908299275542365,
+            "center_error_px": 10.01504104767391,
+            "frame_id": "000071",
+            "intersection_pixels": 222066,
+            "mask_iou": 0.8549878720209448,
+            "observed_bbox_xyxy": [
+              357,
+              206,
+              1280,
+              720
+            ],
+            "observed_pixels": 234035,
+            "rendered_bbox_xyxy": [
+              284,
+              217,
+              1280,
+              720
+            ],
+            "rendered_occluded_pixels": 47071,
+            "rendered_pixels": 247761,
+            "rendered_raw_pixels": 294832,
+            "union_pixels": 259730
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "cameras": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/cameras.json",
+      "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+    },
+    "mesh": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/sam3_bed_01.component-assembly.glb",
+      "sha256": "3e96994ede80bd6cfd37fa9398a3ad17b524799a0d8f6535c6fcff67925ab0de"
+    },
+    "normalized_view_manifest": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/view_manifest.normalized.json",
+      "sha256": "c651f90d34ad5fd596df76fb0ce3b80fa0e95f7123ce81c212f51d9166c7bb95"
+    },
+    "object_anchor": {
+      "path": "/private/tmp/video2world-bed-fixture-input/sam3_bed_01.ply",
+      "point_count": 1062892,
+      "sha256": "f9bd3583c47dc1b001f6b1ebec301f1446d56a20294f01e319c16dba7e9553f4"
+    },
+    "support_anchor": {
+      "path": "/private/tmp/video2world-planar-background/structure-anchors/sam3_structure_floor.ply",
+      "point_count": 264937,
+      "sha256": "a213f7edcc72d1b4996107580bb3168db53ce5f895e6f62d97d9c4d50fc2e27b"
+    },
+    "view_manifest": {
+      "path": "/private/tmp/video2world-bed-scene-fit-qa/view-manifest.json",
+      "sha256": "6d46dcf55b3ceb307eb86fe807188d3b7542be90a9daae88c6b2741b196eddb2"
+    }
+  },
+  "status": "technical_gates_passed",
+  "support_alignment": {
+    "axes_columns": [
+      [
+        0.949965068807334,
+        0.005452285326512543,
+        0.31230856637402
+      ],
+      [
+        -0.031289766737464454,
+        -0.993157336551694,
+        0.11251424510283015
+      ],
+      [
+        0.31078500372989754,
+        -0.1166566647828701,
+        -0.943294176817786
+      ]
+    ],
+    "initial_dimensions_xyz": [
+      11.979954850930675,
+      9.150109633258712,
+      15.559182099685255
+    ],
+    "object_analysis_stride": 4,
+    "object_eigenvalues_ascending": [
+      1.0961003552662254,
+      10.077751813926975,
+      24.469316361922342
+    ],
+    "object_up_axis": [
+      0.005452285326512543,
+      -0.993157336551694,
+      -0.1166566647828701
+    ],
+    "robust_center": [
+      0.4625694737114279,
+      0.762865844567279,
+      12.286326679846692
+    ],
+    "robust_quantiles": [
+      0.005,
+      0.995
+    ],
+    "support_analysis_stride": 1,
+    "support_distance_median_abs": 0.028745756930312893,
+    "support_distance_p95_abs": 0.0837907558420829,
+    "support_down_normal": [
+      -0.005452285326512543,
+      0.993157336551694,
+      0.1166566647828701
+    ],
+    "support_eigenvalues_ascending": [
+      0.05273357627800877,
+      9.251144853739842,
+      73.42948994129665
+    ],
+    "support_origin": [
+      0.4368523213888773,
+      5.447356287530862,
+      12.836568832999147
+    ],
+    "support_plane_equation": [
+      -0.005452285326512543,
+      0.993157336551694,
+      0.1166566647828701,
+      -6.905171325583936
+    ],
+    "support_plane_offset": 6.905171325583936
+  },
+  "support_contact": {
+    "closest_signed_distance": 0.0,
+    "maximum_penetration": 0.0,
+    "minimum_gap": 0.0,
+    "passed": true,
+    "signed_distance_convention": "positive_below_support_plane",
+    "tolerance": 0.04570846176122969
+  },
+  "thresholds": {
+    "maximum_center_error_px": 20.0,
+    "maximum_scale_anisotropy": 2.0,
+    "minimum_bbox_iou": 0.8,
+    "minimum_mask_iou": 0.65
+  },
+  "view_acceptance_gates": [
+    {
+      "bbox_iou": true,
+      "center_error_px": true,
+      "frame_id": "000067",
+      "mask_iou": true
+    },
+    {
+      "bbox_iou": true,
+      "center_error_px": true,
+      "frame_id": "000071",
+      "mask_iou": true
+    }
+  ],
+  "views": [
+    {
+      "frame_id": "000067",
+      "gates": {
+        "bbox_iou": true,
+        "center_error_px": true,
+        "frame_id": "000067",
+        "mask_iou": true
+      },
+      "metrics": {
+        "bbox_iou": 0.8996545731511082,
+        "center_error_px": 9.616276455006536,
+        "frame_id": "000067",
+        "intersection_pixels": 188144,
+        "mask_iou": 0.8287953341056963,
+        "observed_bbox_xyxy": [
+          299,
+          225,
+          1280,
+          720
+        ],
+        "observed_pixels": 204606,
+        "rendered_bbox_xyxy": [
+          243,
+          236,
+          1252,
+          720
+        ],
+        "rendered_occluded_pixels": 56625,
+        "rendered_pixels": 210547,
+        "rendered_raw_pixels": 267172,
+        "union_pixels": 227009
+      },
+      "observed_mask": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/000067.observed.png",
+        "sha256": "adb82c0cbc6aaacfb4de31c36255c0647e1efeac3ff25c9fa451eb0b1fda3cbc"
+      },
+      "occluder_masks": [
+        {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/000067.occluder_00.png",
+          "sha256": "6b0d90144c00b51596ca01247df33bf41ad4e8b2f8318173ba58afabc2524c83"
+        }
+      ],
+      "overlay": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/source_camera_review/000067/source_camera_silhouette_overlay.png",
+        "sha256": "762596d61b3eebc3da8788a079a27c3afa0a86ead83c2871c82e64d5b9ff356b"
+      },
+      "rendered_visible_silhouette": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/source_camera_review/000067/rendered_visible_silhouette.png",
+        "sha256": "9147ffe298efd3dab58da34ec7ea31240b014e7df957fad07adfcfc1dc14e191"
+      },
+      "source_frame": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/000067.source.png",
+        "sha256": "60be517419c5080bb9002b7891ffb6caf7ed4bacda39ed71686c7bafab2c1a6b"
+      }
+    },
+    {
+      "frame_id": "000071",
+      "gates": {
+        "bbox_iou": true,
+        "center_error_px": true,
+        "frame_id": "000071",
+        "mask_iou": true
+      },
+      "metrics": {
+        "bbox_iou": 0.908299275542365,
+        "center_error_px": 10.01504104767391,
+        "frame_id": "000071",
+        "intersection_pixels": 222066,
+        "mask_iou": 0.8549878720209448,
+        "observed_bbox_xyxy": [
+          357,
+          206,
+          1280,
+          720
+        ],
+        "observed_pixels": 234035,
+        "rendered_bbox_xyxy": [
+          284,
+          217,
+          1280,
+          720
+        ],
+        "rendered_occluded_pixels": 47071,
+        "rendered_pixels": 247761,
+        "rendered_raw_pixels": 294832,
+        "union_pixels": 259730
+      },
+      "observed_mask": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/000071.observed.png",
+        "sha256": "231a21a77a056999c8e9e19ad23aa405b3c8d9e4740cc8c9b9af8ea83c972d2b"
+      },
+      "occluder_masks": [
+        {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/000071.occluder_00.png",
+          "sha256": "ec3cdfc144b087655031091d5fa50e36a76ef34b8ae771dbaf0867cc29953edf"
+        }
+      ],
+      "overlay": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/source_camera_review/000071/source_camera_silhouette_overlay.png",
+        "sha256": "dd70234c518985e73ee39bb327f39cd67d837b94fc682ca0df279bade488d992"
+      },
+      "rendered_visible_silhouette": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/source_camera_review/000071/rendered_visible_silhouette.png",
+        "sha256": "44471e64bb415c31bbc566d71c4cfc9f55a7f4d43f1a0bf8ec3ca792ff7f7c0c"
+      },
+      "source_frame": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v1/scene_fit_supported_v5/evidence/000071.source.png",
+        "sha256": "1fce932342e454f23255c6bac988d12f046dcc18f9797e3af9fb0798b2f77f9b"
+      }
+    }
+  ]
+}

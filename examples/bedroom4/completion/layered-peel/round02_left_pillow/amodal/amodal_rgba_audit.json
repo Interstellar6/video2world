@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.amodal_rgba_retry_input",
+  "created_at": "2026-07-17T01:10:03.559170+00:00",
+  "object_id": "sam3_pillow_left",
+  "category": "pillow",
+  "attempt": 1,
+  "source": {
+    "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/input/source_rgba.png",
+    "sha256": "d7b53bb089fe96f5a88e69178b76b42bd0687e9335d7db793a67808119aaa4e5",
+    "size_bytes": 41166,
+    "width": 267,
+    "height": 240
+  },
+  "config": {
+    "object_id": "sam3_pillow_left",
+    "category": "pillow",
+    "attempt": 1,
+    "shape_policy": "auto",
+    "alpha_threshold": 127,
+    "corner_radius_ratio": 0.1,
+    "min_candidate_add_ratio": 0.24,
+    "min_occlusion_depth_ratio": 0.16,
+    "min_occlusion_depth_px": 8,
+    "min_component_area_ratio": 0.002,
+    "seed": 2026071702,
+    "provider": "video2world.amodal_rgba.soft_rectangle_nearest_v1",
+    "retry_prompt": "Retry image-to-3D reconstruction for exactly one pillow (sam3_pillow_left). The supplied RGBA is an auditable amodal front-view condition: its original visible pixels are unchanged and only a likely occlusion notch was filled from nearby visible foreground texture. Do not reinterpret the category or merge adjacent objects. Preserve the pale sage and off-white patchwork textile, brown floral motif, quilted fabric appearance, observed rectangular proportions, and upright orientation. Generate a closed, connected, volumetric object with plausible front, back, left, right, top, and bottom surfaces. The rear must not be an open hole or a flat copy of the front. Keep thickness plausible for the category; avoid detached pieces, unexpected openings, severe color shifts, shape changes, and texture from the transparent background. Review all six orthographic views before accepting the result.",
+    "scene_reference_manifest": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/input/scene_reference_manifest.json",
+    "scene_reference_manifest_sha256": "1035749a0a92d9c48b959a6510d623a43b220d72a8cbf55a7f0c310a2f5f091d"
+  },
+  "config_sha256": "5fb25b9d7ae7429d0359e54ef47a76332478880f8a78171739968ed2e66688a6",
+  "method_trace": {
+    "requested_shape_policy": "auto",
+    "resolved_shape_policy": "soft_rectangle",
+    "policy_reason": "known_soft_object_category_profile",
+    "completion_applied": true,
+    "completion_reason": "deep_occlusion_notches_completed_with_soft_rectangle_prior",
+    "candidate_add_pixels": 14050,
+    "candidate_add_ratio": 0.5215680451406934,
+    "minimum_candidate_add_ratio": 0.24,
+    "minimum_occlusion_depth_px": 31,
+    "minimum_component_area_pixels": 54,
+    "deep_candidate_pixels": 3783,
+    "accepted_deep_components": [
+      {
+        "component_id": 1,
+        "deep_area_pixels": 3783,
+        "deep_bbox_xyxy": [
+          175,
+          73,
+          210,
+          185
+        ],
+        "max_interior_depth_px": 66.0,
+        "grown_added_pixels": 9071
+      }
+    ],
+    "prior_bbox_xyxy": [
+      26,
+      24,
+      240,
+      215
+    ],
+    "corner_radius_px": 19,
+    "corner_radius_ratio": 0.1,
+    "candidate_area_pixels": 40988
+  },
+  "shape_metrics": {
+    "original": {
+      "area_pixels": 26938,
+      "bbox_xyxy": [
+        26,
+        24,
+        240,
+        215
+      ],
+      "bbox_width": 215,
+      "bbox_height": 192,
+      "bbox_aspect_ratio": 1.1197916666666667,
+      "bbox_fill_ratio": 0.6525678294573644,
+      "connected_components": 1,
+      "perimeter_pixels": 850,
+      "compactness": 0.46852995378492374
+    },
+    "completed": {
+      "area_pixels": 36009,
+      "bbox_xyxy": [
+        26,
+        24,
+        240,
+        215
+      ],
+      "bbox_width": 215,
+      "bbox_height": 192,
+      "bbox_aspect_ratio": 1.1197916666666667,
+      "bbox_fill_ratio": 0.8723110465116279,
+      "connected_components": 1,
+      "perimeter_pixels": 848,
+      "compactness": 0.6292586878288251
+    },
+    "added_pixels": 9071,
+    "added_to_original_area_ratio": 0.3367362090726854,
+    "alpha_iou_original_to_completed": 0.7480907550890056,
+    "original_pixels_removed": 0
+  },
+  "color_metrics": {
+    "texture_provider": "nearest_visible_foreground",
+    "original_visible": {
+      "count": 26938,
+      "mean_rgb": [
+        106.75339668869255,
+        92.92404781349767,
+        70.52450070532333
+      ],
+      "median_rgb": [
+        108.0,
+        96.0,
+        73.0
+      ],
+      "std_rgb": [
+        18.4899585213792,
+        21.450449492310597,
+        25.105044980013076
+      ],
+      "min_rgb": [
+        30,
+        18,
+        0
+      ],
+      "max_rgb": [
+        191,
+        182,
+        174
+      ],
+      "mean_luminance": 94.24692008315391,
+      "p05_luminance": 52.73615,
+      "p95_luminance": 123.96799999999999
+    },
+    "added_region": {
+      "count": 9071,
+      "mean_rgb": [
+        91.53026127218608,
+        82.25576011465108,
+        67.31870797045529
+      ],
+      "median_rgb": [
+        85.0,
+        72.0,
+        56.0
+      ],
+      "std_rgb": [
+        31.029080217188888,
+        34.3680088234026,
+        39.89352714992597
+      ],
+      "min_rgb": [
+        30,
+        18,
+        0
+      ],
+      "max_rgb": [
+        158,
+        153,
+        154
+      ],
+      "mean_luminance": 83.14906389593209,
+      "p05_luminance": 36.2556,
+      "p95_luminance": 144.0
+    },
+    "mean_rgb_delta_l2": 18.86354477275116,
+    "original_visible_pixels_byte_identical": true,
+    "added_pixels_source_only_original_foreground": true,
+    "transparent_rgb_nonzero_pixels": 0
+  },
+  "scene_reference_audit": {
+    "manifest_path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/input/scene_reference_manifest.json",
+    "manifest_sha256": "1035749a0a92d9c48b959a6510d623a43b220d72a8cbf55a7f0c310a2f5f091d",
+    "frame_count": 2,
+    "frames": [
+      {
+        "frame_id": "000048",
+        "image_path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/input/references/000048_4b575e9ee8.rgba.png",
+        "image_sha256": "88db27b7807236f758d0f635b3105f41675924485c359cac631f893e91a1808f",
+        "mask_path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/input/references/000048_4b575e9ee8.mask.png",
+        "mask_sha256": "e8d954271db53392d76827c8bd0db7b40840d536931aafa70102d44d21d3b18c",
+        "bbox_xyxy": [
+          0,
+          0,
+          256,
+          231
+        ],
+        "foreground_pixels": 25916,
+        "appearance": {
+          "median_rgb": [
+            107.0,
+            95.0,
+            73.0
+          ],
+          "median_luminance": 95.53880000000001,
+          "median_chroma": 34.0,
+          "white_like_fraction": 0.07829140299428924,
+          "median_rgb_chromaticity": [
+            0.3890909090909091,
+            0.34545454545454546,
+            0.26545454545454544
+          ]
+        },
+        "is_source_frame": false
+      },
+      {
+        "frame_id": "000067",
+        "image_path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/input/references/000067_a0db1febea.rgba.png",
+        "image_sha256": "d7b53bb089fe96f5a88e69178b76b42bd0687e9335d7db793a67808119aaa4e5",
+        "mask_path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/input/references/000067_a0db1febea.mask.png",
+        "mask_sha256": "dca6a31f42a2ec6d80b82fe94748f3c98d22165d975a66128cd23ccac2ac7cd3",
+        "bbox_xyxy": [
+          0,
+          0,
+          267,
+          240
+        ],
+        "foreground_pixels": 26938,
+        "appearance": {
+          "median_rgb": [
+            108.0,
+            96.0,
+            73.0
+          ],
+          "median_luminance": 96.404,
+          "median_chroma": 36.0,
+          "white_like_fraction": 0.06785952928947954,
+          "median_rgb_chromaticity": [
+            0.3898916967509025,
+            0.34657039711191334,
+            0.26353790613718414
+          ]
+        },
+        "is_source_frame": true,
+        "source_alignment": {
+          "shape_matches": true,
+          "mask_iou": 1.0,
+          "mean_absolute_rgb_delta": 0.0
+        }
+      }
+    ],
+    "expected_appearance": {
+      "color_family": "any"
+    },
+    "expected_appearance_passing_frames": 2,
+    "maximum_pairwise_median_chromaticity_distance": 0.002357942338248241,
+    "identity_revalidated": true,
+    "identity_revalidated_by": "explicit_3d_anchor_calibrated_multiframe_association",
+    "gates": {
+      "at_least_two_scene_reference_frames": true,
+      "exactly_one_source_frame_reference": true,
+      "source_frame_shape_matches_rgba": true,
+      "source_frame_mask_matches_rgba": true,
+      "source_frame_rgb_matches_rgba": true,
+      "cross_frame_foreground_chromaticity_consistent": true,
+      "expected_appearance_contract_met": true,
+      "same_instance_identity_revalidated": true
+    },
+    "passed": true,
+    "scope_note": "These gates verify multi-frame mask/color consistency and require an explicit same-instance decision; they do not infer hidden geometry truth."
+  },
+  "acceptance_gates": {
+    "original_visible_pixels_preserved": true,
+    "no_original_alpha_removed": true,
+    "added_texture_comes_from_visible_foreground": true,
+    "transparent_background_rgb_is_zero": true,
+    "completed_alpha_is_nonempty": true,
+    "completed_alpha_single_component": true,
+    "scene_reference.at_least_two_scene_reference_frames": true,
+    "scene_reference.exactly_one_source_frame_reference": true,
+    "scene_reference.source_frame_shape_matches_rgba": true,
+    "scene_reference.source_frame_mask_matches_rgba": true,
+    "scene_reference.source_frame_rgb_matches_rgba": true,
+    "scene_reference.cross_frame_foreground_chromaticity_consistent": true,
+    "scene_reference.expected_appearance_contract_met": true,
+    "scene_reference.same_instance_identity_revalidated": true
+  },
+  "all_acceptance_gates_passed": true,
+  "artifacts": {
+    "source_rgba": {
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/amodal/source_rgba.png",
+      "sha256": "d7b53bb089fe96f5a88e69178b76b42bd0687e9335d7db793a67808119aaa4e5",
+      "size_bytes": 41166
+    },
+    "original_alpha": {
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/amodal/original_alpha.png",
+      "sha256": "dca6a31f42a2ec6d80b82fe94748f3c98d22165d975a66128cd23ccac2ac7cd3",
+      "size_bytes": 823
+    },
+    "completed_alpha": {
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/amodal/completed_alpha.png",
+      "sha256": "8acc626e51ae94e8fabd95d25a0a77cc33fbee6bbc6ad2fcb21bd92573fb21e8",
+      "size_bytes": 752
+    },
+    "added_region": {
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/amodal/added_region.png",
+      "sha256": "5650e654fc9c35996151059166690a397a628b3ff7e18299b29b61d5c40f4671",
+      "size_bytes": 622
+    },
+    "completed_rgba": {
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/amodal/completed_rgba.png",
+      "sha256": "07ef23dd65d99e087c17a453ead42cc678796c0014faab1b9576c14a70fd350e",
+      "size_bytes": 42573
+    },
+    "contact_sheet": {
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/amodal/before_after_contact_sheet.png",
+      "sha256": "fb4d956f2b99b78ca826cc61d8527cde6dfcca2a03b7019cff97d3534437b12e",
+      "size_bytes": 52604
+    }
+  },
+  "runtime": {
+    "python": "3.11.0",
+    "platform": "Linux-4.19.0-27-amd64-x86_64-with-glibc2.28",
+    "numpy": "1.26.4",
+    "pillow": "12.0.0",
+    "scipy": "1.16.3"
+  }
+}

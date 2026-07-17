@@ -1,0 +1,318 @@
+{
+  "config": {
+    "path": "/root/autodl-tmp/trellis2-weights-4b/pipeline_512.json",
+    "sha256": "308dd782f3eaf1e30e7403ee3837f21beefa664202b0a045ca61308a42c661b3",
+    "size_bytes": 3996
+  },
+  "created_at": "2026-07-17T01:17:56.776679+00:00",
+  "debug_exports": {
+    "artifacts": [
+      {
+        "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/trellis2_seed42/debug_surface_points_rgb.ply",
+        "sha256": "f665890dbde2d8a705ccd4d51bc38d6a6249b0c526510818df42d5a762a9674f",
+        "size_bytes": 3200243
+      },
+      {
+        "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/trellis2_seed42/debug_collision_convex.obj",
+        "sha256": "f1f611fb2662a9293c1bd79c8ea525a654058b663c026699f774fbc8f46403c3",
+        "size_bytes": 31606
+      }
+    ],
+    "convex": true,
+    "point_cloud": true,
+    "raw_mesh": false
+  },
+  "generation": {
+    "allow_rmbg": false,
+    "decimation_target": 100000,
+    "maximum_faces": 100000,
+    "pipeline_type": "512",
+    "seed": 42,
+    "texture_size": 1024
+  },
+  "input": {
+    "alpha_range": [
+      0,
+      255
+    ],
+    "background_removal": "disabled_rgba_required",
+    "height": 240,
+    "mode": "RGBA",
+    "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/amodal/completed_rgba.png",
+    "sha256": "07ef23dd65d99e087c17a453ead42cc678796c0014faab1b9576c14a70fd350e",
+    "size_bytes": 42573,
+    "width": 267
+  },
+  "kind": "video2world.trellis2_mesh_first_asset",
+  "model": {
+    "expected_revision": "af44b45f2e35a493886929c6d786e563ec68364d",
+    "metadata_file_count": 19,
+    "metadata_revisions": [
+      "af44b45f2e35a493886929c6d786e563ec68364d"
+    ],
+    "path": "/root/autodl-tmp/trellis2-weights-4b",
+    "repository": "microsoft/TRELLIS.2-4B",
+    "revision": "af44b45f2e35a493886929c6d786e563ec68364d",
+    "verification": "huggingface_download_metadata"
+  },
+  "outputs": {
+    "processed_input": {
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/trellis2_seed42/processed_input.png",
+      "sha256": "8cf6ac2bd1074d5753555417d3784500e8bd3e9af47ebe6245efa84b95b69d2e",
+      "size_bytes": 38962
+    },
+    "unified_pbr_glb": {
+      "collision_topology": "surface_bvh",
+      "media_type": "model/gltf-binary",
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/trellis2_seed42/asset_pbr.glb",
+      "role": "unified_pbr_glb",
+      "sha256": "ae14f9904401c6c22f7fae27198d4617e442a5ca71ede4bf4cb713decdc3abb5",
+      "size_bytes": 3177072,
+      "status": "candidate"
+    }
+  },
+  "promotion_allowed": false,
+  "provider": "official_microsoft_trellis2_mesh_first",
+  "required_output": "asset_pbr.glb",
+  "runtime": {
+    "decoded_resolution": 512,
+    "inference_seconds": 78.87097602710128,
+    "load_seconds": 70.86312864185311,
+    "pbr_export_seconds": 39.94986490509473,
+    "peak_vram_gb": 2.622176170349121,
+    "runtime": {
+      "cuda_device": "NVIDIA GeForce RTX 3090",
+      "python": "3.11.0",
+      "torch": "2.5.1+cu121"
+    }
+  },
+  "schema_version": "1.0",
+  "source": {
+    "commit": "75fbf0183001ed9876c8dbb35de6b68552ee08bd",
+    "expected_commit": "75fbf0183001ed9876c8dbb35de6b68552ee08bd",
+    "path": "/root/autodl-tmp/trellis2-official-20260717",
+    "repository": "https://github.com/microsoft/TRELLIS.2.git",
+    "verified": true
+  },
+  "status": "technical_passed_visual_pending",
+  "technical_audit": {
+    "asset": {
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round02_left_pillow/trellis2_seed42/asset_pbr.glb",
+      "sha256": "ae14f9904401c6c22f7fae27198d4617e442a5ca71ede4bf4cb713decdc3abb5",
+      "size_bytes": 3177072
+    },
+    "bounds": [
+      [
+        -0.4850656986236572,
+        -0.22263595461845398,
+        -0.28170984983444214
+      ],
+      [
+        0.5019494295120239,
+        0.2219649851322174,
+        0.27355584502220154
+      ]
+    ],
+    "closed_volume_claim": false,
+    "collision_topology": "surface_bvh",
+    "extents": [
+      0.9870151281356812,
+      0.4446009397506714,
+      0.5552656948566437
+    ],
+    "face_limit": 100000,
+    "faces": 93770,
+    "failed_gates": [],
+    "inside_outside_queries_allowed": false,
+    "material_count": 1,
+    "material_semantic_review": {
+      "metallic_one_is_not_a_generic_failure": true,
+      "status": "pending_scene_fit_material_profile_or_vlm"
+    },
+    "material_types": [
+      "PBRMaterial"
+    ],
+    "mesh_count": 1,
+    "meshes": [
+      {
+        "degenerate_faces": 0,
+        "faces": 93770,
+        "finite_vertices": true,
+        "geometry": "geometry_0",
+        "integer_indices": true,
+        "material": {
+          "alpha": {
+            "base_color_factor": 1.0,
+            "cutoff": {
+              "default": 0.5,
+              "finite": true,
+              "in_unit_range": true,
+              "raw_repr": null,
+              "source": "gltf_default",
+              "valid": true,
+              "value": 0.5
+            },
+            "mode": "OPAQUE",
+            "mode_source": "explicit",
+            "mode_valid": true,
+            "texture_channel_present": true,
+            "texture_normalized_range": [
+              0.0,
+              1.0
+            ]
+          },
+          "base_color_factor": {
+            "alpha": 1.0,
+            "finite": true,
+            "in_unit_range": true,
+            "raw_dtype": "uint8",
+            "raw_repr": null,
+            "rgba": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "source": "explicit",
+            "valid": true
+          },
+          "base_color_texture": {
+            "alpha_channel_present": true,
+            "alpha_normalized_range": [
+              0.0,
+              1.0
+            ],
+            "bands": [
+              "R",
+              "G",
+              "B",
+              "A"
+            ],
+            "decoded_dtype": "uint8",
+            "decoded_pixel_sha256": "bff1a90cef0f6f2fbd6ed8e62f1183a7953e8d43d5fc8a372368d817e99a022c",
+            "decoded_shape": [
+              1024,
+              1024,
+              4
+            ],
+            "evidence_status": "decoded",
+            "finite": true,
+            "format": null,
+            "image_type": "Image",
+            "in_unit_range": true,
+            "mode": "RGBA",
+            "normalized_range": [
+              0.0,
+              1.0
+            ],
+            "present": true,
+            "size": [
+              1024,
+              1024
+            ],
+            "valid": true
+          },
+          "double_sided": {
+            "raw_repr": null,
+            "source": "explicit",
+            "valid_boolean": true,
+            "value": false
+          },
+          "failed_gates": [],
+          "material_type": "PBRMaterial",
+          "metallic_factor": {
+            "default": 1.0,
+            "finite": true,
+            "in_unit_range": true,
+            "raw_repr": null,
+            "source": "explicit",
+            "valid": true,
+            "value": 1.0
+          },
+          "name": null,
+          "pbr_material": true,
+          "roughness_factor": {
+            "default": 1.0,
+            "finite": true,
+            "in_unit_range": true,
+            "raw_repr": null,
+            "source": "explicit",
+            "valid": true,
+            "value": 1.0
+          },
+          "semantic_review": {
+            "metallic_one_is_not_a_generic_failure": true,
+            "status": "pending_scene_fit_material_profile_or_vlm"
+          },
+          "technical_gates": {
+            "alpha_cutoff_finite_unit_range": true,
+            "alpha_mode_valid": true,
+            "base_color_factor_finite_unit_range": true,
+            "base_color_texture_evidence_valid": true,
+            "double_sided_boolean": true,
+            "metallic_factor_finite_unit_range": true,
+            "roughness_factor_finite_unit_range": true
+          },
+          "technical_status": "passed"
+        },
+        "material_type": "PBRMaterial",
+        "node": "geometry_0",
+        "triangular_faces": true,
+        "valid_indices": true,
+        "vertices": 58582,
+        "watertight": false,
+        "winding_consistent": true
+      }
+    ],
+    "pbr_material_count": 1,
+    "surface_blocking": true,
+    "technical_gates": {
+      "alpha_double_sided_evidence_valid": true,
+      "base_color_texture_evidence_valid": true,
+      "face_budget": true,
+      "finite_transforms": true,
+      "finite_vertices": true,
+      "no_degenerate_faces": true,
+      "nonempty_mesh": true,
+      "pbr_material_factors_valid": true,
+      "pbr_material_present": true,
+      "positive_extents": true,
+      "valid_triangle_indices": true,
+      "winding_consistent": true
+    },
+    "technical_status": "passed",
+    "vertices": 58582,
+    "watertight": false,
+    "winding_consistent": true
+  },
+  "visual_review": {
+    "capture_driver": "scripts/capture_object_review.mjs",
+    "horizontal_orbit_contact_sheet_is_not_six_view_evidence": true,
+    "orthogonal_axes_required": true,
+    "promotion_allowed": false,
+    "renderer": "web/object-review.html",
+    "required_receipt_kind": "video2world.canonical_object_six_view_review",
+    "required_views": [
+      "front",
+      "right",
+      "back",
+      "left",
+      "top",
+      "bottom"
+    ],
+    "severity_policy": {
+      "blocking": [
+        "shape_mismatch",
+        "primary_color_category_error",
+        "missing_surface_or_sheet_geometry",
+        "disconnected_or_floating_parts",
+        "significant_scene_interpenetration"
+      ],
+      "warning": [
+        "minor_backside_texture_hallucination",
+        "minor_material_or_pattern_drift"
+      ]
+    },
+    "status": "pending"
+  }
+}

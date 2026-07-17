@@ -44,19 +44,32 @@
           静态视觉层保留未替换的 PGSR Gaussians；已识别实例由独立 TRELLIS Gaussian 或 RGB 点云视觉组件替换。只有通过门禁的 mesh/glb 进入碰撞世界，视觉组件共享选择与变换。
         </p>
         <form id="sceneQaForm" class="scene-qa" role="search">
-          <label for="sceneQaInput">场景问答</label>
+          <label for="sceneQaInput">场景问答与指令</label>
           <div class="scene-qa-row">
             <input
               id="sceneQaInput"
               name="question"
               type="search"
               autocomplete="off"
-              placeholder="植物在哪里？"
+              placeholder="枕头在哪里？ / 删除左侧盆栽"
             />
-            <button id="sceneQaSubmit" type="submit">查询</button>
+            <button id="sceneQaSubmit" type="submit">发送</button>
           </div>
           <div id="sceneQaAnswer" class="scene-qa-answer" role="status" aria-live="polite" data-status="idle"></div>
           <div id="sceneQaCandidates" class="scene-qa-candidates" aria-label="匹配的场景物体"></div>
+          <section id="sceneCommandPreview" class="scene-command-preview" aria-label="场景指令预览" hidden>
+            <div class="scene-command-heading">
+              <strong id="sceneCommandTitle"></strong>
+              <span id="sceneCommandRisk" class="scene-command-risk"></span>
+            </div>
+            <p id="sceneCommandSummary"></p>
+            <div id="sceneCommandStages" class="scene-command-stages" aria-label="受影响的 pipeline stages"></div>
+            <div id="sceneCommandStatus" class="scene-command-status" role="status" aria-live="polite"></div>
+            <div class="scene-command-actions">
+              <button id="sceneCommandCancel" type="button">取消</button>
+              <button id="sceneCommandConfirm" type="button" disabled>确认提交</button>
+            </div>
+          </section>
         </form>
         <div class="metrics">
           <div class="metric"><strong id="visualMetric">loading</strong><span>visual primitives</span></div>

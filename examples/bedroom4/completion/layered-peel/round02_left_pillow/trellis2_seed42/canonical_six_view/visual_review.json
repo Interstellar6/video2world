@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.object_six_view_visual_review",
+  "created_at": "2026-07-17T10:30:00+08:00",
+  "object_id": "sam3_pillow_left",
+  "candidate_id": "trellis2_seed42",
+  "status": "rejected",
+  "promotion_allowed": false,
+  "promotion_scope": "none",
+  "acceptance_policy": "usability_first_minor_artifacts",
+  "asset": {
+    "sha256": "ae14f9904401c6c22f7fae27198d4617e442a5ca71ede4bf4cb713decdc3abb5",
+    "size_bytes": 3177072,
+    "faces": 93770,
+    "provider_receipt_sha256": "309c0c94197a8c262ea6761a29e9f43f8424477edc723c4b7aa7f23b619aea2c"
+  },
+  "canonical_review": {
+    "receipt_sha256": "690b7db79e6022e6d9d5d1a36c2a1e475729495bca224479a89ed975c3e3345f",
+    "contact_sheet_sha256": "b07a00cea5a5620d8da84013eca13a4c5b22e12a035f6acd75e7794b346dc3b6",
+    "views": [
+      "front",
+      "right",
+      "back",
+      "left",
+      "top",
+      "bottom"
+    ]
+  },
+  "gates": {
+    "overall_shape_usable": false,
+    "complete_six_side_surface": false,
+    "primary_color_basically_correct": true,
+    "disconnected_or_floating_parts_absent": false
+  },
+  "blocking_issues": [
+    {
+      "issue_type": "missing_surface_or_sheet_geometry",
+      "views": [
+        "right",
+        "back",
+        "left",
+        "top",
+        "bottom"
+      ],
+      "explanation": "The candidate contains open holes and broken thin surfaces instead of a closed pillow volume."
+    },
+    {
+      "issue_type": "disconnected_or_floating_parts",
+      "views": [
+        "front",
+        "back",
+        "top"
+      ],
+      "explanation": "Disjoint fragments are visible around the main surface and fail the blocking geometry gate."
+    }
+  ],
+  "warnings": [],
+  "scene_integration": "not_performed_rejected_before_scene_fit",
+  "decision": "Do not use this GLB for rendering, interaction, collision, or scene placement."
+}

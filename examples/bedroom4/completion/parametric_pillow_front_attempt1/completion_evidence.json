@@ -1,0 +1,15 @@
+{
+  "object_id": "sam3_pillow_front",
+  "category": "pillow",
+  "target_kind": "object",
+  "same_instance_multi_frame_verified": true,
+  "appearance_contract_verified": true,
+  "calibrated_view_count": 3,
+  "view_baseline_score": 0.02,
+  "estimated_visible_surface_fraction": 0.24,
+  "persistent_occlusion_fraction": 0.76,
+  "deformable_prior_available": true,
+  "cad_retrieval_confidence": null,
+  "support_geometry_available": false,
+  "source_front_rgba_available": true
+}

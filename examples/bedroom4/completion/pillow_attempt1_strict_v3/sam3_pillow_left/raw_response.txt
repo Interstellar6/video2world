@@ -1,0 +1,14 @@
+```json
+{
+  "decision": "accept",
+  "issues": [
+    {
+      "issue_type": "front_fidelity_error",
+      "severity": "warning",
+      "evidence_view_ids": ["source|front|right|back|left|top|bottom|technical"],
+      "explanation": {"en": "The front view does not match the observed source crop in terms of color, texture, and material.", "zh": "前视图与观察到的源裁剪在颜色、纹理和材质上不匹配。"},
+      "retry_prompt_instruction": "Preserve the observed identity and texture of the pillow in the front view by adjusting the material and color to match the source."
+    }
+  ]
+}
+```

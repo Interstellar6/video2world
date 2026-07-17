@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.object_six_view_visual_review",
+  "created_at": "2026-07-17T07:25:00+08:00",
+  "object_id": "sam3_pillow_front",
+  "status": "accepted_current_demo_only",
+  "promotion_allowed": true,
+  "promotion_scope": "current_demo_only",
+  "acceptance_policy": "usability_first_minor_artifacts",
+  "asset": {
+    "sha256": "9d84ab4561d7c017c24c07a94abe5400073b0fafb97893a8a1eafca320c391d6",
+    "size_bytes": 3979924,
+    "vertices": 60237,
+    "faces": 97082,
+    "material_profile": "nonmetal_fabric",
+    "collision_topology": "surface_bvh"
+  },
+  "canonical_review": {
+    "receipt_sha256": "c6e374bec1d4014dd5f61a788379b2ab739bbbf7ea4323db0a3fc58057f01664",
+    "contact_sheet_sha256": "5b11f4069bcf66bbe09638fef849c24afc43d14d147648e7e44acd6e0f7a9f5a",
+    "views": [
+      "front",
+      "right",
+      "back",
+      "left",
+      "top",
+      "bottom"
+    ],
+    "horizontal_orbit_accepted_as_six_view": false
+  },
+  "source_observation_mapping": {
+    "object_local_view": "back",
+    "explanation": "The source camera observes the negative thickness side after scene fit; canonical view names are object-local axes, not semantic front/back labels.",
+    "source_camera_mask_iou": 0.7098100729184331,
+    "source_camera_bbox_iou": 0.9245773732119635,
+    "source_camera_center_error_px": 4.401645994569702
+  },
+  "gates": {
+    "overall_shape_usable": true,
+    "complete_six_side_surface": true,
+    "primary_color_basically_correct": true,
+    "source_visible_side_consistent": true,
+    "nonmetal_fabric_material": true,
+    "disconnected_or_floating_parts_absent": true,
+    "scene_interpenetration_not_obvious": true
+  },
+  "blocking_issues": [],
+  "warnings": [
+    {
+      "issue_type": "texture_hallucination",
+      "views": [
+        "front",
+        "left",
+        "top"
+      ],
+      "explanation": "The generated opposite side contains a muted floral pattern not established by the observed white side. It is accepted as a minor hallucination under the current user policy."
+    }
+  ],
+  "scene_review": {
+    "status": "passed_current_demo_only",
+    "receipt": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/static-recarve-browser-comparison.json",
+    "receipt_sha256": "e97d5554d1508b66722e946ddf0206297295c7dae5c316c41346b873ca15df2c",
+    "static_visual_sha256": "7f8a7d9a1fc07cee34754469d5fffe95d90640bfa9d5883b4432e83698e55c0d",
+    "retained_static_gaussians": 821785,
+    "hard_gates": {
+      "overall_shape_usable": true,
+      "primary_color_basically_correct": true,
+      "complete_surface": true,
+      "significant_scene_interpenetration_absent": true
+    }
+  },
+  "limitations": [
+    "The generated opposite-side floral pattern is a minor accepted hallucination for the current demo only.",
+    "The promoted static carve removes stale foreground splats but does not reconstruct hidden bed or background geometry.",
+    "Cross-view clean-plate depth, normal, and scene reconstruction remain not proven for a general pipeline claim."
+  ],
+  "remaining_scene_gate": null
+}

@@ -1,0 +1,1914 @@
+{
+  "acceptance": {
+    "acceptance_scope": "current_demo_only",
+    "accepted_with_limitations": true,
+    "candidate_report": {
+      "eligible_as_round04_clean_plate": false,
+      "path": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/planar_texture_report.json",
+      "promotion_approved": false,
+      "sha256": "170771cc35e30197b2bd8069d6d96a046034d5784d74afa50cf8fb192c74cbe9",
+      "status": "texture_candidate_review_pending"
+    },
+    "demo_use_approved": true,
+    "eligible_as_current_demo_round04_clean_plate": true,
+    "eligible_as_round04_clean_plate": false,
+    "fresh_reconstruction_requirement": {
+      "fresh_depth_required": true,
+      "fresh_normals_required": true,
+      "legacy_depth_allowed_as_new_depth": false,
+      "pgsr_allowed_before_fresh_depth_and_normals": false
+    },
+    "kind": "video2world.planar_texture_acceptance",
+    "overridden_gates": {
+      "visual_quality": "pending_human_or_vlm_review",
+      "wall_boundary_color_continuity": {
+        "observed_maximum": 96.0,
+        "passed": false,
+        "threshold_p95_abs_rgb_delta": 24.0
+      },
+      "wall_boundary_low_frequency_gradient_continuity": {
+        "observed_maximum": 99.0,
+        "passed": false,
+        "threshold_p95_abs_rgb_delta": 32.0
+      }
+    },
+    "override_gate_keys": [
+      "visual_quality",
+      "wall_boundary_color_continuity",
+      "wall_boundary_low_frequency_gradient_continuity"
+    ],
+    "promotion_approved": false,
+    "review_authority": {
+      "kind": "user",
+      "reviewed_at": "2026-07-17T15:32:19+08:00",
+      "reviewer_id": "zhangyuxiang",
+      "scope": "current_demo_only"
+    },
+    "review_limitations": [
+      "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+      "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+      "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+      "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+      "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+    ],
+    "reviewed_full_resolution_frames": [
+      {
+        "completed_frame_sha256": "6235c2c53051091dad076f51fb5006ddcb5996877e0a4dd4818dc353f009bd1a",
+        "decision": "accepted_with_limitations",
+        "frame_id": "000064",
+        "synthetic_mask_sha256": "3469001d2e5995995c53ebb5cb8ab993d331d4e5b7f722739c05f0c67779716d"
+      },
+      {
+        "completed_frame_sha256": "9722f38d57af42e0408e60bdc28fe9b4c39100bf2599cb35ded45c7d44b22791",
+        "decision": "accepted_with_limitations",
+        "frame_id": "000067",
+        "synthetic_mask_sha256": "bb12d861eb0101dfdb6aec533cfde0b3ad317374e4130943d61ecc5ae081f0d0"
+      },
+      {
+        "completed_frame_sha256": "467244e1a649f61c6f4a3421489cc2a1607cd5e98b32343a97f57af0f7488ab8",
+        "decision": "accepted_with_limitations",
+        "frame_id": "000072",
+        "synthetic_mask_sha256": "868a174fc58fd32af6dc1e6ed26844643e425c4f24708595ec86e702f2d02929"
+      }
+    ],
+    "visual_review": {
+      "decision": "accepted_with_limitations",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/planar-background/v23-limited-visual-review.json",
+      "sha256": "c5fdf62700ecbd940cd4c802c860420130f5ffe5341e72bb5c7cac36859d78c5",
+      "status": "completed"
+    }
+  },
+  "acceptance_scope": "current_demo_only",
+  "accepted_at": "2026-07-17T07:41:01.793427+00:00",
+  "accepted_with_limitations": true,
+  "atlas_records": [
+    {
+      "boundary_normal_continuity": {
+        "boundary_color_mean_abs_rgb_delta": 34.48052691867125,
+        "boundary_color_p95_abs_rgb_delta": 89.9833333333333,
+        "boundary_edge_count": 582,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 35.30769230769231,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 92.5666666666666,
+        "boundary_normal_gradient_pair_count": 1144
+      },
+      "completed_rgb": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_01_completed_rgb.png",
+      "completed_rgb_sha256": "6d72da512a15034c3402630d12418d594b8290d3e0e33024ae442f6ca6e693f1",
+      "dimensions": [
+        254,
+        185
+      ],
+      "interpolated_fraction": 0.6915939561608853,
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_01_interpolated_mask.png",
+      "interpolated_mask_sha256": "6d0dc4f886079c85ca8d9099863c1c50d32cf6f96cfa640a95f93f0a74b0309a",
+      "interpolated_texels": 32498,
+      "measured_rgb": "/private/tmp/video2world-planar-background/planar-v20/atlases/plane_01_measured_rgb.png",
+      "measured_rgb_sha256": "c1090d9ab474b59fa75a5e4185e82729e6f412ff9f7a426e07d1f9d16a413b70",
+      "measured_texels_rgb_exact": true,
+      "method": "robust_plane_uv_normalized_convolution_illumination_field",
+      "method_details": {
+        "atlas_fraction_with_kernel_support": 0.6931687593104916,
+        "blend_fraction_greater_than_half": 0.5279208342200468,
+        "blend_maximum": 0.9777537807709465,
+        "blend_minimum": 0.0,
+        "blend_rule": "kernel_weight / (kernel_weight + blend_weight_scale)",
+        "blend_weight_scale": 0.02,
+        "color_clip_lower_rgb": [
+          110.0,
+          81.0,
+          25.0
+        ],
+        "color_clip_margin": 8.0,
+        "color_clip_quantiles": [
+          0.02,
+          0.98
+        ],
+        "color_clip_upper_rgb": [
+          174.0,
+          156.0,
+          98.0
+        ],
+        "fallback": {
+          "coefficients_rgb": [
+            [
+              163.11767667939108,
+              149.7409599611379,
+              88.93389712118154
+            ],
+            [
+              -32.403114364752646,
+              -57.000405308360996,
+              -48.63858879575631
+            ],
+            [
+              -1.439664650771274,
+              -10.462465864223585,
+              -17.598623848994773
+            ]
+          ],
+          "degree": 1,
+          "feature_names": [
+            "u^0*v^0",
+            "u^1*v^0",
+            "u^0*v^1"
+          ],
+          "huber_delta": 1.5,
+          "irls_iterations": 8,
+          "method": "robust_plane_uv_polynomial_illumination_field",
+          "ridge": 0.0001,
+          "robust_scale_rgb_norm": 17.87781556362585,
+          "support_mean_abs_rgb_residual": 7.83844553658877,
+          "support_p95_abs_rgb_residual": 20.018926709885378,
+          "support_texels": 8511
+        },
+        "gaussian_kernel_radius_texels": 72,
+        "gaussian_sigma_texels": 24.0,
+        "method": "robust_plane_uv_normalized_convolution_illumination_field",
+        "minimum_nonzero_kernel_weight": 3.427188812930813e-08,
+        "object_boundary_colors_used_for_synthetic_fit": false,
+        "object_boundary_exclusion": {
+          "boundary_inset_texels": 4,
+          "fallback_to_non_inset_support": false,
+          "minimum_required_after_inset": 474,
+          "support_after_inset": 8511,
+          "support_before_inset": 9476
+        },
+        "propagation_support": {
+          "bright_wall_rgb_median": [
+            157.0,
+            134.0,
+            75.0
+          ],
+          "color_radius": 72.0,
+          "dominant_quantized_bin": [
+            6,
+            5,
+            2
+          ],
+          "dominant_rgb_median": [
+            152.0,
+            125.0,
+            66.0
+          ],
+          "fallback_to_all_measured": false,
+          "luminance_quantile": 0.65,
+          "support_fraction_of_measured": 0.6538780016560861,
+          "support_texels": 9476
+        },
+        "reliable_boundary_residual_collar": {
+          "contract": "reliable boundary residual decays to zero; it cannot determine the interior low-frequency illumination field",
+          "corrected_synthetic_texels": 3814,
+          "decay": "euclidean_distance_smoothstep",
+          "interior_correction_after_collar": 0,
+          "maximum_propagated_distance_texels": 16.97056274847714,
+          "reliable_boundary_seed_texels": 227,
+          "residual_smoothing_sigma_texels": 5.333333333333333,
+          "width_texels": 16
+        },
+        "support_texels": 8511
+      },
+      "observed_fraction": 0.3084060438391147,
+      "observed_interpolated_boundary": {
+        "edge_count": 582,
+        "mean_abs_rgb_delta": 34.48052691867125,
+        "p95_abs_rgb_delta": 89.9833333333333
+      },
+      "observed_mask": "/private/tmp/video2world-planar-background/planar-v20/atlases/plane_01_observed_mask.png",
+      "observed_mask_sha256": "0733c9b340781414c9c8fd61e050eb666c09ae2dd8afaab892f61813c18227d2",
+      "observed_texels": 14492,
+      "origin_uv": [
+        -0.7250850522862792,
+        -7.389113372664743
+      ],
+      "plane_id": 1,
+      "semantic_role": "wall",
+      "synthetic_anchor_fraction": 0.0,
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_01_synthetic_anchor_mask.png",
+      "synthetic_anchor_mask_sha256": "86d7b260aef451dc5f00a3955809495fe6ffbda5457e4c06d9bce2c3fed6d034",
+      "synthetic_anchor_texels": 0,
+      "synthetic_anchor_texels_rgb_exact": true,
+      "texel_size_world_units": 0.08
+    },
+    {
+      "boundary_normal_continuity": {
+        "boundary_color_mean_abs_rgb_delta": 8.702380952380953,
+        "boundary_color_p95_abs_rgb_delta": 46.299999999999955,
+        "boundary_edge_count": 952,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 10.368362831858407,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 54.549999999999955,
+        "boundary_normal_gradient_pair_count": 1808
+      },
+      "completed_rgb": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_02_completed_rgb.png",
+      "completed_rgb_sha256": "fe1318479272c6a409b45cdd6201fce0a10e0c9a9f373f4404a4c2ec6e7587f5",
+      "dimensions": [
+        284,
+        213
+      ],
+      "interpolated_fraction": 0.5660748528731072,
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_02_interpolated_mask.png",
+      "interpolated_mask_sha256": "a1ed9880e26572e4b83fd03ff3c4370643051b36e2444e2f0a5bccc386ac135b",
+      "interpolated_texels": 34243,
+      "measured_rgb": "/private/tmp/video2world-planar-background/planar-v20/atlases/plane_02_measured_rgb.png",
+      "measured_rgb_sha256": "81e4b992773d19d76c9e79150f7d72aeb7e664aa9e8e5bb47490e2806c362bc4",
+      "measured_texels_rgb_exact": true,
+      "method": "robust_plane_uv_normalized_convolution_illumination_field",
+      "method_details": {
+        "atlas_fraction_with_kernel_support": 0.8101071216028566,
+        "blend_fraction_greater_than_half": 0.6837433048998215,
+        "blend_maximum": 0.9685029145267152,
+        "blend_minimum": 0.0,
+        "blend_rule": "kernel_weight / (kernel_weight + blend_weight_scale)",
+        "blend_weight_scale": 0.02,
+        "color_clip_lower_rgb": [
+          62.0,
+          45.0,
+          16.0
+        ],
+        "color_clip_margin": 8.0,
+        "color_clip_quantiles": [
+          0.02,
+          0.98
+        ],
+        "color_clip_upper_rgb": [
+          136.0,
+          125.0,
+          123.0
+        ],
+        "fallback": {
+          "coefficients_rgb": [
+            [
+              90.0390295616013,
+              78.19712496464285,
+              53.49787162274929
+            ],
+            [
+              16.673288958565205,
+              5.399853095182011,
+              3.067375979437785
+            ],
+            [
+              4.724977431143536,
+              3.898788755936913,
+              1.8654543540257826
+            ]
+          ],
+          "degree": 1,
+          "feature_names": [
+            "u^0*v^0",
+            "u^1*v^0",
+            "u^0*v^1"
+          ],
+          "huber_delta": 1.5,
+          "irls_iterations": 8,
+          "method": "robust_plane_uv_polynomial_illumination_field",
+          "ridge": 0.0001,
+          "robust_scale_rgb_norm": 38.88989671777763,
+          "support_mean_abs_rgb_residual": 14.955002074303831,
+          "support_p95_abs_rgb_residual": 33.127454427909214,
+          "support_texels": 12579
+        },
+        "gaussian_kernel_radius_texels": 72,
+        "gaussian_sigma_texels": 24.0,
+        "method": "robust_plane_uv_normalized_convolution_illumination_field",
+        "minimum_nonzero_kernel_weight": 3.427188812930813e-08,
+        "object_boundary_colors_used_for_synthetic_fit": false,
+        "object_boundary_exclusion": {
+          "boundary_inset_texels": 4,
+          "fallback_to_non_inset_support": false,
+          "minimum_required_after_inset": 786,
+          "support_after_inset": 12579,
+          "support_before_inset": 15717
+        },
+        "propagation_support": {
+          "bright_wall_rgb_median": [
+            101.0,
+            84.0,
+            61.0
+          ],
+          "color_radius": 72.0,
+          "dominant_quantized_bin": [
+            3,
+            2,
+            1
+          ],
+          "dominant_rgb_median": [
+            85.0,
+            66.0,
+            32.0
+          ],
+          "fallback_to_all_measured": false,
+          "luminance_quantile": 0.65,
+          "support_fraction_of_measured": 0.5987656672635148,
+          "support_texels": 15717
+        },
+        "reliable_boundary_residual_collar": {
+          "contract": "reliable boundary residual decays to zero; it cannot determine the interior low-frequency illumination field",
+          "corrected_synthetic_texels": 9055,
+          "decay": "euclidean_distance_smoothstep",
+          "interior_correction_after_collar": 0,
+          "maximum_propagated_distance_texels": 16.97056274847714,
+          "reliable_boundary_seed_texels": 812,
+          "residual_smoothing_sigma_texels": 5.333333333333333,
+          "width_texels": 16
+        },
+        "support_texels": 12579
+      },
+      "observed_fraction": 0.40778945976327446,
+      "observed_interpolated_boundary": {
+        "edge_count": 952,
+        "mean_abs_rgb_delta": 8.702380952380953,
+        "p95_abs_rgb_delta": 46.299999999999955
+      },
+      "observed_mask": "/private/tmp/video2world-planar-background/planar-v20/atlases/plane_02_observed_mask.png",
+      "observed_mask_sha256": "b332824eaec056c239811dae83d6def104949aa10157d154f735362917b9265c",
+      "observed_texels": 24668,
+      "origin_uv": [
+        -3.027890851651226,
+        -7.260207316021737
+      ],
+      "plane_id": 2,
+      "semantic_role": "wall",
+      "synthetic_anchor_fraction": 0.02613568736361833,
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_02_synthetic_anchor_mask.png",
+      "synthetic_anchor_mask_sha256": "d8d38c5d11ccea42532bbc3b165abc9cfdf241eaa9e9b0388701d364407da096",
+      "synthetic_anchor_texels": 1581,
+      "synthetic_anchor_texels_rgb_exact": true,
+      "texel_size_world_units": 0.08
+    },
+    {
+      "boundary_normal_continuity": {
+        "boundary_color_mean_abs_rgb_delta": 30.928789614356624,
+        "boundary_color_p95_abs_rgb_delta": 96.0,
+        "boundary_edge_count": 1746,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 35.30317749443433,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 99.0,
+        "boundary_normal_gradient_pair_count": 3294
+      },
+      "completed_rgb": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_03_completed_rgb.png",
+      "completed_rgb_sha256": "c23bb9bcb6c2b5df99284d5dd55e584577920b287d9997aafd69d63cb1bb9644",
+      "dimensions": [
+        302,
+        211
+      ],
+      "interpolated_fraction": 0.22004959040833622,
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_03_interpolated_mask.png",
+      "interpolated_mask_sha256": "31aa34ce9589c3d92dc02e32ff6d3181c591f8982aed4fae816204bc4b26af48",
+      "interpolated_texels": 14022,
+      "measured_rgb": "/private/tmp/video2world-planar-background/planar-v20/atlases/plane_03_measured_rgb.png",
+      "measured_rgb_sha256": "254a0536b91417242880b75fe436d6a9ee03d270867ae386755a1801b6ecee22",
+      "measured_texels_rgb_exact": true,
+      "method": "robust_plane_uv_normalized_convolution_illumination_field",
+      "method_details": {
+        "atlas_fraction_with_kernel_support": 0.985311195505477,
+        "blend_fraction_greater_than_half": 0.8642541037632215,
+        "blend_maximum": 0.9800642266998054,
+        "blend_minimum": 0.0,
+        "blend_rule": "kernel_weight / (kernel_weight + blend_weight_scale)",
+        "blend_weight_scale": 0.02,
+        "color_clip_lower_rgb": [
+          106.0,
+          88.0,
+          33.0
+        ],
+        "color_clip_margin": 8.0,
+        "color_clip_quantiles": [
+          0.02,
+          0.98
+        ],
+        "color_clip_upper_rgb": [
+          188.0,
+          165.0,
+          120.0
+        ],
+        "fallback": {
+          "coefficients_rgb": [
+            [
+              137.10322118024956,
+              111.67682134327158,
+              64.56862214624029
+            ],
+            [
+              17.11369010006652,
+              30.558389202001564,
+              31.657916765925943
+            ],
+            [
+              -29.79582615151418,
+              -25.849119082765963,
+              -11.979235557231577
+            ]
+          ],
+          "degree": 1,
+          "feature_names": [
+            "u^0*v^0",
+            "u^1*v^0",
+            "u^0*v^1"
+          ],
+          "huber_delta": 1.5,
+          "irls_iterations": 8,
+          "method": "robust_plane_uv_polynomial_illumination_field",
+          "ridge": 0.0001,
+          "robust_scale_rgb_norm": 17.08473499428797,
+          "support_mean_abs_rgb_residual": 7.95013836825084,
+          "support_p95_abs_rgb_residual": 23.244974076533666,
+          "support_texels": 25242
+        },
+        "gaussian_kernel_radius_texels": 72,
+        "gaussian_sigma_texels": 24.0,
+        "method": "robust_plane_uv_normalized_convolution_illumination_field",
+        "minimum_nonzero_kernel_weight": 2.0807208476757768e-07,
+        "object_boundary_colors_used_for_synthetic_fit": false,
+        "object_boundary_exclusion": {
+          "boundary_inset_texels": 4,
+          "fallback_to_non_inset_support": false,
+          "minimum_required_after_inset": 1392,
+          "support_after_inset": 25242,
+          "support_before_inset": 27830
+        },
+        "propagation_support": {
+          "bright_wall_rgb_median": [
+            163.0,
+            140.0,
+            87.0
+          ],
+          "color_radius": 72.0,
+          "dominant_quantized_bin": [
+            6,
+            5,
+            3
+          ],
+          "dominant_rgb_median": [
+            158.0,
+            134.0,
+            81.0
+          ],
+          "fallback_to_all_measured": false,
+          "luminance_quantile": 0.65,
+          "support_fraction_of_measured": 0.5599597585513079,
+          "support_texels": 27830
+        },
+        "reliable_boundary_residual_collar": {
+          "contract": "reliable boundary residual decays to zero; it cannot determine the interior low-frequency illumination field",
+          "corrected_synthetic_texels": 6825,
+          "decay": "euclidean_distance_smoothstep",
+          "interior_correction_after_collar": 0,
+          "maximum_propagated_distance_texels": 16.97056274847714,
+          "reliable_boundary_seed_texels": 702,
+          "residual_smoothing_sigma_texels": 5.333333333333333,
+          "width_texels": 16
+        },
+        "support_texels": 25242
+      },
+      "observed_fraction": 0.4322996767207558,
+      "observed_interpolated_boundary": {
+        "edge_count": 1746,
+        "mean_abs_rgb_delta": 30.928789614356624,
+        "p95_abs_rgb_delta": 96.0
+      },
+      "observed_mask": "/private/tmp/video2world-planar-background/planar-v20/atlases/plane_03_observed_mask.png",
+      "observed_mask_sha256": "f0b88a61a52bb6bbee4efb437597c2d137967564060b60a3bb101c46e81eea50",
+      "observed_texels": 27547,
+      "origin_uv": [
+        -6.2095571828683624,
+        -7.329115097699322
+      ],
+      "plane_id": 3,
+      "semantic_role": "wall",
+      "synthetic_anchor_fraction": 0.34765073287090803,
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_03_synthetic_anchor_mask.png",
+      "synthetic_anchor_mask_sha256": "9f5427b4b0ff991b1d0deae158adf8871762a2248696bf9e63ca8c2deec3efba",
+      "synthetic_anchor_texels": 22153,
+      "synthetic_anchor_texels_rgb_exact": true,
+      "texel_size_world_units": 0.08
+    },
+    {
+      "boundary_normal_continuity": {
+        "boundary_color_mean_abs_rgb_delta": 5.92512908777969,
+        "boundary_color_p95_abs_rgb_delta": 26.666666666666668,
+        "boundary_edge_count": 1162,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 8.183739837398374,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 44.18333333333332,
+        "boundary_normal_gradient_pair_count": 2050
+      },
+      "completed_rgb": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_04_completed_rgb.png",
+      "completed_rgb_sha256": "aae875c617e244960b88f71f8f9055837603a4e8b41a737d67ecdb397f48ceb2",
+      "dimensions": [
+        300,
+        280
+      ],
+      "interpolated_fraction": 0.7758809523809523,
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_04_interpolated_mask.png",
+      "interpolated_mask_sha256": "bfa0847ad08ae8254c69ec6305b3839596638784a442978bf9cc700ad4346815",
+      "interpolated_texels": 65174,
+      "measured_rgb": "/private/tmp/video2world-planar-background/planar-v20/atlases/plane_04_measured_rgb.png",
+      "measured_rgb_sha256": "12e1c4b5159a043eb60c79af4706a0285116b2567b0b09907585b5667d5a4b88",
+      "measured_texels_rgb_exact": true,
+      "method": "directional_nearest_measured_strip_extension",
+      "method_details": {
+        "measured_gradient_cost": {
+          "horizontal_uv": 0.41321869962385815,
+          "vertical_uv": 0.5673221024502103
+        },
+        "method": "directional_nearest_measured_strip_extension",
+        "seeded_texel_fraction_before_fallback": 0.31785714285714284,
+        "selected_direction": "horizontal_uv"
+      },
+      "observed_fraction": 0.03225,
+      "observed_interpolated_boundary": {
+        "edge_count": 1162,
+        "mean_abs_rgb_delta": 5.92512908777969,
+        "p95_abs_rgb_delta": 26.666666666666668
+      },
+      "observed_mask": "/private/tmp/video2world-planar-background/planar-v20/atlases/plane_04_observed_mask.png",
+      "observed_mask_sha256": "4e48ab54539de2feab25568bd13c0d282fbc1f1569631ec915e392d4d57de9c9",
+      "observed_texels": 2709,
+      "origin_uv": [
+        -6.073737319509321,
+        -3.0416227115043357
+      ],
+      "plane_id": 4,
+      "semantic_role": "floor",
+      "synthetic_anchor_fraction": 0.1918690476190476,
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_04_synthetic_anchor_mask.png",
+      "synthetic_anchor_mask_sha256": "29c7cc400adbf59e74f1774be75241043068123ab1c55ef84e5711bacc984616",
+      "synthetic_anchor_texels": 16117,
+      "synthetic_anchor_texels_rgb_exact": true,
+      "texel_size_world_units": 0.08
+    },
+    {
+      "boundary_normal_continuity": {
+        "boundary_color_mean_abs_rgb_delta": 6.638983050847457,
+        "boundary_color_p95_abs_rgb_delta": 26.183333333333316,
+        "boundary_edge_count": 590,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 8.943678160919541,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 27.666666666666668,
+        "boundary_normal_gradient_pair_count": 870
+      },
+      "completed_rgb": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_05_completed_rgb.png",
+      "completed_rgb_sha256": "9cb2d71d03fff63610a1d01841451f4e1303aac7c48f24e138b2a72f8840bf61",
+      "dimensions": [
+        108,
+        91
+      ],
+      "interpolated_fraction": 0.7728937728937729,
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_05_interpolated_mask.png",
+      "interpolated_mask_sha256": "8ae5ea6b30ff68656563c3262245db361af8b4b430f364281381d23abe6a85e2",
+      "interpolated_texels": 7596,
+      "measured_rgb": "/private/tmp/video2world-planar-background/planar-v20/atlases/plane_05_measured_rgb.png",
+      "measured_rgb_sha256": "61d5b2cbfe7bfe88dd46f37f0b7b041465461a0b95537946cb03e524d692a821",
+      "measured_texels_rgb_exact": true,
+      "method": "robust_plane_uv_normalized_convolution_illumination_field",
+      "method_details": {
+        "atlas_fraction_with_kernel_support": 1.0,
+        "blend_fraction_greater_than_half": 0.5928978428978429,
+        "blend_maximum": 0.8882418027271004,
+        "blend_minimum": 0.001954604093588386,
+        "blend_rule": "kernel_weight / (kernel_weight + blend_weight_scale)",
+        "blend_weight_scale": 0.02,
+        "color_clip_lower_rgb": [
+          104.0,
+          78.0,
+          52.0
+        ],
+        "color_clip_margin": 8.0,
+        "color_clip_quantiles": [
+          0.02,
+          0.98
+        ],
+        "color_clip_upper_rgb": [
+          130.0,
+          112.0,
+          88.0
+        ],
+        "fallback": {
+          "coefficients_rgb": [
+            [
+              120.77938992178393,
+              114.31785320208871,
+              94.2489436434253
+            ],
+            [
+              -9.420498445441348,
+              -19.089839634962722,
+              -20.418153767737024
+            ],
+            [
+              -1.9400974696294266,
+              -19.667205521845002,
+              -27.671596410985085
+            ]
+          ],
+          "degree": 1,
+          "feature_names": [
+            "u^0*v^0",
+            "u^1*v^0",
+            "u^0*v^1"
+          ],
+          "huber_delta": 1.5,
+          "irls_iterations": 8,
+          "method": "robust_plane_uv_polynomial_illumination_field",
+          "ridge": 0.0001,
+          "robust_scale_rgb_norm": 2.3773611366946197,
+          "support_mean_abs_rgb_residual": 0.9445552476882945,
+          "support_p95_abs_rgb_residual": 2.237862644997866,
+          "support_texels": 701
+        },
+        "gaussian_kernel_radius_texels": 72,
+        "gaussian_sigma_texels": 24.0,
+        "method": "robust_plane_uv_normalized_convolution_illumination_field",
+        "minimum_nonzero_kernel_weight": 3.916864105791983e-05,
+        "object_boundary_colors_used_for_synthetic_fit": false,
+        "object_boundary_exclusion": {
+          "boundary_inset_texels": 4,
+          "fallback_to_non_inset_support": false,
+          "minimum_required_after_inset": 108,
+          "support_after_inset": 701,
+          "support_before_inset": 2149
+        },
+        "propagation_support": {
+          "bright_wall_rgb_median": [
+            120.0,
+            104.0,
+            80.0
+          ],
+          "color_radius": 72.0,
+          "dominant_quantized_bin": [
+            4,
+            4,
+            3
+          ],
+          "dominant_rgb_median": [
+            117.0,
+            100.0,
+            76.0
+          ],
+          "fallback_to_all_measured": false,
+          "luminance_quantile": 0.65,
+          "support_fraction_of_measured": 0.9628136200716846,
+          "support_texels": 2149
+        },
+        "reliable_boundary_residual_collar": {
+          "contract": "reliable boundary residual decays to zero; it cannot determine the interior low-frequency illumination field",
+          "corrected_synthetic_texels": 3428,
+          "decay": "euclidean_distance_smoothstep",
+          "interior_correction_after_collar": 0,
+          "maximum_propagated_distance_texels": 16.97056274847714,
+          "reliable_boundary_seed_texels": 576,
+          "residual_smoothing_sigma_texels": 5.333333333333333,
+          "width_texels": 16
+        },
+        "support_texels": 701
+      },
+      "observed_fraction": 0.2271062271062271,
+      "observed_interpolated_boundary": {
+        "edge_count": 590,
+        "mean_abs_rgb_delta": 6.638983050847457,
+        "p95_abs_rgb_delta": 26.183333333333316
+      },
+      "observed_mask": "/private/tmp/video2world-planar-background/planar-v20/atlases/plane_05_observed_mask.png",
+      "observed_mask_sha256": "5886b53fd0d8c1e836f91ca70ce92dc2106538e0b367a7351af33234ccb29a70",
+      "observed_texels": 2232,
+      "origin_uv": [
+        9.246029691361718,
+        12.456407506299271
+      ],
+      "plane_id": 5,
+      "semantic_role": "ceiling",
+      "synthetic_anchor_fraction": 0.0,
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/atlases/plane_05_synthetic_anchor_mask.png",
+      "synthetic_anchor_mask_sha256": "d9a6e2760e52857b74557667d2c974015c67d2fbd1803d92490f4199486a181e",
+      "synthetic_anchor_texels": 0,
+      "synthetic_anchor_texels_rgb_exact": true,
+      "texel_size_world_units": 0.08
+    }
+  ],
+  "created_at": "2026-07-17T06:35:11.092079+00:00",
+  "cross_view_atlas_consistency": [
+    {
+      "contract": "all views perform exact lookup from one immutable completed atlas",
+      "maximum_rgb_delta_for_same_texel_across_views": 0,
+      "maximum_view_count": 0,
+      "plane_id": 1,
+      "texels_sampled_by_any_view": 0,
+      "texels_sampled_by_multiple_views": 0
+    },
+    {
+      "contract": "all views perform exact lookup from one immutable completed atlas",
+      "maximum_rgb_delta_for_same_texel_across_views": 0,
+      "maximum_view_count": 25,
+      "plane_id": 2,
+      "texels_sampled_by_any_view": 3000,
+      "texels_sampled_by_multiple_views": 2929
+    },
+    {
+      "contract": "all views perform exact lookup from one immutable completed atlas",
+      "maximum_rgb_delta_for_same_texel_across_views": 0,
+      "maximum_view_count": 25,
+      "plane_id": 3,
+      "texels_sampled_by_any_view": 22528,
+      "texels_sampled_by_multiple_views": 22494
+    },
+    {
+      "contract": "all views perform exact lookup from one immutable completed atlas",
+      "maximum_rgb_delta_for_same_texel_across_views": 0,
+      "maximum_view_count": 25,
+      "plane_id": 4,
+      "texels_sampled_by_any_view": 25397,
+      "texels_sampled_by_multiple_views": 24440
+    },
+    {
+      "contract": "all views perform exact lookup from one immutable completed atlas",
+      "maximum_rgb_delta_for_same_texel_across_views": 0,
+      "maximum_view_count": 0,
+      "plane_id": 5,
+      "texels_sampled_by_any_view": 0,
+      "texels_sampled_by_multiple_views": 0
+    }
+  ],
+  "demo_use_approved": true,
+  "eligible_as_current_demo_round04_clean_plate": true,
+  "eligible_as_round04_clean_plate": false,
+  "excluded_texture_inputs": [
+    {
+      "blocking_findings": null,
+      "next_use": null,
+      "path": "/private/tmp/video2world_round04_sdxl_candidates/run_receipt.json",
+      "promotion_allowed": false,
+      "role": "excluded_texture_input_evidence_only",
+      "sha256": "60ddcae49a3121a260b2862105a400f848de7622d245f8d1b8c52049dd671a0a",
+      "status": "generated_candidates_pending_review"
+    },
+    {
+      "blocking_findings": [
+        "all candidates regenerate a bed instead of an empty room",
+        "none reconstructs a continuous yellow wall, baseboard, and hardwood floor",
+        "generated headboards, pillows, and bedding are semantic hallucinations"
+      ],
+      "next_use": "none; do not feed these candidates into plane texturing, PGSR, or final clean-plate reconstruction",
+      "path": "/private/tmp/video2world_round04_sdxl_candidates/visual_review.json",
+      "promotion_allowed": false,
+      "role": "excluded_texture_input_evidence_only",
+      "sha256": "2e0cf576a683d9ae6b84719d3788b7e7df84ecc011421ab681ac0e943b043a22",
+      "status": "rejected"
+    }
+  ],
+  "frame_records": [
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0000.png",
+      "completed_frame_sha256": "55be64add928e081378cab69a01f756a0aeb8d29094cd5adb8043572c29dacc2",
+      "frame_id": "000048",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0000.png",
+      "interpolated_mask_sha256": "50867ea4546ba8b0947e06118ea70ff441deeaaf8a37d728bbcf0d8ce1fe57e5",
+      "interpolated_pixels": 87028,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0000.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0000.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 181402,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 0,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0000.png",
+      "source_frame_sha256": "6ed7acbc1cddd02716c5e42e64e0887b8ec523ee668d4730e50edaf981412fa6",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0000.png",
+      "synthetic_anchor_mask_sha256": "7471d26b99612e35577c695588b6e1266b3a6a69525486919ba17d37371e422d",
+      "synthetic_anchor_pixels": 262834,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 31.451569599339116,
+        "boundary_color_p95_abs_rgb_delta": 108.66666666666667,
+        "boundary_edge_count": 3228,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 32.02618083670715,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 109.66666666666667,
+        "boundary_normal_gradient_pair_count": 6175
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0000.png",
+      "synthetic_mask_sha256": "54a917e63accc5f1eecd4a5b315902bf7f3023b0fed4bd781874e52bf5c04366",
+      "synthetic_pixels": 349862,
+      "synthetic_pixels_assigned_from_shared_atlas": 349862,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0001.png",
+      "completed_frame_sha256": "42391e2b5296a670e735839dd6031dbf4aaf9539d9fe3cece4d88a87fe82831c",
+      "frame_id": "000049",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0001.png",
+      "interpolated_mask_sha256": "3a719e014ce9a2a6370754c6ef80f529ac6937ca9426b13d2fc442f1309198f6",
+      "interpolated_pixels": 79012,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0001.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0001.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 183922,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 1,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0001.png",
+      "source_frame_sha256": "9d497c4da49d09990379b67a7525b11c7b73be61e57e5db147443fcfe14e2816",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0001.png",
+      "synthetic_anchor_mask_sha256": "547c3a707ed4ac7b74965c96e5b60e90ab2357c7f62fc03c93170676126999d1",
+      "synthetic_anchor_pixels": 267201,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 31.25883231935105,
+        "boundary_color_p95_abs_rgb_delta": 107.63333333333321,
+        "boundary_edge_count": 3123,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 31.63079542957592,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 108.66666666666667,
+        "boundary_normal_gradient_pair_count": 6068
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0001.png",
+      "synthetic_mask_sha256": "22474fe29d6006bc7aafee1df38c99cb10a5a4bd6640a9ef9d9d6b16e7ddde66",
+      "synthetic_pixels": 346213,
+      "synthetic_pixels_assigned_from_shared_atlas": 346213,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0002.png",
+      "completed_frame_sha256": "0c508a797d0da604b6b20384eafc20126eb152962961aa0ee32090e3fd49737a",
+      "frame_id": "000050",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0002.png",
+      "interpolated_mask_sha256": "3ca780478d66238a58d4001e40b02790eca216cf0dcd463866fb535d05a419eb",
+      "interpolated_pixels": 70527,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0002.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0002.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 188544,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 2,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0002.png",
+      "source_frame_sha256": "710931f52b280fa25a08fa8397e06a254bfb037b9f6aa0aff2529aa745ef75b7",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0002.png",
+      "synthetic_anchor_mask_sha256": "368ac6d30692d948a42181941e056e87fc46194a45a5a6ab4fb755299aa52124",
+      "synthetic_anchor_pixels": 271034,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 31.668561204083783,
+        "boundary_color_p95_abs_rgb_delta": 107.66666666666667,
+        "boundary_edge_count": 3167,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 31.89596672686477,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 108.66666666666667,
+        "boundary_normal_gradient_pair_count": 6091
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0002.png",
+      "synthetic_mask_sha256": "3122616bbe94df64af33c07e920f9c894036cfa717555363ca17634558b24530",
+      "synthetic_pixels": 341561,
+      "synthetic_pixels_assigned_from_shared_atlas": 341561,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0003.png",
+      "completed_frame_sha256": "b47c01905681bbf090a74971c958345a66495910e44f335545855b068b3618d1",
+      "frame_id": "000051",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0003.png",
+      "interpolated_mask_sha256": "5a2cce889de6f4692fdba662038b6142fe871b526a50d1634b39c01ba563ef96",
+      "interpolated_pixels": 64080,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0003.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0003.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 192057,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 3,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0003.png",
+      "source_frame_sha256": "a442b9d82e9a61ad99e917030842fde417e4ad8a21c0f6b86ea66bb9aca635ed",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0003.png",
+      "synthetic_anchor_mask_sha256": "09da099298d5a290cecddd8a45307669fcfae993e3f8e5d42d5ac68bee4a6d39",
+      "synthetic_anchor_pixels": 273870,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 34.80184516646611,
+        "boundary_color_p95_abs_rgb_delta": 107.66666666666667,
+        "boundary_edge_count": 3324,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 35.138160305743156,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 108.33333333333333,
+        "boundary_normal_gradient_pair_count": 6367
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0003.png",
+      "synthetic_mask_sha256": "ea9d747431386532c6e2bdf9fa80398a6990bdaa836978ef74a57659d32e26f3",
+      "synthetic_pixels": 337950,
+      "synthetic_pixels_assigned_from_shared_atlas": 337950,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0004.png",
+      "completed_frame_sha256": "82f543007cc1a7ce53edbd8810ba6272dc7a417bf499e308b979409ee0cad9fb",
+      "frame_id": "000052",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0004.png",
+      "interpolated_mask_sha256": "41c749074844142ff0681b912431aadc227c86e0bdc93e9e76ae327087dd1bfd",
+      "interpolated_pixels": 57195,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0004.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0004.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 194708,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 4,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0004.png",
+      "source_frame_sha256": "6b77caf2524f21719079416f8477bcf82c6ebe50938a168f00fc14834b6e0372",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0004.png",
+      "synthetic_anchor_mask_sha256": "74eb449c18e511e4c91d8e5c95d05bed3a69f73d0db3f1d32825eed9a4333539",
+      "synthetic_anchor_pixels": 275236,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 33.71326164874552,
+        "boundary_color_p95_abs_rgb_delta": 107.76666666666658,
+        "boundary_edge_count": 3255,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 34.35221937686727,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 108.66666666666667,
+        "boundary_normal_gradient_pair_count": 6248
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0004.png",
+      "synthetic_mask_sha256": "809c4771e7533bbf9e991fb469319746824e3b631c103b4585a719890217ba8a",
+      "synthetic_pixels": 332431,
+      "synthetic_pixels_assigned_from_shared_atlas": 332431,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0005.png",
+      "completed_frame_sha256": "e6685f213279414ddd73fe7abd35da75cb4866be4cb164a1b4c2990b65513663",
+      "frame_id": "000053",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0005.png",
+      "interpolated_mask_sha256": "248eb08e52f1b6799441b6a830da648db890ff7bd73614037fdbc7d51b33567e",
+      "interpolated_pixels": 50260,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0005.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0005.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 198832,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 5,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0005.png",
+      "source_frame_sha256": "e46336d9de1969384a30cb6f624e1d5cfd005d145a2238708c59667fb18ff0bd",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0005.png",
+      "synthetic_anchor_mask_sha256": "9f171d9682120b967a01b9db9572083f959878ee6f692cf9aff2aa1a0b78a9e4",
+      "synthetic_anchor_pixels": 276922,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 31.967521922702176,
+        "boundary_color_p95_abs_rgb_delta": 108.33333333333333,
+        "boundary_edge_count": 3079,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 32.38312492959333,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 109.33333333333333,
+        "boundary_normal_gradient_pair_count": 5918
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0005.png",
+      "synthetic_mask_sha256": "b340dac4e6627ce7d27e9eb079ea3530b2ab9caec928d5c24d467917decc7d30",
+      "synthetic_pixels": 327182,
+      "synthetic_pixels_assigned_from_shared_atlas": 327182,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0006.png",
+      "completed_frame_sha256": "be8a83f25a7cb2f9018e0790014f007e6367c03506061a3919bb52f5a219062e",
+      "frame_id": "000054",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0006.png",
+      "interpolated_mask_sha256": "768c91559daafe7d8453b3a71b68ede2bcd944d84f81e7fcdb950b97c2823e2f",
+      "interpolated_pixels": 43330,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0006.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0006.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 202178,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 6,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0006.png",
+      "source_frame_sha256": "3a750d751b14c196bab57f3e420cf7fc0084380e0781a4a99e80773e8cbb6138",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0006.png",
+      "synthetic_anchor_mask_sha256": "1e8290f10cebeaa7d3df54d7c52da58a2f3b9bd9cda7bb29d16faa9a12861030",
+      "synthetic_anchor_pixels": 278901,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 31.949833494467722,
+        "boundary_color_p95_abs_rgb_delta": 107.33333333333333,
+        "boundary_edge_count": 3103,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 32.59345088161209,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 108.33333333333333,
+        "boundary_normal_gradient_pair_count": 5955
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0006.png",
+      "synthetic_mask_sha256": "dae7cb96e9f20f823684198fa9bc5ec8874fd0b2fd68b51f431dce04ed2b9005",
+      "synthetic_pixels": 322231,
+      "synthetic_pixels_assigned_from_shared_atlas": 322231,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0007.png",
+      "completed_frame_sha256": "dec44903e45841e048b9d379dba3afa09d5baf5c4886901238c63f1d6d9cd5ee",
+      "frame_id": "000055",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0007.png",
+      "interpolated_mask_sha256": "d1efbf0603284c6f88d5da7991d32ea1987e5bc4c734ec7c6890468eaaebc21e",
+      "interpolated_pixels": 38060,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0007.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0007.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 205691,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 7,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0007.png",
+      "source_frame_sha256": "86b3669eac5bc344f1815efc1a81dd567194fc885281ae03b0d62ba461dc8326",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0007.png",
+      "synthetic_anchor_mask_sha256": "e28402b327d28f153adeae262983571f7ba8f0d93b65afd84bd8ad1a741f5330",
+      "synthetic_anchor_pixels": 281296,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 31.60777347114556,
+        "boundary_color_p95_abs_rgb_delta": 107.66666666666667,
+        "boundary_edge_count": 3096,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 32.38536421617992,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 108.66666666666667,
+        "boundary_normal_gradient_pair_count": 5958
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0007.png",
+      "synthetic_mask_sha256": "3b43c783e6464851ad9781bf6693542c85f5893b611c15946bfe640cfb1a9d2c",
+      "synthetic_pixels": 319356,
+      "synthetic_pixels_assigned_from_shared_atlas": 319356,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0008.png",
+      "completed_frame_sha256": "8a4ca412c11a51a42a427b208ac43fabdcb1f903e5c355eabc5c850df966f5f7",
+      "frame_id": "000056",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0008.png",
+      "interpolated_mask_sha256": "d06f700a1f7a65b311dcd8e22744a752763febae4ab5fe1154643f21e43a1794",
+      "interpolated_pixels": 33517,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0008.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0008.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 209592,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 8,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0008.png",
+      "source_frame_sha256": "34bb7c39130f7eaec6acbc6bb07ea5024263feb9543af8e782720c80b714c680",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0008.png",
+      "synthetic_anchor_mask_sha256": "9a87051f9149f3f53965173cfe4d74d909f888bc7bdf16421655c27b426400be",
+      "synthetic_anchor_pixels": 284058,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 31.459426946631673,
+        "boundary_color_p95_abs_rgb_delta": 107.55000000000003,
+        "boundary_edge_count": 3048,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 32.44139225388159,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 108.66666666666667,
+        "boundary_normal_gradient_pair_count": 5861
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0008.png",
+      "synthetic_mask_sha256": "fdae874adef98b686d1bb00d1dfc72be3c518e7b5a7616138944f8e888a7a049",
+      "synthetic_pixels": 317575,
+      "synthetic_pixels_assigned_from_shared_atlas": 317575,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0009.png",
+      "completed_frame_sha256": "f156250ea89a14aec3bd7ffbd4242b019c83f8ec684af2c4152fb95bda21f7e8",
+      "frame_id": "000057",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0009.png",
+      "interpolated_mask_sha256": "08b94a1eadd2957c2a2bef6c850e1cc6690bb494e6eaa8ffe8b6829b83a75049",
+      "interpolated_pixels": 29627,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0009.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0009.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 215173,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 9,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0009.png",
+      "source_frame_sha256": "1d8e38f4d891238ad1d97c154f2b3daa456d92b1e1d42717337f168d05df4541",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0009.png",
+      "synthetic_anchor_mask_sha256": "38a5f83da68f41ed1de4a3a5235fdeed7ac213064e480cfdc198b39d680ef59f",
+      "synthetic_anchor_pixels": 286947,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 31.74734395750332,
+        "boundary_color_p95_abs_rgb_delta": 107.33333333333333,
+        "boundary_edge_count": 3012,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 32.64364261168385,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 108.66666666666667,
+        "boundary_normal_gradient_pair_count": 5820
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0009.png",
+      "synthetic_mask_sha256": "22c7ecec8dd62c4abbeb518442a44b6de3bb31fb00408a3ccb3d1103838846a1",
+      "synthetic_pixels": 316574,
+      "synthetic_pixels_assigned_from_shared_atlas": 316574,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0010.png",
+      "completed_frame_sha256": "de0b410b1b73808b858eff64b600bc3fa816cfdd4e594cac35f8e497eed38aba",
+      "frame_id": "000058",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0010.png",
+      "interpolated_mask_sha256": "6202b68db98c152c0609376487152a19c7908638c9940653bb1dfe0ae72a1b84",
+      "interpolated_pixels": 26788,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0010.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0010.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 217266,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 10,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0010.png",
+      "source_frame_sha256": "447a85bb8084ec2c50de75e73aa69ff08d7746f3958f1e7efe08ce99ffc13ad7",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0010.png",
+      "synthetic_anchor_mask_sha256": "dbf8b27eb8dd621c8b745a4d2b9a0bdbd9ab1ab47515633cd5d9aece983e0680",
+      "synthetic_anchor_pixels": 289961,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 33.515527950310556,
+        "boundary_color_p95_abs_rgb_delta": 107.33333333333333,
+        "boundary_edge_count": 3059,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 34.24434312732185,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 109.0,
+        "boundary_normal_gradient_pair_count": 5922
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0010.png",
+      "synthetic_mask_sha256": "83de5a2da25132d63f6e8bde9b4deffb75c1c29548a5cffb1fe9d9dfc0047ee5",
+      "synthetic_pixels": 316749,
+      "synthetic_pixels_assigned_from_shared_atlas": 316749,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0011.png",
+      "completed_frame_sha256": "e1cdd959edf545b93bb5fc0d66322ec153fa3ba60dead1f05380a303a39b6812",
+      "frame_id": "000059",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0011.png",
+      "interpolated_mask_sha256": "4b122aa3f1d8c10589cd6fb60653c59bd7f521a980c415e4f7785125ad24b84e",
+      "interpolated_pixels": 24277,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0011.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0011.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 220394,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 11,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0011.png",
+      "source_frame_sha256": "880f0dd149e0613b29a10a7fd65a939c10e277c71b63f6de2fe81c973ccb6516",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0011.png",
+      "synthetic_anchor_mask_sha256": "78eb7daca4b64ee4df3f57c9c10f27bc0601a121f9cbff19893b60fbb737ba50",
+      "synthetic_anchor_pixels": 293300,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 34.04067168247737,
+        "boundary_color_p95_abs_rgb_delta": 107.33333333333333,
+        "boundary_edge_count": 3057,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 34.39601956485073,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 108.0,
+        "boundary_normal_gradient_pair_count": 5929
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0011.png",
+      "synthetic_mask_sha256": "90f998252b1fa333a0583f89a3cd72636c55c78e3019e3307298cdad5a1c9eff",
+      "synthetic_pixels": 317577,
+      "synthetic_pixels_assigned_from_shared_atlas": 317577,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0012.png",
+      "completed_frame_sha256": "4fe61276c922231adf5079d8231ad4b8418f7440857980fd7b5396818dbee1e9",
+      "frame_id": "000060",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0012.png",
+      "interpolated_mask_sha256": "d96df6ae1b94a67853a7c22abb0921fd6aace2360d80aa214a8d183c2621e374",
+      "interpolated_pixels": 20787,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0012.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0012.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 212301,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 12,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0012.png",
+      "source_frame_sha256": "533e73124538e24d2aaaa94986859f7de3a76b9f4a6be474a8ed88cd0ad65f14",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0012.png",
+      "synthetic_anchor_mask_sha256": "4eb5c0e5d3235056d81239251257f38008de684a49c9e30849a2633af42ffd83",
+      "synthetic_anchor_pixels": 295787,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 36.63572621035058,
+        "boundary_color_p95_abs_rgb_delta": 109.66666666666667,
+        "boundary_edge_count": 2995,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 36.810922205048946,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 110.33333333333333,
+        "boundary_normal_gradient_pair_count": 5823
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0012.png",
+      "synthetic_mask_sha256": "1c580662588d5fa2d6ce07f826a3eb4b0c72aaa77bd7e4450ac1aae2f57c45ac",
+      "synthetic_pixels": 316574,
+      "synthetic_pixels_assigned_from_shared_atlas": 316574,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0013.png",
+      "completed_frame_sha256": "a31299bbb69d51742a97d8cb30c9795990a03353f24e62f412fedb743d5b3d60",
+      "frame_id": "000061",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0013.png",
+      "interpolated_mask_sha256": "e7ac797eb4c67a96e4b9aa07a85c3c79b8f93979bd24a31d71fe8c61c3dcfd15",
+      "interpolated_pixels": 16980,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0013.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0013.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 221525,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 13,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0013.png",
+      "source_frame_sha256": "f52ecc6b7e914cf0200db7f334c3c2cc26805363129f12fa720e6325bdab6acf",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0013.png",
+      "synthetic_anchor_mask_sha256": "e000635f868514d33286f1b28a036bfb72ad1e16fd6e66ba269fd348ad57b592",
+      "synthetic_anchor_pixels": 298304,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 37.22723700460312,
+        "boundary_color_p95_abs_rgb_delta": 110.66666666666667,
+        "boundary_edge_count": 2969,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 37.345387750416165,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 111.33333333333333,
+        "boundary_normal_gradient_pair_count": 5807
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0013.png",
+      "synthetic_mask_sha256": "e94e91e7b4c78d2877591fa94c1fca86f2ade853ab4d85371a942e129dbc7824",
+      "synthetic_pixels": 315284,
+      "synthetic_pixels_assigned_from_shared_atlas": 315284,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0014.png",
+      "completed_frame_sha256": "9ab3d3a7ec86f9330aff6ab826ca35911a947c744e250f0f0e9cba20e18c08f0",
+      "frame_id": "000062",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0014.png",
+      "interpolated_mask_sha256": "4314daf47e6fd069df62a8f28946153777b2f5de82a19f5860f7ba2e9f94af84",
+      "interpolated_pixels": 13447,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0014.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0014.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 219223,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 14,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0014.png",
+      "source_frame_sha256": "60045dba59fd7258776babfd9bd205efa958ff92d7c4ecadecd53cdb78602f85",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0014.png",
+      "synthetic_anchor_mask_sha256": "ed3f31c75e406d3050df579460c9f42040b9ae4be8d1b74f0e6dea7447188932",
+      "synthetic_anchor_pixels": 299692,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 36.826466021736536,
+        "boundary_color_p95_abs_rgb_delta": 112.33333333333333,
+        "boundary_edge_count": 2791,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 37.258940559013794,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 113.33333333333333,
+        "boundary_normal_gradient_pair_count": 5462
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0014.png",
+      "synthetic_mask_sha256": "437b150d829a4b8c68140e68d20e1790549173abfbbb6b8a6e104460b52f3376",
+      "synthetic_pixels": 313139,
+      "synthetic_pixels_assigned_from_shared_atlas": 313139,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0015.png",
+      "completed_frame_sha256": "d14968ffcce9bd64f9329c7cf1f84f3a4043e1958c653f08172d917e83a59433",
+      "frame_id": "000063",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0015.png",
+      "interpolated_mask_sha256": "ea1cc4d8b5590c9bb7d79ce36fc112cdc90514981c1356b07989ead96100b6e7",
+      "interpolated_pixels": 11162,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0015.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0015.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 203955,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 15,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0015.png",
+      "source_frame_sha256": "3c32aff8ff4847f868d4c04a9d50155ecea50cf78400b04d41234cc82d1093f5",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0015.png",
+      "synthetic_anchor_mask_sha256": "7edd298f28e0185f9e5c98434d8757d2a10f8f4142247e7219704d573634232a",
+      "synthetic_anchor_pixels": 301715,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 37.53858447488585,
+        "boundary_color_p95_abs_rgb_delta": 112.34999999999991,
+        "boundary_edge_count": 2920,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 37.912006096846056,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 113.66666666666667,
+        "boundary_normal_gradient_pair_count": 5686
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0015.png",
+      "synthetic_mask_sha256": "4b6d8965f2613b016ca0ce556e51eccd80a6980701c999a71e25f9b08d62079a",
+      "synthetic_pixels": 312877,
+      "synthetic_pixels_assigned_from_shared_atlas": 312877,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0016.png",
+      "completed_frame_sha256": "6235c2c53051091dad076f51fb5006ddcb5996877e0a4dd4818dc353f009bd1a",
+      "frame_id": "000064",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0016.png",
+      "interpolated_mask_sha256": "ad594a9e2d5852e93c0cc6b55aaf738684ea8bd4caace5a56810c77c5c72bf33",
+      "interpolated_pixels": 8675,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0016.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0016.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 192464,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 16,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0016.png",
+      "source_frame_sha256": "125ed78a4f5d959e255c1683168bbf92bcee424a1773e369afd99f7fc9b7d1b1",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0016.png",
+      "synthetic_anchor_mask_sha256": "3a898203f84fe4ee126bfd31fd4a13c3c4b7bc305823f9047359a63103fba636",
+      "synthetic_anchor_pixels": 303432,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 37.45183668827477,
+        "boundary_color_p95_abs_rgb_delta": 112.0,
+        "boundary_edge_count": 2931,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 37.50206551463315,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 112.66666666666667,
+        "boundary_normal_gradient_pair_count": 5729
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0016.png",
+      "synthetic_mask_sha256": "3469001d2e5995995c53ebb5cb8ab993d331d4e5b7f722739c05f0c67779716d",
+      "synthetic_pixels": 312107,
+      "synthetic_pixels_assigned_from_shared_atlas": 312107,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0017.png",
+      "completed_frame_sha256": "e68130dbc28bc751ce8d3008085383b6263a564cb884fcb1cb4f524abf1a946a",
+      "frame_id": "000065",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0017.png",
+      "interpolated_mask_sha256": "dff994b4644ec79cdfd9fe8d6d8de0742a91011e4b3f732ee351e505b4fc0074",
+      "interpolated_pixels": 5593,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0017.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0017.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 183964,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 17,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0017.png",
+      "source_frame_sha256": "72b30ee70e32870fae4157baa222d89bee9c168a95dd4075b18c5e88e8384314",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0017.png",
+      "synthetic_anchor_mask_sha256": "ff00b5af8ac29bd79f5a643b2f865a546feed4f1e27bb990b27b48e7c2c64fc9",
+      "synthetic_anchor_pixels": 304480,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 39.28124293785311,
+        "boundary_color_p95_abs_rgb_delta": 112.33333333333333,
+        "boundary_edge_count": 2950,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 38.85592036325533,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 113.0,
+        "boundary_normal_gradient_pair_count": 5726
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0017.png",
+      "synthetic_mask_sha256": "852834e4bacc48cf19c12b685342f2bc8dceec4ddda0b1ecc3eaf59bb7a6c4cd",
+      "synthetic_pixels": 310073,
+      "synthetic_pixels_assigned_from_shared_atlas": 310073,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0018.png",
+      "completed_frame_sha256": "65a4e9de788b91fd62abde6b0d967de72ed4c833b87e48c1596d8602c47a5086",
+      "frame_id": "000066",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0018.png",
+      "interpolated_mask_sha256": "3f527e55d9916d1ac68620e2167564983c61dbc90ca60ea770919011b770bc29",
+      "interpolated_pixels": 2693,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0018.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0018.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 170175,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 18,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0018.png",
+      "source_frame_sha256": "4304cfd6362ac36cc63237d6bab6c0611108e7a874fa42c265ef8194933b0cf7",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0018.png",
+      "synthetic_anchor_mask_sha256": "99be0a70c799f05c267a641f046acb582f025ead3ed3e318bd42fbc385766779",
+      "synthetic_anchor_pixels": 306413,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 36.44199549709681,
+        "boundary_color_p95_abs_rgb_delta": 110.66666666666667,
+        "boundary_edge_count": 2813,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 36.21740984405458,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 111.33333333333333,
+        "boundary_normal_gradient_pair_count": 5472
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0018.png",
+      "synthetic_mask_sha256": "590d124befd253cd9223947c54015df236aff057e21291c57af456019062ae7c",
+      "synthetic_pixels": 309106,
+      "synthetic_pixels_assigned_from_shared_atlas": 309106,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0019.png",
+      "completed_frame_sha256": "9722f38d57af42e0408e60bdc28fe9b4c39100bf2599cb35ded45c7d44b22791",
+      "frame_id": "000067",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0019.png",
+      "interpolated_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "interpolated_pixels": 0,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0019.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0019.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 156327,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 19,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0019.png",
+      "source_frame_sha256": "da50e7c15507878c74068dd4e46cc019ec5cf861281546c961a956d4a0c480d1",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0019.png",
+      "synthetic_anchor_mask_sha256": "bb12d861eb0101dfdb6aec533cfde0b3ad317374e4130943d61ecc5ae081f0d0",
+      "synthetic_anchor_pixels": 309147,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 35.67411671746247,
+        "boundary_color_p95_abs_rgb_delta": 108.66666666666667,
+        "boundary_edge_count": 2953,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 35.93737303383829,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 109.0,
+        "boundary_normal_gradient_pair_count": 5743
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0019.png",
+      "synthetic_mask_sha256": "bb12d861eb0101dfdb6aec533cfde0b3ad317374e4130943d61ecc5ae081f0d0",
+      "synthetic_pixels": 309147,
+      "synthetic_pixels_assigned_from_shared_atlas": 309147,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0020.png",
+      "completed_frame_sha256": "3461e1d7c8cc0c583db1fe9a2a2e96d6bfb07697af81688702da102cdd1ef9ae",
+      "frame_id": "000068",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0020.png",
+      "interpolated_mask_sha256": "858b30ae9e8a30a50663d90bd71c49dcab45d547cf4330549ba3c85a8321e141",
+      "interpolated_pixels": 5037,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0020.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0020.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 143002,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 20,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0020.png",
+      "source_frame_sha256": "cef6489a97aa04fe60a81cce015b5a55e7d6cca423c12947bcf9bea4fbcd8ee2",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0020.png",
+      "synthetic_anchor_mask_sha256": "3e5eeb077dccbeb044cf0f35ab9ab67da8f87e8d6071f032543a62fcbbecdd79",
+      "synthetic_anchor_pixels": 305263,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 34.83321894303363,
+        "boundary_color_p95_abs_rgb_delta": 107.0,
+        "boundary_edge_count": 2914,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 35.1984126984127,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 109.0,
+        "boundary_normal_gradient_pair_count": 5628
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0020.png",
+      "synthetic_mask_sha256": "097c295d65c0ef56e930f3b0cfd00b60f77a40dfb4d7851d14fba0c0a29a2c2f",
+      "synthetic_pixels": 310300,
+      "synthetic_pixels_assigned_from_shared_atlas": 310300,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0021.png",
+      "completed_frame_sha256": "086c2594928c167e2e19c484025bcf7eb7baaeb0b294f26ea98d4549c69ce4f0",
+      "frame_id": "000069",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0021.png",
+      "interpolated_mask_sha256": "b74d023d8fe64eb296b3c8ed329ceab30b3c5c45c33e9565595c0dfa84b30135",
+      "interpolated_pixels": 13532,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0021.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0021.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 128147,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 21,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0021.png",
+      "source_frame_sha256": "14145ce36b7a4fd1ef375c8267df73fba0141835327b45df93f04582cad7d8ac",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0021.png",
+      "synthetic_anchor_mask_sha256": "52f49bc1dd185b4d58b774d11a5be4064a283cab3c0a87e5784d94185735e5e8",
+      "synthetic_anchor_pixels": 301875,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 38.18977181515881,
+        "boundary_color_p95_abs_rgb_delta": 107.66666666666667,
+        "boundary_edge_count": 2907,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 37.96577354192891,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 109.33333333333333,
+        "boundary_normal_gradient_pair_count": 5561
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0021.png",
+      "synthetic_mask_sha256": "62ca6f46b6dbdf305e2603b50b3f435cf11f6f27ac88bffcd17ed9b71603e388",
+      "synthetic_pixels": 315407,
+      "synthetic_pixels_assigned_from_shared_atlas": 315407,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0022.png",
+      "completed_frame_sha256": "71db2feb5407e23643383371183d7a75021bfba7c1807fce27ef2354d10f3b74",
+      "frame_id": "000070",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0022.png",
+      "interpolated_mask_sha256": "c389c2fb40e3f551856516f0bec2b648479b3ac8e6fc9d5a0a778f5d70ee74da",
+      "interpolated_pixels": 19563,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0022.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0022.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 119135,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 22,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0022.png",
+      "source_frame_sha256": "46febfc93060123a4d441588186051c25e87a1ff1b20ce23a484188aaa96bc11",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0022.png",
+      "synthetic_anchor_mask_sha256": "21588c8e82d1cc08eeea253b96a388da99647bc2a916234b87e70485ed954654",
+      "synthetic_anchor_pixels": 298505,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 40.48652577434865,
+        "boundary_color_p95_abs_rgb_delta": 107.33333333333333,
+        "boundary_edge_count": 2981,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 40.342275995090304,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 109.0,
+        "boundary_normal_gradient_pair_count": 5703
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0022.png",
+      "synthetic_mask_sha256": "86d6437a8c49fcd2f4a05747b27af674b0a0a6a8ef295c0878ff67903f368d16",
+      "synthetic_pixels": 318068,
+      "synthetic_pixels_assigned_from_shared_atlas": 318068,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0023.png",
+      "completed_frame_sha256": "26e81f43541054b60551e10476d15748a83a1931cfc96fac828dea9c4e6086bb",
+      "frame_id": "000071",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0023.png",
+      "interpolated_mask_sha256": "c5edbd5f5a1491348e6fe7e15379c20cd0a7590d25f5e0041a8ba5c793964811",
+      "interpolated_pixels": 25627,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0023.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0023.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 102377,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 23,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0023.png",
+      "source_frame_sha256": "b9a2ef597b1964c0c3a8566fb25d86fd0bdb8c5960edbe94fd3c9443a6553da0",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0023.png",
+      "synthetic_anchor_mask_sha256": "d91202eb400c7540353af14ec445fd48752a9f91a5473b8facd7e96fa535e2d9",
+      "synthetic_anchor_pixels": 294470,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 39.13394003033485,
+        "boundary_color_p95_abs_rgb_delta": 107.33333333333333,
+        "boundary_edge_count": 2857,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 39.06081573197378,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 108.33333333333333,
+        "boundary_normal_gradient_pair_count": 5492
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0023.png",
+      "synthetic_mask_sha256": "61d98fc7d295193d8774ae83418b4dee91028e4b931337a48589efaecd5a3fb9",
+      "synthetic_pixels": 320097,
+      "synthetic_pixels_assigned_from_shared_atlas": 320097,
+      "synthetic_provenance_partition_exact": true
+    },
+    {
+      "all_synthetic_pixels_assigned": true,
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0024.png",
+      "completed_frame_sha256": "467244e1a649f61c6f4a3421489cc2a1607cd5e98b32343a97f57af0f7488ab8",
+      "frame_id": "000072",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0024.png",
+      "interpolated_mask_sha256": "ca6f99d21d9ef27cc935e8f4ffba0197b9e246dd51d8745c773a9c7a0fcf9910",
+      "interpolated_pixels": 32682,
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0024.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_pixels": 0,
+      "outside_synthetic_mask_rgb_exact": true,
+      "plane_labels": "/private/tmp/video2world-planar-background/planar-v20/plane_labels/0024.png",
+      "protected_neighbor_pixels_outside_synthetic_mask": 89504,
+      "protected_neighbor_pixels_rgb_exact": true,
+      "sequence_index": 24,
+      "source_frame": "/private/tmp/video2world-planar-background/planar-v20/frames/0024.png",
+      "source_frame_sha256": "52df1209ec50734293e6b293e96c69daf06a1f0e86b225b18c077b8501243925",
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0024.png",
+      "synthetic_anchor_mask_sha256": "118b4e67918bb748cbc45da37d0e979d0ebf9543e3d0ca586cc921d7bc6b4c53",
+      "synthetic_anchor_pixels": 290613,
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 40.34068184556078,
+        "boundary_color_p95_abs_rgb_delta": 105.33333333333333,
+        "boundary_edge_count": 2767,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 40.24431889516636,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 106.66666666666667,
+        "boundary_normal_gradient_pair_count": 5310
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0024.png",
+      "synthetic_mask_sha256": "868a174fc58fd32af6dc1e6ed26844643e425c4f24708595ec86e702f2d02929",
+      "synthetic_pixels": 323295,
+      "synthetic_pixels_assigned_from_shared_atlas": 323295,
+      "synthetic_provenance_partition_exact": true
+    }
+  ],
+  "full_resolution_boundary_continuity_summary": {
+    "frame_ids": [
+      "000064",
+      "000067",
+      "000072"
+    ],
+    "maximum_boundary_color_p95_abs_rgb_delta": 112.0,
+    "maximum_boundary_normal_gradient_p95_abs_rgb_delta": 112.66666666666667
+  },
+  "full_resolution_review": [
+    {
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0016.png",
+      "completed_frame_sha256": "6235c2c53051091dad076f51fb5006ddcb5996877e0a4dd4818dc353f009bd1a",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "frame_id": "000064",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0016.png",
+      "interpolated_mask_sha256": "ad594a9e2d5852e93c0cc6b55aaf738684ea8bd4caace5a56810c77c5c72bf33",
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0016.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "protected_neighbor_pixels_rgb_exact": true,
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0016.png",
+      "synthetic_anchor_mask_sha256": "3a898203f84fe4ee126bfd31fd4a13c3c4b7bc305823f9047359a63103fba636",
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 37.45183668827477,
+        "boundary_color_p95_abs_rgb_delta": 112.0,
+        "boundary_edge_count": 2931,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 37.50206551463315,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 112.66666666666667,
+        "boundary_normal_gradient_pair_count": 5729
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0016.png",
+      "synthetic_mask_sha256": "3469001d2e5995995c53ebb5cb8ab993d331d4e5b7f722739c05f0c67779716d"
+    },
+    {
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0019.png",
+      "completed_frame_sha256": "9722f38d57af42e0408e60bdc28fe9b4c39100bf2599cb35ded45c7d44b22791",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "frame_id": "000067",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0019.png",
+      "interpolated_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0019.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "protected_neighbor_pixels_rgb_exact": true,
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0019.png",
+      "synthetic_anchor_mask_sha256": "bb12d861eb0101dfdb6aec533cfde0b3ad317374e4130943d61ecc5ae081f0d0",
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 35.67411671746247,
+        "boundary_color_p95_abs_rgb_delta": 108.66666666666667,
+        "boundary_edge_count": 2953,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 35.93737303383829,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 109.0,
+        "boundary_normal_gradient_pair_count": 5743
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0019.png",
+      "synthetic_mask_sha256": "bb12d861eb0101dfdb6aec533cfde0b3ad317374e4130943d61ecc5ae081f0d0"
+    },
+    {
+      "completed_frame": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/frames/0024.png",
+      "completed_frame_sha256": "467244e1a649f61c6f4a3421489cc2a1607cd5e98b32343a97f57af0f7488ab8",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "frame_id": "000072",
+      "interpolated_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/interpolated_masks/0024.png",
+      "interpolated_mask_sha256": "ca6f99d21d9ef27cc935e8f4ffba0197b9e246dd51d8745c773a9c7a0fcf9910",
+      "observed_atlas_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/observed_atlas_masks/0024.png",
+      "observed_atlas_mask_sha256": "85afa9a15482ed8a9a79d3a44c593674d51a70f03e66d075d6dc04388ff0a0d2",
+      "protected_neighbor_pixels_rgb_exact": true,
+      "synthetic_anchor_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_anchor_masks/0024.png",
+      "synthetic_anchor_mask_sha256": "118b4e67918bb748cbc45da37d0e979d0ebf9543e3d0ca586cc921d7bc6b4c53",
+      "synthetic_boundary_continuity_full_resolution": {
+        "boundary_color_mean_abs_rgb_delta": 40.34068184556078,
+        "boundary_color_p95_abs_rgb_delta": 105.33333333333333,
+        "boundary_edge_count": 2767,
+        "boundary_normal_gradient_mean_abs_rgb_delta": 40.24431889516636,
+        "boundary_normal_gradient_p95_abs_rgb_delta": 106.66666666666667,
+        "boundary_normal_gradient_pair_count": 5310
+      },
+      "synthetic_mask": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/synthetic_masks/0024.png",
+      "synthetic_mask_sha256": "868a174fc58fd32af6dc1e6ed26844643e425c4f24708595ec86e702f2d02929"
+    }
+  ],
+  "gates": {
+    "all_synthetic_pixels_assigned_from_shared_atlas": true,
+    "measured_atlas_texels_rgb_exact": true,
+    "new_depth_normal_estimation_before_pgsr": "required_after_visual_acceptance",
+    "observed_synthetic_anchor_and_interpolated_partition_rendered_synthetic_pixels": true,
+    "outside_synthetic_mask_rgb_exact": true,
+    "protected_neighbors_outside_synthetic_mask_rgb_exact": true,
+    "protected_sam_neighbor_pixels_rgb_exact": true,
+    "rejected_texture_inputs_not_promotable": true,
+    "same_atlas_texel_has_identical_rgb_across_views": true,
+    "synthetic_anchor_atlas_texels_rgb_exact": true,
+    "synthetic_anchor_claims_measured_donor": false,
+    "visual_quality": "accepted_with_limitations",
+    "wall_boundary_color_continuity": {
+      "observed_maximum": 96.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 24.0
+    },
+    "wall_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 99.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 32.0
+    },
+    "wall_object_boundary_colors_excluded_from_synthetic_fit": true
+  },
+  "limitations": [
+    "Polynomial wall illumination is low frequency and cannot invent real hidden wall detail.",
+    "Directional floor extension preserves orientation but can repeat strips or seams.",
+    "Cross-view consistency does not by itself certify photorealism or semantic correctness."
+  ],
+  "notes": [
+    "Rejected per-frame SDXL candidates are lineage evidence only and were not used as measured or synthetic atlas inputs.",
+    "Old DA3 depth remains visibility evidence only, not final regenerated scene depth."
+  ],
+  "overridden_gates": {
+    "visual_quality": "pending_human_or_vlm_review",
+    "wall_boundary_color_continuity": {
+      "observed_maximum": 96.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 24.0
+    },
+    "wall_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 99.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 32.0
+    }
+  },
+  "planar_geometry_report": "/private/tmp/video2world-planar-background/planar-v20/planar_background_report.json",
+  "planar_geometry_report_sha256": "2c47d126fc43d14d3624c9f6925238ab37a8874beca3059fa15093bb049017ec",
+  "planar_geometry_status": "geometry_completed_texture_pending",
+  "promotion_approved": false,
+  "promotion_blocker": null,
+  "provenance": {
+    "atlas_texels": {
+      "interpolated": 153533,
+      "observed": 71648,
+      "synthetic_anchor": 39851
+    },
+    "claims_measured_donor": false,
+    "observed_fraction_of_original_removal_masks": 0.027684483313057427,
+    "one_atlas_per_plane": true,
+    "per_frame_independent_generation_used": false,
+    "rendered_synthetic_pixels": {
+      "interpolated": 779479,
+      "observed": 0,
+      "synthetic_anchor": 7251256
+    },
+    "single_anchor_generation_used": true,
+    "synthetic_fraction_of_original_removal_masks": 0.9723155166869426,
+    "synthetic_pixels_are_measured": false,
+    "texture_provenance": "hybrid_atlas"
+  },
+  "purpose": "single-plane-UV synthetic texture candidate after measured donor prefill",
+  "schema_version": 1,
+  "status": "accepted_for_round04_clean_plate",
+  "synthetic_anchor_input": {
+    "all_eligible_pixels_inside_declared_atlases": true,
+    "all_eligible_pixels_inside_edit_mask": true,
+    "candidate": "/private/tmp/video2world-cleanplate-anchor-v3/candidate_seed_2026071742.png",
+    "candidate_sha256": "007eaf14e2d9e6dc591ee9d6033fead43ff56bbcda3c95432d5e10d9817d8216",
+    "claims_measured_donor": false,
+    "diffusion_receipt": "/private/tmp/video2world-cleanplate-anchor-v3/run_receipt.json",
+    "diffusion_receipt_sha256": "93a7762e6c84addf60bdd809a2d2dd768edf080624c7d4ea9828fe58fd0f5cf5",
+    "diffusion_receipt_status": "generated_candidates_pending_review",
+    "edit_mask": "/private/tmp/video2world-planar-background/planar-v20/generative_texture_masks/0019.png",
+    "edit_mask_pixels": 309147,
+    "edit_mask_sha256": "bb12d861eb0101dfdb6aec533cfde0b3ad317374e4130943d61ecc5ae081f0d0",
+    "eligible_geometry_pixels": 309147,
+    "frame_id": "000067",
+    "plane_projection_records": [
+      {
+        "eligible_pixels": 0,
+        "plane_id": 1,
+        "projected_texels": 0
+      },
+      {
+        "eligible_pixels": 15981,
+        "inside_atlas_pixels": 15981,
+        "maximum_samples_per_texel": 22,
+        "plane_id": 2,
+        "projected_texels": 1581,
+        "texel_collisions": 14400
+      },
+      {
+        "eligible_pixels": 192187,
+        "inside_atlas_pixels": 192187,
+        "maximum_samples_per_texel": 16,
+        "plane_id": 3,
+        "projected_texels": 22153,
+        "texel_collisions": 170034
+      },
+      {
+        "eligible_pixels": 100979,
+        "inside_atlas_pixels": 100979,
+        "maximum_samples_per_texel": 13,
+        "plane_id": 4,
+        "projected_texels": 16117,
+        "texel_collisions": 84862
+      },
+      {
+        "eligible_pixels": 0,
+        "plane_id": 5,
+        "projected_texels": 0
+      }
+    ],
+    "provenance_class": "synthetic_anchor",
+    "source_lineage": {
+      "candidate_outside_edit_mask_matches_planar_prefill": true,
+      "claims_measured_donor": false,
+      "outside_edit_mask_matches_planar_prefill": true,
+      "role": "non_promotable_shared_atlas_synthetic_guide",
+      "source_rgb": "/private/tmp/video2world-planar-background/texture-v21/frames/0019.png",
+      "source_rgb_sha256": "e5f9963314cc41fa98784a401155f736dba7f39bfc80e9d6d5b241c61192cbee",
+      "texture_report": "/private/tmp/video2world-planar-background/texture-v21/planar_texture_report.json",
+      "texture_report_eligible_as_round04_clean_plate": false,
+      "texture_report_promotion_approved": false,
+      "texture_report_sha256": "5c7491d137e4fc90149cc55e5161b8b181d3ef630f0ac638c58185f3b95273d6",
+      "texture_report_status": "texture_candidate_review_pending"
+    }
+  },
+  "texture_coverage": {
+    "denominator": "original removal-mask pixels across selected frames",
+    "observed_fraction": 0.027684483313057427,
+    "observed_pixels": 228657,
+    "original_mask_pixels": 8259392,
+    "synthetic_pending_fraction": 0.9723155166869426,
+    "synthetic_pending_pixels": 8030735,
+    "unresolved_geometry_pixels": 0
+  },
+  "wall_boundary_continuity_summary": {
+    "maximum_boundary_color_p95_abs_rgb_delta": 96.0,
+    "maximum_boundary_normal_gradient_p95_abs_rgb_delta": 99.0,
+    "wall_or_ceiling_planes_evaluated": 4
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "run_date": "2026-07-17",
+  "upstream": {
+    "repository": "https://github.com/sczhou/ProPainter",
+    "commit": "e870e79321c31b733e2031af5aa2fb1fe3ac7eec",
+    "weights_release": "https://github.com/sczhou/ProPainter/releases/tag/v0.1.0"
+  },
+  "weights": [
+    {
+      "name": "ProPainter.pth",
+      "bytes": 157780510,
+      "sha256": "12c070c4b48f374c91d8a2a17851140b85c159621080989f9e191bbc18bd6591"
+    },
+    {
+      "name": "raft-things.pth",
+      "bytes": 21108000,
+      "sha256": "fcfa4125d6418f4de95d84aec20a3c5f4e205101715a79f193243c186ac9a7e1"
+    },
+    {
+      "name": "recurrent_flow_completion.pth",
+      "bytes": 20348681,
+      "sha256": "22939a1a7900da878dbe1ccd011d646b1bfb30b8290039d8ff0e0c2fefbfd283"
+    }
+  ],
+  "runtime": {
+    "host": "mil8",
+    "isolated_root": "/root/autodl-tmp/video2world_clean_plate_20260717",
+    "python": "3.10.0",
+    "torch": "2.2.2+cu121",
+    "torchvision": "0.17.2+cu121",
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "precision": "fp16"
+  },
+  "official_smoke": {
+    "input": "ProPainter/inputs/video_completion/running_car.mp4",
+    "frame_count": 292,
+    "elapsed_seconds": 45.6,
+    "maximum_host_rss_kib": 6533080,
+    "exit_status": 0,
+    "inpaint_video_sha256": "a85de8fa78b459e4c245c52cf1f015aaf49bedf91de25d4ec37a70171419f9cb"
+  },
+  "bedroom4_candidate": {
+    "attempt_id": "bedroom4_pillow_front_0048_0072",
+    "remote_path": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072",
+    "source_frame_range": [
+      "000048",
+      "000072"
+    ],
+    "frame_count": 25,
+    "resolution": [
+      1280,
+      720
+    ],
+    "mask_scope": "single tracked front pillow",
+    "anchor": "000064/pillow_03.png",
+    "technical_status": "passed",
+    "semantic_status": "rejected",
+    "scene_integration": "not_performed",
+    "input_manifest_sha256": "bd83259bd9c3bd335f8093f68b0515e82a7bc642b0ead27a960891ed33fabd83",
+    "qa_report_sha256": "5e796cbf413f17bfcfa90c029f592942a82522c58ff46d40581ce125acab5f63",
+    "contact_sheet_sha256": "79dde242c6b7fa84238a8ef9330545756eb6a03f2f154de6b0ec21a07f1159e0",
+    "inpaint_video_sha256": "6db53f516a8ded9be00f294e559a82489f4ead1175137d260e9123f44a1c0830"
+  }
+}

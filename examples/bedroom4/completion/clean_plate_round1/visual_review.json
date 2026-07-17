@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "attempt_id": "bedroom4_pillow_front_0048_0072",
+  "review_type": "human_visual_contact_sheet",
+  "technical_status": "passed",
+  "semantic_status": "rejected",
+  "promotion_allowed": false,
+  "reviewed_views": [
+    "000048",
+    "000054",
+    "000060",
+    "000066",
+    "000072"
+  ],
+  "preserved_properties": [
+    "the two rear pillows remain visible",
+    "the edited region stays approximately white like the surrounding bedding",
+    "pixels outside the dilated removal mask remain unchanged"
+  ],
+  "blocking_issues": [
+    "the removed front pillow becomes a low-frequency gray-white blur",
+    "hidden bedding seams and rear-pillow texture are not reconstructed",
+    "the synthesized patch has a visible soft boundary",
+    "the result has no depth, normal, or 3D consistency certification"
+  ],
+  "root_cause": "Persistent occlusion leaves no reliable 2D donor for ordinary optical-flow video inpainting; camera parallax is not modeled explicitly.",
+  "required_next_action": "Prefill from DA3 depth and calibrated-camera reprojection with z-buffer visibility, then use ProPainter only for residual holes and rerun depth/normal reconstruction.",
+  "scene_integration": "not_performed"
+}

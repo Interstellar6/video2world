@@ -17,7 +17,7 @@ This directory is the self-contained evidence bundle for the bedroom 4 open-voca
 | `sam3_plant_01` | 这株浓密的圆冠造型植物由许多带浅色叶缘的深绿色小椭圆叶、数根木质观感枝干和一个光滑的灰白色圆柱形花盆组成。 |
 | `sam3_plant_02` | 这株浓密的圆冠盆栽具有掌状观感的绿奶油色斑锦叶、数根直立枝干和一个光滑的灰白色圆柱形花盆。 |
 | `sam3_plant_03` | 这株盆栽具有宽披针形叶片、浅奶油绿色斑锦与深绿色叶缘或条纹、簇生枝干和一个光滑的灰白色圆柱形花盆。 |
-| `sam3_pillow_01` | 这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。 |
+| `sam3_pillow_01` | 这个已接受整体由床上三只相接的浅色枕头组成：两只较大的灰白/米白色绗缝花卉枕头位于一只较小的白色/灰白色方枕后方；暖色室内光会使表面略显偏黄。 |
 
 ## Consumption
 
@@ -35,6 +35,7 @@ The two non-passing attempts are preserved under `outputs.failed.*`. They docume
 
 - Nightstand and plant inputs are the exact EmbodiedGen prompted-reference RGBA images, composited deterministically over a neutral background for the VLM. Their room position is not inferable.
 - Pillow evidence is accepted SAM3 frame `000064` plus the eroded mask. The mask has three connected components (28,576, 21,788, and 16,702 pixels) treated as one ensemble without stable per-pillow IDs.
+- The original VLM called the rear pillows pale green. Source-frame reinspection corrected the consumable description to white/off-white/cream under warm lighting; the untouched raw model output remains archived for audit.
 - Light-gray backgrounds and red mask contours are synthetic derivatives and are excluded from object attributes.
 - Scene coordinates use non-metric scene scale. Descriptions do not report meters or physical dimensions.
 - Plant species and exact material substrates remain intentionally unspecified.

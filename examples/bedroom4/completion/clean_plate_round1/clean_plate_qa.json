@@ -1,0 +1,808 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-16T18:42:32.354784+00:00",
+  "status": "technical_passed",
+  "input_manifest": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/input_manifest.json",
+  "input_manifest_sha256": "bd83259bd9c3bd335f8093f68b0515e82a7bc642b0ead27a960891ed33fabd83",
+  "output_frames": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames",
+  "frame_count": 25,
+  "mask_dilation": 4,
+  "gates": {
+    "frame_count_matches": true,
+    "dimensions_match": true,
+    "outside_dilated_mask_mean_abs_delta_lte": {
+      "threshold": 0.5,
+      "observed_max_frame_mean": 0.0,
+      "passed": true
+    },
+    "inside_mask_mean_abs_delta_gte": {
+      "threshold": 2.0,
+      "observed_min_frame_mean": 22.64422284847171,
+      "passed": true
+    }
+  },
+  "frame_records": [
+    {
+      "sequence_index": 0,
+      "frame_id": "000048",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000048.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0000.png",
+      "union_mask_pixels": 18346,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0000.png",
+      "output_sha256": "af8062aa496d1c1a855e0efa3719445512e81906fee43d8279285d473d922039",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 18346,
+        "mean": 27.955430793270104,
+        "p95": 64.33333333333333,
+        "max": 179.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 901040,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        140.97002071296194,
+        141.30595225117193,
+        142.32759184563392
+      ],
+      "output_mask_mean_rgb": [
+        116.66946473345689,
+        115.3300992041862,
+        112.20331407391257
+      ]
+    },
+    {
+      "sequence_index": 1,
+      "frame_id": "000049",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000049.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0001.png",
+      "union_mask_pixels": 18620,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0001.png",
+      "output_sha256": "2b61d69ef90315efb883819e0d22156dd2f7145221316170914ccb4b8b4d407f",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 18620,
+        "mean": 28.000089509488003,
+        "p95": 63.333333333333336,
+        "max": 178.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 900745,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        140.8794844253491,
+        141.08560687432868,
+        142.50161117078412
+      ],
+      "output_mask_mean_rgb": [
+        116.68523093447905,
+        115.0406552094522,
+        112.5296992481203
+      ]
+    },
+    {
+      "sequence_index": 2,
+      "frame_id": "000050",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000050.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0002.png",
+      "union_mask_pixels": 19130,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0002.png",
+      "output_sha256": "736bfb68abf9ca7d80072b173899629bda28a7469e2dd77738fd9ca541b3b259",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 19130,
+        "mean": 27.515124586164838,
+        "p95": 64.0,
+        "max": 181.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 900211,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        140.46194458964976,
+        140.87375849451124,
+        141.97219027705174
+      ],
+      "output_mask_mean_rgb": [
+        116.58552012545739,
+        115.44464192368008,
+        112.60825927861997
+      ]
+    },
+    {
+      "sequence_index": 3,
+      "frame_id": "000051",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000051.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0003.png",
+      "union_mask_pixels": 19317,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0003.png",
+      "output_sha256": "d5a4848925df47a069d45cb9b72fc1214fdca06ec06292a4e589462a6edd86e5",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 19317,
+        "mean": 27.343428068540664,
+        "p95": 63.666666666666664,
+        "max": 167.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 900013,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        141.1687632655174,
+        141.03582336801782,
+        142.60982554226848
+      ],
+      "output_mask_mean_rgb": [
+        117.04462390640369,
+        115.74292074338665,
+        113.77242843091577
+      ]
+    },
+    {
+      "sequence_index": 4,
+      "frame_id": "000052",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000052.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0004.png",
+      "union_mask_pixels": 19658,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0004.png",
+      "output_sha256": "813ea4e883037e2ae8f8ea8517db2f4418559a7e1bbd8fa27ff16933df592637",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 19658,
+        "mean": 27.25877505341337,
+        "p95": 64.0,
+        "max": 166.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 899658,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        141.3238884932343,
+        141.07157391392818,
+        142.7149760911588
+      ],
+      "output_mask_mean_rgb": [
+        116.93183436768746,
+        116.0040695899888,
+        113.95350493437786
+      ]
+    },
+    {
+      "sequence_index": 5,
+      "frame_id": "000053",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000053.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0005.png",
+      "union_mask_pixels": 19891,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0005.png",
+      "output_sha256": "34a72bf1c3388f1954b2d00a62228fa00a1dd02b958a98ae109368bf34ff31bf",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 19891,
+        "mean": 26.762773783788315,
+        "p95": 62.0,
+        "max": 181.0
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 899421,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        140.39636016288773,
+        140.65979588758736,
+        141.32577547634608
+      ],
+      "output_mask_mean_rgb": [
+        116.9741088934694,
+        115.81639937660249,
+        112.81162334724247
+      ]
+    },
+    {
+      "sequence_index": 6,
+      "frame_id": "000054",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000054.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0006.png",
+      "union_mask_pixels": 20152,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0006.png",
+      "output_sha256": "9859fd2ad92930fd7cf3cb6b11a9110b4edaa9b6ba5335c792359d253d8653c3",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 20152,
+        "mean": 27.343787217149664,
+        "p95": 63.0,
+        "max": 170.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 899123,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        141.0156312028583,
+        140.65596466851926,
+        142.02858277094086
+      ],
+      "output_mask_mean_rgb": [
+        117.0370186581977,
+        115.41842000793966,
+        112.66474791583961
+      ]
+    },
+    {
+      "sequence_index": 7,
+      "frame_id": "000055",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000055.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0007.png",
+      "union_mask_pixels": 20518,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0007.png",
+      "output_sha256": "b321e0cbbcaa068d64435598d0beef63932a26988a15d155b3972ae40996faad",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 20518,
+        "mean": 26.912840757708675,
+        "p95": 63.333333333333336,
+        "max": 164.0
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 898750,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        140.91787698606103,
+        140.62398869285505,
+        141.8236182863827
+      ],
+      "output_mask_mean_rgb": [
+        116.87391558631445,
+        115.65898235695487,
+        113.16541573252753
+      ]
+    },
+    {
+      "sequence_index": 8,
+      "frame_id": "000056",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000056.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0008.png",
+      "union_mask_pixels": 20939,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0008.png",
+      "output_sha256": "c2e3f3af8ff35ab6d43c75b060e7b179b1af314ff809c08149c8e80ef1331f4c",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 20939,
+        "mean": 26.811977649362433,
+        "p95": 62.333333333333336,
+        "max": 179.0
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 898296,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        140.79664740436505,
+        140.5916710444625,
+        141.84521705907636
+      ],
+      "output_mask_mean_rgb": [
+        117.10673862171069,
+        115.59983762357324,
+        113.28477959787955
+      ]
+    },
+    {
+      "sequence_index": 9,
+      "frame_id": "000057",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000057.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0009.png",
+      "union_mask_pixels": 21309,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0009.png",
+      "output_sha256": "20470dffda1bd48e8f0c0aa1412c5c824ac6ffe1cf3ceaaeb456df0cd987328a",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 21309,
+        "mean": 26.817494955183257,
+        "p95": 63.0,
+        "max": 189.0
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 897911,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        140.1274109531184,
+        140.32488619831994,
+        141.13811065746867
+      ],
+      "output_mask_mean_rgb": [
+        116.53995964146604,
+        115.36946829977944,
+        112.9221455722934
+      ]
+    },
+    {
+      "sequence_index": 10,
+      "frame_id": "000058",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000058.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0010.png",
+      "union_mask_pixels": 21763,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0010.png",
+      "output_sha256": "5ea1fac460dd7e3878ff8d0223827787d6f304df71291084c3590b3b2525ccde",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 21763,
+        "mean": 23.930983779809768,
+        "p95": 59.333333333333336,
+        "max": 178.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 897427,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        140.37223728346277,
+        140.28677112530443,
+        141.1918393603823
+      ],
+      "output_mask_mean_rgb": [
+        119.0589532693103,
+        118.35886596517024,
+        116.32183062996829
+      ]
+    },
+    {
+      "sequence_index": 11,
+      "frame_id": "000059",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000059.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0011.png",
+      "union_mask_pixels": 22219,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0011.png",
+      "output_sha256": "d3dd9f94c9111fe4b6bad755a6d713dfe845dcb091bda4873da143d8901043e0",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 22219,
+        "mean": 24.383125553205215,
+        "p95": 59.0,
+        "max": 168.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 896944,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        140.66771681893874,
+        140.27449480174624,
+        141.40847922948828
+      ],
+      "output_mask_mean_rgb": [
+        119.18029614294073,
+        117.74544308924794,
+        115.73369638597596
+      ]
+    },
+    {
+      "sequence_index": 12,
+      "frame_id": "000060",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000060.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0012.png",
+      "union_mask_pixels": 22622,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0012.png",
+      "output_sha256": "a5a3923246c2916241f5039b92919d3ade0c42bb6ec39ab12ca5ac88f3d272ed",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 22622,
+        "mean": 24.273406418530634,
+        "p95": 58.666666666666664,
+        "max": 163.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 896524,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        140.31403058969144,
+        140.3716735920785,
+        140.87118733975777
+      ],
+      "output_mask_mean_rgb": [
+        118.98222968791443,
+        117.83852002475466,
+        115.49951374767925
+      ]
+    },
+    {
+      "sequence_index": 13,
+      "frame_id": "000061",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000061.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0013.png",
+      "union_mask_pixels": 22968,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0013.png",
+      "output_sha256": "a4a820c82a28b611c30c1cba142722e753249cc169765590cb9ed92fe9ee77be",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 22968,
+        "mean": 24.238650876581907,
+        "p95": 59.0,
+        "max": 122.33333333333333
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 896148,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        140.9383054684779,
+        140.47931905259492,
+        141.70559038662486
+      ],
+      "output_mask_mean_rgb": [
+        119.49777951933125,
+        118.13666840822013,
+        116.15717520027864
+      ]
+    },
+    {
+      "sequence_index": 14,
+      "frame_id": "000062",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000062.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0014.png",
+      "union_mask_pixels": 23185,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0014.png",
+      "output_sha256": "03f4b7277c57b0a0a88179fe00537facfcfc605ac074dbba8dd4ac081eb1b95d",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 23185,
+        "mean": 24.48328660772051,
+        "p95": 59.333333333333336,
+        "max": 135.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 895916,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        140.5312917834807,
+        140.69971964632305,
+        141.0759974121199
+      ],
+      "output_mask_mean_rgb": [
+        119.05210265257709,
+        118.0006038386888,
+        115.59810222126374
+      ]
+    },
+    {
+      "sequence_index": 15,
+      "frame_id": "000063",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000063.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0015.png",
+      "union_mask_pixels": 23209,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0015.png",
+      "output_sha256": "e94cf871d946a597e84be7fb0b8e150bf45c9d804fb2c64439caae76ad0aaa7a",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 23209,
+        "mean": 23.26225458514657,
+        "p95": 58.666666666666664,
+        "max": 152.0
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 895916,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        141.24701624369857,
+        141.05825326382006,
+        141.7882717911155
+      ],
+      "output_mask_mean_rgb": [
+        120.50049549743633,
+        119.75410401137489,
+        117.86802533499936
+      ]
+    },
+    {
+      "sequence_index": 16,
+      "frame_id": "000064",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000064.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0016.png",
+      "union_mask_pixels": 23065,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0016.png",
+      "output_sha256": "5012feaabbe17a79e82c48ad6480b2cbd481b391f0e6f36deaf18157083f4007",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 23065,
+        "mean": 22.64422284847171,
+        "p95": 59.0,
+        "max": 156.0
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 896063,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        141.41894645566876,
+        141.06130500758726,
+        142.30171255148494
+      ],
+      "output_mask_mean_rgb": [
+        121.44270539778886,
+        120.66507695642748,
+        119.17082159115543
+      ]
+    },
+    {
+      "sequence_index": 17,
+      "frame_id": "000065",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000065.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0017.png",
+      "union_mask_pixels": 22825,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0017.png",
+      "output_sha256": "8cac0390b0e6e9ab602a4afe903aea4f6d971634ffd19489aaaa232fa7ec7260",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 22825,
+        "mean": 22.71316538882804,
+        "p95": 59.0,
+        "max": 162.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 896307,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        141.01664841182912,
+        141.21664841182914,
+        141.9213581599124
+      ],
+      "output_mask_mean_rgb": [
+        120.90024096385542,
+        120.54786418400876,
+        118.96941949616648
+      ]
+    },
+    {
+      "sequence_index": 18,
+      "frame_id": "000066",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000066.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0018.png",
+      "union_mask_pixels": 22481,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0018.png",
+      "output_sha256": "fb528cee3fd1f2a6f2cf8bd47fe0989d38699499af6aa21263fdbf7b448551c7",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 22481,
+        "mean": 22.979864478151924,
+        "p95": 59.0,
+        "max": 160.66666666666666
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 896663,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        142.14056314220898,
+        141.6747030826031,
+        143.23344157288378
+      ],
+      "output_mask_mean_rgb": [
+        121.15119434188871,
+        120.90921222365553,
+        119.97371113384636
+      ]
+    },
+    {
+      "sequence_index": 19,
+      "frame_id": "000067",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000067.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0019.png",
+      "union_mask_pixels": 22295,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0019.png",
+      "output_sha256": "584e9e6a68ee560e759aede2f42fd5a4be71850cd4f8878886c179ee642d14bc",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 22295,
+        "mean": 24.891530238469013,
+        "p95": 60.333333333333336,
+        "max": 147.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 896877,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        141.89917021753757,
+        141.9415564027809,
+        143.09836286162817
+      ],
+      "output_mask_mean_rgb": [
+        119.40376766091052,
+        119.29526799730881,
+        117.72191074231891
+      ]
+    },
+    {
+      "sequence_index": 20,
+      "frame_id": "000068",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000068.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0020.png",
+      "union_mask_pixels": 22091,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0020.png",
+      "output_sha256": "e00766bb75ced19b343274e6334dc1af1c7c895dc020d4bdfeafe4f0f273a7ef",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 22091,
+        "mean": 26.005914927647762,
+        "p95": 60.333333333333336,
+        "max": 147.0
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 897077,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        145.630211398307,
+        145.14032864062287,
+        146.5958535150061
+      ],
+      "output_mask_mean_rgb": [
+        121.18921732832375,
+        121.08813543977185,
+        120.1186908695849
+      ]
+    },
+    {
+      "sequence_index": 21,
+      "frame_id": "000069",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000069.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0021.png",
+      "union_mask_pixels": 21759,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0021.png",
+      "output_sha256": "c766e7de6f298baa236e9f4b378de09c00b75c0ce4eddf4b5e08e3b6d9cfeae6",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 21759,
+        "mean": 27.712992325014937,
+        "p95": 63.666666666666664,
+        "max": 148.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 897433,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        151.0708212693598,
+        150.54758950319408,
+        152.3283239119445
+      ],
+      "output_mask_mean_rgb": [
+        124.66924031435268,
+        124.94930833218439,
+        124.69617169906705
+      ]
+    },
+    {
+      "sequence_index": 22,
+      "frame_id": "000070",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000070.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0022.png",
+      "union_mask_pixels": 21517,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0022.png",
+      "output_sha256": "930e17cc5a6a8685aeb553af95a13175e0735fd5827d3bc8af6b8b680ec1741b",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 21517,
+        "mean": 28.21556598658425,
+        "p95": 65.0,
+        "max": 151.0
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 897685,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        157.27568899010086,
+        156.37282148998466,
+        158.12938606683088
+      ],
+      "output_mask_mean_rgb": [
+        130.50188223265326,
+        130.5700144072129,
+        130.38527675791235
+      ]
+    },
+    {
+      "sequence_index": 23,
+      "frame_id": "000071",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000071.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0023.png",
+      "union_mask_pixels": 21569,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0023.png",
+      "output_sha256": "7bf857ff6dda351f81c624581b3db742f8cd4887189ae2767b5d39f2c78ae328",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 21569,
+        "mean": 27.195821163089,
+        "p95": 64.0,
+        "max": 134.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 897628,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        163.89554453150356,
+        163.2197134776763,
+        164.90537345264036
+      ],
+      "output_mask_mean_rgb": [
+        138.9111224442487,
+        138.2221707079605,
+        137.5315035467569
+      ]
+    },
+    {
+      "sequence_index": 24,
+      "frame_id": "000072",
+      "source_frame": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000072.png",
+      "union_mask": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/input/masks/0024.png",
+      "union_mask_pixels": 21440,
+      "output_frame": "/root/autodl-tmp/video2world_clean_plate_20260717/runs/bedroom4_pillow_front_0048_0072/propainter_output/frames/frames/0024.png",
+      "output_sha256": "5b2d5ac0338e3f444e72574d18fef004fd5a03d81d7ee08b7722430eee71269b",
+      "inside_original_mask_abs_rgb_delta": {
+        "pixel_count": 21440,
+        "mean": 28.345771144278608,
+        "p95": 64.66666666666667,
+        "max": 130.33333333333334
+      },
+      "outside_dilated_mask_abs_rgb_delta": {
+        "pixel_count": 897761,
+        "mean": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "source_mask_mean_rgb": [
+        168.1875,
+        167.6201026119403,
+        169.48143656716417
+      ],
+      "output_mask_mean_rgb": [
+        142.73535447761193,
+        141.5741604477612,
+        140.72495335820895
+      ]
+    }
+  ],
+  "semantic_review_required": true,
+  "geometry_reconstruction_required": true,
+  "limitations": [
+    "Pixel-delta gates verify I/O integrity, not semantic plausibility of synthesized content.",
+    "RGB output must receive multi-view review and feed depth/normal reconstruction before PGSR or TSDF rebuild.",
+    "This report does not certify cross-view 3D consistency or absence of object/background interpenetration."
+  ]
+}

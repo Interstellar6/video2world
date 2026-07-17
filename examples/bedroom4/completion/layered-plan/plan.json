@@ -1,0 +1,1236 @@
+{
+  "audit_iteration": 1,
+  "created_at": "2026-07-17T08:00:00+08:00",
+  "inventory_sha256": "5de064fc4d516b3c96433af7c68d29d2609ef59f2ee20bc78c727970117df8b0",
+  "kind": "video2world.layered_completion_plan",
+  "limitations": [
+    "Backside geometry and clean plates are generated hypotheses, not observed surfaces.",
+    "A failed round blocks every deeper occlusion layer.",
+    "The explicit target sequence is an operational schedule constrained by verified graph edges; it does not promote unresolved relations to verified occlusions.",
+    "Round 1 passes only as usable_for_reinspection_only; ProPainter visual semantics were rejected and no scene promotion is allowed.",
+    "Rounds 2 and 3 pass only for sequential reinspection; their accepted pillow assets still require scene fit and interpenetration review.",
+    "Round 4 remains running because the seed-45 bed asset and the large-occluder clean plate are both visually rejected.",
+    "The rejected Round 4 clean plate is evidence-only and is not propagated into final background reconstruction.",
+    "The single-frame SDXL seed-2026071701 candidate is display-only and cannot be used as Round 2 input.",
+    "The explicit left-right-bed order is a conservative operational schedule constrained by the verified front-to-rear edges; unresolved relations are not promoted to geometry-verified occlusions.",
+    "This status input does not claim whole-scene completion or a completed final background."
+  ],
+  "max_audit_iterations": 4,
+  "max_parallel_targets_per_round": 1,
+  "max_rounds": 32,
+  "occlusion_graph_sha256": "9abbe780a3edacc130213fada510b4b0598999974e77cd2828f9b414512139b1",
+  "ordering_policy": "explicit_topological_sequence",
+  "round_status_input_sha256": "452e7c85d038f74cd27755064121b49e70405e0fc32ab6dada41f4ad1e9425bd",
+  "round_status_input_uri": "repo://video2world/examples/bedroom4/completion/layered-plan/round-status.json",
+  "rounds": [
+    {
+      "acceptance_scope": "usable_for_reinspection_only",
+      "actions": [
+        {
+          "acceptance_gates": [
+            "geometry_completeness",
+            "front_silhouette",
+            "front_observation_fidelity",
+            "backside_nonempty",
+            "six_view_coverage",
+            "appearance_fidelity",
+            "six_side_style_consistency",
+            "instance_identity",
+            "vlm_geometry_review"
+          ],
+          "action": "complete_object",
+          "id": "r01-01-complete-object",
+          "idempotency_key": "75d0b01ca695b9ff96f8af6d8a7161441c34a30f65bcb97852a653d70e204c30",
+          "notes": [
+            "Prefer one validated PBR GLB for rendering, object logic, and collision; separate render_mesh/collider outputs are legacy compatibility only."
+          ],
+          "optional_output_roles": [
+            "render_mesh",
+            "collider",
+            "object_gaussian",
+            "object_point_cloud"
+          ],
+          "prerequisites": [],
+          "required_output_roles": [
+            "unified_pbr_glb",
+            "object_completion_report"
+          ],
+          "synthetic_output": true,
+          "target_ids": [
+            "sam3_pillow_front"
+          ]
+        },
+        {
+          "acceptance_gates": [
+            "collision"
+          ],
+          "action": "build_collider",
+          "id": "r01-02-build-collider",
+          "idempotency_key": "5f82e9f16f4a47ce590218eda355ed88c1c691aa717937fdf7f77eabc7d1ee40",
+          "notes": [
+            "Validate and reuse the complete_object unified_pbr_glb collision topology; do not generate a collider proxy."
+          ],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r01-01-complete-object"
+          ],
+          "required_output_roles": [
+            "collision_report"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_pillow_front"
+          ]
+        },
+        {
+          "acceptance_gates": [
+            "placement_alignment",
+            "scene_interpenetration"
+          ],
+          "action": "place_object",
+          "id": "r01-03-place-object",
+          "idempotency_key": "93231d07641f654a81a49db5ac6b81c364df3132d82ec7efd3fb8d60ded24570",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r01-02-build-collider"
+          ],
+          "required_output_roles": [
+            "aligned_objects_manifest",
+            "interpenetration_report"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_pillow_front"
+          ]
+        },
+        {
+          "acceptance_gates": [
+            "mask_outside_unchanged",
+            "cross_view_consistency",
+            "revealed_background"
+          ],
+          "action": "clean_plate",
+          "id": "r01-04-clean-plate",
+          "idempotency_key": "969525e9a9bc754a6b54b198ab0bfe976409694a97862722d5e698d4d90431e6",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r01-03-place-object"
+          ],
+          "required_output_roles": [
+            "clean_plate_frames",
+            "clean_plate_manifest"
+          ],
+          "synthetic_output": true,
+          "target_ids": [
+            "sam3_pillow_front"
+          ]
+        },
+        {
+          "acceptance_gates": [],
+          "action": "reinspect",
+          "id": "r01-05-reinspect",
+          "idempotency_key": "116c86c796f90cf87d93a613c470026087e26b559ba3b08fbbed88559cb55b5d",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r01-04-clean-plate"
+          ],
+          "required_output_roles": [
+            "next_scene_inventory",
+            "next_occlusion_graph"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_pillow_front"
+          ]
+        },
+        {
+          "acceptance_gates": [],
+          "action": "validate_round",
+          "id": "r01-06-validate-round",
+          "idempotency_key": "76eabf55e4ec525113ce15203e7c73474381c641e8cbb4498dd15182317ebba2",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r01-05-reinspect"
+          ],
+          "required_output_roles": [
+            "round_quality_report"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_pillow_front"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "claim_scope": "The actual 25-frame 1280x720 ProPainter output for frames 000048-000072; usable only for SAM3 reinspection, not scene promotion or geometry reconstruction.",
+          "role": "output_clean_plate",
+          "sha256": "6db53f516a8ded9be00f294e559a82489f4ead1175137d260e9123f44a1c0830",
+          "size_bytes": 1223137,
+          "uri": "repo://video2world/examples/bedroom4/completion/clean_plate_round1/inpaint_out.mp4",
+          "usage": "next_round_input"
+        },
+        {
+          "claim_scope": "Passed 25-frame SAM3-to-3D-anchor association that excludes the peeled front pillow and yields left and right rear pillows as next-layer candidates.",
+          "role": "round_quality_report",
+          "sha256": "25ce62f3c83af0438510a2864b7daeafc0ef254815864b52a66be45e780c1ecb",
+          "size_bytes": 1253879,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/reinspect_sam3/association.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Binds the 25 source frames and tracked front-pillow masks for frames 000048-000072.",
+          "role": "clean_plate_input_manifest",
+          "sha256": "bd83259bd9c3bd335f8093f68b0515e82a7bc642b0ead27a960891ed33fabd83",
+          "size_bytes": 47576,
+          "uri": "repo://video2world/examples/bedroom4/completion/clean_plate_round1/input_manifest.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Verifies 25 output frames, matching dimensions, exact outside-mask preservation, and changed masked pixels; it does not certify visual semantics.",
+          "role": "clean_plate_technical_qa",
+          "sha256": "5e796cbf413f17bfcfa90c029f592942a82522c58ff46d40581ce125acab5f63",
+          "size_bytes": 31198,
+          "uri": "repo://video2world/examples/bedroom4/completion/clean_plate_round1/clean_plate_qa.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Records the official ProPainter commit, model-weight hashes, runtime, and explicit semantic rejection.",
+          "role": "clean_plate_provenance",
+          "sha256": "2047f15a1cfd02c0c3997523fa4ac7d59098323b16c068bb25341d99a79837ee",
+          "size_bytes": 2241,
+          "uri": "repo://video2world/examples/bedroom4/completion/clean_plate_round1/provenance.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Explicitly rejects the ProPainter result for scene promotion because the removed area is blurred and lacks depth, normal, or 3D consistency.",
+          "role": "clean_plate_visual_review",
+          "sha256": "9615771bafe690e5bd7f4f7668d13300315d70b0be10fb4b9efe13f787a34326",
+          "size_bytes": 1227,
+          "uri": "repo://video2world/examples/bedroom4/completion/clean_plate_round1/visual_review.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Binds 76 pillow detections across all 25 ProPainter frames used by the association receipt.",
+          "role": "reinspection_mask_index",
+          "sha256": "f93067d48886ef6a11bc4525ed8aee1d2ef42e8ca65572f2e2455566c5709b26",
+          "size_bytes": 74933,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/reinspect_sam3/mask_index.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Binds the 25-frame peeled-scene SAM3 input index.",
+          "role": "reinspection_scene",
+          "sha256": "86b0656df0dd43e50dc1f5820ae503ba9f927599387628a8eb1382d2ba33b27b",
+          "size_bytes": 813,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/reinspect_sam3/scene.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Verifies only front-pillow-to-rear-pillow ordering; rear-pillow-to-bed relations remain unresolved.",
+          "role": "occlusion_ordering",
+          "sha256": "97eec76441b8b7979bc920a463c74d1f4cc3056297ae9801da1745f8ae4973bc",
+          "size_bytes": 4533,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-plan/depth-adjacency-evidence.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Content-addressed frame-64 SAM3-to-3D split with exact point conservation and per-instance projected depth statistics.",
+          "role": "instance_split_report",
+          "sha256": "2d3386f690c71b88d1236756d865f4504095b3465244e688ac8ecfd2c1b931ac",
+          "size_bytes": 25533,
+          "uri": "repo://video2world/examples/bedroom4/completion/bedroom4_frame64_three_pillows/instance_cloud_split_report.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Records the official TRELLIS.2 seed-42 generation run and raw PBR export provenance.",
+          "role": "trellis2_provider_receipt",
+          "sha256": "50cd789cc742d8c2bb2f840376c0220fb88fc1858774dd949ee23061fd76f91c",
+          "size_bytes": 3463,
+          "uri": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/pbr/report.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Current-demo unified nonmetal-fabric PBR GLB for rendering, object logic, and surface-BVH collision.",
+          "role": "object_pbr_asset",
+          "sha256": "9d84ab4561d7c017c24c07a94abe5400073b0fafb97893a8a1eafca320c391d6",
+          "size_bytes": 3979924,
+          "uri": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/sam3_pillow_front.scene-fit.glb",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Binds the generated object to the observed front-pillow scene transform and material audit.",
+          "role": "scene_fit_report",
+          "sha256": "da26014b1ecc29eb1dfcf8d45b74d98bd539b69945e029a6512ea6a2ab8769cd",
+          "size_bytes": 5835,
+          "uri": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/scene_fit_report.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Verifies source-camera silhouette and bounding-box alignment for the fitted PBR object.",
+          "role": "source_camera_review",
+          "sha256": "5c0ea401fa4ce1ba0dddb07efe5849d9038b1d28a4111ef4106850cdcaa814a6",
+          "size_bytes": 2756,
+          "uri": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/source_camera_review/source_camera_silhouette_review.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Proves six distinct canonical object-axis views were captured from the exact fitted GLB.",
+          "role": "canonical_six_view_receipt",
+          "sha256": "c6e374bec1d4014dd5f61a788379b2ab739bbbf7ea4323db0a3fc58057f01664",
+          "size_bytes": 6201,
+          "uri": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/canonical_six_view_review/object_six_view_review.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Accepts shape, primary color, complete surface, and scene placement for the current demo while retaining the floral-texture warning.",
+          "role": "object_visual_review",
+          "sha256": "da3637984c7dba2a43e3119f75d8f79e9ca8871d23f81f552df7a653245a7549",
+          "size_bytes": 3104,
+          "uri": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/canonical_six_view_review/visual_review.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Records removal of 1,606 residual front-pillow Gaussian splats without claiming hidden background reconstruction.",
+          "role": "static_recarve_report",
+          "sha256": "8d119fb87b329b9abd122335b8d1c7d0b75be0f9bd53fe64b0a28ff3be4dc36b",
+          "size_bytes": 59184,
+          "uri": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/static-recarve-report.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Browser comparison verifies residual contamination reduction and preserved current-demo object/collision behavior only.",
+          "role": "static_recarve_browser_review",
+          "sha256": "e97d5554d1508b66722e946ddf0206297295c7dae5c316c41346b873ca15df2c",
+          "size_bytes": 11826,
+          "uri": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/static-recarve-browser-comparison.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Display-only frame-000064 candidate accepted for the current demo; forbidden as a layered-pipeline clean-plate input.",
+          "role": "display_candidate_sdxl",
+          "sha256": "26a734c0296d98790ed4daaf5a5a7b45c64f25430ab95e6115e9a26eff41d7b0",
+          "size_bytes": 814159,
+          "uri": "repo://video2world/examples/bedroom4/completion/clean_plate_round3_sdxl_anchor/candidate_seed_2026071701.png",
+          "usage": "display_only"
+        },
+        {
+          "claim_scope": "Records the user-authorized display-only decision and explicitly does not prove an object-free clean plate.",
+          "role": "display_candidate_review",
+          "sha256": "88df19d716d4b4fa461fe76f863da41948e9cf7d88a504a11ef8401d81615d9a",
+          "size_bytes": 1202,
+          "uri": "repo://video2world/examples/bedroom4/completion/clean_plate_round3_sdxl_anchor/visual_review.json",
+          "usage": "display_only"
+        },
+        {
+          "claim_scope": "Records SDXL generation provenance for the display-only candidate; it is not a Round2 input receipt.",
+          "role": "display_candidate_generation_receipt",
+          "sha256": "698b2daf7d3d1a4abdeee8f93f0e1abacb80d3b61bf2f8857edd767eb6f05024",
+          "size_bytes": 15042,
+          "uri": "repo://video2world/examples/bedroom4/completion/clean_plate_round3_sdxl_anchor/run_receipt.json",
+          "usage": "display_only"
+        }
+      ],
+      "index": 1,
+      "input_clean_plate_round": 0,
+      "input_clean_plate_uri": null,
+      "kind": "object_layer",
+      "limitations": [
+        "The 25-frame ProPainter result passed technical I/O gates but failed visual semantic review and is usable only for reinspection.",
+        "SAM3 still detects front-pillow-like residuals in every reinspection frame; the 3D-anchor association excludes them from next-layer targets.",
+        "The SDXL seed-2026071701 image remains display-only and is forbidden as input to Round 2.",
+        "No cross-view bed/background depth-normal reconstruction has passed.",
+        "The static Gaussian carve removes stale foreground splats but does not fill hidden bed or background geometry.",
+        "The generated opposite-side floral texture is a user-accepted minor hallucination for this demo only."
+      ],
+      "next_layer_candidate_ids": [
+        "sam3_pillow_left",
+        "sam3_pillow_right"
+      ],
+      "next_layer_candidates_evidence_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/reinspect_sam3/association.json",
+      "output_clean_plate_uri": "repo://video2world/examples/bedroom4/completion/clean_plate_round1/inpaint_out.mp4",
+      "quality_report_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/reinspect_sam3/association.json",
+      "status": "passed_with_limitations",
+      "status_reason": "The front pillow asset passes for the current demo, and the real 25-frame ProPainter output is technically usable only as input to SAM3 reinspection plus 3D-anchor association. ProPainter visual semantics were rejected, so this round does not pass scene promotion or background reconstruction.",
+      "target_ids": [
+        "sam3_pillow_front"
+      ]
+    },
+    {
+      "acceptance_scope": "usable_for_reinspection_only",
+      "actions": [
+        {
+          "acceptance_gates": [
+            "geometry_completeness",
+            "front_silhouette",
+            "front_observation_fidelity",
+            "backside_nonempty",
+            "six_view_coverage",
+            "appearance_fidelity",
+            "six_side_style_consistency",
+            "instance_identity",
+            "vlm_geometry_review"
+          ],
+          "action": "complete_object",
+          "id": "r02-01-complete-object",
+          "idempotency_key": "0ef771419bce5f64e6c283108591bd77450de607f800e311b5d82c7ad2a346df",
+          "notes": [
+            "Prefer one validated PBR GLB for rendering, object logic, and collision; separate render_mesh/collider outputs are legacy compatibility only."
+          ],
+          "optional_output_roles": [
+            "render_mesh",
+            "collider",
+            "object_gaussian",
+            "object_point_cloud"
+          ],
+          "prerequisites": [],
+          "required_output_roles": [
+            "unified_pbr_glb",
+            "object_completion_report"
+          ],
+          "synthetic_output": true,
+          "target_ids": [
+            "sam3_pillow_left"
+          ]
+        },
+        {
+          "acceptance_gates": [
+            "collision"
+          ],
+          "action": "build_collider",
+          "id": "r02-02-build-collider",
+          "idempotency_key": "aeb53ce1d469099c3ee6109f4073cbdaa069fd6634a53b7dd3ec4a664cfd1a06",
+          "notes": [
+            "Validate and reuse the complete_object unified_pbr_glb collision topology; do not generate a collider proxy."
+          ],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r02-01-complete-object"
+          ],
+          "required_output_roles": [
+            "collision_report"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_pillow_left"
+          ]
+        },
+        {
+          "acceptance_gates": [
+            "placement_alignment",
+            "scene_interpenetration"
+          ],
+          "action": "place_object",
+          "id": "r02-03-place-object",
+          "idempotency_key": "391d246384cf54dd87e971beb848dc58f6ba958ff1b90c3f6b8bffd57d7036c7",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r02-02-build-collider"
+          ],
+          "required_output_roles": [
+            "aligned_objects_manifest",
+            "interpenetration_report"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_pillow_left"
+          ]
+        },
+        {
+          "acceptance_gates": [
+            "mask_outside_unchanged",
+            "cross_view_consistency",
+            "revealed_background"
+          ],
+          "action": "clean_plate",
+          "id": "r02-04-clean-plate",
+          "idempotency_key": "809f1e1a4fd5c5c23a1d6449d50b67db822cbd3bd112bb699cc2bcae7ec84293",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r02-03-place-object"
+          ],
+          "required_output_roles": [
+            "clean_plate_frames",
+            "clean_plate_manifest"
+          ],
+          "synthetic_output": true,
+          "target_ids": [
+            "sam3_pillow_left"
+          ]
+        },
+        {
+          "acceptance_gates": [],
+          "action": "reinspect",
+          "id": "r02-05-reinspect",
+          "idempotency_key": "4de4bd80cb5dcb6cbc20249372745c6d90d1a1aa73c18176f1863147cf4ef76f",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r02-04-clean-plate"
+          ],
+          "required_output_roles": [
+            "next_scene_inventory",
+            "next_occlusion_graph"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_pillow_left"
+          ]
+        },
+        {
+          "acceptance_gates": [],
+          "action": "validate_round",
+          "id": "r02-06-validate-round",
+          "idempotency_key": "7aa6c1f7d1e5635810bb6fcbf229f205ecd4110cfd12f2e87798ce8e74fe55b3",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r02-05-reinspect"
+          ],
+          "required_output_roles": [
+            "round_quality_report"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_pillow_left"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "claim_scope": "The actual Round 2 25-frame ProPainter output; usable only as the input to Round 3 SAM3 reinspection and association.",
+          "role": "output_clean_plate",
+          "sha256": "112b1eddad50553a93251e4df1865a65792af0e9f54164a57af3aaee1e85e600",
+          "size_bytes": 1197478,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/propainter_output/frames/inpaint_out.mp4",
+          "usage": "next_round_input"
+        },
+        {
+          "claim_scope": "Aggregates the content-addressed object-input, amodal, TRELLIS.2, clean-plate, and next-layer association decisions for Round 2.",
+          "role": "round_quality_report",
+          "sha256": "285c621fb68e526a8bd3ceb453616f088d37f49a7688b7cb957bb64c7d1fdeec",
+          "size_bytes": 4012,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/round_receipt.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Proves the left-pillow RGBA was selected by exact detection identity from the passed Round 1 association.",
+          "role": "object_input_report",
+          "sha256": "e4a845457958ae196a0421c1a41824f5847626144d371d8664305ee3078722f0",
+          "size_bytes": 7151,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/input/layered_object_input_report.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Records the 9,071-pixel soft-object mask completion with byte-identical preservation of observed foreground pixels and passed multi-frame identity gates.",
+          "role": "amodal_input_audit",
+          "sha256": "7124bb218bc53bb2ef8e3fbb362e1d5bd4ca499dde2744f6a2de81bba0c3a070",
+          "size_bytes": 11663,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/amodal/amodal_rgba_audit.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Official TRELLIS.2 seed-44 left-pillow PBR candidate accepted at object-asset scope; scene fit remains pending.",
+          "role": "accepted_object_asset",
+          "sha256": "c76e26f14cc68b17fd588984fdae289110d18dee6316f54214d39e0cdd3f4998",
+          "size_bytes": 3039668,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/asset_pbr.glb",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Pins the official TRELLIS.2 source commit, 4B model revision, seed, and technical asset audit for the accepted candidate.",
+          "role": "accepted_object_provider_receipt",
+          "sha256": "1b16a428cd43cfab8468de25230cd40dec22d7bcdb1132ea403f3e768c8c379d",
+          "size_bytes": 9812,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/trellis2_asset_receipt.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Accepts complete volume, main color, and connected geometry while recording backside texture and material warnings.",
+          "role": "accepted_object_visual_review",
+          "sha256": "1e7a3d02530231232308351903f49255a9c4eefef96160a2b0be3cf3e6bcd40f",
+          "size_bytes": 1915,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/canonical_six_view/visual_review.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Rejected seed-42 candidate retained only for audit because it contains holes, broken surfaces, and disconnected fragments.",
+          "role": "rejected_object_asset_seed42",
+          "sha256": "ae14f9904401c6c22f7fae27198d4617e442a5ca71ede4bf4cb713decdc3abb5",
+          "size_bytes": 3177072,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed42/asset_pbr.glb",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Fail-closed six-view decision for the rejected seed-42 candidate.",
+          "role": "rejected_object_visual_review_seed42",
+          "sha256": "d3fde5ccc50275750293683721bdb99a27f8a22085e6f20baaf19c75ae3fd68b",
+          "size_bytes": 1855,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed42/canonical_six_view/visual_review.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Binds the 25 Round 2 source frames and left-pillow removal masks.",
+          "role": "clean_plate_input_manifest",
+          "sha256": "ca427cbb1b19ea5237e6b5b6c09ef2911a5de622d830be3c89877fa25373e014",
+          "size_bytes": 50614,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/propainter_input_v2/input_manifest.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Verifies frame count, dimensions, unchanged outside-mask pixels, and changed masked pixels without claiming semantic reconstruction.",
+          "role": "clean_plate_technical_qa",
+          "sha256": "40a9b1ba5f2ec29170f5633cefcce54ece0ee1a9e5a29b1d650d242e2521d73e",
+          "size_bytes": 30940,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/qa/clean_plate_qa.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Restricts the blurred Round 2 clean plate to reinspection and explicitly forbids scene/background promotion.",
+          "role": "clean_plate_visual_review",
+          "sha256": "9e18bb34f84abee4af3728e74611cd5cc808ed0a9aa38a991fdf8bfd2525ffac",
+          "size_bytes": 1382,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/qa/visual_review.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Passed calibrated association that excludes front and left peeled identities and selects only sam3_pillow_right.",
+          "role": "next_layer_association",
+          "sha256": "c6a92999959df69986527baac0e083b834a98de0f5417c28fc698c887718fe20",
+          "size_bytes": 1250716,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/reinspect_sam3/association.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Binds the 75 SAM3 pillow detections used by the Round 2 association receipt.",
+          "role": "reinspection_mask_index",
+          "sha256": "63ceffb4c2c792471535c7b499a8ad17682066000830de68aa7733b9914aae79",
+          "size_bytes": 76283,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/reinspect_sam3/sam3_output/bedroom_4_round02_peeled/mask_index.json",
+          "usage": "evidence_only"
+        }
+      ],
+      "index": 2,
+      "input_clean_plate_round": 1,
+      "input_clean_plate_uri": "repo://video2world/examples/bedroom4/completion/clean_plate_round1/inpaint_out.mp4",
+      "kind": "object_layer",
+      "limitations": [
+        "The accepted seed-44 asset still requires scene fit and interpenetration review.",
+        "The clean plate contains blurred residual content and is usable only for next-layer reinspection.",
+        "No depth, normal, PGSR, or TSDF scene reconstruction is certified by this round."
+      ],
+      "next_layer_candidate_ids": [
+        "sam3_pillow_right"
+      ],
+      "next_layer_candidates_evidence_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/reinspect_sam3/association.json",
+      "output_clean_plate_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/propainter_output/frames/inpaint_out.mp4",
+      "quality_report_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/round_receipt.json",
+      "status": "passed_with_limitations",
+      "status_reason": "The official TRELLIS.2 seed-44 left-pillow asset is accepted with minor backside warnings, while the 25-frame ProPainter result is accepted only for SAM3 reinspection. Calibrated 3D-anchor association selects the right pillow as the next layer; no scene or background promotion is allowed.",
+      "target_ids": [
+        "sam3_pillow_left"
+      ]
+    },
+    {
+      "acceptance_scope": "usable_for_reinspection_only",
+      "actions": [
+        {
+          "acceptance_gates": [
+            "geometry_completeness",
+            "front_silhouette",
+            "front_observation_fidelity",
+            "backside_nonempty",
+            "six_view_coverage",
+            "appearance_fidelity",
+            "six_side_style_consistency",
+            "instance_identity",
+            "vlm_geometry_review"
+          ],
+          "action": "complete_object",
+          "id": "r03-01-complete-object",
+          "idempotency_key": "070f5eb7bfa864704bbb559094f5b140a4f0280fbd039f8f07bfad63758fc950",
+          "notes": [
+            "Prefer one validated PBR GLB for rendering, object logic, and collision; separate render_mesh/collider outputs are legacy compatibility only."
+          ],
+          "optional_output_roles": [
+            "render_mesh",
+            "collider",
+            "object_gaussian",
+            "object_point_cloud"
+          ],
+          "prerequisites": [],
+          "required_output_roles": [
+            "unified_pbr_glb",
+            "object_completion_report"
+          ],
+          "synthetic_output": true,
+          "target_ids": [
+            "sam3_pillow_right"
+          ]
+        },
+        {
+          "acceptance_gates": [
+            "collision"
+          ],
+          "action": "build_collider",
+          "id": "r03-02-build-collider",
+          "idempotency_key": "5156c3e68f81d605ec14224afaa1727c437e5267fb355f947f1ffd3e8756cb04",
+          "notes": [
+            "Validate and reuse the complete_object unified_pbr_glb collision topology; do not generate a collider proxy."
+          ],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r03-01-complete-object"
+          ],
+          "required_output_roles": [
+            "collision_report"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_pillow_right"
+          ]
+        },
+        {
+          "acceptance_gates": [
+            "placement_alignment",
+            "scene_interpenetration"
+          ],
+          "action": "place_object",
+          "id": "r03-03-place-object",
+          "idempotency_key": "fb825b380b98b37c6b784f9bcaf21d53aec18e9a88d0553c2772d9182f0044e6",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r03-02-build-collider"
+          ],
+          "required_output_roles": [
+            "aligned_objects_manifest",
+            "interpenetration_report"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_pillow_right"
+          ]
+        },
+        {
+          "acceptance_gates": [
+            "mask_outside_unchanged",
+            "cross_view_consistency",
+            "revealed_background"
+          ],
+          "action": "clean_plate",
+          "id": "r03-04-clean-plate",
+          "idempotency_key": "4dd2e917e57b131124717b8969c3c148ec6c2ebfd3a440530108f53c4e9270cf",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r03-03-place-object"
+          ],
+          "required_output_roles": [
+            "clean_plate_frames",
+            "clean_plate_manifest"
+          ],
+          "synthetic_output": true,
+          "target_ids": [
+            "sam3_pillow_right"
+          ]
+        },
+        {
+          "acceptance_gates": [],
+          "action": "reinspect",
+          "id": "r03-05-reinspect",
+          "idempotency_key": "ec7c5e31e155982b1dc9887bffe08b0a48f429de8b6f5233e14189f7274135b3",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r03-04-clean-plate"
+          ],
+          "required_output_roles": [
+            "next_scene_inventory",
+            "next_occlusion_graph"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_pillow_right"
+          ]
+        },
+        {
+          "acceptance_gates": [],
+          "action": "validate_round",
+          "id": "r03-06-validate-round",
+          "idempotency_key": "bd41c97c63b7342711494c5ea83dd9471172a06721303e41e1fd373c0ba71ef3",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r03-05-reinspect"
+          ],
+          "required_output_roles": [
+            "round_quality_report"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_pillow_right"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "claim_scope": "The actual Round 3 25-frame ProPainter output; usable only as the input to Round 4 bed extraction and removal.",
+          "role": "output_clean_plate",
+          "sha256": "4887216b24fff38c4f845193bfbab4dfb0057c995b51e752ce9537948a3d967e",
+          "size_bytes": 1176255,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/propainter_output/frames/inpaint_out.mp4",
+          "usage": "next_round_input"
+        },
+        {
+          "claim_scope": "Aggregates the content-addressed object-input, amodal, TRELLIS.2, clean-plate, pillow-residual, and bed-association decisions for Round 3.",
+          "role": "round_quality_report",
+          "sha256": "4b3938de6649448677beef925099aa30d4c5e6d291bcbb91695f0a3f3592bee2",
+          "size_bytes": 4355,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/round_receipt.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Proves the right-pillow RGBA was selected by exact detection identity from the passed Round 2 association.",
+          "role": "object_input_report",
+          "sha256": "442b0b8e98c4483b6a981d1a1a3208684a4fdd436832fe98d4e8c72589f41967",
+          "size_bytes": 7092,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/input/layered_object_input_report.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Records the 11,544-pixel soft-object mask completion with byte-identical preservation of observed foreground pixels and passed multi-frame identity gates.",
+          "role": "amodal_input_audit",
+          "sha256": "f818204786a5c551aa29472303544085cf1899be62be9756c28cfa3af9c9e463",
+          "size_bytes": 11710,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/amodal/amodal_rgba_audit.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Official TRELLIS.2 seed-43 right-pillow PBR candidate accepted at object-asset scope; scene fit remains pending.",
+          "role": "accepted_object_asset",
+          "sha256": "a239242865ccd598ae1ba9d8b897c08fa6594451c416ad682fb4b5d9c2419296",
+          "size_bytes": 3057972,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/asset_pbr.glb",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Pins the official TRELLIS.2 source commit, 4B model revision, seed, and technical asset audit for the accepted candidate.",
+          "role": "accepted_object_provider_receipt",
+          "sha256": "15541bdb2e4a38e9201b4a3dd2bb81305ae718c5cafa697f94ba50ab94bb9256",
+          "size_bytes": 9787,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/trellis2_asset_receipt.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Accepts complete volume, main light color, and connected geometry while recording backside and pattern warnings.",
+          "role": "accepted_object_visual_review",
+          "sha256": "9a97ae64c4343a33f1813f1c71f4d1ebb4211d66be3f2c40ed9cb3fa308fdc30",
+          "size_bytes": 1911,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/canonical_six_view/visual_review.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Binds the 25 Round 3 source frames and right-pillow removal masks.",
+          "role": "clean_plate_input_manifest",
+          "sha256": "83941fbde20a6553d9c66cece72225fcc42420052e574757b072588145e01c66",
+          "size_bytes": 50612,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/propainter_input/input_manifest.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Verifies frame count, dimensions, unchanged outside-mask pixels, and changed masked pixels without claiming semantic reconstruction.",
+          "role": "clean_plate_technical_qa",
+          "sha256": "473258b2350106d742c288fe910b2b2451a23899af3accd10d36fbb36e813a3c",
+          "size_bytes": 30893,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/qa/clean_plate_qa.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Restricts the blurred Round 3 clean plate to pillow-residual and bed reinspection only.",
+          "role": "clean_plate_visual_review",
+          "sha256": "4507ea28bd4d80ce1423d86ba25aa5f372f170799c2140f5b9872dab9a66b594",
+          "size_bytes": 1415,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/qa/visual_review.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Confirms no remaining pillow target; right pillow is absent as expected and other peeled residuals are excluded.",
+          "role": "pillow_residual_association",
+          "sha256": "2ffe1fd6c0c2e7a2a726cf805b334f074de2337a9624db28c76a59ea92a87bee",
+          "size_bytes": 957285,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/reinspect_sam3/association_pillow_residuals.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Passed bed-specific calibrated association across 25 frames that selects sam3_bed_01 for Round 4.",
+          "role": "next_layer_association",
+          "sha256": "bb4f620b9e33b978ebe050970ddbe37a10fc5545e04fe6c2e94f03b1d1e2bd61",
+          "size_bytes": 318917,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/reinspect_sam3/association_bed_calibrated.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Binds the 65 pillow and 25 bed detections used by the Round 3 association receipts.",
+          "role": "reinspection_mask_index",
+          "sha256": "4040ba3f345c936751523828a44c615df19250c4877049552e03f4e1b4b89078",
+          "size_bytes": 232922,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/reinspect_sam3/sam3_output/bedroom_4_round03_peeled/mask_index.json",
+          "usage": "evidence_only"
+        }
+      ],
+      "index": 3,
+      "input_clean_plate_round": 2,
+      "input_clean_plate_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/propainter_output/frames/inpaint_out.mp4",
+      "kind": "object_layer",
+      "limitations": [
+        "The accepted seed-43 asset still requires scene fit and interpenetration review.",
+        "The clean plate contains blurred residual content and is usable only for bed extraction and reinspection.",
+        "The bed-specific 0.52 mask-hit threshold is recorded; the default object threshold remains 0.55.",
+        "No depth, normal, PGSR, or TSDF scene reconstruction is certified by this round."
+      ],
+      "next_layer_candidate_ids": [
+        "sam3_bed_01"
+      ],
+      "next_layer_candidates_evidence_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/reinspect_sam3/association_bed_calibrated.json",
+      "output_clean_plate_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/propainter_output/frames/inpaint_out.mp4",
+      "quality_report_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/round_receipt.json",
+      "status": "passed_with_limitations",
+      "status_reason": "The official TRELLIS.2 seed-43 right-pillow asset is accepted with minor backside and pattern warnings. The clean plate is restricted to reinspection; pillow residual association yields no new pillow target and calibrated bed association selects sam3_bed_01 for Round 4.",
+      "target_ids": [
+        "sam3_pillow_right"
+      ]
+    },
+    {
+      "acceptance_scope": null,
+      "actions": [
+        {
+          "acceptance_gates": [
+            "geometry_completeness",
+            "front_silhouette",
+            "front_observation_fidelity",
+            "backside_nonempty",
+            "six_view_coverage",
+            "appearance_fidelity",
+            "six_side_style_consistency",
+            "instance_identity",
+            "vlm_geometry_review"
+          ],
+          "action": "complete_object",
+          "id": "r04-01-complete-object",
+          "idempotency_key": "7d581662654f33070820ccb6e18c56f6f3f0ac262a68ccac60329ff08f09e49e",
+          "notes": [
+            "Prefer one validated PBR GLB for rendering, object logic, and collision; separate render_mesh/collider outputs are legacy compatibility only."
+          ],
+          "optional_output_roles": [
+            "render_mesh",
+            "collider",
+            "object_gaussian",
+            "object_point_cloud"
+          ],
+          "prerequisites": [],
+          "required_output_roles": [
+            "unified_pbr_glb",
+            "object_completion_report"
+          ],
+          "synthetic_output": true,
+          "target_ids": [
+            "sam3_bed_01"
+          ]
+        },
+        {
+          "acceptance_gates": [
+            "collision"
+          ],
+          "action": "build_collider",
+          "id": "r04-02-build-collider",
+          "idempotency_key": "ea5c48bffed7f8695fe3a4101d367c844f4faf6c33ee03b486e1ad47eedc0ef5",
+          "notes": [
+            "Validate and reuse the complete_object unified_pbr_glb collision topology; do not generate a collider proxy."
+          ],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r04-01-complete-object"
+          ],
+          "required_output_roles": [
+            "collision_report"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_bed_01"
+          ]
+        },
+        {
+          "acceptance_gates": [
+            "placement_alignment",
+            "scene_interpenetration"
+          ],
+          "action": "place_object",
+          "id": "r04-03-place-object",
+          "idempotency_key": "3bca8f9122ec00f81545242206ca2c488f66848fb0211b8d00e78d499b4a35d4",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r04-02-build-collider"
+          ],
+          "required_output_roles": [
+            "aligned_objects_manifest",
+            "interpenetration_report"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_bed_01"
+          ]
+        },
+        {
+          "acceptance_gates": [
+            "mask_outside_unchanged",
+            "cross_view_consistency",
+            "revealed_background"
+          ],
+          "action": "clean_plate",
+          "id": "r04-04-clean-plate",
+          "idempotency_key": "5e912e72bf169ac7c7dfbe7454e6173e58f5ad925a9f11b45d22f865bc6f7422",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r04-03-place-object"
+          ],
+          "required_output_roles": [
+            "clean_plate_frames",
+            "clean_plate_manifest"
+          ],
+          "synthetic_output": true,
+          "target_ids": [
+            "sam3_bed_01"
+          ]
+        },
+        {
+          "acceptance_gates": [],
+          "action": "reinspect",
+          "id": "r04-05-reinspect",
+          "idempotency_key": "5b332f0115914baadc9ba0cb946a17d4ed0fd4defffe535dec4cea030cacdbbd",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r04-04-clean-plate"
+          ],
+          "required_output_roles": [
+            "next_scene_inventory",
+            "next_occlusion_graph"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_bed_01"
+          ]
+        },
+        {
+          "acceptance_gates": [],
+          "action": "validate_round",
+          "id": "r04-06-validate-round",
+          "idempotency_key": "a8991f739a951cbdbfd48085050a208526b74a33c128dd1081938efba3dca281",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r04-05-reinspect"
+          ],
+          "required_output_roles": [
+            "round_quality_report"
+          ],
+          "synthetic_output": false,
+          "target_ids": [
+            "sam3_bed_01"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "claim_scope": "Aggregates the Round 4 input, amodal, rejected bed asset, rejected clean-plate candidate, and two remaining blockers.",
+          "role": "round_quality_report",
+          "sha256": "b2daea826fcc5eb4b0b16de9c06e3c33eb76c8c94ae48cbc8f609f1e9ac8d448",
+          "size_bytes": 3717,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/round_receipt.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Proves the bed RGBA was selected by exact detection identity from the passed Round 3 calibrated bed association.",
+          "role": "object_input_report",
+          "sha256": "bc9e248cddab1eece0526735b48d419391c727bf0252827e250714e3c23694f7",
+          "size_bytes": 7053,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/input/layered_object_input_report.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Records topology-only bridge analysis and exact filling of the 53,238-pixel enclosed pillow cavity without changing the exterior contour.",
+          "role": "amodal_input_audit",
+          "sha256": "8b48bb55e8c19e9373867dd2d140c212c3477d3ebfa4352f3958c992048fe810",
+          "size_bytes": 17078,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/amodal/amodal_rgba_audit.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Rejected bed candidate retained only for audit; it is forbidden for rendering, interaction, collision, or scene placement.",
+          "role": "rejected_object_asset_seed45",
+          "sha256": "d2059e1587b825438cb256b3e648852518bb2747c42ce7f00a69f5798aae1075",
+          "size_bytes": 3457128,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed45/asset_pbr.glb",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Pins the official TRELLIS.2 source, model revision, seed, and technical asset audit for the rejected bed candidate.",
+          "role": "rejected_object_provider_receipt_seed45",
+          "sha256": "826c0d0dfec9a035fc9ecdef268b7f2c86e1658b738764388ef1fa7daf62ecf5",
+          "size_bytes": 9763,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed45/trellis2_asset_receipt.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Rejects the bed candidate for blocking shape mismatch and visual/collision interpenetration.",
+          "role": "rejected_object_visual_review_seed45",
+          "sha256": "3432cd7325bc460a0e580c0aecfd56085b145d6afe3113d432390a6b6135394e",
+          "size_bytes": 4124,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed45/canonical_six_view/visual_review.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Binds 25 Round 4 source frames to the cavity-completed bed removal masks.",
+          "role": "clean_plate_input_manifest",
+          "sha256": "944aa6c5d51cc98c36f01554a9dc0d0d02bbbf875ff637d66344ba57838d6b99",
+          "size_bytes": 97236,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/propainter_input_bridge_r5_min1pct_v1/input_manifest.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Verifies technical frame and pixel-delta gates only; it does not certify the synthesized empty room.",
+          "role": "clean_plate_technical_qa",
+          "sha256": "ef7a1f85043690a9ddeb7917d47d32c306b344b059d744ef87ec5618a31eb564",
+          "size_bytes": 31877,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/qa/clean_plate_qa.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Rejects the bed-removal output because it is a blurred bed-shaped field with no reconstructed wall, floor, depth, or normal consistency.",
+          "role": "clean_plate_visual_review",
+          "sha256": "62b23ce1a734430d7104e6fffbce3a3ba70af546e1e28afb290adf0dafd2e04e",
+          "size_bytes": 1621,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/qa/visual_review.json",
+          "usage": "evidence_only"
+        },
+        {
+          "claim_scope": "Visually rejected Round 4 output retained only for audit and explicitly not propagated to the final-background round.",
+          "role": "rejected_clean_plate_candidate",
+          "sha256": "9b3004df9e86fbc6d531d136e7158f276b176d912089edeccb9a5cc9795c630b",
+          "size_bytes": 1196094,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/propainter_output_bridge_r5_min1pct_v1/frames/inpaint_out.mp4",
+          "usage": "evidence_only"
+        }
+      ],
+      "index": 4,
+      "input_clean_plate_round": 3,
+      "input_clean_plate_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/propainter_output/frames/inpaint_out.mp4",
+      "kind": "object_layer",
+      "limitations": [
+        "TRELLIS.2 seed 45 is rejected and a bed asset retry remains pending.",
+        "The Round 4 ProPainter output is visually rejected and is not an output_clean_plate or next-round input.",
+        "Large persistent bed occlusion requires calibrated wall/floor plane completion and multi-view depth-normal validation."
+      ],
+      "next_layer_candidate_ids": [],
+      "next_layer_candidates_evidence_uri": null,
+      "output_clean_plate_uri": null,
+      "quality_report_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/round_receipt.json",
+      "status": "running",
+      "status_reason": "Round 4 input and amodal bed-mask preparation pass, but TRELLIS.2 seed 45 is rejected for a malformed headboard ridge and mattress interpenetration, and the technically valid ProPainter output is visually rejected as a final background. Bed asset retry and geometry-aware background completion remain pending.",
+      "target_ids": [
+        "sam3_bed_01"
+      ]
+    },
+    {
+      "acceptance_scope": null,
+      "actions": [
+        {
+          "acceptance_gates": [
+            "mask_outside_unchanged",
+            "cross_view_consistency",
+            "revealed_background",
+            "background_depth_normal"
+          ],
+          "action": "rebuild_background",
+          "id": "r05-01-rebuild-background",
+          "idempotency_key": "8537ca800c3b0031baddceb845f299af5482f743651b372e3401fdb6cf52ad28",
+          "notes": [
+            "Generated visual background is not physical truth.",
+            "Collision geometry remains separately validated."
+          ],
+          "optional_output_roles": [],
+          "prerequisites": [],
+          "required_output_roles": [
+            "clean_scene_gaussian",
+            "clean_scene_mesh",
+            "background_report"
+          ],
+          "synthetic_output": true,
+          "target_ids": []
+        },
+        {
+          "acceptance_gates": [
+            "browser_interaction"
+          ],
+          "action": "validate_round",
+          "id": "r05-02-validate-round",
+          "idempotency_key": "d440e1be8a828a1c9d0ced13344209dd45167dacec555060bb6bc3ff523f6b8f",
+          "notes": [],
+          "optional_output_roles": [],
+          "prerequisites": [
+            "r05-01-rebuild-background"
+          ],
+          "required_output_roles": [
+            "round_quality_report"
+          ],
+          "synthetic_output": false,
+          "target_ids": []
+        }
+      ],
+      "evidence": [
+        {
+          "claim_scope": "Records why no Round 4 clean plate may be used as final-background input and lists the outstanding geometry-completion blocker.",
+          "role": "blocking_round_receipt",
+          "sha256": "b2daea826fcc5eb4b0b16de9c06e3c33eb76c8c94ae48cbc8f609f1e9ac8d448",
+          "size_bytes": 3717,
+          "uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/round_receipt.json",
+          "usage": "evidence_only"
+        }
+      ],
+      "index": 5,
+      "input_clean_plate_round": 4,
+      "input_clean_plate_uri": null,
+      "kind": "final_background",
+      "limitations": [
+        "No input clean plate is accepted for this round.",
+        "No object-free PGSR Gaussian, TSDF mesh, depth, or normal reconstruction has passed."
+      ],
+      "next_layer_candidate_ids": [],
+      "next_layer_candidates_evidence_uri": null,
+      "output_clean_plate_uri": null,
+      "quality_report_uri": null,
+      "status": "planned",
+      "status_reason": "Pending because Round 4 has no accepted output_clean_plate. The rejected bed-removal video is deliberately not propagated; final reconstruction requires geometry-aware wall/floor plane completion followed by multi-view depth and normal validation.",
+      "target_ids": []
+    }
+  ],
+  "run_id": "bedroom4-layered-completion-20260717",
+  "scene_id": "bedroom_4",
+  "schema_version": "1.0",
+  "stop_conditions": [
+    "No unmodeled primary or secondary object remains after VLM reinspect.",
+    "Every prior round passed mask-outside-change and cross-view quality gates.",
+    "Only structural background roles remain for the final rebuild."
+  ],
+  "strategy": "front_to_back_clean_plate",
+  "terminal_status": "running"
+}

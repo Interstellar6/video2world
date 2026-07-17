@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.pbr_layer_render_stop_diagnosis",
+  "created_at": "2026-07-17T06:44:24Z",
+  "layer_id": "sam3_bed_01",
+  "frame_id": "000056",
+  "original_stop_reason": "invalid opaque depth is not confined to the alpha boundary",
+  "classification": "bounded_antialiasing_depth_edge",
+  "promotion_approved": false,
+  "diagnostic_counts": {
+    "image_width": 1280,
+    "image_height": 720,
+    "alpha_pixels": 248140,
+    "invalid_far_clip_pixels": 28,
+    "invalid_fraction": 0.00011283952607399049,
+    "pixels_on_binary_boundary": 26,
+    "pixels_one_pixel_inside_boundary": 2,
+    "pixels_beyond_one_pixel_boundary_collar": 0
+  },
+  "diagnostic_values": {
+    "invalid_depth_value": 996.745361328125,
+    "invalid_pixel_bbox_xyxy": [202, 249, 722, 701],
+    "one_pixel_inside_coordinates_xy": [[352, 415], [353, 447]],
+    "one_pixel_inside_alpha_u8": [134, 134],
+    "nearby_alpha_u8_min": 119,
+    "nearby_valid_depth_range_m": [14.705, 15.241]
+  },
+  "decision": {
+    "change": "allow sanitization only within a one-pixel interior collar of the thresholded alpha boundary",
+    "maximum_sanitized_fraction": 0.001,
+    "maximum_boundary_distance_px": 1,
+    "interior_depth_errors_still_rejected": true,
+    "reason": "both off-boundary samples lie in a narrow alpha 134 to 119 threshold transition and all 28 samples are covered by the one-pixel collar"
+  },
+  "failed_run_artifacts": {
+    "raw_depth_exr_sha256": "d0d80934b4566475c12d8ee7db95f14dd3c792b251fb6a1bb24b52b72fef3d48",
+    "rgba_sha256": "47fbd8a99ed4d736ff33bb4fffcb9046542e6fe5ba26e1fbb95a6e9b908749cb"
+  }
+}

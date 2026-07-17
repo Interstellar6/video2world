@@ -1,0 +1,160 @@
+{
+  "alpha_depth_alignment_mode": "geometry-derived-binary-matte",
+  "alpha_pixels": 14897,
+  "alpha_pixels_before_alignment": 14891,
+  "alpha_threshold": 0.5,
+  "analytic_silhouette_metrics": {
+    "analytic_bbox_xyxy": [
+      642,
+      359,
+      797,
+      506
+    ],
+    "analytic_recall": 0.9186991869918699,
+    "bbox_iou": 0.9319727891156463,
+    "center_error_px": 4.222864983419921,
+    "mask_iou": 0.9133707657185167,
+    "rendered_bbox_xyxy": [
+      642,
+      360,
+      797,
+      497
+    ],
+    "rendered_precision": 0.9936900046989326
+  },
+  "analytic_silhouette_thresholds": {
+    "maximum_center_error_px": 10.0,
+    "minimum_bbox_iou": 0.8,
+    "minimum_mask_iou": 0.85
+  },
+  "camera_convention": {
+    "extrinsic": "camera_to_world",
+    "image_y_axis": "down",
+    "principal_point": "center",
+    "rotation_columns": "right_down_forward"
+  },
+  "claims_measured_donor": false,
+  "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_front/depth/000070.npy",
+  "depth_max": 12.925246238708496,
+  "depth_median": 12.015324592590332,
+  "depth_min": 11.65960693359375,
+  "depth_semantics": "positive_target_camera_axis_z",
+  "depth_sha256": "4676083cfe88c8e49003ae709d3193526387d3e89092f3f32121da90e8f27a5d",
+  "depth_unit": "meter",
+  "depth_valid_pixels": 14897,
+  "depth_validity_scope": "alpha_greater_than_or_equal_to_threshold_only",
+  "elapsed_seconds": 1.1053048339963425,
+  "evaluated_geometry_depth_max": 12.955159187316895,
+  "evaluated_geometry_depth_min": 11.658946990966797,
+  "final_alpha_bbox_xyxy": [
+    642,
+    360,
+    797,
+    497
+  ],
+  "frame_id": "000070",
+  "gates": {
+    "all_opaque_pixels_have_positive_finite_depth": true,
+    "analytic_silhouette_bbox_iou": true,
+    "analytic_silhouette_center_error": true,
+    "analytic_silhouette_mask_iou": true,
+    "claims_measured_donor_rejected": true,
+    "depth_camera_dimensions_match": true,
+    "depth_is_nan_outside_opaque_alpha": true,
+    "depth_probe_passed": true,
+    "final_alpha_support_equals_finite_depth_support": true,
+    "geometry_matte_changed_union_fraction_below_0_02": true,
+    "geometry_matte_initial_alpha_vs_depth_iou_above_0_98": true,
+    "geometry_matte_is_binary": true,
+    "raw_object_depth_vs_final_alpha_iou_above_0_98": true,
+    "rgba_camera_dimensions_match": true
+  },
+  "geometry_matte_binary_alpha": true,
+  "geometry_matte_changed_pixels": 14,
+  "geometry_matte_changed_union_fraction": 0.0009395342594456748,
+  "geometry_matte_changed_union_fraction_limit_is_exclusive": true,
+  "geometry_matte_cleared_pixels": 4,
+  "geometry_matte_filled_pixels": 10,
+  "geometry_matte_initial_alpha_vs_depth_iou": 0.9990604657405543,
+  "geometry_matte_intersection_pixels": 14887,
+  "geometry_matte_maximum_changed_union_fraction": 0.02,
+  "geometry_matte_minimum_initial_alpha_vs_depth_iou": 0.98,
+  "geometry_matte_provenance": "raw_blender_z_within_evaluated_geometry_depth_bounds",
+  "geometry_matte_union_pixels": 14901,
+  "kind": "video2world.pbr_layer_render_receipt",
+  "layer_id": "sam3_pillow_front",
+  "placement_mode": "baked_linear_plus_runtime_pivot",
+  "promotion_approved": false,
+  "promotion_blocker": "source-camera silhouette and scene occlusion QA",
+  "provenance_class": "downstream_object_render",
+  "raw_depth_exr": null,
+  "raw_depth_exr_sha256": "eb913edc73551b88360efe586a4192bea906ab97cc06e19b951e42b5f395f060",
+  "raw_depth_outside_geometry_pixels": 4,
+  "raw_object_depth_bbox_xyxy": [
+    642,
+    360,
+    797,
+    497
+  ],
+  "raw_object_depth_vs_final_alpha_iou": 1.0,
+  "render_configuration": {
+    "alpha_policy": "geometry-derived-binary-matte",
+    "engine": "BLENDER_EEVEE",
+    "pixel_filter_size": 1.5,
+    "rgb_sample_policy": "configured_eevee_render_samples",
+    "taa_render_samples": 64
+  },
+  "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_front/rgba/000070.png",
+  "rgba_sha256": "cba372a7d3fd07a1c3d3fdba61c6bc0f37f5d4d0fb5b44beb448cf58c5a75fe8",
+  "role": "downstream_object_render",
+  "schema_version": 1,
+  "sources": {
+    "analytic_silhouette": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v1/analytic-silhouettes/sam3_pillow_front/masks/000070.png",
+      "sha256": "5490ffa5625a6ac2d0fdcb79fb3ea952af82f0aa736abf8137d1f2df7ac0f5d7"
+    },
+    "camera_record": {
+      "fx": 639.9410000000001,
+      "fy": 680.253,
+      "height": 720,
+      "id": 70,
+      "img_name": "000070",
+      "position": [
+        1.281852534808272,
+        -1.5232242386862525,
+        2.574290717396258
+      ],
+      "rotation": [
+        [
+          0.947883531226508,
+          0.06011205235835247,
+          -0.31289524283919945
+        ],
+        [
+          -0.05784474747929017,
+          0.998188683959847,
+          0.016532973261083803
+        ],
+        [
+          0.31332232129101834,
+          0.00242799857109791,
+          0.949643778309536
+        ]
+      ],
+      "width": 1280
+    },
+    "cameras": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+      "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+    },
+    "mesh": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/sam3_pillow_front.scene-fit.glb",
+      "sha256": "9d84ab4561d7c017c24c07a94abe5400073b0fafb97893a8a1eafca320c391d6"
+    },
+    "scene_fit_report": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/scene_fit_report.json",
+      "sha256": "da26014b1ecc29eb1dfcf8d45b74d98bd539b69945e029a6512ea6a2ab8769cd"
+    }
+  },
+  "status": "technical_passed"
+}

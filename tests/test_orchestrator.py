@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import struct
 import sys
 from pathlib import Path
 
@@ -70,18 +71,30 @@ def test_default_pipeline_has_named_provider_dag(tmp_path: Path) -> None:
     run_dir = tmp_path / "default-run"
     initialize_run(run_dir, video=video, scene_id="scene")
     config = load_run_config(run_dir / "run.yaml")
-    assert config.topological_order() == [
+    order = config.topological_order()
+    assert set(order) == {
         "ingest",
+        "inventory",
         "da3",
-        "sam3",
         "pgsr",
+        "sam3",
         "fusion",
         "cognition",
-        "trellis",
+        "completion_plan",
+        "layered_completion",
         "placement",
         "bundle",
         "web",
-    ]
+    }
+    position = {stage_id: index for index, stage_id in enumerate(order)}
+    for stage_id, stage in config.stages.items():
+        assert all(position[dependency] < position[stage_id] for dependency in stage.needs)
+
+    assert position["ingest"] < position["da3"] < position["pgsr"] < position["fusion"]
+    assert position["inventory"] < position["sam3"] < position["fusion"]
+    assert position["fusion"] < position["completion_plan"] < position["layered_completion"]
+    assert position["layered_completion"] < position["placement"] < position["bundle"]
+    assert position["bundle"] < position["web"]
     plans = PipelineOrchestrator(run_dir).plan()
     assert plans[0].action == "adopt_or_configure"
     assert plans[-1].action == "waiting"
@@ -284,6 +297,405 @@ def test_named_adapters_reject_mislabeled_geometry_and_json(tmp_path: Path) -> N
     fake_json.write_text("not-json", encoding="utf-8")
     with pytest.raises(ArtifactError, match="readable JSON"):
         get_adapter("holi_sam3").validate_outputs({"masks_manifest": snapshot_path(fake_json)})
+
+
+@pytest.mark.parametrize(
+    ("adapter_name", "role"),
+    [
+        ("layered_completion_plan", "layered_completion_plan"),
+        ("layered_completion", "completed_object_assets_manifest"),
+        ("layered_completion", "clean_plate_manifest"),
+        ("layered_completion", "layered_completion_report"),
+    ],
+)
+def test_completion_json_roles_reject_empty_placeholder_objects(
+    tmp_path: Path,
+    adapter_name: str,
+    role: str,
+) -> None:
+    output = tmp_path / f"{role}.json"
+    output.write_text("{}\n", encoding="utf-8")
+
+    with pytest.raises(ArtifactError, match="non-empty JSON object"):
+        get_adapter(adapter_name).validate_outputs({role: snapshot_path(output)})
+
+
+def test_layered_completion_plan_uses_its_typed_contract(tmp_path: Path) -> None:
+    output = tmp_path / "plan.json"
+    output.write_text(
+        json.dumps({"kind": "video2world.layered_completion_plan"}),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ArtifactError, match="failed semantic validation"):
+        get_adapter("layered_completion_plan").validate_outputs(
+            {"layered_completion_plan": snapshot_path(output)}
+        )
+
+
+def _completion_evidence(name: str, digest: str) -> dict[str, object]:
+    return {
+        "uri": f"artifact://completion/{name}",
+        "sha256": digest * 64,
+        "size_bytes": 1024,
+    }
+
+
+def _valid_layered_completion_report() -> dict[str, object]:
+    initial = _completion_evidence("round0-clean-plate.json", "a")
+    round1 = _completion_evidence("round1-clean-plate.json", "b")
+    final = _completion_evidence("final-clean-plate.json", "c")
+    return {
+        "scene_id": "bedroom_4",
+        "run_id": "full-layered-run",
+        "created_at": "2026-07-17T00:00:00Z",
+        "completion_plan_sha256": "6" * 64,
+        "planned_target_ids": ["pillow-front"],
+        "initial_clean_plate": initial,
+        "rounds": [
+            {
+                "index": 1,
+                "kind": "object_layer",
+                "target_ids": ["pillow-front"],
+                "input_clean_plate": initial,
+                "scene_audit_receipt": _completion_evidence("r1-audit.json", "d"),
+                "sam3_receipt": _completion_evidence("r1-sam3.json", "e"),
+                "output_clean_plate": round1,
+                "quality_report": _completion_evidence("r1-quality.json", "f"),
+                "object_completion_receipts": [
+                    _completion_evidence("r1-pillow-trellis2.json", "1")
+                ],
+                "acceptance_gates": {"object_shape": True, "clean_plate": True},
+            },
+            {
+                "index": 2,
+                "kind": "final_background",
+                "target_ids": [],
+                "input_clean_plate": round1,
+                "scene_audit_receipt": _completion_evidence("r2-audit.json", "2"),
+                "sam3_receipt": _completion_evidence("r2-sam3.json", "3"),
+                "output_clean_plate": final,
+                "quality_report": _completion_evidence("r2-quality.json", "4"),
+                "background_rebuild_receipt": _completion_evidence("r2-background.json", "5"),
+                "acceptance_gates": {"revealed_background": True},
+            },
+        ],
+        "final_clean_plate": final,
+    }
+
+
+def _valid_layered_completion_plan() -> dict[str, object]:
+    return {
+        "scene_id": "bedroom_4",
+        "run_id": "full-layered-run",
+        "created_at": "2026-07-17T00:00:00Z",
+        "inventory_sha256": "7" * 64,
+        "occlusion_graph_sha256": "8" * 64,
+        "rounds": [
+            {
+                "index": 1,
+                "kind": "object_layer",
+                "target_ids": ["pillow-front"],
+                "input_clean_plate_round": 0,
+                "actions": [
+                    {
+                        "id": "round1-complete",
+                        "action": "complete_object",
+                        "target_ids": ["pillow-front"],
+                        "idempotency_key": "9" * 64,
+                    }
+                ],
+            },
+            {
+                "index": 2,
+                "kind": "final_background",
+                "target_ids": [],
+                "input_clean_plate_round": 1,
+                "actions": [
+                    {
+                        "id": "round2-background",
+                        "action": "rebuild_background",
+                        "idempotency_key": "0" * 64,
+                    }
+                ],
+            },
+        ],
+        "stop_conditions": ["All planned rounds and the final background must pass."],
+    }
+
+
+def test_layered_completion_report_binds_executed_plan_and_provider_receipt(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            {
+                "kind": "video2world.provider_execution_receipt",
+                "status": "completed",
+                "inputs": {
+                    "layered_completion_plan": {
+                        "path": str(plan_path),
+                        "sha256": plan_sha,
+                    }
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    outputs = {
+        "layered_completion_report": snapshot_path(report_path),
+        "provider_receipt": snapshot_path(receipt_path),
+    }
+    get_adapter("layered_completion").validate_outputs(outputs)
+
+    report_payload["completion_plan_sha256"] = "f" * 64
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    with pytest.raises(ArtifactError, match="does not bind the executed plan"):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
+@pytest.mark.parametrize(
+    ("role", "valid_payload"),
+    [
+        ("clean_plate_manifest", {"frame_records": [{"frame_id": "000064"}]}),
+        (
+            "layered_completion_report",
+            _valid_layered_completion_report(),
+        ),
+    ],
+)
+def test_completion_json_roles_require_role_specific_payload_fields(
+    tmp_path: Path,
+    role: str,
+    valid_payload: dict[str, object],
+) -> None:
+    output = tmp_path / f"{role}.json"
+    output.write_text(json.dumps({"placeholder": True}), encoding="utf-8")
+    with pytest.raises(ArtifactError, match="failed semantic validation"):
+        get_adapter("layered_completion").validate_outputs({role: snapshot_path(output)})
+
+    output.write_text(json.dumps(valid_payload), encoding="utf-8")
+    get_adapter("layered_completion").validate_outputs({role: snapshot_path(output)})
+
+
+def _valid_completed_object_assets_manifest() -> dict[str, object]:
+    return {
+        "scene_id": "bedroom_4",
+        "run_id": "completion-1",
+        "created_at": "2026-07-17T00:00:00Z",
+        "objects": [
+            {
+                "id": "pillow-01",
+                "render_mesh": {
+                    "uri": "artifact://pillow-01.glb",
+                    "sha256": "a" * 64,
+                    "size_bytes": 1024,
+                    "role": "render_mesh",
+                    "status": "validated",
+                },
+                "collider": {
+                    "uri": "artifact://pillow-01-collider.glb",
+                    "sha256": "b" * 64,
+                    "size_bytes": 512,
+                    "role": "collider",
+                    "status": "validated",
+                },
+                "closed_surface_verified": True,
+                "completion_report_uri": "artifact://pillow-01/report.json",
+            }
+        ],
+    }
+
+
+@pytest.mark.parametrize("missing_field", ["render_mesh", "collider", "closed_surface_verified"])
+def test_completed_object_assets_manifest_uses_mesh_first_typed_contract(
+    tmp_path: Path,
+    missing_field: str,
+) -> None:
+    output = tmp_path / "completed-object-assets.json"
+    payload = _valid_completed_object_assets_manifest()
+    output.write_text(json.dumps(payload), encoding="utf-8")
+
+    get_adapter("layered_completion").validate_outputs(
+        {"completed_object_assets_manifest": snapshot_path(output)}
+    )
+
+    del payload["objects"][0][missing_field]
+    output.write_text(json.dumps(payload), encoding="utf-8")
+    with pytest.raises(ArtifactError, match="failed semantic validation"):
+        get_adapter("layered_completion").validate_outputs(
+            {"completed_object_assets_manifest": snapshot_path(output)}
+        )
+
+
+@pytest.mark.parametrize(
+    ("role", "payload"),
+    [
+        ("clean_plate_manifest", {"frame_records": [{"placeholder": True}]}),
+    ],
+)
+def test_completion_manifests_reject_unidentified_placeholder_records(
+    tmp_path: Path,
+    role: str,
+    payload: dict[str, object],
+) -> None:
+    output = tmp_path / f"{role}.json"
+    output.write_text(json.dumps(payload), encoding="utf-8")
+
+    with pytest.raises(ArtifactError, match="requires non-empty identified records"):
+        get_adapter("layered_completion").validate_outputs({role: snapshot_path(output)})
+
+
+@pytest.mark.parametrize("case", ["broken_chain", "missing_sam3", "first_layer_only"])
+def test_layered_completion_report_rejects_incomplete_peel_runs(tmp_path: Path, case: str) -> None:
+    payload = _valid_layered_completion_report()
+    rounds = payload["rounds"]
+    assert isinstance(rounds, list)
+    if case == "broken_chain":
+        rounds[1]["input_clean_plate"] = _completion_evidence("wrong.json", "9")
+    elif case == "missing_sam3":
+        del rounds[0]["sam3_receipt"]
+    else:
+        payload["rounds"] = rounds[:1]
+        payload["final_clean_plate"] = rounds[0]["output_clean_plate"]
+    output = tmp_path / "report.json"
+    output.write_text(json.dumps(payload), encoding="utf-8")
+
+    with pytest.raises(ArtifactError, match="failed semantic validation"):
+        get_adapter("layered_completion").validate_outputs(
+            {"layered_completion_report": snapshot_path(output)}
+        )
+
+
+def _clean_gaussian_header(format_name: str = "ascii") -> bytes:
+    properties = [
+        "x",
+        "y",
+        "z",
+        "f_dc_0",
+        "f_dc_1",
+        "f_dc_2",
+        "opacity",
+        "scale_0",
+        "scale_1",
+        "scale_2",
+        "rot_0",
+        "rot_1",
+        "rot_2",
+        "rot_3",
+    ]
+    lines = ["ply", f"format {format_name} 1.0", "element vertex 1"]
+    lines.extend(f"property float {name}" for name in properties)
+    lines.append("end_header")
+    return ("\n".join(lines) + "\n").encode("ascii")
+
+
+def _clean_mesh_header(format_name: str = "binary_little_endian") -> bytes:
+    return (
+        "ply\n"
+        f"format {format_name} 1.0\n"
+        "element vertex 3\n"
+        "property float x\n"
+        "property float y\n"
+        "property float z\n"
+        "element face 1\n"
+        "property list uchar int vertex_indices\n"
+        "end_header\n"
+    ).encode("ascii")
+
+
+@pytest.mark.parametrize(
+    ("role", "header"),
+    [
+        ("clean_scene_gaussian", _clean_gaussian_header()),
+        ("clean_scene_mesh", _clean_mesh_header()),
+    ],
+)
+def test_clean_scene_ply_roles_reject_header_only_files(
+    tmp_path: Path,
+    role: str,
+    header: bytes,
+) -> None:
+    output = tmp_path / f"{role}.ply"
+    output.write_bytes(header)
+
+    with pytest.raises(ArtifactError, match="payload is truncated"):
+        get_adapter("layered_completion").validate_outputs({role: snapshot_path(output)})
+
+
+def test_clean_scene_mesh_requires_real_face_indices_payload(tmp_path: Path) -> None:
+    output = tmp_path / "mesh-with-header-only-faces.ply"
+    output.write_text(
+        "\n".join(
+            [
+                "ply",
+                "format ascii 1.0",
+                "element vertex 3",
+                "property float x",
+                "property float y",
+                "property float z",
+                "element face 1",
+                "end_header",
+                "0 0 0",
+                "1 0 0",
+                "0 1 0",
+            ]
+        )
+        + "\n",
+        encoding="ascii",
+    )
+
+    with pytest.raises(ArtifactError, match="faces require a vertex_indices list"):
+        get_adapter("layered_completion").validate_outputs(
+            {"clean_scene_mesh": snapshot_path(output)}
+        )
+
+
+def test_clean_scene_ply_roles_accept_real_ascii_and_binary_payloads(tmp_path: Path) -> None:
+    gaussian = tmp_path / "clean-gaussian-ascii.ply"
+    gaussian.write_bytes(_clean_gaussian_header() + ("0 " * 13 + "0\n").encode("ascii"))
+
+    mesh = tmp_path / "clean-mesh-binary.ply"
+    mesh.write_bytes(
+        _clean_mesh_header()
+        + struct.pack(
+            "<9fB3i",
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3,
+            0,
+            1,
+            2,
+        )
+    )
+
+    get_adapter("layered_completion").validate_outputs(
+        {
+            "clean_scene_gaussian": snapshot_path(gaussian),
+            "clean_scene_mesh": snapshot_path(mesh),
+        }
+    )
 
 
 def test_relative_config_paths_are_rooted_in_run_directory(tmp_path: Path) -> None:

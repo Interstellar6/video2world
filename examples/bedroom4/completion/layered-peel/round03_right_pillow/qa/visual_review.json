@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.clean_plate_visual_review",
+  "created_at": "2026-07-17T10:30:00+08:00",
+  "round_index": 3,
+  "peeled_object_id": "sam3_pillow_right",
+  "technical_status": "passed",
+  "semantic_status": "accepted_for_reinspection_only",
+  "scene_promotion_allowed": false,
+  "next_round_reinspection_allowed": true,
+  "final_background_allowed": false,
+  "output_sha256": "4887216b24fff38c4f845193bfbab4dfb0057c995b51e752ce9537948a3d967e",
+  "technical_qa_sha256": "473258b2350106d742c288fe910b2b2451a23899af3accd10d36fbb36e813a3c",
+  "contact_sheet_sha256": "37a70ac05d8384cc9d403dffc9fe74fb24be003844239502de1686b6c70677d9",
+  "preserved_properties": [
+    "25 output frames retain their 1280x720 dimensions",
+    "pixels outside the dilated removal mask are unchanged",
+    "the bed remains detectable in all 25 frames after a bed-specific calibrated association gate"
+  ],
+  "blocking_for_scene_promotion": [
+    "the removed right-pillow region is blurred rather than reconstructed bedding",
+    "no cross-view depth or normal consistency has been established",
+    "residual pillow-like detections remain and must be excluded by peeled-object identity"
+  ],
+  "allowed_use": "SAM3 reinspection, pillow-residual exclusion, and bed association for the next peel layer only",
+  "forbidden_use": "scene promotion, final background, PGSR retraining, or TSDF reconstruction"
+}

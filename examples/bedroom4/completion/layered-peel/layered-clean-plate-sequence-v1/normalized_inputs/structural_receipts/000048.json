@@ -1,0 +1,70 @@
+{
+  "acceptance_scope": "current_demo_only",
+  "acceptance_status": "accepted_with_limitations",
+  "accepted_texture_report": {
+    "path": "../structural_texture_reports/000048.json",
+    "sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356"
+  },
+  "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+  "accepted_with_limitations": true,
+  "all_rebased_artifacts_sha256_revalidated": true,
+  "claims_measured_donor": false,
+  "demo_use_approved": true,
+  "depth_sha256": "b68ec21f0f900189995834bb7c6aa690318d7b9a10b08eaf78bf715bc211aa1c",
+  "eligible_as_current_demo_round04_clean_plate": true,
+  "eligible_as_round04_clean_plate": false,
+  "failed_metrics": {
+    "visual_quality": "pending_human_or_vlm_review",
+    "wall_boundary_color_continuity": {
+      "observed_maximum": 96.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 24.0
+    },
+    "wall_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 99.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 32.0
+    }
+  },
+  "frame_id": "000048",
+  "kind": "video2world.structural_background_render_receipt",
+  "limitations": [
+    "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+    "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+    "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+    "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+    "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+  ],
+  "overridden_gates": {
+    "visual_quality": "pending_human_or_vlm_review",
+    "wall_boundary_color_continuity": {
+      "observed_maximum": 96.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 24.0
+    },
+    "wall_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 99.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 32.0
+    }
+  },
+  "override_gate_keys": [
+    "visual_quality",
+    "wall_boundary_color_continuity",
+    "wall_boundary_low_frequency_gradient_continuity"
+  ],
+  "path_rebased": true,
+  "planar_geometry_report": "/private/tmp/video2world-planar-background/planar-v20/planar_background_report.json",
+  "planar_geometry_report_sha256": "2c47d126fc43d14d3624c9f6925238ab37a8874beca3059fa15093bb049017ec",
+  "promotion_approved": false,
+  "provenance_class": "structural_background",
+  "rgba_sha256": "682ea39d8911350b56fcd3cd16d23904494c66df7aa537669d66ba882bf04f7c",
+  "role": "structural_background",
+  "schema_version": 1,
+  "sequence_index": 0,
+  "source_receipt": {
+    "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/structural/receipts/0000.json",
+    "sha256": "df9d664d4402bbebb41499d2c4170147a9ab147924ff02b2500296f6c1e2a9a8"
+  },
+  "texture_provenance": "hybrid_atlas"
+}

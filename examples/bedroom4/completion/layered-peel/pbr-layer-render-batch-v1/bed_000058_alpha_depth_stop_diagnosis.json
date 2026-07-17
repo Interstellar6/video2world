@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.pbr_layer_render_stop_diagnosis",
+  "layer_id": "sam3_bed_01",
+  "frame_id": "000058",
+  "original_stop_reason": "invalid opaque depth is outside the bounded alpha boundary collar",
+  "classification": "low_coverage_antialiasing_depth_edge",
+  "promotion_approved": false,
+  "diagnostic_counts": {
+    "image_width": 1280,
+    "image_height": 720,
+    "alpha_pixels": 246162,
+    "invalid_far_clip_pixels": 52,
+    "invalid_fraction": 0.00021124300257553967,
+    "pixels_on_binary_boundary": 39,
+    "pixels_within_one_pixel_boundary_collar": 49,
+    "pixels_within_two_pixel_boundary_collar": 51,
+    "pixels_within_three_pixel_boundary_collar": 52
+  },
+  "diagnostic_values": {
+    "invalid_depth_value": 996.745361328125,
+    "invalid_pixel_bbox_xyxy": [304, 251, 728, 530],
+    "invalid_alpha_u8_min": 128,
+    "invalid_alpha_u8_median": 131.5,
+    "invalid_alpha_u8_max": 141,
+    "invalid_full_alpha_pixels": 0
+  },
+  "decision": {
+    "change": "allow bounded cleanup within the one-pixel collar or for low-coverage alpha at most 0.6",
+    "maximum_sanitized_fraction": 0.001,
+    "maximum_boundary_distance_px": 1,
+    "maximum_sanitizable_alpha": 0.6,
+    "high_coverage_interior_depth_errors_still_rejected": true,
+    "reason": "all 52 invalid samples are low-coverage alpha 128 to 141 out of 255 along the same antialiasing transition"
+  },
+  "failed_run_artifacts": {
+    "raw_depth_exr_sha256": "5b8914a81a69a9a5b00715b1955552c89ad45dc1c7f4f59623fc98010af121f8",
+    "rgba_sha256": "533a31d4ad2348d12f3d61fe3a11c49cab0448e258bbceba0869b4c3cdb883af"
+  }
+}

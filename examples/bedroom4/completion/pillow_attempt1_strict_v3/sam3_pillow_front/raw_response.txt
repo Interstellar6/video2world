@@ -1,0 +1,14 @@
+```json
+{
+  "decision": "accept",
+  "issues": [
+    {
+      "issue_type": "missing_back_surface",
+      "severity": "warning",
+      "evidence_view_ids": ["source|front|right|back|left|top|bottom|technical"],
+      "explanation": {"en": "The back view shows an empty space, which is missing from the source image.", "zh": "在背面视图中可以看到一个空的空间，这与源图像中的内容不符。"},
+      "retry_prompt_instruction": "Add a back surface to the pillow in the 3D model to match the source image."
+    }
+  ]
+}
+```

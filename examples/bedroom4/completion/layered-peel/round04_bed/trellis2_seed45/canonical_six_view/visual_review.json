@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.object_six_view_visual_review",
+  "created_at": "2026-07-17T10:17:03+08:00",
+  "object_id": "sam3_bed_01",
+  "status": "rejected",
+  "promotion_allowed": false,
+  "promotion_scope": "none",
+  "acceptance_policy": "usability_first_minor_artifacts",
+  "decision_summary_zh": "床的类别、整体轮廓和主色基本正确，但床头附近存在大面积错误隆起与床头板/床垫融合穿插。该异常会直接进入统一视觉和碰撞主体，超过轻微幻觉的放行范围。",
+  "asset": {
+    "sha256": "d2059e1587b825438cb256b3e648852518bb2747c42ce7f00a69f5798aae1075",
+    "size_bytes": 3457128,
+    "vertices": 66338,
+    "faces": 98622,
+    "material_profile": "pbr_single_material_pending_semantic_tuning",
+    "collision_topology": "surface_bvh",
+    "watertight": false,
+    "winding_consistent": true
+  },
+  "technical_receipt": {
+    "path": "../trellis2_asset_receipt.json",
+    "sha256": "826c0d0dfec9a035fc9ecdef268b7f2c86e1658b738764388ef1fa7daf62ecf5",
+    "status": "technical_passed_visual_pending",
+    "provider": "official_microsoft_trellis2_mesh_first",
+    "seed": 45
+  },
+  "canonical_review": {
+    "receipt": "object_six_view_review.json",
+    "receipt_sha256": "4935232549f04d470f64f25bc9e92dba6e736f5bf1d936bae921d5167ad918d0",
+    "contact_sheet": "object_six_view_contact_sheet.png",
+    "contact_sheet_sha256": "620aced76c0b7bb1f09a0e61b763d6ba3ab24664da87dbcca11d292cb1bb5b54",
+    "views": [
+      "front",
+      "right",
+      "back",
+      "left",
+      "top",
+      "bottom"
+    ],
+    "horizontal_orbit_accepted_as_six_view": false,
+    "browser_console_errors": [],
+    "browser_console_warnings": []
+  },
+  "gates": {
+    "all_required_views_rendered": true,
+    "overall_shape_usable": false,
+    "primary_color_basically_correct": true,
+    "bed_category_recognizable": true,
+    "complete_volume_proven": false,
+    "disconnected_or_floating_parts_absent_visually": true,
+    "significant_scene_interpenetration_absent": false,
+    "usable_as_unified_visual_and_collision_subject": false
+  },
+  "blocking_issues": [
+    {
+      "issue_type": "shape_mismatch",
+      "views": [
+        "right",
+        "back",
+        "top"
+      ],
+      "explanation": "A large triangular ridge rises from the mattress near the headboard. In the top view, the malformed dark fold occupies roughly the upper third of the sleeping surface instead of a plausible flat or softly padded bed surface."
+    },
+    {
+      "issue_type": "significant_scene_interpenetration",
+      "views": [
+        "right",
+        "back",
+        "top"
+      ],
+      "explanation": "The headboard and mattress/bedding merge into a wavy suspended flap. Because this GLB is intended to own both rendering and collision, the malformed junction would create an obvious interaction and collision artifact."
+    }
+  ],
+  "warnings": [
+    {
+      "issue_type": "minor_material_or_pattern_drift",
+      "views": [
+        "top",
+        "bottom"
+      ],
+      "explanation": "The light bedding texture is smeared and darkened near both ends. This alone could be accepted under the relaxed policy, but it does not override the blocking geometry failures."
+    }
+  ],
+  "positive_evidence": [
+    "The object is recognizable as a full bed rather than a one-sided sheet.",
+    "The dark-brown wooden headboard and light-colored bedding match the source scene's main color categories.",
+    "All six canonical object-local views rendered without browser console errors."
+  ],
+  "scene_review": {
+    "status": "not_run_candidate_rejected_before_scene_fit",
+    "reason": "Canonical geometry review failed before the asset could be adopted into the Bedroom4 scene."
+  },
+  "retry_guidance": {
+    "required": true,
+    "focus": [
+      "Use a cleaner amodal bed input without the reconstructed pillow cavity becoming a raised dark fold.",
+      "Keep the mattress top locally smooth and separated from the vertical headboard.",
+      "Reject the next candidate unless the right, back, and top views show a plausible headboard-to-mattress junction."
+    ]
+  }
+}

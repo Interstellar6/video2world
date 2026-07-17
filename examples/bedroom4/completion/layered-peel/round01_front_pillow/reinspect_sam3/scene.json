@@ -1,0 +1,30 @@
+{
+  "scene": "bedroom_4_round01_peeled",
+  "per_image": {
+    "000048.png": ["pillow"],
+    "000049.png": ["pillow"],
+    "000050.png": ["pillow"],
+    "000051.png": ["pillow"],
+    "000052.png": ["pillow"],
+    "000053.png": ["pillow"],
+    "000054.png": ["pillow"],
+    "000055.png": ["pillow"],
+    "000056.png": ["pillow"],
+    "000057.png": ["pillow"],
+    "000058.png": ["pillow"],
+    "000059.png": ["pillow"],
+    "000060.png": ["pillow"],
+    "000061.png": ["pillow"],
+    "000062.png": ["pillow"],
+    "000063.png": ["pillow"],
+    "000064.png": ["pillow"],
+    "000065.png": ["pillow"],
+    "000066.png": ["pillow"],
+    "000067.png": ["pillow"],
+    "000068.png": ["pillow"],
+    "000069.png": ["pillow"],
+    "000070.png": ["pillow"],
+    "000071.png": ["pillow"],
+    "000072.png": ["pillow"]
+  }
+}

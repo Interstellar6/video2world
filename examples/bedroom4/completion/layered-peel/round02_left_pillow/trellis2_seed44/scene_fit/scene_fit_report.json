@@ -1,0 +1,235 @@
+{
+  "acceptance_gates": {
+    "collision_face_budget": true,
+    "collision_topology_ready": true,
+    "finite_linear_transform": true,
+    "front_surface_anchor_alignment": true,
+    "material_profile_applied": true,
+    "mesh_face_indices_valid": true,
+    "mesh_finite": true,
+    "mesh_no_degenerate_faces": true,
+    "mesh_nonempty": true,
+    "mesh_winding_consistent": true,
+    "positive_transform_determinant": true,
+    "target_obb_extent_fit": true
+  },
+  "all_acceptance_gates_passed": true,
+  "baked_relative_transform": {
+    "linear_row_major": [
+      [
+        -1.4401443586459861,
+        8.421544610190121,
+        1.6981867304076195
+      ],
+      [
+        4.098450258495603,
+        3.46847450406746,
+        -2.581095566105486
+      ],
+      [
+        -2.2543284396848944,
+        0.9258323807606351,
+        -5.777386116661583
+      ]
+    ],
+    "runtime_pivot": [
+      -3.9086256073497303,
+      -0.5603275368591616,
+      15.0410045037123
+    ],
+    "runtime_rotation_euler_deg": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "runtime_scale": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "scale_before_rotation": [
+      4.894211581968505,
+      9.154774415792737,
+      6.551647337402701
+    ]
+  },
+  "collision_semantics": {
+    "asset_mode": "unified_glb",
+    "closed_volume_claim": false,
+    "fallback_proxy_allowed": false,
+    "inside_outside_queries_allowed": false,
+    "max_faces": 100000,
+    "surface_blocking": true,
+    "topology": "surface_bvh"
+  },
+  "completed_obb": {
+    "axes_columns": [
+      [
+        -0.2942546178330003,
+        0.9199073868671485,
+        0.259199960399706
+      ],
+      [
+        0.8374076579760703,
+        0.3788705593972973,
+        -0.3939613097564438
+      ],
+      [
+        -0.4606111529772031,
+        0.10113109714243732,
+        -0.8818219020549324
+      ]
+    ],
+    "center": [
+      -3.9086256073497303,
+      -0.5603275368591616,
+      15.0410045037123
+    ],
+    "extents": [
+      4.899182744023539,
+      3.986031290065861,
+      1.1758038585656494
+    ]
+  },
+  "created_at": "2026-07-17T02:58:26.942982+00:00",
+  "fit": {
+    "aabb_center_relative_to_pivot": [
+      -0.06661308346633765,
+      0.07673202194523676,
+      0.01158592313019391
+    ],
+    "aabb_extents": [
+      5.0683319975006595,
+      5.575379124798173,
+      2.9911153100509074
+    ],
+    "projected_fitted_extents": [
+      4.8991829350485805,
+      3.9860312078185762,
+      1.1758037979340874
+    ],
+    "relative_extent_error": [
+      3.8991205492710745e-08,
+      2.063387841124282e-08,
+      5.15660512181702e-08
+    ],
+    "source_extents": [
+      1.0010157227516174,
+      0.4354046434164047,
+      0.17946690320968628
+    ]
+  },
+  "gaussian": null,
+  "kind": "video2world.object_scene_fit",
+  "material_profile": "nonmetal_fabric",
+  "mesh": {
+    "bounds": [
+      [
+        -2.6007790822166674,
+        -2.71095754045385,
+        -1.4839717318952599
+      ],
+      [
+        2.467552915283992,
+        2.8644215843443237,
+        1.5071435781556477
+      ]
+    ],
+    "degenerate_face_count": 0,
+    "extents": [
+      5.0683319975006595,
+      5.575379124798173,
+      2.9911153100509074
+    ],
+    "faces": 98230,
+    "finite_vertices": true,
+    "glb_bytes": 4077044,
+    "glb_sha256": "31aa3901831abf92f863e5d70798e5e8371b57f110d54f1e04497f8f5f1cdc9a",
+    "material_profile": "nonmetal_fabric",
+    "materials": [
+      {
+        "metallic_factor_after": 0.0,
+        "metallic_factor_before": 1.0,
+        "roughness_factor_after": 1.0,
+        "roughness_factor_before": 1.0,
+        "type": "PBRMaterial"
+      }
+    ],
+    "obj_bytes": 6866135,
+    "obj_sha256": "90c48984b767d550674dd82ddb11a73167b93b5f72c1b85f24aed0baf10f93a1",
+    "valid_face_indices": true,
+    "vertices": 52981,
+    "watertight": false,
+    "winding_consistent": true
+  },
+  "object_id": "sam3_pillow_left",
+  "placement_evidence": {
+    "completion_direction_sign": -1.0,
+    "front_surface_anchor_error": 0.0,
+    "max_thickness_ratio": 0.24,
+    "mode": "observed_front_surface",
+    "observed_thickness": 2.2600879541145495,
+    "target_extent_scale": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "thickness_axis": 2,
+    "thickness_reference": 4.899182744023539,
+    "view_direction": [
+      -0.144243418601856,
+      0.01242499148478777,
+      0.9894642266280539
+    ]
+  },
+  "promotion_blockers": [
+    "scene_visual_overlay_review",
+    "scene_interpenetration_gate",
+    "support_contact_review",
+    "accepted_clean_plate_or_static_scene_carve"
+  ],
+  "promotion_status": "held_pending_scene_browser_review",
+  "representation_mode": "unified_mesh_visual_logic_collision",
+  "schema_version": 1,
+  "sources": {
+    "gaussian": null,
+    "instance_report": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/bedroom4_frame64_three_pillows/instance_cloud_split_report.json",
+      "sha256": "2d3386f690c71b88d1236756d865f4504095b3465244e688ac8ecfd2c1b931ac"
+    },
+    "mesh": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/asset_pbr.glb",
+      "sha256": "c76e26f14cc68b17fd588984fdae289110d18dee6316f54214d39e0cdd3f4998"
+    }
+  },
+  "status": "technical_gates_passed",
+  "target_obb": {
+    "axes_columns": [
+      [
+        -0.2942546178330003,
+        0.9199073868671485,
+        0.259199960399706
+      ],
+      [
+        0.8374076579760703,
+        0.3788705593972973,
+        -0.3939613097564438
+      ],
+      [
+        -0.4606111529772031,
+        0.10113109714243732,
+        -0.8818219020549324
+      ]
+    ],
+    "center": [
+      -3.7562414505607116,
+      -0.7919381509277634,
+      14.522579706210355
+    ],
+    "extents": [
+      4.899182744023539,
+      3.986031290065861,
+      2.2600879541145495
+    ]
+  }
+}

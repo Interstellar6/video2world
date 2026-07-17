@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.existing_asset_summary",
+  "scene_id": "bedroom_4",
+  "assets": [
+    {
+      "asset_id": "sam3_nightstand_01",
+      "category": "nightstand",
+      "represented_instance_count": 1,
+      "instance_scope": "individual",
+      "pipeline_state": "completed"
+    },
+    {
+      "asset_id": "sam3_nightstand_02",
+      "category": "nightstand",
+      "represented_instance_count": 1,
+      "instance_scope": "individual",
+      "pipeline_state": "completed"
+    },
+    {
+      "asset_id": "sam3_plant_01",
+      "category": "plant",
+      "represented_instance_count": 1,
+      "instance_scope": "individual",
+      "pipeline_state": "completed"
+    },
+    {
+      "asset_id": "sam3_plant_02",
+      "category": "plant",
+      "represented_instance_count": 1,
+      "instance_scope": "individual",
+      "pipeline_state": "completed"
+    },
+    {
+      "asset_id": "sam3_pillow_01",
+      "category": "pillow",
+      "represented_instance_count": 3,
+      "instance_scope": "aggregate",
+      "pipeline_state": "segmented"
+    }
+  ],
+  "limitations": [
+    "The production manifest contains no independent bed or wall-painting asset.",
+    "The production pillow asset is a visible-surface-only aggregate of three touching pillows.",
+    "New per-pillow completion candidates are excluded until six-view geometry and appearance review passes."
+  ]
+}

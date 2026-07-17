@@ -53,6 +53,26 @@ def test_scoped_identity_is_checked_against_world(sample_manifest: WorldManifest
         WorldManifest.model_validate(payload)
 
 
+def test_merged_component_cannot_own_child_assets(sample_manifest: WorldManifest) -> None:
+    payload = sample_manifest.model_dump(mode="json")
+    payload["objects"][0].update(
+        {
+            "semantic_granularity": "merged_component",
+            "independently_movable": False,
+        }
+    )
+    payload["objects"][1].update(
+        {
+            "semantic_granularity": "independent_child_asset",
+            "parent_object_id": payload["objects"][0]["id"],
+            "moves_with_parent": True,
+        }
+    )
+
+    with pytest.raises(ValidationError, match=r"merged component.*cannot own child assets"):
+        WorldManifest.model_validate(payload)
+
+
 def test_manifest_timestamp_must_be_timezone_aware(sample_manifest: WorldManifest) -> None:
     payload = sample_manifest.model_dump(mode="json")
     payload["created_at"] = datetime(2026, 7, 16).isoformat()
@@ -169,6 +189,36 @@ def _visual_only_object(sample_manifest: WorldManifest) -> WorldObject:
     )
 
 
+def _unified_pbr_object_payload(sample_manifest: WorldManifest) -> dict[str, object]:
+    payload = _visual_only_object(sample_manifest).model_dump(mode="json")
+    payload["id"] = "pillow-unified"
+    payload["source_run_id"] = "pillow-unified-run"
+    payload["scoped_id"] = "bedroom_4::pillow-unified-run::pillow-unified"
+    payload["visual"] = None
+    payload["unified_pbr_glb"] = {
+        "uri": "artifact://pillow-unified.glb",
+        "sha256": "d" * 64,
+        "size_bytes": 4096,
+        "media_type": "model/gltf-binary",
+        "role": "unified_pbr_glb",
+        "status": "validated",
+        "provenance": {
+            "watertight": False,
+            "closed_volume_claim": False,
+            "inside_outside_queries_allowed": False,
+        },
+    }
+    payload["collision_topology"] = "surface_bvh"
+    payload["quality_gates"]["collision"] = {"status": "passed"}
+    payload["interaction"].update(
+        {
+            "collision_enabled": True,
+            "physics_mode": "kinematic",
+        }
+    )
+    return payload
+
+
 def test_visual_only_interaction_allows_no_collider_and_rejects_collision_claims(
     sample_manifest: WorldManifest,
 ) -> None:
@@ -186,6 +236,126 @@ def test_visual_only_interaction_allows_no_collider_and_rejects_collision_claims
     passed_collision["quality_gates"]["collision"] = {"status": "passed"}
     with pytest.raises(ValidationError, match="must not pass the collision gate"):
         WorldObject.model_validate(passed_collision)
+
+
+def test_mesh_first_interaction_does_not_require_gaussian_visual(
+    sample_manifest: WorldManifest,
+) -> None:
+    payload = _visual_only_object(sample_manifest).model_dump(mode="json")
+    payload["render_mesh"] = payload.pop("visual")
+
+    mesh_first = WorldObject.model_validate(payload)
+
+    assert mesh_first.visual is None
+    assert mesh_first.render_mesh is not None
+    assert mesh_first.render_mesh.status == "validated"
+
+    payload["render_mesh"]["status"] = "candidate"
+    with pytest.raises(ValidationError, match="every interactive visual representation"):
+        WorldObject.model_validate(payload)
+
+
+def test_unified_surface_bvh_accepts_nonwatertight_glb_without_collider_proxy(
+    sample_manifest: WorldManifest,
+) -> None:
+    unified = WorldObject.model_validate(_unified_pbr_object_payload(sample_manifest))
+
+    assert unified.unified_pbr_glb is not None
+    assert unified.unified_pbr_glb.provenance["watertight"] is False
+    assert unified.collision_topology == "surface_bvh"
+    assert unified.visual is None
+    assert unified.render_mesh is None
+    assert unified.collider is None
+
+
+def test_unified_pbr_glb_is_iterated_once_for_visual_and_collision(
+    sample_manifest: WorldManifest,
+) -> None:
+    unified = WorldObject.model_validate(_unified_pbr_object_payload(sample_manifest))
+    payload = sample_manifest.model_dump(mode="json")
+    payload["objects"].append(unified.model_dump(mode="json"))
+    manifest = WorldManifest.model_validate(payload)
+
+    object_assets = [
+        (location, asset) for location, asset in manifest.iter_assets() if asset.sha256 == "d" * 64
+    ]
+
+    assert [location for location, _ in object_assets] == [
+        "objects[bedroom_4::pillow-unified-run::pillow-unified].unified_pbr_glb"
+    ]
+
+
+def test_unified_closed_volume_rejects_nonwatertight_provenance(
+    sample_manifest: WorldManifest,
+) -> None:
+    payload = _unified_pbr_object_payload(sample_manifest)
+    payload["collision_topology"] = "closed_volume"
+
+    with pytest.raises(ValidationError, match="closed_volume requires explicit watertight"):
+        WorldObject.model_validate(payload)
+
+
+def test_unified_surface_bvh_rejects_volume_claims(
+    sample_manifest: WorldManifest,
+) -> None:
+    payload = _unified_pbr_object_payload(sample_manifest)
+    payload["unified_pbr_glb"]["provenance"]["closed_volume_claim"] = True
+
+    with pytest.raises(ValidationError, match="cannot claim volume"):
+        WorldObject.model_validate(payload)
+
+
+def test_unified_pbr_glb_rejects_mixed_separate_assets(
+    sample_manifest: WorldManifest,
+) -> None:
+    payload = _unified_pbr_object_payload(sample_manifest)
+    payload["render_mesh"] = sample_manifest.scene.collider.model_dump(mode="json")
+
+    with pytest.raises(ValidationError, match="cannot be mixed with separate object assets"):
+        WorldObject.model_validate(payload)
+
+
+@pytest.mark.parametrize(
+    ("field", "value", "message"),
+    [
+        ("role", "render_mesh", "asset role"),
+        ("status", "candidate", "asset must be validated"),
+        ("media_type", "model/obj", "media_type"),
+    ],
+)
+def test_unified_pbr_glb_requires_validated_binary_glb_identity(
+    sample_manifest: WorldManifest,
+    field: str,
+    value: str,
+    message: str,
+) -> None:
+    payload = _unified_pbr_object_payload(sample_manifest)
+    payload["unified_pbr_glb"][field] = value
+
+    with pytest.raises(ValidationError, match=message):
+        WorldObject.model_validate(payload)
+
+
+def test_visual_only_interaction_cannot_keep_unified_collision_topology(
+    sample_manifest: WorldManifest,
+) -> None:
+    payload = _unified_pbr_object_payload(sample_manifest)
+    payload["interaction"].update(
+        {
+            "collision_enabled": False,
+            "physics_mode": "none",
+        }
+    )
+    payload["quality_gates"]["collision"] = {"status": "not_tested"}
+
+    with pytest.raises(ValidationError, match="visual-only interaction cannot declare"):
+        WorldObject.model_validate(payload)
+
+    payload["collision_topology"] = None
+    visual_only = WorldObject.model_validate(payload)
+    assert visual_only.unified_pbr_glb is not None
+    assert visual_only.collision_topology is None
+    assert visual_only.interaction.collision_enabled is False
 
 
 def test_collision_enabled_interaction_requires_collider_and_passed_gate(

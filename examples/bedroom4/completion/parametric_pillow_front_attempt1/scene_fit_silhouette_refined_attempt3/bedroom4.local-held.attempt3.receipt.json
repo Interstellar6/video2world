@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "kind": "video2world.local-held-scene-candidate-receipt",
+  "createdAt": "2026-07-17T04:39:48+08:00",
+  "attempt": 3,
+  "status": "held",
+  "localOnly": true,
+  "nonProduction": true,
+  "publishAllowed": false,
+  "strategy": "source_camera_silhouette_refined_front_surface_anchor",
+  "candidateManifest": {
+    "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_silhouette_refined_attempt3/bedroom4.local-held.attempt3.manifest.json",
+    "sha256": "d6515236e6f20372431a19b83513e984b292f319605cc67b97c9f56a1fc5359c",
+    "version": "bedroom4-local-held-sam3-pillow-front-attempt3-20260717",
+    "schemaVersion": 1,
+    "contract": "video2world-web-manifest-1.0.0"
+  },
+  "browserQa": {
+    "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_silhouette_refined_attempt3/bedroom4.local-held.attempt3.browser-qa.json",
+    "sha256": "2f1510a2c422be75687c26d6d80d44979e9f56a58115af2e0f60bd88ae343a81",
+    "status": "held",
+    "promotionAllowed": false,
+    "sourceCameraSilhouetteGate": "passed",
+    "sceneVisualOverlayGate": "failed",
+    "sceneInterpenetrationGate": "failed",
+    "supportContactGate": "failed",
+    "attempt3SceneAcceptanceGate": "failed"
+  },
+  "derivation": {
+    "attempt2Manifest": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_front_anchored_attempt2/bedroom4.local-held.attempt2.manifest.json",
+    "attempt2ManifestSha256": "13e8b1a42171b8fa4d546d65a1693f2e5075379c52f5b008b6c8255eb47b2a15",
+    "attempt2BrowserQa": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_front_anchored_attempt2/bedroom4.local-held.attempt2.browser-qa.json",
+    "attempt2BrowserQaSha256": "0c071cec6494f707685e3c85384979e9e60ee3f4c2000bd26f3f6531405f05fe",
+    "attempt2Unchanged": true
+  },
+  "sourceProductionManifest": {
+    "path": "repo://video2world/examples/bedroom4/manifest.production.json",
+    "sha256": "e0702f76e144dbf4bcd5c277ed5540ee51f7f9e8098770a145ceea63679ba2de",
+    "webCopyPath": "repo://video2world/web/public/worlds/bedroom4/manifest.json",
+    "webCopySha256": "e0702f76e144dbf4bcd5c277ed5540ee51f7f9e8098770a145ceea63679ba2de",
+    "unchanged": true
+  },
+  "assets": {
+    "visualGaussian": {
+      "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_silhouette_refined_attempt3/sam3_pillow_front_gaussian_scene_fit.ply",
+      "bytes": 19841530,
+      "sha256": "941494d3b138a5bce8a423c1960b79f1e28e784ce4d19d8d593cfe3e24fb792a",
+      "vertexCount": 80000,
+      "hashVerified": true
+    },
+    "collisionGlb": {
+      "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_silhouette_refined_attempt3/sam3_pillow_front.scene-fit.glb",
+      "bytes": 410044,
+      "sha256": "dac783b781836c25fb86ede227fc05c18936d6d888b1fc7bea1d883c424c7115",
+      "vertices": 10226,
+      "faces": 20448,
+      "watertight": true,
+      "hashVerified": true
+    },
+    "sceneFitReport": {
+      "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_silhouette_refined_attempt3/scene_fit_report.json",
+      "sha256": "dc8c3200b1882755ad6e5999b350b68743486471f8a243c8bbc0bf37fb5e0316"
+    }
+  },
+  "sourceCameraSilhouetteReview": {
+    "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_silhouette_refined_attempt3/source_camera_review/source_camera_silhouette_review.json",
+    "sha256": "d68eecaaf04ebcb57a9f6f5307544476e5216d42935131caa3674bbce0f37e7f",
+    "status": "passed",
+    "frameId": "000064",
+    "metrics": {
+      "maskIou": 0.8026034739854109,
+      "bboxIou": 0.9103890728476821,
+      "centerErrorPx": 4.749840852409014,
+      "observedRecall": 0.8634294385432474,
+      "renderedPrecision": 0.9193094215944236
+    },
+    "thresholds": {
+      "minimumMaskIou": 0.65,
+      "minimumBboxIou": 0.8,
+      "maximumCenterErrorPx": 20
+    },
+    "allGatesPassed": true,
+    "scope": "source_camera_silhouette_only"
+  },
+  "geometryComparison": {
+    "observedTargetObbThickness": 1.4420788444486754,
+    "attempt2CompletedObbThickness": 0.9030485993158289,
+    "attempt3CompletedObbThickness": 0.7034748588670308,
+    "attempt3ToObservedThicknessRatio": 0.48781997015979933,
+    "attempt3ThicknessReductionFromObserved": 0.5121800298402007,
+    "attempt3RelativeThicknessChangeFromAttempt2": -0.22099999999999997,
+    "frontSurfaceAnchorError": 0,
+    "targetExtentScale": [
+      0.779,
+      0.779,
+      1
+    ],
+    "attempt1AabbExtents": [
+      4.221720235544492,
+      3.587436572446297,
+      3.0835172107724476
+    ],
+    "attempt2AabbExtents": [
+      4.107447772774992,
+      3.4627903753806777,
+      2.721183180971044
+    ],
+    "attempt3AabbExtents": [
+      3.1997018149917187,
+      2.6975137024215488,
+      2.119801697976443
+    ],
+    "attempt3RelativeAabbChangeFromAttempt2": [
+      -0.22100000000000003,
+      -0.22099999999999975,
+      -0.221
+    ]
+  },
+  "runtimeTransform": {
+    "pivot": [
+      -0.9132125483707731,
+      -0.1424510127463641,
+      14.760714277636716
+    ],
+    "generatedCenter": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "rotationEulerDeg": [
+      0,
+      0,
+      0
+    ],
+    "collisionObjectLocalMatrix": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "colliderProxyAabb": {
+      "center": [
+        0,
+        0,
+        0
+      ],
+      "dimensions": [
+        3.1997018149917187,
+        2.6975137024215488,
+        2.119801697976443
+      ]
+    },
+    "noDoubleScaling": true
+  },
+  "validation": {
+    "jsonSyntax": "passed",
+    "webManifestParser": {
+      "status": "passed",
+      "implementation": "repo://video2world/web/web-manifest.js#validateWebManifest"
+    },
+    "productionManifestUnchanged": "passed",
+    "attempt2ArtifactsUnchanged": "passed",
+    "assetSizeAndSha256": "passed",
+    "frontSurfaceAnchorTechnicalGate": "passed",
+    "sourceCameraSilhouetteGate": "passed",
+    "identityRuntimeTransform": "passed",
+    "collisionCandidateGate": "held",
+    "browserAssetLoading": "passed",
+    "browserCanvasNonblank": "passed",
+    "browserSharedRotation": "passed",
+    "browserNoDoubleScaling": "passed",
+    "browserSceneComposite": "failed"
+  },
+  "localReview": {
+    "manifestQuery": "/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_silhouette_refined_attempt3/bedroom4.local-held.attempt3.manifest.json",
+    "requiredQueryParameters": {
+      "allowCandidateColliders": "1"
+    },
+    "browserSceneOverlay": "failed",
+    "sceneInterpenetration": {
+      "status": "failed",
+      "candidateStaticIntersectionCount": 1,
+      "candidateObjectIntersectionCount": 0
+    },
+    "supportContact": {
+      "status": "failed",
+      "classification": "interpenetrating_static_scene",
+      "suspended": false,
+      "attempt1MeanSignedDownOffset": -2.023494,
+      "attempt2MeanSignedDownOffset": -2.784336,
+      "attempt3MeanSignedDownOffset": -2.339195,
+      "attempt3MeanChangeFromAttempt1": -0.315701,
+      "attempt3MeanChangeFromAttempt2": 0.445141
+    },
+    "comparisonDecision": "Attempt 3 improves source-camera silhouette, scene scale, and support offset versus Attempt 2, but does not resolve static bleed-through, scene intersection, support acceptance, or clean plate."
+  },
+  "promotionBlockers": [
+    "scene_visual_overlay_review",
+    "scene_interpenetration_gate",
+    "support_contact_review",
+    "accepted_clean_plate_or_static_scene_carve"
+  ],
+  "inheritedStaticSceneCaveat": "Attempt 3 inherits the production static Gaussian and collider carve for the old three-pillow ensemble. A passed source-camera silhouette cannot promote this candidate while clean plate remains rejected."
+}

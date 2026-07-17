@@ -1,0 +1,1167 @@
+{
+  "analysis": {
+    "boundsEvidence": {
+      "completedWorldAabb": {
+        "max": [
+          0.4289947900649813,
+          1.1346495540655943,
+          15.761865082748717
+        ],
+        "min": [
+          -2.5142857068948183,
+          -1.472561065044762,
+          13.865914034685625
+        ]
+      },
+      "expandedAabb": {
+        "max": [
+          0.6542440223693847,
+          1.2146495540655944,
+          15.957863883972168
+        ],
+        "min": [
+          -2.5942857068948184,
+          -1.552561065044762,
+          13.108576698303223
+        ]
+      },
+      "margin": 0.08,
+      "sourceSplitAabb": {
+        "max": [
+          0.5742440223693848,
+          1.1270780563354492,
+          15.877863883972168
+        ],
+        "min": [
+          -2.463304042816162,
+          -1.4221960306167603,
+          13.188576698303223
+        ]
+      },
+      "unionAabb": {
+        "max": [
+          0.5742440223693848,
+          1.1346495540655943,
+          15.877863883972168
+        ],
+        "min": [
+          -2.5142857068948183,
+          -1.472561065044762,
+          13.188576698303223
+        ]
+      }
+    },
+    "candidateDistanceStats": {
+      "covarianceCandidateCount": 2505,
+      "frontDistance": {
+        "maximum": 2.036844491958618,
+        "median": 0.1624918431043625,
+        "minimum": 0.0057681165635585785,
+        "p95": 0.790148913860321
+      },
+      "rearDistance": {
+        "maximum": 2.373974561691284,
+        "median": 0.6802642345428467,
+        "minimum": 0.08002243936061859,
+        "p95": 1.680962085723877
+      },
+      "rearProtectedCandidateCount": 232,
+      "semanticThreshold": {
+        "maximum": 0.4000000059604645,
+        "median": 0.4000000059604645,
+        "minimum": 0.08059148490428925,
+        "p95": 0.4000000059604645
+      },
+      "sparkFootprintRadius": {
+        "maximum": 4.618840217590332,
+        "median": 0.3404684066772461,
+        "minimum": 0.0005914857611060143,
+        "p95": 1.325929880142212
+      }
+    },
+    "frontAnchorPointCount": 64983,
+    "inputStaticGaussianCount": 823391,
+    "modes": {
+      "center-union": {
+        "insideCompletedWorldAabb": 1217,
+        "insideSourceSplitAabb": 1662,
+        "rearAabbRemovedCounts": {
+          "sam3_pillow_left": 289,
+          "sam3_pillow_right": 446
+        },
+        "removedCenterBounds": {
+          "max": [
+            0.5681987404823303,
+            1.1345809698104858,
+            15.875168800354004
+          ],
+          "min": [
+            -2.510331153869629,
+            -1.4697729349136353,
+            13.188858985900879
+          ]
+        },
+        "removedGaussianCount": 1777,
+        "retainedGaussianCount": 821614,
+        "supportBandRemovedCount": 522
+      },
+      "covariance-union": {
+        "insideCompletedWorldAabb": 1217,
+        "insideSourceSplitAabb": 1662,
+        "rearAabbRemovedCounts": {
+          "sam3_pillow_left": 373,
+          "sam3_pillow_right": 505
+        },
+        "removedCenterBounds": {
+          "max": [
+            0.9623690247535706,
+            1.437490463256836,
+            16.23611068725586
+          ],
+          "min": [
+            -2.9127345085144043,
+            -1.7905193567276,
+            12.789523124694824
+          ]
+        },
+        "removedGaussianCount": 2505,
+        "retainedGaussianCount": 820886,
+        "supportBandRemovedCount": 942
+      },
+      "semantic-covariance": {
+        "insideCompletedWorldAabb": 943,
+        "insideSourceSplitAabb": 1215,
+        "rearAabbRemovedCounts": {
+          "sam3_pillow_left": 225,
+          "sam3_pillow_right": 205
+        },
+        "removedCenterBounds": {
+          "max": [
+            0.8330102562904358,
+            1.32260262966156,
+            15.89404582977295
+          ],
+          "min": [
+            -2.5284900665283203,
+            -1.5471806526184082,
+            12.950684547424316
+          ]
+        },
+        "removedGaussianCount": 1606,
+        "retainedGaussianCount": 821785,
+        "supportBandRemovedCount": 682
+      }
+    },
+    "policy": {
+      "baseDistance": 0.08,
+      "covariancePrefilterPadding": 0.4,
+      "maximumSemanticDistance": 0.4,
+      "rearProtectionMargin": 0.02,
+      "sparkMaxStdDev": 2.8284271247461903
+    },
+    "rearProtectionAnchorPointCount": 138926
+  },
+  "inputManifest": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/manifest.unified-pillow.json",
+    "sha256": "4a0d29431de668ae39388bd7069129ca44beaab1613402ebfba8cdd55930a32d"
+  },
+  "kind": "video2world.bedroom4_front_static_gaussian_recarve",
+  "limitations": [
+    "This is an unpromoted candidate; canonical chunks and manifest are unchanged.",
+    "Rear RGB anchors protect rear-pillow evidence, but no completed hidden bed geometry is claimed.",
+    "Browser before/after review is required before selecting this carve mode."
+  ],
+  "mode": "semantic-covariance",
+  "outputManifest": {
+    "bytes": 179003,
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/recarve-candidates/semantic-covariance/manifest.json",
+    "sha256": "edae5c8d8df4f98da97477d7545dc9cb80a9104ed7ab4707b603381549364cb7"
+  },
+  "schemaVersion": 1,
+  "staticVisual": {
+    "chunkCount": 195,
+    "inputVertexCount": 823391,
+    "outputBytes": 203804211,
+    "outputSha256": "7f8a7d9a1fc07cee34754469d5fffe95d90640bfa9d5883b4432e83698e55c0d",
+    "outputVertexCount": 821785,
+    "parts": [
+      {
+        "sha256": "2d5580708fd668e95e589813a4d21b5eb2ada59206a87288b0b7f4a000556189",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk000"
+      },
+      {
+        "sha256": "0b9dd47544c7f6fdd1b31dcd3730b24c55b04c3b0bdf9839101e5afb053af577",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk001"
+      },
+      {
+        "sha256": "7a1fed54d4dedfcaf0f6b80c199a4ae5835e0d369437442d870b632461aeb3a4",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk002"
+      },
+      {
+        "sha256": "0990429afab9831a9399470cad2d041340c4fad42813ffbe388e8c3fff5bd871",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk003"
+      },
+      {
+        "sha256": "9bbc0dd44df403bb12096ed005f1f72eb346672ca183a369b964c56c070ba4ec",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk004"
+      },
+      {
+        "sha256": "f45564c4c4c2c3d47c0275d23d8d5205c895192f7abae2343bc97e985ff6c048",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk005"
+      },
+      {
+        "sha256": "1e623c461940d3e7d7e20935de9604b4f9f3cd5ed3c255e5a0c9c4bbb9f2ffdb",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk006"
+      },
+      {
+        "sha256": "56482662f465a904bb356bdb8608ba5330764c1d20c9cb499276ee86b985caa7",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk007"
+      },
+      {
+        "sha256": "8425496ed1d89dfb85cc0182bc4616a3887f3157ffe43af9d936bd474c82f6a4",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk008"
+      },
+      {
+        "sha256": "b35df6b9d6fe76c2ac68ecdde0ff291fb6f4a78775688bf6616ec46d7f9c4e28",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk009"
+      },
+      {
+        "sha256": "8850e3cb06915439841b1aec3b5a4dba0abb2c81551f1c2bfd4d17b42ed5eb63",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk010"
+      },
+      {
+        "sha256": "6c994055be53a56b4f96155be06d737a080f697b5c6382ab8b9a35a6a9f1d028",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk011"
+      },
+      {
+        "sha256": "3946ada67887c6ee6425d322d9a818edfa9ec451a27fd2463f19ae65d2c8896f",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk012"
+      },
+      {
+        "sha256": "f94a7953dc9b1a91b5db944f0ba8b98a1596a770ed7274addb95510e0bb6db42",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk013"
+      },
+      {
+        "sha256": "20100345348c1fc0c6c3033cc5007ba3418198e5b602032473e12e8a7a0fe45c",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk014"
+      },
+      {
+        "sha256": "582fad4f04bc7ec164fc7fd204229cd0fd2767c57d1a85417ed931e493fe6f32",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk015"
+      },
+      {
+        "sha256": "dab3dc3ce487f2577c54a1baf6b85ea232a403bee5b1a6ea317ea1f598a67f23",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk016"
+      },
+      {
+        "sha256": "c5c9427c6d5fd14fa6d569e4ec40ad0ee0052fdeb59f0b12946bbb41eccddc03",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk017"
+      },
+      {
+        "sha256": "8062dd508d7e91afcaec2536f03d46e5274d54199525b0ee2710379ae7d8acbc",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk018"
+      },
+      {
+        "sha256": "47e49b2fa2570a2b40ae58e8084e3754131141b4861c7f7ea6a270c2a50e1e6f",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk019"
+      },
+      {
+        "sha256": "d02bccbd69371a6bdd3538206b54dba4411a84011d5bad209e8549dd013abeee",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk020"
+      },
+      {
+        "sha256": "0cd843a5b62e1a2437cbbbd9823cd785628b29a2d7453d2b6af20eef80711b37",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk021"
+      },
+      {
+        "sha256": "94f3949855c8760baf9bb43c0e0ad256f16a529776bf13a9b121c43e5aa24e0d",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk022"
+      },
+      {
+        "sha256": "2e494d24a06d59530a6418af7de28984477acd36d0014b48c825799b1e655170",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk023"
+      },
+      {
+        "sha256": "6dfd66b7f9290cb72a181206d82b48eae31cf01ba403f9a766f0f938e118b96b",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk024"
+      },
+      {
+        "sha256": "5c66a4b2bbabcd427de08b2e34b5248387ee6447aa9a70bd39e9884325e6bb88",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk025"
+      },
+      {
+        "sha256": "6de8d7b7e9bab6a13f6715b4b83f6b3bab62b82766aabdb24785f1493ee76f86",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk026"
+      },
+      {
+        "sha256": "aeee9cadfecfb46c7797e2e95d6700dbba9dd9663dc774b63aed867c1534add0",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk027"
+      },
+      {
+        "sha256": "4b3b2e85e2e60c1cf5e5dfe525ec22cc5c1cbea349e71dc178234ed4c3c5ceee",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk028"
+      },
+      {
+        "sha256": "aed38e2bd38f7e7935fff49eb76fbfba843df96b58ec6a512648a9f075258617",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk029"
+      },
+      {
+        "sha256": "ed4eeffb7b7b8c4fbff283cb46c08aedefd3b3d5733ec1cc83868681c8b40994",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk030"
+      },
+      {
+        "sha256": "2aae13db46209b06265e79c65109052b28aa3512eb5e8b3626bd67b4cfed48ca",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk031"
+      },
+      {
+        "sha256": "4699ede81085e0f2c60acfb8611822ad039c06e4ddbe08a541f4a7bd39e7c808",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk032"
+      },
+      {
+        "sha256": "16b25a768fee1adc29a8c612d9dc3fcd73077b04a796889d21640b0d7ef15985",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk033"
+      },
+      {
+        "sha256": "779448910bab47fe44544190d7fea63ce0d6b8e065c3296a77d02ab3e291f333",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk034"
+      },
+      {
+        "sha256": "d3de3dbb4fde085bf55100ffc27e588db7c262e36612e222040f3af454cb8b01",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk035"
+      },
+      {
+        "sha256": "33c5af0a65f1c2c677ccc65a443fd7cdcfaca6702eea624bba5b47a23c69ec6d",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk036"
+      },
+      {
+        "sha256": "8ab5ecc58b43e0966509920ce73a32e261bcc6a430a64f6eda4fbaabb1da8610",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk037"
+      },
+      {
+        "sha256": "a29799043c5840fb7daf091db6cd86de521236e1699d2395488f1f41c3e00ea3",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk038"
+      },
+      {
+        "sha256": "b190ef8052d9a71a0f60d15c5d07d44cf0c65e3a5111b00fbc04eeaedfcb1901",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk039"
+      },
+      {
+        "sha256": "d5018f8329db7242c7dee80ea005f0910579a23f28b8cc16a62a1d362765a672",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk040"
+      },
+      {
+        "sha256": "fb5266494ed8c013597611de93b294071a0727cc697c89c44eb6204199b73f5a",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk041"
+      },
+      {
+        "sha256": "80d66f69263d9960effb89c65d41c24a8ac9bd4aca091167ab0ca1bbae73d82f",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk042"
+      },
+      {
+        "sha256": "0c88dd9cde3ac1354d8ee4c6b16873ce74b5daaa93b7b0e894184037e03d88ea",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk043"
+      },
+      {
+        "sha256": "23592c02e264c44294f3d154ee9a2397b69dba46a581a33c37ad374ee7901023",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk044"
+      },
+      {
+        "sha256": "ed6467827540e5d0c13782fa51e507ce6e32ffe2898d44441dabb54d8f09615e",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk045"
+      },
+      {
+        "sha256": "66a5fd6f6f79d163cc036eb7c2543a38c55d1dd09d3ae985ed1eedcc9ef50b26",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk046"
+      },
+      {
+        "sha256": "78713674d7a2af24c21c8a3a7e55853d6b5402b80f027955f3410bc44870de90",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk047"
+      },
+      {
+        "sha256": "e234cdb6c2c6da0d8a42c31c717435077eb97cbdac2b11e0ea1e2ab267655930",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk048"
+      },
+      {
+        "sha256": "03f663cf46356d80b8e26aa2c6587d0d0272fb2ff40de5e9a0169a36076691a1",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk049"
+      },
+      {
+        "sha256": "931d75e9364e99a69c070aebd93372960135e70d130958dbda5ff225a99c577e",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk050"
+      },
+      {
+        "sha256": "e840858d16e6dc463e9b424d87aab5c7ff5e26c08e1b18ae507d94454015f5fc",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk051"
+      },
+      {
+        "sha256": "917f1b6ad46aa560f7e6c3d552f62e23360fbe0f3f0d3968b424349cb2a7a727",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk052"
+      },
+      {
+        "sha256": "f5f1822818d1ba8612e1b0f982cdfe321bfe18f9bb65adfe49a4ba45e8f898ff",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk053"
+      },
+      {
+        "sha256": "44dd0797f20f8408c0b2f9933ee78a4d2dcedfdcd9cd1ec5438549844fcdd305",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk054"
+      },
+      {
+        "sha256": "2b20ef9c6be7f2d4aa4c7763dce514dd9e93994f62bff780c4259b66325e62d3",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk055"
+      },
+      {
+        "sha256": "970326fcf86ebb72a396441fc897d7ddb312eebb8f0542dcfa5a8b678776c01d",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk056"
+      },
+      {
+        "sha256": "fdb393cc1f2afc49ca4cf975b9bb21f5218301f7ca8741315e061e2d0b9120e5",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk057"
+      },
+      {
+        "sha256": "06d4fb966b132281e814c92d42d827111bcc7bd452eae876087492fcfb2e0d82",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk058"
+      },
+      {
+        "sha256": "cd987c48275fce12e4e12989dd4a63ae5069e8be07f39f468e9b50a7a8952fdc",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk059"
+      },
+      {
+        "sha256": "aa0431faf741ffab5908e3c4b601286ad57499df8b77eca37b400b5e27173c4d",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk060"
+      },
+      {
+        "sha256": "3afeb2967b0cc5c6e7f9c72163375a124227dbeb7d04c2481b15d0b3fb36fed8",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk061"
+      },
+      {
+        "sha256": "319663122a51bd108ad4d813eac8d5e4f480f4b9ff38cd64201c812fc39c83c2",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk062"
+      },
+      {
+        "sha256": "35414ea3c7615a70233ba13477c8375fcf014a28b39fe0d86e9b545459926deb",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk063"
+      },
+      {
+        "sha256": "5be372c396121e3af01a303693a7e0e7294a1877d953aa98a6c4669c616dc5d1",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk064"
+      },
+      {
+        "sha256": "488a482f0c73567a0d73efc408f886a11cd28bb1898e7e2627044a84d7e313ca",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk065"
+      },
+      {
+        "sha256": "d8b2cd01280d66cd258fb760086e9b80d3d1c3d226c81121022622eaf2e3601f",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk066"
+      },
+      {
+        "sha256": "c0c6b96f1eaed314ea300b6c7041c24f9147c167def2ec07072b4f8008e77bac",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk067"
+      },
+      {
+        "sha256": "6683453703bd52b5ad933d5252c076658569c5e5c11389b5dd7729cfd7c7cfb3",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk068"
+      },
+      {
+        "sha256": "6f699ad71e030366bc240bbbde4d191ad1847520195aadb41ef2fc92b8792678",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk069"
+      },
+      {
+        "sha256": "4e7266264a5a9182fab0a2f89131f7eaf159b3a79e29f512147e1541705a825e",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk070"
+      },
+      {
+        "sha256": "7139884bae47333561728e98cf863ee36277c91a90ea0592f766dc9cdb311115",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk071"
+      },
+      {
+        "sha256": "48a4bfc132845dde4142839b59dd4acc0793fb19558c05339644de9ba2472b96",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk072"
+      },
+      {
+        "sha256": "b8d0356e66036e6eec690617efddae711eb2210d35e5bde7fa4425d1890b3384",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk073"
+      },
+      {
+        "sha256": "fc27493cd39c62b1a57611b4d28fb13b5c12b729e72e8e002346de6c102c68b0",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk074"
+      },
+      {
+        "sha256": "b3f2bc74632f26b42eeb4321c1b9e5b1b06ebfd3721f2a9a334ab4465f259575",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk075"
+      },
+      {
+        "sha256": "b9e3bb61a8be214c44ba5cf40d2e8e5b75a6548a657acb4e83c705862c33eebc",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk076"
+      },
+      {
+        "sha256": "5931de7653c5a6fe59f24fa2ed8f9d6799b6b279e8d642c1da2b0b0b9c9aefa7",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk077"
+      },
+      {
+        "sha256": "1aff7f733223a4aa53eef0d3380518af40a57767ca988339d6a0133e7eafed0f",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk078"
+      },
+      {
+        "sha256": "e9a35a0fc280b620f2c4eaa9f53edb635aaa43a91c32bbc47b1ee0855c320dec",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk079"
+      },
+      {
+        "sha256": "57e70aeb538f95e41ab1c4def943fe972a4c231c15b1137c615e5b87ec14ae28",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk080"
+      },
+      {
+        "sha256": "a91f3a7ebc2b86ff1b5e519db42c11be293db304008e71beaf274822baeff4ed",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk081"
+      },
+      {
+        "sha256": "066152588e0c1562edff2787e38e0adad8ca0c8d2773f64e09647148909302b6",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk082"
+      },
+      {
+        "sha256": "f8f54fa324fbc002c6196ea5883cc186c919a2ade2c4be7260a3b09921329a93",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk083"
+      },
+      {
+        "sha256": "c8518f920a2abbc95fd6515af45112cfce373ea03f7fe4de966c6d00c4e55345",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk084"
+      },
+      {
+        "sha256": "49719275d21d46250f2cb450ad009e2c6bfd4162fc58caf57f58690716e30c12",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk085"
+      },
+      {
+        "sha256": "28f9fae96f02ba05fe3c12852bdcb905a6c4381a1f8192fa33079006333378cf",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk086"
+      },
+      {
+        "sha256": "5451eb2bb92d343836a570f19c032fc02e0144eea4a31eec403f27876ef9c420",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk087"
+      },
+      {
+        "sha256": "cb32fbc5c31b4b9f45239d48fa71a9bb8bcaf2f5c4666ce19e0d97914dbc87e0",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk088"
+      },
+      {
+        "sha256": "cf0d715820c655c5b9ada54bd7dc8b6afa090f42d71152d5314716c862321b42",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk089"
+      },
+      {
+        "sha256": "8b89981510e39274da996154ab763bef13e7d92cc608e7b8a5f8d880a1e71726",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk090"
+      },
+      {
+        "sha256": "c1b8d6318ac4d01cd981b24b6bac88dcc3712eb1bc39418b8419dd4dfe20c757",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk091"
+      },
+      {
+        "sha256": "7acb24262b1850f38a2380662ef7ffa1b49545d2a8f24c90753fe46b88da98e3",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk092"
+      },
+      {
+        "sha256": "fc77d1d460a8677822b679d958eca77ba563a00ad8db059c193d86ed343ba5f2",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk093"
+      },
+      {
+        "sha256": "6efb51b930bbc5ccdb64679c0bdaf72adfcf04726b0ac6e59a00f872d43de445",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk094"
+      },
+      {
+        "sha256": "7d03c6febc8d6f4d181e89714717b9dba067eb7fc69ce8bec9ca78e204accce7",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk095"
+      },
+      {
+        "sha256": "09e4e205d0293613e9dcda3daec1ad8941ec12372b018fbeeaa516ac375221ce",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk096"
+      },
+      {
+        "sha256": "4f47e6eda861e25db731c20073bb7005810a2a8c5ab70d5e44de377dc0c3a0e6",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk097"
+      },
+      {
+        "sha256": "b8eabff46be8428c1e6013c57dd876c792ecb713194b77db72a049ba45e59974",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk098"
+      },
+      {
+        "sha256": "f7a865b82a2e736fb7b3ed1db9f1619f2de12de5aea38fd59e67953fbff4fd08",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk099"
+      },
+      {
+        "sha256": "9f22a2b6aa18c50891e9a2e46526dce4a45b0dc3762b1e05b1ef2ea16c7ec064",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk100"
+      },
+      {
+        "sha256": "a0ee5ac6811a64552242f6730c440ff4195c7baf8d08656abfcd68033a7932f4",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk101"
+      },
+      {
+        "sha256": "585deaa1b44c6ff739da8c3458469b5eebcb51df18d1c7f67a194c609e9805b8",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk102"
+      },
+      {
+        "sha256": "7247a96d7fc5529fb16a716446dd3191ce06f8aeb01b648a0d86202391db9cca",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk103"
+      },
+      {
+        "sha256": "324c9604e34fe8e074654002db33a6c2c40fcf1824bc61cd533c60ae29efdd8a",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk104"
+      },
+      {
+        "sha256": "992c99fb654801b36e4572cde09c5e1389cd70d4933674443ea4a9cb6849d188",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk105"
+      },
+      {
+        "sha256": "1581cd28c48611ee1731c346b3ad5da252c2853b78b424e0825dea38f33c773f",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk106"
+      },
+      {
+        "sha256": "2b6eb97c6d3d86dc37f99117704eeaae348e80879318db9083f1ca572cf8d405",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk107"
+      },
+      {
+        "sha256": "0cd8784f68c687291d0c8faefdb51d9330d04e67dcaf99c50643bbe79c5edcfc",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk108"
+      },
+      {
+        "sha256": "a6988dfe1748681824fbdee6f0623e45b1a2b653cae45696b4c44ee5ecd1d31f",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk109"
+      },
+      {
+        "sha256": "eb69e7e051aaaad6c1eb0ea9db5b02168450feaae499c01545e62eff56f61145",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk110"
+      },
+      {
+        "sha256": "895f0dfe6d78794bf64e274c84044d78c37e76faa71805342975f43dcd8f310f",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk111"
+      },
+      {
+        "sha256": "1df111d344b01b0007d165d3a5aa597f1de0f0146815655891250ddf72ab3169",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk112"
+      },
+      {
+        "sha256": "177cb883f5491ec63c74c644ff48017869699e971cac128818590dc8a3876fbd",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk113"
+      },
+      {
+        "sha256": "2437115903239b6e2041c0b37bb4f8065aa79f24ada22bdbb515dce8b5fda448",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk114"
+      },
+      {
+        "sha256": "012e6da96bb60547c044d5bb64ece77e12806bc4dd8041142163f2d5f7cc1f48",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk115"
+      },
+      {
+        "sha256": "dd9e8483c09f14c7bf0aa6fc538f1b818fe12bd4f0e2252d02d07d06b2b56959",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk116"
+      },
+      {
+        "sha256": "64e9a9c6eda201ef6c215b2b1abea14e0af2739cfdcbec251440b5100d6d591b",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk117"
+      },
+      {
+        "sha256": "0b6241bd12a939674d733116194f07c0a62bec6a3bfa9c935fd1928c420c97ca",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk118"
+      },
+      {
+        "sha256": "d24d64d1eed1e325f2a4eb65a9e230953b1cc0b0529061444072806d151498d4",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk119"
+      },
+      {
+        "sha256": "7eff141f77d0edf53474b60fa6c06e3e726ad3508bab5dda77a277b1a2766eb8",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk120"
+      },
+      {
+        "sha256": "782c75940bcfda6434187a79b430cc7ecaf20cfb69b9abe18580eb036b9ea7d9",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk121"
+      },
+      {
+        "sha256": "7cd5898d59724cbeb8e5d2e30b3bad622fafdccb3f4845cac0aa811ae8ab57c0",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk122"
+      },
+      {
+        "sha256": "54b3ed245c0f1453941d78558b38c942ab38888efb848b5c8a5e9fb89f947a57",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk123"
+      },
+      {
+        "sha256": "0adf57df8dbd3622832247e2ecf30ba8c5cbc91c3c5d7caee9f281f89308b734",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk124"
+      },
+      {
+        "sha256": "b98fc0a50e042bc32351838f543e8285f75447bff2e168bcf27bdb59cdba9976",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk125"
+      },
+      {
+        "sha256": "8ab7de8b332773cb21fad8d142ac86d1392d6b93f87ec343176ddaf69dc89e7c",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk126"
+      },
+      {
+        "sha256": "f81ae1f3a7ddc93bd21acd3a0b7435df4c9cc797fa99f1e6efbcd35f6c3dd0ad",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk127"
+      },
+      {
+        "sha256": "c8fcd27761d8e8f70b5cd451fd65b60583d7d0e31961644440f062812a400693",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk128"
+      },
+      {
+        "sha256": "fae5f0d870d2371cf026a1c41b4f984a0a42c34bd3a6b700f430a94a9d895ede",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk129"
+      },
+      {
+        "sha256": "358edd9df294744f19c8aa41bccb30629a5865413e4f4a0a493d44d4d633c28b",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk130"
+      },
+      {
+        "sha256": "8b3afca5e5c592d08a7c4becaad6657f846f2f28d822ca694decbb33e322615f",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk131"
+      },
+      {
+        "sha256": "bee72dd29dd9e9472ef477a2c114393c047b4a2227452dcb3286faa33b123438",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk132"
+      },
+      {
+        "sha256": "3c8971ca856ba29814ee4a7cb14dc02e0487108fa55d4c188462c2e2663787af",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk133"
+      },
+      {
+        "sha256": "e5c15c19c1ed42d5dde8b3ab23aab653b8f97757d544e7067d04d6f826d347d9",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk134"
+      },
+      {
+        "sha256": "5ce2c38b9ed98e912111221742df15f359a35725173978cec41fee06a1e153a5",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk135"
+      },
+      {
+        "sha256": "5d2b63fb09a6e2461db00ae933627a1fa4353d0ed57e7c160608879e488e2e7a",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk136"
+      },
+      {
+        "sha256": "728f7833803b1c4f3c120fa7ddab04d2e6c6183939a2814c637cc1d380bb2abf",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk137"
+      },
+      {
+        "sha256": "b2cb7b48af8a6886ec38ffad7b4d36efd02da83af600e4968d2c0525d753f930",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk138"
+      },
+      {
+        "sha256": "0def957b6fcbdd1f4b0915b191fd52fd33ed6ed113dfe1c4bacc53958d858d59",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk139"
+      },
+      {
+        "sha256": "28e87d27786aa5f34e2c8334163cc07a491d18262d0701490cae2791b0685411",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk140"
+      },
+      {
+        "sha256": "31480ec9b485894360eb4a121beb53d202216b92c640973047f8ed27ba96bff3",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk141"
+      },
+      {
+        "sha256": "ade39fb4fcf4bc84cc07e58148f12377df1703b44352d96424d42e253b9f5025",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk142"
+      },
+      {
+        "sha256": "2b4825376cafd6a6c8e25a78a56c55c6fecbf01e76c997d8ea3608585a1d99a6",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk143"
+      },
+      {
+        "sha256": "70b79a49c12190498ab4d882574ffa772a843d488ead3a7620ea8c545a84b528",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk144"
+      },
+      {
+        "sha256": "9f076553c6e04b0a23c1259293367f28ba5f00e8e8bc52b130390623e4403962",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk145"
+      },
+      {
+        "sha256": "29deb926fae58fa46413781f59cc2a366cd6931e23402a0bf6d91bf72b47667e",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk146"
+      },
+      {
+        "sha256": "949858cebbc7195833504df5b46791011320a07f7f88b7171a524d4978d4e435",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk147"
+      },
+      {
+        "sha256": "364b6a208213ab6e23d1023825eefc4bcb1367908aad0c1154740bd1a91dd679",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk148"
+      },
+      {
+        "sha256": "c90abfc12551343b7caa3f246a8778653284b888329b65295f78f4281b369ed2",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk149"
+      },
+      {
+        "sha256": "b5a500ad92548139039d6f25d32846b5bd0ec1a41fbc0860c860d5657b42b6f4",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk150"
+      },
+      {
+        "sha256": "aa41f2d339855d9cc75510a4ac7ef556fcce7d0f6528e33c079477626d19ec3d",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk151"
+      },
+      {
+        "sha256": "f8042d23a2cfb1ce4e9b29fe78476fb1ed4511c61a74970f736fec4aeba675ec",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk152"
+      },
+      {
+        "sha256": "e83df11962da07a2b86f1cbba17978219f0da8afb33ca9051c83bf8353aa2005",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk153"
+      },
+      {
+        "sha256": "55936e37f55639eb6334f20277aaae70fd64a0637f9fe0c980f83392fbbe8b8a",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk154"
+      },
+      {
+        "sha256": "b938f8c52053154e5249c855b3383a2c43f1698237f639a93515c6c89560e5ea",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk155"
+      },
+      {
+        "sha256": "a8f019aa4ca713d8bbc6c12044a37528d431bf1262eec0b1900ce1e609ca1b30",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk156"
+      },
+      {
+        "sha256": "46f0bf53c36fa4ee9e85f2deaf84551b44c610901d96d523518fc09ca9cd2b4b",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk157"
+      },
+      {
+        "sha256": "e2f2a5b4d52db19b195cbe760aba70ea982ef99fe2dd0b37be3590476ccc8b4d",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk158"
+      },
+      {
+        "sha256": "8b82b99919d9b048cb88cf28d9fbe58e0c8918837c5056d257576cd1ac00514e",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk159"
+      },
+      {
+        "sha256": "86e50d600fcdb37c678f3b4fcc8987346bb9e7df22df8e948818bc04ec972503",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk160"
+      },
+      {
+        "sha256": "7758d3e4508354d8c403a9bb78bd3c3ac847e6ceba4c7cede666870e8eed1ab1",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk161"
+      },
+      {
+        "sha256": "b5482912b5881080000131864cbe237e8de04ed867f84b0377dd717f7db18a0b",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk162"
+      },
+      {
+        "sha256": "95980f5a4cdc5495a24cd741059458812726e6fc02ef9af8e1aeebe6af3f4618",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk163"
+      },
+      {
+        "sha256": "47d48c9acc628e685ac0659a6b558b8de2a0e18bba28ad06c8ecbdc554e13157",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk164"
+      },
+      {
+        "sha256": "293995172539525a4be43d78833ed507c0eae463bbd8cd6cc39ddee37f2ac7cb",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk165"
+      },
+      {
+        "sha256": "e15cba4927e801413d1ae915ce747affa7d9d152d4f2fd958432444a963f1e99",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk166"
+      },
+      {
+        "sha256": "8a59a30b4d358beee8889dc047b85b3007b7b01cd373662bd2a11c604399d0f4",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk167"
+      },
+      {
+        "sha256": "b2d37f05632c24dcbcf5a1bf8dd3b3acce97eaad9eecdd81a0715fb0ce7c4410",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk168"
+      },
+      {
+        "sha256": "be02934a5674dc220bdd6f39411adff87dfe78670cd4733bd57d51cbd6ec03ce",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk169"
+      },
+      {
+        "sha256": "7fd68cba6597ca27ea0238681104fb73690886a8556dfbcdfca46cc577ac5498",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk170"
+      },
+      {
+        "sha256": "3ee9bf8292c12d8cdc7336cee921a896b41ec48c01a2a45734d0488dd0c9985f",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk171"
+      },
+      {
+        "sha256": "a2721e0f7746e67c98928cc3a995e20dda67a35e5d765af63fdf5ba3a67a9cdc",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk172"
+      },
+      {
+        "sha256": "c5d828b3976203664864476f70cf00a9309520f5da59f0bd5d49f1baadf3fb55",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk173"
+      },
+      {
+        "sha256": "fc617712ef01ff1dddff15098beeb7584b27d1ee6c262626b2c77d711fa1a2f3",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk174"
+      },
+      {
+        "sha256": "0f79e5bbdda028d68fa0739e36f5e8b8d414a9bf6bfc3497ac7d3956cf51c3d2",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk175"
+      },
+      {
+        "sha256": "472d037d3a0b8b3857ced096d06bd4bbcdd404969538063e5f1852106e578477",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk176"
+      },
+      {
+        "sha256": "e8ecc108147c83ddb0de7d77aecf59ca8dac3ff1a225509207da25c3fb148694",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk177"
+      },
+      {
+        "sha256": "366ffb02fe30005ccfb3e4bd266919fdb64799dda482444fa44dce22b9809329",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk178"
+      },
+      {
+        "sha256": "b36c7f96f245914a8de235d9ee11547c41a78d3a191bf7e606242aceddcec35f",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk179"
+      },
+      {
+        "sha256": "3498e8881e4ff84806749b0a1528db3d377c0178b66dcb630c73212998cd86eb",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk180"
+      },
+      {
+        "sha256": "f444b1b7b7146ba6d84c329a8fc8b6eef377f7f8f4714fcd722cfd0566fc0018",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk181"
+      },
+      {
+        "sha256": "f96966c362e3a6c9d8e7a0ad1e4ee8c7f7161e3b48e8f66e8493ed058bb2aa62",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk182"
+      },
+      {
+        "sha256": "19c4ed76093dab960fab6f62d9ff1d62a4f8eae672e21423c57d84ffaf206b2e",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk183"
+      },
+      {
+        "sha256": "c7f60125face12bd6a82e7840289eb74b36edf16c3d0717f608d1deb35d91d7a",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk184"
+      },
+      {
+        "sha256": "c6af280fb2211434786e950f08655fd5978f4fc63ffccaddf8a7fa6305cf3f79",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk185"
+      },
+      {
+        "sha256": "bedb053d406aa9e0029ad37b474e9e2d0a5eec2b016417957a024a5079753831",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk186"
+      },
+      {
+        "sha256": "ab88410f1105a3e531d3e7cb30a496dbebaed90a8a94b9f93a7923f36522b242",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk187"
+      },
+      {
+        "sha256": "16f9feec343d5aad722e78da6fb4ad62f15312b9a13840bbb8dcdf8b4e5be8f9",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk188"
+      },
+      {
+        "sha256": "4ef9bea1b6c61cd156247a225d7768111c814b32820ab35ad22bb86ddfb765e9",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk189"
+      },
+      {
+        "sha256": "3583c4747bd69f9b7726034b6fa18f32a4856b14ba9657ff102745a647e06a95",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk190"
+      },
+      {
+        "sha256": "be3e25611145c409ac7e52e526ce5c307e68605f591db8dcb411b63d6469f0ba",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk191"
+      },
+      {
+        "sha256": "d217f56eb951715e2f603b88a7d2ea66d515a792cd831a9c8f6825e460ccf6b6",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk192"
+      },
+      {
+        "sha256": "f2fa5868f98ea4bec0919c951f424fd8c7bff5535e5930abe30b38801cae57cc",
+        "size": 1048576,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk193"
+      },
+      {
+        "sha256": "654c6e41750df7f97de6d8b9cfdaa731b6e474a444c177ac3b35ff8f45e8ee22",
+        "size": 380467,
+        "url": "./worlds/bedroom4/recarve-candidates/semantic-covariance/chunks/visual_bedroom4_static_front_recarve_semantic_covariance.chunk194"
+      }
+    ],
+    "removedVertexCount": 1606
+  },
+  "status": "experimental_candidate_materialized"
+}

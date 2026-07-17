@@ -1,0 +1,35 @@
+{
+  "source_image": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000064.png",
+  "instances": [
+    {
+      "object_id": "sam3_pillow_left",
+      "name": "left rear patchwork pillow",
+      "category": "pillow",
+      "semantic_prompt": "pillow",
+      "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000064/pillow_02.png",
+      "prompt_box_xyxy": [366, 338, 595, 542],
+      "mask_score": 0.9660567045211792,
+      "description": "One large pale-green patchwork rear pillow with soft rounded corners."
+    },
+    {
+      "object_id": "sam3_pillow_front",
+      "name": "front light pillow",
+      "category": "pillow",
+      "semantic_prompt": "pillow",
+      "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000064/pillow_03.png",
+      "prompt_box_xyxy": [520, 387, 695, 549],
+      "mask_score": 0.9723717570304871,
+      "description": "One smaller light off-white square front pillow with soft rounded corners."
+    },
+    {
+      "object_id": "sam3_pillow_right",
+      "name": "right rear patchwork pillow",
+      "category": "pillow",
+      "semantic_prompt": "pillow",
+      "mask_path": "/data/design/zyx/workspace/video2world_runs/bedroom_4_pillow_delta_20260716/sam3_masks/bedroom_4/000064/pillow_01.png",
+      "prompt_box_xyxy": [593, 346, 795, 519],
+      "mask_score": 0.9715292453765869,
+      "description": "One large pale-green floral patchwork rear pillow with soft rounded corners."
+    }
+  ]
+}

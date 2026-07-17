@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "kind": "video2world.local-held-scene-candidate-receipt",
+  "createdAt": "2026-07-17T04:06:40+08:00",
+  "status": "held",
+  "localOnly": true,
+  "nonProduction": true,
+  "publishAllowed": false,
+  "candidateManifest": {
+    "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit/bedroom4.local-held.manifest.json",
+    "sha256": "6d306ff71ba7e45a854509c12c31761623ea00dcf8db3d76ecbec4d818087a23",
+    "version": "bedroom4-local-held-sam3-pillow-front-20260717",
+    "schemaVersion": 1,
+    "contract": "video2world-web-manifest-1.0.0"
+  },
+  "sourceProductionManifest": {
+    "path": "repo://video2world/examples/bedroom4/manifest.production.json",
+    "sha256": "e0702f76e144dbf4bcd5c277ed5540ee51f7f9e8098770a145ceea63679ba2de",
+    "webCopyPath": "repo://video2world/web/public/worlds/bedroom4/manifest.json",
+    "webCopySha256": "e0702f76e144dbf4bcd5c277ed5540ee51f7f9e8098770a145ceea63679ba2de",
+    "unchanged": true
+  },
+  "replacement": {
+    "removedProductionObjectId": "sam3_pillow_01",
+    "candidateObjectId": "sam3_pillow_front",
+    "candidateCount": 1,
+    "interactiveObjectCount": 5,
+    "semanticGranularity": "independent_root_asset",
+    "knowledgeRelationVerified": false
+  },
+  "assets": {
+    "visualGaussian": {
+      "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit/sam3_pillow_front_gaussian_scene_fit.ply",
+      "bytes": 19841530,
+      "sha256": "f9e448995a8efd568b0cf5c86fd93df8327f2b781405cc607fef01cbf7d4f0a3",
+      "vertexCount": 80000,
+      "hashVerified": true
+    },
+    "collisionGlb": {
+      "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit/sam3_pillow_front.scene-fit.glb",
+      "bytes": 410040,
+      "sha256": "799d7e958579bc1eddacd14359ac4f4ec2bce5afc4dd6d09de4d9df84f5c93d1",
+      "vertices": 10226,
+      "faces": 20448,
+      "watertight": true,
+      "hashVerified": true
+    },
+    "sceneFitReport": {
+      "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit/scene_fit_report.json",
+      "sha256": "90f28e1e5f01f697f8bdbf57cfaca23d73025422910255592ccfcacba6e3748e"
+    }
+  },
+  "runtimeTransform": {
+    "pivot": [
+      -0.7882151289669039,
+      -0.273354488763768,
+      14.459119940200763
+    ],
+    "generatedCenter": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "rotationEulerDeg": [
+      0,
+      0,
+      0
+    ],
+    "collisionObjectLocalMatrix": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "colliderProxyAabb": {
+      "center": [
+        0,
+        0,
+        0
+      ],
+      "dimensions": [
+        4.221720235544492,
+        3.587436572446297,
+        3.0835172107724476
+      ]
+    },
+    "noDoubleScaling": true,
+    "note": "Gaussian and GLB already contain the target OBB affine fit. The Web runtime applies only the shared pivot plus user interaction rotation."
+  },
+  "validation": {
+    "jsonSyntax": "passed",
+    "webManifestParser": {
+      "status": "passed",
+      "implementation": "repo://video2world/web/web-manifest.js#validateWebManifest"
+    },
+    "productionManifestUnchanged": "passed",
+    "candidateIdentityReplacement": "passed",
+    "assetSizeAndSha256": "passed",
+    "identityRuntimeTransform": "passed",
+    "collisionCandidateGate": "held",
+    "sceneKnowledgeRelation": "unverified"
+  },
+  "localReview": {
+    "manifestQuery": "/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit/bedroom4.local-held.manifest.json",
+    "requiredQueryParameters": {
+      "allowCandidateColliders": "1"
+    },
+    "browserSceneOverlay": "not_run",
+    "sceneInterpenetration": "not_run",
+    "supportContact": "not_run"
+  },
+  "promotionBlockers": [
+    "scene_visual_overlay_review",
+    "scene_interpenetration_gate",
+    "support_contact_review",
+    "accepted_clean_plate_or_static_scene_carve"
+  ],
+  "inheritedStaticSceneCaveat": "The candidate inherits the production static Gaussian and collider carve for the old three-pillow ensemble. This is not accepted as an independent front-pillow clean plate."
+}

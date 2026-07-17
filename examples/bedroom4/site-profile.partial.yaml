@@ -1,0 +1,139 @@
+# This profile records the Bedroom4 artifacts that can be adopted today and
+# leaves every missing/recomputed stage on a real provider path. It is not a
+# completed run. In particular, layered_completion remains execute-only: the
+# current front-pillow candidate is not a full front-to-back peel/background run.
+# The old archive also lacks several canonical per-stage input hash receipts.
+# Fusion has a complete recovered input binding; other adopt entries intentionally
+# omit expected_inputs and remain blocked until their source receipts are recovered.
+schema_version: "1.0"
+profile_id: bedroom4-partial-adoption-20260717
+description: Adopt verified legacy scene artifacts, then execute the missing canonical stages.
+provider_environment:
+  SITE_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: video2world/bin/python
+    expected_kind: executable
+  SITE_DRIVERS_ROOT:
+    root_kind: checkout
+    root: site_drivers
+    expected_kind: directory
+  VIDEO2WORLD_ROOT:
+    root_kind: checkout
+    root: video2world
+    expected_kind: directory
+  DA3_ROOT:
+    root_kind: checkout
+    root: da3
+    expected_kind: directory
+  DA3_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: da3/bin/python
+    expected_kind: executable
+  QWEN_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: qwen/bin/python
+    expected_kind: executable
+  QWEN_MODEL_ROOT:
+    root_kind: artifact
+    root: models
+    relative_path: Qwen2.5-VL
+    expected_kind: directory
+  SAM3_ROOT:
+    root_kind: checkout
+    root: sam3
+    expected_kind: directory
+  SAM3_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: sam3/bin/python
+    expected_kind: executable
+  SAM3_CHECKPOINT:
+    root_kind: artifact
+    root: models
+    relative_path: sam3/model.pt
+    expected_kind: file
+  PGSR_ROOT:
+    root_kind: checkout
+    root: pgsr
+    expected_kind: directory
+  PGSR_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: pgsr/bin/python
+    expected_kind: executable
+  TRELLIS_ROOT:
+    root_kind: checkout
+    root: trellis2
+    expected_kind: directory
+    expected_git_commit: 75fbf0183001ed9876c8dbb35de6b68552ee08bd
+  TRELLIS_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: trellis2/bin/python
+    expected_kind: executable
+  TRELLIS_WEIGHTS:
+    root_kind: artifact
+    root: models
+    relative_path: TRELLIS.2-4B
+    expected_kind: directory
+stages:
+  ingest:
+    mode: adopt
+    artifact_root: holi_run
+    source_run_id: holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217
+    source_repository: Holi-Spatial plus Video2Mesh site wrappers
+    outputs:
+      frames_manifest: run_manifest.json
+      cameras: pgsr_scannetppv2_all/bedroom_4/cameras.json
+    note: run_manifest and calibrated PGSR cameras exist; the input video identity must still match site-init.
+  inventory: {mode: execute, provider_stage: inventory}
+  da3: {mode: execute, provider_stage: da3}
+  pgsr:
+    mode: adopt
+    artifact_root: holi_run
+    source_run_id: holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217
+    source_repository: official PGSR via Holi-Spatial
+    outputs:
+      scene_gaussian: pgsr_scannetppv2_all/bedroom_4/point_cloud/iteration_30000/point_cloud.ply
+      scene_mesh: pgsr_scannetppv2_all/bedroom_4/mesh/tsdf_fusion_post.ply
+    note: Official 30k PGSR Gaussian and TSDF post-fusion mesh.
+  sam3:
+    mode: adopt
+    artifact_root: holi_run
+    source_run_id: holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217
+    source_repository: Holi-Spatial SAM3
+    outputs:
+      masks_manifest: sam3_masks_scannetppv2_new/bedroom_4/mask_index.json
+      captions_manifest: GroundingDINO-Scannetppv2/bedroom_4.json
+    note: Real SAM3 mask index and category discovery output; no stable cross-frame instance IDs are claimed.
+  fusion:
+    mode: adopt
+    artifact_root: holi_run
+    source_run_id: holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217
+    source_repository: Video2Mesh projection fusion
+    outputs:
+      object_clouds_manifest: video2mesh/simulator_assets/object_masks_3d/object_mask_clouds.json
+      semantic_gaussian: video2mesh/simulator_assets/semantic_pgsr_30k_projected.ply
+    expected_inputs:
+      cameras: 89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330
+      scene_gaussian: 6b2b84b372d452f9fb70328d6fddb4bdc8dfebf8c2072c7a5b5d5985f5e54f13
+      scene_mesh: 1cd9faf084a51f3959cd19dfc3ef05fb2dba9d6e1cdca944bfbeba6c33a1859d
+      masks_manifest: 08a0bb11dab795cb77f1648a1d2b55cea9a722360710d5e711e055f5146dfa75
+      captions_manifest: 36c661081756e7dea08a3b10434d5c1752e6d1e6a6efcaf85446935a9941c5c5
+    note: Category-semantic Gaussian and per-object point-cloud manifest; not full instance-semantic truth.
+  cognition:
+    mode: adopt
+    artifact_root: video2world_evidence
+    source_run_id: bedroom4-qwen-cognition-20260716
+    source_repository: video2world
+    outputs:
+      object_facts: examples/bedroom4/cognition/outputs/cognition_manifest.json
+    note: Qwen outputs plus deterministic review evidence; this does not imply layered completion.
+  completion_plan: {mode: execute, provider_stage: completion_plan}
+  layered_completion: {mode: execute, provider_stage: layered_completion}
+  placement: {mode: execute, provider_stage: placement}
+  bundle: {mode: execute, provider_stage: bundle}
+  web: {mode: execute, provider_stage: web}

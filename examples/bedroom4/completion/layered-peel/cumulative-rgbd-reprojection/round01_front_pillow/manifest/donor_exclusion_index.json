@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.cumulative_donor_exclusion_index",
+  "round_index": 1,
+  "removed_object_ids": [
+    "sam3_pillow_front"
+  ],
+  "label": "cumulative_removed",
+  "items": [
+    {
+      "image": "000048.png",
+      "frame_id": "000048",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0000.png",
+      "mask_sha256": "7c4daaf90d913d92f2b0218c373af513954c8e2145b91723811557a5ed49301e",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000049.png",
+      "frame_id": "000049",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0001.png",
+      "mask_sha256": "0ac42010b6abf8999df055c7da16bc24f8d2e5ecd0353005e1e48077ecb276e6",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000050.png",
+      "frame_id": "000050",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0002.png",
+      "mask_sha256": "2f45bc720311fc848722fdc2ec415cf55e5757da8a385da62dec8b6fce1aaea9",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000051.png",
+      "frame_id": "000051",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0003.png",
+      "mask_sha256": "44e365f2a35f0b4b9c3309e15e580268a8a69b9d9a92441e20c2235fc55ceb1e",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000052.png",
+      "frame_id": "000052",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0004.png",
+      "mask_sha256": "17892d9412b7bf5f6b466d81fe37fe2062ed9a8ee9ca6a30d4e12c984d5783ca",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000053.png",
+      "frame_id": "000053",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0005.png",
+      "mask_sha256": "95fd0ba0338a65cfa1692a2ffa86934322452116e4fad02121a6c9a70e4191ee",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000054.png",
+      "frame_id": "000054",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0006.png",
+      "mask_sha256": "41a28b003b69b1e8b91bdbc67c7c6a31a96e31816c56f7255caffe626647d049",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000055.png",
+      "frame_id": "000055",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0007.png",
+      "mask_sha256": "4ab86cd90875547efd8c8210762c395b1edc8384f40e97d7809e58628a37c324",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000056.png",
+      "frame_id": "000056",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0008.png",
+      "mask_sha256": "6fca708a239dde80d818abf29bb21dfb14211ab606e6dabde80f297b96d0c1a8",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000057.png",
+      "frame_id": "000057",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0009.png",
+      "mask_sha256": "f0a3558a20850d4d50a02e9558cf22abb456132f15829de177455ebbd2074455",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000058.png",
+      "frame_id": "000058",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0010.png",
+      "mask_sha256": "8732435fec608ae4814596f56af5043e30a4006a58bb3b369eaf8df04fdb9a08",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000059.png",
+      "frame_id": "000059",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0011.png",
+      "mask_sha256": "e79c04032a6bffd5aaf1c441511332651dc860f6abcafbe61e69b0543a3143cb",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000060.png",
+      "frame_id": "000060",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0012.png",
+      "mask_sha256": "e495d3b0920aaebb2c27c0325d3ddfe4cae85627f1ce0b466fdd5ffea2a44946",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000061.png",
+      "frame_id": "000061",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0013.png",
+      "mask_sha256": "7105a1e33a9e3af16008bf88f0bb964e535a9e99da180bc0df3a7248db804d4c",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000062.png",
+      "frame_id": "000062",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0014.png",
+      "mask_sha256": "a678a68550a454bfd570549aeaf6cb9922a7d72e05049dee24a5d2e9bba61fea",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000063.png",
+      "frame_id": "000063",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0015.png",
+      "mask_sha256": "2338599f77facca44131dd611b8fa94267f3588d2cc20398c785b9ddcba570bc",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000064.png",
+      "frame_id": "000064",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0016.png",
+      "mask_sha256": "bdcd739f36d4c129f12bc42964195ce17522fa030900b7427f78b8e8f73d24d6",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000065.png",
+      "frame_id": "000065",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0017.png",
+      "mask_sha256": "c330b7584a74ba818d8575b35ed22a1a3cee33a89a6d46bf52352abf392671ee",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000066.png",
+      "frame_id": "000066",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0018.png",
+      "mask_sha256": "2233d34fb934dd8e99c0464453ca2f1db633538589e190b3d1894513fcd8a8c1",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000067.png",
+      "frame_id": "000067",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0019.png",
+      "mask_sha256": "ce16b5363cdb8cd1d33404aef55495184c5e299d4cea4de87523fbef1d08c654",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000068.png",
+      "frame_id": "000068",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0020.png",
+      "mask_sha256": "7ebe64208add5d1c8a128b19a37d23817943843ab5a9c51fe750a4d16d8f2a9d",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000069.png",
+      "frame_id": "000069",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0021.png",
+      "mask_sha256": "67e2f98245c515a7aaaaa7e51fe908731bd0ca1bda76fa014b6006e99111e412",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000070.png",
+      "frame_id": "000070",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0022.png",
+      "mask_sha256": "cb43bcc3714603c43e21bce71e528ac5fff1845e030ada33cc72db529bbc220d",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000071.png",
+      "frame_id": "000071",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0023.png",
+      "mask_sha256": "28b610dde0e576900081a44cf28d2bb49e37e9f2165c7571fb19cdee735c1bb1",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    },
+    {
+      "image": "000072.png",
+      "frame_id": "000072",
+      "label": "cumulative_removed",
+      "mask_path": "masks/0024.png",
+      "mask_sha256": "c251805bdd7c14129bc31d46d5b6cedae2442b78101bb0f239fecaf1e67a82bf",
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "unresolved_residual_allowed_as_donor": false
+    }
+  ]
+}

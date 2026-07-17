@@ -11,7 +11,17 @@ import {
   buildSceneKnowledgeIndex,
   resolveSceneEntity,
 } from "./scene-query.js";
-import { validateWebManifest } from "./web-manifest.js";
+import {
+  buildSceneCommandEnvelope,
+  parseSceneCommand,
+  planSceneCommandEnvelope,
+  submitSceneCommandEnvelope,
+} from "./scene-command.js";
+import {
+  MAX_UNIFIED_GLTF_COLLISION_FACES,
+  placementMatrixElements,
+  validateWebManifest,
+} from "./web-manifest.js";
 
 const ASSET_VERSION = "video2world-scene-qa-object-colliders-v1";
 const URL_PARAMS = new URLSearchParams(window.location.search);
@@ -92,6 +102,14 @@ const sceneQaForm = document.querySelector("#sceneQaForm");
 const sceneQaInput = document.querySelector("#sceneQaInput");
 const sceneQaAnswer = document.querySelector("#sceneQaAnswer");
 const sceneQaCandidates = document.querySelector("#sceneQaCandidates");
+const sceneCommandPreviewElement = document.querySelector("#sceneCommandPreview");
+const sceneCommandTitle = document.querySelector("#sceneCommandTitle");
+const sceneCommandRisk = document.querySelector("#sceneCommandRisk");
+const sceneCommandSummary = document.querySelector("#sceneCommandSummary");
+const sceneCommandStages = document.querySelector("#sceneCommandStages");
+const sceneCommandStatus = document.querySelector("#sceneCommandStatus");
+const sceneCommandCancel = document.querySelector("#sceneCommandCancel");
+const sceneCommandConfirm = document.querySelector("#sceneCommandConfirm");
 
 const nativePixelRatio = Math.max(0.75, window.devicePixelRatio || 1);
 const initialPixelRatio = Math.min(nativePixelRatio, 1.35);
@@ -132,6 +150,7 @@ sparkRenderer.name = "spark-anysplat-visual-renderer";
 scene.add(sparkRenderer);
 
 scene.add(new THREE.HemisphereLight(0x9ff3ed, 0x18231f, 1.08));
+scene.add(new THREE.AmbientLight(0xffffff, 1.15));
 const sun = new THREE.DirectionalLight(0xffefd0, 1.8);
 sun.position.set(8, 12, 7);
 scene.add(sun);
@@ -244,6 +263,7 @@ const state = {
   interactiveObjectReadyCount: 0,
   interactiveObjectGaussianCount: 0,
   interactiveObjectRgbPointCount: 0,
+  interactiveObjectMeshVertexCount: 0,
   interactiveObjectVisualPrimitiveCount: 0,
   interactiveObjectProxiesVisible: false,
   interactiveObjectSolo: false,
@@ -268,6 +288,19 @@ const state = {
   sceneQaResolvedObjectId: null,
   sceneQaCandidates: [],
   sceneQaError: "",
+  sceneCommandReady: false,
+  sceneCommandKind: null,
+  sceneCommandStatus: "idle",
+  sceneCommandPreviewOnly: true,
+  sceneCommandServiceAvailable: false,
+  sceneCommandEndpoint: null,
+  sceneCommandAffectedStages: [],
+  sceneCommandTargetIds: [],
+  sceneCommandRequestId: null,
+  sceneCommandPlanStatus: "idle",
+  sceneCommandConfirmationRequired: false,
+  sceneCommandResponse: null,
+  sceneCommandError: "",
   sceneEntityCount: 0,
   selectedSceneEntity: null,
   robotSupportColliderId: null,
@@ -282,6 +315,9 @@ const state = {
   cameraPosition: { x: 0, y: 0, z: 0 },
   cameraTarget: { x: 0, y: 0, z: 0 },
   cameraDistance: 0,
+  cameraOverviewFocusObjectId: null,
+  cameraOverviewCoverage: null,
+  cameraInsideInteractiveObjectIds: [],
   error: "",
 };
 
@@ -315,6 +351,9 @@ let canvasDrag = null;
 let objectDrag = null;
 let sceneKnowledgeIndex = null;
 let sceneEntitySelectionOutline = null;
+let currentSceneCommandPreview = null;
+let currentSceneCommandSubmission = null;
+let sceneCommandEndpoint = null;
 const interactiveObjects = new Map();
 const interactiveObjectColliders = [];
 const objectCollisionMeshes = [];
@@ -893,6 +932,13 @@ function exposeDebugApi() {
     return syncDebugState();
   };
   window.__askScene = (question) => askScene(question);
+  window.__previewSceneCommand = (question) => previewSceneInput(question);
+  window.__confirmSceneCommand = () => submitCurrentSceneCommand();
+  window.__cancelSceneCommand = () => {
+    clearSceneCommandPreview();
+    updateHud();
+    return syncDebugState();
+  };
   window.__resolveSceneEntity = (question) => {
     if (!sceneKnowledgeIndex) return null;
     const result = resolveSceneEntity(question, sceneKnowledgeIndex, {
@@ -916,12 +962,25 @@ function exposeDebugApi() {
     const component = interactiveObjects.get(String(objectId));
     if (!component) return null;
     component.group.updateMatrixWorld(true);
-    const projected = component.group.getWorldPosition(new THREE.Vector3()).project(camera);
+    const collisionBounds = interactiveObjectCollisionBounds(component);
+    const worldPoint = collisionBounds && !collisionBounds.isEmpty()
+      ? collisionBounds.getCenter(new THREE.Vector3())
+      : component.group.getWorldPosition(new THREE.Vector3());
+    const projected = worldPoint.project(camera);
     const rect = canvas.getBoundingClientRect();
     return {
       x: rect.left + (projected.x * 0.5 + 0.5) * rect.width,
       y: rect.top + (-projected.y * 0.5 + 0.5) * rect.height,
       ndcZ: projected.z,
+    };
+  };
+  window.__inspectInteractiveObjectHitAt = (clientX, clientY) => {
+    const hit = interactiveObjectHitAt(clientX, clientY);
+    if (!hit) return null;
+    return {
+      objectId: hit.object.userData.interactiveObjectId || null,
+      colliderMode: hit.object.userData.colliderMode || null,
+      collisionTopology: hit.object.userData.collisionTopology || null,
     };
   };
   window.__inspectCollisionWorld = () => ({
@@ -937,10 +996,18 @@ function exposeDebugApi() {
       id: component.definition.id,
       ready: component.colliderReady,
       mode: component.collisionMode,
+      gateStatus: component.definition.collision?.gate?.status || "missing",
+      topology: component.definition.collision?.topology || null,
+      volumePhysics: component.definition.collision?.topology === "closed_volume",
+      walkable: component.collisionMeshes.some((mesh) => mesh.userData.walkable === true),
+      characterCollision: component.collisionMeshes.some(
+        (mesh) => mesh.userData.characterCollision === true,
+      ),
       faces: component.collisionFaces,
       bounds: serializeBox(interactiveObjectCollisionBounds(component)),
     })),
   });
+  window.__inspectSceneInterpenetrations = () => inspectSceneInterpenetrations();
   window.__setObjectColliderDebugVisible = (visible, objectId = null) => ({
     visible: setObjectColliderDebugVisible(visible, objectId),
     objectId: state.objectColliderDebugObjectId,
@@ -968,8 +1035,14 @@ function exposeDebugApi() {
   window.__prepareRobotCollisionTest = (objectId) => {
     const component = interactiveObjects.get(String(objectId));
     const bounds = component ? interactiveObjectCollisionBounds(component) : null;
+    const characterCollision = component?.collisionMeshes.some(
+      (mesh) => mesh.userData.characterCollision === true,
+    );
     if (!component || !bounds || !component.colliderReady || !colliderMesh) {
       return { prepared: false, reason: "object_or_collider_not_ready", state: syncDebugState() };
+    }
+    if (!characterCollision) {
+      return { prepared: false, reason: "character_collision_not_approved", state: syncDebugState() };
     }
 
     const center = bounds.getCenter(new THREE.Vector3());
@@ -1106,33 +1179,69 @@ function exposeDebugApi() {
     const splatWorldBounds = splatLocalBounds && component.splat
       ? splatLocalBounds.clone().applyMatrix4(component.splat.matrixWorld)
       : null;
-    const proxyLocalBounds = component.proxy.geometry.boundingBox
-      || (component.proxy.geometry.computeBoundingBox(), component.proxy.geometry.boundingBox);
-    const proxyWorldBounds = proxyLocalBounds.clone().applyMatrix4(component.proxy.matrixWorld);
+    const proxyLocalBounds = component.proxy
+      ? (component.proxy.geometry.boundingBox
+        || (component.proxy.geometry.computeBoundingBox(), component.proxy.geometry.boundingBox))
+      : null;
+    const proxyWorldBounds = proxyLocalBounds
+      ? proxyLocalBounds.clone().applyMatrix4(component.proxy.matrixWorld)
+      : null;
     const describeBox = (box) => ({
       min: roundedVector(box.min),
       max: roundedVector(box.max),
       center: roundedVector(box.getCenter(new THREE.Vector3())),
       size: roundedVector(box.getSize(new THREE.Vector3())),
     });
+    const collisionMaterials = component.collisionMeshes.flatMap((mesh) => (
+      Array.isArray(mesh.material) ? mesh.material : [mesh.material]
+    )).filter(Boolean);
     return {
       id: component.definition.id,
+      parentObjectId: component.definition.parentObjectId,
+      movesWithParent: component.definition.movesWithParent,
+      independentlyMovable: component.definition.independentlyMovable,
+      childObjectIds: Array.from(component.childComponents, (child) => child.definition.id),
+      hierarchyAttachmentMatrixDelta: component.hierarchyAttachmentMatrixDelta,
       visualReady: component.visualReady,
       colliderReady: component.colliderReady,
       visualKind: component.visualKind,
       collisionMode: component.collisionMode,
+      interactionKind: component.definition.interaction?.kind || null,
+      interactionDrag: component.definition.interaction?.drag || null,
+      collisionGateStatus: component.definition.collision?.gate?.status || "missing",
+      collisionTopology: component.definition.collision?.topology || null,
+      unifiedVisualCollision: component.collisionMode === "unified-glb"
+        && component.splat === component.collisionRoot,
+      walkable: component.collisionMeshes.some((mesh) => mesh.userData.walkable === true),
+      characterCollision: component.collisionMeshes.some(
+        (mesh) => mesh.userData.characterCollision === true,
+      ),
+      bvhMeshCount: component.collisionMeshes.filter((mesh) => mesh.geometry?.boundsTree).length,
+      materialTypes: [...new Set(collisionMaterials.map((material) => material.type))],
+      pbrMaterialCount: collisionMaterials.filter(
+        (material) => material.isMeshStandardMaterial || material.isMeshPhysicalMaterial,
+      ).length,
       collisionFaces: component.collisionFaces,
       collisionBounds: interactiveObjectCollisionBounds(component)
         ? describeBox(interactiveObjectCollisionBounds(component))
         : null,
+      selectionOutlineVisible: component.outline.visible === true,
+      turns: component.turns,
+      meshVertexCount: component.meshVisualVertexCount,
       splatLocalBounds: splatLocalBounds ? describeBox(splatLocalBounds) : null,
       splatWorldBounds: splatWorldBounds ? describeBox(splatWorldBounds) : null,
-      proxyWorldBounds: describeBox(proxyWorldBounds),
+      proxyWorldBounds: proxyWorldBounds ? describeBox(proxyWorldBounds) : null,
+      groupMatrix: component.group.matrix.elements.map((value) => Number(value.toFixed(6))),
       groupMatrixWorld: component.group.matrixWorld.elements.map((value) => Number(value.toFixed(6))),
       splatMatrixWorld: component.splat
         ? component.splat.matrixWorld.elements.map((value) => Number(value.toFixed(6)))
         : null,
-      proxyMatrixWorld: component.proxy.matrixWorld.elements.map((value) => Number(value.toFixed(6))),
+      collisionMatrixWorld: component.collisionMeshes[0]
+        ? component.collisionMeshes[0].matrixWorld.elements.map((value) => Number(value.toFixed(6)))
+        : null,
+      proxyMatrixWorld: component.proxy
+        ? component.proxy.matrixWorld.elements.map((value) => Number(value.toFixed(6)))
+        : null,
     };
   };
 }
@@ -1281,37 +1390,82 @@ function updateSmoothCamera(dt) {
 }
 
 function syncCameraState() {
+  interactiveObjectLayer.updateMatrixWorld(true);
+  camera.updateMatrixWorld(true);
   state.cameraPosition = roundedVector(camera.position);
   state.cameraTarget = roundedVector(controls.target);
   state.cameraDistance = Number(camera.position.distanceTo(controls.target).toFixed(4));
+  state.cameraInsideInteractiveObjectIds = Array.from(interactiveObjects.values())
+    .filter((component) => interactiveObjectCollisionBounds(component)?.containsPoint(camera.position))
+    .map((component) => component.definition.id);
+  const overview = interactiveObjects.get(state.cameraOverviewFocusObjectId);
+  const overviewBounds = overview ? interactiveObjectCollisionBounds(overview) : null;
+  if (overviewBounds && !overviewBounds.isEmpty()) {
+    const points = [];
+    for (const x of [overviewBounds.min.x, overviewBounds.max.x]) {
+      for (const y of [overviewBounds.min.y, overviewBounds.max.y]) {
+        for (const z of [overviewBounds.min.z, overviewBounds.max.z]) {
+          points.push(new THREE.Vector3(x, y, z).project(camera));
+        }
+      }
+    }
+    const minX = Math.min(...points.map((point) => point.x));
+    const maxX = Math.max(...points.map((point) => point.x));
+    const minY = Math.min(...points.map((point) => point.y));
+    const maxY = Math.max(...points.map((point) => point.y));
+    state.cameraOverviewCoverage = {
+      widthFraction: Number(((maxX - minX) * 0.5).toFixed(4)),
+      heightFraction: Number(((maxY - minY) * 0.5).toFixed(4)),
+      minimumNdcZ: Number(Math.min(...points.map((point) => point.z)).toFixed(4)),
+      maximumNdcZ: Number(Math.max(...points.map((point) => point.z)).toFixed(4)),
+    };
+  } else {
+    state.cameraOverviewCoverage = null;
+  }
 }
 
 function syncDebugState() {
   syncCameraState();
   const interactiveObjectState = Array.from(interactiveObjects.values()).map((component) => {
-    component.group.updateMatrixWorld(true);
     const splatWorldBounds = component.splatLocalBounds && component.splat
       ? component.splatLocalBounds.clone().applyMatrix4(component.splat.matrixWorld)
       : null;
-    const proxyLocalBounds = component.proxy.geometry.boundingBox;
+    const proxyLocalBounds = component.proxy?.geometry.boundingBox || null;
     const proxyWorldBounds = proxyLocalBounds
       ? proxyLocalBounds.clone().applyMatrix4(component.proxy.matrixWorld)
       : null;
     return {
       id: component.definition.id,
       label: component.definition.label,
+      semanticGranularity: component.definition.semanticGranularity,
+      parentObjectId: component.definition.parentObjectId,
+      movesWithParent: component.definition.movesWithParent,
+      independentlyMovable: component.definition.independentlyMovable,
+      interactionKind: component.definition.interaction?.kind || null,
+      interactionDrag: component.definition.interaction?.drag || null,
+      childObjectIds: Array.from(component.childComponents, (child) => child.definition.id),
       ready: component.ready,
       visualReady: component.visualReady,
       colliderReady: component.colliderReady,
       visualKind: component.visualKind,
       collisionMode: component.collisionMode,
+      collisionGateStatus: component.definition.collision?.gate?.status || "missing",
+      collisionTopology: component.definition.collision?.topology || null,
+      unifiedVisualCollision: component.collisionMode === "unified-glb"
+        && component.splat === component.collisionRoot,
+      walkable: component.collisionMeshes.some((mesh) => mesh.userData.walkable === true),
+      characterCollision: component.collisionMeshes.some(
+        (mesh) => mesh.userData.characterCollision === true,
+      ),
       collisionMeshCount: component.collisionMeshes.length,
       collisionFaces: component.collisionFaces,
       collisionBounds: serializeBox(interactiveObjectCollisionBounds(component)),
+      selectionOutlineVisible: component.outline.visible === true,
       spinning: Boolean(component.spin),
       dragging: objectDrag?.component === component,
       turns: component.turns,
       gaussianCount: component.definition.visual?.vertexCount || 0,
+      meshVertexCount: component.meshVisualVertexCount,
       position: roundedVector(component.group.getWorldPosition(new THREE.Vector3())),
       proxyDimensions: component.definition.colliderProxy?.dimensions || null,
       splatWorldBounds: serializeBox(splatWorldBounds),
@@ -1320,7 +1474,9 @@ function syncDebugState() {
       splatMatrixWorld: component.splat
         ? component.splat.matrixWorld.elements.map((value) => Number(value.toFixed(6)))
         : null,
-      proxyMatrixWorld: component.proxy.matrixWorld.elements.map((value) => Number(value.toFixed(6))),
+      proxyMatrixWorld: component.proxy
+        ? component.proxy.matrixWorld.elements.map((value) => Number(value.toFixed(6)))
+        : null,
     };
   });
   const snapshot = {
@@ -1417,11 +1573,7 @@ async function loadManifest() {
   state.scenePresentationPivot = roundedVector(scenePresentationPivot);
   state.scenePresentationYawDeg = scenePresentationYawDeg;
   const configuredUp = vectorFromArray(manifest.coordinateSystem?.worldUp);
-  if (configuredUp.lengthSq() > 0.5 && Math.abs(configuredUp.y) > 0.9) {
-    ROBOT_UP.copy(configuredUp.normalize());
-  } else {
-    ROBOT_UP.set(0, 1, 0);
-  }
+  ROBOT_UP.copy(configuredUp);
   state.worldUp = roundedVector(ROBOT_UP);
   camera.up.copy(ROBOT_UP);
   const initialState = manifest.initialState || {};
@@ -1438,6 +1590,11 @@ async function loadManifest() {
     ? manifest.interactiveObjects.filter((definition) => definition.collision?.mode !== "none").length
     : 0;
   sceneKnowledgeIndex = buildSceneKnowledgeIndex(manifest);
+  sceneCommandEndpoint = manifest.sceneCommandService?.endpoint
+    ? new URL(manifest.sceneCommandService.endpoint, new URL(MANIFEST_URL, window.location.href)).href
+    : null;
+  state.sceneCommandServiceAvailable = Boolean(sceneCommandEndpoint);
+  state.sceneCommandEndpoint = sceneCommandEndpoint;
   state.sceneEntityCount = sceneKnowledgeIndex.entities.size;
   state.sceneQaReady = true;
   return manifest;
@@ -1610,57 +1767,77 @@ async function loadVisualSplat(transform) {
 }
 
 function createInteractiveObjectComponent(definition) {
+  const unified = definition.collision?.mode === "unified-glb";
   const group = new THREE.Group();
   group.name = `${definition.id} interactive visual-collider component`;
-  group.position.copy(vectorFromArray(definition.placement?.pivot));
+  const configuredPlacementMatrix = placementMatrixElements(definition.placement);
+  const configuredPlacement = configuredPlacementMatrix
+    ? new THREE.Matrix4().fromArray(configuredPlacementMatrix)
+    : null;
+  if (configuredPlacementMatrix) {
+    group.position.setFromMatrixPosition(configuredPlacement);
+  } else {
+    group.position.copy(vectorFromArray(definition.placement?.pivot));
+  }
   group.userData.interactiveObjectId = definition.id;
 
   const content = new THREE.Group();
   content.name = `${definition.id} canonical Gaussian placement`;
-  const rotation = definition.placement?.rotationEulerDeg || [0, 0, 0];
-  content.rotation.set(
-    THREE.MathUtils.degToRad(Number(rotation[0]) || 0),
-    THREE.MathUtils.degToRad(Number(rotation[1]) || 0),
-    THREE.MathUtils.degToRad(Number(rotation[2]) || 0),
-    definition.placement?.eulerOrder || "XYZ"
-  );
-  content.scale.copy(vectorFromArray(definition.placement?.scale, [1, 1, 1]));
+  if (configuredPlacement) {
+    const ignoredTranslation = new THREE.Vector3();
+    configuredPlacement.decompose(ignoredTranslation, content.quaternion, content.scale);
+  } else {
+    const rotation = definition.placement?.rotationEulerDeg || [0, 0, 0];
+    content.rotation.set(
+      THREE.MathUtils.degToRad(Number(rotation[0]) || 0),
+      THREE.MathUtils.degToRad(Number(rotation[1]) || 0),
+      THREE.MathUtils.degToRad(Number(rotation[2]) || 0),
+      definition.placement?.eulerOrder || "XYZ"
+    );
+    content.scale.copy(vectorFromArray(definition.placement?.scale, [1, 1, 1]));
+  }
   group.add(content);
 
-  const dimensions = vectorFromArray(definition.colliderProxy?.dimensions, [0.5, 0.5, 0.5]);
-  const proxyGeometry = new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z);
-  proxyGeometry.computeBoundingBox();
-  const proxyMaterial = new THREE.MeshBasicMaterial({
-    color: 0xefb35f,
-    transparent: true,
-    opacity: 0,
-    depthWrite: false,
-    side: THREE.DoubleSide,
-  });
-  const proxy = new THREE.Mesh(proxyGeometry, proxyMaterial);
-  proxy.name = `${definition.id} robust-bounds mesh proxy`;
-  proxy.position.copy(vectorFromArray(definition.colliderProxy?.center));
-  proxy.userData.interactiveObjectId = definition.id;
-  proxy.userData.colliderLabel = `${definition.label} interactive box proxy`;
-  proxy.userData.surfaceType = "interactive-object-box-proxy";
-  group.add(proxy);
-
+  let proxy = null;
+  let proxyGeometry = new THREE.BufferGeometry();
+  if (!unified) {
+    const dimensions = vectorFromArray(definition.colliderProxy?.dimensions, [0.5, 0.5, 0.5]);
+    proxyGeometry = new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z);
+    proxyGeometry.computeBoundingBox();
+    const proxyMaterial = new THREE.MeshBasicMaterial({
+      color: 0xefb35f,
+      transparent: true,
+      opacity: 0,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+    });
+    proxy = new THREE.Mesh(proxyGeometry, proxyMaterial);
+    proxy.name = `${definition.id} robust-bounds mesh proxy`;
+    proxy.position.copy(vectorFromArray(definition.colliderProxy?.center));
+    proxy.userData.interactiveObjectId = definition.id;
+    proxy.userData.colliderLabel = `${definition.label} interactive box proxy`;
+    proxy.userData.surfaceType = "interactive-object-box-proxy";
+    group.add(proxy);
+  }
   const outline = new THREE.LineSegments(
-    new THREE.EdgesGeometry(proxyGeometry),
+    unified ? proxyGeometry : new THREE.EdgesGeometry(proxyGeometry),
     new THREE.LineBasicMaterial({ color: 0x58d7c9, transparent: true, opacity: 0.92 })
   );
-  outline.name = `${definition.id} proxy outline`;
-  outline.position.copy(proxy.position);
-  outline.visible = state.interactiveObjectProxiesVisible;
+  outline.name = `${definition.id} selection outline`;
+  if (proxy) outline.position.copy(proxy.position);
+  outline.visible = !unified && state.interactiveObjectProxiesVisible;
   outline.raycast = () => {};
   group.add(outline);
 
+  const visualAsset = unified ? definition.collision.asset : definition.visual;
   const component = {
     definition,
     group,
     content,
     splat: null,
-    visualKind: definition.visual?.renderer === "three-points" ? "rgb-points" : "gaussian-splat",
+    visualKind: isObjectMeshVisual(visualAsset)
+      ? "mesh"
+      : visualAsset?.renderer === "three-points" ? "rgb-points" : "gaussian-splat",
     proxy,
     outline,
     ready: false,
@@ -1673,15 +1850,219 @@ function createInteractiveObjectComponent(definition) {
     collisionFaces: 0,
     collisionBounds: null,
     splatLocalBounds: definition.visual?.bbox ? boxFromMeta(definition.visual) : null,
+    meshVisualVertexCount: 0,
     spin: null,
     turns: 0,
     dragYawRadians: 0,
     restQuaternion: group.quaternion.clone(),
+    parentComponent: null,
+    childComponents: new Set(),
+    hierarchyAttachmentMatrixDelta: 0,
+    hierarchyResolved: false,
+    unifiedLoadPromise: null,
   };
   interactiveObjects.set(definition.id, component);
-  interactiveObjectColliders.push(proxy);
+  if (proxy) interactiveObjectColliders.push(proxy);
   interactiveObjectLayer.add(group);
   return component;
+}
+
+function isObjectMeshVisual(asset) {
+  const descriptor = [asset?.fileName, asset?.fileType, asset?.format]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+  return /(?:^|[.\s-])glb(?:$|[.\s-])|gltf-binary|(?:^|[.\s-])obj(?:$|[.\s-])|wavefront/u
+    .test(descriptor);
+}
+
+function configureUnifiedSelectionOutline(component, localBounds) {
+  const size = localBounds.getSize(new THREE.Vector3());
+  const center = localBounds.getCenter(new THREE.Vector3());
+  const box = new THREE.BoxGeometry(
+    Math.max(size.x, 1e-5),
+    Math.max(size.y, 1e-5),
+    Math.max(size.z, 1e-5),
+  );
+  const edges = new THREE.EdgesGeometry(box);
+  box.dispose();
+  component.outline.geometry.dispose();
+  component.outline.geometry = edges;
+  component.outline.position.copy(center);
+  component.content.add(component.outline);
+}
+
+function prepareUnifiedMeshGeometry(root, component) {
+  const meshes = [];
+  let faceCount = 0;
+  let vertexCount = 0;
+  const a = new THREE.Vector3();
+  const b = new THREE.Vector3();
+  const c = new THREE.Vector3();
+  const ab = new THREE.Vector3();
+  const ac = new THREE.Vector3();
+  root.traverse((node) => {
+    if (node.isSkinnedMesh) {
+      throw new Error("unified-glb does not support skinned collision geometry");
+    }
+    if (!node.isMesh) return;
+    const geometry = node.geometry;
+    const positions = geometry?.getAttribute?.("position");
+    if (!positions?.count) throw new Error("unified-glb mesh is missing vertex positions");
+    const index = geometry.index;
+    const elementCount = index ? index.count : positions.count;
+    if (elementCount % 3 !== 0) throw new Error("unified-glb mesh is not triangulated");
+    for (let vertex = 0; vertex < positions.count; vertex += 1) {
+      if (
+        !Number.isFinite(positions.getX(vertex))
+        || !Number.isFinite(positions.getY(vertex))
+        || !Number.isFinite(positions.getZ(vertex))
+      ) throw new Error("unified-glb mesh contains non-finite positions");
+    }
+    for (let offset = 0; offset < elementCount; offset += 3) {
+      const ia = index ? index.getX(offset) : offset;
+      const ib = index ? index.getX(offset + 1) : offset + 1;
+      const ic = index ? index.getX(offset + 2) : offset + 2;
+      if (ia >= positions.count || ib >= positions.count || ic >= positions.count) {
+        throw new Error("unified-glb mesh contains out-of-range triangle indices");
+      }
+      a.fromBufferAttribute(positions, ia);
+      b.fromBufferAttribute(positions, ib);
+      c.fromBufferAttribute(positions, ic);
+      ab.subVectors(b, a);
+      ac.subVectors(c, a);
+      if (ab.cross(ac).lengthSq() <= 1e-20) {
+        throw new Error("unified-glb mesh contains degenerate triangles");
+      }
+    }
+    if (!geometry.getAttribute("normal")) geometry.computeVertexNormals();
+    geometry.computeBoundingBox();
+    if (!geometry.boundsTree) {
+      geometry.boundsTree = new MeshBVH(geometry, {
+        strategy: SAH,
+        indirect: true,
+        maxLeafTris: 12,
+      });
+    }
+    node.raycast = acceleratedRaycast;
+    node.frustumCulled = false;
+    node.userData.interactiveObjectId = component.definition.id;
+    node.userData.colliderId = component.definition.id;
+    node.userData.colliderKind = "object";
+    node.userData.colliderMode = "unified-glb";
+    node.userData.collisionTopology = component.definition.collision.topology;
+    node.userData.volumePhysics = component.definition.collision.topology === "closed_volume";
+    node.userData.collisionGateStatus = "passed";
+    node.userData.colliderLabel = `${component.definition.label} unified PBR mesh`;
+    node.userData.surfaceType = "interactive-object-unified-glb";
+    node.userData.walkable = component.definition.collision.walkable === true;
+    node.userData.characterCollision = true;
+    meshes.push(node);
+    vertexCount += positions.count;
+    faceCount += elementCount / 3;
+  });
+  if (!meshes.length) throw new Error("unified-glb contains no triangle meshes");
+  if (faceCount > MAX_UNIFIED_GLTF_COLLISION_FACES) {
+    throw new Error(`unified-glb exceeds ${MAX_UNIFIED_GLTF_COLLISION_FACES} collision faces`);
+  }
+  if (faceCount !== component.definition.collision.asset.faces) {
+    throw new Error(
+      `unified-glb face count ${faceCount} does not match manifest ${component.definition.collision.asset.faces}`,
+    );
+  }
+  return { meshes, faceCount, vertexCount };
+}
+
+async function loadUnifiedInteractiveObject(component) {
+  if (component.ready && component.collisionSettled) return component;
+  if (component.unifiedLoadPromise) return component.unifiedLoadPromise;
+  component.unifiedLoadPromise = (async () => {
+    const definition = component.definition;
+    try {
+      const { bytes } = await getChunkedAssetBytes(definition.collision.asset, definition.id);
+      const loaded = await parseObjectCollision(bytes, definition.collision.asset);
+      loaded.name = `${definition.label} unified PBR visual and collider`;
+      const prepared = prepareUnifiedMeshGeometry(loaded, component);
+      loaded.updateMatrixWorld(true);
+      const contentBounds = new THREE.Box3().setFromObject(loaded);
+      if (contentBounds.isEmpty()) throw new Error("unified-glb has empty bounds");
+      const rootLocalBounds = contentBounds.clone().applyMatrix4(
+        loaded.matrixWorld.clone().invert(),
+      );
+      configureUnifiedSelectionOutline(component, contentBounds);
+      loaded.visible = state.showVisual;
+      component.content.add(loaded);
+      component.splat = loaded;
+      component.splatLocalBounds = rootLocalBounds;
+      component.meshVisualVertexCount = prepared.vertexCount;
+      component.collisionRoot = loaded;
+      component.collisionMeshes = prepared.meshes;
+      component.collisionFaces = prepared.faceCount;
+      component.collisionMode = "unified-glb";
+      component.collisionSettled = true;
+      component.colliderReady = true;
+      component.visualKind = "mesh";
+      component.visualReady = true;
+      component.ready = true;
+      for (const mesh of prepared.meshes) {
+        objectCollisionMeshes.push(mesh);
+        interactiveObjectColliders.push(mesh);
+      }
+      component.group.updateMatrixWorld(true);
+      component.collisionBounds = interactiveObjectCollisionBounds(component);
+      state.objectColliderReadyCount += 1;
+      state.objectColliderMeshCount += prepared.meshes.length;
+      state.objectColliderFaces += prepared.faceCount;
+      state.interactiveObjectReadyCount += 1;
+      state.interactiveObjectMeshVertexCount += prepared.vertexCount;
+      state.interactiveObjectVisualPrimitiveCount = state.interactiveObjectGaussianCount
+        + state.interactiveObjectRgbPointCount
+        + state.interactiveObjectMeshVertexCount;
+      state.visualCount = state.staticVisualCount + state.interactiveObjectVisualPrimitiveCount;
+      updateHud();
+      return component;
+    } catch (error) {
+      component.ready = false;
+      component.visualReady = false;
+      component.colliderReady = false;
+      component.collisionSettled = true;
+      component.collisionMode = "none";
+      component.collisionError = error?.message || String(error);
+      state.objectColliderLoadErrors.push({ id: definition.id, error: component.collisionError });
+      throw new Error(`${definition.id}: unified-glb rejected: ${component.collisionError}`);
+    }
+  })();
+  try {
+    return await component.unifiedLoadPromise;
+  } finally {
+    component.unifiedLoadPromise = null;
+  }
+}
+
+function applyInteractiveObjectHierarchy() {
+  interactiveObjectLayer.updateMatrixWorld(true);
+  for (const component of interactiveObjects.values()) {
+    if (component.hierarchyResolved) continue;
+    const parentObjectId = component.definition.parentObjectId;
+    if (parentObjectId != null) {
+      const parent = interactiveObjects.get(parentObjectId);
+      if (!parent) throw new Error(`${component.definition.id}: missing parent component ${parentObjectId}`);
+      component.group.updateMatrixWorld(true);
+      const worldBeforeAttach = component.group.matrixWorld.clone();
+      parent.group.attach(component.group);
+      component.group.updateMatrixWorld(true);
+      component.hierarchyAttachmentMatrixDelta = Math.max(
+        ...worldBeforeAttach.elements.map((value, index) => (
+          Math.abs(value - component.group.matrixWorld.elements[index])
+        )),
+      );
+      component.parentComponent = parent;
+      parent.childComponents.add(component);
+      component.restQuaternion.copy(component.group.quaternion);
+    }
+    component.hierarchyResolved = true;
+  }
+  interactiveObjectLayer.updateMatrixWorld(true);
 }
 
 function initializeInteractiveObjectComponents() {
@@ -1689,12 +2070,16 @@ function initializeInteractiveObjectComponents() {
   for (const definition of definitions) {
     if (!interactiveObjects.has(definition.id)) createInteractiveObjectComponent(definition);
   }
+  applyInteractiveObjectHierarchy();
   return Array.from(interactiveObjects.values());
 }
 
 async function loadInteractiveObject(definition) {
-  const { asset, bytes } = await getChunkedAssetBytes(definition.visual, definition.id);
   const component = interactiveObjects.get(definition.id) || createInteractiveObjectComponent(definition);
+  if (definition.collision?.mode === "unified-glb") {
+    return loadUnifiedInteractiveObject(component);
+  }
+  const { asset, bytes } = await getChunkedAssetBytes(definition.visual, definition.id);
   let visualObject;
   if (asset.renderer === "three-points" || asset.format === "rgb-point-cloud-ply") {
     const geometry = new PLYLoader().parse(collisionArrayBuffer(bytes));
@@ -1750,7 +2135,8 @@ async function loadInteractiveObject(definition) {
     state.interactiveObjectGaussianCount += Number(asset.vertexCount) || 0;
   }
   state.interactiveObjectVisualPrimitiveCount = state.interactiveObjectGaussianCount
-    + state.interactiveObjectRgbPointCount;
+    + state.interactiveObjectRgbPointCount
+    + state.interactiveObjectMeshVertexCount;
   state.visualCount = state.staticVisualCount + state.interactiveObjectVisualPrimitiveCount;
   updateHud();
   return component;
@@ -1827,10 +2213,13 @@ function registerCollisionMesh(mesh, component, mode) {
   mesh.userData.colliderId = component.definition.id;
   mesh.userData.colliderKind = "object";
   mesh.userData.colliderMode = mode;
+  mesh.userData.collisionGateStatus = component.definition.collision?.gate?.status || "missing";
   mesh.userData.colliderLabel = `${component.definition.label} ${mode} collider`;
   mesh.userData.surfaceType = `interactive-object-${mode}-collider`;
-  mesh.userData.walkable = component.definition.collision?.walkable !== false;
-  mesh.userData.characterCollision = component.definition.collision?.characterCollision !== false;
+  const gatePassed = component.definition.collision?.gate?.status === "passed";
+  mesh.userData.walkable = gatePassed && component.definition.collision?.walkable === true;
+  mesh.userData.characterCollision = gatePassed
+    && component.definition.collision?.characterCollision === true;
   component.collisionMeshes.push(mesh);
   objectCollisionMeshes.push(mesh);
   const index = geometry.index;
@@ -1841,9 +2230,10 @@ function interactiveObjectCollisionBounds(component) {
   if (!component) return null;
   if (component.collisionMode === "none") return null;
   component.group.updateMatrixWorld(true);
-  if (component.collisionMode === "glb" && component.collisionRoot) {
+  if (["glb", "obj", "unified-glb"].includes(component.collisionMode) && component.collisionRoot) {
     return new THREE.Box3().setFromObject(component.collisionRoot);
   }
+  if (!component.proxy) return null;
   const localBounds = component.proxy.geometry.boundingBox
     || (component.proxy.geometry.computeBoundingBox(), component.proxy.geometry.boundingBox);
   return localBounds?.clone().applyMatrix4(component.proxy.matrixWorld) || null;
@@ -1851,13 +2241,19 @@ function interactiveObjectCollisionBounds(component) {
 
 function registerDegradedProxyCollision(component, reason = "missing-glb") {
   const proxy = component.proxy;
+  if (!proxy) throw new Error(`${component.definition.id}: no degraded collision proxy is declared`);
   if (!objectCollisionMeshes.includes(proxy)) objectCollisionMeshes.push(proxy);
   proxy.userData.colliderId = component.definition.id;
   proxy.userData.colliderKind = "object";
   proxy.userData.colliderMode = "degraded-box";
+  proxy.userData.collisionGateStatus = component.definition.collision?.gate?.status || "missing";
   proxy.userData.colliderLabel = `${component.definition.label} degraded box collider`;
-  proxy.userData.walkable = true;
-  proxy.userData.characterCollision = true;
+  const explicitlyApprovedProxy = component.definition.collision?.mode === "degraded-box"
+    && component.definition.collision?.gate?.status === "passed";
+  proxy.userData.walkable = explicitlyApprovedProxy
+    && component.definition.collision?.walkable === true;
+  proxy.userData.characterCollision = explicitlyApprovedProxy
+    && component.definition.collision?.characterCollision === true;
   component.colliderReady = true;
   component.collisionSettled = true;
   component.collisionMode = "degraded-box";
@@ -1874,6 +2270,9 @@ function registerDegradedProxyCollision(component, reason = "missing-glb") {
 
 async function loadInteractiveObjectCollision(component) {
   const definition = component.definition;
+  if (definition.collision?.mode === "unified-glb") {
+    return loadUnifiedInteractiveObject(component);
+  }
   if (definition.collision?.mode === "none") {
     component.colliderReady = false;
     component.collisionSettled = true;
@@ -1887,7 +2286,7 @@ async function loadInteractiveObjectCollision(component) {
   const asset = definition.collision?.asset;
   if (!asset) return registerDegradedProxyCollision(component, "manifest has no GLB/OBJ collider");
   const gateStatus = definition.collision?.gate?.status;
-  if (gateStatus && gateStatus !== "passed" && !ALLOW_CANDIDATE_COLLIDERS) {
+  if (gateStatus !== "passed" && !ALLOW_CANDIDATE_COLLIDERS) {
     return registerDegradedProxyCollision(component, `collision gate is ${gateStatus}`);
   }
   try {
@@ -1935,7 +2334,11 @@ function setObjectColliderDebugVisible(visible, objectId = null) {
     ? String(objectId)
     : null;
   for (const mesh of objectCollisionMeshes) {
-    if (!mesh.material || mesh.userData.colliderMode === "degraded-box") continue;
+    if (
+      !mesh.material
+      || mesh.userData.colliderMode === "degraded-box"
+      || mesh.userData.colliderMode === "unified-glb"
+    ) continue;
     const selected = !state.objectColliderDebugObjectId
       || mesh.userData.interactiveObjectId === state.objectColliderDebugObjectId;
     const shown = state.objectColliderDebugVisible && selected;
@@ -2245,11 +2648,80 @@ function collisionTargets({ walkable = false, characterCollision = false } = {})
   const targets = [];
   if (colliderMesh) targets.push(colliderMesh);
   for (const mesh of objectCollisionMeshes) {
-    if (walkable && mesh.userData.walkable === false) continue;
-    if (characterCollision && mesh.userData.characterCollision === false) continue;
+    if (walkable && mesh.userData.walkable !== true) continue;
+    if (characterCollision && mesh.userData.characterCollision !== true) continue;
     targets.push(mesh);
   }
   return targets;
+}
+
+function collisionMeshPairIntersects(left, right) {
+  left.updateMatrixWorld(true);
+  right.updateMatrixWorld(true);
+
+  const leftBounds = new THREE.Box3().setFromObject(left);
+  const rightBounds = new THREE.Box3().setFromObject(right);
+  if (leftBounds.isEmpty() || rightBounds.isEmpty() || !leftBounds.intersectsBox(rightBounds)) {
+    return false;
+  }
+
+  for (const mesh of [left, right]) {
+    if (!mesh.geometry?.boundsTree) {
+      mesh.geometry.boundsTree = new MeshBVH(mesh.geometry, {
+        strategy: SAH,
+        indirect: true,
+        maxLeafTris: 12,
+      });
+    }
+  }
+
+  const rightToLeft = new THREE.Matrix4()
+    .copy(left.matrixWorld)
+    .invert()
+    .multiply(right.matrixWorld);
+  return left.geometry.boundsTree.intersectsGeometry(right.geometry, rightToLeft);
+}
+
+function inspectSceneInterpenetrations() {
+  const targets = collisionTargets();
+  const intersectionsByPair = new Map();
+  let meshPairTests = 0;
+
+  for (let leftIndex = 0; leftIndex < targets.length; leftIndex += 1) {
+    const left = targets[leftIndex];
+    const leftId = String(left.userData.colliderId || left.userData.interactiveObjectId || "scene");
+    for (let rightIndex = leftIndex + 1; rightIndex < targets.length; rightIndex += 1) {
+      const right = targets[rightIndex];
+      const rightId = String(right.userData.colliderId || right.userData.interactiveObjectId || "scene");
+      if (leftId === rightId) continue;
+      meshPairTests += 1;
+      if (!collisionMeshPairIntersects(left, right)) continue;
+
+      const pairIds = [leftId, rightId].sort();
+      const pairKey = pairIds.join("::");
+      if (intersectionsByPair.has(pairKey)) continue;
+      intersectionsByPair.set(pairKey, {
+        colliderIds: pairIds,
+        objectIds: pairIds.filter((id) => id !== "scene"),
+        colliderKinds: [
+          left.userData.colliderKind || (leftId === "scene" ? "scene" : "object"),
+          right.userData.colliderKind || (rightId === "scene" ? "scene" : "object"),
+        ],
+        leftBounds: serializeBox(new THREE.Box3().setFromObject(left)),
+        rightBounds: serializeBox(new THREE.Box3().setFromObject(right)),
+      });
+    }
+  }
+
+  const intersections = Array.from(intersectionsByPair.values());
+  return {
+    status: intersections.length ? "failed" : "passed",
+    targetCount: targets.length,
+    meshPairTests,
+    intersectionCount: intersections.length,
+    intersections,
+    limitation: "Conservative triangle-surface intersection gate; accepted support contact still requires six-view placement review.",
+  };
 }
 
 function intersectCollisionWorld(activeRaycaster, options = {}) {
@@ -2993,7 +3465,22 @@ function setCameraOrbitView(preset = "reference", { announce = false, immediate 
   camera.fov = fovDeg;
   camera.up.copy(up || ROBOT_UP);
   camera.updateProjectionMatrix();
-  setSmoothCameraPose(eye, target, { immediate });
+  const overviewId = manifest?.initialState?.cameraFocusObjectId;
+  const overview = overviewId ? interactiveObjects.get(String(overviewId)) : null;
+  if (overview) {
+    focusCameraOnInteractiveComponent(overview, {
+      immediate,
+      referenceEye: eye,
+      referenceDirection: eye.clone().sub(target),
+      overview: true,
+      preserveVertical: presetId === "top",
+      preservePresetDirection: true,
+    });
+    state.cameraPresetSource = `${source}+overview:${overview.definition.id}`;
+  } else {
+    state.cameraOverviewFocusObjectId = null;
+    setSmoothCameraPose(eye, target, { immediate });
+  }
   setLayerVisibility();
   if (announce) showToast(`Camera preset: ${CAMERA_PRESET_LABELS[presetId]}.`);
 }
@@ -3162,7 +3649,284 @@ function renderSceneQaResult(result) {
   }
 }
 
+function clearSceneCommandPreview({ resetState = true } = {}) {
+  currentSceneCommandPreview = null;
+  currentSceneCommandSubmission = null;
+  if (sceneCommandPreviewElement) sceneCommandPreviewElement.hidden = true;
+  if (sceneCommandTitle) sceneCommandTitle.textContent = "";
+  if (sceneCommandRisk) sceneCommandRisk.textContent = "";
+  if (sceneCommandSummary) sceneCommandSummary.textContent = "";
+  if (sceneCommandStages) sceneCommandStages.replaceChildren();
+  if (sceneCommandStatus) {
+    sceneCommandStatus.textContent = "";
+    sceneCommandStatus.dataset.status = "idle";
+  }
+  if (sceneCommandConfirm) {
+    sceneCommandConfirm.disabled = true;
+    sceneCommandConfirm.textContent = "确认提交";
+  }
+  if (!resetState) return;
+  state.sceneCommandReady = false;
+  state.sceneCommandKind = null;
+  state.sceneCommandStatus = "idle";
+  state.sceneCommandAffectedStages = [];
+  state.sceneCommandTargetIds = [];
+  state.sceneCommandRequestId = null;
+  state.sceneCommandPlanStatus = "idle";
+  state.sceneCommandConfirmationRequired = false;
+  state.sceneCommandResponse = null;
+  state.sceneCommandError = "";
+}
+
+function setSceneCommandStatus(message, status) {
+  if (sceneCommandStatus) {
+    sceneCommandStatus.textContent = message;
+    sceneCommandStatus.dataset.status = status;
+  }
+  state.sceneCommandStatus = status;
+}
+
+function renderSceneCommandPreview(preview) {
+  currentSceneCommandPreview = preview;
+  if (sceneQaAnswer) {
+    sceneQaAnswer.textContent = "";
+    sceneQaAnswer.dataset.status = "idle";
+  }
+  if (sceneQaCandidates) sceneQaCandidates.replaceChildren();
+  if (sceneCommandPreviewElement) sceneCommandPreviewElement.hidden = false;
+  if (sceneCommandTitle) sceneCommandTitle.textContent = `${preview.kindLabel} · 只读预览`;
+  if (sceneCommandRisk) sceneCommandRisk.textContent = preview.riskLevel;
+  if (sceneCommandSummary) sceneCommandSummary.textContent = preview.summary || "";
+  if (sceneCommandStages) {
+    sceneCommandStages.replaceChildren();
+    for (const affected of preview.affectedStages || []) {
+      const chip = document.createElement("span");
+      chip.textContent = affected.stage;
+      sceneCommandStages.append(chip);
+    }
+  }
+
+  state.sceneCommandReady = preview.status === "ready";
+  state.sceneCommandKind = preview.kind;
+  state.sceneCommandPreviewOnly = true;
+  state.sceneCommandAffectedStages = (preview.affectedStages || []).map((item) => item.stage);
+  state.sceneCommandTargetIds = [...(preview.targetIds || [])];
+  state.sceneCommandRequestId = null;
+  state.sceneCommandResponse = null;
+  state.sceneCommandError = "";
+  if (preview.status !== "ready") {
+    setSceneCommandStatus("目标未通过确定性解析，操作已阻止。", "blocked");
+    if (sceneCommandConfirm) sceneCommandConfirm.disabled = true;
+  } else if (!sceneCommandEndpoint) {
+    setSceneCommandStatus("当前 manifest 未配置执行后端；这里只显示预览，场景不会被修改。", "blocked");
+    if (sceneCommandConfirm) sceneCommandConfirm.disabled = true;
+  } else {
+    setSceneCommandStatus("正在请求后端生成权威执行计划…", "submitting");
+    if (sceneCommandConfirm) sceneCommandConfirm.disabled = true;
+  }
+  updateHud();
+  return preview;
+}
+
+function previewSceneInput(question) {
+  if (!sceneKnowledgeIndex) {
+    return renderSceneCommandPreview({
+      kind: "query_description",
+      kindLabel: "场景指令",
+      mutating: true,
+      status: "blocked_invalid",
+      previewOnly: true,
+      affectedStages: [],
+      targetIds: [],
+      riskLevel: "none",
+      summary: "场景知识尚未就绪。",
+    });
+  }
+  const preview = parseSceneCommand(question, sceneKnowledgeIndex, {
+    selectedEntityId: state.selectedSceneEntity,
+  });
+  if (!preview.mutating) {
+    clearSceneCommandPreview();
+    return askScene(question);
+  }
+  const rendered = renderSceneCommandPreview(preview);
+  if (preview.status === "ready" && sceneCommandEndpoint) {
+    prepareSceneCommandSubmission(preview);
+  }
+  return rendered;
+}
+
+function sceneCommandRequestId() {
+  const random = globalThis.crypto?.randomUUID?.().replaceAll("-", "")
+    || Math.random().toString(36).slice(2, 14);
+  return `web-${Date.now()}-${random}`;
+}
+
+function expectedManifestSha256() {
+  const candidates = [
+    manifest?.expectedManifestSha256,
+    manifest?.worldManifestSha256,
+    manifest?.sourceWorld?.manifestSha256,
+    manifest?.sourceWorld?.sha256,
+  ];
+  return candidates.find((value) => typeof value === "string" && /^[a-f0-9]{64}$/u.test(value)) || null;
+}
+
+function sceneCommandQueuePayload(command, preview) {
+  return {
+    command,
+    structuredIntent: structuredClone(command.intent),
+    rawPrompt: command.provenance.raw_prompt,
+    expectedManifestSha256: expectedManifestSha256(),
+    clientPreview: {
+      status: preview.status,
+      previewOnly: true,
+      manifestVersion: state.manifestVersion || null,
+      riskLevel: preview.riskLevel,
+      summary: preview.summary,
+      targetIds: [...preview.targetIds],
+      affectedStages: preview.affectedStages.map((item) => item.stage),
+    },
+  };
+}
+
+function sceneCommandPlanEndpoint(submitEndpoint) {
+  const endpoint = new URL(submitEndpoint);
+  if (!endpoint.pathname.endsWith("/v1/scene-commands/submit")) {
+    throw new Error("Scene command endpoint does not expose the v1 plan route");
+  }
+  endpoint.pathname = endpoint.pathname.replace(/\/submit$/u, "/plan");
+  return endpoint.href;
+}
+
+async function prepareSceneCommandSubmission(preview) {
+  const requestId = sceneCommandRequestId();
+  const command = buildSceneCommandEnvelope(preview, {
+    requestId,
+    contextReferences: [
+      `manifest:${state.manifestVersion || "unknown"}`,
+      ...(expectedManifestSha256() ? [`manifest-sha256:${expectedManifestSha256()}`] : []),
+    ],
+  });
+  const payload = sceneCommandQueuePayload(command, preview);
+  currentSceneCommandSubmission = {
+    requestId,
+    command,
+    payload,
+    confirmationPhrase: null,
+    planResult: null,
+  };
+  state.sceneCommandRequestId = requestId;
+  state.sceneCommandPlanStatus = "planning";
+  state.sceneCommandConfirmationRequired = false;
+  try {
+    const result = await planSceneCommandEnvelope(
+      sceneCommandPlanEndpoint(sceneCommandEndpoint),
+      payload,
+    );
+    if (currentSceneCommandSubmission?.requestId !== requestId) return result;
+    currentSceneCommandSubmission.planResult = structuredClone(result);
+    currentSceneCommandSubmission.confirmationPhrase = result.confirmationPhrase || null;
+    state.sceneCommandPlanStatus = result.status;
+    state.sceneCommandConfirmationRequired = result.confirmationRequired;
+    state.sceneCommandResponse = structuredClone(result);
+    const planReady = result.status === "ready" && result.plan?.status === "ready";
+    if (!planReady) {
+      const reason = result.plan?.warnings?.[0] || result.reason || "服务端计划未通过。";
+      setSceneCommandStatus(`权威计划阻止了该操作：${reason}`, "blocked");
+      if (sceneCommandConfirm) sceneCommandConfirm.disabled = true;
+      return result;
+    }
+    const planStages = Array.isArray(result.plan?.affected_stages)
+      ? result.plan.affected_stages.map((item) => item.stage).filter(Boolean)
+      : [];
+    if (planStages.length) {
+      state.sceneCommandAffectedStages = planStages;
+      if (sceneCommandStages) {
+        sceneCommandStages.replaceChildren();
+        for (const stage of planStages) {
+          const chip = document.createElement("span");
+          chip.textContent = stage;
+          sceneCommandStages.append(chip);
+        }
+      }
+    }
+    setSceneCommandStatus(
+      result.confirmationRequired
+        ? "后端计划已验证；确认后将携带服务端签发的确认短语入队。"
+        : "后端计划已验证；确认后入队。",
+      "ready",
+    );
+    if (sceneCommandConfirm) sceneCommandConfirm.disabled = false;
+    return result;
+  } catch (error) {
+    if (currentSceneCommandSubmission?.requestId !== requestId) return null;
+    state.sceneCommandPlanStatus = "failed";
+    state.sceneCommandError = error?.message || String(error);
+    setSceneCommandStatus(`计划校验失败：${state.sceneCommandError}`, "failed");
+    if (sceneCommandConfirm) sceneCommandConfirm.disabled = true;
+    return null;
+  } finally {
+    updateHud();
+  }
+}
+
+async function submitCurrentSceneCommand() {
+  const preview = currentSceneCommandPreview;
+  const submission = currentSceneCommandSubmission;
+  if (
+    !preview
+    || preview.status !== "ready"
+    || !sceneCommandEndpoint
+    || !submission?.planResult
+    || submission.planResult.status !== "ready"
+  ) {
+    return { status: "blocked", reason: "no_ready_preview_or_execution_backend" };
+  }
+  const payload = {
+    ...submission.payload,
+    ...(submission.confirmationPhrase
+      ? { confirmationPhrase: submission.confirmationPhrase }
+      : {}),
+  };
+  state.sceneCommandRequestId = submission.requestId;
+  state.sceneCommandError = "";
+  if (sceneCommandConfirm) {
+    sceneCommandConfirm.disabled = true;
+    sceneCommandConfirm.textContent = "提交中";
+  }
+  setSceneCommandStatus("正在提交结构化指令…", "submitting");
+  updateHud();
+  try {
+    const result = await submitSceneCommandEnvelope(sceneCommandEndpoint, payload);
+    state.sceneCommandResponse = structuredClone(result);
+    if (result.status === "queued") {
+      setSceneCommandStatus("已进入 pipeline 队列；当前页面中的场景资产尚未改变。", "accepted");
+    } else if (result.status === "completed_read") {
+      setSceneCommandStatus("后端已完成只读请求；当前页面中的场景资产未改变。", "accepted");
+    } else if (result.status === "duplicate") {
+      setSceneCommandStatus("同一请求已经存在，未重复入队。", "accepted");
+    } else {
+      const reason = result.reason || result.message || "后端阻止了该操作。";
+      setSceneCommandStatus(`未入队：${reason}`, "blocked");
+    }
+    return result;
+  } catch (error) {
+    state.sceneCommandError = error?.message || String(error);
+    state.sceneCommandResponse = null;
+    setSceneCommandStatus(`提交失败：${state.sceneCommandError}`, "failed");
+    return { status: "blocked", reason: state.sceneCommandError };
+  } finally {
+    if (sceneCommandConfirm) {
+      sceneCommandConfirm.disabled = true;
+      sceneCommandConfirm.textContent = "已提交";
+    }
+    updateHud();
+  }
+}
+
 function askScene(question) {
+  clearSceneCommandPreview();
   if (!sceneKnowledgeIndex) {
     const unavailable = {
       status: "unavailable",
@@ -3199,7 +3963,32 @@ function askScene(question) {
 function interactiveObjectHitAt(clientX, clientY) {
   if (!interactiveObjectColliders.length) return null;
   setRaycasterFromCanvasPoint(clientX, clientY);
-  return raycaster.intersectObjects(interactiveObjectColliders, false)[0] || null;
+  const selectHit = (hits) => {
+    if (!state.interactiveObjectSolo) return hits[0] || null;
+    return hits.find((hit) => (
+      hit.object.userData.interactiveObjectId === state.selectedInteractiveObject
+    )) || null;
+  };
+  const frontSideHit = selectHit(raycaster.intersectObjects(interactiveObjectColliders, false));
+  if (frontSideHit) return frontSideHit;
+
+  // Surface-BVH assets can be valid open surfaces. Make picking two-sided without
+  // changing their retained PBR render materials or using a proxy geometry.
+  const unifiedMeshes = interactiveObjectColliders.filter(
+    (mesh) => mesh.userData.colliderMode === "unified-glb",
+  );
+  const originalSides = [];
+  for (const mesh of unifiedMeshes) {
+    const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+    for (const material of materials) {
+      if (!material) continue;
+      originalSides.push([material, material.side]);
+      material.side = THREE.DoubleSide;
+    }
+  }
+  const doubleSideHit = selectHit(raycaster.intersectObjects(unifiedMeshes, false));
+  for (const [material, side] of originalSides) material.side = side;
+  return doubleSideHit;
 }
 
 function setComponentVisualVisibility(component, visible) {
@@ -3213,40 +4002,146 @@ function setComponentVisualVisibility(component, visible) {
   }
 }
 
+function interactiveObjectVisibility(component) {
+  if (!state.interactiveObjectSolo) return { groupVisible: true, objectVisible: true };
+  const selected = interactiveObjects.get(state.selectedInteractiveObject);
+  if (!selected) return { groupVisible: false, objectVisible: false };
+  if (component === selected) return { groupVisible: true, objectVisible: true };
+  let ancestor = selected.parentComponent;
+  while (ancestor) {
+    if (ancestor === component) return { groupVisible: true, objectVisible: false };
+    ancestor = ancestor.parentComponent;
+  }
+  return { groupVisible: false, objectVisible: false };
+}
+
+function applyInteractiveObjectVisibility() {
+  for (const component of interactiveObjects.values()) {
+    const { groupVisible, objectVisible } = interactiveObjectVisibility(component);
+    const selected = state.selectedInteractiveObject === component.definition.id;
+    component.group.visible = groupVisible;
+    setComponentVisualVisibility(component, state.showVisual && objectVisible);
+    if (component.proxy?.material) {
+      component.proxy.material.opacity = state.interactiveObjectProxiesVisible && objectVisible ? 0.07 : 0;
+    }
+    component.outline.visible = objectVisible && (
+      state.interactiveObjectProxiesVisible || selected || Boolean(component.spin)
+    );
+  }
+}
+
+function focusCameraOnInteractiveComponent(component, {
+  immediate = false,
+  overview = false,
+  referenceEye = null,
+  referenceDirection = null,
+  preserveVertical = null,
+  preservePresetDirection = false,
+} = {}) {
+  if (!component || state.cameraMode !== "orbit") return false;
+  const worldBounds = interactiveObjectCollisionBounds(component);
+  const worldPosition = worldBounds
+    ? worldBounds.getCenter(new THREE.Vector3())
+    : component.group.getWorldPosition(new THREE.Vector3());
+  const dimensions = worldBounds
+    ? worldBounds.getSize(new THREE.Vector3()).toArray()
+    : vectorFromArray(component.definition.colliderProxy?.dimensions, [0.5, 0.5, 0.5]).toArray();
+  const boundingRadius = Math.hypot(...dimensions) * 0.5;
+  const verticalHalfFov = THREE.MathUtils.degToRad(camera.fov) * 0.5;
+  const horizontalHalfFov = Math.atan(Math.tan(verticalHalfFov) * Math.max(camera.aspect, 0.1));
+  const framingHalfFov = Math.max(THREE.MathUtils.degToRad(8), Math.min(verticalHalfFov, horizontalHalfFov));
+  const framingDistance = boundingRadius / Math.max(Math.sin(framingHalfFov), 1e-3) * 1.08;
+  const distance = Math.max(5.5, Math.max(...dimensions) * 1.85, framingDistance);
+  controls.maxDistance = Math.max(controls.maxDistance, distance * 1.05);
+  const roomCenter = colliderBounds ? boxCenter(colliderBounds) : controls.target.clone();
+  const currentDirection = referenceDirection?.clone()
+    || (referenceEye || camera.position).clone().sub(worldPosition);
+  const inward = roomCenter.sub(worldPosition);
+  const normalizedUp = ROBOT_UP.clone().normalize();
+  const currentUnit = currentDirection.lengthSq() > 1e-8
+    ? currentDirection.clone().normalize()
+    : normalizedUp.clone();
+  const verticalView = preserveVertical == null
+    ? Math.abs(currentUnit.dot(normalizedUp)) >= 0.82
+    : preserveVertical;
+  const flatten = (direction) => direction.addScaledVector(ROBOT_UP, -direction.dot(ROBOT_UP));
+  if (!verticalView) flatten(currentDirection);
+  flatten(inward);
+  if (currentDirection.lengthSq() < 1e-5) currentDirection.copy(inward);
+  if (inward.lengthSq() < 1e-5) {
+    inward.copy(new THREE.Vector3(0, 0, 1)).applyAxisAngle(ROBOT_UP, Math.PI / 4);
+  }
+  currentDirection.normalize();
+  inward.normalize();
+  const candidateDirections = [];
+  const appendOrbitDirections = (seed, angles = [0, Math.PI / 4, -Math.PI / 4, Math.PI / 2, -Math.PI / 2, Math.PI]) => {
+    for (const angle of angles) {
+      candidateDirections.push(seed.clone().applyAxisAngle(ROBOT_UP, angle).normalize());
+    }
+  };
+  if (verticalView) {
+    candidateDirections.push(currentUnit);
+  } else if (preservePresetDirection) {
+    appendOrbitDirections(currentDirection, [0, Math.PI / 8, -Math.PI / 8, Math.PI / 4, -Math.PI / 4]);
+  } else {
+    appendOrbitDirections(currentDirection);
+  }
+  if (!preservePresetDirection) appendOrbitDirections(inward);
+  const height = verticalView ? 0 : Math.max(0.9, dimensions[1] * 0.28);
+  const previousFar = raycaster.far;
+  interactiveObjectLayer.updateMatrixWorld(true);
+  const expandedCollisionBounds = Array.from(interactiveObjects.values(), (candidate) =>
+    interactiveObjectCollisionBounds(candidate)?.clone().expandByScalar(0.05)
+  ).filter(Boolean);
+  const hitsFocusedAssembly = (hit) => {
+    let hitComponent = interactiveObjects.get(hit?.object?.userData?.interactiveObjectId);
+    while (hitComponent) {
+      if (hitComponent === component) return true;
+      hitComponent = hitComponent.parentComponent;
+    }
+    return false;
+  };
+  const eyeCandidates = candidateDirections.map((direction) => worldPosition.clone()
+    .addScaledVector(direction, distance)
+    .addScaledVector(ROBOT_UP, height));
+  const eye = eyeCandidates.find((candidateEye) => {
+    if (expandedCollisionBounds.some((bounds) => bounds.containsPoint(candidateEye))) return false;
+    const line = worldPosition.clone().sub(candidateEye);
+    const lineDistance = line.length();
+    raycaster.set(candidateEye, line.normalize());
+    raycaster.far = lineDistance * 1.05;
+    const firstHit = raycaster.intersectObjects(interactiveObjectColliders, false)[0];
+    return hitsFocusedAssembly(firstHit);
+  }) || eyeCandidates.find((candidateEye) =>
+    !expandedCollisionBounds.some((bounds) => bounds.containsPoint(candidateEye))
+  ) || eyeCandidates[0];
+  raycaster.far = previousFar;
+  state.cameraOverviewFocusObjectId = overview ? component.definition.id : null;
+  setSmoothCameraPose(eye, worldPosition, { immediate });
+  return true;
+}
+
 function selectInteractiveObject(component, { focus = false } = {}) {
   if (!component) return;
   state.selectedInteractiveObject = component.definition.id;
   state.selectedSceneEntity = component.definition.id;
   for (const candidate of interactiveObjects.values()) {
     const selected = candidate === component;
-    const componentVisible = !state.interactiveObjectSolo || selected;
-    candidate.group.visible = componentVisible;
-    setComponentVisualVisibility(candidate, state.showVisual && componentVisible);
-    candidate.outline.visible = state.interactiveObjectProxiesVisible || selected || Boolean(candidate.spin);
     candidate.outline.material.color.setHex(selected ? 0xefb35f : 0x58d7c9);
   }
-  if (focus && state.cameraMode === "orbit") {
-    const worldPosition = component.group.getWorldPosition(new THREE.Vector3());
-    const roomCenter = colliderBounds ? boxCenter(colliderBounds) : controls.target.clone();
-    const inward = roomCenter.sub(worldPosition);
-    inward.addScaledVector(ROBOT_UP, -inward.dot(ROBOT_UP));
-    if (inward.lengthSq() < 1e-5) {
-      inward.copy(camera.position).sub(worldPosition);
-      inward.addScaledVector(ROBOT_UP, -inward.dot(ROBOT_UP));
-    }
-    inward.normalize();
-    const dimensions = component.definition.colliderProxy.dimensions.map(Number);
-    const distance = Math.max(5.5, Math.max(...dimensions) * 1.85);
-    const eye = worldPosition.clone()
-      .addScaledVector(inward, distance)
-      .addScaledVector(ROBOT_UP, Math.max(0.9, dimensions[1] * 0.28));
-    setSmoothCameraPose(eye, worldPosition, { immediate: false });
-  }
+  applyInteractiveObjectVisibility();
+  if (focus) focusCameraOnInteractiveComponent(component);
   updateHud();
 }
 
 function startInteractiveObjectSpin(component) {
-  if (!component || component.spin || objectDrag?.component === component) return false;
+  if (
+    !component
+    || component.definition.independentlyMovable !== true
+    || component.definition.interaction?.kind !== "spin"
+    || component.spin
+    || objectDrag?.component === component
+  ) return false;
   const duration = Math.max(0.35, Number(component.definition.interaction?.durationMs || 1250) / 1000);
   component.spin = {
     elapsed: 0,
@@ -3255,14 +4150,18 @@ function startInteractiveObjectSpin(component) {
   };
   state.interactiveObjectRotationActive = true;
   selectInteractiveObject(component, { focus: true });
-  const visualLabel = component.visualKind === "rgb-points" ? "RGB point visual" : "Gaussian visual";
-  const proxyLabel = component.collisionMode === "none" ? "selection bounds" : "mesh collider";
+  const visualLabel = component.visualKind === "rgb-points"
+    ? "RGB point visual"
+    : component.visualKind === "mesh" ? "mesh visual" : "Gaussian visual";
+  const proxyLabel = component.collisionMode === "unified-glb"
+    ? "shared PBR mesh collider"
+    : component.collisionMode === "none" ? "selection bounds" : "mesh collider";
   showToast(`${component.definition.label}: ${visualLabel} and ${proxyLabel} rotating together.`);
   return true;
 }
 
 function setInteractiveObjectYaw(component, degrees) {
-  if (!component) return false;
+  if (!component || component.definition.independentlyMovable !== true) return false;
   const radians = THREE.MathUtils.degToRad(Number(degrees) || 0);
   const localUp = new THREE.Vector3(0, Math.sign(ROBOT_UP.y) || 1, 0);
   const rotation = new THREE.Quaternion().setFromAxisAngle(localUp, radians);
@@ -3276,7 +4175,12 @@ function setInteractiveObjectYaw(component, degrees) {
 function beginInteractiveObjectDrag(event, hit) {
   const objectId = hit?.object?.userData?.interactiveObjectId;
   const component = interactiveObjects.get(objectId);
-  if (!component || component.spin) return false;
+  if (
+    !component
+    || component.definition.independentlyMovable !== true
+    || component.definition.interaction?.drag !== "horizontal_yaw"
+    || component.spin
+  ) return false;
   event.preventDefault();
   state.robotFollowCamera = false;
   selectInteractiveObject(component, { focus: false });
@@ -3652,16 +4556,7 @@ function setLayerVisibility() {
     visualSplat.visible = staticVisualVisible;
     visualSplat.opacity = staticVisualVisible ? 1 : 0;
   }
-  for (const component of interactiveObjects.values()) {
-    const componentVisible = !state.interactiveObjectSolo
-      || state.selectedInteractiveObject === component.definition.id;
-    component.group.visible = componentVisible;
-    setComponentVisualVisibility(component, state.showVisual && componentVisible);
-    component.proxy.material.opacity = state.interactiveObjectProxiesVisible ? 0.07 : 0;
-    component.outline.visible = state.interactiveObjectProxiesVisible
-      || state.selectedInteractiveObject === component.definition.id
-      || Boolean(component.spin);
-  }
+  applyInteractiveObjectVisibility();
   document.querySelector("#toggleVisual").classList.toggle("is-active", state.showVisual);
   const staticVisualButton = document.querySelector("#toggleStaticVisual");
   staticVisualButton.classList.toggle("is-active", state.showStaticVisual);
@@ -3731,7 +4626,14 @@ function bindEvents() {
   canvas.addEventListener("wheel", onCanvasWheel, { passive: false });
   sceneQaForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    askScene(sceneQaInput?.value || "");
+    previewSceneInput(sceneQaInput?.value || "");
+  });
+  sceneCommandCancel?.addEventListener("click", () => {
+    clearSceneCommandPreview();
+    updateHud();
+  });
+  sceneCommandConfirm?.addEventListener("click", () => {
+    submitCurrentSceneCommand();
   });
   document.querySelectorAll("[data-viewport-gizmo]").forEach((button) => {
     button.addEventListener("pointerdown", (event) => beginViewportGizmoDrag(event, button.dataset.viewportGizmo));

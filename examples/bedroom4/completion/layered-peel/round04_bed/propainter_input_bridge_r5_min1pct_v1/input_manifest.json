@@ -1,0 +1,3622 @@
+{
+  "schema_version": 1,
+  "status": "ready_for_propainter",
+  "created_at": "2026-07-17T01:53:21.015041+00:00",
+  "purpose": "identity-safe front-to-back object peel input",
+  "method": "explicit 3D anchor assignment -> detection_id -> exact SAM3 mask -> optional enclosed-hole completion",
+  "object_id": "sam3_bed_01",
+  "object_gate": {
+    "disposition": "accepted_next_layer_target",
+    "evidence_gate_passed": true,
+    "explicit_anchor_sha256": "f9bd3583c47dc1b001f6b1ebec301f1446d56a20294f01e319c16dba7e9553f4",
+    "explicit_anchor_point_count": 1062892
+  },
+  "identity_contract": {
+    "physical_identity_source": "explicit --anchor object_id=PLY only",
+    "selected_mask_key": "association.frames[].assignments[].detection_id",
+    "forbidden_identity_sources": [
+      "SAM3 mask filename",
+      "SAM3 per-frame ordinal suffix",
+      "cross-frame item order"
+    ]
+  },
+  "previous_clean_plate_source_set_sha256": "321ebe171ff9848060d7c92311db4ad59ba24b6bcf6a74d172563bab922267a4",
+  "association": {
+    "path": "provenance/association.json",
+    "sha256": "bb4f620b9e33b978ebe050970ddbe37a10fc5545e04fe6c2e94f03b1d1e2bd61",
+    "schema_version": 1,
+    "thresholds": {
+      "minimum_visible_projected_pixels": 25,
+      "minimum_mask_hit_ratio": 0.52,
+      "minimum_dilated_support_ratio": 0.2,
+      "minimum_bbox_iou": 0.3,
+      "minimum_sam3_score": 0.5,
+      "projection_support_dilation_pixels": 4,
+      "occlusion_absolute_depth_tolerance": 0.02,
+      "occlusion_relative_depth_tolerance": 0.005,
+      "minimum_evidence_frames": 2,
+      "minimum_camera_baseline_scene_units": 0.1,
+      "minimum_object_view_angle_degrees": 4.0,
+      "separation_mode": "both",
+      "maximum_rotation_orthonormal_error": 0.001,
+      "assignment_weights": {
+        "mask_hit_ratio": 0.45,
+        "dilated_support_ratio": 0.3,
+        "bbox_iou": 0.2,
+        "sam3_score": 0.05
+      }
+    },
+    "thresholds_sha256": "d73436960ab93f9b5f6d6aa406081b8b53d3857ad4b4a2f5376531ad9c0556be",
+    "source_set_sha256": "321ebe171ff9848060d7c92311db4ad59ba24b6bcf6a74d172563bab922267a4"
+  },
+  "portable_layout": {
+    "paths_are_relative_to": "input_manifest.json parent",
+    "frames_dir": "input/frames",
+    "masks_dir": "input/masks",
+    "association_snapshot": "provenance/association.json"
+  },
+  "frame_count": 25,
+  "frame_ids": [
+    "000048",
+    "000049",
+    "000050",
+    "000051",
+    "000052",
+    "000053",
+    "000054",
+    "000055",
+    "000056",
+    "000057",
+    "000058",
+    "000059",
+    "000060",
+    "000061",
+    "000062",
+    "000063",
+    "000064",
+    "000065",
+    "000066",
+    "000067",
+    "000068",
+    "000069",
+    "000070",
+    "000071",
+    "000072"
+  ],
+  "frame_records": [
+    {
+      "sequence_index": 0,
+      "frame_id": "000048",
+      "detection_id": "000048:mask:000000",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.7678896554528257,
+        "frame_sha256": "5d28ab0452f6462a685d1cf828e79f2d4999e1aec095ef7177831dc3f1a614af",
+        "mask_sha256": "63aef26319ce57e6a140a3f13d6765220fafa24e50a456ce7b7ee743468cb7ae",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "5d28ab0452f6462a685d1cf828e79f2d4999e1aec095ef7177831dc3f1a614af",
+        "bytes": 1135426,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "63aef26319ce57e6a140a3f13d6765220fafa24e50a456ce7b7ee743468cb7ae",
+        "bytes": 6038,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 134347,
+        "bbox_xyxy_exclusive": [
+          174,
+          205,
+          1272,
+          719
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0000.png",
+        "sha256": "127b68a7d52a5f6b455ac86d495dc1099e2127d6f04fb4feb7e697263b457839",
+        "bytes": 833537,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0000.png",
+        "sha256": "01b3618547115694c20ef2206d10cb3804e5baf26e13543489f3918a5fabbd30",
+        "bytes": 5601,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 183427,
+        "bbox_xyxy_exclusive": [
+          174,
+          205,
+          1272,
+          719
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 134347,
+          "bbox_xyxy_exclusive": [
+            174,
+            205,
+            1272,
+            719
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 183427,
+          "bbox_xyxy_exclusive": [
+            174,
+            205,
+            1272,
+            719
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 49080,
+        "added_ratio": 0.36532263466992193,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 49080,
+            "bbox_xyxy_exclusive": [
+              328,
+              306,
+              680,
+              473
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          328,
+          306,
+          680,
+          473
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 1,
+      "frame_id": "000049",
+      "detection_id": "000049:mask:000003",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.771883235889225,
+        "frame_sha256": "c232f72d52d0dcd7357f2ac57b3299555ca20cf38418c6675857c0312d981b02",
+        "mask_sha256": "bd892895dd6c55987fc1b18d2909e3b50f887e9dc9e2321c345d47456f0f8344",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "c232f72d52d0dcd7357f2ac57b3299555ca20cf38418c6675857c0312d981b02",
+        "bytes": 1127589,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "bd892895dd6c55987fc1b18d2909e3b50f887e9dc9e2321c345d47456f0f8344",
+        "bytes": 5857,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 133884,
+        "bbox_xyxy_exclusive": [
+          175,
+          208,
+          1266,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0001.png",
+        "sha256": "5092e7c8ce2db485a6953e5879e8577844ace1d6467e1ad3c89196d9e9ac11ca",
+        "bytes": 829352,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0001.png",
+        "sha256": "285f698155d32a9c7385d5bdb53505a335b9aebbe35920593d9e3d09df4692ee",
+        "bytes": 5345,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 183771,
+        "bbox_xyxy_exclusive": [
+          175,
+          208,
+          1266,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 133884,
+          "bbox_xyxy_exclusive": [
+            175,
+            208,
+            1266,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 183771,
+          "bbox_xyxy_exclusive": [
+            175,
+            208,
+            1266,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 49887,
+        "added_ratio": 0.3726136058080129,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 49887,
+            "bbox_xyxy_exclusive": [
+              326,
+              310,
+              676,
+              481
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          326,
+          310,
+          676,
+          481
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 2,
+      "frame_id": "000050",
+      "detection_id": "000050:mask:000006",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.8418963827919714,
+        "frame_sha256": "62467518963f0f53a5feb947b348550bf06f6553a9539d78b363d4f5e906d813",
+        "mask_sha256": "1a9113ce039af0b1eba26b92447564397328a2ee03e63f90710b884e115c3857",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "62467518963f0f53a5feb947b348550bf06f6553a9539d78b363d4f5e906d813",
+        "bytes": 1141559,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "1a9113ce039af0b1eba26b92447564397328a2ee03e63f90710b884e115c3857",
+        "bytes": 10842,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 173656,
+        "bbox_xyxy_exclusive": [
+          184,
+          212,
+          1266,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0002.png",
+        "sha256": "685b3d9b33d123fc5cdd2b5b7eeb8f53a1c04e6c0a2058fb3afa8f5ef4bbbce0",
+        "bytes": 854325,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0002.png",
+        "sha256": "457a2e1afc5bd8f72f4d249a204aab834fb7a4c28c47362c549e3f3b4ead0858",
+        "bytes": 10391,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 225345,
+        "bbox_xyxy_exclusive": [
+          184,
+          212,
+          1266,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 173656,
+          "bbox_xyxy_exclusive": [
+            184,
+            212,
+            1266,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 225345,
+          "bbox_xyxy_exclusive": [
+            184,
+            212,
+            1266,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 51689,
+        "added_ratio": 0.2976516791818307,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 51689,
+            "bbox_xyxy_exclusive": [
+              325,
+              316,
+              681,
+              488
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          325,
+          316,
+          681,
+          488
+        ],
+        "enclosed_component_count": 18,
+        "rejected_below_threshold_component_count": 17
+      }
+    },
+    {
+      "sequence_index": 3,
+      "frame_id": "000051",
+      "detection_id": "000051:mask:000009",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.898945368437336,
+        "frame_sha256": "6a88cb25ef1117cdab9ca61b30347ea967a0b701fe8b04a9adaba438978e3804",
+        "mask_sha256": "f66d9befaf227f2c4d294bf37815cfeee2305d297ed73a45cc77adcf48bb07e8",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "6a88cb25ef1117cdab9ca61b30347ea967a0b701fe8b04a9adaba438978e3804",
+        "bytes": 1118193,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "f66d9befaf227f2c4d294bf37815cfeee2305d297ed73a45cc77adcf48bb07e8",
+        "bytes": 10131,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 202345,
+        "bbox_xyxy_exclusive": [
+          191,
+          215,
+          1274,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0003.png",
+        "sha256": "2ba9225efc5769d677b680cc3d54d60dd9fbff0f9c8fbfe686d2dd52b8196eb2",
+        "bytes": 825746,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0003.png",
+        "sha256": "25fc381abdd0ce579a517ae5cefdfe7aa52e637cea5279b8f49125c04a258f02",
+        "bytes": 9658,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 255679,
+        "bbox_xyxy_exclusive": [
+          191,
+          215,
+          1274,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 202345,
+          "bbox_xyxy_exclusive": [
+            191,
+            215,
+            1274,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 255679,
+          "bbox_xyxy_exclusive": [
+            191,
+            215,
+            1274,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 53334,
+        "added_ratio": 0.2635795300106254,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 53334,
+            "bbox_xyxy_exclusive": [
+              317,
+              320,
+              679,
+              499
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          317,
+          320,
+          679,
+          499
+        ],
+        "enclosed_component_count": 13,
+        "rejected_below_threshold_component_count": 12
+      }
+    },
+    {
+      "sequence_index": 4,
+      "frame_id": "000052",
+      "detection_id": "000052:mask:000012",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9741694083172315,
+        "frame_sha256": "0bd0edbd10327ca0f15673eb85f791e19672fad9c35a9b493526454b765c7141",
+        "mask_sha256": "0dd9ef6878dfd2ef272fe0a8f0eeb6e41a878c505a40844b57fadf984c121f9f",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "0bd0edbd10327ca0f15673eb85f791e19672fad9c35a9b493526454b765c7141",
+        "bytes": 1107314,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "0dd9ef6878dfd2ef272fe0a8f0eeb6e41a878c505a40844b57fadf984c121f9f",
+        "bytes": 4929,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 242744,
+        "bbox_xyxy_exclusive": [
+          199,
+          218,
+          1280,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0004.png",
+        "sha256": "816375e44aa23a02c4a5e81e01594a60119fd8958a4223fe39cc8267a5fb5583",
+        "bytes": 815966,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0004.png",
+        "sha256": "11fd5b1c5abd7f24358295b9b1b056537d2623ceacb9ae850ba2ec41a1599e4b",
+        "bytes": 4424,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 294898,
+        "bbox_xyxy_exclusive": [
+          199,
+          218,
+          1280,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 242744,
+          "bbox_xyxy_exclusive": [
+            199,
+            218,
+            1280,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 294898,
+          "bbox_xyxy_exclusive": [
+            199,
+            218,
+            1280,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 52154,
+        "added_ratio": 0.2148518603961375,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 52154,
+            "bbox_xyxy_exclusive": [
+              325,
+              325,
+              678,
+              503
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          325,
+          325,
+          678,
+          503
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 5,
+      "frame_id": "000053",
+      "detection_id": "000053:mask:000015",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9748493827600386,
+        "frame_sha256": "a221511555bbbc00c9d897c5ad7f7fe3171ed4022043f8ed2c1cf9bb568fcf63",
+        "mask_sha256": "132d7a107baeffb5274d9a0905ba185988738e81fc87a6515cb03a8e24dde37c",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "a221511555bbbc00c9d897c5ad7f7fe3171ed4022043f8ed2c1cf9bb568fcf63",
+        "bytes": 1108656,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "132d7a107baeffb5274d9a0905ba185988738e81fc87a6515cb03a8e24dde37c",
+        "bytes": 4866,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 233352,
+        "bbox_xyxy_exclusive": [
+          202,
+          223,
+          1274,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0005.png",
+        "sha256": "6c330d5e6ef3727109b4c738e4170d1f2130ba1d3514509b445d40e83e0b3fa9",
+        "bytes": 833579,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0005.png",
+        "sha256": "7a15a19d34e072b53677ec2985d4c853621e44f5ceccf9c2fcc21794eb93a7f4",
+        "bytes": 4342,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 288747,
+        "bbox_xyxy_exclusive": [
+          202,
+          223,
+          1274,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 233352,
+          "bbox_xyxy_exclusive": [
+            202,
+            223,
+            1274,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 288747,
+          "bbox_xyxy_exclusive": [
+            202,
+            223,
+            1274,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 55395,
+        "added_ratio": 0.23738815180499845,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 55395,
+            "bbox_xyxy_exclusive": [
+              323,
+              329,
+              685,
+              513
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          323,
+          329,
+          685,
+          513
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 6,
+      "frame_id": "000054",
+      "detection_id": "000054:mask:000018",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9714556274684457,
+        "frame_sha256": "5a373754931a2011586d5b1976072afe70f942300b4410084f65561afd6a3e61",
+        "mask_sha256": "2f1540c167352ca85ca261b156876c9cb00e0bda2124e019a12df7252a899c05",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "5a373754931a2011586d5b1976072afe70f942300b4410084f65561afd6a3e61",
+        "bytes": 1091556,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "2f1540c167352ca85ca261b156876c9cb00e0bda2124e019a12df7252a899c05",
+        "bytes": 4960,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 225131,
+        "bbox_xyxy_exclusive": [
+          206,
+          227,
+          1250,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0006.png",
+        "sha256": "12cb2c49189fd9781629da5dd5932362defe0c42be13779c01d55f79fd8f497a",
+        "bytes": 813621,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0006.png",
+        "sha256": "7d59cdfd98a9b67762d182e7a8c23876f51e1eb26b12c8930d8708fdafbc4cf3",
+        "bytes": 4377,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 281553,
+        "bbox_xyxy_exclusive": [
+          206,
+          227,
+          1250,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 225131,
+          "bbox_xyxy_exclusive": [
+            206,
+            227,
+            1250,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 281553,
+          "bbox_xyxy_exclusive": [
+            206,
+            227,
+            1250,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 56422,
+        "added_ratio": 0.25061852876769525,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 56422,
+            "bbox_xyxy_exclusive": [
+              324,
+              335,
+              692,
+              522
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          324,
+          335,
+          692,
+          522
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 7,
+      "frame_id": "000055",
+      "detection_id": "000055:mask:000022",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9676506743499605,
+        "frame_sha256": "6e45283c67785ec6e5860a786a4c99b149208fdaea1bffcf23fb53ce280f57ef",
+        "mask_sha256": "54b75c5dfe1c68800861b7d536d9bbb8641aa9ede272df866d58776bb1184aaa",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "6e45283c67785ec6e5860a786a4c99b149208fdaea1bffcf23fb53ce280f57ef",
+        "bytes": 1089380,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "54b75c5dfe1c68800861b7d536d9bbb8641aa9ede272df866d58776bb1184aaa",
+        "bytes": 6119,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 216385,
+        "bbox_xyxy_exclusive": [
+          208,
+          230,
+          1238,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0007.png",
+        "sha256": "a9fa053a95eec6c1ff2ba99a05da1ffdaf1e50b11e8d0a0bedd322540aca0989",
+        "bytes": 815225,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0007.png",
+        "sha256": "3a962e59df9185f111691b43dde0059271abe270d33ef4df4c0b0dca45a88403",
+        "bytes": 5520,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 274969,
+        "bbox_xyxy_exclusive": [
+          208,
+          230,
+          1238,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 216385,
+          "bbox_xyxy_exclusive": [
+            208,
+            230,
+            1238,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 274969,
+          "bbox_xyxy_exclusive": [
+            208,
+            230,
+            1238,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 58584,
+        "added_ratio": 0.2707396538577073,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 58584,
+            "bbox_xyxy_exclusive": [
+              322,
+              338,
+              696,
+              527
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          322,
+          338,
+          696,
+          527
+        ],
+        "enclosed_component_count": 2,
+        "rejected_below_threshold_component_count": 1
+      }
+    },
+    {
+      "sequence_index": 8,
+      "frame_id": "000056",
+      "detection_id": "000056:mask:000026",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9661438765776005,
+        "frame_sha256": "5bd5234bdf09f807c37f4a28f9246bf60def8dadf850e05bb89f53a41173ac9f",
+        "mask_sha256": "ca49448e4c7470431b7157d2d2ecde643b56da7dfafc2f9370e069300524d9ea",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "5bd5234bdf09f807c37f4a28f9246bf60def8dadf850e05bb89f53a41173ac9f",
+        "bytes": 1088427,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "ca49448e4c7470431b7157d2d2ecde643b56da7dfafc2f9370e069300524d9ea",
+        "bytes": 5494,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 214850,
+        "bbox_xyxy_exclusive": [
+          208,
+          231,
+          1230,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0008.png",
+        "sha256": "e280de69ed37e7d205e9811ded450357e69a36e9dc0d2fb54a5aeca9aaf76653",
+        "bytes": 813718,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0008.png",
+        "sha256": "b2b71195bec3a2caadb894223435e22ca2e01e4aac05bcbd9317ce19dafc7dc1",
+        "bytes": 4863,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 273687,
+        "bbox_xyxy_exclusive": [
+          208,
+          231,
+          1230,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 214850,
+          "bbox_xyxy_exclusive": [
+            208,
+            231,
+            1230,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 273687,
+          "bbox_xyxy_exclusive": [
+            208,
+            231,
+            1230,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 58837,
+        "added_ratio": 0.27385152431929255,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 58837,
+            "bbox_xyxy_exclusive": [
+              318,
+              342,
+              698,
+              535
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          318,
+          342,
+          698,
+          535
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 9,
+      "frame_id": "000057",
+      "detection_id": "000057:mask:000030",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9716902511499051,
+        "frame_sha256": "7604d40a7c98d16c6f57be332a10d36b3e21216f438eaa12c5cc911823cee582",
+        "mask_sha256": "59ff5c6c7eba8cf047662f8a7d8eb0464ba640c1268f05dadb8cc3a00cc8b24d",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "7604d40a7c98d16c6f57be332a10d36b3e21216f438eaa12c5cc911823cee582",
+        "bytes": 1114049,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "59ff5c6c7eba8cf047662f8a7d8eb0464ba640c1268f05dadb8cc3a00cc8b24d",
+        "bytes": 5278,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 211327,
+        "bbox_xyxy_exclusive": [
+          208,
+          233,
+          1225,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0009.png",
+        "sha256": "581a501a0949275973467f8c639921bb14db335d1e0a1c37d91d0a5e19f97eb6",
+        "bytes": 845121,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0009.png",
+        "sha256": "3baf927b0f48391f764e1e595c4270a30667e0cc3473279cbb80f1afce36817f",
+        "bytes": 4626,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 273006,
+        "bbox_xyxy_exclusive": [
+          208,
+          233,
+          1225,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 211327,
+          "bbox_xyxy_exclusive": [
+            208,
+            233,
+            1225,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 273006,
+          "bbox_xyxy_exclusive": [
+            208,
+            233,
+            1225,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 61679,
+        "added_ratio": 0.2918652136262759,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 61679,
+            "bbox_xyxy_exclusive": [
+              323,
+              345,
+              716,
+              536
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          323,
+          345,
+          716,
+          536
+        ],
+        "enclosed_component_count": 2,
+        "rejected_below_threshold_component_count": 1
+      }
+    },
+    {
+      "sequence_index": 10,
+      "frame_id": "000058",
+      "detection_id": "000058:mask:000033",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.971926022398732,
+        "frame_sha256": "e0d86f8b2a94def0ef6d92975316daa0eeb764c43ea796fab74603807fb7ef44",
+        "mask_sha256": "1ffef5d296ddb5063d4f007ff7a1cd0b3b699d1618a7964f5593eb9cf167e59b",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "e0d86f8b2a94def0ef6d92975316daa0eeb764c43ea796fab74603807fb7ef44",
+        "bytes": 1094664,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "1ffef5d296ddb5063d4f007ff7a1cd0b3b699d1618a7964f5593eb9cf167e59b",
+        "bytes": 4821,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 212550,
+        "bbox_xyxy_exclusive": [
+          206,
+          233,
+          1221,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0010.png",
+        "sha256": "965e50082096dece083d298f1871acb8f911c141ae7843d600b3b4361ff44e29",
+        "bytes": 826725,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0010.png",
+        "sha256": "024efead42c51f89bec4e1a973a5047c8685e419f3a755fc9a299c6ce0694f8b",
+        "bytes": 4250,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 273767,
+        "bbox_xyxy_exclusive": [
+          206,
+          233,
+          1221,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 212550,
+          "bbox_xyxy_exclusive": [
+            206,
+            233,
+            1221,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 273767,
+          "bbox_xyxy_exclusive": [
+            206,
+            233,
+            1221,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 61217,
+        "added_ratio": 0.2880122324159021,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 61217,
+            "bbox_xyxy_exclusive": [
+              317,
+              346,
+              706,
+              543
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          317,
+          346,
+          706,
+          543
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 11,
+      "frame_id": "000059",
+      "detection_id": "000059:mask:000037",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9712974071716325,
+        "frame_sha256": "89d82411a05b1962d63ac72ba26260dba22f4d2f23ba7e443bbf694fb1a190db",
+        "mask_sha256": "d3805dd5e413bedeb04612710a3b35c5eba7dfae7aeaf54e9ad9af5ebca9ac48",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "89d82411a05b1962d63ac72ba26260dba22f4d2f23ba7e443bbf694fb1a190db",
+        "bytes": 1087223,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "d3805dd5e413bedeb04612710a3b35c5eba7dfae7aeaf54e9ad9af5ebca9ac48",
+        "bytes": 4906,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 212959,
+        "bbox_xyxy_exclusive": [
+          205,
+          232,
+          1216,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0011.png",
+        "sha256": "400ad11e4d24cc98452f194bf06e11b59893788630b3d7c1a54db4fcc40cded8",
+        "bytes": 820808,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0011.png",
+        "sha256": "e2caf8bd34a70c85b0024983b81db878f226fdd1e6e7feeeeb1fe69c53f88324",
+        "bytes": 4283,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 273497,
+        "bbox_xyxy_exclusive": [
+          205,
+          232,
+          1216,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 212959,
+          "bbox_xyxy_exclusive": [
+            205,
+            232,
+            1216,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 273497,
+          "bbox_xyxy_exclusive": [
+            205,
+            232,
+            1216,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 60538,
+        "added_ratio": 0.2842706812109373,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 60538,
+            "bbox_xyxy_exclusive": [
+              326,
+              347,
+              707,
+              542
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          326,
+          347,
+          707,
+          542
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 12,
+      "frame_id": "000060",
+      "detection_id": "000060:mask:000042",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9706707361144034,
+        "frame_sha256": "18864ef335a410b659f46b67ba13f943f2e9e340e8bf819cb0b4f6bb2f185c25",
+        "mask_sha256": "0ec7806568f6b3c08b04ce45983f664f93c80f0dd4b5ca4eae1fb9c387813fe4",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "18864ef335a410b659f46b67ba13f943f2e9e340e8bf819cb0b4f6bb2f185c25",
+        "bytes": 1109573,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "0ec7806568f6b3c08b04ce45983f664f93c80f0dd4b5ca4eae1fb9c387813fe4",
+        "bytes": 4850,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 208763,
+        "bbox_xyxy_exclusive": [
+          206,
+          233,
+          1209,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0012.png",
+        "sha256": "e4c2da1a34fcd2dbb1aa4b3a8cc4cad7c89db3233681491ad3aca88a7ce35b5b",
+        "bytes": 848266,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0012.png",
+        "sha256": "92db422d9bddf9f28e6e25da7dad2b69414ecd956858e772fa48895a7b397097",
+        "bytes": 4229,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 272103,
+        "bbox_xyxy_exclusive": [
+          206,
+          233,
+          1209,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 208763,
+          "bbox_xyxy_exclusive": [
+            206,
+            233,
+            1209,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 272103,
+          "bbox_xyxy_exclusive": [
+            206,
+            233,
+            1209,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 63340,
+        "added_ratio": 0.30340625493981216,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 63340,
+            "bbox_xyxy_exclusive": [
+              325,
+              347,
+              714,
+              544
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          325,
+          347,
+          714,
+          544
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 13,
+      "frame_id": "000061",
+      "detection_id": "000061:mask:000047",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9721885581646251,
+        "frame_sha256": "920cda73602e0733359d501f4dc701f6f78080f878957a89758f7aed43cdce1b",
+        "mask_sha256": "31b1de87dda8fd95236dc07d61dd364d8041dfb0072aa1fd106cec8ddc44269f",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "920cda73602e0733359d501f4dc701f6f78080f878957a89758f7aed43cdce1b",
+        "bytes": 1081806,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "31b1de87dda8fd95236dc07d61dd364d8041dfb0072aa1fd106cec8ddc44269f",
+        "bytes": 4858,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 206175,
+        "bbox_xyxy_exclusive": [
+          209,
+          233,
+          1207,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0013.png",
+        "sha256": "10dfa91be7b44d26e0c28dc8ddb752bfa195a88626dbb6fa470f48fe5338ed92",
+        "bytes": 824877,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0013.png",
+        "sha256": "b76ce704be1f4805fcd9193528134b5f19261a10bf0f561737aa560707d83eec",
+        "bytes": 4242,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 271107,
+        "bbox_xyxy_exclusive": [
+          209,
+          233,
+          1207,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 206175,
+          "bbox_xyxy_exclusive": [
+            209,
+            233,
+            1207,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 271107,
+          "bbox_xyxy_exclusive": [
+            209,
+            233,
+            1207,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 64932,
+        "added_ratio": 0.31493634048745,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 64932,
+            "bbox_xyxy_exclusive": [
+              335,
+              348,
+              724,
+              544
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          335,
+          348,
+          724,
+          544
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 14,
+      "frame_id": "000062",
+      "detection_id": "000062:mask:000050",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9699450696895473,
+        "frame_sha256": "01d40476bbc70789278928a0d77e187ca0b0688aaa223048b34c4cd22ed8f0c6",
+        "mask_sha256": "91f276d50b78c6a716ba1b46610bc4534948383d7114f22f3dfe40004a755110",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "01d40476bbc70789278928a0d77e187ca0b0688aaa223048b34c4cd22ed8f0c6",
+        "bytes": 1067226,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "91f276d50b78c6a716ba1b46610bc4534948383d7114f22f3dfe40004a755110",
+        "bytes": 5003,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 203610,
+        "bbox_xyxy_exclusive": [
+          219,
+          232,
+          1208,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0014.png",
+        "sha256": "debcab8781664022d6423b0b7502330d98c9b400efffbcef9ee08443b2d4805f",
+        "bytes": 817307,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0014.png",
+        "sha256": "d2eacbf69ddfa275546c344fe29d5f3e24f6876544326982d74b415e6f1dae26",
+        "bytes": 4357,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 268796,
+        "bbox_xyxy_exclusive": [
+          219,
+          232,
+          1208,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 203610,
+          "bbox_xyxy_exclusive": [
+            219,
+            232,
+            1208,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 268796,
+          "bbox_xyxy_exclusive": [
+            219,
+            232,
+            1208,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 65186,
+        "added_ratio": 0.32015126958400864,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 65186,
+            "bbox_xyxy_exclusive": [
+              339,
+              347,
+              737,
+              545
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          339,
+          347,
+          737,
+          545
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 15,
+      "frame_id": "000063",
+      "detection_id": "000063:mask:000053",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9701503016242434,
+        "frame_sha256": "ad6372e3748252dec6f12d66e0f60807b2f16d4336e956fbfb41a322cdd159cf",
+        "mask_sha256": "c42165e68e48a5dc850f8b55497c91befe41c02d8c3eb91813f9eaba6fcdf5ba",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "ad6372e3748252dec6f12d66e0f60807b2f16d4336e956fbfb41a322cdd159cf",
+        "bytes": 1051427,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "c42165e68e48a5dc850f8b55497c91befe41c02d8c3eb91813f9eaba6fcdf5ba",
+        "bytes": 4877,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 202812,
+        "bbox_xyxy_exclusive": [
+          230,
+          231,
+          1217,
+          719
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0015.png",
+        "sha256": "6a29cb3de9c485cb275ab48193e80469f9153ac5eb1b7e10d562c22c808fb895",
+        "bytes": 797628,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0015.png",
+        "sha256": "d579141560289cda026a183bf6fadc7963f124e2bf10c7736f6b15566f50e6cf",
+        "bytes": 4202,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 269103,
+        "bbox_xyxy_exclusive": [
+          230,
+          231,
+          1217,
+          719
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 202812,
+          "bbox_xyxy_exclusive": [
+            230,
+            231,
+            1217,
+            719
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 269103,
+          "bbox_xyxy_exclusive": [
+            230,
+            231,
+            1217,
+            719
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 66291,
+        "added_ratio": 0.3268593574344713,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 66291,
+            "bbox_xyxy_exclusive": [
+              352,
+              345,
+              752,
+              542
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          352,
+          345,
+          752,
+          542
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 16,
+      "frame_id": "000064",
+      "detection_id": "000064:mask:000058",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9703761800762964,
+        "frame_sha256": "7d6f25afaf51ed38f3f2910af1423447b8b3c5a68fbb29904ea2bfd29847c236",
+        "mask_sha256": "ac61b05c95fa5b5976e51e0c30a32e06735b19ad743aa3d155738e44fdb8be16",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "7d6f25afaf51ed38f3f2910af1423447b8b3c5a68fbb29904ea2bfd29847c236",
+        "bytes": 1041302,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "ac61b05c95fa5b5976e51e0c30a32e06735b19ad743aa3d155738e44fdb8be16",
+        "bytes": 4903,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 202949,
+        "bbox_xyxy_exclusive": [
+          242,
+          230,
+          1230,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0016.png",
+        "sha256": "3e906d437ef602e9f1928bbad457770d3a0cbddb6107ec1a1ee9c6daaa7ad6b7",
+        "bytes": 783775,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0016.png",
+        "sha256": "57b7bf69f519808169e7b68aef36958c8b8e51816c9ac71a6953410ad8b7144f",
+        "bytes": 4286,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 268611,
+        "bbox_xyxy_exclusive": [
+          242,
+          230,
+          1230,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 202949,
+          "bbox_xyxy_exclusive": [
+            242,
+            230,
+            1230,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 268611,
+          "bbox_xyxy_exclusive": [
+            242,
+            230,
+            1230,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 65662,
+        "added_ratio": 0.3235394113792135,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 65662,
+            "bbox_xyxy_exclusive": [
+              369,
+              343,
+              769,
+              542
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          369,
+          343,
+          769,
+          542
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 17,
+      "frame_id": "000065",
+      "detection_id": "000065:mask:000063",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9715334026910958,
+        "frame_sha256": "fdc1768bb401138d51eb39da1b9bd2d11d28585b8d5b2a4f4fe4ed79e6db1d89",
+        "mask_sha256": "5be876ae2f0a5b8993d6ac8ff41e9296659564239f24cf91afbcad13883caaab",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "fdc1768bb401138d51eb39da1b9bd2d11d28585b8d5b2a4f4fe4ed79e6db1d89",
+        "bytes": 1043137,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "5be876ae2f0a5b8993d6ac8ff41e9296659564239f24cf91afbcad13883caaab",
+        "bytes": 4975,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 204589,
+        "bbox_xyxy_exclusive": [
+          260,
+          229,
+          1247,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0017.png",
+        "sha256": "d134f7c29a30875e53a329ce43fda4bc46cf8c71497f264ca9a7852c87c720fb",
+        "bytes": 786165,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0017.png",
+        "sha256": "9c7605770b1541e8133a5a651af2edfe5971020573d91d4fefa5061edad381b0",
+        "bytes": 4370,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 267304,
+        "bbox_xyxy_exclusive": [
+          260,
+          229,
+          1247,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 204589,
+          "bbox_xyxy_exclusive": [
+            260,
+            229,
+            1247,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 267304,
+          "bbox_xyxy_exclusive": [
+            260,
+            229,
+            1247,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 62715,
+        "added_ratio": 0.30654140740704533,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 62715,
+            "bbox_xyxy_exclusive": [
+              397,
+              341,
+              789,
+              532
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          397,
+          341,
+          789,
+          532
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 18,
+      "frame_id": "000066",
+      "detection_id": "000066:mask:000067",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9676409809611325,
+        "frame_sha256": "ec5fb9d19f0b507cc7915c2e912eb1dc693b68c8e20c53dcb6737c3caf3ea09d",
+        "mask_sha256": "fe247b991c7cac3f7cdfd82743d7415ac708c9f2feac8e98544e5af100c3c157",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "ec5fb9d19f0b507cc7915c2e912eb1dc693b68c8e20c53dcb6737c3caf3ea09d",
+        "bytes": 1000454,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "fe247b991c7cac3f7cdfd82743d7415ac708c9f2feac8e98544e5af100c3c157",
+        "bytes": 5003,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 207949,
+        "bbox_xyxy_exclusive": [
+          277,
+          227,
+          1264,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0018.png",
+        "sha256": "eb263e4ecb8c095fd720f058f984fc2e6e1e4b68edb520fc733af51579628da6",
+        "bytes": 742936,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0018.png",
+        "sha256": "920e2ead0d5cf00f1353b38502d66d367b414183f31989f59d45eff83a6058f4",
+        "bytes": 4465,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 267892,
+        "bbox_xyxy_exclusive": [
+          277,
+          227,
+          1264,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 207949,
+          "bbox_xyxy_exclusive": [
+            277,
+            227,
+            1264,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 267892,
+          "bbox_xyxy_exclusive": [
+            277,
+            227,
+            1264,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 59943,
+        "added_ratio": 0.2882581786880437,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 59943,
+            "bbox_xyxy_exclusive": [
+              411,
+              338,
+              809,
+              526
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          411,
+          338,
+          809,
+          526
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 19,
+      "frame_id": "000067",
+      "detection_id": "000067:mask:000072",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9756076021330384,
+        "frame_sha256": "046e1d33b935f3665b6ccd9ef07f293d7de93c2c718d5d4756771d1156b31235",
+        "mask_sha256": "adb82c0cbc6aaacfb4de31c36255c0647e1efeac3ff25c9fa451eb0b1fda3cbc",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "046e1d33b935f3665b6ccd9ef07f293d7de93c2c718d5d4756771d1156b31235",
+        "bytes": 994753,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "adb82c0cbc6aaacfb4de31c36255c0647e1efeac3ff25c9fa451eb0b1fda3cbc",
+        "bytes": 4838,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 205408,
+        "bbox_xyxy_exclusive": [
+          299,
+          225,
+          1280,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0019.png",
+        "sha256": "60be517419c5080bb9002b7891ffb6caf7ed4bacda39ed71686c7bafab2c1a6b",
+        "bytes": 735560,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0019.png",
+        "sha256": "adb82c0cbc6aaacfb4de31c36255c0647e1efeac3ff25c9fa451eb0b1fda3cbc",
+        "bytes": 4838,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 205408,
+        "bbox_xyxy_exclusive": [
+          299,
+          225,
+          1280,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 205408,
+          "bbox_xyxy_exclusive": [
+            299,
+            225,
+            1280,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 205408,
+          "bbox_xyxy_exclusive": [
+            299,
+            225,
+            1280,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 0,
+        "added_ratio": 0.0,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [],
+        "component_count": 0,
+        "bbox_xyxy_exclusive": null,
+        "enclosed_component_count": 0,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 20,
+      "frame_id": "000068",
+      "detection_id": "000068:mask:000077",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9745474291366578,
+        "frame_sha256": "4d93b57def33c830abe1e217ee7d1d3f90a838bb5c00f5b1a42187f0a2dd910b",
+        "mask_sha256": "ec483c94fdee731fd29e021d556d28bbd887611b06fc995747db338d72683633",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "4d93b57def33c830abe1e217ee7d1d3f90a838bb5c00f5b1a42187f0a2dd910b",
+        "bytes": 944216,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "ec483c94fdee731fd29e021d556d28bbd887611b06fc995747db338d72683633",
+        "bytes": 4841,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 216784,
+        "bbox_xyxy_exclusive": [
+          313,
+          221,
+          1280,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0020.png",
+        "sha256": "996e96fc6f1854454ea855c64aa60507069c116c2daeadc63206ec9a7b378e2b",
+        "bytes": 684730,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0020.png",
+        "sha256": "9ece2da09589008ffab0012949807ccf64ffd250a7bfcb75fd1783950db09002",
+        "bytes": 4324,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 273873,
+        "bbox_xyxy_exclusive": [
+          313,
+          221,
+          1280,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 216784,
+          "bbox_xyxy_exclusive": [
+            313,
+            221,
+            1280,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 273873,
+          "bbox_xyxy_exclusive": [
+            313,
+            221,
+            1280,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 57089,
+        "added_ratio": 0.2633450808177725,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 57089,
+            "bbox_xyxy_exclusive": [
+              460,
+              328,
+              850,
+              512
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          460,
+          328,
+          850,
+          512
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 21,
+      "frame_id": "000069",
+      "detection_id": "000069:mask:000080",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9701108666670464,
+        "frame_sha256": "b913772c7521e6b98d408b1d6708770995d532cc97f4ddeb9159619f0334a4fd",
+        "mask_sha256": "ecf559de018069e394e3fb03caba1719198373bc81ea69cbd56ada40b9313c59",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "b913772c7521e6b98d408b1d6708770995d532cc97f4ddeb9159619f0334a4fd",
+        "bytes": 919171,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "ecf559de018069e394e3fb03caba1719198373bc81ea69cbd56ada40b9313c59",
+        "bytes": 4914,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 228151,
+        "bbox_xyxy_exclusive": [
+          326,
+          215,
+          1280,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0021.png",
+        "sha256": "71fd2a6c4043d034ce18faba48a2b9c30728a99175fb9ed368425a9c18f08cbb",
+        "bytes": 664956,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0021.png",
+        "sha256": "8b42c243d703862089c75c2c99e8d946bc0491ba0967cec6a53969ec67c7d9ac",
+        "bytes": 4342,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 279727,
+        "bbox_xyxy_exclusive": [
+          326,
+          215,
+          1280,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 228151,
+          "bbox_xyxy_exclusive": [
+            326,
+            215,
+            1280,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 279727,
+          "bbox_xyxy_exclusive": [
+            326,
+            215,
+            1280,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 51576,
+        "added_ratio": 0.22606081060350383,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 51576,
+            "bbox_xyxy_exclusive": [
+              485,
+              322,
+              867,
+              501
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          485,
+          322,
+          867,
+          501
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 22,
+      "frame_id": "000070",
+      "detection_id": "000070:mask:000083",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9712926496738313,
+        "frame_sha256": "abb613ea68b51cdb3e46fef1cadbe68bd40581762b9288f84682899f9d695768",
+        "mask_sha256": "01be24d32d152f8e1eef2c3bbc377b153c57d51728ca00aa9ed692fd0bdfe6d7",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "abb613ea68b51cdb3e46fef1cadbe68bd40581762b9288f84682899f9d695768",
+        "bytes": 910743,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "01be24d32d152f8e1eef2c3bbc377b153c57d51728ca00aa9ed692fd0bdfe6d7",
+        "bytes": 4844,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 230890,
+        "bbox_xyxy_exclusive": [
+          339,
+          211,
+          1280,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0022.png",
+        "sha256": "bbbd5f8ef72d3fbb5b49eddbac059cb303f1c94fa146d7de7ba7d67d464a5bc9",
+        "bytes": 652683,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0022.png",
+        "sha256": "579811c83c1de9bef18b1174258f8ff125deef34e48dbbcb86a09af7b4b240b5",
+        "bytes": 4241,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 283216,
+        "bbox_xyxy_exclusive": [
+          339,
+          211,
+          1280,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 230890,
+          "bbox_xyxy_exclusive": [
+            339,
+            211,
+            1280,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 283216,
+          "bbox_xyxy_exclusive": [
+            339,
+            211,
+            1280,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 52326,
+        "added_ratio": 0.22662739832820825,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 52326,
+            "bbox_xyxy_exclusive": [
+              502,
+              315,
+              886,
+              497
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          502,
+          315,
+          886,
+          497
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 23,
+      "frame_id": "000071",
+      "detection_id": "000071:mask:000085",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9757342609503291,
+        "frame_sha256": "9feed3bbb0f81c8b7818ad913a3b6fd22ee2a1b75a7dda376c51b46ae90c721a",
+        "mask_sha256": "231a21a77a056999c8e9e19ad23aa405b3c8d9e4740cc8c9b9af8ea83c972d2b",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "9feed3bbb0f81c8b7818ad913a3b6fd22ee2a1b75a7dda376c51b46ae90c721a",
+        "bytes": 896854,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "231a21a77a056999c8e9e19ad23aa405b3c8d9e4740cc8c9b9af8ea83c972d2b",
+        "bytes": 4805,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 234243,
+        "bbox_xyxy_exclusive": [
+          357,
+          206,
+          1280,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0023.png",
+        "sha256": "1fce932342e454f23255c6bac988d12f046dcc18f9797e3af9fb0798b2f77f9b",
+        "bytes": 640730,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0023.png",
+        "sha256": "31cfe6fca0a7e4305409f9badc7a875fcdbcdf4641ec6e5e68c59e5c0306e303",
+        "bytes": 4233,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 287481,
+        "bbox_xyxy_exclusive": [
+          357,
+          206,
+          1280,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 234243,
+          "bbox_xyxy_exclusive": [
+            357,
+            206,
+            1280,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 287481,
+          "bbox_xyxy_exclusive": [
+            357,
+            206,
+            1280,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 53238,
+        "added_ratio": 0.22727680229505257,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 53238,
+            "bbox_xyxy_exclusive": [
+              527,
+              310,
+              913,
+              489
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          527,
+          310,
+          913,
+          489
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    },
+    {
+      "sequence_index": 24,
+      "frame_id": "000072",
+      "detection_id": "000072:mask:000088",
+      "identity_source": "explicit_3d_anchor_assignment",
+      "association_assignment": {
+        "quality_score": 0.9741726250883562,
+        "frame_sha256": "66c09d504668e9179962d207fe3ba8acc2d5aab376bcb1e5670b20137413bd69",
+        "mask_sha256": "610fc9d0e9cb3ff859034e70d28c0319a30a14d6821fa248b7af49b1fc5ed6e7",
+        "metric_gates": {
+          "minimum_visible_projected_pixels": true,
+          "minimum_mask_hit_ratio": true,
+          "minimum_dilated_support_ratio": true,
+          "minimum_bbox_iou": true,
+          "minimum_sam3_score": true
+        }
+      },
+      "source_frame": {
+        "sha256": "66c09d504668e9179962d207fe3ba8acc2d5aab376bcb1e5670b20137413bd69",
+        "bytes": 884146,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "source_mask": {
+        "sha256": "610fc9d0e9cb3ff859034e70d28c0319a30a14d6821fa248b7af49b1fc5ed6e7",
+        "bytes": 4846,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 244150,
+        "bbox_xyxy_exclusive": [
+          379,
+          201,
+          1280,
+          720
+        ],
+        "geometry_role": "observed_sam3_mask"
+      },
+      "input_frame": {
+        "path": "input/frames/0024.png",
+        "sha256": "91a021f61e4224c4f4486e69c55ac70105d72343529c1b053b50b9c678315485",
+        "bytes": 630996,
+        "dimensions": [
+          1280,
+          720
+        ]
+      },
+      "input_mask": {
+        "path": "input/masks/0024.png",
+        "sha256": "0be4801a5bc3f83ac5531640c69b2e6f69cd3c82d93f735ae1479b9c8e10499b",
+        "bytes": 4229,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "area_pixels": 291618,
+        "bbox_xyxy_exclusive": [
+          379,
+          201,
+          1280,
+          720
+        ],
+        "geometry_role": "completed_propainter_mask"
+      },
+      "mask_completion": {
+        "policy": "bridge-fill-cavities",
+        "connectivity": 4,
+        "topology_method": "binary_closing_for_topology_only",
+        "cavity_bridge_radius": 5,
+        "cavity_bridge_kernel_size": 11,
+        "closing_pixels_are_never_copied_to_completed_mask": true,
+        "minimum_enclosed_hole_area": {
+          "pixels": 1,
+          "ratio_of_frame": 0.01,
+          "effective_pixels": 9216
+        },
+        "observed_geometry": {
+          "area_pixels": 244150,
+          "bbox_xyxy_exclusive": [
+            379,
+            201,
+            1280,
+            720
+          ]
+        },
+        "completed_geometry": {
+          "area_pixels": 291618,
+          "bbox_xyxy_exclusive": [
+            379,
+            201,
+            1280,
+            720
+          ]
+        },
+        "observed_is_subset": true,
+        "added_pixels": 47468,
+        "added_ratio": 0.1944214622158509,
+        "added_ratio_denominator": "observed_mask_pixels",
+        "components": [
+          {
+            "area_pixels": 47468,
+            "bbox_xyxy_exclusive": [
+              593,
+              305,
+              938,
+              482
+            ]
+          }
+        ],
+        "component_count": 1,
+        "bbox_xyxy_exclusive": [
+          593,
+          305,
+          938,
+          482
+        ],
+        "enclosed_component_count": 1,
+        "rejected_below_threshold_component_count": 0
+      }
+    }
+  ],
+  "mask_completion": {
+    "policy": "bridge-fill-cavities",
+    "connectivity": 4,
+    "topology_method": "binary_closing_for_topology_only",
+    "cavity_bridge_radius": 5,
+    "cavity_bridge_kernel_size": 11,
+    "closing_pixels_are_never_copied_to_completed_mask": true,
+    "minimum_enclosed_hole_area": {
+      "pixels": 1,
+      "ratio_of_frame": 0.01,
+      "effective_pixels_are_computed_per_frame": true
+    },
+    "observed_pixels": 5210003,
+    "completed_pixels": 6588585,
+    "added_pixels": 1378582,
+    "added_ratio": 0.26460291865474933,
+    "added_ratio_denominator": "observed_mask_pixels",
+    "components": [
+      {
+        "frame_id": "000048",
+        "component_index": 0,
+        "area_pixels": 49080,
+        "bbox_xyxy_exclusive": [
+          328,
+          306,
+          680,
+          473
+        ]
+      },
+      {
+        "frame_id": "000049",
+        "component_index": 0,
+        "area_pixels": 49887,
+        "bbox_xyxy_exclusive": [
+          326,
+          310,
+          676,
+          481
+        ]
+      },
+      {
+        "frame_id": "000050",
+        "component_index": 0,
+        "area_pixels": 51689,
+        "bbox_xyxy_exclusive": [
+          325,
+          316,
+          681,
+          488
+        ]
+      },
+      {
+        "frame_id": "000051",
+        "component_index": 0,
+        "area_pixels": 53334,
+        "bbox_xyxy_exclusive": [
+          317,
+          320,
+          679,
+          499
+        ]
+      },
+      {
+        "frame_id": "000052",
+        "component_index": 0,
+        "area_pixels": 52154,
+        "bbox_xyxy_exclusive": [
+          325,
+          325,
+          678,
+          503
+        ]
+      },
+      {
+        "frame_id": "000053",
+        "component_index": 0,
+        "area_pixels": 55395,
+        "bbox_xyxy_exclusive": [
+          323,
+          329,
+          685,
+          513
+        ]
+      },
+      {
+        "frame_id": "000054",
+        "component_index": 0,
+        "area_pixels": 56422,
+        "bbox_xyxy_exclusive": [
+          324,
+          335,
+          692,
+          522
+        ]
+      },
+      {
+        "frame_id": "000055",
+        "component_index": 0,
+        "area_pixels": 58584,
+        "bbox_xyxy_exclusive": [
+          322,
+          338,
+          696,
+          527
+        ]
+      },
+      {
+        "frame_id": "000056",
+        "component_index": 0,
+        "area_pixels": 58837,
+        "bbox_xyxy_exclusive": [
+          318,
+          342,
+          698,
+          535
+        ]
+      },
+      {
+        "frame_id": "000057",
+        "component_index": 0,
+        "area_pixels": 61679,
+        "bbox_xyxy_exclusive": [
+          323,
+          345,
+          716,
+          536
+        ]
+      },
+      {
+        "frame_id": "000058",
+        "component_index": 0,
+        "area_pixels": 61217,
+        "bbox_xyxy_exclusive": [
+          317,
+          346,
+          706,
+          543
+        ]
+      },
+      {
+        "frame_id": "000059",
+        "component_index": 0,
+        "area_pixels": 60538,
+        "bbox_xyxy_exclusive": [
+          326,
+          347,
+          707,
+          542
+        ]
+      },
+      {
+        "frame_id": "000060",
+        "component_index": 0,
+        "area_pixels": 63340,
+        "bbox_xyxy_exclusive": [
+          325,
+          347,
+          714,
+          544
+        ]
+      },
+      {
+        "frame_id": "000061",
+        "component_index": 0,
+        "area_pixels": 64932,
+        "bbox_xyxy_exclusive": [
+          335,
+          348,
+          724,
+          544
+        ]
+      },
+      {
+        "frame_id": "000062",
+        "component_index": 0,
+        "area_pixels": 65186,
+        "bbox_xyxy_exclusive": [
+          339,
+          347,
+          737,
+          545
+        ]
+      },
+      {
+        "frame_id": "000063",
+        "component_index": 0,
+        "area_pixels": 66291,
+        "bbox_xyxy_exclusive": [
+          352,
+          345,
+          752,
+          542
+        ]
+      },
+      {
+        "frame_id": "000064",
+        "component_index": 0,
+        "area_pixels": 65662,
+        "bbox_xyxy_exclusive": [
+          369,
+          343,
+          769,
+          542
+        ]
+      },
+      {
+        "frame_id": "000065",
+        "component_index": 0,
+        "area_pixels": 62715,
+        "bbox_xyxy_exclusive": [
+          397,
+          341,
+          789,
+          532
+        ]
+      },
+      {
+        "frame_id": "000066",
+        "component_index": 0,
+        "area_pixels": 59943,
+        "bbox_xyxy_exclusive": [
+          411,
+          338,
+          809,
+          526
+        ]
+      },
+      {
+        "frame_id": "000068",
+        "component_index": 0,
+        "area_pixels": 57089,
+        "bbox_xyxy_exclusive": [
+          460,
+          328,
+          850,
+          512
+        ]
+      },
+      {
+        "frame_id": "000069",
+        "component_index": 0,
+        "area_pixels": 51576,
+        "bbox_xyxy_exclusive": [
+          485,
+          322,
+          867,
+          501
+        ]
+      },
+      {
+        "frame_id": "000070",
+        "component_index": 0,
+        "area_pixels": 52326,
+        "bbox_xyxy_exclusive": [
+          502,
+          315,
+          886,
+          497
+        ]
+      },
+      {
+        "frame_id": "000071",
+        "component_index": 0,
+        "area_pixels": 53238,
+        "bbox_xyxy_exclusive": [
+          527,
+          310,
+          913,
+          489
+        ]
+      },
+      {
+        "frame_id": "000072",
+        "component_index": 0,
+        "area_pixels": 47468,
+        "bbox_xyxy_exclusive": [
+          593,
+          305,
+          938,
+          482
+        ]
+      }
+    ],
+    "component_count": 24,
+    "bbox_xyxy_exclusive_by_frame": {
+      "000048": [
+        328,
+        306,
+        680,
+        473
+      ],
+      "000049": [
+        326,
+        310,
+        676,
+        481
+      ],
+      "000050": [
+        325,
+        316,
+        681,
+        488
+      ],
+      "000051": [
+        317,
+        320,
+        679,
+        499
+      ],
+      "000052": [
+        325,
+        325,
+        678,
+        503
+      ],
+      "000053": [
+        323,
+        329,
+        685,
+        513
+      ],
+      "000054": [
+        324,
+        335,
+        692,
+        522
+      ],
+      "000055": [
+        322,
+        338,
+        696,
+        527
+      ],
+      "000056": [
+        318,
+        342,
+        698,
+        535
+      ],
+      "000057": [
+        323,
+        345,
+        716,
+        536
+      ],
+      "000058": [
+        317,
+        346,
+        706,
+        543
+      ],
+      "000059": [
+        326,
+        347,
+        707,
+        542
+      ],
+      "000060": [
+        325,
+        347,
+        714,
+        544
+      ],
+      "000061": [
+        335,
+        348,
+        724,
+        544
+      ],
+      "000062": [
+        339,
+        347,
+        737,
+        545
+      ],
+      "000063": [
+        352,
+        345,
+        752,
+        542
+      ],
+      "000064": [
+        369,
+        343,
+        769,
+        542
+      ],
+      "000065": [
+        397,
+        341,
+        789,
+        532
+      ],
+      "000066": [
+        411,
+        338,
+        809,
+        526
+      ],
+      "000067": null,
+      "000068": [
+        460,
+        328,
+        850,
+        512
+      ],
+      "000069": [
+        485,
+        322,
+        867,
+        501
+      ],
+      "000070": [
+        502,
+        315,
+        886,
+        497
+      ],
+      "000071": [
+        527,
+        310,
+        913,
+        489
+      ],
+      "000072": [
+        593,
+        305,
+        938,
+        482
+      ]
+    },
+    "observed_is_subset_in_every_frame": true
+  },
+  "prepared_source_set_sha256": "d72d6faf6604b2e7888e7d9da879fbdb5d9731b0f8f454fe8c93f0c5cae6ddcc",
+  "gates": {
+    "association_passed": true,
+    "object_accepted_next_layer_target": true,
+    "explicit_3d_anchor_present": true,
+    "one_assignment_per_frame": true,
+    "assignment_and_source_hashes_verified": true,
+    "frame_and_mask_dimensions_verified": true,
+    "observed_mask_subset_of_completed_mask": true,
+    "portable_assets_copied": true
+  },
+  "execution": {
+    "script": {
+      "path": "prepare_propainter_peel_round_bridge.py",
+      "sha256": "99f957e9527a965b7c11c679ff3f8a51d1f32835da62af1c3ac3ccf2cc3019d3"
+    },
+    "argv": [
+      "/root/autodl-tmp/video2world_layered_bedroom4_20260717/prepare_propainter_peel_round_bridge.py",
+      "--association",
+      "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round03_right_pillow/reinspect_sam3/association_bed_calibrated.json",
+      "--object-id",
+      "sam3_bed_01",
+      "--frames-dir",
+      "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round03_right_pillow/reinspect_sam3/data/bedroom_4_round03_peeled/dslr/resized_undistorted_images",
+      "--output-dir",
+      "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round04_bed/propainter_input_bridge_r5_min1pct_v1",
+      "--mask-completion-policy",
+      "bridge-fill-cavities",
+      "--cavity-bridge-radius",
+      "5",
+      "--hole-connectivity",
+      "4",
+      "--min-enclosed-hole-area-px",
+      "1",
+      "--min-enclosed-hole-area-ratio",
+      "0.01"
+    ],
+    "python": "3.11.0",
+    "pillow": "12.0.0",
+    "copy_mode": "decoded PNG copy; no symlink dependency"
+  }
+}

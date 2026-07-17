@@ -1,0 +1,73 @@
+{
+  "camera_convention": {
+    "image_y_axis": "down",
+    "rotation": "camera_to_world"
+  },
+  "created_at": "2026-07-16T20:34:30.449551+00:00",
+  "frame_id": "000064",
+  "gates": {
+    "bbox_iou": true,
+    "center_error_px": true,
+    "mask_iou": true
+  },
+  "kind": "video2world.source_camera_silhouette_review",
+  "metrics": {
+    "bbox_iou": 0.9103890728476821,
+    "center_error_px": 4.749840852409014,
+    "intersection_pixels": 19915,
+    "mask_iou": 0.8026034739854109,
+    "observed_bbox_xyxy": [
+      522,
+      388,
+      693,
+      548
+    ],
+    "observed_pixels": 23065,
+    "observed_recall": 0.8634294385432474,
+    "rendered_bbox_xyxy": [
+      527,
+      385,
+      700,
+      547
+    ],
+    "rendered_pixels": 21663,
+    "rendered_precision": 0.9193094215944236,
+    "union_pixels": 24813
+  },
+  "outputs": {
+    "overlay": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_silhouette_refined_attempt3/source_camera_review/source_camera_silhouette_overlay.png",
+      "sha256": "e8c7648f6b18bcebb217031f34b366e813da25dfcbff928093fc808a6a8263d3"
+    },
+    "rendered_mask": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_silhouette_refined_attempt3/source_camera_review/rendered_silhouette.png",
+      "sha256": "67e0e54ae7fb378139bfecf6b149fcd8e3bd43f6df733a7a5d8373dabadc6092"
+    }
+  },
+  "promotion_allowed": true,
+  "schema_version": 1,
+  "sources": {
+    "cameras": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/cameras.json",
+      "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+    },
+    "mesh": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_silhouette_refined_attempt3/sam3_pillow_front.scene-fit.glb",
+      "sha256": "dac783b781836c25fb86ede227fc05c18936d6d888b1fc7bea1d883c424c7115"
+    },
+    "observed_mask": {
+      "path": "/private/tmp/video2world_pillow_split_20260717/input/pillow_03.png",
+      "sha256": "bdcd739f36d4c129f12bc42964195ce17522fa030900b7427f78b8e8f73d24d6"
+    },
+    "scene_fit_report": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_silhouette_refined_attempt3/scene_fit_report.json",
+      "sha256": "dc8c3200b1882755ad6e5999b350b68743486471f8a243c8bbc0bf37fb5e0316"
+    }
+  },
+  "status": "passed",
+  "thresholds": {
+    "maximum_center_error_px": 20.0,
+    "minimum_bbox_iou": 0.8,
+    "minimum_mask_iou": 0.65
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "claims_measured_donor": false,
+  "created_at": "2026-07-17T06:00:18.179559+00:00",
+  "depth_probe_receipt": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_right/calibration/depth_semantics_receipt.json",
+    "sha256": "006eda296f698576b29ee863fbe5824799c3e4989438738e3c30896cf31de701"
+  },
+  "frame_records": [
+    {
+      "alpha_pixels": 21455,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_right/depth/000067.npy",
+      "depth_sha256": "a32bf4a255bf942f35ed66eaa6e450225510380de4530f0433ae27966903b2a0",
+      "depth_valid_pixels": 21455,
+      "frame_id": "000067",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_right/receipts/000067.json",
+      "receipt_sha256": "1e6d209c081c025e56b95833a9b832d675441723835f61c289c85adad45fd445",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_right/rgba/000067.png",
+      "rgba_sha256": "9e5466ee471c4b32ce802d7601fff6b937b1210d02567b7ac4c9181706e12a11"
+    }
+  ],
+  "kind": "video2world.source_camera_pbr_layer_render_set",
+  "layer_id": "sam3_pillow_right",
+  "promotion_approved": false,
+  "role": "downstream_object_render",
+  "schema_version": 1,
+  "sources": {
+    "cameras": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+      "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+    },
+    "mesh": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/sam3_pillow_right.scene-fit.glb",
+      "sha256": "eb4ad2cb0398602865ff3511039e440ce9cb50ace016fffeaaf3ce3944280f1e"
+    },
+    "scene_fit_report": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/scene_fit_report.json",
+      "sha256": "d9ec2811d33372cfda174b7073e574385da283bc191a09fa89cbc6175da41155"
+    }
+  },
+  "status": "technical_passed_pending_silhouette_qa"
+}

@@ -1,0 +1,59 @@
+{
+  "attempt": 1,
+  "created_at": "2026-07-16T18:30:28.485366Z",
+  "decision": "retry",
+  "issues": [
+    {
+      "evidence_view_ids": [
+        "source",
+        "front",
+        "right",
+        "back",
+        "left",
+        "top",
+        "bottom",
+        "technical"
+      ],
+      "explanation": {
+        "en": "The back view shows an empty space, which is missing from the source image.",
+        "zh": "在背面视图中可以看到一个空的空间，这与源图像中的内容不符。"
+      },
+      "issue_type": "missing_back_surface",
+      "retry_prompt_instruction": "Add a back surface to the pillow in the 3D model to match the source image.",
+      "severity": "blocking"
+    },
+    {
+      "evidence_view_ids": [
+        "technical"
+      ],
+      "explanation": {
+        "en": "Deterministic technical gates failed: front_color_fidelity.",
+        "zh": "确定性技术门槛未通过: front_color_fidelity."
+      },
+      "issue_type": "front_fidelity_error",
+      "retry_prompt_instruction": "Regenerate a closed, volumetric object with plausible category proportions and connected parts, then rerun all technical gates.",
+      "severity": "blocking"
+    }
+  ],
+  "kind": "video2world.geometry_review",
+  "model": "qwen2.5-vl-3b-instruct",
+  "object_id": "sam3_pillow_front",
+  "provider": "Qwen2.5-VL",
+  "raw_response_sha256": "06083cd45a0e48450231913c68d2b6089c68780850fd60ae199174e383cf3133",
+  "retry_prompt": "Add a back surface to the pillow in the 3D model to match the source image. Regenerate a closed, volumetric object with plausible category proportions and connected parts, then rerun all technical gates.",
+  "schema_version": "1.0",
+  "source_asset_sha256": "39f4c933777d13ff8cf12c8b9dfe43541bc731ecec2a4b832cddfe30483993e2",
+  "technical_gates": {
+    "finite_geometry": true,
+    "front_color_fidelity": false,
+    "front_silhouette_aspect_fidelity": true,
+    "nonempty_triangle_mesh": true,
+    "pillow_thickness_ratio": true,
+    "positive_3d_extents": true,
+    "raw_parts_connected": true,
+    "raw_surface_closed": true,
+    "source_material_color_fidelity": true,
+    "source_silhouette_aspect_fidelity": true
+  },
+  "turntable_sha256": "b6a525612663a4bfc910b73361fe957ab34d763ea7221ada6cd3ce49d13a1a0c"
+}

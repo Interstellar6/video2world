@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.object_anchor_projection_mask_receipt",
+  "object_id": "sam3_bed_01",
+  "round_index": 4,
+  "removed_object_ids": [
+    "sam3_bed_01"
+  ],
+  "manifest": "object_anchor_supplement_manifest.json",
+  "manifest_sha256": "952aa8b1edf3b6968238fa31d4962a8de0c51934d42f85080832024f45010f62",
+  "mask_set_sha256": "82602bee1e29be974d0c483bee8cc26cdaed82c774f75324ced2bb25efc2879e",
+  "contact_sheet": "object_anchor_projection_contact_sheet.png",
+  "contact_sheet_sha256": "a82079a2e7d66de82160f0164254e8314c38a54bb5ac0f84fe1043aeee8ac7bf",
+  "frame_count": 25,
+  "promotion_approved": false
+}

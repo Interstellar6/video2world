@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.layered_clean_plate_sequence_visual_review",
+  "status": "accepted_for_current_demo_with_limitations",
+  "reviewed_at": "2026-07-17T09:00:01Z",
+  "frame_range": {
+    "first": "000048",
+    "last": "000072",
+    "count": 25
+  },
+  "contact_sheets": {
+    "source": {
+      "path": "source_contact_sheet.png",
+      "sha256": "c18e229a9b1c9b04bcb044039d9dcdb67d78c9631ce965131b47df67e4869b71"
+    },
+    "round01_front_pillow": {
+      "path": "round01_contact_sheet.png",
+      "sha256": "fdbdc172137391bf46890ceeed026f3b9a678e7271353db5e44b9133a8749066"
+    },
+    "round02_left_pillow": {
+      "path": "round02_contact_sheet.png",
+      "sha256": "07403a3fac576710b9fdaec3956091e623051fdb6080ac1115daf01ded4b8aa3"
+    },
+    "round03_right_pillow": {
+      "path": "round03_contact_sheet.png",
+      "sha256": "f30829672c48ca826c2fce37a6f4f9c01d7504e9f8393567a261cea01e7477a6"
+    },
+    "round04_bed": {
+      "path": "round04_contact_sheet.png",
+      "sha256": "4118d32e18c7151dc2013036c07a7dc2229e039730c01098c5e04684767fa7a0"
+    }
+  },
+  "observations": [
+    "The front pillow is removed in round 1 while the left pillow, right pillow, and bed remain represented.",
+    "The left pillow is additionally removed in round 2; the front pillow does not reappear.",
+    "All three pillows are absent in round 3 while the bed remains represented.",
+    "The bed is absent in round 4 and the output contains only the structural room background in the cumulative removal area.",
+    "No black or transparent unresolved holes are visible in the reviewed 25-view contact sheets.",
+    "The round-4 wall and floor completion retains a visible bed-shaped low-frequency color boundary and simplified planar appearance."
+  ],
+  "decision": {
+    "acceptance_scope": "current_demo_only",
+    "accepted_with_limitations": true,
+    "promotion_approved": false,
+    "eligible_for_fresh_da3_pgsr_tsdf": true,
+    "eligible_as_general_background_completion_quality_evidence": false
+  }
+}

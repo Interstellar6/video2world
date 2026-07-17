@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.parametric_soft_object_completion",
+  "created_at": "2026-07-16T19:16:09.367811+00:00",
+  "status": "technical_gates_passed",
+  "promotion_status": "held_pending_browser_six_view_review",
+  "object_id": "sam3_pillow_front",
+  "source": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/pillow_attempt2_inputs/sam3_pillow_front/source_rgba.png",
+    "sha256": "80307817ae95f281710b4fd56ea70eccc2d7b05699896704328f5be5cb31da3f",
+    "width": 219,
+    "height": 208,
+    "visible_bbox_xyxy": [
+      24,
+      24,
+      194,
+      183
+    ],
+    "visible_bbox_aspect": 1.06875,
+    "visible_color": {
+      "count": 23065,
+      "mean_rgb": [
+        141.41894645566876,
+        141.06130500758726,
+        142.30171255148494
+      ],
+      "median_rgb": [
+        139.0,
+        142.0,
+        145.0
+      ],
+      "mean_luminance": 141.2268970041188,
+      "median_luminance": 141.4384,
+      "light_pixel_fraction": 0.21313678734012573
+    }
+  },
+  "method": {
+    "geometry": "closed colored superellipsoid with corner thickness falloff",
+    "hidden_surface": "mirrored observed material family",
+    "appearance_mode": "white_fabric",
+    "thickness_ratio": 0.3,
+    "shape_exponent": 0.34,
+    "latitude_segments": 72,
+    "longitude_segments": 144,
+    "seed": 20260717
+  },
+  "mesh": {
+    "vertices": 10226,
+    "faces": 20448,
+    "extents": [
+      1.06875,
+      1.0,
+      0.3
+    ],
+    "requested_width_height_depth": [
+      1.06875,
+      1.0,
+      0.3
+    ],
+    "observed_thickness_to_short_planar_ratio": 0.3,
+    "volume": 0.2849575531458051,
+    "area": 2.819353264870331,
+    "connected_components": 1,
+    "watertight": true,
+    "winding_consistent": true
+  },
+  "mesh_color_roundtrip": {
+    "glb": {
+      "expected_count": 10226,
+      "observed_count": 10226,
+      "max_channel_error": 0,
+      "preserved": true
+    },
+    "obj": {
+      "expected_count": 10226,
+      "observed_count": 10226,
+      "max_channel_error": 0,
+      "preserved": true
+    }
+  },
+  "gaussian": {
+    "vertex_count": 80000,
+    "property_names": [
+      "x",
+      "y",
+      "z",
+      "nx",
+      "ny",
+      "nz",
+      "f_dc_0",
+      "f_dc_1",
+      "f_dc_2",
+      "f_rest_0",
+      "f_rest_1",
+      "f_rest_2",
+      "f_rest_3",
+      "f_rest_4",
+      "f_rest_5",
+      "f_rest_6",
+      "f_rest_7",
+      "f_rest_8",
+      "f_rest_9",
+      "f_rest_10",
+      "f_rest_11",
+      "f_rest_12",
+      "f_rest_13",
+      "f_rest_14",
+      "f_rest_15",
+      "f_rest_16",
+      "f_rest_17",
+      "f_rest_18",
+      "f_rest_19",
+      "f_rest_20",
+      "f_rest_21",
+      "f_rest_22",
+      "f_rest_23",
+      "f_rest_24",
+      "f_rest_25",
+      "f_rest_26",
+      "f_rest_27",
+      "f_rest_28",
+      "f_rest_29",
+      "f_rest_30",
+      "f_rest_31",
+      "f_rest_32",
+      "f_rest_33",
+      "f_rest_34",
+      "f_rest_35",
+      "f_rest_36",
+      "f_rest_37",
+      "f_rest_38",
+      "f_rest_39",
+      "f_rest_40",
+      "f_rest_41",
+      "f_rest_42",
+      "f_rest_43",
+      "f_rest_44",
+      "opacity",
+      "scale_0",
+      "scale_1",
+      "scale_2",
+      "rot_0",
+      "rot_1",
+      "rot_2",
+      "rot_3"
+    ],
+    "sha256": "edb09d79acf4e10d8ebae62679fe1dd438fa513402a7d01eade696f35de10415",
+    "surface_spacing": 0.004630462350493616,
+    "mean_rgb": [
+      210.0842125,
+      211.71205,
+      212.4826875
+    ],
+    "median_rgb": [
+      209.0,
+      210.0,
+      211.0
+    ]
+  },
+  "six_side_appearance": {
+    "front": {
+      "count": 2873,
+      "mean_rgb": [
+        207.6693351896972,
+        209.21684650191438,
+        209.83153498085625
+      ],
+      "median_rgb": [
+        206.0,
+        207.0,
+        208.0
+      ],
+      "mean_luminance": 208.93222610511663,
+      "median_luminance": 206.7874,
+      "light_pixel_fraction": 0.9843369300382875
+    },
+    "back": {
+      "count": 2873,
+      "mean_rgb": [
+        207.6693351896972,
+        209.21684650191438,
+        209.83153498085625
+      ],
+      "median_rgb": [
+        206.0,
+        207.0,
+        208.0
+      ],
+      "mean_luminance": 208.93222610511663,
+      "median_luminance": 206.7874,
+      "light_pixel_fraction": 0.9843369300382875
+    },
+    "left": {
+      "count": 1841,
+      "mean_rgb": [
+        207.15100488864746,
+        208.6137968495383,
+        208.9521998913634
+      ],
+      "median_rgb": [
+        210.0,
+        211.0,
+        211.0
+      ],
+      "mean_luminance": 208.32723997827267,
+      "median_luminance": 210.7874,
+      "light_pixel_fraction": 0.9652362846279197
+    },
+    "right": {
+      "count": 1841,
+      "mean_rgb": [
+        207.15100488864746,
+        208.6137968495383,
+        208.9521998913634
+      ],
+      "median_rgb": [
+        210.0,
+        211.0,
+        211.0
+      ],
+      "mean_luminance": 208.32723997827267,
+      "median_luminance": 210.7874,
+      "light_pixel_fraction": 0.9652362846279197
+    },
+    "top": {
+      "count": 3313,
+      "mean_rgb": [
+        207.8810745547842,
+        209.02837307576215,
+        209.2124962269846
+      ],
+      "median_rgb": [
+        206.0,
+        207.0,
+        207.0
+      ],
+      "mean_luminance": 208.7977511017205,
+      "median_luminance": 206.7874,
+      "light_pixel_fraction": 1.0
+    },
+    "bottom": {
+      "count": 3313,
+      "mean_rgb": [
+        206.0196196800483,
+        207.962873528524,
+        209.50709326894054
+      ],
+      "median_rgb": [
+        205.0,
+        207.0,
+        209.0
+      ],
+      "mean_luminance": 207.66123042559613,
+      "median_luminance": 206.71919999999997,
+      "light_pixel_fraction": 1.0
+    }
+  },
+  "browser_six_view_review": {
+    "status": "pending",
+    "required_views": [
+      "front",
+      "back",
+      "left",
+      "right",
+      "top",
+      "bottom"
+    ],
+    "promotion_allowed": false
+  },
+  "acceptance_gates": {
+    "finite_geometry": true,
+    "watertight_closed_surface": true,
+    "winding_consistent": true,
+    "positive_volume": true,
+    "single_connected_component": true,
+    "source_aspect_preserved": true,
+    "volumetric_thickness": true,
+    "six_side_material_consistency": true,
+    "white_fabric_is_white_on_all_sides": true,
+    "glb_vertex_colors_preserved": true,
+    "obj_vertex_colors_preserved": true
+  },
+  "all_acceptance_gates_passed": true,
+  "artifacts": [
+    {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/sam3_pillow_front.glb",
+      "bytes": 409968,
+      "sha256": "44254d30107af4d88046cffac9f2ea26516c27b17f451c38cb8aa4371b286f8e"
+    },
+    {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/sam3_pillow_front.obj",
+      "bytes": 1053319,
+      "sha256": "8368568bf6897e59814c327f1729dc2a592ef10ca8419319ce5a0a76ee2cd65d"
+    },
+    {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/sam3_pillow_front_gaussian.ply",
+      "bytes": 19841530,
+      "sha256": "edb09d79acf4e10d8ebae62679fe1dd438fa513402a7d01eade696f35de10415"
+    },
+    {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/material_reference.png",
+      "bytes": 20775,
+      "sha256": "4303d9a94f6f0ece85db2d412e50d43b2e73decc8b4570f9c50b956b230dd9ef"
+    }
+  ],
+  "runtime": {
+    "python": "3.12.13",
+    "numpy": "2.2.6",
+    "pillow": "11.3.0",
+    "trimesh": "4.12.2",
+    "plyfile": "unknown"
+  }
+}

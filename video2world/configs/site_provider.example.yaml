@@ -1,0 +1,322 @@
+# Executable interface for the canonical twelve-stage site profile. Every path
+# is supplied by site_profile.example.yaml plus explicit CLI roots. The drivers
+# below are intentionally not bundled: a deployment must implement and audit
+# wrappers around its checked-out Holi/DA3/PGSR/SAM3/Qwen/TRELLIS environments.
+schema_version: "1.0"
+provider_id: video2world-canonical-site
+scope: generic_interface
+verification_status: requires_site_configuration
+notes:
+  - Preflight proves only command/dependency availability; stage receipts prove outputs.
+  - The layered driver must iterate every planned front-to-back peel round.
+  - Every peel round must consume the prior clean plate, rerun scene audit and SAM3, and emit content-addressed receipts.
+  - A first-object candidate is not a completed layered scene.
+source_repositories:
+  holi_spatial: Pin the exact deployment commit in the copied contract/profile.
+  pgsr: Pin the exact deployment commit in the copied contract/profile.
+  sam3: Pin the exact deployment commit in the copied contract/profile.
+  video2mesh: Pin the exact deployment commit in the copied contract/profile.
+  trellis2: https://github.com/microsoft/TRELLIS.2.git@75fbf0183001ed9876c8dbb35de6b68552ee08bd
+  video2world: Pin the exact deployment commit in the copied contract/profile.
+stages:
+  ingest:
+    provider: Holi-Spatial scene preparation wrapper
+    command:
+      - "${SITE_PYTHON}"
+      - "${SITE_DRIVERS_ROOT}/ingest.py"
+      - --input-video
+      - "{input_video}"
+      - --scene-id
+      - "{scene_id}"
+      - --frames-manifest
+      - "{output_frames_manifest}"
+      - --cameras
+      - "{output_cameras}"
+    input_roles: [video]
+    output_roles: [frames_manifest, cameras]
+    requires:
+      site_python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/ingest.py", kind: file}
+      holi_root: {path: "${HOLI_ROOT}", kind: directory}
+      holi_python: {path: "${HOLI_PYTHON}", kind: executable}
+  inventory:
+    provider: Qwen open-vocabulary inventory plus geometry ordering wrapper
+    command:
+      - "${SITE_PYTHON}"
+      - "${SITE_DRIVERS_ROOT}/inventory.py"
+      - --frames-manifest
+      - "{input_frames_manifest}"
+      - --cameras
+      - "{input_cameras}"
+      - --scene-inventory
+      - "{output_scene_inventory}"
+      - --occlusion-graph
+      - "{output_occlusion_graph}"
+    input_roles: [frames_manifest, cameras]
+    output_roles: [scene_inventory, occlusion_graph]
+    requires:
+      site_python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/inventory.py", kind: file}
+      qwen_python: {path: "${QWEN_PYTHON}", kind: executable}
+      qwen_model: {path: "${QWEN_MODEL_ROOT}", kind: directory}
+  da3:
+    provider: Depth Anything 3 point/depth prior wrapper
+    command:
+      - "${SITE_PYTHON}"
+      - "${SITE_DRIVERS_ROOT}/da3.py"
+      - --frames-manifest
+      - "{input_frames_manifest}"
+      - --cameras
+      - "{input_cameras}"
+      - --depth-manifest
+      - "{output_depth_manifest}"
+      - --point-prior
+      - "{output_point_prior}"
+    input_roles: [frames_manifest, cameras]
+    output_roles: [depth_manifest, point_prior]
+    requires:
+      site_python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/da3.py", kind: file}
+      da3_root: {path: "${DA3_ROOT}", kind: directory}
+      da3_python: {path: "${DA3_PYTHON}", kind: executable}
+  pgsr:
+    provider: Official PGSR optimization and TSDF export wrapper
+    command:
+      - "${SITE_PYTHON}"
+      - "${SITE_DRIVERS_ROOT}/pgsr.py"
+      - --frames-manifest
+      - "{input_frames_manifest}"
+      - --cameras
+      - "{input_cameras}"
+      - --depth-manifest
+      - "{input_depth_manifest}"
+      - --point-prior
+      - "{input_point_prior}"
+      - --scene-gaussian
+      - "{output_scene_gaussian}"
+      - --scene-mesh
+      - "{output_scene_mesh}"
+    input_roles: [frames_manifest, cameras, depth_manifest, point_prior]
+    output_roles: [scene_gaussian, scene_mesh]
+    timeout_seconds: 172800
+    requires:
+      site_python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/pgsr.py", kind: file}
+      pgsr_root: {path: "${PGSR_ROOT}", kind: directory}
+      pgsr_python: {path: "${PGSR_PYTHON}", kind: executable}
+  sam3:
+    provider: SAM3 instance masks conditioned by the audited inventory
+    command:
+      - "${SITE_PYTHON}"
+      - "${SITE_DRIVERS_ROOT}/sam3.py"
+      - --frames-manifest
+      - "{input_frames_manifest}"
+      - --cameras
+      - "{input_cameras}"
+      - --scene-inventory
+      - "{input_scene_inventory}"
+      - --occlusion-graph
+      - "{input_occlusion_graph}"
+      - --masks-manifest
+      - "{output_masks_manifest}"
+      - --captions-manifest
+      - "{output_captions_manifest}"
+    input_roles: [frames_manifest, cameras, scene_inventory, occlusion_graph]
+    output_roles: [masks_manifest, captions_manifest]
+    requires:
+      site_python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/sam3.py", kind: file}
+      sam3_root: {path: "${SAM3_ROOT}", kind: directory}
+      sam3_python: {path: "${SAM3_PYTHON}", kind: executable}
+      sam3_checkpoint: {path: "${SAM3_CHECKPOINT}", kind: file, min_size_bytes: 1024}
+  fusion:
+    provider: Video2Mesh multiview projection and instance fusion wrapper
+    command:
+      - "${SITE_PYTHON}"
+      - "${SITE_DRIVERS_ROOT}/fusion.py"
+      - --cameras
+      - "{input_cameras}"
+      - --scene-gaussian
+      - "{input_scene_gaussian}"
+      - --scene-mesh
+      - "{input_scene_mesh}"
+      - --masks-manifest
+      - "{input_masks_manifest}"
+      - --captions-manifest
+      - "{input_captions_manifest}"
+      - --object-clouds-manifest
+      - "{output_object_clouds_manifest}"
+      - --semantic-gaussian
+      - "{output_semantic_gaussian}"
+    input_roles: [cameras, scene_gaussian, scene_mesh, masks_manifest, captions_manifest]
+    output_roles: [object_clouds_manifest, semantic_gaussian]
+    requires:
+      site_python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/fusion.py", kind: file}
+      video2mesh_root: {path: "${VIDEO2MESH_ROOT}", kind: directory}
+      video2mesh_python: {path: "${VIDEO2MESH_PYTHON}", kind: executable}
+  cognition:
+    provider: Qwen evidence-grounded object facts and spatial relations wrapper
+    command:
+      - "${SITE_PYTHON}"
+      - "${SITE_DRIVERS_ROOT}/cognition.py"
+      - --scene-inventory
+      - "{input_scene_inventory}"
+      - --occlusion-graph
+      - "{input_occlusion_graph}"
+      - --masks-manifest
+      - "{input_masks_manifest}"
+      - --captions-manifest
+      - "{input_captions_manifest}"
+      - --object-clouds-manifest
+      - "{input_object_clouds_manifest}"
+      - --semantic-gaussian
+      - "{input_semantic_gaussian}"
+      - --object-facts
+      - "{output_object_facts}"
+    input_roles: [scene_inventory, occlusion_graph, masks_manifest, captions_manifest, object_clouds_manifest, semantic_gaussian]
+    output_roles: [object_facts]
+    requires:
+      site_python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/cognition.py", kind: file}
+      qwen_python: {path: "${QWEN_PYTHON}", kind: executable}
+      qwen_model: {path: "${QWEN_MODEL_ROOT}", kind: directory}
+  completion_plan:
+    provider: Video2World deterministic front-to-back planner
+    command:
+      - "${SITE_PYTHON}"
+      - -m
+      - video2world
+      - completion-plan
+      - --inventory
+      - "{input_scene_inventory}"
+      - --occlusion-graph
+      - "{input_occlusion_graph}"
+      - --output
+      - "{output_layered_completion_plan}"
+    input_roles: [scene_inventory, occlusion_graph]
+    output_roles: [layered_completion_plan]
+    requires:
+      site_python: {path: "${SITE_PYTHON}", kind: executable}
+      video2world_root: {path: "${VIDEO2WORLD_ROOT}", kind: directory}
+  layered_completion:
+    provider: Iterative Qwen/SAM3/TRELLIS2 front-to-back peel and background rebuild
+    command:
+      - "${SITE_PYTHON}"
+      - "${SITE_DRIVERS_ROOT}/layered_completion.py"
+      - --frames-manifest
+      - "{input_frames_manifest}"
+      - --cameras
+      - "{input_cameras}"
+      - --plan
+      - "{input_layered_completion_plan}"
+      - --scene-gaussian
+      - "{input_scene_gaussian}"
+      - --scene-mesh
+      - "{input_scene_mesh}"
+      - --masks-manifest
+      - "{input_masks_manifest}"
+      - --captions-manifest
+      - "{input_captions_manifest}"
+      - --object-clouds-manifest
+      - "{input_object_clouds_manifest}"
+      - --semantic-gaussian
+      - "{input_semantic_gaussian}"
+      - --object-facts
+      - "{input_object_facts}"
+      - --completed-object-assets-manifest
+      - "{output_completed_object_assets_manifest}"
+      - --clean-scene-gaussian
+      - "{output_clean_scene_gaussian}"
+      - --clean-scene-mesh
+      - "{output_clean_scene_mesh}"
+      - --clean-plate-manifest
+      - "{output_clean_plate_manifest}"
+      - --report
+      - "{output_layered_completion_report}"
+    input_roles: [frames_manifest, cameras, layered_completion_plan, scene_gaussian, scene_mesh, masks_manifest, captions_manifest, object_clouds_manifest, semantic_gaussian, object_facts]
+    output_roles: [completed_object_assets_manifest, clean_scene_gaussian, clean_scene_mesh, clean_plate_manifest, layered_completion_report]
+    timeout_seconds: 604800
+    requires:
+      site_python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/layered_completion.py", kind: file}
+      qwen_python: {path: "${QWEN_PYTHON}", kind: executable}
+      qwen_model: {path: "${QWEN_MODEL_ROOT}", kind: directory}
+      sam3_root: {path: "${SAM3_ROOT}", kind: directory}
+      sam3_python: {path: "${SAM3_PYTHON}", kind: executable}
+      sam3_checkpoint: {path: "${SAM3_CHECKPOINT}", kind: file, min_size_bytes: 1024}
+      trellis_root: {path: "${TRELLIS_ROOT}", kind: directory}
+      trellis_python: {path: "${TRELLIS_PYTHON}", kind: executable}
+      trellis_weights: {path: "${TRELLIS_WEIGHTS}", kind: directory}
+      pgsr_root: {path: "${PGSR_ROOT}", kind: directory}
+      pgsr_python: {path: "${PGSR_PYTHON}", kind: executable}
+    lineage_evidence:
+      - Each round must hash-bind its input clean plate to the previous round output.
+      - Each round must rerun scene audit and SAM3 on the newly revealed scene state.
+      - Object layers require audited TRELLIS2 PBR GLB receipts; the terminal round requires real background rebuild evidence.
+      - The report is rejected unless all rounds pass and the final round is final_background.
+  placement:
+    provider: Video2World scene-space placement and collision assembly wrapper
+    command:
+      - "${SITE_PYTHON}"
+      - "${SITE_DRIVERS_ROOT}/placement.py"
+      - --scene-gaussian
+      - "{input_scene_gaussian}"
+      - --scene-mesh
+      - "{input_scene_mesh}"
+      - --object-clouds-manifest
+      - "{input_object_clouds_manifest}"
+      - --semantic-gaussian
+      - "{input_semantic_gaussian}"
+      - --completed-object-assets-manifest
+      - "{input_completed_object_assets_manifest}"
+      - --aligned-objects-manifest
+      - "{output_aligned_objects_manifest}"
+      - --collision-manifest
+      - "{output_collision_manifest}"
+    input_roles: [scene_gaussian, scene_mesh, object_clouds_manifest, semantic_gaussian, completed_object_assets_manifest]
+    output_roles: [aligned_objects_manifest, collision_manifest]
+    requires:
+      site_python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/placement.py", kind: file}
+      video2world_root: {path: "${VIDEO2WORLD_ROOT}", kind: directory}
+  bundle:
+    provider: Video2World canonical world manifest compiler wrapper
+    command:
+      - "${SITE_PYTHON}"
+      - "${SITE_DRIVERS_ROOT}/bundle.py"
+      - --clean-scene-gaussian
+      - "{input_clean_scene_gaussian}"
+      - --clean-scene-mesh
+      - "{input_clean_scene_mesh}"
+      - --completed-object-assets-manifest
+      - "{input_completed_object_assets_manifest}"
+      - --object-facts
+      - "{input_object_facts}"
+      - --aligned-objects-manifest
+      - "{input_aligned_objects_manifest}"
+      - --collision-manifest
+      - "{input_collision_manifest}"
+      - --world-manifest
+      - "{output_world_manifest}"
+    input_roles: [clean_scene_gaussian, clean_scene_mesh, completed_object_assets_manifest, object_facts, aligned_objects_manifest, collision_manifest]
+    output_roles: [world_manifest]
+    requires:
+      site_python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/bundle.py", kind: file}
+      video2world_root: {path: "${VIDEO2WORLD_ROOT}", kind: directory}
+  web:
+    provider: Video2World deployable Web bundle compiler wrapper
+    command:
+      - "${SITE_PYTHON}"
+      - "${SITE_DRIVERS_ROOT}/web.py"
+      - --world-manifest
+      - "{input_world_manifest}"
+      - --web-bundle-manifest
+      - "{output_web_bundle_manifest}"
+    input_roles: [world_manifest]
+    output_roles: [web_bundle_manifest]
+    requires:
+      site_python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/web.py", kind: file}
+      video2world_root: {path: "${VIDEO2WORLD_ROOT}", kind: directory}

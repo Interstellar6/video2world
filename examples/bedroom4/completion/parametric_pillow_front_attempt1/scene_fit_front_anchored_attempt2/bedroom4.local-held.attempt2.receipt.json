@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "kind": "video2world.local-held-scene-candidate-receipt",
+  "createdAt": "2026-07-17T04:26:05+08:00",
+  "attempt": 2,
+  "status": "held",
+  "localOnly": true,
+  "nonProduction": true,
+  "publishAllowed": false,
+  "strategy": "observed_front_surface_anchor_with_thickness_clamp",
+  "candidateManifest": {
+    "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_front_anchored_attempt2/bedroom4.local-held.attempt2.manifest.json",
+    "sha256": "13e8b1a42171b8fa4d546d65a1693f2e5075379c52f5b008b6c8255eb47b2a15",
+    "version": "bedroom4-local-held-sam3-pillow-front-attempt2-20260717",
+    "schemaVersion": 1,
+    "contract": "video2world-web-manifest-1.0.0"
+  },
+  "browserQa": {
+    "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_front_anchored_attempt2/bedroom4.local-held.attempt2.browser-qa.json",
+    "sha256": "0c071cec6494f707685e3c85384979e9e60ee3f4c2000bd26f3f6531405f05fe",
+    "status": "held",
+    "promotionAllowed": false,
+    "sceneVisualOverlayGate": "failed",
+    "sceneInterpenetrationGate": "failed",
+    "supportContactGate": "failed",
+    "attempt2SceneImprovementGate": "failed"
+  },
+  "derivation": {
+    "attempt1Manifest": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit/bedroom4.local-held.manifest.json",
+    "attempt1ManifestSha256": "6d306ff71ba7e45a854509c12c31761623ea00dcf8db3d76ecbec4d818087a23",
+    "attempt1BrowserQa": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit/bedroom4.local-held.browser-qa.json",
+    "attempt1BrowserQaSha256": "80bca5dd809a6d99869c0f64664f3ee410af8527ce07790546499ae76a5ce1ef",
+    "attempt1Unchanged": true
+  },
+  "sourceProductionManifest": {
+    "path": "repo://video2world/examples/bedroom4/manifest.production.json",
+    "sha256": "e0702f76e144dbf4bcd5c277ed5540ee51f7f9e8098770a145ceea63679ba2de",
+    "webCopyPath": "repo://video2world/web/public/worlds/bedroom4/manifest.json",
+    "webCopySha256": "e0702f76e144dbf4bcd5c277ed5540ee51f7f9e8098770a145ceea63679ba2de",
+    "unchanged": true
+  },
+  "assets": {
+    "visualGaussian": {
+      "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_front_anchored_attempt2/sam3_pillow_front_gaussian_scene_fit.ply",
+      "bytes": 19841530,
+      "sha256": "7209c933ec9201a809699b741cb5111c8b866590f37e9f655205adf71989dfba",
+      "vertexCount": 80000,
+      "hashVerified": true
+    },
+    "collisionGlb": {
+      "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_front_anchored_attempt2/sam3_pillow_front.scene-fit.glb",
+      "bytes": 410044,
+      "sha256": "8ca1b1a99ed14744910b77d3ed6c57d510aa28ebf2146c6c0bc1a54244c9e0b3",
+      "vertices": 10226,
+      "faces": 20448,
+      "watertight": true,
+      "hashVerified": true
+    },
+    "sceneFitReport": {
+      "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_front_anchored_attempt2/scene_fit_report.json",
+      "sha256": "383eafb4e0f7db79a4c7005ef3185064739e5e4b4145d8e45dc1fadb55e755d6"
+    }
+  },
+  "geometryComparisonToAttempt1": {
+    "observedTargetObbThickness": 1.4420788444486754,
+    "attempt2CompletedObbThickness": 0.9030485993158289,
+    "completedToObservedThicknessRatio": 0.626213055404107,
+    "thicknessReductionRatio": 0.373786944595893,
+    "frontSurfaceAnchorError": 0,
+    "attempt1AabbExtents": [
+      4.221720235544492,
+      3.587436572446297,
+      3.0835172107724476
+    ],
+    "attempt2AabbExtents": [
+      4.107447772774992,
+      3.4627903753806777,
+      2.721183180971044
+    ],
+    "relativeAabbChange": [
+      -0.02706774878339649,
+      -0.03474519884838608,
+      -0.11750673177226598
+    ]
+  },
+  "runtimeTransform": {
+    "pivot": [
+      -0.9486739472003689,
+      -0.10531408309315968,
+      14.846275700709047
+    ],
+    "generatedCenter": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "rotationEulerDeg": [
+      0,
+      0,
+      0
+    ],
+    "collisionObjectLocalMatrix": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "colliderProxyAabb": {
+      "center": [
+        0,
+        0,
+        0
+      ],
+      "dimensions": [
+        4.107447772774992,
+        3.4627903753806777,
+        2.721183180971044
+      ]
+    },
+    "noDoubleScaling": true
+  },
+  "validation": {
+    "jsonSyntax": "passed",
+    "webManifestParser": {
+      "status": "passed",
+      "implementation": "repo://video2world/web/web-manifest.js#validateWebManifest"
+    },
+    "productionManifestUnchanged": "passed",
+    "attempt1ArtifactsUnchanged": "passed",
+    "assetSizeAndSha256": "passed",
+    "frontSurfaceAnchorTechnicalGate": "passed",
+    "identityRuntimeTransform": "passed",
+    "collisionCandidateGate": "held",
+    "browserAssetLoading": "passed",
+    "browserCanvasNonblank": "passed",
+    "browserSharedRotation": "passed",
+    "browserNoDoubleScaling": "passed",
+    "browserSceneComposite": "failed"
+  },
+  "localReview": {
+    "manifestQuery": "/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_front_anchored_attempt2/bedroom4.local-held.attempt2.manifest.json",
+    "requiredQueryParameters": {
+      "allowCandidateColliders": "1"
+    },
+    "browserSceneOverlay": "failed",
+    "sceneInterpenetration": {
+      "status": "failed",
+      "candidateStaticIntersectionCount": 1,
+      "candidateObjectIntersectionCount": 0
+    },
+    "supportContact": {
+      "status": "failed",
+      "classification": "interpenetrating_static_scene",
+      "suspended": false,
+      "attempt1MeanSignedDownOffset": -2.023494,
+      "attempt2MeanSignedDownOffset": -2.784336,
+      "meanChangeAttempt2MinusAttempt1": -0.760842
+    },
+    "comparisonDecision": "Attempt 2 is geometrically thinner but does not improve the scene composite, static intersection, or support relation."
+  },
+  "promotionBlockers": [
+    "scene_visual_overlay_review",
+    "scene_interpenetration_gate",
+    "support_contact_review",
+    "accepted_clean_plate_or_static_scene_carve"
+  ],
+  "inheritedStaticSceneCaveat": "Attempt 2 inherits the production static Gaussian and collider carve for the old three-pillow ensemble. Clean plate remains rejected, so this candidate cannot be promoted regardless of browser geometry results."
+}

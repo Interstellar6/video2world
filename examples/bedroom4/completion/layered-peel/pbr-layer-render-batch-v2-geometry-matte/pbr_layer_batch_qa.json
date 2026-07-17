@@ -1,0 +1,192 @@
+{
+  "alpha_depth_alignment": {
+    "final_alpha_equals_finite_depth_support": true,
+    "final_alpha_is_binary": true,
+    "matte_provenance": "raw_blender_z_within_evaluated_geometry_depth_bounds",
+    "maximum_changed_union_fraction_exclusive": 0.02,
+    "minimum_initial_alpha_vs_depth_iou": 0.98,
+    "mode": "geometry-derived-binary-matte",
+    "rgb_render_samples": 64
+  },
+  "analytic_silhouette_thresholds": {
+    "bed_center_threshold_reason": "The bed is a wide support object cropped by the source camera; the approved 20px center gate preserves strict mask and bbox gates while avoiding a misleading pillow-scale center threshold.",
+    "maximum_center_error_px_by_layer": {
+      "sam3_bed_01": 20.0,
+      "sam3_pillow_front": 10.0,
+      "sam3_pillow_left": 10.0,
+      "sam3_pillow_right": 10.0
+    },
+    "minimum_bbox_iou": 0.8,
+    "minimum_mask_iou": 0.85
+  },
+  "batch_root": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte",
+  "created_at": "2026-07-17T07:46:36.020978+00:00",
+  "frame_count": 25,
+  "frame_layer_asset_count": 100,
+  "gates": {
+    "all_100_frame_receipts_and_hashes_valid": true,
+    "all_analytic_silhouette_gates_true": true,
+    "all_changed_union_fractions_below_0_02": true,
+    "all_final_alpha_support_equals_finite_depth_support": true,
+    "all_final_alpha_values_binary": true,
+    "all_frame_receipt_gates_true": true,
+    "all_initial_alpha_vs_depth_iou_at_least_0_98": true,
+    "all_rgb_render_samples_equal_64": true,
+    "claims_measured_donor_rejected": true,
+    "exactly_25_ordered_frames_per_layer": true,
+    "four_expected_layers_present": true,
+    "no_per_frame_raw_depth_exr_retained": true,
+    "promotion_approved_rejected": true
+  },
+  "kind": "video2world.source_camera_pbr_geometry_matte_batch_qa",
+  "layer_count": 4,
+  "layers": [
+    {
+      "center_error_limit_px": 10.0,
+      "changed_pixels_total": 356,
+      "cleared_pixels_total": 199,
+      "depth_probe_receipt": {
+        "bytes": 822,
+        "path": "layers/sam3_pillow_front/calibration/depth_semantics_receipt.json",
+        "sha256": "3138351d26c9380d44b78af7a5459b49a0ce1f924386f3b708ce9a0f52f4f0c2"
+      },
+      "filled_pixels_total": 157,
+      "frame_count": 25,
+      "layer_id": "sam3_pillow_front",
+      "manifest": {
+        "bytes": 25868,
+        "path": "layers/sam3_pillow_front/render_manifest.json",
+        "sha256": "8a2c2420cbab482e5a67a4af2d64356fb0fad4e4efa6a36c9a05d9607d90a69b"
+      },
+      "manifest_receipt": {
+        "bytes": 484,
+        "path": "layers/sam3_pillow_front/render_receipt.json",
+        "sha256": "d12711fc33e62998bf0b962d324aeecc294eb7734391a50696f3e0ab5c7e126d"
+      },
+      "maximum_analytic_center_error_px": 6.435174950115091,
+      "maximum_changed_union_fraction": 0.0015297342086812416,
+      "minimum_analytic_bbox_iou": 0.9085365853658537,
+      "minimum_analytic_mask_iou": 0.8793719176917408,
+      "minimum_initial_alpha_vs_depth_iou": 0.9984702657913188,
+      "per_frame_raw_depth_exrs_retained": 0,
+      "render_elapsed_seconds": 43.56055829199613,
+      "status": "passed_25_frame_geometry_matte_audit"
+    },
+    {
+      "center_error_limit_px": 10.0,
+      "changed_pixels_total": 596,
+      "cleared_pixels_total": 297,
+      "depth_probe_receipt": {
+        "bytes": 821,
+        "path": "layers/sam3_pillow_left/calibration/depth_semantics_receipt.json",
+        "sha256": "ee902bb7fbd9800dac49753d39b237983aa14c1e91bab8f6f5121693f787f4b8"
+      },
+      "filled_pixels_total": 299,
+      "frame_count": 25,
+      "layer_id": "sam3_pillow_left",
+      "manifest": {
+        "bytes": 25836,
+        "path": "layers/sam3_pillow_left/render_manifest.json",
+        "sha256": "eaa8ac131fafb932b060a94afcb66ac22b8e901a7936513b388e4a9ed80735ba"
+      },
+      "manifest_receipt": {
+        "bytes": 483,
+        "path": "layers/sam3_pillow_left/render_receipt.json",
+        "sha256": "07173d099b3fa47dca29d38884bd4a89039a4f595c5938a38e89b4f71718e497"
+      },
+      "maximum_analytic_center_error_px": 4.741897795941911,
+      "maximum_changed_union_fraction": 0.0011327097339959076,
+      "minimum_analytic_bbox_iou": 0.9254571026722925,
+      "minimum_analytic_mask_iou": 0.9129159070191432,
+      "minimum_initial_alpha_vs_depth_iou": 0.9988672902660041,
+      "per_frame_raw_depth_exrs_retained": 0,
+      "render_elapsed_seconds": 40.657896749995416,
+      "status": "passed_25_frame_geometry_matte_audit"
+    },
+    {
+      "center_error_limit_px": 10.0,
+      "changed_pixels_total": 300,
+      "cleared_pixels_total": 158,
+      "depth_probe_receipt": {
+        "bytes": 822,
+        "path": "layers/sam3_pillow_right/calibration/depth_semantics_receipt.json",
+        "sha256": "7fa6d16c00a1a917c24952dc0e20c2ec28faa05c32df15b436233854881e207b"
+      },
+      "filled_pixels_total": 142,
+      "frame_count": 25,
+      "layer_id": "sam3_pillow_right",
+      "manifest": {
+        "bytes": 25916,
+        "path": "layers/sam3_pillow_right/render_manifest.json",
+        "sha256": "d4924a16ad9a205043ae9e425dcb9f7f51016b5dd9960962a58af032588dd7f0"
+      },
+      "manifest_receipt": {
+        "bytes": 484,
+        "path": "layers/sam3_pillow_right/render_receipt.json",
+        "sha256": "ba7bca2b7ce5ab47a08e7fc2a48e31b486f55ee56b7c4e8b78f92b9de669df04"
+      },
+      "maximum_analytic_center_error_px": 3.4597522846458033,
+      "maximum_changed_union_fraction": 0.001183431952662722,
+      "minimum_analytic_bbox_iou": 0.9164824367477278,
+      "minimum_analytic_mask_iou": 0.9177132756535492,
+      "minimum_initial_alpha_vs_depth_iou": 0.9988165680473373,
+      "per_frame_raw_depth_exrs_retained": 0,
+      "render_elapsed_seconds": 44.52644341698033,
+      "status": "passed_25_frame_geometry_matte_audit"
+    },
+    {
+      "center_error_limit_px": 20.0,
+      "changed_pixels_total": 1311,
+      "cleared_pixels_total": 1200,
+      "depth_probe_receipt": {
+        "bytes": 816,
+        "path": "layers/sam3_bed_01/calibration/depth_semantics_receipt.json",
+        "sha256": "d5833878c5b8f85b5fbb98a9a7086c2f5d5bdeb65b1e110a223e0ae95fb0f07c"
+      },
+      "filled_pixels_total": 111,
+      "frame_count": 25,
+      "layer_id": "sam3_bed_01",
+      "manifest": {
+        "bytes": 25483,
+        "path": "layers/sam3_bed_01/render_manifest.json",
+        "sha256": "f81350f5be6511d9324fcc9de8195a6112d597966474c4a1e894acc5b8d800e7"
+      },
+      "manifest_receipt": {
+        "bytes": 478,
+        "path": "layers/sam3_bed_01/render_receipt.json",
+        "sha256": "8c84cbdd9a4fdd2d4ed1b901c5d3704e3ab27262f5e145972080ce58f1b42514"
+      },
+      "maximum_analytic_center_error_px": 14.404867023339893,
+      "maximum_changed_union_fraction": 0.00044729265952082756,
+      "minimum_analytic_bbox_iou": 0.8429059776415879,
+      "minimum_analytic_mask_iou": 0.9512163060501696,
+      "minimum_initial_alpha_vs_depth_iou": 0.9995527073404792,
+      "per_frame_raw_depth_exrs_retained": 0,
+      "render_elapsed_seconds": 43.28355033401749,
+      "status": "passed_25_frame_geometry_matte_audit"
+    }
+  ],
+  "outputs": {
+    "contact_sheet": {
+      "bytes": 493417,
+      "path": "pbr_layer_batch_contact_sheet.png",
+      "sha256": "a0a232778c9cb4e1466b1d72215a6ddb7a08d01e25901860c5e4b7da8fb96ead"
+    },
+    "render_index": {
+      "bytes": 162376,
+      "path": "render_index.json",
+      "sha256": "a698bdd7352547f4947886fc58d30c8441512634d367aa52c522ddcd8b1e05c7"
+    }
+  },
+  "payload_artifact_set": {
+    "algorithm": "sha256(sorted(relative_path + NUL + file_sha256 + LF))",
+    "bytes": 425586848,
+    "file_count": 341,
+    "sha256": "02845255f941974038ace0e81c4b21ba9eaff61ba434ab1268ca27fd6a11c3dd"
+  },
+  "promotion_approved": false,
+  "promotion_blocker": "final peel composite and clean-plate reconstruction are separate stages",
+  "schema_version": 1,
+  "status": "passed_4_layers_x_25_frames_not_promoted",
+  "sum_layer_render_elapsed_seconds": 172.02844879298937
+}

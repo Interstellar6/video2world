@@ -45,9 +45,10 @@ VISUAL_AUDIT_CHECKLISTS = {
         "clumping stems, and an off-white cylindrical pot; do not guess a species."
     ),
     "sam3_pillow_01": (
-        "Verify exactly three touching pillows treated as one ensemble: two larger pale-green patchwork/floral "
-        "pillows behind one smaller light square pillow, resting on the bed in front of a dark carved wooden "
-        "headboard. Never state that the pillow count is uncertain."
+        "Verify exactly three touching pillows treated as one ensemble: two larger off-white or cream "
+        "quilted/floral pillows behind one smaller white or off-white square pillow, resting on the bed in "
+        "front of a dark carved wooden headboard. Warm room lighting may shift their apparent tint; do not "
+        "label the pillows pale green. Never state that the pillow count is uncertain."
     ),
 }
 AUDIT_CORRECTIONS = {
@@ -122,11 +123,11 @@ AUDIT_CORRECTIONS = {
         "uncertainties": [{"en": "The species and exact leaf, stem, and pot materials cannot be confirmed visually.", "zh": "无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"}],
     },
     "sam3_pillow_01": {
-        "caption_en": "This accepted ensemble contains three touching pillows on the bed: two larger pale-green patchwork pillows behind one smaller light square pillow, in front of a dark carved wood-like headboard.",
-        "caption_zh": "这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。",
+        "caption_en": "This accepted ensemble contains three touching light-colored pillows on the bed: two larger off-white or cream quilted pillows with muted brown floral panels behind one smaller white or off-white square pillow, in front of a dark carved wood-like headboard. Their apparent tint varies under the warm room lighting.",
+        "caption_zh": "这个已接受整体由床上三只相接的浅色枕头组成：两只较大的灰白/米白色绗缝枕头带低饱和棕色花卉拼接，位于一只较小的白色/灰白色方枕后方；整体处在深色雕花木质观感床头板前，暖色室内光会使表面略显偏黄。",
         "visible_attributes": {
             "object_type": {"en": "three-pillow ensemble", "zh": "三只枕头整体"},
-            "colors": {"en": ["pale green", "light off-white", "muted brown floral accents"], "zh": ["浅绿色", "浅灰白色", "低饱和棕色花卉点缀"]},
+            "colors": {"en": ["off-white and cream under warm lighting", "white to off-white front pillow", "muted brown floral accents"], "zh": ["暖光下的灰白与米白色", "白色至灰白色前排枕头", "低饱和棕色花卉点缀"]},
             "material_appearance": {"en": ["soft quilted fabric-like covers"], "zh": ["柔软绗缝织物观感枕套"]},
             "geometry": {"en": ["two larger near-square rear pillows", "one smaller square front pillow", "soft rounded corners"], "zh": ["两只较大的近方形后排枕头", "一只较小的方形前排枕头", "柔和圆角"]},
             "components": {"en": ["two larger rear pillows", "one smaller front pillow"], "zh": ["两只较大的后排枕头", "一只较小的前排枕头"]},
@@ -393,8 +394,8 @@ def validate_output(value: dict[str, Any], item: dict[str, Any]) -> list[str]:
         "sam3_plant_02": ((r"palmate", "palmate_leaves"), (r"varieg", "variegation"), (r"stem", "stems")),
         "sam3_plant_03": ((r"lance", "lance_leaves"), (r"varieg", "variegation"), (r"stem", "stems")),
         "sam3_pillow_01": (
-            (r"pale.green|light.green", "pale_green"),
-            (r"patchwork|floral", "patchwork_or_floral"),
+            (r"off.white|cream|white", "white_or_off_white"),
+            (r"quilt|patchwork|floral", "quilted_or_floral"),
             (r"behind|in front", "front_back_relation"),
         ),
     }

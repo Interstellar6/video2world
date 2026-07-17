@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "video2world.canonical_object_six_view_review",
+  "createdAt": "2026-07-17T02:47:36.778Z",
+  "state": "captured_visual_pending",
+  "promotionAllowed": false,
+  "sourcePageUrl": "http://127.0.0.1:4179/object-review.html?objectId=sam3_bed_01_seed47&asset=%2F%40fs%2FUsers%2Fzhangyuxiang%2FDesktop%2Fworksplace%2Fvideo2world%2Fexamples%2Fbedroom4%2Fcompletion%2Flayered-peel%2Fround04_bed%2Ftrellis2_seed47_preserve_negative_space_ref67%2Fasset_pbr.glb",
+  "canonicalViews": [
+    "front",
+    "right",
+    "back",
+    "left",
+    "top",
+    "bottom"
+  ],
+  "canonicalViewAxes": {
+    "front": {
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "orientationContract": "web/object-review.js VIEW_SPECS orthogonal object-local axes",
+  "horizontalOrbitAcceptedAsSixViewEvidence": false,
+  "visualGate": {
+    "status": "pending",
+    "blocking": [
+      "shape_mismatch",
+      "primary_color_category_error",
+      "missing_surface_or_sheet_geometry",
+      "disconnected_or_floating_parts",
+      "significant_scene_interpenetration"
+    ],
+    "warning": [
+      "minor_backside_texture_hallucination",
+      "minor_material_or_pattern_drift"
+    ]
+  },
+  "objectId": "sam3_bed_01_seed47",
+  "renderMode": "neutral-albedo",
+  "bounds": {
+    "min": [
+      -0.5017583966255188,
+      -0.18164828419685364,
+      -0.3191526234149933
+    ],
+    "max": [
+      0.501918375492096,
+      0.1826067566871643,
+      0.32034868001937866
+    ],
+    "size": [
+      1.0036767721176147,
+      0.36425504088401794,
+      0.639501303434372
+    ],
+    "radius": 0.6222962949415882
+  },
+  "meshCount": 1,
+  "triangleCount": 93992,
+  "asset": {
+    "url": "http://127.0.0.1:4179/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed47_preserve_negative_space_ref67/asset_pbr.glb",
+    "sizeBytes": 3051360,
+    "sha256": "261bb991f13e04c8506429f6097a8389c7cb895ae521192f19d69d5155db3340"
+  },
+  "views": {
+    "front": {
+      "file": "front_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed47_preserve_negative_space_ref67/canonical_six_view/front_object.png",
+      "sizeBytes": 35991,
+      "sha256": "cbf8695fca633d0c32ff7a044ea1b81def2ed1fb816276d1567b9b02d8083b2e",
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "file": "right_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed47_preserve_negative_space_ref67/canonical_six_view/right_object.png",
+      "sizeBytes": 44755,
+      "sha256": "06773867cf22733385be10f623dc9b3c61964efb124ac77b104be06c1906ca92",
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "file": "back_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed47_preserve_negative_space_ref67/canonical_six_view/back_object.png",
+      "sizeBytes": 44027,
+      "sha256": "dadecec5741f83171fda652e0cea9c7b3c8d518b6c4a4fe12d181f4394f23b31",
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "file": "left_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed47_preserve_negative_space_ref67/canonical_six_view/left_object.png",
+      "sizeBytes": 52047,
+      "sha256": "f2d9fc67d0a89a828752c512b1318f8f950c74aa154d06e97a6f8dbc501c0c8e",
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "file": "top_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed47_preserve_negative_space_ref67/canonical_six_view/top_object.png",
+      "sizeBytes": 121431,
+      "sha256": "bba365da6efbbc4fb53ba829689692aec85609e2ca79cda65b936edc9a04306d",
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "file": "bottom_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed47_preserve_negative_space_ref67/canonical_six_view/bottom_object.png",
+      "sizeBytes": 138164,
+      "sha256": "c1811d11bec333b7c085b927dfe19966aae11867bff6d67d9bf48b7a1559234d",
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "contactSheet": {
+    "file": "object_six_view_contact_sheet.png",
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed47_preserve_negative_space_ref67/canonical_six_view/object_six_view_contact_sheet.png",
+    "sizeBytes": 275401,
+    "sha256": "ca4907c43372af76c79f1d1f7389cc7a747164027c0c2e14bfe9b25b542d676c",
+    "layout": "3x2",
+    "viewport": [
+      1440,
+      1280
+    ]
+  },
+  "browser": {
+    "consoleWarnings": [],
+    "consoleErrors": []
+  }
+}

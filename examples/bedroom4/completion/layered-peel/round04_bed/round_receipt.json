@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.layered_peel_round_receipt",
+  "created_at": "2026-07-17T10:35:00+08:00",
+  "scene_id": "bedroom_4",
+  "round_index": 4,
+  "target_object_id": "sam3_bed_01",
+  "status": "running",
+  "acceptance_scope": null,
+  "input_lineage": {
+    "preceding_round": 3,
+    "clean_plate_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/propainter_output/frames/inpaint_out.mp4",
+    "clean_plate_sha256": "4887216b24fff38c4f845193bfbab4dfb0057c995b51e752ce9537948a3d967e",
+    "selection_association_sha256": "bb4f620b9e33b978ebe050970ddbe37a10fc5545e04fe6c2e94f03b1d1e2bd61",
+    "object_input_report_sha256": "bc9e248cddab1eece0526735b48d419391c727bf0252827e250714e3c23694f7",
+    "scene_reference_manifest_sha256": "b6bba0ccb6ac15664779861b34108d096f2ecced865274f9b68d7510b46e16de"
+  },
+  "amodal_input": {
+    "status": "passed",
+    "audit_sha256": "8b48bb55e8c19e9373867dd2d140c212c3477d3ebfa4352f3958c992048fe810",
+    "completed_rgba_sha256": "170a188d7290fe8adf6180fe5390bbce01433c2791dae10d17445e37638cfe8e",
+    "shape_policy": "fill_enclosed_holes",
+    "cavity_bridge_radius_pixels": 5,
+    "added_pixels": 53238,
+    "added_to_original_area_ratio": 0.22727680229505257,
+    "bridge_pixels_added_to_output": 0,
+    "visible_pixels_preserved_byte_identical": true,
+    "multiframe_identity_gate_passed": true
+  },
+  "object_asset_decision": {
+    "status": "rejected_retry_required",
+    "candidate_id": "trellis2_seed45",
+    "asset_sha256": "d2059e1587b825438cb256b3e648852518bb2747c42ce7f00a69f5798aae1075",
+    "provider_receipt_sha256": "826c0d0dfec9a035fc9ecdef268b7f2c86e1658b738764388ef1fa7daf62ecf5",
+    "visual_review_sha256": "3432cd7325bc460a0e580c0aecfd56085b145d6afe3113d432390a6b6135394e",
+    "contact_sheet_sha256": "620aced76c0b7bb1f09a0e61b763d6ba3ab24664da87dbcca11d292cb1bb5b54",
+    "blocking_issues": [
+      "large malformed ridge near the headboard",
+      "headboard and mattress interpenetration would corrupt the unified visual and collision subject"
+    ]
+  },
+  "clean_plate_candidate": {
+    "technical_status": "passed",
+    "semantic_status": "rejected",
+    "output_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/propainter_output_bridge_r5_min1pct_v1/frames/inpaint_out.mp4",
+    "output_sha256": "9b3004df9e86fbc6d531d136e7158f276b176d912089edeccb9a5cc9795c630b",
+    "input_manifest_sha256": "944aa6c5d51cc98c36f01554a9dc0d0d02bbbf875ff637d66344ba57838d6b99",
+    "technical_qa_sha256": "ef7a1f85043690a9ddeb7917d47d32c306b344b059d744ef87ec5618a31eb564",
+    "visual_review_sha256": "62b23ce1a734430d7104e6fffbce3a3ba70af546e1e28afb290adf0dafd2e04e",
+    "contact_sheet_sha256": "6d2099a535b0de17588b364b47b09170b2c4bf12b585c1e151457a8eb7c4e7c7",
+    "usage": "evidence_only",
+    "pipeline_disposition": "rejected_clean_plate_not_propagated"
+  },
+  "blockers": [
+    {
+      "id": "bed_asset_retry",
+      "status": "pending",
+      "required_result": "a complete PBR bed GLB without the headboard ridge or mattress interpenetration"
+    },
+    {
+      "id": "final_background_geometry_completion",
+      "status": "pending",
+      "required_result": "calibrated wall and floor plane completion with multi-view depth and normal consistency"
+    }
+  ],
+  "next_round_target_ids": [],
+  "final_background_status": "pending",
+  "limitations": [
+    "The technically valid ProPainter output is visually rejected and must not be propagated as an output_clean_plate.",
+    "Large persistent occluders require geometry-aware plane completion rather than ordinary temporal inpainting.",
+    "No final object-free Gaussian, mesh, or clean scene has passed."
+  ]
+}

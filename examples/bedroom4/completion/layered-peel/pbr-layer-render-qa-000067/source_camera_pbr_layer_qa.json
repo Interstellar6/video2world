@@ -1,0 +1,460 @@
+{
+  "camera_convention": "camera_to_world_right_down_forward; image_y_down",
+  "created_at": "2026-07-17T06:12:09.705695+00:00",
+  "frame_id": "000067",
+  "kind": "video2world.source_camera_pbr_layer_qa",
+  "layers": [
+    {
+      "gates": {
+        "alpha_support_equals_metric_depth_support": true,
+        "bbox_iou": true,
+        "center_error": true,
+        "mask_iou": true,
+        "observed_bbox_iou": true,
+        "observed_center_error": true,
+        "observed_recall": true,
+        "precision": true,
+        "recall": true
+      },
+      "layer_id": "sam3_pillow_front",
+      "mesh_watertight": false,
+      "metrics": {
+        "analytic_bbox_xyxy": [
+          583,
+          377,
+          741,
+          531
+        ],
+        "analytic_pixels": 16663,
+        "analytic_recall": 0.9081197863529976,
+        "bbox_iou": 0.9168173598553345,
+        "center_error_px": 5.472383071200341,
+        "intersection_pixels": 15132,
+        "mask_iou": 0.8945377157720501,
+        "rendered_alpha_pixels": 15385,
+        "rendered_bbox_xyxy": [
+          584,
+          377,
+          740,
+          520
+        ],
+        "rendered_precision": 0.9835554111147221,
+        "union_pixels": 16916
+      },
+      "observed_sam_claim_scope": "Visible SAM mask versus full PBR layer; amodal regions behind other objects may lower mask IoU, so bbox, recall, and center are the alignment gates.",
+      "observed_sam_vs_rendered_metrics": {
+        "analytic_bbox_xyxy": [
+          579,
+          377,
+          750,
+          532
+        ],
+        "analytic_pixels": 22295,
+        "analytic_recall": 0.6674142184346266,
+        "bbox_iou": 0.8416525183927561,
+        "center_error_px": 9.812345660973275,
+        "intersection_pixels": 14880,
+        "mask_iou": 0.6526315789473685,
+        "rendered_alpha_pixels": 15385,
+        "rendered_bbox_xyxy": [
+          584,
+          377,
+          740,
+          520
+        ],
+        "rendered_precision": 0.9671758206044849,
+        "union_pixels": 22800
+      },
+      "outputs": {
+        "analytic_silhouette": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/analytic-silhouettes/sam3_pillow_front.png",
+          "sha256": "4371a1efd5cfc3731b805138f4e3015a3e09c934cfacab5e2fe111946731881a"
+        },
+        "observed_sam_overlay": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/observed-overlays/sam3_pillow_front.png",
+          "sha256": "ec33b4f150286035803b2bc1fc2849db8b4eec3cf39d6b1214cdcc032c8e3e34"
+        },
+        "overlay": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/overlays/sam3_pillow_front.png",
+          "sha256": "75282899e4c5c42287fad393a3dddff5c43db734415b449546e026ab9814938e"
+        }
+      },
+      "sources": {
+        "mesh": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/sam3_pillow_front.scene-fit.glb",
+          "sha256": "9d84ab4561d7c017c24c07a94abe5400073b0fafb97893a8a1eafca320c391d6"
+        },
+        "observed_sam_mask": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/source/masks/sam3_pillow_front.png",
+          "sha256": "ce16b5363cdb8cd1d33404aef55495184c5e299d4cea4de87523fbef1d08c654"
+        },
+        "render_receipt": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_front/receipts/000067.json",
+          "sha256": "83a9944a934d260039a247ad52c3555c1dc645060a545b0d729aa98413b1d085"
+        },
+        "scene_fit_report": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/scene_fit_report.json",
+          "sha256": "da26014b1ecc29eb1dfcf8d45b74d98bd539b69945e029a6512ea6a2ab8769cd"
+        }
+      },
+      "status": "passed",
+      "thresholds": {
+        "maximum_center_error_px": 10.0,
+        "maximum_observed_center_error_px": 40.0,
+        "minimum_bbox_iou": 0.8,
+        "minimum_mask_iou": 0.85,
+        "minimum_observed_bbox_iou": 0.75,
+        "minimum_observed_recall": 0.65,
+        "minimum_precision": 0.95,
+        "minimum_recall": 0.85
+      }
+    },
+    {
+      "gates": {
+        "alpha_support_equals_metric_depth_support": true,
+        "bbox_iou": true,
+        "center_error": true,
+        "mask_iou": true,
+        "observed_bbox_iou": true,
+        "observed_center_error": true,
+        "observed_recall": true,
+        "precision": true,
+        "recall": true
+      },
+      "layer_id": "sam3_pillow_left",
+      "mesh_watertight": false,
+      "metrics": {
+        "analytic_bbox_xyxy": [
+          413,
+          317,
+          650,
+          525
+        ],
+        "analytic_pixels": 30100,
+        "analytic_recall": 0.9210299003322259,
+        "bbox_iou": 0.9295886075949367,
+        "center_error_px": 3.53801689814427,
+        "intersection_pixels": 27723,
+        "mask_iou": 0.9153734398732087,
+        "rendered_alpha_pixels": 27909,
+        "rendered_bbox_xyxy": [
+          414,
+          320,
+          649,
+          515
+        ],
+        "rendered_precision": 0.9933354831774697,
+        "union_pixels": 30286
+      },
+      "observed_sam_claim_scope": "Visible SAM mask versus full PBR layer; amodal regions behind other objects may lower mask IoU, so bbox, recall, and center are the alignment gates.",
+      "observed_sam_vs_rendered_metrics": {
+        "analytic_bbox_xyxy": [
+          436,
+          328,
+          651,
+          520
+        ],
+        "analytic_pixels": 26938,
+        "analytic_recall": 0.8351770732793823,
+        "bbox_iou": 0.842556161949486,
+        "center_error_px": 6.280161302576288,
+        "intersection_pixels": 22498,
+        "mask_iou": 0.6954774490710687,
+        "rendered_alpha_pixels": 27909,
+        "rendered_bbox_xyxy": [
+          414,
+          320,
+          649,
+          515
+        ],
+        "rendered_precision": 0.8061198896413343,
+        "union_pixels": 32349
+      },
+      "outputs": {
+        "analytic_silhouette": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/analytic-silhouettes/sam3_pillow_left.png",
+          "sha256": "9428ba4b110e7859e1c81bce6d896a996b055ebcb4e81fdb1198189c8b430f72"
+        },
+        "observed_sam_overlay": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/observed-overlays/sam3_pillow_left.png",
+          "sha256": "a91ce09ca8446680e060ac30fa32adb1694065e5811dd4defb22dc6cc6b1cd40"
+        },
+        "overlay": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/overlays/sam3_pillow_left.png",
+          "sha256": "554c9cc0d018585f50c9466108ac9b8248ae28ab3cefe26e502dec6daf53dada"
+        }
+      },
+      "sources": {
+        "mesh": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined_v6/sam3_pillow_left.scene-fit.glb",
+          "sha256": "43f95a5756ccecb9a1ca36ba583c2ad4fd5dd1a4e66b1d591be935f2bd59b600"
+        },
+        "observed_sam_mask": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/source/masks/sam3_pillow_left.png",
+          "sha256": "a049842761cb9ec1d4a985d44829a54758ef1f8ab491160a60424d4aca4c08b2"
+        },
+        "render_receipt": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_left/receipts/000067.json",
+          "sha256": "b5923d79a809b0e1ae6bd4318abafdbcc84bfb492179966d9b64e995e645f363"
+        },
+        "scene_fit_report": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined_v6/scene_fit_report.json",
+          "sha256": "1f551500f5a540dfd46b9aaba33a503f36efc47c5e7169dc953ed779f40a98c7"
+        }
+      },
+      "status": "passed",
+      "thresholds": {
+        "maximum_center_error_px": 10.0,
+        "maximum_observed_center_error_px": 40.0,
+        "minimum_bbox_iou": 0.8,
+        "minimum_mask_iou": 0.85,
+        "minimum_observed_bbox_iou": 0.75,
+        "minimum_observed_recall": 0.65,
+        "minimum_precision": 0.95,
+        "minimum_recall": 0.85
+      }
+    },
+    {
+      "gates": {
+        "alpha_support_equals_metric_depth_support": true,
+        "bbox_iou": true,
+        "center_error": true,
+        "mask_iou": true,
+        "observed_bbox_iou": true,
+        "observed_center_error": true,
+        "observed_recall": true,
+        "precision": true,
+        "recall": true
+      },
+      "layer_id": "sam3_pillow_right",
+      "mesh_watertight": false,
+      "metrics": {
+        "analytic_bbox_xyxy": [
+          659,
+          317,
+          862,
+          512
+        ],
+        "analytic_pixels": 23188,
+        "analytic_recall": 0.9222442642746248,
+        "bbox_iou": 0.9384615384615385,
+        "center_error_px": 2.884507175217377,
+        "intersection_pixels": 21385,
+        "mask_iou": 0.9194685699544243,
+        "rendered_alpha_pixels": 21455,
+        "rendered_bbox_xyxy": [
+          659,
+          320,
+          862,
+          503
+        ],
+        "rendered_precision": 0.9967373572593801,
+        "union_pixels": 23258
+      },
+      "observed_sam_claim_scope": "Visible SAM mask versus full PBR layer; amodal regions behind other objects may lower mask IoU, so bbox, recall, and center are the alignment gates.",
+      "observed_sam_vs_rendered_metrics": {
+        "analytic_bbox_xyxy": [
+          654,
+          341,
+          852,
+          510
+        ],
+        "analytic_pixels": 17941,
+        "analytic_recall": 0.7670698400312134,
+        "bbox_iou": 0.7946626000762486,
+        "center_error_px": 9.680923939517998,
+        "intersection_pixels": 13762,
+        "mask_iou": 0.5368651010376844,
+        "rendered_alpha_pixels": 21455,
+        "rendered_bbox_xyxy": [
+          659,
+          320,
+          862,
+          503
+        ],
+        "rendered_precision": 0.6414355628058728,
+        "union_pixels": 25634
+      },
+      "outputs": {
+        "analytic_silhouette": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/analytic-silhouettes/sam3_pillow_right.png",
+          "sha256": "c7f72eb9c254797d911fb5c971a6a3e57a16fdc4253ea49cf4c2f783cc3a079c"
+        },
+        "observed_sam_overlay": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/observed-overlays/sam3_pillow_right.png",
+          "sha256": "721eb3d41198179ee3cd2cf8fe15564ecad4cd96d872779f130351ef682f6f7a"
+        },
+        "overlay": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/overlays/sam3_pillow_right.png",
+          "sha256": "826dd255a5701c8d3b8e483dbbef81c9c71c9272b4fdf66ad8ae09691f0908ad"
+        }
+      },
+      "sources": {
+        "mesh": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/sam3_pillow_right.scene-fit.glb",
+          "sha256": "eb4ad2cb0398602865ff3511039e440ce9cb50ace016fffeaaf3ce3944280f1e"
+        },
+        "observed_sam_mask": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/source/masks/sam3_pillow_right.png",
+          "sha256": "0ad6e5c1f5a82e617398f4096adab84165298d7ee7bbf3006e446f56ffcbd6cf"
+        },
+        "render_receipt": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_pillow_right/receipts/000067.json",
+          "sha256": "1e6d209c081c025e56b95833a9b832d675441723835f61c289c85adad45fd445"
+        },
+        "scene_fit_report": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/scene_fit_report.json",
+          "sha256": "d9ec2811d33372cfda174b7073e574385da283bc191a09fa89cbc6175da41155"
+        }
+      },
+      "status": "passed",
+      "thresholds": {
+        "maximum_center_error_px": 10.0,
+        "maximum_observed_center_error_px": 40.0,
+        "minimum_bbox_iou": 0.8,
+        "minimum_mask_iou": 0.85,
+        "minimum_observed_bbox_iou": 0.75,
+        "minimum_observed_recall": 0.65,
+        "minimum_precision": 0.95,
+        "minimum_recall": 0.85
+      }
+    },
+    {
+      "gates": {
+        "alpha_support_equals_metric_depth_support": true,
+        "bbox_iou": true,
+        "center_error": true,
+        "mask_iou": true,
+        "observed_bbox_iou": true,
+        "observed_center_error": true,
+        "observed_recall": true,
+        "precision": true,
+        "recall": true
+      },
+      "layer_id": "sam3_bed_01",
+      "mesh_watertight": true,
+      "metrics": {
+        "analytic_bbox_xyxy": [
+          280,
+          236,
+          1180,
+          720
+        ],
+        "analytic_pixels": 246647,
+        "analytic_recall": 0.9883679915020251,
+        "bbox_iou": 0.9383542440597182,
+        "center_error_px": 6.918655626795083,
+        "intersection_pixels": 243778,
+        "mask_iou": 0.9600696290520131,
+        "rendered_alpha_pixels": 251048,
+        "rendered_bbox_xyxy": [
+          265,
+          244,
+          1209,
+          720
+        ],
+        "rendered_precision": 0.9710413944743634,
+        "union_pixels": 253917
+      },
+      "observed_sam_claim_scope": "Visible SAM mask versus full PBR layer; amodal regions behind other objects may lower mask IoU, so bbox, recall, and center are the alignment gates.",
+      "observed_sam_vs_rendered_metrics": {
+        "analytic_bbox_xyxy": [
+          299,
+          225,
+          1280,
+          720
+        ],
+        "analytic_pixels": 198492,
+        "analytic_recall": 0.8678284263345626,
+        "bbox_iou": 0.863248561617764,
+        "center_error_px": 34.56122423446176,
+        "intersection_pixels": 172257,
+        "mask_iou": 0.6212317379716752,
+        "rendered_alpha_pixels": 251048,
+        "rendered_bbox_xyxy": [
+          265,
+          244,
+          1209,
+          720
+        ],
+        "rendered_precision": 0.6861516522736688,
+        "union_pixels": 277283
+      },
+      "outputs": {
+        "analytic_silhouette": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/analytic-silhouettes/sam3_bed_01.png",
+          "sha256": "a31b9a8c6bb897b9de9a997a2f6744fc099ccc8fa3272e17aaa75c62c9d4e4c1"
+        },
+        "observed_sam_overlay": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/observed-overlays/sam3_bed_01.png",
+          "sha256": "a74c880cd0b826eb2b4aa9dde74a7389549451f2e1a51f9734420be6b320ca87"
+        },
+        "overlay": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/overlays/sam3_bed_01.png",
+          "sha256": "16da03a8c79a9a3e6fb5c3a3458e2a10c22ae46e75aaa4dc3745adce4e8973f6"
+        }
+      },
+      "sources": {
+        "mesh": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v2_support_adjusted/sam3_bed_01.support-adjusted.glb",
+          "sha256": "ad9eca71a676cf8fa5cad7a38d0ff5a623149de01e61ae91ba651ea07d37790e"
+        },
+        "observed_sam_mask": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/source/masks/sam3_bed_01.png",
+          "sha256": "a4e95b49952c2985cf47bc39bec8050d8749e314cee7aed34f7e4646601c4704"
+        },
+        "render_receipt": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/sam3_bed_01/receipts/000067.json",
+          "sha256": "32676c47bec6789600d1a7a9532a8d4bfc16b5a6502763ea50c2ee2419bd5c02"
+        },
+        "scene_fit_report": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/component_assembly_v2_support_adjusted/scene_fit_validated/scene_fit_report.json",
+          "sha256": "2f3b8b29d2270964fe8931c4826b2b126e60266cfd97d157af5b8cdd971a6adc"
+        }
+      },
+      "status": "passed",
+      "thresholds": {
+        "maximum_center_error_px": 10.0,
+        "maximum_observed_center_error_px": 40.0,
+        "minimum_bbox_iou": 0.8,
+        "minimum_mask_iou": 0.85,
+        "minimum_observed_bbox_iou": 0.75,
+        "minimum_observed_recall": 0.65,
+        "minimum_precision": 0.95,
+        "minimum_recall": 0.85
+      }
+    }
+  ],
+  "outputs": {
+    "contact_sheet": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/source_camera_pbr_qa_contact_sheet.png",
+      "sha256": "bc8c974ad845802d406d4d0edf776669bafb91e09df33fe3b767ce34c1c01031"
+    },
+    "observed_sam_contact_sheet": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/observed_sam_vs_pbr_contact_sheet.png",
+      "sha256": "d6664291fbcf8fce3ea9fe98e0d57954f1939d15c7920ba38bf5ca37eb4de6c5"
+    },
+    "render_index": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/render_index.json",
+      "sha256": "cfdefc5a037c2edd378e0f6f568a7d255466b55bc87cf1b125e202432d54660e"
+    }
+  },
+  "promotion_approved": false,
+  "promotion_blocker": "000067 QA does not authorize 25-frame or final composition",
+  "schema_version": 1,
+  "sources": {
+    "cameras": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+      "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+    },
+    "source_frame": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/source/000067.png",
+      "sha256": "e31bc25f5f2e3191800b223157561e41212b35000391d01c501f7d07980ab792"
+    },
+    "spec": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/qa-spec.json",
+      "sha256": "8829ad1ef36c15d8e7a5a83e807a47fca3efa1d7409095eb0076578d68b8b452"
+    }
+  },
+  "status": "passed_single_frame_only"
+}

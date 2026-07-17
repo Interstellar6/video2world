@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.planar_texture_visual_review",
+  "status": "completed",
+  "decision": "accepted_with_limitations",
+  "acceptance_scope": "current_demo_only",
+  "candidate_report_sha256": "170771cc35e30197b2bd8069d6d96a046034d5784d74afa50cf8fb192c74cbe9",
+  "override_gate_keys": [
+    "visual_quality",
+    "wall_boundary_color_continuity",
+    "wall_boundary_low_frequency_gradient_continuity"
+  ],
+  "review_authority": {
+    "kind": "user",
+    "reviewer_id": "zhangyuxiang",
+    "scope": "current_demo_only",
+    "reviewed_at": "2026-07-17T15:32:19+08:00"
+  },
+  "gates": {
+    "interactive_objects_removed_from_structural_background": true,
+    "shared_atlas_used_for_all_reviewed_views": true,
+    "protected_neighbor_objects_preserved": true,
+    "acceptable_for_current_demo_with_recorded_boundary_limitations": true
+  },
+  "blocking_findings": [],
+  "limitations": [
+    "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+    "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+    "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+    "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+    "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+  ],
+  "full_resolution_review": [
+    {
+      "frame_id": "000064",
+      "completed_frame_sha256": "6235c2c53051091dad076f51fb5006ddcb5996877e0a4dd4818dc353f009bd1a",
+      "synthetic_mask_sha256": "3469001d2e5995995c53ebb5cb8ab993d331d4e5b7f722739c05f0c67779716d",
+      "decision": "accepted_with_limitations",
+      "blocking_findings": []
+    },
+    {
+      "frame_id": "000067",
+      "completed_frame_sha256": "9722f38d57af42e0408e60bdc28fe9b4c39100bf2599cb35ded45c7d44b22791",
+      "synthetic_mask_sha256": "bb12d861eb0101dfdb6aec533cfde0b3ad317374e4130943d61ecc5ae081f0d0",
+      "decision": "accepted_with_limitations",
+      "blocking_findings": []
+    },
+    {
+      "frame_id": "000072",
+      "completed_frame_sha256": "467244e1a649f61c6f4a3421489cc2a1607cd5e98b32343a97f57af0f7488ab8",
+      "synthetic_mask_sha256": "868a174fc58fd32af6dc1e6ed26844643e425c4f24708595ec86e702f2d02929",
+      "decision": "accepted_with_limitations",
+      "blocking_findings": []
+    }
+  ]
+}

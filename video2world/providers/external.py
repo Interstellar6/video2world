@@ -173,12 +173,15 @@ def _resolve_executable(value: str, *, cwd: Path) -> Path:
     if candidate.is_absolute() or candidate.parent != Path("."):
         if not candidate.is_absolute():
             candidate = cwd / candidate
-        resolved = candidate.resolve()
+        # Preserve virtual-environment launcher symlinks. Resolving a venv's
+        # ``bin/python`` to the base interpreter silently drops that venv's
+        # installed packages when the command is executed from another cwd.
+        resolved = candidate.absolute()
     else:
         found = shutil.which(value)
         if found is None:
             raise ConfigurationError(f"provider executable is not on PATH: {value}")
-        resolved = Path(found).resolve()
+        resolved = Path(found).absolute()
     if not resolved.is_file() or not os.access(resolved, os.X_OK):
         raise ConfigurationError(f"provider executable is missing or not executable: {resolved}")
     return resolved

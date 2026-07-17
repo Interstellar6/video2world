@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-16T21:05:41.530149+00:00",
+  "status": "completed",
+  "method": "TRELLIS.2 image-to-MeshWithVoxel with GLB/OBJ and point exports",
+  "weights": "/root/autodl-tmp/trellis2-weights-4b",
+  "config_file": "pipeline_512.json",
+  "input": "/root/autodl-tmp/video2world_pillow_completion_20260717/input/sam3_pillow_front_rgba.png",
+  "input_sha256": "80307817ae95f281710b4fd56ea70eccc2d7b05699896704328f5be5cb31da3f",
+  "seed": 42,
+  "pipeline_type": "512",
+  "feature_backend": "dinov3",
+  "official_conditioner": true,
+  "alpha_input_only": true,
+  "hdri": "/root/autodl-tmp/trellis2-official-20260717/assets/hdri/forest.exr",
+  "artifacts": [
+    {
+      "path": "/root/autodl-tmp/trellis2_pillow_completion_20260717/run/front_official_dinov3_seed42_512_views/processed_input.png",
+      "bytes": 21558,
+      "sha256": "3e3e576a6a8bc525098f397cd052c61e02a182fe1cf0b7cbfb74d4bfd0b7aef6"
+    },
+    {
+      "path": "/root/autodl-tmp/trellis2_pillow_completion_20260717/run/front_official_dinov3_seed42_512_views/asset_raw_vertex_color.obj",
+      "bytes": 75905911,
+      "sha256": "cd5b3240bfef0335aeaf8d6f7a81db1e985cda418e1519d232f9acbfb290c2e6"
+    },
+    {
+      "path": "/root/autodl-tmp/trellis2_pillow_completion_20260717/run/front_official_dinov3_seed42_512_views/asset_raw_vertex_color.glb",
+      "bytes": 26534952,
+      "sha256": "7e357bf8e3df455df0b0dddf34dfe5d1125efa60a00f158f1a32b3d9773f6357"
+    },
+    {
+      "path": "/root/autodl-tmp/trellis2_pillow_completion_20260717/run/front_official_dinov3_seed42_512_views/collision_convex.obj",
+      "bytes": 1579960,
+      "sha256": "b20073fc59ab9ca88eb9328e9062fbcbb575967c34a1cf861c31d064584cc7d8"
+    },
+    {
+      "path": "/root/autodl-tmp/trellis2_pillow_completion_20260717/run/front_official_dinov3_seed42_512_views/six_views_shaded.png",
+      "bytes": 525875,
+      "sha256": "e433113c6c0eff53e9c7890cb2c0431253a1e7cd44b3360726ac576b8c5e7785"
+    },
+    {
+      "path": "/root/autodl-tmp/trellis2_pillow_completion_20260717/run/front_official_dinov3_seed42_512_views/six_views_base_color.png",
+      "bytes": 441513,
+      "sha256": "e4073c41407c38872d466c550603ba3166a7cc5c0b8f1c4b4764cb905c2773af"
+    },
+    {
+      "path": "/root/autodl-tmp/trellis2_pillow_completion_20260717/run/front_official_dinov3_seed42_512_views/six_views_normal.png",
+      "bytes": 429921,
+      "sha256": "193f4831f42b79552a62dfc475cf8e6539d90c4cbcf35f44746e1e13a4935de8"
+    },
+    {
+      "path": "/root/autodl-tmp/trellis2_pillow_completion_20260717/run/front_official_dinov3_seed42_512_views/six_views_alpha.png",
+      "bytes": 39441,
+      "sha256": "afe587aa07899ea4abf7c673a09a7329397d12e0a21538ae785399cfe67c2684"
+    }
+  ],
+  "stage_errors": {},
+  "load_seconds": 70.26516315480694,
+  "inference_seconds": 25.382043484132737,
+  "decoded_resolution": 512,
+  "peak_vram_gb": 2.622176170349121,
+  "raw_mesh": {
+    "vertices": 661619,
+    "faces": 1329002,
+    "bounds": [
+      [
+        -0.4996756613254547,
+        -0.15868711471557617,
+        -0.4727788269519806
+      ],
+      [
+        0.49945592880249023,
+        0.15846824645996094,
+        0.4710749387741089
+      ]
+    ],
+    "extents": [
+      0.999131590127945,
+      0.3171553611755371,
+      0.9438537657260895
+    ],
+    "thickness_to_max_extent": 0.31743102140822455,
+    "connected_components": 3403,
+    "watertight": false,
+    "winding_consistent": false,
+    "euler_number": 924,
+    "area": 1.872380420587436,
+    "volume": null,
+    "is_volume": false
+  },
+  "collision_mesh": {
+    "vertices": 21533,
+    "faces": 43062,
+    "bounds": [
+      [
+        -0.4996756613254547,
+        -0.15868711471557617,
+        -0.4727788269519806
+      ],
+      [
+        0.49945592880249023,
+        0.15846824645996094,
+        0.4710749387741089
+      ]
+    ],
+    "extents": [
+      0.999131590127945,
+      0.3171553611755371,
+      0.9438537657260895
+    ],
+    "thickness_to_max_extent": 0.31743102140822455,
+    "connected_components": 1,
+    "watertight": true,
+    "winding_consistent": true,
+    "euler_number": 2,
+    "area": 1.9759116718773577,
+    "volume": 0.15993323614654315,
+    "is_volume": true
+  }
+}

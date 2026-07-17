@@ -1,0 +1,72 @@
+{
+  "claim_scope": "Anchor-envelope, source-camera support-edge, and preserved-front-plane proxies; not a signed scene-mesh penetration proof.",
+  "gates": {
+    "anchor_tangent_envelope": true,
+    "no_additional_front_plane_overshoot": true,
+    "source_camera_support_edge": true,
+    "support_plane_drift": true
+  },
+  "gravity_direction": [
+    -0.003927831196956218,
+    0.9934879625861477,
+    0.11386940036073617
+  ],
+  "metrics": {
+    "additional_front_plane_overshoot": 0.0,
+    "fitted_front_plane_min": -0.45259496810970623,
+    "fitted_support_coordinate": 2.894363738511439,
+    "maximum_tangent_anchor_ratio": 1.0746038752147296,
+    "source_camera_support_edge_error_px": 1,
+    "source_front_plane_min": -0.45259498608339555,
+    "source_support_coordinate": 3.0140849537487195,
+    "support_drift": 0.11972121523728063,
+    "tangent_overflow_vertex_fraction": 0.007851871425605405
+  },
+  "status": "passed",
+  "support_direction_semantics": "downward direction; support surface is the maximum vertex projection",
+  "support_plane_evidence": {
+    "anchor": {
+      "bounds": [
+        [
+          -12.500296592712402,
+          1.07122004032135,
+          -1.852552056312561
+        ],
+        [
+          16.524150848388672,
+          6.879249095916748,
+          17.29448699951172
+        ]
+      ],
+      "path": "/private/tmp/video2world-planar-background/structure-anchors/sam3_structure_floor.ply",
+      "point_count": 264937,
+      "role": "floor",
+      "sampled_point_count": 250000,
+      "sha256": "a213f7edcc72d1b4996107580bb3168db53ce5f895e6f62d97d9c4d50fc2e27b"
+    },
+    "anchor_fraction_sampled": 0.988652,
+    "derived_downward_gravity_direction": [
+      -0.003927831196956218,
+      0.9934879625861477,
+      0.11386940036073617
+    ],
+    "equation": "normal dot world_xyz = offset",
+    "interior_normal": [
+      0.003927831196956218,
+      -0.9934879625861477,
+      -0.11386940036073617
+    ],
+    "offset": -6.895469405194829,
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/planar_background_report.json",
+    "plane_id": 4,
+    "rms_tsdf_plane_residual": 0.039465395432344445,
+    "semantic_role": "floor",
+    "sha256": "000e5bc670d7f96579edf7c509ab8d09bf8bdbd7ad6362ecc9a9a584cf9a2154",
+    "sign_semantics": "interior_normal points into the room; downward gravity used by the max-extreme support check is its negation"
+  },
+  "thresholds": {
+    "maximum_anchor_overflow_ratio": 0.1,
+    "maximum_support_drift": 0.41853328545691537,
+    "maximum_support_edge_error_px": 12.0
+  }
+}

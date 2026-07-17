@@ -1,0 +1,308 @@
+{
+  "alpha_depth_alignment_mode": "geometry-derived-binary-matte",
+  "analytic_silhouette_dir": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v1/analytic-silhouettes/sam3_pillow_left/masks",
+  "claims_measured_donor": false,
+  "created_at": "2026-07-17T07:30:59.767302+00:00",
+  "depth_probe_receipt": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/calibration/depth_semantics_receipt.json",
+    "sha256": "ee902bb7fbd9800dac49753d39b237983aa14c1e91bab8f6f5121693f787f4b8"
+  },
+  "frame_records": [
+    {
+      "alpha_pixels": 26891,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000048.npy",
+      "depth_sha256": "62ca36010af7d50d7205316081d26dd887f8c236afe2c0beb6e6804fd9c9326e",
+      "depth_valid_pixels": 26891,
+      "frame_id": "000048",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000048.json",
+      "receipt_sha256": "9e396aeb84e0ce2bacc2acbac66b0019e1c1a8641360f6670a0afd54ebd043ea",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000048.png",
+      "rgba_sha256": "e3dbf3a485dec9909295fbadf161961a0589b0132790a32c3b4d74cb9c4cb9a4"
+    },
+    {
+      "alpha_pixels": 27355,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000049.npy",
+      "depth_sha256": "44b3160d0037fc242a9733a43bb27f21efdd0e9fdfb76a0dc2c9ca774c716af1",
+      "depth_valid_pixels": 27355,
+      "frame_id": "000049",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000049.json",
+      "receipt_sha256": "0d94eab969b09ea539e80a88d4bd6294229c0d06c91607671b865b42e2f4179c",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000049.png",
+      "rgba_sha256": "dcb2bef335d7888f820b83f6f3e068d2a4628df53295bb4737c9b614d0322c70"
+    },
+    {
+      "alpha_pixels": 27801,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000050.npy",
+      "depth_sha256": "507e7bfd38200ff0faf6445882cce536bd8688c4d8f15490d9e4719b861f8ce7",
+      "depth_valid_pixels": 27801,
+      "frame_id": "000050",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000050.json",
+      "receipt_sha256": "67f54ed9143d07f9b76ac9658d6a72756bb855bec697b32c4b04cc1a51811d93",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000050.png",
+      "rgba_sha256": "e9f33f673e02f2714ab0f38c35e6a264e8c65b3707d88d30993ba1d82390041a"
+    },
+    {
+      "alpha_pixels": 28195,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000051.npy",
+      "depth_sha256": "7c4ca68daf30ec9f4918da375cf3e57f9d4af232327e1165bef54a0d5b6794bd",
+      "depth_valid_pixels": 28195,
+      "frame_id": "000051",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000051.json",
+      "receipt_sha256": "c26f9cefd949142859b7c1f63233870df492182fd4f395ffc882a942dac068bc",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000051.png",
+      "rgba_sha256": "2dc6e63b16e8205de1e29d9b0cd58f563fe410ec5d090592741e70e2bcbcfd64"
+    },
+    {
+      "alpha_pixels": 28459,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000052.npy",
+      "depth_sha256": "f6a4509b53369ff0a765edc67ba10cbdbd8bcbf4e37a17dc96dc1ee086efea95",
+      "depth_valid_pixels": 28459,
+      "frame_id": "000052",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000052.json",
+      "receipt_sha256": "ca498a2390d0f7b13143cbe98efd46677abafb056567b2bc0692b14527f34c69",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000052.png",
+      "rgba_sha256": "875583b84e3853002ccc5245bd23dbaf47d3f0f0303602c4610143cf929ccdfa"
+    },
+    {
+      "alpha_pixels": 28826,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000053.npy",
+      "depth_sha256": "7f045025a730fefa8e617111b7c9cdbf29f5e49aa410e52d317b4accf66dc156",
+      "depth_valid_pixels": 28826,
+      "frame_id": "000053",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000053.json",
+      "receipt_sha256": "11987ecc4d2023b68d05624b5112de90cef0dce958e81559d0100bd250b06121",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000053.png",
+      "rgba_sha256": "c652f5199e51e5b04a260f3c9f8c5285b107de9722404b892ef10752760d4106"
+    },
+    {
+      "alpha_pixels": 29259,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000054.npy",
+      "depth_sha256": "c75e2a5ef0b6ea37c446c539e6fd9ad925bc8d9f14b70a30332411be460a0015",
+      "depth_valid_pixels": 29259,
+      "frame_id": "000054",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000054.json",
+      "receipt_sha256": "9a22f9db06843232e68d3c9459c5f0e5b4c7ce92e7e8509c937bbe2924d7858d",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000054.png",
+      "rgba_sha256": "bdd1462ec0b5113b876de9436109a8093e1b320bba852656ebe7ca5a75974e4a"
+    },
+    {
+      "alpha_pixels": 29775,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000055.npy",
+      "depth_sha256": "2261359ef6928785317ed5ec8d3b7fa3d0136333dec10cdb45c06fb305c63b9e",
+      "depth_valid_pixels": 29775,
+      "frame_id": "000055",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000055.json",
+      "receipt_sha256": "976b54238875523143a870d1bd7e5339ec03c3711637112384658be65bb9ebd6",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000055.png",
+      "rgba_sha256": "01a30dbeb81cde6f5bff2bb0d811b26ff3dec333aa75230c32d5e72b2fa34c97"
+    },
+    {
+      "alpha_pixels": 30356,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000056.npy",
+      "depth_sha256": "1b1406ebf0fc2ed8ffa65715a6a23a742632a32c883de75a07611dce9d9c26c6",
+      "depth_valid_pixels": 30356,
+      "frame_id": "000056",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000056.json",
+      "receipt_sha256": "beb6b03a3ab1bc3bdbb7c0b24f35ef6077d476716145f85d477c77926d6d8c48",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000056.png",
+      "rgba_sha256": "c3ee00314c62f617747215f0b16c3af750014326d7978112e2d89a56f0cdd878"
+    },
+    {
+      "alpha_pixels": 30917,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000057.npy",
+      "depth_sha256": "df98a8be3fb3c20253a0ae8242d973426cd66b6017ad995422c3ecf216ba90fd",
+      "depth_valid_pixels": 30917,
+      "frame_id": "000057",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000057.json",
+      "receipt_sha256": "2331397f96ae651ba9bfc3244520af1d18b268701ca59df2d43636553a937ddd",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000057.png",
+      "rgba_sha256": "60301fa3548cb9cc17865c9908736ce6737ed575f955adfeadece84e19ce327d"
+    },
+    {
+      "alpha_pixels": 31417,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000058.npy",
+      "depth_sha256": "267e9539988d74b24c65ecd06c226d7c196f7879338e28e34310a0b819fc5bee",
+      "depth_valid_pixels": 31417,
+      "frame_id": "000058",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000058.json",
+      "receipt_sha256": "521cf3fd0c12bbcf0b94e992c21d184861ef96bb65f1a0d563a5cc95d9ba9dcc",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000058.png",
+      "rgba_sha256": "4a2bb1f178155fcac49a9451dc6032ff4607a22173a32aa27e4260eb03963ada"
+    },
+    {
+      "alpha_pixels": 31906,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000059.npy",
+      "depth_sha256": "25617fd9087fab0d83ecc2924d353d3a40519981289075092496bf3f6fc1d06a",
+      "depth_valid_pixels": 31906,
+      "frame_id": "000059",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000059.json",
+      "receipt_sha256": "f5a93dfb2cbe0292c0c3eba2b39b0e9ae4c14c55a7e731d57e26f7a900751cd5",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000059.png",
+      "rgba_sha256": "e79c5d2d479104a1f47f1dd1382e88a287f7a11e1baca5598865a82015a498fa"
+    },
+    {
+      "alpha_pixels": 32223,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000060.npy",
+      "depth_sha256": "1f6cc6f949649349d20b7bffdc40b80c7d575df05731bcc43b09cbffb4cd0db6",
+      "depth_valid_pixels": 32223,
+      "frame_id": "000060",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000060.json",
+      "receipt_sha256": "b513be6d0fbd75c0704669bed6f7d59210236760602256f4c05a75dda13ab9d4",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000060.png",
+      "rgba_sha256": "f5bf66a13760bf9b6b6c5d57b5099c9d4228311ea1e52dcd757ad2ed73c1e516"
+    },
+    {
+      "alpha_pixels": 32330,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000061.npy",
+      "depth_sha256": "a6e0a216ae8b3c90ba3eb888b6e0b0de77888cae6cdddc30d3dbb068389cd179",
+      "depth_valid_pixels": 32330,
+      "frame_id": "000061",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000061.json",
+      "receipt_sha256": "be56e977dbcacf1042f196f6537bfa1672dbb671414761683a6e048284da481a",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000061.png",
+      "rgba_sha256": "880f6ca60ae48979491f7cdbcae20a99fe35c28774a360fa94ea0d68b42a1e01"
+    },
+    {
+      "alpha_pixels": 32065,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000062.npy",
+      "depth_sha256": "a57abfac0ccd208d6513072e6565c3c04421e4f6f75adc92ed444993d078faeb",
+      "depth_valid_pixels": 32065,
+      "frame_id": "000062",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000062.json",
+      "receipt_sha256": "9e5dbc23b486b23f3ff36a5ff04e9566bfc12b5a64eac1df23081a7445f4d14c",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000062.png",
+      "rgba_sha256": "09dbeb9e46e71a9537ed3737cc61c4650b45436184268de36fba11cb5756770e"
+    },
+    {
+      "alpha_pixels": 31372,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000063.npy",
+      "depth_sha256": "495a0bd5ff56d43a85988311b9f1015ebe5b905c6e916c8023357508e7d18ab6",
+      "depth_valid_pixels": 31372,
+      "frame_id": "000063",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000063.json",
+      "receipt_sha256": "87caccf05325808883a3290c1ae1378aa7b12d8485a6dcaa41e69bb54cb12c45",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000063.png",
+      "rgba_sha256": "b0f4bc4cfcd576c2a949a5a1d8ff1b089e39847696418fff6c00cabe654c4f5c"
+    },
+    {
+      "alpha_pixels": 30670,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000064.npy",
+      "depth_sha256": "d7a977ec4c1d84f964935bc2ad57275a8b4fe45dc973adb69e34a3a0c9fdaebd",
+      "depth_valid_pixels": 30670,
+      "frame_id": "000064",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000064.json",
+      "receipt_sha256": "c0fbbb5d4054136833f8963c6b7c5b907fe2945ad71757ede4581625b8f799d4",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000064.png",
+      "rgba_sha256": "05c047e4c8835fcaec727e2e0b823ed0e7e8efac9ec3774e9a8a0121fdb339bd"
+    },
+    {
+      "alpha_pixels": 29748,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000065.npy",
+      "depth_sha256": "03e2b7776dc317b0486911b9d654dc645037b5a245a9a6543c392eb1270b3e14",
+      "depth_valid_pixels": 29748,
+      "frame_id": "000065",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000065.json",
+      "receipt_sha256": "3eea8a733384f5a50d76704dd49eed396ac50571a8fb61bf70d2634d274af1d4",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000065.png",
+      "rgba_sha256": "3e742a504b5973a8c7e9d16c5b1cd22146d3191e8c73106270c3772a9efcb572"
+    },
+    {
+      "alpha_pixels": 28818,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000066.npy",
+      "depth_sha256": "725a858142921ec36bd3ad07d214684786f265dd23001c7e3c8c57cf08ec2040",
+      "depth_valid_pixels": 28818,
+      "frame_id": "000066",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000066.json",
+      "receipt_sha256": "9ca750c191d44f3d34226eb507e6e3763d04bb0cba3ed2294cf91590a06e5f99",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000066.png",
+      "rgba_sha256": "850eb71c041434247d4aa2f7c86711bf3a20c9b7fb53d204476cc9284d8c8878"
+    },
+    {
+      "alpha_pixels": 27925,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000067.npy",
+      "depth_sha256": "ecc6b0e55ea83829cc736ec892d29c1ccf6fadac13c615855ab8ab4a0bba61da",
+      "depth_valid_pixels": 27925,
+      "frame_id": "000067",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000067.json",
+      "receipt_sha256": "61056f501d5d8a13f481e3be4a5e09fdea906c29a40a2fc03a2b6eaee86fc408",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000067.png",
+      "rgba_sha256": "2e81a5cea4e123e5fb4219898f1f36092721d9d69fb5b09363620e2bd9ac1820"
+    },
+    {
+      "alpha_pixels": 27172,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000068.npy",
+      "depth_sha256": "a78ee2a6ee21048db5d3233e007675d783fa79bd1b139dfc8a87599dafee9036",
+      "depth_valid_pixels": 27172,
+      "frame_id": "000068",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000068.json",
+      "receipt_sha256": "c3495e459bc9f9156229fb13e11e854533df25291f41d9e6bb578db956d27402",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000068.png",
+      "rgba_sha256": "b91e90e82f755f7a8ea32d3826e89c8179c0b86d2625878686afe50b5e8192f1"
+    },
+    {
+      "alpha_pixels": 26455,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000069.npy",
+      "depth_sha256": "827755e17f2e828b078b09cb153620a70bb611078483c76a4f28cc1111cab301",
+      "depth_valid_pixels": 26455,
+      "frame_id": "000069",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000069.json",
+      "receipt_sha256": "683c4787d0cd38f6d1b3560a334701235d3ca5307f66eab5b75461334e967084",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000069.png",
+      "rgba_sha256": "339c490bfd54f71f64d65f21bba9dce8ecd9cde000660e7ba08cb601e8fbe4df"
+    },
+    {
+      "alpha_pixels": 25928,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000070.npy",
+      "depth_sha256": "038ff2dce914dc6b00de918370726741748a38fe75a053e32a51ae8f1f389634",
+      "depth_valid_pixels": 25928,
+      "frame_id": "000070",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000070.json",
+      "receipt_sha256": "e780a31e292dab2438cf810eede2e884d4beaacd58b6976c2fa5aeaa582c9e46",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000070.png",
+      "rgba_sha256": "0248f2b89ea59bcdd2316a6e9faaccf881442ab6f43c883f57519f5aef313769"
+    },
+    {
+      "alpha_pixels": 25354,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000071.npy",
+      "depth_sha256": "459563ad71215169ac1b350fca27ee7abee437c8f68fb9c8e4758f53d39b420e",
+      "depth_valid_pixels": 25354,
+      "frame_id": "000071",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000071.json",
+      "receipt_sha256": "b37b062b72fdbde0db9c05d0073676217c58cc95a03c8390269ce1893f99e897",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000071.png",
+      "rgba_sha256": "0629a55984cccb9d8d68be684fce101806fb39911ed178e1ff4fb28c708ce646"
+    },
+    {
+      "alpha_pixels": 24773,
+      "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/depth/000072.npy",
+      "depth_sha256": "0845574a8443efa0869b56b34d12879e45ca814eb260f8dc2f62359d7adae44d",
+      "depth_valid_pixels": 24773,
+      "frame_id": "000072",
+      "receipt": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/receipts/000072.json",
+      "receipt_sha256": "46e40e3e63385c4063d93cd4a44a904215395c7a24d664ac708f18e37a7b5336",
+      "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/layers/sam3_pillow_left/rgba/000072.png",
+      "rgba_sha256": "79f5b1aa793036717a4643d9031cd4ce1a1151e83764307ec863fcd7ff325d03"
+    }
+  ],
+  "kind": "video2world.source_camera_pbr_layer_render_set",
+  "layer_id": "sam3_pillow_left",
+  "promotion_approved": false,
+  "render_elapsed_seconds": 40.657896749995416,
+  "role": "downstream_object_render",
+  "schema_version": 1,
+  "sources": {
+    "cameras": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+      "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+    },
+    "mesh": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined_v6/sam3_pillow_left.scene-fit.glb",
+      "sha256": "43f95a5756ccecb9a1ca36ba583c2ad4fd5dd1a4e66b1d591be935f2bd59b600"
+    },
+    "scene_fit_report": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined_v6/scene_fit_report.json",
+      "sha256": "1f551500f5a540dfd46b9aaba33a503f36efc47c5e7169dc953ed779f40a98c7"
+    }
+  },
+  "status": "technical_passed_pending_silhouette_qa"
+}

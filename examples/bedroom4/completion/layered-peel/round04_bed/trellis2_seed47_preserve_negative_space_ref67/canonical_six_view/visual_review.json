@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.object_six_view_visual_review",
+  "created_at": "2026-07-17T10:48:50+08:00",
+  "object_id": "sam3_bed_01_seed47",
+  "status": "rejected",
+  "promotion_allowed": false,
+  "promotion_scope": "none",
+  "acceptance_policy": "usability_first_minor_artifacts",
+  "decision_summary_zh": "这是 seed46/seed47 中较好的候选：床垫连续性和床头轮廓更自然。但原始 RGBA 的枕头负空间仍被重建成与床垫、床头粘连的大型深蓝实体；它不是轻微纹理幻觉，放回独立枕头后会产生明显重叠，因此仍拒绝。",
+  "candidate_comparison": {
+    "rank_among_seed46_seed47": 1,
+    "preferred_among_compared_candidates": true,
+    "promotion_allowed_despite_rank": false,
+    "reason": "Seed47 has the cleaner headboard, smoother mattress perimeter, and smaller malformed mound, but still fails the same negative-space and interpenetration gates."
+  },
+  "asset": {
+    "sha256": "261bb991f13e04c8506429f6097a8389c7cb895ae521192f19d69d5155db3340",
+    "size_bytes": 3051360,
+    "vertices": 55554,
+    "faces": 93992,
+    "material_profile": "pbr_single_material_pending_semantic_tuning",
+    "collision_topology": "surface_bvh",
+    "watertight": false,
+    "winding_consistent": true
+  },
+  "source_input": {
+    "semantic_role": "frame67_observed_sam3_rgba_with_negative_space",
+    "sha256": "d25825d76d3f5f754c48e3b07a60d5ee9ca3271af3f3172737248e5e778913d3",
+    "processed_input": "../processed_input.png",
+    "processed_input_sha256": "72c0a56151367622a73865025df32beb6b18ab50a3c87ae44420ec7868883c59"
+  },
+  "technical_receipt": {
+    "path": "../trellis2_asset_receipt.json",
+    "sha256": "a0f5dbb650e124a3ffe5d1c9175e3c6870c50aa8f4267c7e8db58c430e16f46c",
+    "status": "technical_passed_visual_pending",
+    "provider": "official_microsoft_trellis2_mesh_first",
+    "seed": 47
+  },
+  "canonical_review": {
+    "receipt": "object_six_view_review.json",
+    "receipt_sha256": "40e42cb233d3a5bbf870259dcc010d1fe717df2d35b85c4097cd36f4a59e73cd",
+    "contact_sheet": "object_six_view_contact_sheet.png",
+    "contact_sheet_sha256": "ca4907c43372af76c79f1d1f7389cc7a747164027c0c2e14bfe9b25b542d676c",
+    "views": [
+      "front",
+      "right",
+      "back",
+      "left",
+      "top",
+      "bottom"
+    ],
+    "horizontal_orbit_accepted_as_six_view": false,
+    "browser_console_errors": [],
+    "browser_console_warnings": []
+  },
+  "gates": {
+    "all_required_views_rendered": true,
+    "bed_category_recognizable": true,
+    "primary_bed_colors_basically_correct": true,
+    "negative_space_preserved_as_empty": false,
+    "extra_foreground_mass_absent": false,
+    "overall_shape_usable": false,
+    "significant_scene_interpenetration_absent": false,
+    "usable_as_unified_visual_and_collision_subject": false
+  },
+  "blocking_issues": [
+    {
+      "issue_type": "shape_mismatch",
+      "views": [
+        "front",
+        "right",
+        "back",
+        "top",
+        "bottom"
+      ],
+      "explanation": "The removed-pillow cavity becomes a large rounded solid object attached to the mattress at the head of the bed. The top and side views show positive volume where the pipeline requires empty space followed by independent pillow placement."
+    },
+    {
+      "issue_type": "primary_color_category_error",
+      "views": [
+        "front",
+        "right",
+        "back",
+        "top",
+        "bottom"
+      ],
+      "explanation": "The black alpha hole is interpreted as a dark navy surface. The source scene calls for a brown headboard and light bed surface; the navy block is unsupported and visually prominent."
+    },
+    {
+      "issue_type": "significant_scene_interpenetration",
+      "views": [
+        "front",
+        "right",
+        "back",
+        "top"
+      ],
+      "explanation": "The navy volume is fused into the headboard/mattress junction. Independent pillow GLBs would occupy the same region and collide visibly with this unified bed surface."
+    }
+  ],
+  "warnings": [
+    {
+      "issue_type": "minor_material_or_pattern_drift",
+      "views": [
+        "top",
+        "bottom"
+      ],
+      "explanation": "Some quilt detail and edge texture are softened. This would be acceptable by itself, but it cannot override the blocking extra-volume geometry."
+    }
+  ],
+  "positive_evidence": [
+    "Seed47 is the better of the two negative-space candidates.",
+    "The wooden headboard, long mattress, and foot blanket are recognizable and more continuous than seed46.",
+    "All six canonical object-local views rendered without browser console errors."
+  ],
+  "scene_review": {
+    "status": "not_run_candidate_rejected_before_scene_fit",
+    "reason": "Canonical geometry review failed before Bedroom4 adoption."
+  },
+  "retry_guidance": {
+    "required": true,
+    "focus": [
+      "Do not encode occlusion as black RGB inside the object alpha silhouette for single-image TRELLIS.2 input.",
+      "Recover or synthesize the hidden light mattress surface before object generation, or reconstruct the bed by parts and union only validated bed components.",
+      "Verify that the pillow footprint is empty in the top and side views before placing independent pillow GLBs."
+    ]
+  }
+}

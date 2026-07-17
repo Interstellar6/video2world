@@ -298,7 +298,9 @@ async function runBrowserQa({ url, worldDir, browserReportPath, exampleBrowserRe
     assert(pillowAppearance.entityId === "sam3_pillow_01", `pillow appearance entity=${pillowAppearance.entityId}`, failures);
     assert(pillowAppearance.focusEntityId === "sam3_pillow_01", "pillow appearance did not request focus", failures);
     assert(
-      pillowAppearance.answer.includes("三只相接") && pillowAppearance.answer.includes("浅绿色拼接"),
+      pillowAppearance.answer.includes("三只相接")
+        && pillowAppearance.answer.includes("白色/灰白色")
+        && !pillowAppearance.answer.includes("浅绿色"),
       `pillow appearance answer=${pillowAppearance.answer}`,
       failures,
     );
@@ -736,7 +738,8 @@ async function runBrowserQa({ url, worldDir, browserReportPath, exampleBrowserRe
     const responsiveChecks = {
       appearanceResolved: mobileAppearance.status === "resolved",
       detailedAnswer: mobileAppearance.answer.includes("三只相接")
-        && mobileAppearance.answer.includes("浅绿色拼接"),
+        && mobileAppearance.answer.includes("白色/灰白色")
+        && !mobileAppearance.answer.includes("浅绿色"),
       exactViewport: mobileLayout.viewport[0] === 390 && mobileLayout.viewport[1] === 844,
       exactCanvasCssSize: Math.abs(mobileLayout.canvas.width - 390) <= 0.5
         && Math.abs(mobileLayout.canvas.height - 844) <= 0.5,

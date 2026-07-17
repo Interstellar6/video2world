@@ -1,0 +1,54 @@
+{
+  "acceptance_scope": "current_demo_only",
+  "acceptance_status": "accepted_with_limitations",
+  "accepted_with_limitations": true,
+  "all_round_manifests_reports_and_receipts_are_hash_bound": true,
+  "failed_metrics": {
+    "visual_quality": "pending_human_or_vlm_review",
+    "wall_boundary_color_continuity": {
+      "observed_maximum": 96.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 24.0
+    },
+    "wall_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 99.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 32.0
+    }
+  },
+  "final_output_frame_set_sha256": "854bd224ab59580f6d209fbb31a50059e0075007c2f6ef0c6d98cc8fde82dfca",
+  "final_round_receipt": {
+    "path": "round04_bed/composite/layered_composite_receipt.json",
+    "sha256": "ff61be109c1fb2cc0725587fcaa32f27937d786bbd48128f85c8fa77137cc0be"
+  },
+  "final_round_report": {
+    "path": "round04_bed/composite/layered_composite_report.json",
+    "sha256": "2c66055adf4afb7e39e3ffdaecd9dc91af15e2098e0fc51ca1a5c2efef9a1736"
+  },
+  "kind": "video2world.layered_clean_plate_sequence_receipt",
+  "limitations": [
+    "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+    "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+    "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+    "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+    "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+  ],
+  "overridden_gates": {
+    "visual_quality": "pending_human_or_vlm_review",
+    "wall_boundary_color_continuity": {
+      "observed_maximum": 96.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 24.0
+    },
+    "wall_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 99.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 32.0
+    }
+  },
+  "promotion_approved": false,
+  "report": "layered_clean_plate_sequence_report.json",
+  "report_sha256": "672ccc38d2d0187a4e99e85a1f54a451039deab5c6d73eb81f71108275483e88",
+  "schema_version": 1,
+  "status": "technical_passed_complete_sequence_with_limitations"
+}

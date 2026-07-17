@@ -1,0 +1,321 @@
+{
+  "copy_mode": "byte_exact_from_hash_verified_source_mask",
+  "frame_count": 25,
+  "frame_ids": [
+    "000048",
+    "000049",
+    "000050",
+    "000051",
+    "000052",
+    "000053",
+    "000054",
+    "000055",
+    "000056",
+    "000057",
+    "000058",
+    "000059",
+    "000060",
+    "000061",
+    "000062",
+    "000063",
+    "000064",
+    "000065",
+    "000066",
+    "000067",
+    "000068",
+    "000069",
+    "000070",
+    "000071",
+    "000072"
+  ],
+  "frames": {
+    "000048": {
+      "mask": {
+        "path": "masks/0000.png",
+        "sha256": "eff72e75df3eaa5a14d52fb637a7be0e18e0c85f5d71c21019f237faa57d95dd"
+      },
+      "sequence_index": 0,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0000.png",
+        "sha256": "eff72e75df3eaa5a14d52fb637a7be0e18e0c85f5d71c21019f237faa57d95dd"
+      }
+    },
+    "000049": {
+      "mask": {
+        "path": "masks/0001.png",
+        "sha256": "94dc6dbdf7ce7fd4a9c3a729783230202e621c62a97a55e8a06a730213f1539b"
+      },
+      "sequence_index": 1,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0001.png",
+        "sha256": "94dc6dbdf7ce7fd4a9c3a729783230202e621c62a97a55e8a06a730213f1539b"
+      }
+    },
+    "000050": {
+      "mask": {
+        "path": "masks/0002.png",
+        "sha256": "ae4ba29871a3761e2e8429599ac5f3ba347ecc38915cf128361ef84d8b6ac1c7"
+      },
+      "sequence_index": 2,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0002.png",
+        "sha256": "ae4ba29871a3761e2e8429599ac5f3ba347ecc38915cf128361ef84d8b6ac1c7"
+      }
+    },
+    "000051": {
+      "mask": {
+        "path": "masks/0003.png",
+        "sha256": "40e5cbca60c2eef74d2c317d012f3efd16128789d39ebb8cecba003316aa522e"
+      },
+      "sequence_index": 3,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0003.png",
+        "sha256": "40e5cbca60c2eef74d2c317d012f3efd16128789d39ebb8cecba003316aa522e"
+      }
+    },
+    "000052": {
+      "mask": {
+        "path": "masks/0004.png",
+        "sha256": "aa85cfbf33e18562ac551ec27ec0e5c59948b236fd47699424ce2e96a52174b2"
+      },
+      "sequence_index": 4,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0004.png",
+        "sha256": "aa85cfbf33e18562ac551ec27ec0e5c59948b236fd47699424ce2e96a52174b2"
+      }
+    },
+    "000053": {
+      "mask": {
+        "path": "masks/0005.png",
+        "sha256": "a819007142f90df52bf3de28c11527fb870d472897fc3e47d82b293cdaeb319f"
+      },
+      "sequence_index": 5,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0005.png",
+        "sha256": "a819007142f90df52bf3de28c11527fb870d472897fc3e47d82b293cdaeb319f"
+      }
+    },
+    "000054": {
+      "mask": {
+        "path": "masks/0006.png",
+        "sha256": "e621b297ddf2c4127159f23522ee1fd73cd24ddbc7de7e9cc042163070dedcc5"
+      },
+      "sequence_index": 6,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0006.png",
+        "sha256": "e621b297ddf2c4127159f23522ee1fd73cd24ddbc7de7e9cc042163070dedcc5"
+      }
+    },
+    "000055": {
+      "mask": {
+        "path": "masks/0007.png",
+        "sha256": "83742eb61b3377732812baf5c4afa76379ae0f075d76cbb5d691a6710380c95a"
+      },
+      "sequence_index": 7,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0007.png",
+        "sha256": "83742eb61b3377732812baf5c4afa76379ae0f075d76cbb5d691a6710380c95a"
+      }
+    },
+    "000056": {
+      "mask": {
+        "path": "masks/0008.png",
+        "sha256": "a90396e20e5a1475738a329a7f6d9358cd4e9f30a9fc194cc69950d8ed630551"
+      },
+      "sequence_index": 8,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0008.png",
+        "sha256": "a90396e20e5a1475738a329a7f6d9358cd4e9f30a9fc194cc69950d8ed630551"
+      }
+    },
+    "000057": {
+      "mask": {
+        "path": "masks/0009.png",
+        "sha256": "64f9125cd73807ba785222540212082223c5466f9fdf531fc49b231fef9c222e"
+      },
+      "sequence_index": 9,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0009.png",
+        "sha256": "64f9125cd73807ba785222540212082223c5466f9fdf531fc49b231fef9c222e"
+      }
+    },
+    "000058": {
+      "mask": {
+        "path": "masks/0010.png",
+        "sha256": "a9a6365e0d552af5929fa3dd0a9781946d64c4fb7fb0315d4dda3542eaeb5446"
+      },
+      "sequence_index": 10,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0010.png",
+        "sha256": "a9a6365e0d552af5929fa3dd0a9781946d64c4fb7fb0315d4dda3542eaeb5446"
+      }
+    },
+    "000059": {
+      "mask": {
+        "path": "masks/0011.png",
+        "sha256": "cd2917be4151b09563ed28a66debffcc56e036c0c1b65c4b3c56721149a39433"
+      },
+      "sequence_index": 11,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0011.png",
+        "sha256": "cd2917be4151b09563ed28a66debffcc56e036c0c1b65c4b3c56721149a39433"
+      }
+    },
+    "000060": {
+      "mask": {
+        "path": "masks/0012.png",
+        "sha256": "c6e741a0234292622c1c88cfb0c354545f558e74759c79a382624d1af2d05b70"
+      },
+      "sequence_index": 12,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0012.png",
+        "sha256": "c6e741a0234292622c1c88cfb0c354545f558e74759c79a382624d1af2d05b70"
+      }
+    },
+    "000061": {
+      "mask": {
+        "path": "masks/0013.png",
+        "sha256": "4bfe686c4a6fc67c41b0db5bd9d893853310daa0da8931515cd391ef5bc00fe0"
+      },
+      "sequence_index": 13,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0013.png",
+        "sha256": "4bfe686c4a6fc67c41b0db5bd9d893853310daa0da8931515cd391ef5bc00fe0"
+      }
+    },
+    "000062": {
+      "mask": {
+        "path": "masks/0014.png",
+        "sha256": "12b64ccf1d96b8f9f5d823277219e4047deb9c4020b0a09631bb56a7b0a37b19"
+      },
+      "sequence_index": 14,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0014.png",
+        "sha256": "12b64ccf1d96b8f9f5d823277219e4047deb9c4020b0a09631bb56a7b0a37b19"
+      }
+    },
+    "000063": {
+      "mask": {
+        "path": "masks/0015.png",
+        "sha256": "17c6f7fccd90957f45c57364aad575be749f9e55ae5bf8d18a25a22689c2cbb2"
+      },
+      "sequence_index": 15,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0015.png",
+        "sha256": "17c6f7fccd90957f45c57364aad575be749f9e55ae5bf8d18a25a22689c2cbb2"
+      }
+    },
+    "000064": {
+      "mask": {
+        "path": "masks/0016.png",
+        "sha256": "bfa688313d2940b3a3d14e9f4211b90987a49f681e44b782160faf4d40c75f1c"
+      },
+      "sequence_index": 16,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0016.png",
+        "sha256": "bfa688313d2940b3a3d14e9f4211b90987a49f681e44b782160faf4d40c75f1c"
+      }
+    },
+    "000065": {
+      "mask": {
+        "path": "masks/0017.png",
+        "sha256": "f430746b85e3eb852c5a615a749c1ef27c7d2afc4e4a3de3f47d39c48b5286ee"
+      },
+      "sequence_index": 17,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0017.png",
+        "sha256": "f430746b85e3eb852c5a615a749c1ef27c7d2afc4e4a3de3f47d39c48b5286ee"
+      }
+    },
+    "000066": {
+      "mask": {
+        "path": "masks/0018.png",
+        "sha256": "fa8e3ceed8277ed140defc14c4ad413ff2a35175540b119ec1d302de02c3ee59"
+      },
+      "sequence_index": 18,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0018.png",
+        "sha256": "fa8e3ceed8277ed140defc14c4ad413ff2a35175540b119ec1d302de02c3ee59"
+      }
+    },
+    "000067": {
+      "mask": {
+        "path": "masks/0019.png",
+        "sha256": "3ccf88d8ac80dd1b7d7e39fedfdece9801c028efd8485e048cb00fddae8c58b0"
+      },
+      "sequence_index": 19,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0019.png",
+        "sha256": "3ccf88d8ac80dd1b7d7e39fedfdece9801c028efd8485e048cb00fddae8c58b0"
+      }
+    },
+    "000068": {
+      "mask": {
+        "path": "masks/0020.png",
+        "sha256": "24dbbc5102a71968e9156ba170b7a9d44c72d270d9a38b0037e5e71f9b3f2101"
+      },
+      "sequence_index": 20,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0020.png",
+        "sha256": "24dbbc5102a71968e9156ba170b7a9d44c72d270d9a38b0037e5e71f9b3f2101"
+      }
+    },
+    "000069": {
+      "mask": {
+        "path": "masks/0021.png",
+        "sha256": "22fe4bb9852c30b136f00d6bfc4daeb8df5c8bef5c2e9f54c3bd67734bf6f465"
+      },
+      "sequence_index": 21,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0021.png",
+        "sha256": "22fe4bb9852c30b136f00d6bfc4daeb8df5c8bef5c2e9f54c3bd67734bf6f465"
+      }
+    },
+    "000070": {
+      "mask": {
+        "path": "masks/0022.png",
+        "sha256": "6987a8fa4cc1c0242b23b5e70d066d9f64e4bfeac9ef7f6087ad8fe19bf93051"
+      },
+      "sequence_index": 22,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0022.png",
+        "sha256": "6987a8fa4cc1c0242b23b5e70d066d9f64e4bfeac9ef7f6087ad8fe19bf93051"
+      }
+    },
+    "000071": {
+      "mask": {
+        "path": "masks/0023.png",
+        "sha256": "971a244f4b2653638d255e4048039957aa65f676d48f3818d6f2d118cd4bfd83"
+      },
+      "sequence_index": 23,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0023.png",
+        "sha256": "971a244f4b2653638d255e4048039957aa65f676d48f3818d6f2d118cd4bfd83"
+      }
+    },
+    "000072": {
+      "mask": {
+        "path": "masks/0024.png",
+        "sha256": "0556f250f33fc4ced4acfc7dc7ad59f06a7ebd59018cd557282143825f5e6a3f"
+      },
+      "sequence_index": 24,
+      "source_mask": {
+        "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20/cumulative_masks/0024.png",
+        "sha256": "0556f250f33fc4ced4acfc7dc7ad59f06a7ebd59018cd557282143825f5e6a3f"
+      }
+    }
+  },
+  "kind": "video2world.cumulative_removal_mask_index",
+  "removed_object_ids": [
+    "sam3_pillow_front",
+    "sam3_pillow_left",
+    "sam3_pillow_right",
+    "sam3_bed_01"
+  ],
+  "round_index": 4,
+  "schema_version": 1,
+  "source_index": {
+    "path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/structural/structural_background_render_index.json",
+    "sha256": "bbeb0fe18b30f4e59098db27d73814a40235a5366ed74da503f7c4a8372ac2c1"
+  }
+}

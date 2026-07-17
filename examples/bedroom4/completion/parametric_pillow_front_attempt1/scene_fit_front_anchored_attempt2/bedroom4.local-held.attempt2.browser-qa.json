@@ -1,0 +1,917 @@
+{
+  "schemaVersion": 1,
+  "kind": "video2world.local-held-scene-browser-qa",
+  "attempt": 2,
+  "status": "held",
+  "promotionAllowed": false,
+  "localOnly": true,
+  "publishAllowed": false,
+  "startedAt": "2026-07-16T20:28:30.852Z",
+  "finishedAt": "2026-07-16T20:28:44.211Z",
+  "durationSeconds": 13.36,
+  "environment": {
+    "url": "http://127.0.0.1:4177/?manifest=/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_front_anchored_attempt2/bedroom4.local-held.attempt2.manifest.json&allowCandidateColliders=1",
+    "viewport": [
+      1440,
+      1000
+    ],
+    "browserPlugin": {
+      "classification": "invocation_failed",
+      "error": "No browser is available",
+      "availableBrowserCount": 0
+    },
+    "fallback": "project Playwright 1.61.1 with installed Chrome channel"
+  },
+  "manifest": {
+    "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_front_anchored_attempt2/bedroom4.local-held.attempt2.manifest.json",
+    "sha256": "13e8b1a42171b8fa4d546d65a1693f2e5075379c52f5b008b6c8255eb47b2a15",
+    "version": "bedroom4-local-held-sam3-pillow-front-attempt2-20260717"
+  },
+  "candidateObjectId": "sam3_pillow_front",
+  "page": {
+    "title": "Video2World · Interactive 3D Scene",
+    "heading": "视觉代理 3DGS + 碰撞代理 Mesh",
+    "frameworkOverlay": false
+  },
+  "renderedState": {
+    "visualReady": true,
+    "colliderReady": true,
+    "sceneQaReady": true,
+    "interactiveObjectReadyCount": 5,
+    "interactiveObjectCount": 5,
+    "objectColliderReadyCount": 5,
+    "objectColliderCount": 5,
+    "objectColliderDegradedCount": 0,
+    "staticVisualCount": 823391,
+    "interactiveObjectGaussianCount": 560000,
+    "interactiveObjectRgbPointCount": 0,
+    "canvas": {
+      "canvasCssSize": [
+        1440,
+        1000
+      ],
+      "backingStoreSize": [
+        1440,
+        1000
+      ],
+      "sampledPixels": 360000,
+      "nonClearPixels": 348651,
+      "nonClearFraction": 0.968475,
+      "brightPixels": 286406,
+      "brightFraction": 0.795572,
+      "meanLuminance": 121.239,
+      "nonblank": true
+    }
+  },
+  "candidateInspection": {
+    "initial": {
+      "id": "sam3_pillow_front",
+      "visualReady": true,
+      "colliderReady": true,
+      "visualKind": "gaussian-splat",
+      "collisionMode": "glb",
+      "collisionFaces": 20448,
+      "collisionBounds": {
+        "min": {
+          "x": 3.396781,
+          "y": -1.836709,
+          "z": 9.004453
+        },
+        "max": {
+          "x": 7.504229,
+          "y": 1.626081,
+          "z": 11.725637
+        },
+        "center": {
+          "x": 5.450505,
+          "y": -0.105314,
+          "z": 10.365045
+        },
+        "size": {
+          "x": 4.107448,
+          "y": 3.46279,
+          "z": 2.721183
+        }
+      },
+      "splatLocalBounds": {
+        "min": {
+          "x": -2.052734,
+          "y": -1.731445,
+          "z": -1.360352
+        },
+        "max": {
+          "x": 2.052734,
+          "y": 1.731445,
+          "z": 1.360352
+        },
+        "center": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "size": {
+          "x": 4.105469,
+          "y": 3.462891,
+          "z": 2.720703
+        }
+      },
+      "splatWorldBounds": {
+        "min": {
+          "x": 3.397771,
+          "y": -1.836759,
+          "z": 9.004694
+        },
+        "max": {
+          "x": 7.50324,
+          "y": 1.626131,
+          "z": 11.725397
+        },
+        "center": {
+          "x": 5.450505,
+          "y": -0.105314,
+          "z": 10.365045
+        },
+        "size": {
+          "x": 4.105469,
+          "y": 3.462891,
+          "z": 2.720703
+        }
+      },
+      "proxyWorldBounds": {
+        "min": {
+          "x": 3.396781,
+          "y": -1.836709,
+          "z": 9.004453
+        },
+        "max": {
+          "x": 7.504229,
+          "y": 1.626081,
+          "z": 11.725637
+        },
+        "center": {
+          "x": 5.450505,
+          "y": -0.105314,
+          "z": 10.365045
+        },
+        "size": {
+          "x": 4.107448,
+          "y": 3.46279,
+          "z": 2.721183
+        }
+      },
+      "groupMatrixWorld": [
+        -1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        0,
+        5.450505,
+        -0.105314,
+        10.365045,
+        1
+      ],
+      "splatMatrixWorld": [
+        -1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        0,
+        5.450505,
+        -0.105314,
+        10.365045,
+        1
+      ],
+      "proxyMatrixWorld": [
+        -1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        0,
+        5.450505,
+        -0.105314,
+        10.365045,
+        1
+      ]
+    },
+    "gaussianToProxyRelativeSizeError": [
+      0.0004818076820447901,
+      0.00002916723220290769,
+      0.00017639386987205048
+    ],
+    "colliderToProxyRelativeSizeError": [
+      0,
+      0,
+      0
+    ]
+  },
+  "collisionWorld": {
+    "sceneReady": true,
+    "sceneFaces": 1265671,
+    "targetCount": 6,
+    "objectColliderReadyCount": 5,
+    "objectColliderMeshCount": 5,
+    "objectColliderFaces": 88108,
+    "degradedCount": 0,
+    "errors": [],
+    "objects": [
+      {
+        "id": "sam3_nightstand_01",
+        "ready": true,
+        "mode": "glb",
+        "faces": 17910,
+        "bounds": {
+          "min": {
+            "x": 10.921256,
+            "y": 0.909106,
+            "z": 8.540487
+          },
+          "max": {
+            "x": 15.797502,
+            "y": 4.929037,
+            "z": 12.848086
+          },
+          "center": {
+            "x": 13.359379,
+            "y": 2.919071,
+            "z": 10.694286
+          },
+          "size": {
+            "x": 4.876246,
+            "y": 4.019931,
+            "z": 4.307599
+          }
+        }
+      },
+      {
+        "id": "sam3_nightstand_02",
+        "ready": true,
+        "mode": "glb",
+        "faces": 17910,
+        "bounds": {
+          "min": {
+            "x": -3.839397,
+            "y": 0.058868,
+            "z": 1.313446
+          },
+          "max": {
+            "x": 1.586368,
+            "y": 2.660971,
+            "z": 6.789168
+          },
+          "center": {
+            "x": -1.126514,
+            "y": 1.35992,
+            "z": 4.051307
+          },
+          "size": {
+            "x": 5.425765,
+            "y": 2.602103,
+            "z": 5.475722
+          }
+        }
+      },
+      {
+        "id": "sam3_plant_01",
+        "ready": true,
+        "mode": "glb",
+        "faces": 9950,
+        "bounds": {
+          "min": {
+            "x": -1.911907,
+            "y": -1.047522,
+            "z": 1.696465
+          },
+          "max": {
+            "x": -0.297257,
+            "y": -0.115721,
+            "z": 5.128784
+          },
+          "center": {
+            "x": -1.104582,
+            "y": -0.581621,
+            "z": 3.412624
+          },
+          "size": {
+            "x": 1.61465,
+            "y": 0.931801,
+            "z": 3.432319
+          }
+        }
+      },
+      {
+        "id": "sam3_plant_02",
+        "ready": true,
+        "mode": "glb",
+        "faces": 21890,
+        "bounds": {
+          "min": {
+            "x": 13.729343,
+            "y": -0.204065,
+            "z": 9.157946
+          },
+          "max": {
+            "x": 15.483058,
+            "y": 0.594303,
+            "z": 11.406179
+          },
+          "center": {
+            "x": 14.606201,
+            "y": 0.195119,
+            "z": 10.282062
+          },
+          "size": {
+            "x": 1.753715,
+            "y": 0.798368,
+            "z": 2.248233
+          }
+        }
+      },
+      {
+        "id": "sam3_pillow_front",
+        "ready": true,
+        "mode": "glb",
+        "faces": 20448,
+        "bounds": {
+          "min": {
+            "x": 3.396781,
+            "y": -1.836709,
+            "z": 9.004453
+          },
+          "max": {
+            "x": 7.504229,
+            "y": 1.626081,
+            "z": 11.725637
+          },
+          "center": {
+            "x": 5.450505,
+            "y": -0.105314,
+            "z": 10.365045
+          },
+          "size": {
+            "x": 4.107448,
+            "y": 3.46279,
+            "z": 2.721183
+          }
+        }
+      }
+    ]
+  },
+  "interpenetration": {
+    "status": "failed",
+    "targetCount": 6,
+    "meshPairTests": 15,
+    "intersectionCount": 1,
+    "intersections": [
+      {
+        "colliderIds": [
+          "sam3_pillow_front",
+          "scene"
+        ],
+        "objectIds": [
+          "sam3_pillow_front"
+        ],
+        "colliderKinds": [
+          "scene",
+          "object"
+        ],
+        "leftBounds": {
+          "min": {
+            "x": -13.186935,
+            "y": -13.875,
+            "z": 0.575001
+          },
+          "max": {
+            "x": 17.688766,
+            "y": 7.125,
+            "z": 24.63632
+          },
+          "center": {
+            "x": 2.250916,
+            "y": -3.375,
+            "z": 12.60566
+          },
+          "size": {
+            "x": 30.875702,
+            "y": 21,
+            "z": 24.061319
+          }
+        },
+        "rightBounds": {
+          "min": {
+            "x": 3.396781,
+            "y": -1.836709,
+            "z": 9.004453
+          },
+          "max": {
+            "x": 7.504229,
+            "y": 1.626081,
+            "z": 11.725637
+          },
+          "center": {
+            "x": 5.450505,
+            "y": -0.105314,
+            "z": 10.365045
+          },
+          "size": {
+            "x": 4.107448,
+            "y": 3.46279,
+            "z": 2.721183
+          }
+        }
+      }
+    ],
+    "limitation": "Conservative triangle-surface intersection gate; accepted support contact still requires six-view placement review.",
+    "staticObjectIntersections": [
+      {
+        "colliderIds": [
+          "sam3_pillow_front",
+          "scene"
+        ],
+        "objectIds": [
+          "sam3_pillow_front"
+        ],
+        "colliderKinds": [
+          "scene",
+          "object"
+        ],
+        "leftBounds": {
+          "min": {
+            "x": -13.186935,
+            "y": -13.875,
+            "z": 0.575001
+          },
+          "max": {
+            "x": 17.688766,
+            "y": 7.125,
+            "z": 24.63632
+          },
+          "center": {
+            "x": 2.250916,
+            "y": -3.375,
+            "z": 12.60566
+          },
+          "size": {
+            "x": 30.875702,
+            "y": 21,
+            "z": 24.061319
+          }
+        },
+        "rightBounds": {
+          "min": {
+            "x": 3.396781,
+            "y": -1.836709,
+            "z": 9.004453
+          },
+          "max": {
+            "x": 7.504229,
+            "y": 1.626081,
+            "z": 11.725637
+          },
+          "center": {
+            "x": 5.450505,
+            "y": -0.105314,
+            "z": 10.365045
+          },
+          "size": {
+            "x": 4.107448,
+            "y": 3.46279,
+            "z": 2.721183
+          }
+        }
+      }
+    ],
+    "objectObjectIntersections": [],
+    "candidateIntersections": [
+      {
+        "colliderIds": [
+          "sam3_pillow_front",
+          "scene"
+        ],
+        "objectIds": [
+          "sam3_pillow_front"
+        ],
+        "colliderKinds": [
+          "scene",
+          "object"
+        ],
+        "leftBounds": {
+          "min": {
+            "x": -13.186935,
+            "y": -13.875,
+            "z": 0.575001
+          },
+          "max": {
+            "x": 17.688766,
+            "y": 7.125,
+            "z": 24.63632
+          },
+          "center": {
+            "x": 2.250916,
+            "y": -3.375,
+            "z": 12.60566
+          },
+          "size": {
+            "x": 30.875702,
+            "y": 21,
+            "z": 24.061319
+          }
+        },
+        "rightBounds": {
+          "min": {
+            "x": 3.396781,
+            "y": -1.836709,
+            "z": 9.004453
+          },
+          "max": {
+            "x": 7.504229,
+            "y": 1.626081,
+            "z": 11.725637
+          },
+          "center": {
+            "x": 5.450505,
+            "y": -0.105314,
+            "z": 10.365045
+          },
+          "size": {
+            "x": 4.107448,
+            "y": 3.46279,
+            "z": 2.721183
+          }
+        }
+      }
+    ],
+    "candidateStaticIntersections": [
+      {
+        "colliderIds": [
+          "sam3_pillow_front",
+          "scene"
+        ],
+        "objectIds": [
+          "sam3_pillow_front"
+        ],
+        "colliderKinds": [
+          "scene",
+          "object"
+        ],
+        "leftBounds": {
+          "min": {
+            "x": -13.186935,
+            "y": -13.875,
+            "z": 0.575001
+          },
+          "max": {
+            "x": 17.688766,
+            "y": 7.125,
+            "z": 24.63632
+          },
+          "center": {
+            "x": 2.250916,
+            "y": -3.375,
+            "z": 12.60566
+          },
+          "size": {
+            "x": 30.875702,
+            "y": 21,
+            "z": 24.061319
+          }
+        },
+        "rightBounds": {
+          "min": {
+            "x": 3.396781,
+            "y": -1.836709,
+            "z": 9.004453
+          },
+          "max": {
+            "x": 7.504229,
+            "y": 1.626081,
+            "z": 11.725637
+          },
+          "center": {
+            "x": 5.450505,
+            "y": -0.105314,
+            "z": 10.365045
+          },
+          "size": {
+            "x": 4.107448,
+            "y": 3.46279,
+            "z": 2.721183
+          }
+        }
+      }
+    ],
+    "candidateObjectIntersections": []
+  },
+  "support": {
+    "status": "failed",
+    "classification": "interpenetrating_static_scene",
+    "suspended": false,
+    "acceptedSupportContact": false,
+    "worldUp": {
+      "x": 0,
+      "y": -1,
+      "z": 0
+    },
+    "conservativeCandidateAabbBottomY": 1.626081,
+    "signedDownOffsetConvention": "supportY - conservative candidate AABB maxY; positive is a gap in -Y-up coordinates",
+    "signedDownOffsets": [
+      -2.805719,
+      -2.981602,
+      -2.664893,
+      -2.589254,
+      -2.880212
+    ],
+    "samples": [
+      {
+        "x": 5.450505,
+        "z": 10.365045,
+        "hit": {
+          "point": {
+            "x": 5.450505,
+            "y": -1.179638,
+            "z": 10.365045
+          },
+          "normal": {
+            "x": -0.193383,
+            "y": -0.934001,
+            "z": 0.300409
+          },
+          "faceIndex": 362305,
+          "colliderKind": "scene",
+          "colliderId": "scene",
+          "objectId": null
+        }
+      },
+      {
+        "x": 6.10769668,
+        "z": 10.365045,
+        "hit": {
+          "point": {
+            "x": 6.107697,
+            "y": -1.355521,
+            "z": 10.365045
+          },
+          "normal": {
+            "x": -0.116471,
+            "y": -0.992717,
+            "z": -0.03079
+          },
+          "faceIndex": 1188790,
+          "colliderKind": "scene",
+          "colliderId": "scene",
+          "objectId": null
+        }
+      },
+      {
+        "x": 4.793313319999999,
+        "z": 10.365045,
+        "hit": {
+          "point": {
+            "x": 4.793313,
+            "y": -1.038812,
+            "z": 10.365045
+          },
+          "normal": {
+            "x": -0.357969,
+            "y": -0.749699,
+            "z": 0.556606
+          },
+          "faceIndex": 645293,
+          "colliderKind": "scene",
+          "colliderId": "scene",
+          "objectId": null
+        }
+      },
+      {
+        "x": 5.450505,
+        "z": 10.800434280000001,
+        "hit": {
+          "point": {
+            "x": 5.450505,
+            "y": -0.963173,
+            "z": 10.800434
+          },
+          "normal": {
+            "x": -0.312313,
+            "y": -0.735683,
+            "z": 0.601025
+          },
+          "faceIndex": 356719,
+          "colliderKind": "scene",
+          "colliderId": "scene",
+          "objectId": null
+        }
+      },
+      {
+        "x": 5.450505,
+        "z": 9.92965572,
+        "hit": {
+          "point": {
+            "x": 5.450505,
+            "y": -1.254131,
+            "z": 9.929656
+          },
+          "normal": {
+            "x": 0.145656,
+            "y": -0.989307,
+            "z": 0.007446
+          },
+          "faceIndex": 530783,
+          "colliderKind": "scene",
+          "colliderId": "scene",
+          "objectId": null
+        }
+      }
+    ],
+    "limitation": "AABB plus vertical scene-surface probe; oriented mesh support still requires visual/contact review."
+  },
+  "sceneQa": {
+    "status": "resolved",
+    "intent": "appearance",
+    "answer": "前排白色枕头候选 Attempt 2 / Front white pillow candidate Attempt 2: 一只浅色中性到白色、柔和圆角的矩形枕头，正面、背面、顶部、底部和左右侧面均为封闭表面。 缩小后的隐藏深度仍来自确定性类别先验，并非真实观测几何；场景叠加、支撑、穿插和干净背景门禁仍未通过。",
+    "entityId": "sam3_pillow_front",
+    "focusEntityId": "sam3_pillow_front",
+    "candidates": []
+  },
+  "interaction": {
+    "requestedYawDeg": 32,
+    "accepted": true,
+    "groupMatrixChanged": true,
+    "splatMatrixChanged": true,
+    "proxyMatrixChanged": true,
+    "collisionBoundsChanged": true,
+    "resetGroupMatrixMatchesInitial": true,
+    "resetSplatMatrixMatchesInitial": true,
+    "resetProxyMatrixMatchesInitial": true,
+    "passed": true
+  },
+  "comparisonToAttempt1": {
+    "attempt1BrowserQa": {
+      "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit/bedroom4.local-held.browser-qa.json",
+      "sha256": "80bca5dd809a6d99869c0f64664f3ee410af8527ce07790546499ae76a5ce1ef"
+    },
+    "worldAabb": {
+      "attempt1": {
+        "x": 4.22172,
+        "y": 3.587437,
+        "z": 3.083517
+      },
+      "attempt2": {
+        "x": 4.107448,
+        "y": 3.46279,
+        "z": 2.721183
+      },
+      "relativeChange": [
+        -0.027068,
+        -0.034745,
+        -0.117507
+      ]
+    },
+    "staticIntersection": {
+      "attempt1Count": 1,
+      "attempt2Count": 1,
+      "resolved": false
+    },
+    "objectObjectIntersection": {
+      "attempt1Count": 0,
+      "attempt2Count": 0
+    },
+    "supportOffsets": {
+      "convention": "supportY - conservative candidate AABB maxY; positive is a gap in -Y-up coordinates",
+      "attempt1": [
+        -2.453753,
+        -2.683057,
+        -1.853239,
+        -0.417724,
+        -2.709698
+      ],
+      "attempt2": [
+        -2.805719,
+        -2.981602,
+        -2.664893,
+        -2.589254,
+        -2.880212
+      ],
+      "attempt1Summary": {
+        "minimum": -2.709698,
+        "maximum": -0.417724,
+        "mean": -2.023494
+      },
+      "attempt2Summary": {
+        "minimum": -2.981602,
+        "maximum": -2.589254,
+        "mean": -2.784336
+      },
+      "meanChangeAttempt2MinusAttempt1": -0.760842,
+      "improved": false
+    },
+    "automatedConclusion": "static_intersection_not_resolved",
+    "visualConclusion": "Thickness is reduced, but the scene composite and support relationship are worse than Attempt 1."
+  },
+  "visualReview": {
+    "reviewer": "agent_screenshot_comparison",
+    "reviewedAt": "2026-07-17T04:30:12+08:00",
+    "status": "failed",
+    "checks": {
+      "closedWhiteVolumeVisible": true,
+      "notSheetlike": true,
+      "gaussianGlbOverlayAligned": true,
+      "thicknessReductionVisible": true,
+      "blocklikeAppearanceResolved": false,
+      "sceneCompositeImprovedOverAttempt1": false,
+      "staticIntersectionResolved": false,
+      "supportImprovedOverAttempt1": false,
+      "occludedBackgroundRestorationAccepted": false
+    },
+    "findings": [
+      "Attempt 2 preserves a closed white/light-neutral volume and the GLB wire overlay still follows the Gaussian surface.",
+      "The completed OBB thickness is 37.38% smaller and the rendered side depth is visibly reduced, but the pillow still reads as a thick rounded block rather than a faithful soft pillow.",
+      "Old static-scene imagery visibly bleeds through or overlaps the left/interior portion of the candidate, so the composite is not improved over Attempt 1.",
+      "The exact same single static collision pair remains: scene and sam3_pillow_front; no object-object intersections were introduced.",
+      "The conservative support-offset mean worsened from -2.023494 to -2.784336 scene units, a change of -0.760842; all five Attempt-2 probes are deeply negative.",
+      "Reducing thickness while front-anchoring did not repair support or the inherited three-pillow carve and appears to move more of the candidate into residual static geometry."
+    ],
+    "decision": "Keep Attempt 2 held. Do not continue thickness-only tuning; the next attempt needs an accepted independent-pillow clean plate and an explicit support-constrained placement solve."
+  },
+  "loadErrors": {
+    "stateError": null,
+    "objectColliderLoadErrors": [],
+    "consoleMessages": [],
+    "pageErrors": [],
+    "requestFailures": [],
+    "responseErrors": []
+  },
+  "checks": {
+    "pageIdentity": true,
+    "meaningfulDom": true,
+    "noFrameworkOverlay": true,
+    "canvasNonblank": true,
+    "visualObjectsReady": true,
+    "collidersReady": true,
+    "candidateGaussianReady": true,
+    "candidateGlbReady": true,
+    "noAssetLoadErrors": true,
+    "runtimeNoDoubleScaling": true,
+    "sceneQuestionResolvesCandidate": true,
+    "transformInteraction": true,
+    "sceneVisualOverlayGate": false,
+    "attempt2SceneImprovementGate": false,
+    "interpenetrationGate": false,
+    "supportContactGate": false
+  },
+  "failedChecks": [
+    "sceneVisualOverlayGate",
+    "attempt2SceneImprovementGate",
+    "interpenetrationGate",
+    "supportContactGate"
+  ],
+  "promotionBlockers": [
+    "scene_visual_overlay_review",
+    "scene_interpenetration_gate",
+    "support_contact_review",
+    "accepted_clean_plate_or_static_scene_carve"
+  ],
+  "screenshots": {
+    "scene": {
+      "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_front_anchored_attempt2/bedroom4.local-held.attempt2.front-pillow-scene.png",
+      "bytes": 1453640,
+      "sha256": "26342d7dafc53b5a1486be66cf2d1075448cae0af0ab311d1ad54604dfea6ef4"
+    },
+    "canvas": {
+      "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_front_anchored_attempt2/bedroom4.local-held.attempt2.front-pillow-canvas.png",
+      "bytes": 1453640,
+      "sha256": "26342d7dafc53b5a1486be66cf2d1075448cae0af0ab311d1ad54604dfea6ef4"
+    },
+    "collisionOverlay": {
+      "path": "repo://video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_front_anchored_attempt2/bedroom4.local-held.attempt2.front-pillow-collision-overlay.png",
+      "bytes": 1547258,
+      "sha256": "0a0b033849a3c1db779f8f83b4a6106d8acb933bf660343bd1aa65189f024d74"
+    }
+  },
+  "limitations": [
+    "Headless Chrome/SwiftShader render is used because the Browser plugin had no available browser instance.",
+    "The interpenetration hook detects triangle-surface intersections, not penetration volume or intended support tolerance.",
+    "Support classification uses the conservative world AABB and vertical walkable-scene probes; it cannot promote contact without visual review.",
+    "The static scene still inherits the production carve for the former three-pillow ensemble."
+  ]
+}

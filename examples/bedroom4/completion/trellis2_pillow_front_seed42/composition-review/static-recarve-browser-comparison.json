@@ -1,0 +1,354 @@
+{
+  "schemaVersion": 1,
+  "kind": "video2world.bedroom4_front_static_recarve_browser_comparison",
+  "status": "candidate_passed",
+  "promotion": "not_performed",
+  "publishing": "not_performed",
+  "startedAt": "2026-07-16T23:37:14.522Z",
+  "finishedAt": "2026-07-16T23:37:37.356Z",
+  "policy": {
+    "purpose": "Compare residual static Gaussian occlusion without changing the completed front-pillow asset.",
+    "camera": "Fresh deterministic focus on sam3_pillow_front at yaw=0 for each manifest.",
+    "staticReference": "Static Scene Off, Solo Object Off.",
+    "objectMask": "Eroded non-background mask from Static Scene Off, Solo Object On.",
+    "acceptance": "At least 12% relative reduction in >35 RGB-delta pixels and mean RGB delta, with unchanged object/collision definitions and fresh-load health."
+  },
+  "summary": {
+    "removedStaticGaussians": 1606,
+    "retainedStaticGaussians": 821785,
+    "changedPixelFractionAbove35": {
+      "before": 0.695961,
+      "after": 0.003211,
+      "relativeReduction": 0.995386
+    },
+    "meanAbsoluteRgbDelta": {
+      "before": 49.699,
+      "after": 2.36,
+      "relativeReduction": 0.952514
+    },
+    "sceneCollateral": {
+      "policy": {
+        "nearObjectExclusionRadiusPx": 3,
+        "perimeterOuterRadiusPx": 20,
+        "supportBandBelowObjectPx": [
+          3,
+          35
+        ],
+        "interpretation": "Perimeter change can include intended residual removal; dark loss records possible newly exposed holes. Far-scene change is collateral risk."
+      },
+      "objectSampleBounds": {
+        "minimumX": 122,
+        "maximumX": 208,
+        "maximumY": 144
+      },
+      "perimeter": {
+        "pixelCount": 7917,
+        "meanAbsoluteRgbDelta": 21.373,
+        "changedPixelFraction": {
+          "maximumChannelAbove20": 0.343817,
+          "maximumChannelAbove35": 0.230011
+        },
+        "darkLossFractionAbove35Luma": 0.125426
+      },
+      "supportBand": {
+        "pixelCount": 4173,
+        "meanAbsoluteRgbDelta": 17.189,
+        "changedPixelFraction": {
+          "maximumChannelAbove20": 0.219746,
+          "maximumChannelAbove35": 0.150012
+        },
+        "darkLossFractionAbove35Luma": 0.09849
+      },
+      "farScene": {
+        "pixelCount": 48971,
+        "meanAbsoluteRgbDelta": 0.193,
+        "changedPixelFraction": {
+          "maximumChannelAbove20": 0.001062,
+          "maximumChannelAbove35": 0.000143
+        },
+        "darkLossFractionAbove35Luma": 0
+      }
+    }
+  },
+  "decision": {
+    "currentDemoPromotion": "recommended_with_known_limitation",
+    "acceptanceBasis": [
+      "completed pillow shape is credible in the current demo",
+      "main color is light neutral/white in the current scene view",
+      "no obvious scene interpenetration is reported",
+      "unified PBR visual, selection surface, robot collision, and fresh-load checks pass",
+      "residual static-Gaussian foreground contamination is materially reduced"
+    ],
+    "backgroundAndBedCompletion": "not_proven",
+    "mandatoryWarning": "Near-object perimeter and support-band dark loss remain visible; this candidate removes stale foreground splats but does not reconstruct hidden bed/background geometry.",
+    "generalPipelineClaim": "held_until_multiview_clean_plate_depth_normal_and_scene_reconstruction_pass"
+  },
+  "checks": {
+    "bothManifestsUnchanged": true,
+    "bothFreshLoadsExact": true,
+    "bothDiagnosticsClean": true,
+    "frontUnifiedPbrYawZeroPreserved": true,
+    "collisionBoundsUnchanged": true,
+    "frontDefinitionUnchanged": true,
+    "rearDefinitionsUnchanged": true,
+    "sceneColliderUnchanged": true,
+    "frontSceneContactUnchanged": true,
+    "robotCollisionPreserved": true,
+    "objectMaskStable": true,
+    "staticContaminationReduced": true,
+    "meanStaticDeltaReduced": true,
+    "darkOcclusionNotWorse": true,
+    "farSceneCollateralBelowOnePercent": true
+  },
+  "failedChecks": [],
+  "baseline": {
+    "label": "before",
+    "url": "http://127.0.0.1:4177/?manifest=%2Fworlds%2Fbedroom4%2Fmanifest.unified-pillow.json",
+    "manifest": {
+      "path": "repo://video2world/web/public/worlds/bedroom4/manifest.unified-pillow.json",
+      "sha256Before": "4a0d29431de668ae39388bd7069129ca44beaab1613402ebfba8cdd55930a32d",
+      "sha256After": "4a0d29431de668ae39388bd7069129ca44beaab1613402ebfba8cdd55930a32d",
+      "unchanged": true,
+      "version": "bedroom4-candidate-unified-pillow-20260717"
+    },
+    "expected": {
+      "staticVisuals": 823391,
+      "totalVisuals": 1502554,
+      "visualObjects": 7,
+      "objectColliders": 5,
+      "objectColliderFaces": 164742,
+      "staticColliderFaces": 1246389
+    },
+    "runtime": {
+      "staticVisualCount": 823391,
+      "visualCount": 1502554,
+      "interactiveObjectReadyCount": 7,
+      "objectColliderReadyCount": 5,
+      "staticColliderFaces": 1246389,
+      "objectColliderFaces": 164742,
+      "degradedColliderCount": 0,
+      "colliderErrors": []
+    },
+    "front": {
+      "yawZeroApplied": true,
+      "focused": true,
+      "visualKind": "mesh",
+      "collisionMode": "unified-glb",
+      "collisionTopology": "surface_bvh",
+      "unifiedVisualCollision": true,
+      "meshVertexCount": 60237,
+      "collisionFaces": 97082,
+      "pbrMaterialCount": 1,
+      "materialTypes": [
+        "MeshStandardMaterial"
+      ],
+      "collisionBounds": {
+        "min": {
+          "x": 4.072837,
+          "y": -1.472561,
+          "z": 9.449456
+        },
+        "max": {
+          "x": 7.016117,
+          "y": 1.13465,
+          "z": 11.345407
+        },
+        "center": {
+          "x": 5.544477,
+          "y": -0.168956,
+          "z": 10.397431
+        },
+        "size": {
+          "x": 2.94328,
+          "y": 2.607211,
+          "z": 1.895951
+        }
+      }
+    },
+    "sceneContact": {
+      "status": "passed",
+      "frontPairs": []
+    },
+    "robotCollision": {
+      "prepared": true,
+      "reason": null,
+      "blockedByFront": true,
+      "lastCollisionKind": "object",
+      "lastCollisionObjectId": "sam3_pillow_front"
+    },
+    "contamination": {
+      "sampleSize": [
+        320,
+        200
+      ],
+      "isolatedBackgroundRgb": [
+        7,
+        10,
+        13
+      ],
+      "objectCorePixelCount": 5917,
+      "meanAbsoluteRgbDeltaStaticOnVsOff": 49.699,
+      "p95MeanAbsoluteRgbDelta": 113,
+      "changedPixelFraction": {
+        "maximumChannelAbove20": 0.84215,
+        "maximumChannelAbove35": 0.695961,
+        "maximumChannelAbove60": 0.467805
+      },
+      "darkOcclusionFraction": 0.20382,
+      "staticOn": {
+        "meanLuma": 142.997,
+        "meanChroma": 21.362,
+        "lightNeutralFraction": 0.756802
+      },
+      "staticOffReference": {
+        "meanLuma": 127.812,
+        "meanChroma": 8.655,
+        "lightNeutralFraction": 0.994254
+      }
+    },
+    "screenshots": {
+      "staticOn": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/before-static-on.png",
+      "staticOff": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/before-static-off.png",
+      "isolated": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/before-isolated.png"
+    },
+    "diagnostics": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "httpErrors": [],
+      "manifestRequests": 1,
+      "manifestResponseSha256": [
+        "4a0d29431de668ae39388bd7069129ca44beaab1613402ebfba8cdd55930a32d"
+      ],
+      "frontAssetRequests": 1
+    }
+  },
+  "candidate": {
+    "label": "after",
+    "url": "http://127.0.0.1:4177/?manifest=%2Fworlds%2Fbedroom4%2Frecarve-candidates%2Fsemantic-covariance%2Fmanifest.json",
+    "manifest": {
+      "path": "repo://video2world/web/public/worlds/bedroom4/recarve-candidates/semantic-covariance/manifest.json",
+      "sha256Before": "edae5c8d8df4f98da97477d7545dc9cb80a9104ed7ab4707b603381549364cb7",
+      "sha256After": "edae5c8d8df4f98da97477d7545dc9cb80a9104ed7ab4707b603381549364cb7",
+      "unchanged": true,
+      "version": "bedroom4-candidate-unified-pillow-20260717-static-recarve-semantic-covariance"
+    },
+    "expected": {
+      "staticVisuals": 821785,
+      "totalVisuals": 1500948,
+      "visualObjects": 7,
+      "objectColliders": 5,
+      "objectColliderFaces": 164742,
+      "staticColliderFaces": 1246389
+    },
+    "runtime": {
+      "staticVisualCount": 821785,
+      "visualCount": 1500948,
+      "interactiveObjectReadyCount": 7,
+      "objectColliderReadyCount": 5,
+      "staticColliderFaces": 1246389,
+      "objectColliderFaces": 164742,
+      "degradedColliderCount": 0,
+      "colliderErrors": []
+    },
+    "front": {
+      "yawZeroApplied": true,
+      "focused": true,
+      "visualKind": "mesh",
+      "collisionMode": "unified-glb",
+      "collisionTopology": "surface_bvh",
+      "unifiedVisualCollision": true,
+      "meshVertexCount": 60237,
+      "collisionFaces": 97082,
+      "pbrMaterialCount": 1,
+      "materialTypes": [
+        "MeshStandardMaterial"
+      ],
+      "collisionBounds": {
+        "min": {
+          "x": 4.072837,
+          "y": -1.472561,
+          "z": 9.449456
+        },
+        "max": {
+          "x": 7.016117,
+          "y": 1.13465,
+          "z": 11.345407
+        },
+        "center": {
+          "x": 5.544477,
+          "y": -0.168956,
+          "z": 10.397431
+        },
+        "size": {
+          "x": 2.94328,
+          "y": 2.607211,
+          "z": 1.895951
+        }
+      }
+    },
+    "sceneContact": {
+      "status": "passed",
+      "frontPairs": []
+    },
+    "robotCollision": {
+      "prepared": true,
+      "reason": null,
+      "blockedByFront": true,
+      "lastCollisionKind": "object",
+      "lastCollisionObjectId": "sam3_pillow_front"
+    },
+    "contamination": {
+      "sampleSize": [
+        320,
+        200
+      ],
+      "isolatedBackgroundRgb": [
+        7,
+        10,
+        13
+      ],
+      "objectCorePixelCount": 5917,
+      "meanAbsoluteRgbDeltaStaticOnVsOff": 2.36,
+      "p95MeanAbsoluteRgbDelta": 12,
+      "changedPixelFraction": {
+        "maximumChannelAbove20": 0.018083,
+        "maximumChannelAbove35": 0.003211,
+        "maximumChannelAbove60": 0.000676
+      },
+      "darkOcclusionFraction": 0,
+      "staticOn": {
+        "meanLuma": 126.102,
+        "meanChroma": 8.394,
+        "lightNeutralFraction": 0.993747
+      },
+      "staticOffReference": {
+        "meanLuma": 127.812,
+        "meanChroma": 8.655,
+        "lightNeutralFraction": 0.994254
+      }
+    },
+    "screenshots": {
+      "staticOn": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/after-static-on.png",
+      "staticOff": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/after-static-off.png",
+      "isolated": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/after-isolated.png"
+    },
+    "diagnostics": {
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestFailures": [],
+      "httpErrors": [],
+      "manifestRequests": 1,
+      "manifestResponseSha256": [
+        "edae5c8d8df4f98da97477d7545dc9cb80a9104ed7ab4707b603381549364cb7"
+      ],
+      "frontAssetRequests": 1
+    }
+  },
+  "limitations": [
+    "The recommendation is current-demo-only and does not validate a learned universal amodal completion model.",
+    "Rear RGB point clouds are preservation anchors; hidden bed/background geometry and its cross-view consistency remain unproven.",
+    "Perimeter dark-loss is 12.5426% and support-band dark-loss is 9.8490%; these are mandatory known limitations, not accepted background completion.",
+    "Candidate chunks remain unpromoted and are not referenced by the canonical or deployed manifest."
+  ]
+}

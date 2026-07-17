@@ -1,0 +1,78 @@
+{
+  "candidates": [
+    {
+      "backend": "support_surface_reconstruction",
+      "eligible": false,
+      "missing_requirements": [
+        "verified appearance",
+        "support geometry"
+      ],
+      "reason": "Use observed planes/depth/normals before synthesizing only residual structure holes.",
+      "score": 0
+    },
+    {
+      "backend": "multi_view_reconstruction",
+      "eligible": false,
+      "missing_requirements": [
+        "at least three calibrated views",
+        "view baseline >= 0.05",
+        "visible surface fraction >= 0.35"
+      ],
+      "reason": "Calibrated views with usable baseline provide direct geometry evidence.",
+      "score": 0
+    },
+    {
+      "backend": "deformable_category_prior",
+      "eligible": true,
+      "missing_requirements": [],
+      "reason": "A deformable closed-surface prior can preserve observed silhouette and material.",
+      "score": 88
+    },
+    {
+      "backend": "retrieval_cad_prior",
+      "eligible": false,
+      "missing_requirements": [
+        "rigid category profile",
+        "CAD retrieval confidence >= 0.82"
+      ],
+      "reason": "A high-confidence rigid retrieval can be fitted to observed masks and depth.",
+      "score": 0
+    },
+    {
+      "backend": "generative_image_to_3d",
+      "eligible": true,
+      "missing_requirements": [],
+      "reason": "Use generation only where direct geometry or stronger priors are unavailable.",
+      "score": 70
+    },
+    {
+      "backend": "hold_for_more_evidence",
+      "eligible": true,
+      "missing_requirements": [],
+      "reason": "Fail-closed fallback if every reconstruction candidate is rejected.",
+      "score": 1
+    }
+  ],
+  "kind": "video2world.completion_backend_route",
+  "notes": [
+    "The category prior supplies topology only; source evidence still controls aspect, material, and front appearance."
+  ],
+  "object_id": "sam3_pillow_front",
+  "required_acceptance_gates": [
+    "instance_identity",
+    "front_observation_fidelity",
+    "appearance_fidelity",
+    "geometry_completeness",
+    "backside_nonempty",
+    "six_view_coverage",
+    "six_side_style_consistency",
+    "placement_alignment",
+    "scene_interpenetration",
+    "collision",
+    "vlm_geometry_review"
+  ],
+  "residual_background_policy": "multi_view_donor_then_constrained_generation",
+  "route_sha256": "d735629342799bea16b22abd30b09081f5e27aba19a5332c556951dd8b0c3534",
+  "schema_version": "1.0",
+  "selected_backend": "deformable_category_prior"
+}

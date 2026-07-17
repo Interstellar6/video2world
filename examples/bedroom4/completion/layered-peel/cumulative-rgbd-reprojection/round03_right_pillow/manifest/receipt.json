@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.cumulative_removal_manifest_receipt",
+  "manifest": "cumulative_removal_manifest.json",
+  "manifest_sha256": "445dfc643a916b0aa61853a35a0f7f5833fc49d9ebdbaae1babbbfa4ea647129",
+  "donor_exclusion_index": "donor_exclusion_index.json",
+  "donor_exclusion_index_sha256": "f29461bc71f78d11a87c554a47d91e2c764ae4bbf076314f29d75d42dea6cca8",
+  "metadata_only_provenance_upgrade": true
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.clean_plate_visual_review",
+  "reviewed_at": "2026-07-17T06:13:53+08:00",
+  "status": "accepted_for_current_demo",
+  "selected_seed": 2026071701,
+  "selected_candidate": {
+    "path": "candidate_seed_2026071701.png",
+    "sha256": "26a734c0296d98790ed4daaf5a5a7b45c64f25430ab95e6115e9a26eff41d7b0",
+    "width": 1280,
+    "height": 720
+  },
+  "review": {
+    "authority": "user",
+    "decision": "pass_with_known_limitation",
+    "note_zh": "用户确认当前效果可以先算通过。",
+    "technical_observation_zh": "候选仍在移除区域生成了枕头状外观，因此不能作为背景已被几何完整恢复的证据。"
+  },
+  "scope": {
+    "allowed": [
+      "current bedroom4 demo",
+      "interactive-object integration QA"
+    ],
+    "not_proven": [
+      "object-free clean plate",
+      "multi-view background consistency",
+      "occluded bed geometry completion"
+    ]
+  },
+  "provenance": {
+    "run_receipt": "run_receipt.json",
+    "source_rgb_sha256": "cd58125f18d9af264a0966add2d015da431f02a24fbbfca77f2ffd7d072aa70e",
+    "residual_mask_sha256": "8d6a60ee73a832d68d7d47d90cccce6134ce8dab5029c95646a6011619e51e3d"
+  }
+}

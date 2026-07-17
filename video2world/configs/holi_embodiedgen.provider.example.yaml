@@ -10,11 +10,12 @@ notes:
   - Commands are argv arrays and never run through a shell.
   - Each driver must call the real upstream model and write exactly the declared outputs.
   - The historical Bedroom4 scripts are evidence for model entry points, not generic drivers.
+  - The TRELLIS site batch driver must invoke video2world.providers.trellis2_asset once per validated object RGBA and aggregate only audited asset receipts.
 source_repositories:
   holi_spatial: "Set the exact repository URL and commit used at the deployment site."
   pgsr: "Set the exact PGSR repository URL and commit used at the deployment site."
   video2mesh: "Set the exact Video2Mesh repository URL and commit used for 2D-to-3D fusion."
-  embodiedgen_v2: "Set the exact EmbodiedGen V2/TRELLIS repository URL and commit."
+  embodiedgen_v2: "https://github.com/microsoft/TRELLIS.2.git@75fbf0183001ed9876c8dbb35de6b68552ee08bd"
   video2world: "Set the exact Video2World repository URL and commit for cognition, placement, bundle, and Web drivers."
 stages:
   ingest:
@@ -154,7 +155,7 @@ stages:
     lineage_evidence:
       - The generic driver must preserve VLM model identity, evidence frames, confidence, and verified relation flags; it must not promote unsupported QA facts.
   trellis:
-    provider: EmbodiedGen V2 / TRELLIS Gaussian and mesh export
+    provider: Official Microsoft TRELLIS.2 mesh-first PBR GLB batch wrapper
     command:
       - "${TRELLIS_PYTHON}"
       - "${VIDEO2WORLD_TRELLIS_DRIVER}"
@@ -175,10 +176,13 @@ stages:
       trellis_python: {path: "${TRELLIS_PYTHON}", kind: executable}
       trellis_root: {path: "${TRELLIS_ROOT}", kind: directory}
       trellis_weights: {path: "${TRELLIS_WEIGHTS}", kind: directory}
-      dino_source: {path: "${DINO_SOURCE}", kind: directory}
       trellis_driver: {path: "${VIDEO2WORLD_TRELLIS_DRIVER}", kind: file}
+      trellis_asset_provider: {path: "${VIDEO2WORLD_ROOT}/video2world/providers/trellis2_asset.py", kind: file}
     lineage_evidence:
-      - Historical run_trellis_gaussian_batch.py and run_trellis_mesh_export.py are real model entry points but require a wrapper to aggregate per-object PLY/GLB/OBJ into object_assets_manifest.
+      - The site driver iterates validated per-object RGBA inputs and invokes python -m video2world.providers.trellis2_asset; RMBG is permitted only when explicitly opted in.
+      - The mil8 verified source commit is 75fbf0183001ed9876c8dbb35de6b68552ee08bd; microsoft/TRELLIS.2-4B model revision is af44b45f2e35a493886929c6d786e563ec68364d.
+      - The verified pipeline_512.json SHA-256 is 308dd782f3eaf1e30e7403ee3837f21beefa664202b0a045ca61308a42c661b3; every run records its actual config, input, and output hashes.
+      - asset_pbr.glb is the required mesh-first visual, interaction, and collision surface; raw mesh, point cloud, and convex exports are debug-only opt-ins.
   placement:
     provider: Video2World object alignment and collision proxy assembly
     command:

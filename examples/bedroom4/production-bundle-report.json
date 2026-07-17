@@ -4,7 +4,7 @@
   "version": "bedroom4-production-20260716",
   "worldDir": "web-bundle://bedroom4/",
   "manifest": "web-bundle://bedroom4/manifest.json",
-  "manifestSha256": "e0702f76e144dbf4bcd5c277ed5540ee51f7f9e8098770a145ceea63679ba2de",
+  "manifestSha256": "3805f0e5bab09add424b3b78f9349cd2eca6d1262777ef683e13cda07695e82b",
   "visual": {
     "staticGaussians": 823391,
     "objectGaussians": 480000,

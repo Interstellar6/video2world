@@ -1,0 +1,142 @@
+{
+  "alpha_pixels": 21585,
+  "alpha_pixels_before_sanitization": 21589,
+  "alpha_threshold": 0.5,
+  "analytic_silhouette_metrics": {
+    "analytic_bbox_xyxy": [
+      698,
+      307,
+      905,
+      502
+    ],
+    "analytic_recall": 0.9236444749485244,
+    "bbox_iou": 0.9293942772203642,
+    "center_error_px": 2.3782543236805727,
+    "mask_iou": 0.9215493259148299,
+    "rendered_bbox_xyxy": [
+      699,
+      310,
+      904,
+      493
+    ],
+    "rendered_precision": 0.9975445911512625
+  },
+  "analytic_silhouette_thresholds": {
+    "maximum_center_error_px": 10.0,
+    "minimum_bbox_iou": 0.8,
+    "minimum_mask_iou": 0.85
+  },
+  "camera_convention": {
+    "extrinsic": "camera_to_world",
+    "image_y_axis": "down",
+    "principal_point": "center",
+    "rotation_columns": "right_down_forward"
+  },
+  "claims_measured_donor": false,
+  "depth": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v1/layers/sam3_pillow_right/depth/000069.npy",
+  "depth_max": 14.927399635314941,
+  "depth_median": 13.468972206115723,
+  "depth_min": 12.770780563354492,
+  "depth_semantics": "positive_target_camera_axis_z",
+  "depth_sha256": "90668b6dbea7d0ae0464a2af53993bb666b32f95c4bb6a1d224d3f24955ecec6",
+  "depth_unit": "meter",
+  "depth_valid_pixels": 21585,
+  "depth_validity_scope": "alpha_greater_than_or_equal_to_threshold_only",
+  "elapsed_seconds": 0.9504867919895332,
+  "evaluated_geometry_depth_max": 14.936918258666992,
+  "evaluated_geometry_depth_min": 12.770873069763184,
+  "final_alpha_bbox_xyxy": [
+    699,
+    310,
+    904,
+    493
+  ],
+  "frame_id": "000069",
+  "gates": {
+    "all_opaque_pixels_have_positive_finite_depth": true,
+    "analytic_silhouette_bbox_iou": true,
+    "analytic_silhouette_center_error": true,
+    "analytic_silhouette_mask_iou": true,
+    "claims_measured_donor_rejected": true,
+    "depth_camera_dimensions_match": true,
+    "depth_is_nan_outside_opaque_alpha": true,
+    "depth_probe_passed": true,
+    "final_alpha_support_equals_finite_depth_support": true,
+    "raw_depth_matches_evaluated_geometry_except_bounded_aa_edges": true,
+    "raw_object_depth_vs_final_alpha_iou_above_0_98": true,
+    "rgba_alpha_sanitization_fraction_below_0_001": true,
+    "rgba_camera_dimensions_match": true
+  },
+  "kind": "video2world.pbr_layer_render_receipt",
+  "layer_id": "sam3_pillow_right",
+  "placement_mode": "baked_linear_plus_runtime_pivot",
+  "promotion_approved": false,
+  "promotion_blocker": "source-camera silhouette and scene occlusion QA",
+  "provenance_class": "downstream_object_render",
+  "raw_depth_exr": null,
+  "raw_depth_exr_sha256": "897d98de085c8d09997b5fb548e4def1f23e8019476819955d17da8c38025f2f",
+  "raw_depth_outside_geometry_pixels": 4,
+  "raw_object_depth_bbox_xyxy": [
+    699,
+    310,
+    904,
+    493
+  ],
+  "raw_object_depth_vs_final_alpha_iou": 0.9996295095632844,
+  "rgba": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v1/layers/sam3_pillow_right/rgba/000069.png",
+  "rgba_alpha_sanitization_policy": "clear_if_depth_invalid_or_outside_geometry",
+  "rgba_alpha_sanitized_fraction": 0.00018527954050673954,
+  "rgba_alpha_sanitized_pixels": 4,
+  "rgba_sha256": "6e937dac76fd3ff1438d9ffe15629929e9ff908376af2dfb249c75ed89acbd57",
+  "role": "downstream_object_render",
+  "schema_version": 1,
+  "sources": {
+    "analytic_silhouette": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v1/analytic-silhouettes/sam3_pillow_right/masks/000069.png",
+      "sha256": "b5f1980b15ca33ebf41ae012457bb9a366382040ec533a3192f18c997188cbdf"
+    },
+    "camera_record": {
+      "fx": 639.9410000000001,
+      "fy": 680.253,
+      "height": 720,
+      "id": 69,
+      "img_name": "000069",
+      "position": [
+        1.3032843013968547,
+        -1.6497925390366555,
+        2.6616212533162513
+      ],
+      "rotation": [
+        [
+          0.9551771554415807,
+          0.05667752521468697,
+          -0.29055846430216115
+        ],
+        [
+          -0.054486291761184705,
+          0.9983921315913405,
+          0.015633112264817176
+        ],
+        [
+          0.2909773308218474,
+          0.0008990686891694346,
+          0.9567295058073971
+        ]
+      ],
+      "width": 1280
+    },
+    "cameras": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+      "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+    },
+    "mesh": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/sam3_pillow_right.scene-fit.glb",
+      "sha256": "eb4ad2cb0398602865ff3511039e440ce9cb50ace016fffeaaf3ce3944280f1e"
+    },
+    "scene_fit_report": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/scene_fit_report.json",
+      "sha256": "d9ec2811d33372cfda174b7073e574385da283bc191a09fa89cbc6175da41155"
+    }
+  },
+  "status": "technical_passed"
+}

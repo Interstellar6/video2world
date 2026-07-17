@@ -1,0 +1,8 @@
+{
+  "frame_count": 25,
+  "kind": "video2world.scene_fit_analytic_silhouette_set_receipt",
+  "manifest": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v1/analytic-silhouettes/sam3_pillow_right/silhouette_manifest.json",
+  "manifest_sha256": "f7b27ab2c22c495ca4676242f4c3cd4953d2d3e698c31f29404e868d94526cbf",
+  "mask_artifacts_are_hashed_in_manifest": true,
+  "schema_version": 1
+}

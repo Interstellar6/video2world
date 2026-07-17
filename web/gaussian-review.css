@@ -1,0 +1,35 @@
+.review-render-stage {
+  position: fixed;
+  top: 0;
+  left: -10000px;
+  width: 512px;
+  height: 384px;
+  pointer-events: none;
+}
+
+.review-grid .review-view {
+  background: #d4d7da;
+}
+
+.review-view canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.review-view[data-nonblank="false"] {
+  border-color: #a72b1d;
+}
+
+.review-view[data-nonblank="false"]::after {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  content: "BLANK";
+  color: #a72b1d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.review-status[data-state="rejected"] {
+  color: #a72b1d;
+}

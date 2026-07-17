@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "video2world.canonical_object_six_view_review",
+  "createdAt": "2026-07-17T01:47:27.280Z",
+  "state": "captured_visual_pending",
+  "promotionAllowed": false,
+  "sourcePageUrl": "http://127.0.0.1:4179/object-review.html?objectId=sam3_pillow_left&asset=/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed42/asset_pbr.glb",
+  "canonicalViews": [
+    "front",
+    "right",
+    "back",
+    "left",
+    "top",
+    "bottom"
+  ],
+  "canonicalViewAxes": {
+    "front": {
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "orientationContract": "web/object-review.js VIEW_SPECS orthogonal object-local axes",
+  "horizontalOrbitAcceptedAsSixViewEvidence": false,
+  "visualGate": {
+    "status": "pending",
+    "blocking": [
+      "shape_mismatch",
+      "primary_color_category_error",
+      "missing_surface_or_sheet_geometry",
+      "disconnected_or_floating_parts",
+      "significant_scene_interpenetration"
+    ],
+    "warning": [
+      "minor_backside_texture_hallucination",
+      "minor_material_or_pattern_drift"
+    ]
+  },
+  "objectId": "sam3_pillow_left",
+  "renderMode": "neutral-albedo",
+  "bounds": {
+    "min": [
+      -0.4850656986236572,
+      -0.22263595461845398,
+      -0.28170984983444214
+    ],
+    "max": [
+      0.5019494295120239,
+      0.2219649851322174,
+      0.27355584502220154
+    ],
+    "size": [
+      0.9870151281356812,
+      0.4446009397506714,
+      0.5552656948566437
+    ],
+    "radius": 0.6083150603676738
+  },
+  "meshCount": 1,
+  "triangleCount": 93770,
+  "asset": {
+    "url": "http://127.0.0.1:4179/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed42/asset_pbr.glb",
+    "sizeBytes": 3177072,
+    "sha256": "ae14f9904401c6c22f7fae27198d4617e442a5ca71ede4bf4cb713decdc3abb5"
+  },
+  "views": {
+    "front": {
+      "file": "front_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed42/canonical_six_view/front_object.png",
+      "sizeBytes": 93989,
+      "sha256": "7a9f3dd728d5febdca617302f358c932237f7f93a06203e8b5eef3a34f02e706",
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "file": "right_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed42/canonical_six_view/right_object.png",
+      "sizeBytes": 73015,
+      "sha256": "24bd9bac3063f50fe74a63f34e1c83512db075f6dc04966b7cee4e62cd460f71",
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "file": "back_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed42/canonical_six_view/back_object.png",
+      "sizeBytes": 101367,
+      "sha256": "d0c28d71446c78e63ad236077c4044b9d171a13bdc8ebdcf97b5e4f1b237b529",
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "file": "left_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed42/canonical_six_view/left_object.png",
+      "sizeBytes": 65461,
+      "sha256": "52ac177fdec2abab3b7b379e228f0b6d55c29c808d8581990a7d37d948993109",
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "file": "top_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed42/canonical_six_view/top_object.png",
+      "sizeBytes": 75755,
+      "sha256": "728f0fb83dd55f997a28c15699a6909de20dc3ef9f87fd0ff772c74157a422b9",
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "file": "bottom_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed42/canonical_six_view/bottom_object.png",
+      "sizeBytes": 76811,
+      "sha256": "63f5ceab1245c1c6447cce95387ce4361500f6902583592cda529e415d54d95e",
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "contactSheet": {
+    "file": "object_six_view_contact_sheet.png",
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/trellis2_seed42/canonical_six_view/object_six_view_contact_sheet.png",
+    "sizeBytes": 312795,
+    "sha256": "b07a00cea5a5620d8da84013eca13a4c5b22e12a035f6acd75e7794b346dc3b6",
+    "layout": "3x2",
+    "viewport": [
+      1440,
+      1280
+    ]
+  },
+  "browser": {
+    "consoleWarnings": [],
+    "consoleErrors": []
+  }
+}

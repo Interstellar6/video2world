@@ -1,0 +1,530 @@
+{
+  "acceptance_gates": {
+    "collision_face_budget": true,
+    "mesh_finite": true,
+    "mesh_no_degenerate_faces": true,
+    "mesh_nonempty": true,
+    "mesh_winding_consistent": true,
+    "positive_refinement_determinant": true,
+    "scene_anchor_tangent_envelope": true,
+    "scene_no_additional_front_plane_overshoot": true,
+    "scene_source_camera_support_edge": true,
+    "scene_support_plane_drift": true,
+    "source_camera_bbox_iou": true,
+    "source_camera_center_error_px": true,
+    "source_camera_mask_iou": true
+  },
+  "all_acceptance_gates_passed": true,
+  "baked_relative_transform": {
+    "linear_row_major": [
+      [
+        3.7024192484725487,
+        -0.5967218624874074,
+        -0.14220293905491108
+      ],
+      [
+        0.8539570311433161,
+        4.1817947622227845,
+        0.7358917048952778
+      ],
+      [
+        0.19215893619094201,
+        -2.276988209712922,
+        1.0561790141527179
+      ]
+    ],
+    "runtime_pivot": [
+      0.6398347570346502,
+      -0.867413109612494,
+      16.93517655174893
+    ],
+    "runtime_rotation_euler_deg": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "runtime_scale": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "scale_before_rotation": [
+      3.3073937573382612,
+      4.315590312690541,
+      1.2412374626968385
+    ],
+    "silhouette_refinement_linear_row_major": [
+      [
+        0.9375129651352518,
+        0.6373069792787307,
+        -0.017112164121506717
+      ],
+      [
+        -0.5892664350149415,
+        1.0012482484185579,
+        -0.08591852874121092
+      ],
+      [
+        -0.0017097258765982196,
+        0.09289050622465088,
+        0.9985843044983626
+      ]
+    ],
+    "silhouette_refinement_translation_world": [
+      -0.16985412941321984,
+      0.1640566328491886,
+      -0.026821325349071525
+    ]
+  },
+  "collision_semantics": {
+    "asset_mode": "unified_glb",
+    "closed_volume_claim": false,
+    "fallback_proxy_allowed": false,
+    "inside_outside_queries_allowed": false,
+    "max_faces": 100000,
+    "surface_blocking": true,
+    "topology": "surface_bvh"
+  },
+  "completed_obb": {
+    "axes_columns": [
+      [
+        0.9810742766656272,
+        -0.14130471611361595,
+        -0.13238670956356124
+      ],
+      [
+        0.1897067350860489,
+        0.8383993297093401,
+        0.5109774149665726
+      ],
+      [
+        0.03878940999819392,
+        -0.5264214482208905,
+        0.8493384722977126
+      ]
+    ],
+    "center": [
+      0.6398347570346502,
+      -0.867413109612494,
+      16.93517655174893
+    ],
+    "extents": [
+      3.8289013815435817,
+      3.3226193625893057,
+      0.8409104207163804
+    ]
+  },
+  "created_at": "2026-07-17T03:46:01.872855+00:00",
+  "fit": {
+    "aabb_center_relative_to_pivot": [
+      -0.03783440651953951,
+      0.02594451289633304,
+      0.009041372969084971
+    ],
+    "aabb_extents": [
+      3.753276097220557,
+      3.8150356536349186,
+      1.8858671833542986
+    ],
+    "projected_fitted_extents": [
+      3.319540908989534,
+      2.9708056131324367,
+      0.7966897921428017
+    ],
+    "relative_extent_error": [
+      7.155315083660881e-09,
+      1.890234934916689e-08,
+      2.549815437965149e-08
+    ],
+    "source_extents": [
+      1.00367271900177,
+      0.6883891522884369,
+      0.6418512463569641
+    ]
+  },
+  "gaussian": null,
+  "kind": "video2world.silhouette_refined_object_scene_fit",
+  "material_profile": "nonmetal_fabric",
+  "mesh": {
+    "bounds": [
+      [
+        -2.0250731631648473,
+        -1.708799120137192,
+        -0.9033538735512853
+      ],
+      [
+        2.0080819344269996,
+        1.8084349797431196,
+        0.9260717209581648
+      ]
+    ],
+    "degenerate_face_count": 0,
+    "extents": [
+      4.033155097591846,
+      3.5172340998803113,
+      1.8294255945094502
+    ],
+    "faces": 98226,
+    "finite_vertices": true,
+    "glb_bytes": 3406068,
+    "glb_sha256": "f6b1778c1900cb5222707840ff0c0eb60508992fac86500ca904a581229dc5ac",
+    "material_profile": "nonmetal_fabric",
+    "materials": [
+      {
+        "metallic_factor_after": 0.0,
+        "metallic_factor_before": 1.0,
+        "roughness_factor_after": 1.0,
+        "roughness_factor_before": 1.0,
+        "type": "PBRMaterial"
+      }
+    ],
+    "obj_bytes": 6999599,
+    "obj_sha256": "346ad39c191f7fd26d5d4ca115325413322b98e8f6b8ccc9d4abfd739a9e3d4a",
+    "valid_face_indices": true,
+    "vertices": 54968,
+    "watertight": false,
+    "winding_consistent": true
+  },
+  "object_id": "sam3_pillow_right",
+  "placement_evidence": {
+    "calibrated_camera_depth_translation_error": 6.127205366343591e-10,
+    "completion_direction_sign": 1.0,
+    "front_surface_anchor_error": 0.2376644431841184,
+    "max_thickness_ratio": 0.24,
+    "mode": "observed_front_surface",
+    "observed_thickness": 1.663992264622209,
+    "refinement_preserves_thickness": true,
+    "refinement_translation_is_tangent_to_thickness_axis": true,
+    "target_extent_scale": [
+      0.67,
+      0.67,
+      1.0
+    ],
+    "thickness_axis": 2,
+    "thickness_reference": 3.319540885237173,
+    "view_direction": [
+      -0.144243418601856,
+      0.01242499148478777,
+      0.9894642266280539
+    ]
+  },
+  "promotion_blockers": [
+    "pairwise_scene_interpenetration_review",
+    "accepted_clean_plate_or_static_scene_carve"
+  ],
+  "promotion_status": "held_pending_pairwise_scene_browser_review",
+  "representation_mode": "unified_mesh_visual_logic_collision",
+  "scene_geometry_review": {
+    "claim_scope": "Anchor-envelope, source-camera support-edge, and preserved-front-plane proxies; not a signed scene-mesh penetration proof.",
+    "gates": {
+      "anchor_tangent_envelope": true,
+      "no_additional_front_plane_overshoot": true,
+      "source_camera_support_edge": true,
+      "support_plane_drift": true
+    },
+    "gravity_direction": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "metrics": {
+      "additional_front_plane_overshoot": 0.0,
+      "fitted_front_plane_min": -0.5896410937735046,
+      "fitted_support_coordinate": 0.9410218701306257,
+      "maximum_tangent_anchor_ratio": 1.0332651324814799,
+      "source_camera_support_edge_error_px": 1,
+      "source_front_plane_min": -0.5896411032527673,
+      "source_support_coordinate": 0.9019926389012325,
+      "support_drift": 0.03902923122939317,
+      "tangent_overflow_vertex_fraction": 0.0040569058361228354
+    },
+    "status": "passed",
+    "thresholds": {
+      "maximum_anchor_overflow_ratio": 0.1,
+      "maximum_support_drift": 0.4456208335465848,
+      "maximum_support_edge_error_px": 12.0
+    }
+  },
+  "schema_version": 1,
+  "silhouette_refinement": {
+    "constraints": {
+      "explicit_occluder_count": 1,
+      "manual_target_bbox_used": false,
+      "maximum_angle_deg": 65.0,
+      "maximum_scale": 1.8,
+      "maximum_translation_fraction": 0.08,
+      "maximum_translation_world": 0.2376644445581786,
+      "minimum_scale": 0.5,
+      "observed_occluder_overlap_pixels": 0,
+      "rotation_axis": "calibrated_camera_forward_axis",
+      "thickness_optimized": false,
+      "transform_basis_mode": "camera_image_plane",
+      "translation_plane": "calibrated_camera_image_plane"
+    },
+    "exact_full_mesh_metrics": {
+      "bbox_iou": 0.8624169986719787,
+      "center_error_px": 11.679763684160722,
+      "ignored_pixels": 23065,
+      "intersection_pixels": 14896,
+      "mask_iou": 0.6997698125616574,
+      "observed_bbox_xyxy": [
+        595,
+        347,
+        794,
+        518
+      ],
+      "observed_pixels": 18128,
+      "observed_pixels_inside_ignored_region": 0,
+      "observed_recall": 0.8217122683142101,
+      "pixel_evaluation_domain": "outside_explicit_occluder_union",
+      "rendered_bbox_xyxy": [
+        603,
+        330,
+        796,
+        517
+      ],
+      "rendered_pixels": 18055,
+      "rendered_pixels_inside_ignored_region": 5376,
+      "rendered_precision": 0.825034616449737,
+      "union_pixels": 21287
+    },
+    "search": {
+      "coarse_candidate_count": 300,
+      "coarse_search_mesh": {
+        "faces": 4589,
+        "resolution": 24,
+        "vertices": 1599
+      },
+      "fine_candidates": [
+        {
+          "angle_deg": -34.54545454545455,
+          "metrics": {
+            "bbox_iou": 0.8615149614031259,
+            "center_error_px": 12.011790543923036,
+            "ignored_pixels": 23065,
+            "intersection_pixels": 14821,
+            "mask_iou": 0.7027501185395922,
+            "observed_bbox_xyxy": [
+              595,
+              347,
+              794,
+              518
+            ],
+            "observed_pixels": 18128,
+            "observed_pixels_inside_ignored_region": 0,
+            "observed_recall": 0.8175750220653133,
+            "pixel_evaluation_domain": "outside_explicit_occluder_union",
+            "rendered_bbox_xyxy": [
+              606,
+              333,
+              794,
+              515
+            ],
+            "rendered_pixels": 17783,
+            "rendered_pixels_inside_ignored_region": 5289,
+            "rendered_precision": 0.8334364280492605,
+            "union_pixels": 21090
+          },
+          "scale_axis_0": 1.109375,
+          "scale_axis_1": 1.190625,
+          "score": 4.326616023696868,
+          "translation_coefficients": [
+            -0.17809112108589983,
+            0.1573783364936703
+          ],
+          "translation_length": 0.23766444455817862
+        },
+        {
+          "angle_deg": -32.61363636363636,
+          "metrics": {
+            "bbox_iou": 0.8628051236606783,
+            "center_error_px": 11.618918706095647,
+            "ignored_pixels": 23065,
+            "intersection_pixels": 14788,
+            "mask_iou": 0.7013516718046005,
+            "observed_bbox_xyxy": [
+              595,
+              347,
+              794,
+              518
+            ],
+            "observed_pixels": 18128,
+            "observed_pixels_inside_ignored_region": 0,
+            "observed_recall": 0.8157546337157988,
+            "pixel_evaluation_domain": "outside_explicit_occluder_union",
+            "rendered_bbox_xyxy": [
+              605,
+              331,
+              795,
+              517
+            ],
+            "rendered_pixels": 17745,
+            "rendered_pixels_inside_ignored_region": 5242,
+            "rendered_precision": 0.8333615102845872,
+            "union_pixels": 21085
+          },
+          "scale_axis_0": 1.109375,
+          "scale_axis_1": 1.1906249999999998,
+          "score": 4.331793585150218,
+          "translation_coefficients": [
+            -0.17767534679799796,
+            0.15784758264654764
+          ],
+          "translation_length": 0.23766444455817856
+        },
+        {
+          "angle_deg": -32.72727272727273,
+          "metrics": {
+            "bbox_iou": 0.8628051236606783,
+            "center_error_px": 11.662883208644837,
+            "ignored_pixels": 23065,
+            "intersection_pixels": 14782,
+            "mask_iou": 0.7008012136727825,
+            "observed_bbox_xyxy": [
+              595,
+              347,
+              794,
+              518
+            ],
+            "observed_pixels": 18128,
+            "observed_pixels_inside_ignored_region": 0,
+            "observed_recall": 0.815423654015887,
+            "pixel_evaluation_domain": "outside_explicit_occluder_union",
+            "rendered_bbox_xyxy": [
+              605,
+              331,
+              795,
+              517
+            ],
+            "rendered_pixels": 17747,
+            "rendered_pixels_inside_ignored_region": 5253,
+            "rendered_precision": 0.8329295092128247,
+            "union_pixels": 21093
+          },
+          "scale_axis_0": 1.109375,
+          "scale_axis_1": 1.1906249999999998,
+          "score": 4.330085550104977,
+          "translation_coefficients": [
+            -0.17807149716639126,
+            0.1574005403550682
+          ],
+          "translation_length": 0.2376644445581786
+        }
+      ],
+      "fine_search_mesh": {
+        "faces": 13296,
+        "resolution": 40,
+        "vertices": 4458
+      },
+      "fine_start_count": 3,
+      "selected_from_passing_pool": true
+    },
+    "selected": {
+      "angle_deg": -32.61363636363636,
+      "metrics": {
+        "bbox_iou": 0.8628051236606783,
+        "center_error_px": 11.618918706095647,
+        "ignored_pixels": 23065,
+        "intersection_pixels": 14788,
+        "mask_iou": 0.7013516718046005,
+        "observed_bbox_xyxy": [
+          595,
+          347,
+          794,
+          518
+        ],
+        "observed_pixels": 18128,
+        "observed_pixels_inside_ignored_region": 0,
+        "observed_recall": 0.8157546337157988,
+        "pixel_evaluation_domain": "outside_explicit_occluder_union",
+        "rendered_bbox_xyxy": [
+          605,
+          331,
+          795,
+          517
+        ],
+        "rendered_pixels": 17745,
+        "rendered_pixels_inside_ignored_region": 5242,
+        "rendered_precision": 0.8333615102845872,
+        "union_pixels": 21085
+      },
+      "scale_axis_0": 1.109375,
+      "scale_axis_1": 1.1906249999999998,
+      "score": 4.331793585150218,
+      "translation_coefficients": [
+        -0.17767534679799796,
+        0.15784758264654764
+      ],
+      "translation_length": 0.23766444455817856
+    },
+    "silhouette_gates": {
+      "bbox_iou": true,
+      "center_error_px": true,
+      "mask_iou": true
+    }
+  },
+  "sources": {
+    "cameras": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/cameras.json",
+      "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+    },
+    "gaussian": null,
+    "instance_report": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/bedroom4_frame64_three_pillows/instance_cloud_split_report.json",
+      "sha256": "2d3386f690c71b88d1236756d865f4504095b3465244e688ac8ecfd2c1b931ac"
+    },
+    "mesh": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/asset_pbr.glb",
+      "sha256": "a239242865ccd598ae1ba9d8b897c08fa6594451c416ad682fb4b5d9c2419296"
+    },
+    "observed_mask": {
+      "path": "/private/tmp/video2world_pillow_split_20260717/input/pillow_01.png",
+      "sha256": "ebf444538c714b5ab96cfe2e23a9445be86cf799012356ccb509af96d4a325fa"
+    },
+    "occluder_masks": [
+      {
+        "path": "/private/tmp/video2world_pillow_split_20260717/input/pillow_03.png",
+        "pixels": 23065,
+        "sha256": "bdcd739f36d4c129f12bc42964195ce17522fa030900b7427f78b8e8f73d24d6"
+      }
+    ],
+    "source_scene_fit_mesh": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined/sam3_pillow_right.scene-fit.glb",
+      "sha256": "22188ab9b77173a016929f8812e2867acad7a30e7759b5ee6c03b2db9bc77ec1"
+    },
+    "source_scene_fit_report": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined/scene_fit_report.json",
+      "sha256": "d7bbaf3dd1bd71544dd02d19f5f4cffee4d5ed75e9d8f2187356bbefa5fc1b2d"
+    }
+  },
+  "status": "passed",
+  "target_obb": {
+    "axes_columns": [
+      [
+        0.7277650910890598,
+        -0.5585158494685721,
+        -0.39801761026935945
+      ],
+      [
+        0.685812581155928,
+        0.5889614810186728,
+        0.42753418273225263
+      ],
+      [
+        -0.0043675760298009965,
+        -0.5841099380841682,
+        0.8116628022220392
+      ]
+    ],
+    "center": [
+      0.9682371740878941,
+      -1.2017758063916233,
+      16.638676134257736
+    ],
+    "extents": [
+      4.954538634682347,
+      4.4340381447421375,
+      1.663992264622209
+    ]
+  }
+}

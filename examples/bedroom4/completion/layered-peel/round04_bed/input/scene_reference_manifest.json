@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.layered_object_scene_references",
+  "object_id": "sam3_bed_01",
+  "category": "bed",
+  "identity_revalidated": true,
+  "identity_revalidated_by": "explicit_3d_anchor_calibrated_multiframe_association",
+  "expected_appearance": {
+    "color_family": "any"
+  },
+  "association": {
+    "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round03_right_pillow/reinspect_sam3/association_bed_calibrated.json",
+    "sha256": "bb4f620b9e33b978ebe050970ddbe37a10fc5545e04fe6c2e94f03b1d1e2bd61",
+    "source_set_sha256": "321ebe171ff9848060d7c92311db4ad59ba24b6bcf6a74d172563bab922267a4",
+    "selected_evidence_only": true
+  },
+  "frames": [
+    {
+      "frame_id": "000067",
+      "detection_id": "000067:mask:000072",
+      "image_path": "references/000067_a0db1febea.rgba.png",
+      "image_sha256": "d25825d76d3f5f754c48e3b07a60d5ee9ca3271af3f3172737248e5e778913d3",
+      "mask_path": "references/000067_a0db1febea.mask.png",
+      "mask_sha256": "420315838de46c4d3803b941289ba3de8c4ea4104665913f10a4a9f301c1b940",
+      "bbox_xyxy": [
+        0,
+        0,
+        1099,
+        555
+      ],
+      "source_scene_crop_bbox_xyxy": [
+        181,
+        165,
+        1280,
+        720
+      ],
+      "quality_score": 0.9756076021330384,
+      "is_source_frame": false
+    },
+    {
+      "frame_id": "000071",
+      "detection_id": "000071:mask:000085",
+      "image_path": "references/000071_029345d035.rgba.png",
+      "image_sha256": "33a4ba5189ff4e0dc5f97b8269e4e6ec4f1a3ad4d3f1fc274efdb1d6fc1d50b2",
+      "mask_path": "references/000071_029345d035.mask.png",
+      "mask_sha256": "f1f5702177a84da004f700271f2227212f1d1589808578aceab93a295b53a746",
+      "bbox_xyxy": [
+        0,
+        0,
+        1034,
+        576
+      ],
+      "source_scene_crop_bbox_xyxy": [
+        246,
+        144,
+        1280,
+        720
+      ],
+      "quality_score": 0.9757342609503291,
+      "is_source_frame": true
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.layered_peel_round_receipt",
+  "created_at": "2026-07-17T10:35:00+08:00",
+  "scene_id": "bedroom_4",
+  "round_index": 2,
+  "target_object_id": "sam3_pillow_left",
+  "status": "passed_with_limitations",
+  "acceptance_scope": "usable_for_reinspection_only",
+  "input_lineage": {
+    "preceding_round": 1,
+    "clean_plate_uri": "repo://video2world/examples/bedroom4/completion/clean_plate_round1/inpaint_out.mp4",
+    "clean_plate_sha256": "6db53f516a8ded9be00f294e559a82489f4ead1175137d260e9123f44a1c0830",
+    "selection_association_sha256": "25ce62f3c83af0438510a2864b7daeafc0ef254815864b52a66be45e780c1ecb",
+    "object_input_report_sha256": "e4a845457958ae196a0421c1a41824f5847626144d371d8664305ee3078722f0",
+    "scene_reference_manifest_sha256": "1035749a0a92d9c48b959a6510d623a43b220d72a8cbf55a7f0c310a2f5f091d"
+  },
+  "amodal_input": {
+    "status": "passed",
+    "audit_sha256": "7124bb218bc53bb2ef8e3fbb362e1d5bd4ca499dde2744f6a2de81bba0c3a070",
+    "completed_rgba_sha256": "07ef23dd65d99e087c17a453ead42cc678796c0014faab1b9576c14a70fd350e",
+    "added_pixels": 9071,
+    "added_to_original_area_ratio": 0.3367362090726854,
+    "visible_pixels_preserved_byte_identical": true,
+    "multiframe_identity_gate_passed": true
+  },
+  "object_asset_decision": {
+    "status": "accepted_with_warnings",
+    "accepted_candidate": {
+      "candidate_id": "trellis2_seed44",
+      "asset_sha256": "c76e26f14cc68b17fd588984fdae289110d18dee6316f54214d39e0cdd3f4998",
+      "provider_receipt_sha256": "1b16a428cd43cfab8468de25230cd40dec22d7bcdb1132ea403f3e768c8c379d",
+      "visual_review_sha256": "1e7a3d02530231232308351903f49255a9c4eefef96160a2b0be3cf3e6bcd40f",
+      "contact_sheet_sha256": "56369fa78ffa0142231fd991097a6da73ffe0d60bae8f0f9a08987906c887983"
+    },
+    "rejected_candidates": [
+      {
+        "candidate_id": "trellis2_seed42",
+        "asset_sha256": "ae14f9904401c6c22f7fae27198d4617e442a5ca71ede4bf4cb713decdc3abb5",
+        "visual_review_sha256": "d3fde5ccc50275750293683721bdb99a27f8a22085e6f20baaf19c75ae3fd68b",
+        "reason": "open holes, broken thin surfaces, and disconnected fragments"
+      }
+    ],
+    "scene_fit_status": "pending"
+  },
+  "clean_plate": {
+    "technical_status": "passed",
+    "semantic_status": "accepted_for_reinspection_only",
+    "output_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round02_left_pillow/propainter_output/frames/inpaint_out.mp4",
+    "output_sha256": "112b1eddad50553a93251e4df1865a65792af0e9f54164a57af3aaee1e85e600",
+    "input_manifest_sha256": "ca427cbb1b19ea5237e6b5b6c09ef2911a5de622d830be3c89877fa25373e014",
+    "technical_qa_sha256": "40a9b1ba5f2ec29170f5633cefcce54ece0ee1a9e5a29b1d650d242e2521d73e",
+    "visual_review_sha256": "9e18bb34f84abee4af3728e74611cd5cc808ed0a9aa38a991fdf8bfd2525ffac",
+    "contact_sheet_sha256": "2e00717526134090ddc1a605fe96294c71e5316a8344af350887470bd99418db",
+    "usage": "next_round_input",
+    "scene_promotion_allowed": false
+  },
+  "reinspection": {
+    "status": "passed",
+    "association_sha256": "c6a92999959df69986527baac0e083b834a98de0f5417c28fc698c887718fe20",
+    "mask_index_sha256": "63ceffb4c2c792471535c7b499a8ad17682066000830de68aa7733b9914aae79",
+    "source_set_sha256": "29be08d0b5d43cc37e8a493777c854641d709340e0d285a4f9bd9be9bc8c1f1d",
+    "peeled_object_ids": [
+      "sam3_pillow_front",
+      "sam3_pillow_left"
+    ],
+    "next_layer_target_ids": [
+      "sam3_pillow_right"
+    ],
+    "selected_frames": [
+      "000064",
+      "000072"
+    ],
+    "camera_baseline_scene_units": 1.1418056713558833,
+    "object_view_angle_degrees": 4.023433220431306
+  },
+  "limitations": [
+    "The accepted seed-44 asset still requires scene fit and interpenetration review.",
+    "The clean plate is blurred in the removed region and is allowed only for next-layer SAM3 reinspection.",
+    "No PGSR, TSDF, depth, or normal scene reconstruction may consume this clean plate as a promoted background."
+  ]
+}

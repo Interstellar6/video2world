@@ -1,0 +1,232 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.scene_inventory",
+  "scene_id": "bedroom_4",
+  "run_id": "bedroom4-layered-completion-20260717",
+  "created_at": "2026-07-17T08:00:00+08:00",
+  "provider": "local_verified_artifact_audit",
+  "model": "deterministic_evidence_merge_v1",
+  "evidence_frames": [
+    {
+      "frame_id": "000064",
+      "uri": "artifact://video2mesh/bedroom_4/frames/000064.png",
+      "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3",
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "observations": [
+    {
+      "id": "sam3_pillow_front",
+      "category": "pillow",
+      "name": {"en": "front light pillow", "zh": "前排浅色枕头"},
+      "aliases": ["front pillow", "white pillow", "前排枕头", "白色枕头"],
+      "asset_role": "interactive_object",
+      "granularity": "independent_root_asset",
+      "moves_with_parent": false,
+      "independently_movable": true,
+      "semantic_unit_rationale": "The frame-64 SAM3 split and projected point cloud identify one independent front pillow.",
+      "instance_count": 1,
+      "importance": "primary",
+      "structure_role": "none",
+      "confidence": 0.9723717570304871,
+      "peel_priority": 100,
+      "evidence_frame_ids": ["000064"],
+      "evidence_regions": [
+        {
+          "frame_id": "000064",
+          "bbox_0_1000": [408, 539, 541, 761],
+          "visibility": "partial",
+          "visible_faces": ["front"],
+          "occluded_by_candidate_ids": [],
+          "confidence": 0.9723717570304871
+        }
+      ],
+      "coverage_status": "modeled_visible_surface_only",
+      "matched_object_ids": ["sam3_pillow_front"],
+      "completion_needs": [
+        "backside_geometry",
+        "render_asset",
+        "collider",
+        "clean_plate",
+        "visual_qa"
+      ],
+      "completion_risks": [
+        "Observed input contains only the visible side.",
+        "Removing the pillow reveals unobserved rear-pillow and bed regions."
+      ],
+      "notes": ["Round 1 has current-demo-only completion evidence; see round-status.json."]
+    },
+    {
+      "id": "sam3_pillow_left",
+      "category": "pillow",
+      "name": {"en": "left rear patchwork pillow", "zh": "左后排拼布枕头"},
+      "aliases": ["left pillow", "left rear pillow", "左侧枕头"],
+      "asset_role": "interactive_object",
+      "granularity": "independent_root_asset",
+      "moves_with_parent": false,
+      "independently_movable": true,
+      "semantic_unit_rationale": "The frame-64 SAM3 split and projected point cloud identify one independent rear pillow.",
+      "instance_count": 1,
+      "importance": "primary",
+      "structure_role": "none",
+      "confidence": 0.9660567045211792,
+      "peel_priority": 80,
+      "evidence_frame_ids": ["000064"],
+      "evidence_regions": [
+        {
+          "frame_id": "000064",
+          "bbox_0_1000": [288, 469, 463, 751],
+          "visibility": "partial",
+          "visible_faces": ["front"],
+          "occluded_by_candidate_ids": ["sam3_pillow_front"],
+          "confidence": 0.9660567045211792
+        }
+      ],
+      "coverage_status": "segmented_only",
+      "matched_object_ids": ["sam3_pillow_left"],
+      "completion_needs": [
+        "backside_geometry",
+        "render_asset",
+        "collider",
+        "clean_plate",
+        "visual_qa"
+      ],
+      "completion_risks": [
+        "The front pillow hides part of this pillow.",
+        "No accepted complete PBR GLB exists."
+      ],
+      "notes": ["Pending until round 1 clean plate is consumed and re-audited."]
+    },
+    {
+      "id": "sam3_pillow_right",
+      "category": "pillow",
+      "name": {"en": "right rear patchwork pillow", "zh": "右后排拼布枕头"},
+      "aliases": ["right pillow", "right rear pillow", "右侧枕头"],
+      "asset_role": "interactive_object",
+      "granularity": "independent_root_asset",
+      "moves_with_parent": false,
+      "independently_movable": true,
+      "semantic_unit_rationale": "The frame-64 SAM3 split and projected point cloud identify one independent rear pillow.",
+      "instance_count": 1,
+      "importance": "primary",
+      "structure_role": "none",
+      "confidence": 0.9715292453765869,
+      "peel_priority": 79,
+      "evidence_frame_ids": ["000064"],
+      "evidence_regions": [
+        {
+          "frame_id": "000064",
+          "bbox_0_1000": [465, 482, 620, 719],
+          "visibility": "partial",
+          "visible_faces": ["front"],
+          "occluded_by_candidate_ids": ["sam3_pillow_front"],
+          "confidence": 0.9715292453765869
+        }
+      ],
+      "coverage_status": "segmented_only",
+      "matched_object_ids": ["sam3_pillow_right"],
+      "completion_needs": [
+        "backside_geometry",
+        "render_asset",
+        "collider",
+        "clean_plate",
+        "visual_qa"
+      ],
+      "completion_risks": [
+        "The front pillow hides part of this pillow.",
+        "No accepted complete PBR GLB exists."
+      ],
+      "notes": ["Pending until the immediately preceding clean plate is consumed and re-audited."]
+    },
+    {
+      "id": "sam3_bed_01",
+      "category": "bed",
+      "name": {"en": "bed", "zh": "床"},
+      "aliases": ["bed", "mattress", "床", "床垫"],
+      "asset_role": "interactive_object",
+      "granularity": "independent_root_asset",
+      "moves_with_parent": false,
+      "independently_movable": true,
+      "semantic_unit_rationale": "Holi-Spatial SAM3 provides an 80-frame bed mask track and a 1,062,892-point 3D object-cloud manifest entry.",
+      "instance_count": 1,
+      "importance": "primary",
+      "structure_role": "none",
+      "confidence": 0.9251797199249268,
+      "peel_priority": 60,
+      "evidence_frame_ids": ["000064"],
+      "evidence_regions": [
+        {
+          "frame_id": "000064",
+          "bbox_0_1000": [189, 318, 967, 999],
+          "visibility": "heavily_occluded",
+          "visible_faces": ["top", "front"],
+          "occluded_by_candidate_ids": [
+            "sam3_pillow_front",
+            "sam3_pillow_left",
+            "sam3_pillow_right"
+          ],
+          "confidence": 0.9251797199249268
+        }
+      ],
+      "coverage_status": "modeled_visible_surface_only",
+      "matched_object_ids": ["sam3_bed_01"],
+      "completion_needs": [
+        "backside_geometry",
+        "render_asset",
+        "collider",
+        "clean_plate",
+        "visual_qa"
+      ],
+      "completion_risks": [
+        "Pillows occlude part of the bed surface.",
+        "The bed object cloud is recorded in the Holi manifest but its depth receipt was not synced into this repository."
+      ],
+      "notes": [
+        "Scheduled conservatively after both rear pillows, but no rear-pillow-to-bed occlusion edge is claimed as geometry verified."
+      ]
+    },
+    {
+      "id": "room_background",
+      "category": "room_structure",
+      "name": {"en": "room background", "zh": "房间背景结构"},
+      "aliases": ["background", "walls", "floor", "背景", "墙面", "地面"],
+      "asset_role": "structure",
+      "granularity": "structure_background",
+      "moves_with_parent": false,
+      "independently_movable": false,
+      "semantic_unit_rationale": "Structural walls, floor, ceiling, and residual scene content are rebuilt only after all scheduled object layers pass.",
+      "instance_count": 1,
+      "importance": "structure",
+      "structure_role": "background",
+      "confidence": 0.95,
+      "peel_priority": 0,
+      "evidence_frame_ids": ["000064"],
+      "evidence_regions": [
+        {
+          "frame_id": "000064",
+          "bbox_0_1000": [0, 0, 1000, 1000],
+          "visibility": "partial",
+          "visible_faces": ["unknown"],
+          "occluded_by_candidate_ids": [
+            "sam3_pillow_front",
+            "sam3_pillow_left",
+            "sam3_pillow_right",
+            "sam3_bed_01"
+          ],
+          "confidence": 0.95
+        }
+      ],
+      "coverage_status": "structure_background",
+      "matched_object_ids": [],
+      "completion_needs": ["background_rebuild", "visual_qa"],
+      "completion_risks": ["Hidden background is generated evidence, not observed geometry."],
+      "notes": ["This terminal round is pending; no full-scene completion is claimed."]
+    }
+  ],
+  "limitations": [
+    "This inventory is scoped to the pillow-bed occlusion chain needed for the current layered completion plan; it is not a claim that no other Bedroom4 objects exist.",
+    "Only frame 000064 has stable per-pillow instance identities.",
+    "The bed has Holi SAM3 and 3D object-cloud manifest evidence, but its local complete PBR asset and depth receipt are missing."
+  ]
+}

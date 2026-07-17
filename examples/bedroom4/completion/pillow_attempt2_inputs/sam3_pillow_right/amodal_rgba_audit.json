@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.amodal_rgba_retry_input",
+  "status": "rejected_before_generation",
+  "generation_eligible": false,
+  "rejection": {
+    "reason_code": "appearance_contract_requires_multiframe_identity_revalidation",
+    "reason": "expected appearance contract conflicts with user-confirmed light/white scene appearance; requires multi-frame identity revalidation",
+    "scope": "This is not a confirmed background-contamination diagnosis. The crop remains evidence only."
+  },
+  "created_at": "2026-07-16T18:39:38.998060+00:00",
+  "object_id": "sam3_pillow_right",
+  "category": "pillow",
+  "attempt": 2,
+  "source": {
+    "path": "/private/tmp/video2world_pillow_completion_20260717/input/sam3_pillow_right_rgba.png",
+    "sha256": "e9b5007935db9fb7e8f5fd6f26616e23c104ef54f966ced4ba0eccc0f4a81d1e",
+    "size_bytes": 71329,
+    "width": 247,
+    "height": 219
+  },
+  "config": {
+    "object_id": "sam3_pillow_right",
+    "category": "pillow",
+    "attempt": 2,
+    "shape_policy": "auto",
+    "alpha_threshold": 127,
+    "corner_radius_ratio": 0.1,
+    "min_candidate_add_ratio": 0.24,
+    "min_occlusion_depth_ratio": 0.16,
+    "min_occlusion_depth_px": 8,
+    "min_component_area_ratio": 0.002,
+    "seed": 20260717,
+    "provider": "video2world.amodal_rgba.soft_rectangle_nearest_v1",
+    "retry_prompt": "Retry image-to-3D reconstruction for exactly one pillow (sam3_pillow_right). The supplied RGBA is an auditable amodal front-view condition: its original visible pixels are unchanged and only a likely occlusion notch was filled from nearby visible foreground texture. Do not reinterpret the category or merge adjacent objects. Preserve the large pale-green floral patchwork pillow: rectangular soft body, pale sage and cream panels, brown floral motif, woven texture, and its observed front-facing proportions. Do not turn it white, black, round, or cylindrical. Generate a closed, connected, volumetric object with plausible front, back, left, right, top, and bottom surfaces. The rear must not be an open hole or a flat copy of the front. Keep thickness plausible for the category; avoid detached pieces, unexpected openings, severe color shifts, shape changes, and texture from the transparent background. Review all six orthographic views before accepting the result."
+  },
+  "config_sha256": "669db6ed2de2218bbe971f79bffd387470a6a9ad162c5b723d5238b8bf0f7f46",
+  "method_trace": {
+    "requested_shape_policy": "auto",
+    "resolved_shape_policy": "soft_rectangle",
+    "policy_reason": "known_soft_object_category_profile",
+    "completion_applied": true,
+    "completion_reason": "deep_occlusion_notches_completed_with_soft_rectangle_prior",
+    "candidate_add_pixels": 15686,
+    "candidate_add_ratio": 0.8652912621359223,
+    "minimum_candidate_add_ratio": 0.24,
+    "minimum_occlusion_depth_px": 27,
+    "minimum_component_area_pixels": 36,
+    "deep_candidate_pixels": 6558,
+    "accepted_deep_components": [
+      {
+        "component_id": 1,
+        "deep_area_pixels": 6558,
+        "deep_bbox_xyxy": [
+          50,
+          67,
+          122,
+          168
+        ],
+        "max_interior_depth_px": 86.0,
+        "grown_added_pixels": 11516
+      }
+    ],
+    "prior_bbox_xyxy": [
+      24,
+      24,
+      222,
+      194
+    ],
+    "corner_radius_px": 17,
+    "corner_radius_ratio": 0.1,
+    "candidate_area_pixels": 33814
+  },
+  "shape_metrics": {
+    "original": {
+      "area_pixels": 18128,
+      "bbox_xyxy": [
+        24,
+        24,
+        222,
+        194
+      ],
+      "bbox_width": 199,
+      "bbox_height": 171,
+      "bbox_aspect_ratio": 1.1637426900584795,
+      "bbox_fill_ratio": 0.5327220899820742,
+      "connected_components": 1,
+      "perimeter_pixels": 803,
+      "compactness": 0.3532878208851041
+    },
+    "completed": {
+      "area_pixels": 29644,
+      "bbox_xyxy": [
+        24,
+        24,
+        222,
+        194
+      ],
+      "bbox_width": 199,
+      "bbox_height": 171,
+      "bbox_aspect_ratio": 1.1637426900584795,
+      "bbox_fill_ratio": 0.8711393223427077,
+      "connected_components": 1,
+      "perimeter_pixels": 763,
+      "compactness": 0.6398786099776238
+    },
+    "added_pixels": 11516,
+    "added_to_original_area_ratio": 0.6352603706972639,
+    "alpha_iou_original_to_completed": 0.6115234111455944,
+    "original_pixels_removed": 0
+  },
+  "color_metrics": {
+    "texture_provider": "nearest_visible_foreground",
+    "original_visible": {
+      "count": 18128,
+      "mean_rgb": [
+        133.61297440423655,
+        131.41615180935568,
+        122.61931818181819
+      ],
+      "median_rgb": [
+        132.0,
+        132.0,
+        124.0
+      ],
+      "std_rgb": [
+        28.975033220195545,
+        32.65883225547367,
+        38.535110761566976
+      ],
+      "min_rgb": [
+        29,
+        13,
+        0
+      ],
+      "max_rgb": [
+        236,
+        238,
+        240
+      ],
+      "mean_luminance": 131.24806490511915,
+      "p05_luminance": 78.8814,
+      "p95_luminance": 189.0866
+    },
+    "added_region": {
+      "count": 11516,
+      "mean_rgb": [
+        108.76623827717958,
+        107.64901007294199,
+        109.10446335533172
+      ],
+      "median_rgb": [
+        110.0,
+        111.0,
+        117.0
+      ],
+      "std_rgb": [
+        30.489489236925507,
+        37.47652651771234,
+        45.730306909152034
+      ],
+      "min_rgb": [
+        35,
+        23,
+        11
+      ],
+      "max_rgb": [
+        156,
+        161,
+        169
+      ],
+      "mean_luminance": 107.99161651615142,
+      "p05_luminance": 50.8292,
+      "p95_luminance": 156.3782
+    },
+    "mean_rgb_delta_l2": 36.9443990811514,
+    "original_visible_pixels_byte_identical": true,
+    "added_pixels_source_only_original_foreground": true,
+    "transparent_rgb_nonzero_pixels": 0
+  },
+  "acceptance_gates": {
+    "original_visible_pixels_preserved": true,
+    "no_original_alpha_removed": true,
+    "added_texture_comes_from_visible_foreground": true,
+    "transparent_background_rgb_is_zero": true,
+    "completed_alpha_is_nonempty": true,
+    "completed_alpha_single_component": true
+  },
+  "all_acceptance_gates_passed": false,
+  "artifacts": {
+    "source_rgba": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/pillow_attempt2_inputs/sam3_pillow_right/source_rgba.png",
+      "sha256": "e9b5007935db9fb7e8f5fd6f26616e23c104ef54f966ced4ba0eccc0f4a81d1e",
+      "size_bytes": 71329
+    },
+    "original_alpha": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/pillow_attempt2_inputs/sam3_pillow_right/original_alpha.png",
+      "sha256": "b846447ce16ceeabd4edf689e72f279ad9871954d2e23fb0e44fc66e4de735f3",
+      "size_bytes": 706
+    },
+    "completed_alpha": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/pillow_attempt2_inputs/sam3_pillow_right/completed_alpha.png",
+      "sha256": "f369693f6e1271c172b002a06a4bcbe201753c31845eb4a6a7874a5767f48e87",
+      "size_bytes": 579
+    },
+    "added_region": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/pillow_attempt2_inputs/sam3_pillow_right/added_region.png",
+      "sha256": "a2b0e1f83f13ee14d64f25f051ead678d4b20727d8ac44e8d0d60698f6111cae",
+      "size_bytes": 521
+    },
+    "completed_rgba": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/pillow_attempt2_inputs/sam3_pillow_right/completed_rgba.png",
+      "sha256": "faeb36ae83fd8da6429cf217713f60200595cb499fcf0717d08cece8bdaa619f",
+      "size_bytes": 32834
+    },
+    "contact_sheet": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/pillow_attempt2_inputs/sam3_pillow_right/before_after_contact_sheet.png",
+      "sha256": "6a9c5fb65adceef0480a99c40387da37aa2b13af99095759c1ca0a6494445f6b",
+      "size_bytes": 52106
+    }
+  },
+  "runtime": {
+    "python": "3.12.13",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "numpy": "2.3.1",
+    "pillow": "11.3.0",
+    "scipy": "1.16.0"
+  }
+}

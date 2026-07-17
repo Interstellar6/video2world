@@ -1,0 +1,3491 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.layered_clean_plate_composite_report",
+  "status": "technical_passed_complete_partition_with_limitations",
+  "created_at": "2026-07-17T08:50:05.110964+00:00",
+  "round_index": 4,
+  "round_kind": "final_background",
+  "removed_object_ids": [
+    "sam3_pillow_front",
+    "sam3_pillow_left",
+    "sam3_pillow_right",
+    "sam3_bed_01"
+  ],
+  "newly_removed_object_id": "sam3_bed_01",
+  "remaining_object_ids": [],
+  "input_manifest": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/output/layered-clean-plate-sequence-v1/round04_bed/compositor_input_manifest.json",
+  "input_manifest_sha256": "cdc01a2524ff0dc0b36ce07cc25c89e26e149c2408a2c454e917dc8ec8528a5c",
+  "measured_donor_contract": {
+    "role": "no_measured_donor_evidence",
+    "claims_original_observed_rgb_donor": false,
+    "measured_pixels": 0,
+    "generated_pixels": 0,
+    "propainter_pixels": 0
+  },
+  "measured_donor_report": null,
+  "previous_round_binding": {
+    "round_index": 3,
+    "report_path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/output/layered-clean-plate-sequence-v1/round03_right_pillow/composite/layered_composite_report.json",
+    "report_sha256": "f9f3e6981e4c29fb3188c78e559000d3f5ae3508738c00ac384c671ff81bf1b9",
+    "receipt_path": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/output/layered-clean-plate-sequence-v1/round03_right_pillow/composite/layered_composite_receipt.json",
+    "receipt_sha256": "e3f69d13a89542b0526717d3b86826324c220cddf085fd3755a5e0e3ef0d707f",
+    "output_frame_set_sha256": "e2230aa445ad049246b39049a92b53145547146d9cf1bfa05b6a43c136bd0f19"
+  },
+  "structural_background_acceptance": {
+    "acceptance_status": "accepted_with_limitations",
+    "accepted_with_limitations": true,
+    "demo_use_approved": true,
+    "eligible_as_round04_clean_plate": false,
+    "eligible_as_current_demo_round04_clean_plate": true,
+    "acceptance_scope": "current_demo_only",
+    "limitations": [
+      "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+      "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+      "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+      "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+      "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+    ],
+    "override_gate_keys": [
+      "visual_quality",
+      "wall_boundary_color_continuity",
+      "wall_boundary_low_frequency_gradient_continuity"
+    ],
+    "overridden_gates": {
+      "visual_quality": "pending_human_or_vlm_review",
+      "wall_boundary_color_continuity": {
+        "observed_maximum": 96.0,
+        "passed": false,
+        "threshold_p95_abs_rgb_delta": 24.0
+      },
+      "wall_boundary_low_frequency_gradient_continuity": {
+        "observed_maximum": 99.0,
+        "passed": false,
+        "threshold_p95_abs_rgb_delta": 32.0
+      }
+    },
+    "failed_metrics": {
+      "visual_quality": "pending_human_or_vlm_review",
+      "wall_boundary_color_continuity": {
+        "observed_maximum": 96.0,
+        "passed": false,
+        "threshold_p95_abs_rgb_delta": 24.0
+      },
+      "wall_boundary_low_frequency_gradient_continuity": {
+        "observed_maximum": 99.0,
+        "passed": false,
+        "threshold_p95_abs_rgb_delta": 32.0
+      }
+    },
+    "promotion_approved": false
+  },
+  "acceptance_status": "accepted_with_limitations",
+  "accepted_with_limitations": true,
+  "demo_use_approved": true,
+  "eligible_as_round04_clean_plate": false,
+  "eligible_as_current_demo_round04_clean_plate": true,
+  "acceptance_scope": "current_demo_only",
+  "limitations": [
+    "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+    "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+    "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+    "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+    "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+  ],
+  "override_gate_keys": [
+    "visual_quality",
+    "wall_boundary_color_continuity",
+    "wall_boundary_low_frequency_gradient_continuity"
+  ],
+  "overridden_gates": {
+    "visual_quality": "pending_human_or_vlm_review",
+    "wall_boundary_color_continuity": {
+      "observed_maximum": 96.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 24.0
+    },
+    "wall_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 99.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 32.0
+    }
+  },
+  "failed_metrics": {
+    "visual_quality": "pending_human_or_vlm_review",
+    "wall_boundary_color_continuity": {
+      "observed_maximum": 96.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 24.0
+    },
+    "wall_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 99.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 32.0
+    }
+  },
+  "config": {
+    "alpha_threshold": 0.5,
+    "depth_tie_epsilon": 1e-06,
+    "z_buffer": "nearest_positive_finite_depth; manifest depth_order breaks ties"
+  },
+  "provenance_labels": {
+    "outside_source": 0,
+    "measured_donor": 1,
+    "downstream_object_render": 2,
+    "structural_background": 3,
+    "unresolved": 4
+  },
+  "frame_records": [
+    {
+      "sequence_index": 0,
+      "frame_id": "000048",
+      "inputs": {
+        "source_rgb_sha256": "bcf48cc4e10c454414639812dfffa4841d3295c267d70075cc1e91261ba2626a",
+        "cumulative_removal_mask_sha256": "eff72e75df3eaa5a14d52fb637a7be0e18e0c85f5d71c21019f237faa57d95dd",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "682ea39d8911350b56fcd3cd16d23904494c66df7aa537669d66ba882bf04f7c",
+          "depth_sha256": "b68ec21f0f900189995834bb7c6aa690318d7b9a10b08eaf78bf715bc211aa1c",
+          "receipt_sha256": "551df0cca1ab8bf7130d4dc70f5210f3528b26a7a1e4129f30dd993eb343562e",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 367794
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0000.png",
+          "sha256": "b72b4024a5f4383f06c400a31dd42a69420e0f04f5c03d6443e95bc3b42d7c83"
+        },
+        "composite_depth": {
+          "path": "depth/0000.npy",
+          "sha256": "b68ec21f0f900189995834bb7c6aa690318d7b9a10b08eaf78bf715bc211aa1c",
+          "valid_pixels": 367794,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0000.png",
+          "sha256": "c4fcd812740522ec7684ebcc807a86a647ba4c2a9dbfc04783776e47fc4aa278"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0000.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0000.png",
+            "sha256": "978a6d3f8f53ecdc1c22e9c7930af1c1e71487e4e34a63c92c789cb721d83538",
+            "pixels": 553806
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0000.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0000.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0000.png",
+            "sha256": "c734ad066ae66b4dff8b8bb984f640498a1981894b50a074ef41ab0bb99e0bff",
+            "pixels": 367794
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0000.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 367794,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 367794,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 553806
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 1,
+      "frame_id": "000049",
+      "inputs": {
+        "source_rgb_sha256": "2b7829ae8531719a9cd0da508f4e758b665903e394794ac0943e08941d52afdb",
+        "cumulative_removal_mask_sha256": "94dc6dbdf7ce7fd4a9c3a729783230202e621c62a97a55e8a06a730213f1539b",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "794959ea7984ef78584d5b7745a3e0062f17a33a4fa031950263248d0021e389",
+          "depth_sha256": "5ee94a002d4f8889b9b6dbff88859df1e9171a8dd27a83cee36a7fc6b5d90093",
+          "receipt_sha256": "cc16ef8bc46c96b5dd55d1c31782494de3c9d7a5a681a294d9aaf8e8da8a6e07",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 362789
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0001.png",
+          "sha256": "e3a1c5ae12de15c403608931de3deb7e981328ee506fd060a4ee96e7bfc06111"
+        },
+        "composite_depth": {
+          "path": "depth/0001.npy",
+          "sha256": "5ee94a002d4f8889b9b6dbff88859df1e9171a8dd27a83cee36a7fc6b5d90093",
+          "valid_pixels": 362789,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0001.png",
+          "sha256": "2de8ad967b896fa9f7519faa7357c81b6b847c3b95d4b2d01d8d267722b460db"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0001.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0001.png",
+            "sha256": "01e7fe096351f547faebca3d73e70f18daea00217184b4e193eeee036d97571e",
+            "pixels": 558811
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0001.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0001.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0001.png",
+            "sha256": "ffc43aeb96b4b2d03bcd8c90371cbf2ef0dc8087d04f3461f7c466c0f4ea2b15",
+            "pixels": 362789
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0001.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 362789,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 362789,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 558811
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 2,
+      "frame_id": "000050",
+      "inputs": {
+        "source_rgb_sha256": "c869d6750a63390ebccb48d59acb561c73a50fa66e7ab2179129de8115372889",
+        "cumulative_removal_mask_sha256": "ae4ba29871a3761e2e8429599ac5f3ba347ecc38915cf128361ef84d8b6ac1c7",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "c23d0545955849e9055867f87d8ce2c59979b8ffec6b8b8a3c6c0c21f697ee14",
+          "depth_sha256": "ee58e0e92e52eaa30941e4a936a8b4e1c6b1824d87347bebf1ebc56182cb7188",
+          "receipt_sha256": "8f9232a1d21b6d4b46e7633c594fca1e90299986cdc78a2b412f3b34cc086674",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 357090
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0002.png",
+          "sha256": "0c025b9128bc4e289085500029746bf87c3e3735bf072230ff6dddbe3ea018e2"
+        },
+        "composite_depth": {
+          "path": "depth/0002.npy",
+          "sha256": "ee58e0e92e52eaa30941e4a936a8b4e1c6b1824d87347bebf1ebc56182cb7188",
+          "valid_pixels": 357090,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0002.png",
+          "sha256": "85d9dd1c2f1654f7ab5584aa49e290ccc2c5381f4c706cd68acc201963cde87d"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0002.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0002.png",
+            "sha256": "83f197ac67cad02877b2d47353f321ecd263ee5e9a8ab530b9b4a33b00d19d93",
+            "pixels": 564510
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0002.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0002.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0002.png",
+            "sha256": "732ef56d5a1ca41bbb934ec5b9f3b50d14fbbcb3b95acfd0d8f886f6f2081dae",
+            "pixels": 357090
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0002.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 357090,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 357090,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 564510
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 3,
+      "frame_id": "000051",
+      "inputs": {
+        "source_rgb_sha256": "7b4f9777922b70c4d7d51c98b10a63b916545116f4f05424af187a699510242c",
+        "cumulative_removal_mask_sha256": "40e5cbca60c2eef74d2c317d012f3efd16128789d39ebb8cecba003316aa522e",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "2698590da3cafa5d2141c2d222bcd2174613480afc69394cc7fd9fd50be1dd63",
+          "depth_sha256": "033d87091d0da611a0d85058b10fd96abb60957855c80b481ea6cb27bc5e86be",
+          "receipt_sha256": "fc3a4ae4448ef761d28e06a603bae01dd6996b3e49347f236889dbc8c929cedb",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 352018
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0003.png",
+          "sha256": "80d67496884ef26020c5e3ad1412b611732a2a4db603a10f7f6766d0740ec585"
+        },
+        "composite_depth": {
+          "path": "depth/0003.npy",
+          "sha256": "033d87091d0da611a0d85058b10fd96abb60957855c80b481ea6cb27bc5e86be",
+          "valid_pixels": 352018,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0003.png",
+          "sha256": "3ce1c89fb174328cbbcc8591ae607ed3cb19335d0f846c4c16b1e3b188e50b69"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0003.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0003.png",
+            "sha256": "7b00fad8ac6e835cb8facd014b1b1c715a95bd981dd5c7b3629ddae4e79128e2",
+            "pixels": 569582
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0003.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0003.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0003.png",
+            "sha256": "709bf53b964b7e06f9375e607aa32e460f91fa0b26bf8ccc3708d74c31037883",
+            "pixels": 352018
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0003.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 352018,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 352018,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 569582
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 4,
+      "frame_id": "000052",
+      "inputs": {
+        "source_rgb_sha256": "6921672e20aee5c5452559285b1cf9b5b4874c218e4116a259f1a83aca85fb41",
+        "cumulative_removal_mask_sha256": "aa85cfbf33e18562ac551ec27ec0e5c59948b236fd47699424ce2e96a52174b2",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "cc7c56a29e4833103f555f59d6830a7e21cfcf5956f04879a58d503d65fded16",
+          "depth_sha256": "6af28d0f6b07ac1c7bd3141e7d5b80616908a2b83034250581c8d5ac425ea7a0",
+          "receipt_sha256": "06d1e9fc27afae977ae3334beaaa0a4795a34466fa092279e2dd61c6ac5000d4",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 344975
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0004.png",
+          "sha256": "d6a938931473c95c2afc4d1f49edb38e8f218e8cb0709cf884de40f6a6fe82b1"
+        },
+        "composite_depth": {
+          "path": "depth/0004.npy",
+          "sha256": "6af28d0f6b07ac1c7bd3141e7d5b80616908a2b83034250581c8d5ac425ea7a0",
+          "valid_pixels": 344975,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0004.png",
+          "sha256": "7073276248c6a58eb71cde8e73b9fac188de79859aac880fdafa9550db5129e0"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0004.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0004.png",
+            "sha256": "71e7f1c9ff7063d3fb452d66066635de889784f1403e8509748706c39bfc8ac0",
+            "pixels": 576625
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0004.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0004.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0004.png",
+            "sha256": "d609e70867d17e5aa9ab53b26a4edb059af0fd7ed10cb8badc68cc50fe0ac37f",
+            "pixels": 344975
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0004.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 344975,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 344975,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 576625
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 5,
+      "frame_id": "000053",
+      "inputs": {
+        "source_rgb_sha256": "a68d9af20101fea16bdfd3583f441d967d3620cedc10d9901dcdee7f581c07f2",
+        "cumulative_removal_mask_sha256": "a819007142f90df52bf3de28c11527fb870d472897fc3e47d82b293cdaeb319f",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "1dcc19b82ff4dac0c4fb9fc3c174e7a0cba77391cc46350d9d647c47e3219f60",
+          "depth_sha256": "afff32a943caa410bca422ca1b3dfeb63093eb6e26290f329505b9366750f880",
+          "receipt_sha256": "7a770638eef0f3bf3d6f63c79bf1be8d5064da66f0cf6ad7493a05ecfd49f839",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 337979
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0005.png",
+          "sha256": "01aa207490b53d37b77abf832d35f07d89cab81e12448eea529f3cd16d415fc2"
+        },
+        "composite_depth": {
+          "path": "depth/0005.npy",
+          "sha256": "afff32a943caa410bca422ca1b3dfeb63093eb6e26290f329505b9366750f880",
+          "valid_pixels": 337979,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0005.png",
+          "sha256": "d5bbb5799ce08d141db3584f09e290c7f83f13b918f053cb6522554b0fd94882"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0005.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0005.png",
+            "sha256": "dc7b89803afaec0b3acee5805ab7febe5db6d40df6f216346a0399ee6f28d9a8",
+            "pixels": 583621
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0005.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0005.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0005.png",
+            "sha256": "c2e1da16606595238c69afaee3d1a462b4ba4b5f59bf30ab6cc49beea96a126e",
+            "pixels": 337979
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0005.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 337979,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 337979,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 583621
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 6,
+      "frame_id": "000054",
+      "inputs": {
+        "source_rgb_sha256": "8756d23629134fbba1594335b9a120bf9bf35262e1806a365f7e360d8dfaacac",
+        "cumulative_removal_mask_sha256": "e621b297ddf2c4127159f23522ee1fd73cd24ddbc7de7e9cc042163070dedcc5",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "f720fda74263789bd3fede054ad81e21902146f58faa19a465367b3e0c98df27",
+          "depth_sha256": "ed761b068e4a12f26ee4fc5515474a38d03277b95d61ccfbfa8e14ea151d2a6e",
+          "receipt_sha256": "dba755a8d03a7f62512dbeee3883083061c69635415a0eb8542e557f42df7aff",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 331520
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0006.png",
+          "sha256": "a2446ab818c62c1a3cfff7eeadf51e884141ba73246bdba543288196a26942c3"
+        },
+        "composite_depth": {
+          "path": "depth/0006.npy",
+          "sha256": "ed761b068e4a12f26ee4fc5515474a38d03277b95d61ccfbfa8e14ea151d2a6e",
+          "valid_pixels": 331520,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0006.png",
+          "sha256": "8e8df1086778a1f87fe7e041d96b5388e3ba32c67bcd3302a5a570bf160216e8"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0006.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0006.png",
+            "sha256": "b9bc3616b72f893fc73a33e25832da9fe907c3be1ecfcc74f213fc8c16c6ca82",
+            "pixels": 590080
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0006.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0006.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0006.png",
+            "sha256": "d2882144e9c62884089a6d58a4dde8ede3279aaa7827c84698dad022b5228777",
+            "pixels": 331520
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0006.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 331520,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 331520,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 590080
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 7,
+      "frame_id": "000055",
+      "inputs": {
+        "source_rgb_sha256": "6074032aa130e01924993692553defa755f88158b136750d2e9ece6b24214b68",
+        "cumulative_removal_mask_sha256": "83742eb61b3377732812baf5c4afa76379ae0f075d76cbb5d691a6710380c95a",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "926086d34fe1418fe96c07596b2824ecb7370ddd083fdd41ca171b7b171813d4",
+          "depth_sha256": "876e6c1fba4cde52ef63bc5e1756d241988feca802d930799af25d02167eb3a6",
+          "receipt_sha256": "e9fa6df9f53391b8f1897f9aa2916de64199f16ed9400c69cdbd5819addf0327",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 327482
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0007.png",
+          "sha256": "39dbb5fe39a9c3ccf737a4f49b7469e92f01d86be6e8c19f59a52ee4ea084dff"
+        },
+        "composite_depth": {
+          "path": "depth/0007.npy",
+          "sha256": "876e6c1fba4cde52ef63bc5e1756d241988feca802d930799af25d02167eb3a6",
+          "valid_pixels": 327482,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0007.png",
+          "sha256": "fb33508b2582ed26ed783b4fefcfc5074e1afe569b0df610be3d1759f57a0156"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0007.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0007.png",
+            "sha256": "6718a2a8d94cbf1a633a53cb529d56df9fca279391d065fe979ac4c8b401e91b",
+            "pixels": 594118
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0007.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0007.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0007.png",
+            "sha256": "00a935fbd3243f3e79cef651f238546e30f5980d2f2b8a047cf38a7a4f54de65",
+            "pixels": 327482
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0007.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 327482,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 327482,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 594118
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 8,
+      "frame_id": "000056",
+      "inputs": {
+        "source_rgb_sha256": "3d1eb3877795a0d313be84f40799f64cd4c8aec4ff96d2f35b641ab1fb49024b",
+        "cumulative_removal_mask_sha256": "a90396e20e5a1475738a329a7f6d9358cd4e9f30a9fc194cc69950d8ed630551",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "1ff9b3b5e53ee12798249d34bde2e8055478f21d809dc5e82abb7702fb2bc6e7",
+          "depth_sha256": "02d24797164d5c46a0eb8f468c3d9c6b4e7dcc8fd1c7fe3609307fed9596b586",
+          "receipt_sha256": "3634c6a267b01346a206ca7b21f39952b095ae7e6c9ce9a8c63b391eb187b452",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 324698
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0008.png",
+          "sha256": "9353c7d2ff1cc92ecc822d1cbd8497e75b19d83cce1db670d32fb73492c9dca3"
+        },
+        "composite_depth": {
+          "path": "depth/0008.npy",
+          "sha256": "02d24797164d5c46a0eb8f468c3d9c6b4e7dcc8fd1c7fe3609307fed9596b586",
+          "valid_pixels": 324698,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0008.png",
+          "sha256": "c8433fad7fff48883ca87021f5d91632035aedb1aa12b2ae77ee8382f98bc074"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0008.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0008.png",
+            "sha256": "68256e98c5526066f7d95daaaabec41cbfbca57ed3165c637f71a9563b885dbb",
+            "pixels": 596902
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0008.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0008.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0008.png",
+            "sha256": "5d74cb6140c2b57849e4d46ab10d434dffaea514d8eb7626fc333611b9593c42",
+            "pixels": 324698
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0008.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 324698,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 324698,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 596902
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 9,
+      "frame_id": "000057",
+      "inputs": {
+        "source_rgb_sha256": "f2de5b5b1b7c0409fff9eaf6f519fee9ea8f76653b2592234986c5f3b46c5982",
+        "cumulative_removal_mask_sha256": "64f9125cd73807ba785222540212082223c5466f9fdf531fc49b231fef9c222e",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "520e193821a9554a96a5eed6df79f34ec5e8a7717e061ecb942d83cc3b63776f",
+          "depth_sha256": "e5350dde7b8e1d59d56555aaf026b9710f8ad741ec858355ad891bf04a1a6678",
+          "receipt_sha256": "dc304edcce94511b0868b726e165e767fb5915b5cdc9c14c31a28feb7868a243",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 322751
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0009.png",
+          "sha256": "357d36bd88dd973dc24263cb8e23616d9582778c8be77a1a1475c6f5fe987a6c"
+        },
+        "composite_depth": {
+          "path": "depth/0009.npy",
+          "sha256": "e5350dde7b8e1d59d56555aaf026b9710f8ad741ec858355ad891bf04a1a6678",
+          "valid_pixels": 322751,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0009.png",
+          "sha256": "2dd8578b7760a48b5d8ce950ca99d2cac09f2c21bcfcdd0018ba3ee43f275ce1"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0009.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0009.png",
+            "sha256": "eb8235c158e8f743d989af4c2b8fa32b367e11f8b2a56749bb6e0c9c5dccf4dd",
+            "pixels": 598849
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0009.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0009.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0009.png",
+            "sha256": "050dbc5e1b95793244894bb6b81b9acb4f7d03c6c3bf2d368af79641890d2d3c",
+            "pixels": 322751
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0009.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 322751,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 322751,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 598849
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 10,
+      "frame_id": "000058",
+      "inputs": {
+        "source_rgb_sha256": "d38b9e5ff3a01a349a863cd6b0f1f84b4b24c05c4e5bfdef4d62d29f2497541e",
+        "cumulative_removal_mask_sha256": "a9a6365e0d552af5929fa3dd0a9781946d64c4fb7fb0315d4dda3542eaeb5446",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "7890fccb0ce397d119befb9e9007dd1c3b923aee76cfde3f932faa73513612c1",
+          "depth_sha256": "6187b36ab93574eb84e19051524f8be551a8600638e515d0f28c0906d85e1a24",
+          "receipt_sha256": "049cf61cd3d45b37ead394eec07dd21d33466bb9cca20c4339d26900fcee8b1b",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 322546
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0010.png",
+          "sha256": "b690f47bc03b96398fee00bf0d87175dc992c6e738a090cbbe3da4240c8d8220"
+        },
+        "composite_depth": {
+          "path": "depth/0010.npy",
+          "sha256": "6187b36ab93574eb84e19051524f8be551a8600638e515d0f28c0906d85e1a24",
+          "valid_pixels": 322546,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0010.png",
+          "sha256": "aeb0f2ef48aed0f96368d07dfd9e6892c1dbbc8a2ee1730f31854e05a855233d"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0010.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0010.png",
+            "sha256": "4ca232161ef7af3dd83782b9cf2ca7d6f795c71b86e4b9eb307fe7c10430230a",
+            "pixels": 599054
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0010.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0010.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0010.png",
+            "sha256": "e18506046fa8b35fc99b72c8d8c262e76f8636bd781a11811e0d5ba4a4d2eb98",
+            "pixels": 322546
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0010.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 322546,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 322546,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 599054
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 11,
+      "frame_id": "000059",
+      "inputs": {
+        "source_rgb_sha256": "9de9808dd7011ef752f90c2b03fba771ab60db3ac23c1ddf01669b31d844f25f",
+        "cumulative_removal_mask_sha256": "cd2917be4151b09563ed28a66debffcc56e036c0c1b65c4b3c56721149a39433",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "0c2532f8e641c04193fc6d59f287fb3a66e57e5a0984fad4b355e8573382b49a",
+          "depth_sha256": "00bfe6bac363d7adc2753562927f575cee880cd0e14d68c39fbdfdafdc75b00e",
+          "receipt_sha256": "51dbe4af8995a60066a61b394954ec7c95cfbf7f319d2bafcbf1ccc32af6468a",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 322818
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0011.png",
+          "sha256": "bce0636921bba1fb338b5e05de38ed2bf5d9d5a8d0894c74ac2a96a522fa72b5"
+        },
+        "composite_depth": {
+          "path": "depth/0011.npy",
+          "sha256": "00bfe6bac363d7adc2753562927f575cee880cd0e14d68c39fbdfdafdc75b00e",
+          "valid_pixels": 322818,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0011.png",
+          "sha256": "db6624895295c2f23c7d57badb7ae845d5fd9efe288fc80568dc929847bcca3d"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0011.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0011.png",
+            "sha256": "8cccd2eca18fed860dc026caaf9066a7cd5d97fa1d19033305b45fba97096269",
+            "pixels": 598782
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0011.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0011.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0011.png",
+            "sha256": "076d22a7518fd7180b96bf050db34f071eda2713528150aeea02bf5712b8f52c",
+            "pixels": 322818
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0011.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 322818,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 322818,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 598782
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 12,
+      "frame_id": "000060",
+      "inputs": {
+        "source_rgb_sha256": "7fe92840b9628eed401c550fc662b976f2c13da48536db7de4939a3f04e97078",
+        "cumulative_removal_mask_sha256": "c6e741a0234292622c1c88cfb0c354545f558e74759c79a382624d1af2d05b70",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "ab7d16a1d75212438c06af6d75cd37b1da469b7da98bc808730bf72f5429183a",
+          "depth_sha256": "d9babc067c48e58956748cbadca093e0b0706f322bfa240aeadefb06fe2414d4",
+          "receipt_sha256": "80dfc421b339bcc3c2e561a878d1db722513958e6a554d23f2d3fba10a7125e0",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 320899
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0012.png",
+          "sha256": "6ede595a272d5e347ff59111c779f88f68b26b04ebeb1c05547a934f8047c9a1"
+        },
+        "composite_depth": {
+          "path": "depth/0012.npy",
+          "sha256": "d9babc067c48e58956748cbadca093e0b0706f322bfa240aeadefb06fe2414d4",
+          "valid_pixels": 320899,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0012.png",
+          "sha256": "984b77678214fc02f71c402499452218ec38cedf056054b1cae42cf6e056c76f"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0012.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0012.png",
+            "sha256": "09c33a9300f189e34ce0e128f217a8d4d4ceff032aa0a55f2058a49f5e09f5c9",
+            "pixels": 600701
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0012.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0012.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0012.png",
+            "sha256": "9244b9b90d1d2917a384834a2304d4734c721d49d793caaf639031ed06bef743",
+            "pixels": 320899
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0012.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 320899,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 320899,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 600701
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 13,
+      "frame_id": "000061",
+      "inputs": {
+        "source_rgb_sha256": "8e9967a69676dc60f284a8b046927278e38434f263eff59c49d300b8c40aa90b",
+        "cumulative_removal_mask_sha256": "4bfe686c4a6fc67c41b0db5bd9d893853310daa0da8931515cd391ef5bc00fe0",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "1a619dc4fb9fd6e3a1eac74634886e126f7126c10f57925899e3cd5280a8b542",
+          "depth_sha256": "1d9493cae597db5417ec05609751d697ab43ac2504d7903a8fdea299754a32b1",
+          "receipt_sha256": "0d973ba35f9ec56acd1c0b46d0e675e023605248a9b22e6966e6b13f3d0a3c21",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 319724
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0013.png",
+          "sha256": "6ad1a05f67f9f577f24f04cdaa0a1f48f271ab0d0e82239919a7504cd241a104"
+        },
+        "composite_depth": {
+          "path": "depth/0013.npy",
+          "sha256": "1d9493cae597db5417ec05609751d697ab43ac2504d7903a8fdea299754a32b1",
+          "valid_pixels": 319724,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0013.png",
+          "sha256": "202042812bc30950d6313fe9a94a486ac6c33c9bd2ea8f6b231f307f6f2c3fc0"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0013.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0013.png",
+            "sha256": "d6438cd641e0cbccae1e5825d13fb5b7b3ced10a6e54094519fa983b274c607c",
+            "pixels": 601876
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0013.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0013.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0013.png",
+            "sha256": "7f6133abe5171af692e0204cb9aee9bb95f0095d15b90d7238eaf998957b5d39",
+            "pixels": 319724
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0013.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 319724,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 319724,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 601876
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 14,
+      "frame_id": "000062",
+      "inputs": {
+        "source_rgb_sha256": "297276c86f5ab5d36c2245701eeb8b4157664a7922da0ad1599203dac24abac4",
+        "cumulative_removal_mask_sha256": "12b64ccf1d96b8f9f5d823277219e4047deb9c4020b0a09631bb56a7b0a37b19",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "5a9297417813a99946bbe035c481f838c9488d7d331ce27b1c1ac3f67d5338af",
+          "depth_sha256": "dc9844eb9d82260dd069039c38afca54db7c7e2e7a23acae620cfa80efd9788a",
+          "receipt_sha256": "4d457e3b73ebab69ee2fee18ef429ff24ec0bcba31e3a4a5243f9675b01c8a3a",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 317360
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0014.png",
+          "sha256": "388e19f30adcecc4c96737e172762b2f46c7d2a9d00cb9f938aa2cdd5bb63e74"
+        },
+        "composite_depth": {
+          "path": "depth/0014.npy",
+          "sha256": "dc9844eb9d82260dd069039c38afca54db7c7e2e7a23acae620cfa80efd9788a",
+          "valid_pixels": 317360,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0014.png",
+          "sha256": "fc19bf0ed46d7b8043720140dd48bbbb15af24ef5393839a1235ddcfea18fe27"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0014.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0014.png",
+            "sha256": "f20448e2564cd65dcf1f7bb2f9d9720218acd84f0e639a5dca949895da034e62",
+            "pixels": 604240
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0014.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0014.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0014.png",
+            "sha256": "3bbe5805fd49ea82a359b38b63bf86424f42204c5acf514b93d1c4cae01f5f59",
+            "pixels": 317360
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0014.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 317360,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 317360,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 604240
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 15,
+      "frame_id": "000063",
+      "inputs": {
+        "source_rgb_sha256": "b5b9f048460f8db9b4053f20991398643d39681ec56230a67576d6f3cd86b0e2",
+        "cumulative_removal_mask_sha256": "17c6f7fccd90957f45c57364aad575be749f9e55ae5bf8d18a25a22689c2cbb2",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "e56e9f95c70fe13268c9e11c39bcf4febb30ed4753fdf47304e4c89b691e90fe",
+          "depth_sha256": "399cc4e55217bc01a72e1cd1205eb62ce33bd4c59d67a057fef87a509e3308fc",
+          "receipt_sha256": "fe06004b96209fa19205dd69afcba933cffda786afc083860a50d00d411629f7",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 317909
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0015.png",
+          "sha256": "41b8e964bf7a33daf7f288c2e920fbecab9c6921554cdc9cf5eec0d62ea6d1c1"
+        },
+        "composite_depth": {
+          "path": "depth/0015.npy",
+          "sha256": "399cc4e55217bc01a72e1cd1205eb62ce33bd4c59d67a057fef87a509e3308fc",
+          "valid_pixels": 317909,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0015.png",
+          "sha256": "1506bfc52bf554df40e5421e2b5c67959cbffc3fc9897c3bc70f082b58211a37"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0015.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0015.png",
+            "sha256": "aee21f2dd447c76a1ef62d69d88c720ec406f24766339050a478d1b7347c540b",
+            "pixels": 603691
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0015.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0015.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0015.png",
+            "sha256": "3aa7036afe48148986a4cb6b22b5f2d3cf2031a57df82f0005ef99dbb75d3c23",
+            "pixels": 317909
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0015.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 317909,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 317909,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 603691
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 16,
+      "frame_id": "000064",
+      "inputs": {
+        "source_rgb_sha256": "638e09b7676c5d7707a691d6ab0a20ae6a401546a01ce72e9d9ca3a07d47f20c",
+        "cumulative_removal_mask_sha256": "bfa688313d2940b3a3d14e9f4211b90987a49f681e44b782160faf4d40c75f1c",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "4f9d8aa225ff218e4aa1c3d29e329a294767b55dd4ee022a4707281c789c847a",
+          "depth_sha256": "53eae956d01924e8a3749aa68a33741bacb1df19eaeebc2d54b5f72eebcba97e",
+          "receipt_sha256": "786de073f296dcf5f29a7a04846153e845fd48debef4f1d7c648e337f1e320ea",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 318028
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0016.png",
+          "sha256": "ce3084aeb35b7e1654f53aa17a32f66c3e7b3e6da172bba6471ddb6591561a0a"
+        },
+        "composite_depth": {
+          "path": "depth/0016.npy",
+          "sha256": "53eae956d01924e8a3749aa68a33741bacb1df19eaeebc2d54b5f72eebcba97e",
+          "valid_pixels": 318028,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0016.png",
+          "sha256": "5e477be84445b1954a8aa9d2adcaf42896acea11911e215c1b658135dd50717b"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0016.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0016.png",
+            "sha256": "d5c75cc342df6c2974529ebc0900b8d1b0b9dea2c7da99d5d47b4695d29cc668",
+            "pixels": 603572
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0016.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0016.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0016.png",
+            "sha256": "13cb6c6514222f06a1e049e4d7d12946ba09f0dbea5d1fb1b62a3c0a10d57482",
+            "pixels": 318028
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0016.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 318028,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 318028,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 603572
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 17,
+      "frame_id": "000065",
+      "inputs": {
+        "source_rgb_sha256": "5e4d73fe07415dae4d9334fec4775379f7ca7138a36ca540730443f9a8abb1db",
+        "cumulative_removal_mask_sha256": "f430746b85e3eb852c5a615a749c1ef27c7d2afc4e4a3de3f47d39c48b5286ee",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "1c6e18f02d1703dc1adb346c8f32485f9c629886d0ea73856011741dee4e3064",
+          "depth_sha256": "30844bce7fba02331b83cb59cc8191b085df61e9f1bf038a9a86ba49cb03fc42",
+          "receipt_sha256": "a7253b9f2aab0b783edbc92afbad22277d14d7c7f3be973d217a4784572be8f5",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 316730
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0017.png",
+          "sha256": "34726dced85796cfc5cc67624f6d324cf884e91eb62dc73da1448cf290ef8959"
+        },
+        "composite_depth": {
+          "path": "depth/0017.npy",
+          "sha256": "30844bce7fba02331b83cb59cc8191b085df61e9f1bf038a9a86ba49cb03fc42",
+          "valid_pixels": 316730,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0017.png",
+          "sha256": "1cc783e7747fbf5b04d06bd09a8bb9e4b8934aef7f9bda632183f9d1c393103b"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0017.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0017.png",
+            "sha256": "b76be6e13c4e3a56657111c9b39093b3cfbc862f16fd85a1ce016a4281f1558b",
+            "pixels": 604870
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0017.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0017.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0017.png",
+            "sha256": "9099cf6afe2071164ac944f10b88f76403a57d9420bd6967f1eeaf540d9e35af",
+            "pixels": 316730
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0017.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 316730,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 316730,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 604870
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 18,
+      "frame_id": "000066",
+      "inputs": {
+        "source_rgb_sha256": "4424ea77870b00084ea94eb0e13d75b8022c7d9aa5216a10ece8c0603bbf4197",
+        "cumulative_removal_mask_sha256": "fa8e3ceed8277ed140defc14c4ad413ff2a35175540b119ec1d302de02c3ee59",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "415e7eb16c2cdd3b2e818257eada83c67a1ed107b4170338293eeebe4f592a6a",
+          "depth_sha256": "2512c6b97be40c77261e22d8a17cda1dcb306d9e2759db5a78141b6d10a07c12",
+          "receipt_sha256": "333348ea42e45b6e3ac9f736af4c28c231d32bef305a9a3c2b9b5bc17009a55b",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 316655
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0018.png",
+          "sha256": "42e3016e4744a97fcbb00c03612ba26a759b538c8365588c3cf4b7f720640427"
+        },
+        "composite_depth": {
+          "path": "depth/0018.npy",
+          "sha256": "2512c6b97be40c77261e22d8a17cda1dcb306d9e2759db5a78141b6d10a07c12",
+          "valid_pixels": 316655,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0018.png",
+          "sha256": "574a9440e2da082abc57fc258d6cf1766e72ed7a6d141d4092f445cd569c9a03"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0018.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0018.png",
+            "sha256": "1dc44d1ed4fefc1e40be8309f13d00c38745b980b4d6193b260176dc1aba185c",
+            "pixels": 604945
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0018.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0018.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0018.png",
+            "sha256": "4ee1a30c5a5bae55c25fbaf8322275704fcbd01a1b685f9ff1b67ad129ae5a05",
+            "pixels": 316655
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0018.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 316655,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 316655,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 604945
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 19,
+      "frame_id": "000067",
+      "inputs": {
+        "source_rgb_sha256": "e28b0e6ce7868d89d0925009af83d59b3c16a0027db488d664713e22d9e1714c",
+        "cumulative_removal_mask_sha256": "3ccf88d8ac80dd1b7d7e39fedfdece9801c028efd8485e048cb00fddae8c58b0",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "4d60f3a23988a3106ddebd7cc80b7ccc1c447ab635802b2fff852d90d4578eff",
+          "depth_sha256": "0cf6f2e50d7ca4c261375a169d7800fc85e2eb673282c8a500fdcb22d5cd6a22",
+          "receipt_sha256": "d9be8609a2ea4648c0112a21634a8dd7c8fa1d9446223f39b80b408e8b673af7",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 317780
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0019.png",
+          "sha256": "e3f42ae1c52ac3a9526ff9480cb83aa2a6e58403839e0b197e351aca85a67fb9"
+        },
+        "composite_depth": {
+          "path": "depth/0019.npy",
+          "sha256": "0cf6f2e50d7ca4c261375a169d7800fc85e2eb673282c8a500fdcb22d5cd6a22",
+          "valid_pixels": 317780,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0019.png",
+          "sha256": "d5e9899057347f40645d9e944d0b155b13a073bebe6cdba6403e063ef55be77e"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0019.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0019.png",
+            "sha256": "04bcf536df7354e2b500aed590f6eabf9a09ac7310c034f41ea4eb1bc537d99b",
+            "pixels": 603820
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0019.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0019.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0019.png",
+            "sha256": "f270c2ee4ffb4bec720ad85568fed2448abd7193c995cb221ed66e3bde4e6450",
+            "pixels": 317780
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0019.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 317780,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 317780,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 603820
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 20,
+      "frame_id": "000068",
+      "inputs": {
+        "source_rgb_sha256": "ca6c4a35cdf1a38eb3fa0265b6e6d850d0a3c6a489e3933edd8f711b50560089",
+        "cumulative_removal_mask_sha256": "24dbbc5102a71968e9156ba170b7a9d44c72d270d9a38b0037e5e71f9b3f2101",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "8a290c34ad6b122542f27e4a2f5d87b5079b0ffc42cddf162ab0ff3a9b3d1448",
+          "depth_sha256": "09dfd05539ccf75f01c54a7cb3c3b7d5796b5f0431c408fb1b690c1a01ad7c01",
+          "receipt_sha256": "ce33c9ebe278140e2acbc5da8178e61fa80c3863e1e513a0b53d5e13a4d93af9",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 319929
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0020.png",
+          "sha256": "45e731168d6427726910c7ddd9b4006f6b747901c612dc71c30037d06a2e7513"
+        },
+        "composite_depth": {
+          "path": "depth/0020.npy",
+          "sha256": "09dfd05539ccf75f01c54a7cb3c3b7d5796b5f0431c408fb1b690c1a01ad7c01",
+          "valid_pixels": 319929,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0020.png",
+          "sha256": "39fddeafa9cdbae84df331e1c27a26ec2bf437b41dbc24273bc5fa01e28cc6a6"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0020.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0020.png",
+            "sha256": "d62d3ebb56b46f7f524a094701a6d7bbb62d50cbaa722c2d06b069a8807b7133",
+            "pixels": 601671
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0020.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0020.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0020.png",
+            "sha256": "9f6398a931dfedb7bf910240eaabae00cac6042fb2b101181c2f19a22690a600",
+            "pixels": 319929
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0020.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 319929,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 319929,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 601671
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 21,
+      "frame_id": "000069",
+      "inputs": {
+        "source_rgb_sha256": "318fa5c4102d5b71199245e37f89479981d840b6612be612c6b60cbc82e892b6",
+        "cumulative_removal_mask_sha256": "22fe4bb9852c30b136f00d6bfc4daeb8df5c8bef5c2e9f54c3bd67734bf6f465",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "cf845b7e55ad7c364232bc2cdfbe8c47660a555421f2ae7de57ecc0a1a6c6f27",
+          "depth_sha256": "4bc9f78220fe80e76aef60d7aba94731d825909dea0577ae83fe74473eee6780",
+          "receipt_sha256": "366125e5bb7ecdbde7b69591cb85847b0476d333dbc4b9d458c7cb217d86d7ce",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 325776
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0021.png",
+          "sha256": "b2b3a5c23afed1d4da2bbc50741c51a62acf911229137171bbaf60a03f9d2409"
+        },
+        "composite_depth": {
+          "path": "depth/0021.npy",
+          "sha256": "4bc9f78220fe80e76aef60d7aba94731d825909dea0577ae83fe74473eee6780",
+          "valid_pixels": 325776,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0021.png",
+          "sha256": "f008390afc5beea060858b4aed1512073a6e792178f628cf0370edaf3fdfaad1"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0021.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0021.png",
+            "sha256": "5d6cf8e41b8aed7d9cf3603be7f5ef6a75079490c0ae57091ce5579190b9691f",
+            "pixels": 595824
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0021.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0021.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0021.png",
+            "sha256": "cf7b212d1cb0a35201671606898d1407fac99dd148e30a2fef909d8693372f06",
+            "pixels": 325776
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0021.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 325776,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 325776,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 595824
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 22,
+      "frame_id": "000070",
+      "inputs": {
+        "source_rgb_sha256": "53ee89edca809454c0f5670b8f1cfe1994afe6394aaf7d2d3175d71d58682865",
+        "cumulative_removal_mask_sha256": "6987a8fa4cc1c0242b23b5e70d066d9f64e4bfeac9ef7f6087ad8fe19bf93051",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "81029cd6a960d2bf00e48b1bf153a56bb36bb7df3b934d7729c755e897c57599",
+          "depth_sha256": "6564a6a55f1069a1b92bcd5c1cbc9075a312d69780062c70621782179509f341",
+          "receipt_sha256": "434063cc9bb9fabcf91633b910b7e98dce25deeefb1759f1c959c56afff11425",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 328967
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0022.png",
+          "sha256": "fcb6cf50fb74f28ab54fdbc205acdba8e5781aca09273a9eed12035d4faf0012"
+        },
+        "composite_depth": {
+          "path": "depth/0022.npy",
+          "sha256": "6564a6a55f1069a1b92bcd5c1cbc9075a312d69780062c70621782179509f341",
+          "valid_pixels": 328967,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0022.png",
+          "sha256": "878aa58332563cc9b3d298c654425b416186b915c6b3e2360044ed4e471a67b8"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0022.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0022.png",
+            "sha256": "6860eeb20f61eb54821dbaf05eaff045c5a7a53d9c7857f44334f387a2bdb9f7",
+            "pixels": 592633
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0022.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0022.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0022.png",
+            "sha256": "42282fee45dfd06180530298e1926437d9e58e08b37c829da40246ecb63ca4f6",
+            "pixels": 328967
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0022.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 328967,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 328967,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 592633
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 23,
+      "frame_id": "000071",
+      "inputs": {
+        "source_rgb_sha256": "6116993823ca7d9de391c47b21f6b9eb2615e0b2db6858619d4dc675bfa80484",
+        "cumulative_removal_mask_sha256": "971a244f4b2653638d255e4048039957aa65f676d48f3818d6f2d118cd4bfd83",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "94f46e0ff2957cc5930d1560a4ca50eb2710dee7b863953e98eff372ac331b65",
+          "depth_sha256": "6b345721294835c46e4c48e3542451adcd3408886502e47894fa57deed98f8fc",
+          "receipt_sha256": "fe37b2f7da431d4ac9ccd885cbdac1b24b8a5cefa0abc74fc2cdbcce45298e81",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 331052
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0023.png",
+          "sha256": "58ccd8d93ef1edc8d1ba63fc4697fe103301f98e33d1e77a9ac0bebb1c658c5d"
+        },
+        "composite_depth": {
+          "path": "depth/0023.npy",
+          "sha256": "6b345721294835c46e4c48e3542451adcd3408886502e47894fa57deed98f8fc",
+          "valid_pixels": 331052,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0023.png",
+          "sha256": "0fbe8d58e03c0551defae9e2d32e2054630a5f0d539b7b96524d8a1aa55b7f5f"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0023.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0023.png",
+            "sha256": "474463ebee6d69949bc888afda160b58cf578c59ba9588abc5bd72fff6ed4af3",
+            "pixels": 590548
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0023.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0023.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0023.png",
+            "sha256": "2fbffb57e031ba3c4ce565f27147a8a48899a4346812707a47066d5c415cddf6",
+            "pixels": 331052
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0023.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 331052,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 331052,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 590548
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    },
+    {
+      "sequence_index": 24,
+      "frame_id": "000072",
+      "inputs": {
+        "source_rgb_sha256": "7849f2a3c93c97691d4d5d3e0525b4ff9e248cf6114352782e17f6a1842f5d92",
+        "cumulative_removal_mask_sha256": "0556f250f33fc4ced4acfc7dc7ad59f06a7ebd59018cd557282143825f5e6a3f",
+        "measured_donor_contract_role": "no_measured_donor_evidence",
+        "claims_original_observed_rgb_donor": false,
+        "donor_prefill_rgb_sha256": null,
+        "donor_measured_mask_sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+        "donor_measured_depth_sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b",
+        "downstream_layers": [],
+        "structural_background": {
+          "rgba_sha256": "29d8584e0dfbbdc03616b40e987a2f76e54d8aa726226b2a3ff8d9b7498676a1",
+          "depth_sha256": "2b09ae45f4ee5e9d62fd30af941a29b71974188f51aeac077e71985656b907c4",
+          "receipt_sha256": "04c9d193d1582564f135400242be6d80d20dad4fb41f0726b057e9adcc0d3c97",
+          "accepted_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+          "texture_provenance": "hybrid_atlas",
+          "acceptance": {
+            "acceptance_status": "accepted_with_limitations",
+            "accepted_with_limitations": true,
+            "demo_use_approved": true,
+            "eligible_as_round04_clean_plate": false,
+            "eligible_as_current_demo_round04_clean_plate": true,
+            "acceptance_scope": "current_demo_only",
+            "limitations": [
+              "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+              "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+              "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+              "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+              "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+            ],
+            "override_gate_keys": [
+              "visual_quality",
+              "wall_boundary_color_continuity",
+              "wall_boundary_low_frequency_gradient_continuity"
+            ],
+            "overridden_gates": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "failed_metrics": {
+              "visual_quality": "pending_human_or_vlm_review",
+              "wall_boundary_color_continuity": {
+                "observed_maximum": 96.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 24.0
+              },
+              "wall_boundary_low_frequency_gradient_continuity": {
+                "observed_maximum": 99.0,
+                "passed": false,
+                "threshold_p95_abs_rgb_delta": 32.0
+              }
+            },
+            "promotion_approved": false
+          },
+          "candidate_pixels": 333988
+        }
+      },
+      "outputs": {
+        "composite_rgb": {
+          "path": "frames/0024.png",
+          "sha256": "95da683e5c90866874fcff4e8a1528c520173c85173f1bcb7845b0022fa60e71"
+        },
+        "composite_depth": {
+          "path": "depth/0024.npy",
+          "sha256": "2b09ae45f4ee5e9d62fd30af941a29b71974188f51aeac077e71985656b907c4",
+          "valid_pixels": 333988,
+          "validity_scope": "measured_or_render_resolved_removal_pixels_only"
+        },
+        "provenance_labels": {
+          "path": "provenance_labels/0024.png",
+          "sha256": "ddbc68b1c21e7ebbee7ab0cb2801706af9e6e966173fe96d61aab4489f5ee44f"
+        },
+        "downstream_layer_labels": {
+          "path": "downstream_layer_labels/0024.png",
+          "sha256": "88fbf116627e78e8d1558c512784a5148fa7968e22588023d006b4a268d60091",
+          "mapping": {}
+        },
+        "provenance_masks": {
+          "outside_source": {
+            "path": "provenance_masks/outside_source/0024.png",
+            "sha256": "4dedb76a5427dd1dfcbc0e9c4cf335bd02d34206310b6eb4d6a2d11445fc1f1e",
+            "pixels": 587612
+          },
+          "measured_donor": {
+            "path": "provenance_masks/measured_donor/0024.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "downstream_object_render": {
+            "path": "provenance_masks/downstream_object_render/0024.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          },
+          "structural_background": {
+            "path": "provenance_masks/structural_background/0024.png",
+            "sha256": "241b25f84732150e0d360ba043d5843e54c7c6e87114d39eb03ce41bcf06fc46",
+            "pixels": 333988
+          },
+          "unresolved": {
+            "path": "provenance_masks/unresolved/0024.png",
+            "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1",
+            "pixels": 0
+          }
+        }
+      },
+      "counts": {
+        "removal_pixels": 333988,
+        "measured_donor_pixels": 0,
+        "downstream_object_render_pixels": 0,
+        "structural_background_pixels": 333988,
+        "unresolved_pixels": 0,
+        "outside_source_pixels": 587612
+      },
+      "gates": {
+        "outside_removal_mask_rgb_exact": true,
+        "removal_provenance_partition_exact": true,
+        "render_composite_only_inside_measured_residual": true,
+        "measured_pixels_are_explicitly_absent": true,
+        "no_measured_donor_contract_satisfied": true,
+        "unresolved_rgb_preserves_source_but_is_not_promotable": true
+      }
+    }
+  ],
+  "aggregate_counts": {
+    "removal_pixels": 8259257,
+    "measured_donor_pixels": 0,
+    "downstream_object_render_pixels": 0,
+    "structural_background_pixels": 8259257,
+    "unresolved_pixels": 0,
+    "outside_source_pixels": 14780743
+  },
+  "output_frame_set_sha256": "854bd224ab59580f6d209fbb31a50059e0075007c2f6ef0c6d98cc8fde82dfca",
+  "gates": {
+    "outside_removal_mask_rgb_exact": true,
+    "removal_provenance_partition_exact": true,
+    "render_composite_only_inside_measured_residual": true,
+    "generated_or_propainter_claimed_as_measured": false,
+    "original_measured_donor_claimed_without_evidence": false,
+    "no_measured_donor_evidence_has_zero_measured_pixels": true,
+    "final_background_entire_removal_is_structural": true,
+    "previous_round_output_hash_bound": true,
+    "limited_acceptance_scope_and_failures_propagated": true
+  },
+  "promotion_approved": false,
+  "promotion_blockers": [
+    "visual and cross-view consistency review is required",
+    "structural background is accepted only for the current demo; listed failed metrics remain overridden",
+    "depth and normal estimation must be rerun after final RGB acceptance"
+  ],
+  "output_receipt": "layered_composite_receipt.json"
+}

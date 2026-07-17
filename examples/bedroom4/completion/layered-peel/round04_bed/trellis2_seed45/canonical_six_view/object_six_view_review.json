@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "video2world.canonical_object_six_view_review",
+  "createdAt": "2026-07-17T02:13:30.200Z",
+  "state": "captured_visual_pending",
+  "promotionAllowed": false,
+  "sourcePageUrl": "http://127.0.0.1:4179/object-review.html?objectId=sam3_bed_01&asset=%2F%40fs%2FUsers%2Fzhangyuxiang%2FDesktop%2Fworksplace%2Fvideo2world%2Fexamples%2Fbedroom4%2Fcompletion%2Flayered-peel%2Fround04_bed%2Ftrellis2_seed45%2Fasset_pbr.glb",
+  "canonicalViews": [
+    "front",
+    "right",
+    "back",
+    "left",
+    "top",
+    "bottom"
+  ],
+  "canonicalViewAxes": {
+    "front": {
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "orientationContract": "web/object-review.js VIEW_SPECS orthogonal object-local axes",
+  "horizontalOrbitAcceptedAsSixViewEvidence": false,
+  "visualGate": {
+    "status": "pending",
+    "blocking": [
+      "shape_mismatch",
+      "primary_color_category_error",
+      "missing_surface_or_sheet_geometry",
+      "disconnected_or_floating_parts",
+      "significant_scene_interpenetration"
+    ],
+    "warning": [
+      "minor_backside_texture_hallucination",
+      "minor_material_or_pattern_drift"
+    ]
+  },
+  "objectId": "sam3_bed_01",
+  "renderMode": "neutral-albedo",
+  "bounds": {
+    "min": [
+      -0.34412676095962524,
+      -0.2004961520433426,
+      -0.4951721131801605
+    ],
+    "max": [
+      0.34449303150177,
+      0.19918645918369293,
+      0.49928101897239685
+    ],
+    "size": [
+      0.6886197924613953,
+      0.3996826112270355,
+      0.9944531321525574
+    ],
+    "radius": 0.6369616237134833
+  },
+  "meshCount": 1,
+  "triangleCount": 98622,
+  "asset": {
+    "url": "http://127.0.0.1:4179/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed45/asset_pbr.glb",
+    "sizeBytes": 3457128,
+    "sha256": "d2059e1587b825438cb256b3e648852518bb2747c42ce7f00a69f5798aae1075"
+  },
+  "views": {
+    "front": {
+      "file": "front_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed45/canonical_six_view/front_object.png",
+      "sizeBytes": 52186,
+      "sha256": "5f57aaa9659b817ae1ca4bcbb8c606444f013584c2e67c43fc7e2b87d480cd76",
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "file": "right_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed45/canonical_six_view/right_object.png",
+      "sizeBytes": 49808,
+      "sha256": "331a598bb21a9ff969ec183d20d3aff34f027681367eda02b067d4380132d942",
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "file": "back_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed45/canonical_six_view/back_object.png",
+      "sizeBytes": 53500,
+      "sha256": "16fba446bbcc04819b7a3766f4298870d3d47e0f3ea98be898bb54555bdf8ade",
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "file": "left_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed45/canonical_six_view/left_object.png",
+      "sizeBytes": 40504,
+      "sha256": "40c079804b0bde02a3bb5f9744eb0b497a94d19d408f4de883bc16a724df262a",
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "file": "top_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed45/canonical_six_view/top_object.png",
+      "sizeBytes": 119736,
+      "sha256": "8f13bc24ed25ce1a90083d631f85ebc54a74066236f3a3a33e1c55a273985a2a",
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "file": "bottom_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed45/canonical_six_view/bottom_object.png",
+      "sizeBytes": 133268,
+      "sha256": "92c57fc0da2a9542ebd2c808490f6d9bf5cc8cc5f22962430591e05e87364530",
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "contactSheet": {
+    "file": "object_six_view_contact_sheet.png",
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed45/canonical_six_view/object_six_view_contact_sheet.png",
+    "sizeBytes": 299107,
+    "sha256": "620aced76c0b7bb1f09a0e61b763d6ba3ab24664da87dbcca11d292cb1bb5b54",
+    "layout": "3x2",
+    "viewport": [
+      1440,
+      1280
+    ]
+  },
+  "browser": {
+    "consoleWarnings": [],
+    "consoleErrors": []
+  }
+}

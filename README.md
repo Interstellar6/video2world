@@ -9,8 +9,8 @@ video
   -> open-vocabulary discovery and SAM3 masks
   -> multi-view 2D-to-3D instance fusion and semantic Gaussian PLY
   -> detailed object descriptions and scene relations
-  -> EmbodiedGen V2/TRELLIS object Gaussian + mesh candidates
-  -> scene-space placement, collision proxies and QA gates
+  -> EmbodiedGen V2/TRELLIS mesh-first PBR GLB candidates
+  -> scene-space placement, unified GLB surface collision and QA gates
   -> interactive Web world with robot navigation and scene cognition QA
 ```
 
@@ -24,7 +24,7 @@ Generated models and run outputs are intentionally excluded from Git.
 
 ## What is implemented
 
-- Content-addressed ten-stage orchestration with `init`, `plan`, `run`, and
+- Content-addressed twelve-stage orchestration with `init`, `plan`, `run`, and
   `adopt-existing` workflows.
 - A versioned, shell-free external-provider contract and a complete
   Holi-Spatial/Video2Mesh/EmbodiedGen profile. Site Python interpreters,
@@ -34,30 +34,46 @@ Generated models and run outputs are intentionally excluded from Git.
   fail-closed scene queries.
 - A versioned Web deployment manifest validated before the runtime loads any
   scene or object assets.
-- Spark/Three.js layered rendering, GLB/BVH collision, robot navigation,
-  object focus, drag rotation, double-click 360-degree rotation, and bilingual
-  location/appearance queries.
-- A verified Bedroom 4 adoption example: 1,512,870 visual primitives, four GLB
-  colliders, one visual-only pillow component, and desktop/mobile browser QA.
+- Spark/Three.js layered rendering, mesh-first unified PBR GLB objects,
+  GLB/MeshBVH character surface collision, robot navigation, object focus,
+  drag rotation, double-click 360-degree rotation, and bilingual
+  location/appearance queries. Per-object Gaussian/point cloud is optional.
+- A verified Bedroom 4 legacy-adoption example: 1,512,870 visual primitives,
+  four separate GLB colliders, one visual-only pillow component, and
+  desktop/mobile browser QA. This historical production mode is retained while
+  the newer one-PBR-GLB object mode completes scene-level browser QA.
 
 The checked-in root demo is intentionally a tiny fixture. Real PGSR, TSDF,
 semantic Gaussian, TRELLIS, and cognition assets remain local or remote and are
 referenced by hash-bearing manifests.
 
+The current Bedroom 4 mesh-first candidate is a TRELLIS2 PBR GLB with 60,237
+vertices and 97,082 faces. It is finite, nondegenerate, winding-consistent, and
+non-watertight, so its honest collision contract is `surface_bvh`: character
+surface blocking without volume or inside/outside claims. Its unified real-scene
+browser QA is still pending; the older verified production bundle remains a
+separate historical baseline.
+
 The provider profile is an executable integration boundary, not a claim that
 arbitrary videos are zero-configuration or already verified. Copy
-`video2world/configs/holi_embodiedgen.provider.example.yaml`, bind its site
-drivers and model environments, then initialize with
-`video2world/configs/holi_embodiedgen_upstream.yaml`. Bedroom 4 remains the
-separate scene-specific verified adoption sample.
+`video2world/configs/site_profile.example.yaml` and
+`video2world/configs/site_provider.example.yaml`, then use `site-init` with
+explicit named checkout and artifact roots. `site-preflight` launches no models;
+`site-run` records each stage as executed or adopted and fails closed when a
+provider is absent. The older `holi_embodiedgen_*` files remain a legacy
+ten-stage adapter reference. Bedroom 4 has a truthful partial mapping at
+`examples/bedroom4/site-profile.partial.yaml`; it leaves the full front-to-back
+`layered_completion` executable instead of treating one pillow as a whole run.
+Its old outputs are artifact-ready, but adoption remains blocked until the
+missing original-video and per-stage input hashes are recovered.
 
 ## Quick start
 
 ```bash
-uv sync --all-groups
+uv sync --all-groups --extra geometry
 npm install
 
-uv run pytest
+uv run --extra geometry pytest
 uv run ruff check .
 npm test
 npm run test:e2e

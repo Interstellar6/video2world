@@ -1,0 +1,970 @@
+{
+  "config": {
+    "alpha_threshold": 0.5,
+    "depth_tie_epsilon": 1e-06
+  },
+  "frame_records": [
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0000.png",
+        "sha256": "eff72e75df3eaa5a14d52fb637a7be0e18e0c85f5d71c21019f237faa57d95dd"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0000.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0000.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000048",
+      "sequence_index": 0,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0000.png",
+        "sha256": "bcf48cc4e10c454414639812dfffa4841d3295c267d70075cc1e91261ba2626a"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0000.npy",
+          "sha256": "b68ec21f0f900189995834bb7c6aa690318d7b9a10b08eaf78bf715bc211aa1c"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000048.json",
+          "sha256": "551df0cca1ab8bf7130d4dc70f5210f3528b26a7a1e4129f30dd993eb343562e"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0000.png",
+          "sha256": "682ea39d8911350b56fcd3cd16d23904494c66df7aa537669d66ba882bf04f7c"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0001.png",
+        "sha256": "94dc6dbdf7ce7fd4a9c3a729783230202e621c62a97a55e8a06a730213f1539b"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0001.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0001.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000049",
+      "sequence_index": 1,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0001.png",
+        "sha256": "2b7829ae8531719a9cd0da508f4e758b665903e394794ac0943e08941d52afdb"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0001.npy",
+          "sha256": "5ee94a002d4f8889b9b6dbff88859df1e9171a8dd27a83cee36a7fc6b5d90093"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000049.json",
+          "sha256": "cc16ef8bc46c96b5dd55d1c31782494de3c9d7a5a681a294d9aaf8e8da8a6e07"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0001.png",
+          "sha256": "794959ea7984ef78584d5b7745a3e0062f17a33a4fa031950263248d0021e389"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0002.png",
+        "sha256": "ae4ba29871a3761e2e8429599ac5f3ba347ecc38915cf128361ef84d8b6ac1c7"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0002.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0002.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000050",
+      "sequence_index": 2,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0002.png",
+        "sha256": "c869d6750a63390ebccb48d59acb561c73a50fa66e7ab2179129de8115372889"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0002.npy",
+          "sha256": "ee58e0e92e52eaa30941e4a936a8b4e1c6b1824d87347bebf1ebc56182cb7188"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000050.json",
+          "sha256": "8f9232a1d21b6d4b46e7633c594fca1e90299986cdc78a2b412f3b34cc086674"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0002.png",
+          "sha256": "c23d0545955849e9055867f87d8ce2c59979b8ffec6b8b8a3c6c0c21f697ee14"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0003.png",
+        "sha256": "40e5cbca60c2eef74d2c317d012f3efd16128789d39ebb8cecba003316aa522e"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0003.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0003.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000051",
+      "sequence_index": 3,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0003.png",
+        "sha256": "7b4f9777922b70c4d7d51c98b10a63b916545116f4f05424af187a699510242c"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0003.npy",
+          "sha256": "033d87091d0da611a0d85058b10fd96abb60957855c80b481ea6cb27bc5e86be"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000051.json",
+          "sha256": "fc3a4ae4448ef761d28e06a603bae01dd6996b3e49347f236889dbc8c929cedb"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0003.png",
+          "sha256": "2698590da3cafa5d2141c2d222bcd2174613480afc69394cc7fd9fd50be1dd63"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0004.png",
+        "sha256": "aa85cfbf33e18562ac551ec27ec0e5c59948b236fd47699424ce2e96a52174b2"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0004.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0004.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000052",
+      "sequence_index": 4,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0004.png",
+        "sha256": "6921672e20aee5c5452559285b1cf9b5b4874c218e4116a259f1a83aca85fb41"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0004.npy",
+          "sha256": "6af28d0f6b07ac1c7bd3141e7d5b80616908a2b83034250581c8d5ac425ea7a0"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000052.json",
+          "sha256": "06d1e9fc27afae977ae3334beaaa0a4795a34466fa092279e2dd61c6ac5000d4"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0004.png",
+          "sha256": "cc7c56a29e4833103f555f59d6830a7e21cfcf5956f04879a58d503d65fded16"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0005.png",
+        "sha256": "a819007142f90df52bf3de28c11527fb870d472897fc3e47d82b293cdaeb319f"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0005.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0005.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000053",
+      "sequence_index": 5,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0005.png",
+        "sha256": "a68d9af20101fea16bdfd3583f441d967d3620cedc10d9901dcdee7f581c07f2"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0005.npy",
+          "sha256": "afff32a943caa410bca422ca1b3dfeb63093eb6e26290f329505b9366750f880"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000053.json",
+          "sha256": "7a770638eef0f3bf3d6f63c79bf1be8d5064da66f0cf6ad7493a05ecfd49f839"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0005.png",
+          "sha256": "1dcc19b82ff4dac0c4fb9fc3c174e7a0cba77391cc46350d9d647c47e3219f60"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0006.png",
+        "sha256": "e621b297ddf2c4127159f23522ee1fd73cd24ddbc7de7e9cc042163070dedcc5"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0006.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0006.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000054",
+      "sequence_index": 6,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0006.png",
+        "sha256": "8756d23629134fbba1594335b9a120bf9bf35262e1806a365f7e360d8dfaacac"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0006.npy",
+          "sha256": "ed761b068e4a12f26ee4fc5515474a38d03277b95d61ccfbfa8e14ea151d2a6e"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000054.json",
+          "sha256": "dba755a8d03a7f62512dbeee3883083061c69635415a0eb8542e557f42df7aff"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0006.png",
+          "sha256": "f720fda74263789bd3fede054ad81e21902146f58faa19a465367b3e0c98df27"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0007.png",
+        "sha256": "83742eb61b3377732812baf5c4afa76379ae0f075d76cbb5d691a6710380c95a"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0007.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0007.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000055",
+      "sequence_index": 7,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0007.png",
+        "sha256": "6074032aa130e01924993692553defa755f88158b136750d2e9ece6b24214b68"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0007.npy",
+          "sha256": "876e6c1fba4cde52ef63bc5e1756d241988feca802d930799af25d02167eb3a6"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000055.json",
+          "sha256": "e9fa6df9f53391b8f1897f9aa2916de64199f16ed9400c69cdbd5819addf0327"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0007.png",
+          "sha256": "926086d34fe1418fe96c07596b2824ecb7370ddd083fdd41ca171b7b171813d4"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0008.png",
+        "sha256": "a90396e20e5a1475738a329a7f6d9358cd4e9f30a9fc194cc69950d8ed630551"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0008.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0008.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000056",
+      "sequence_index": 8,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0008.png",
+        "sha256": "3d1eb3877795a0d313be84f40799f64cd4c8aec4ff96d2f35b641ab1fb49024b"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0008.npy",
+          "sha256": "02d24797164d5c46a0eb8f468c3d9c6b4e7dcc8fd1c7fe3609307fed9596b586"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000056.json",
+          "sha256": "3634c6a267b01346a206ca7b21f39952b095ae7e6c9ce9a8c63b391eb187b452"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0008.png",
+          "sha256": "1ff9b3b5e53ee12798249d34bde2e8055478f21d809dc5e82abb7702fb2bc6e7"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0009.png",
+        "sha256": "64f9125cd73807ba785222540212082223c5466f9fdf531fc49b231fef9c222e"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0009.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0009.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000057",
+      "sequence_index": 9,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0009.png",
+        "sha256": "f2de5b5b1b7c0409fff9eaf6f519fee9ea8f76653b2592234986c5f3b46c5982"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0009.npy",
+          "sha256": "e5350dde7b8e1d59d56555aaf026b9710f8ad741ec858355ad891bf04a1a6678"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000057.json",
+          "sha256": "dc304edcce94511b0868b726e165e767fb5915b5cdc9c14c31a28feb7868a243"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0009.png",
+          "sha256": "520e193821a9554a96a5eed6df79f34ec5e8a7717e061ecb942d83cc3b63776f"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0010.png",
+        "sha256": "a9a6365e0d552af5929fa3dd0a9781946d64c4fb7fb0315d4dda3542eaeb5446"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0010.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0010.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000058",
+      "sequence_index": 10,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0010.png",
+        "sha256": "d38b9e5ff3a01a349a863cd6b0f1f84b4b24c05c4e5bfdef4d62d29f2497541e"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0010.npy",
+          "sha256": "6187b36ab93574eb84e19051524f8be551a8600638e515d0f28c0906d85e1a24"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000058.json",
+          "sha256": "049cf61cd3d45b37ead394eec07dd21d33466bb9cca20c4339d26900fcee8b1b"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0010.png",
+          "sha256": "7890fccb0ce397d119befb9e9007dd1c3b923aee76cfde3f932faa73513612c1"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0011.png",
+        "sha256": "cd2917be4151b09563ed28a66debffcc56e036c0c1b65c4b3c56721149a39433"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0011.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0011.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000059",
+      "sequence_index": 11,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0011.png",
+        "sha256": "9de9808dd7011ef752f90c2b03fba771ab60db3ac23c1ddf01669b31d844f25f"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0011.npy",
+          "sha256": "00bfe6bac363d7adc2753562927f575cee880cd0e14d68c39fbdfdafdc75b00e"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000059.json",
+          "sha256": "51dbe4af8995a60066a61b394954ec7c95cfbf7f319d2bafcbf1ccc32af6468a"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0011.png",
+          "sha256": "0c2532f8e641c04193fc6d59f287fb3a66e57e5a0984fad4b355e8573382b49a"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0012.png",
+        "sha256": "c6e741a0234292622c1c88cfb0c354545f558e74759c79a382624d1af2d05b70"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0012.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0012.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000060",
+      "sequence_index": 12,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0012.png",
+        "sha256": "7fe92840b9628eed401c550fc662b976f2c13da48536db7de4939a3f04e97078"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0012.npy",
+          "sha256": "d9babc067c48e58956748cbadca093e0b0706f322bfa240aeadefb06fe2414d4"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000060.json",
+          "sha256": "80dfc421b339bcc3c2e561a878d1db722513958e6a554d23f2d3fba10a7125e0"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0012.png",
+          "sha256": "ab7d16a1d75212438c06af6d75cd37b1da469b7da98bc808730bf72f5429183a"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0013.png",
+        "sha256": "4bfe686c4a6fc67c41b0db5bd9d893853310daa0da8931515cd391ef5bc00fe0"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0013.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0013.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000061",
+      "sequence_index": 13,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0013.png",
+        "sha256": "8e9967a69676dc60f284a8b046927278e38434f263eff59c49d300b8c40aa90b"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0013.npy",
+          "sha256": "1d9493cae597db5417ec05609751d697ab43ac2504d7903a8fdea299754a32b1"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000061.json",
+          "sha256": "0d973ba35f9ec56acd1c0b46d0e675e023605248a9b22e6966e6b13f3d0a3c21"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0013.png",
+          "sha256": "1a619dc4fb9fd6e3a1eac74634886e126f7126c10f57925899e3cd5280a8b542"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0014.png",
+        "sha256": "12b64ccf1d96b8f9f5d823277219e4047deb9c4020b0a09631bb56a7b0a37b19"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0014.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0014.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000062",
+      "sequence_index": 14,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0014.png",
+        "sha256": "297276c86f5ab5d36c2245701eeb8b4157664a7922da0ad1599203dac24abac4"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0014.npy",
+          "sha256": "dc9844eb9d82260dd069039c38afca54db7c7e2e7a23acae620cfa80efd9788a"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000062.json",
+          "sha256": "4d457e3b73ebab69ee2fee18ef429ff24ec0bcba31e3a4a5243f9675b01c8a3a"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0014.png",
+          "sha256": "5a9297417813a99946bbe035c481f838c9488d7d331ce27b1c1ac3f67d5338af"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0015.png",
+        "sha256": "17c6f7fccd90957f45c57364aad575be749f9e55ae5bf8d18a25a22689c2cbb2"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0015.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0015.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000063",
+      "sequence_index": 15,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0015.png",
+        "sha256": "b5b9f048460f8db9b4053f20991398643d39681ec56230a67576d6f3cd86b0e2"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0015.npy",
+          "sha256": "399cc4e55217bc01a72e1cd1205eb62ce33bd4c59d67a057fef87a509e3308fc"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000063.json",
+          "sha256": "fe06004b96209fa19205dd69afcba933cffda786afc083860a50d00d411629f7"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0015.png",
+          "sha256": "e56e9f95c70fe13268c9e11c39bcf4febb30ed4753fdf47304e4c89b691e90fe"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0016.png",
+        "sha256": "bfa688313d2940b3a3d14e9f4211b90987a49f681e44b782160faf4d40c75f1c"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0016.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0016.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000064",
+      "sequence_index": 16,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0016.png",
+        "sha256": "638e09b7676c5d7707a691d6ab0a20ae6a401546a01ce72e9d9ca3a07d47f20c"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0016.npy",
+          "sha256": "53eae956d01924e8a3749aa68a33741bacb1df19eaeebc2d54b5f72eebcba97e"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000064.json",
+          "sha256": "786de073f296dcf5f29a7a04846153e845fd48debef4f1d7c648e337f1e320ea"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0016.png",
+          "sha256": "4f9d8aa225ff218e4aa1c3d29e329a294767b55dd4ee022a4707281c789c847a"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0017.png",
+        "sha256": "f430746b85e3eb852c5a615a749c1ef27c7d2afc4e4a3de3f47d39c48b5286ee"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0017.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0017.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000065",
+      "sequence_index": 17,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0017.png",
+        "sha256": "5e4d73fe07415dae4d9334fec4775379f7ca7138a36ca540730443f9a8abb1db"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0017.npy",
+          "sha256": "30844bce7fba02331b83cb59cc8191b085df61e9f1bf038a9a86ba49cb03fc42"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000065.json",
+          "sha256": "a7253b9f2aab0b783edbc92afbad22277d14d7c7f3be973d217a4784572be8f5"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0017.png",
+          "sha256": "1c6e18f02d1703dc1adb346c8f32485f9c629886d0ea73856011741dee4e3064"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0018.png",
+        "sha256": "fa8e3ceed8277ed140defc14c4ad413ff2a35175540b119ec1d302de02c3ee59"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0018.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0018.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000066",
+      "sequence_index": 18,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0018.png",
+        "sha256": "4424ea77870b00084ea94eb0e13d75b8022c7d9aa5216a10ece8c0603bbf4197"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0018.npy",
+          "sha256": "2512c6b97be40c77261e22d8a17cda1dcb306d9e2759db5a78141b6d10a07c12"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000066.json",
+          "sha256": "333348ea42e45b6e3ac9f736af4c28c231d32bef305a9a3c2b9b5bc17009a55b"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0018.png",
+          "sha256": "415e7eb16c2cdd3b2e818257eada83c67a1ed107b4170338293eeebe4f592a6a"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0019.png",
+        "sha256": "3ccf88d8ac80dd1b7d7e39fedfdece9801c028efd8485e048cb00fddae8c58b0"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0019.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0019.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000067",
+      "sequence_index": 19,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0019.png",
+        "sha256": "e28b0e6ce7868d89d0925009af83d59b3c16a0027db488d664713e22d9e1714c"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0019.npy",
+          "sha256": "0cf6f2e50d7ca4c261375a169d7800fc85e2eb673282c8a500fdcb22d5cd6a22"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000067.json",
+          "sha256": "d9be8609a2ea4648c0112a21634a8dd7c8fa1d9446223f39b80b408e8b673af7"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0019.png",
+          "sha256": "4d60f3a23988a3106ddebd7cc80b7ccc1c447ab635802b2fff852d90d4578eff"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0020.png",
+        "sha256": "24dbbc5102a71968e9156ba170b7a9d44c72d270d9a38b0037e5e71f9b3f2101"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0020.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0020.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000068",
+      "sequence_index": 20,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0020.png",
+        "sha256": "ca6c4a35cdf1a38eb3fa0265b6e6d850d0a3c6a489e3933edd8f711b50560089"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0020.npy",
+          "sha256": "09dfd05539ccf75f01c54a7cb3c3b7d5796b5f0431c408fb1b690c1a01ad7c01"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000068.json",
+          "sha256": "ce33c9ebe278140e2acbc5da8178e61fa80c3863e1e513a0b53d5e13a4d93af9"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0020.png",
+          "sha256": "8a290c34ad6b122542f27e4a2f5d87b5079b0ffc42cddf162ab0ff3a9b3d1448"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0021.png",
+        "sha256": "22fe4bb9852c30b136f00d6bfc4daeb8df5c8bef5c2e9f54c3bd67734bf6f465"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0021.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0021.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000069",
+      "sequence_index": 21,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0021.png",
+        "sha256": "318fa5c4102d5b71199245e37f89479981d840b6612be612c6b60cbc82e892b6"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0021.npy",
+          "sha256": "4bc9f78220fe80e76aef60d7aba94731d825909dea0577ae83fe74473eee6780"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000069.json",
+          "sha256": "366125e5bb7ecdbde7b69591cb85847b0476d333dbc4b9d458c7cb217d86d7ce"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0021.png",
+          "sha256": "cf845b7e55ad7c364232bc2cdfbe8c47660a555421f2ae7de57ecc0a1a6c6f27"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0022.png",
+        "sha256": "6987a8fa4cc1c0242b23b5e70d066d9f64e4bfeac9ef7f6087ad8fe19bf93051"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0022.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0022.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000070",
+      "sequence_index": 22,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0022.png",
+        "sha256": "53ee89edca809454c0f5670b8f1cfe1994afe6394aaf7d2d3175d71d58682865"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0022.npy",
+          "sha256": "6564a6a55f1069a1b92bcd5c1cbc9075a312d69780062c70621782179509f341"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000070.json",
+          "sha256": "434063cc9bb9fabcf91633b910b7e98dce25deeefb1759f1c959c56afff11425"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0022.png",
+          "sha256": "81029cd6a960d2bf00e48b1bf153a56bb36bb7df3b934d7729c755e897c57599"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0023.png",
+        "sha256": "971a244f4b2653638d255e4048039957aa65f676d48f3818d6f2d118cd4bfd83"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0023.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0023.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000071",
+      "sequence_index": 23,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0023.png",
+        "sha256": "6116993823ca7d9de391c47b21f6b9eb2615e0b2db6858619d4dc675bfa80484"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0023.npy",
+          "sha256": "6b345721294835c46e4c48e3542451adcd3408886502e47894fa57deed98f8fc"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000071.json",
+          "sha256": "fe37b2f7da431d4ac9ccd885cbdac1b24b8a5cefa0abc74fc2cdbcce45298e81"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0023.png",
+          "sha256": "94f46e0ff2957cc5930d1560a4ca50eb2710dee7b863953e98eff372ac331b65"
+        },
+        "role": "structural_background"
+      }
+    },
+    {
+      "cumulative_removal_mask": {
+        "path": "../normalized_inputs/round04_cumulative_masks/masks/0024.png",
+        "sha256": "0556f250f33fc4ced4acfc7dc7ad59f06a7ebd59018cd557282143825f5e6a3f"
+      },
+      "donor_measured_depth": {
+        "path": "measured_depth/0024.npy",
+        "sha256": "3d8fc9f8eabad66d865e0c9b5adacdebb80e8d9534c9eb1db496494d291f918b"
+      },
+      "donor_measured_mask": {
+        "path": "measured_masks/0024.png",
+        "sha256": "5797d59c47d743dac98206945c8bff898061b42a7c232632af37b3c1b1c9c8c1"
+      },
+      "donor_prefill_rgb": null,
+      "downstream_layers": [],
+      "frame_id": "000072",
+      "sequence_index": 24,
+      "source_rgb": {
+        "path": "../round03_right_pillow/composite/frames/0024.png",
+        "sha256": "7849f2a3c93c97691d4d5d3e0525b4ff9e248cf6114352782e17f6a1842f5d92"
+      },
+      "structural_background": {
+        "depth": {
+          "path": "../../../inputs/structural/depth/0024.npy",
+          "sha256": "2b09ae45f4ee5e9d62fd30af941a29b71974188f51aeac077e71985656b907c4"
+        },
+        "receipt": {
+          "path": "../normalized_inputs/structural_receipts/000072.json",
+          "sha256": "04c9d193d1582564f135400242be6d80d20dad4fb41f0726b057e9adcc0d3c97"
+        },
+        "rgba": {
+          "path": "../../../inputs/structural/rgba/0024.png",
+          "sha256": "29d8584e0dfbbdc03616b40e987a2f76e54d8aa726226b2a3ff8d9b7498676a1"
+        },
+        "role": "structural_background"
+      }
+    }
+  ],
+  "kind": "video2world.layered_clean_plate_compositor_input",
+  "measured_donor_contract": {
+    "claims_original_observed_rgb_donor": false,
+    "generated_pixels": 0,
+    "measured_pixels": 0,
+    "propainter_pixels": 0,
+    "receipt": null,
+    "report": null,
+    "role": "no_measured_donor_evidence"
+  },
+  "newly_removed_object_id": "sam3_bed_01",
+  "previous_round": {
+    "receipt": {
+      "path": "../round03_right_pillow/composite/layered_composite_receipt.json",
+      "sha256": "e3f69d13a89542b0526717d3b86826324c220cddf085fd3755a5e0e3ef0d707f"
+    },
+    "report": {
+      "path": "../round03_right_pillow/composite/layered_composite_report.json",
+      "sha256": "f9f3e6981e4c29fb3188c78e559000d3f5ae3508738c00ac384c671ff81bf1b9"
+    },
+    "round_index": 3
+  },
+  "remaining_object_ids": [],
+  "removed_object_ids": [
+    "sam3_pillow_front",
+    "sam3_pillow_left",
+    "sam3_pillow_right",
+    "sam3_bed_01"
+  ],
+  "round_index": 4,
+  "round_kind": "final_background",
+  "schema_version": 1,
+  "source_contract": {
+    "propainter_rgb": false,
+    "role": "previous_layered_composite",
+    "untracked_generated_rgb": false
+  }
+}

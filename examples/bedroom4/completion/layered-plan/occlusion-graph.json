@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.occlusion_graph",
+  "scene_id": "bedroom_4",
+  "inventory_sha256": "5de064fc4d516b3c96433af7c68d29d2609ef59f2ee20bc78c727970117df8b0",
+  "minimum_confidence": 0.6,
+  "edges": [
+    {
+      "foreground_id": "sam3_pillow_front",
+      "background_id": "sam3_pillow_left",
+      "confidence": 0.61,
+      "evidence_frame_ids": ["000064"],
+      "evidence_uris": [
+        "repo://video2world/examples/bedroom4/completion/layered-plan/depth-adjacency-evidence.json"
+      ],
+      "ordering_source": "combined",
+      "verification_status": "geometry_verified"
+    },
+    {
+      "foreground_id": "sam3_pillow_front",
+      "background_id": "sam3_pillow_right",
+      "confidence": 0.9,
+      "evidence_frame_ids": ["000064"],
+      "evidence_uris": [
+        "repo://video2world/examples/bedroom4/completion/layered-plan/depth-adjacency-evidence.json"
+      ],
+      "ordering_source": "combined",
+      "verification_status": "geometry_verified"
+    }
+  ],
+  "unresolved_relations": [
+    "sam3_pillow_left->sam3_bed_01: SAM3 mask/support adjacency exists, but no synced content-addressed bed depth receipt verifies an occlusion edge.",
+    "sam3_pillow_right->sam3_bed_01: SAM3 mask/support adjacency exists, but no synced content-addressed bed depth receipt verifies an occlusion edge.",
+    "sam3_bed_01->room_background: final background sequencing is a pipeline terminal condition, not a geometry-verified object occlusion edge."
+  ]
+}

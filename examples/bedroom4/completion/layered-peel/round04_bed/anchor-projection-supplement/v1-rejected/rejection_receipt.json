@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.object_anchor_projection_rejection_receipt",
+  "status": "rejected",
+  "object_id": "sam3_bed_01",
+  "round_index": 4,
+  "reason": "depth-aware neighbor minimum polluted original projected pixels and made the supplement non-monotonic",
+  "failed_gates": {
+    "visible_raw_is_subset_of_final_mask": false,
+    "final_mask_is_monotonic_supplement": false
+  },
+  "representative_failure": {
+    "frame_id": "000048",
+    "visible_raw_pixels": 171717,
+    "depth_aware_splat_pixels": 123562,
+    "final_mask_pixels": 73465,
+    "removed_visible_evidence_pixels_at_least": 98252
+  },
+  "aggregate_final_mask_pixels": 1528225,
+  "original_run_receipt_sha256": "bd45c0a48089c3a45d764ac742b10d6f382799c206b49431e6c708547176d17f",
+  "contact_sheet_sha256": "a82079a2e7d66de82160f0164254e8314c38a54bb5ac0f84fe1043aeee8ac7bf",
+  "downstream_consumption_allowed": false,
+  "replaced_by": {
+    "version": "v2-authoritative",
+    "manifest_sha256": "fbfe05b23d0c7b0a38b06dc64acf51915ff09b8ae06a9b3ca8260d86329d261d",
+    "receipt_sha256": "34a17d36270d33087785af71c6a264358e89d805bf0343e21eb98e485f565460"
+  }
+}

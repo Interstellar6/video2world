@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.object_six_view_visual_review",
+  "created_at": "2026-07-17T10:30:00+08:00",
+  "object_id": "sam3_pillow_left",
+  "candidate_id": "trellis2_seed44",
+  "status": "accepted_with_warnings",
+  "promotion_allowed": true,
+  "promotion_scope": "object_asset_candidate_only",
+  "acceptance_policy": "usability_first_minor_artifacts",
+  "asset": {
+    "sha256": "c76e26f14cc68b17fd588984fdae289110d18dee6316f54214d39e0cdd3f4998",
+    "size_bytes": 3039668,
+    "faces": 98230,
+    "provider_receipt_sha256": "1b16a428cd43cfab8468de25230cd40dec22d7bcdb1132ea403f3e768c8c379d"
+  },
+  "canonical_review": {
+    "receipt_sha256": "965f8e517bdcc2ce9cdefe86cb9e4a07101e7a30083a06955ba9c47547ec5de4",
+    "contact_sheet_sha256": "56369fa78ffa0142231fd991097a6da73ffe0d60bae8f0f9a08987906c887983",
+    "views": [
+      "front",
+      "right",
+      "back",
+      "left",
+      "top",
+      "bottom"
+    ]
+  },
+  "gates": {
+    "overall_shape_usable": true,
+    "complete_six_side_surface": true,
+    "primary_color_basically_correct": true,
+    "disconnected_or_floating_parts_absent": true
+  },
+  "blocking_issues": [],
+  "warnings": [
+    {
+      "issue_type": "minor_backside_texture_hallucination",
+      "views": [
+        "back",
+        "bottom"
+      ],
+      "explanation": "The back has stretched texture bands and the underside is darker than the observed front. The volume remains closed and usable."
+    },
+    {
+      "issue_type": "minor_material_or_pattern_drift",
+      "views": [
+        "left",
+        "right"
+      ],
+      "explanation": "Side pattern continuity is approximate but the pale cream-green and brown appearance stays within the observed category."
+    }
+  ],
+  "scene_integration": "pending_scene_fit_and_interpenetration_review",
+  "decision": "Accept as the Round 2 left-pillow PBR asset candidate; scene placement remains a separate gate."
+}

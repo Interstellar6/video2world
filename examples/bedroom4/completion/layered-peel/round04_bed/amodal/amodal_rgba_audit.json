@@ -1,0 +1,513 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.amodal_rgba_retry_input",
+  "created_at": "2026-07-17T01:53:53.696958+00:00",
+  "object_id": "sam3_bed_01",
+  "category": "bed",
+  "attempt": 1,
+  "source": {
+    "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round04_bed/input/source_rgba.png",
+    "sha256": "33a4ba5189ff4e0dc5f97b8269e4e6ec4f1a3ad4d3f1fc274efdb1d6fc1d50b2",
+    "size_bytes": 287590,
+    "width": 1034,
+    "height": 576
+  },
+  "config": {
+    "object_id": "sam3_bed_01",
+    "category": "bed",
+    "attempt": 1,
+    "shape_policy": "auto",
+    "alpha_threshold": 127,
+    "corner_radius_ratio": 0.1,
+    "min_candidate_add_ratio": 0.24,
+    "min_occlusion_depth_ratio": 0.16,
+    "min_occlusion_depth_px": 8,
+    "min_component_area_ratio": 0.002,
+    "cavity_bridge_radius": 5,
+    "seed": 2026071704,
+    "provider": "video2world.amodal_rgba.soft_rectangle_nearest_v1",
+    "retry_prompt": "Retry image-to-3D reconstruction for exactly one bed (sam3_bed_01). The supplied RGBA is an auditable amodal front-view condition: its original visible pixels are unchanged and only category-safe occlusion regions were filled from nearby visible foreground texture. Do not reinterpret the category or merge adjacent objects. Preserve the dark brown carved wooden headboard and posts, white quilted mattress and comforter, pale green and off-white floral foot blanket, bed proportions, and perspective. The filled center is an occlusion cavity between visible headboard and bedding evidence. Generate a closed, connected, volumetric object with plausible front, back, left, right, top, and bottom surfaces. The rear must not be an open hole or a flat copy of the front. Keep thickness plausible for the category; avoid detached pieces, unexpected openings, severe color shifts, shape changes, and texture from the transparent background. Review all six orthographic views before accepting the result.",
+    "scene_reference_manifest": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round04_bed/input/scene_reference_manifest.json",
+    "scene_reference_manifest_sha256": "b6bba0ccb6ac15664779861b34108d096f2ecced865274f9b68d7510b46e16de"
+  },
+  "config_sha256": "575d1a2302b4caaf9575fa8e30751f3cfaec8fdd19470dfc295066b8a6cd9dc1",
+  "method_trace": {
+    "requested_shape_policy": "auto",
+    "resolved_shape_policy": "fill_enclosed_holes",
+    "policy_reason": "known_bed_like_enclosed_hole_profile",
+    "completion_applied": true,
+    "completion_reason": "narrow_mouth_occlusion_cavities_completed",
+    "minimum_component_area_pixels": 468,
+    "minimum_component_area_ratio": 0.002,
+    "cavity_bridge_radius_pixels": 5,
+    "cavity_bridge_kernel_shape": [
+      11,
+      11
+    ],
+    "bridge_is_topology_only": true,
+    "bridge_candidate_pixels": 436,
+    "bridge_candidate_bbox_xyxy": [
+      253,
+      115,
+      688,
+      345
+    ],
+    "exterior_bridge_candidate_pixels": 436,
+    "exterior_bridge_pixels_added_to_output": 0,
+    "background_component_count": 7,
+    "background_components": [
+      {
+        "stage": "original_mask",
+        "component_id": 1,
+        "area_pixels": 359249,
+        "area_to_original_ratio": 1.5336594903583032,
+        "bbox_xyxy": [
+          0,
+          0,
+          1033,
+          575
+        ],
+        "touches_crop_boundary": true,
+        "boundary_connectivity": "connected_to_crop_boundary",
+        "passes_minimum_area": true,
+        "accepted": false,
+        "disposition": "rejected_connected_to_crop_boundary"
+      },
+      {
+        "stage": "original_mask",
+        "component_id": 2,
+        "area_pixels": 2,
+        "area_to_original_ratio": 8.538142014916134e-06,
+        "bbox_xyxy": [
+          1032,
+          494,
+          1033,
+          494
+        ],
+        "touches_crop_boundary": true,
+        "boundary_connectivity": "connected_to_crop_boundary",
+        "passes_minimum_area": false,
+        "accepted": false,
+        "disposition": "rejected_connected_to_crop_boundary"
+      },
+      {
+        "stage": "original_mask",
+        "component_id": 3,
+        "area_pixels": 19,
+        "area_to_original_ratio": 8.111234914170328e-05,
+        "bbox_xyxy": [
+          1031,
+          518,
+          1033,
+          525
+        ],
+        "touches_crop_boundary": true,
+        "boundary_connectivity": "connected_to_crop_boundary",
+        "passes_minimum_area": false,
+        "accepted": false,
+        "disposition": "rejected_connected_to_crop_boundary"
+      },
+      {
+        "stage": "original_mask",
+        "component_id": 4,
+        "area_pixels": 28,
+        "area_to_original_ratio": 0.00011953398820882588,
+        "bbox_xyxy": [
+          1031,
+          527,
+          1033,
+          536
+        ],
+        "touches_crop_boundary": true,
+        "boundary_connectivity": "connected_to_crop_boundary",
+        "passes_minimum_area": false,
+        "accepted": false,
+        "disposition": "rejected_connected_to_crop_boundary"
+      },
+      {
+        "stage": "original_mask",
+        "component_id": 5,
+        "area_pixels": 10,
+        "area_to_original_ratio": 4.269071007458067e-05,
+        "bbox_xyxy": [
+          1032,
+          541,
+          1033,
+          545
+        ],
+        "touches_crop_boundary": true,
+        "boundary_connectivity": "connected_to_crop_boundary",
+        "passes_minimum_area": false,
+        "accepted": false,
+        "disposition": "rejected_connected_to_crop_boundary"
+      },
+      {
+        "stage": "original_mask",
+        "component_id": 6,
+        "area_pixels": 1971,
+        "area_to_original_ratio": 0.00841433895569985,
+        "bbox_xyxy": [
+          392,
+          568,
+          1033,
+          575
+        ],
+        "touches_crop_boundary": true,
+        "boundary_connectivity": "connected_to_crop_boundary",
+        "passes_minimum_area": true,
+        "accepted": false,
+        "disposition": "rejected_connected_to_crop_boundary"
+      },
+      {
+        "stage": "original_mask",
+        "component_id": 7,
+        "area_pixels": 62,
+        "area_to_original_ratio": 0.0002646824024624002,
+        "bbox_xyxy": [
+          359,
+          574,
+          390,
+          575
+        ],
+        "touches_crop_boundary": true,
+        "boundary_connectivity": "connected_to_crop_boundary",
+        "passes_minimum_area": false,
+        "accepted": false,
+        "disposition": "rejected_connected_to_crop_boundary"
+      }
+    ],
+    "post_bridge_background_component_count": 2,
+    "post_bridge_background_components": [
+      {
+        "stage": "bridge_closed_topology",
+        "component_id": 1,
+        "area_pixels": 310050,
+        "area_to_original_ratio": 1.3236254658623736,
+        "bbox_xyxy": [
+          0,
+          0,
+          1033,
+          575
+        ],
+        "touches_crop_boundary": true,
+        "boundary_connectivity": "connected_to_crop_boundary",
+        "passes_minimum_area": true,
+        "source_original_component_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "source_was_connected_to_crop_boundary": true,
+        "accepted": false,
+        "disposition": "rejected_connected_to_crop_boundary_after_bridge"
+      },
+      {
+        "stage": "bridge_closed_topology",
+        "component_id": 2,
+        "area_pixels": 53238,
+        "area_to_original_ratio": 0.22727680229505257,
+        "bbox_xyxy": [
+          281,
+          166,
+          666,
+          344
+        ],
+        "touches_crop_boundary": false,
+        "boundary_connectivity": "enclosed",
+        "passes_minimum_area": true,
+        "source_original_component_ids": [
+          1
+        ],
+        "source_was_connected_to_crop_boundary": true,
+        "accepted": true,
+        "disposition": "accepted_narrow_mouth_cavity"
+      }
+    ],
+    "accepted_enclosed_holes": [],
+    "accepted_bridged_cavities": [
+      {
+        "stage": "bridge_closed_topology",
+        "component_id": 2,
+        "area_pixels": 53238,
+        "area_to_original_ratio": 0.22727680229505257,
+        "bbox_xyxy": [
+          281,
+          166,
+          666,
+          344
+        ],
+        "touches_crop_boundary": false,
+        "boundary_connectivity": "enclosed",
+        "passes_minimum_area": true,
+        "source_original_component_ids": [
+          1
+        ],
+        "source_was_connected_to_crop_boundary": true,
+        "accepted": true,
+        "disposition": "accepted_narrow_mouth_cavity",
+        "added_pixels": 53238
+      }
+    ],
+    "native_hole_pixels": 0,
+    "bridged_cavity_pixels": 53238,
+    "accepted_hole_pixels": 53238
+  },
+  "shape_metrics": {
+    "original": {
+      "area_pixels": 234243,
+      "bbox_xyxy": [
+        111,
+        62,
+        1033,
+        575
+      ],
+      "bbox_width": 923,
+      "bbox_height": 514,
+      "bbox_aspect_ratio": 1.7957198443579767,
+      "bbox_fill_ratio": 0.4937439663422017,
+      "connected_components": 2,
+      "perimeter_pixels": 4429,
+      "compactness": 0.15006006318091075
+    },
+    "completed": {
+      "area_pixels": 287481,
+      "bbox_xyxy": [
+        111,
+        62,
+        1033,
+        575
+      ],
+      "bbox_width": 923,
+      "bbox_height": 514,
+      "bbox_aspect_ratio": 1.7957198443579767,
+      "bbox_fill_ratio": 0.6059605161649333,
+      "connected_components": 1,
+      "perimeter_pixels": 3537,
+      "compactness": 0.28876788451136726
+    },
+    "added_pixels": 53238,
+    "added_to_original_area_ratio": 0.22727680229505257,
+    "alpha_iou_original_to_completed": 0.8148121093220073,
+    "original_pixels_removed": 0
+  },
+  "color_metrics": {
+    "texture_provider": "nearest_visible_foreground",
+    "original_visible": {
+      "count": 234243,
+      "mean_rgb": [
+        137.28097744649787,
+        128.05247542082367,
+        119.87766123213927
+      ],
+      "median_rgb": [
+        152.0,
+        147.0,
+        137.0
+      ],
+      "std_rgb": [
+        45.66180354200532,
+        58.18024697377648,
+        65.3695503638202
+      ],
+      "min_rgb": [
+        16,
+        0,
+        0
+      ],
+      "max_rgb": [
+        255,
+        255,
+        255
+      ],
+      "mean_luminance": 129.42423336705897,
+      "p05_luminance": 22.005,
+      "p95_luminance": 194.66019999999997
+    },
+    "added_region": {
+      "count": 53238,
+      "mean_rgb": [
+        95.14916037416883,
+        80.22112025245126,
+        72.6332882527518
+      ],
+      "median_rgb": [
+        79.0,
+        59.0,
+        43.0
+      ],
+      "std_rgb": [
+        41.13156908486872,
+        53.32873097776399,
+        61.96454247963488
+      ],
+      "min_rgb": [
+        26,
+        8,
+        0
+      ],
+      "max_rgb": [
+        195,
+        200,
+        209
+      ],
+      "mean_luminance": 82.8469801119501,
+      "p05_luminance": 29.0102,
+      "p95_luminance": 181.15759999999997
+    },
+    "mean_rgb_delta_l2": 79.3407797117892,
+    "original_visible_pixels_byte_identical": true,
+    "added_pixels_source_only_original_foreground": true,
+    "transparent_rgb_nonzero_pixels": 0
+  },
+  "scene_reference_audit": {
+    "manifest_path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round04_bed/input/scene_reference_manifest.json",
+    "manifest_sha256": "b6bba0ccb6ac15664779861b34108d096f2ecced865274f9b68d7510b46e16de",
+    "frame_count": 2,
+    "frames": [
+      {
+        "frame_id": "000067",
+        "image_path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round04_bed/input/references/000067_a0db1febea.rgba.png",
+        "image_sha256": "d25825d76d3f5f754c48e3b07a60d5ee9ca3271af3f3172737248e5e778913d3",
+        "mask_path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round04_bed/input/references/000067_a0db1febea.mask.png",
+        "mask_sha256": "420315838de46c4d3803b941289ba3de8c4ea4104665913f10a4a9f301c1b940",
+        "bbox_xyxy": [
+          0,
+          0,
+          1099,
+          555
+        ],
+        "foreground_pixels": 205408,
+        "appearance": {
+          "median_rgb": [
+            131.0,
+            129.0,
+            125.0
+          ],
+          "median_luminance": 129.0,
+          "median_chroma": 13.0,
+          "white_like_fraction": 0.6024838370462688,
+          "median_rgb_chromaticity": [
+            0.34025974025974026,
+            0.33506493506493507,
+            0.3246753246753247
+          ]
+        },
+        "is_source_frame": false
+      },
+      {
+        "frame_id": "000071",
+        "image_path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round04_bed/input/references/000071_029345d035.rgba.png",
+        "image_sha256": "33a4ba5189ff4e0dc5f97b8269e4e6ec4f1a3ad4d3f1fc274efdb1d6fc1d50b2",
+        "mask_path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round04_bed/input/references/000071_029345d035.mask.png",
+        "mask_sha256": "f1f5702177a84da004f700271f2227212f1d1589808578aceab93a295b53a746",
+        "bbox_xyxy": [
+          0,
+          0,
+          1034,
+          576
+        ],
+        "foreground_pixels": 234243,
+        "appearance": {
+          "median_rgb": [
+            152.0,
+            147.0,
+            137.0
+          ],
+          "median_luminance": 147.2596,
+          "median_chroma": 17.0,
+          "white_like_fraction": 0.6458336001502712,
+          "median_rgb_chromaticity": [
+            0.3486238532110092,
+            0.33715596330275227,
+            0.31422018348623854
+          ]
+        },
+        "is_source_frame": true,
+        "source_alignment": {
+          "shape_matches": true,
+          "mask_iou": 1.0,
+          "mean_absolute_rgb_delta": 0.0
+        }
+      }
+    ],
+    "expected_appearance": {
+      "color_family": "any"
+    },
+    "expected_appearance_passing_frames": 2,
+    "maximum_pairwise_median_chromaticity_distance": 0.013551411802342185,
+    "identity_revalidated": true,
+    "identity_revalidated_by": "explicit_3d_anchor_calibrated_multiframe_association",
+    "gates": {
+      "at_least_two_scene_reference_frames": true,
+      "exactly_one_source_frame_reference": true,
+      "source_frame_shape_matches_rgba": true,
+      "source_frame_mask_matches_rgba": true,
+      "source_frame_rgb_matches_rgba": true,
+      "cross_frame_foreground_chromaticity_consistent": true,
+      "expected_appearance_contract_met": true,
+      "same_instance_identity_revalidated": true
+    },
+    "passed": true,
+    "scope_note": "These gates verify multi-frame mask/color consistency and require an explicit same-instance decision; they do not infer hidden geometry truth."
+  },
+  "acceptance_gates": {
+    "original_visible_pixels_preserved": true,
+    "no_original_alpha_removed": true,
+    "added_texture_comes_from_visible_foreground": true,
+    "transparent_background_rgb_is_zero": true,
+    "completed_alpha_is_nonempty": true,
+    "completed_alpha_single_component": true,
+    "scene_reference.at_least_two_scene_reference_frames": true,
+    "scene_reference.exactly_one_source_frame_reference": true,
+    "scene_reference.source_frame_shape_matches_rgba": true,
+    "scene_reference.source_frame_mask_matches_rgba": true,
+    "scene_reference.source_frame_rgb_matches_rgba": true,
+    "scene_reference.cross_frame_foreground_chromaticity_consistent": true,
+    "scene_reference.expected_appearance_contract_met": true,
+    "scene_reference.same_instance_identity_revalidated": true
+  },
+  "all_acceptance_gates_passed": true,
+  "artifacts": {
+    "source_rgba": {
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round04_bed/amodal/source_rgba.png",
+      "sha256": "33a4ba5189ff4e0dc5f97b8269e4e6ec4f1a3ad4d3f1fc274efdb1d6fc1d50b2",
+      "size_bytes": 287590
+    },
+    "original_alpha": {
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round04_bed/amodal/original_alpha.png",
+      "sha256": "f1f5702177a84da004f700271f2227212f1d1589808578aceab93a295b53a746",
+      "size_bytes": 4562
+    },
+    "completed_alpha": {
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round04_bed/amodal/completed_alpha.png",
+      "sha256": "5b6d0d978c509188b535db4cd86186a1707641a392504cd74e669500290e41e0",
+      "size_bytes": 4006
+    },
+    "added_region": {
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round04_bed/amodal/added_region.png",
+      "sha256": "07e78da1cdb2c5ca11bca6b06d9d2bcb6b25da64e85ea4d55d35a82aeb6b66ff",
+      "size_bytes": 1644
+    },
+    "completed_rgba": {
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round04_bed/amodal/completed_rgba.png",
+      "sha256": "170a188d7290fe8adf6180fe5390bbce01433c2791dae10d17445e37638cfe8e",
+      "size_bytes": 295943
+    },
+    "contact_sheet": {
+      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round04_bed/amodal/before_after_contact_sheet.png",
+      "sha256": "a9bfa3c304d60619c9ab2019e53db3a9873292ad3bf41fed04413ba9cda51693",
+      "size_bytes": 53138
+    }
+  },
+  "runtime": {
+    "python": "3.11.0",
+    "platform": "Linux-4.19.0-27-amd64-x86_64-with-glibc2.28",
+    "numpy": "1.26.4",
+    "pillow": "12.0.0",
+    "scipy": "1.16.3"
+  }
+}

@@ -1,0 +1,276 @@
+{
+  "accepted_limitations": [
+    "The generated front-pillow backside has a minor floral-pattern difference; accepted and non-blocking under the current user review policy.",
+    "Rear pillows restore observed visible RGB points only and do not claim completed hidden surfaces.",
+    "Static residual removal does not reconstruct the hidden bed or background; perimeter dark-loss is 12.5426% and support-band dark-loss is 9.8490%."
+  ],
+  "background_geometry": {
+    "statement": "The accepted 2D clean plate does not prove object-free multi-view imagery or completed occluded bed/scene geometry. No clean 3D background is claimed.",
+    "status": "not_proven"
+  },
+  "candidate_version": "bedroom4-candidate-unified-pillow-20260717-static-recarve-semantic-covariance",
+  "clean_plate": {
+    "scope": "accepted_for_current_demo_only",
+    "selectedCandidateSha256": "26a734c0296d98790ed4daaf5a5a7b45c64f25430ab95e6115e9a26eff41d7b0",
+    "selectedSeed": 2026071701,
+    "status": "accepted_for_current_demo"
+  },
+  "completion_claim": "front_pillow_current_demo_candidate_only",
+  "completion_layer": 1,
+  "created_at": "2026-07-17T06:13:53+08:00",
+  "deployment_manifest": {
+    "bytes": 192588,
+    "gitignored_local_publish_artifact": true,
+    "path": "repo://video2world/web/public/worlds/bedroom4/manifest.unified-pillow.json",
+    "sha256": "7e0a1dcd801225bf21bd5a77e82edcce2318e348523d69ca80b7d1e5b53dc96d"
+  },
+  "front_pillow_gate": {
+    "basis": [
+      "scene-fit technical gates",
+      "user current-demo acceptance"
+    ],
+    "faces": 97082,
+    "prior_recarve_browser_evidence": "passed",
+    "root_proxy_browser_qa": "pending_promoted_manifest_recheck",
+    "status": "passed_current_demo_only",
+    "surface_collision": "passed",
+    "topology": "surface_bvh",
+    "vertices": 60237,
+    "watertight": false
+  },
+  "inputs": {
+    "base_manifest_sha256": "3805f0e5bab09add424b3b78f9349cd2eca6d1262777ef683e13cda07695e82b",
+    "canonical_six_view_review_sha256": "c6e374bec1d4014dd5f61a788379b2ab739bbbf7ea4323db0a3fc58057f01664",
+    "clean_plate_visual_review_sha256": "88df19d716d4b4fa461fe76f863da41948e9cf7d88a504a11ef8401d81615d9a",
+    "front_visual_review_sha256": "da3637984c7dba2a43e3119f75d8f79e9ca8871d23f81f552df7a653245a7549",
+    "instance_split_report_sha256": "2d3386f690c71b88d1236756d865f4504095b3465244e688ac8ecfd2c1b931ac",
+    "scene_fit_report_sha256": "da26014b1ecc29eb1dfcf8d45b74d98bd539b69945e029a6512ea6a2ab8769cd",
+    "static_recarve_browser_review_sha256": "e97d5554d1508b66722e946ddf0206297295c7dae5c316c41346b873ca15df2c",
+    "static_recarve_report_sha256": "8d119fb87b329b9abd122335b8d1c7d0b75be0f9bd53fe64b0a28ff3be4dc36b"
+  },
+  "kind": "video2world.bedroom4_unified_pillow_candidate_report",
+  "materialized_assets": [
+    {
+      "bytes": 3979924,
+      "object_id": "sam3_pillow_front",
+      "output": "repo://video2world/web/public/worlds/bedroom4/objects/sam3_pillow_front.scene-fit.glb",
+      "sha256": "9d84ab4561d7c017c24c07a94abe5400073b0fafb97893a8a1eafca320c391d6",
+      "source": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/sam3_pillow_front.scene-fit.glb",
+      "storage": "hardlink",
+      "verified": true
+    },
+    {
+      "bytes": 1346659,
+      "object_id": "sam3_pillow_left",
+      "output": "repo://video2world/web/public/worlds/bedroom4/objects/sam3_pillow_left.ply",
+      "sha256": "b8c45454d887a77a99b17558c0fa0f0e49d81ab00099e346aeffc940eacdb400",
+      "source": "repo://video2world/examples/bedroom4/completion/bedroom4_frame64_three_pillows/objects/sam3_pillow_left/sam3_pillow_left.ply",
+      "storage": "hardlink",
+      "verified": true
+    },
+    {
+      "bytes": 737659,
+      "object_id": "sam3_pillow_right",
+      "output": "repo://video2world/web/public/worlds/bedroom4/objects/sam3_pillow_right.ply",
+      "sha256": "09537489887ad6ba3cbccf9cbaae99142eccbb4a65ab82b8829d4fe140bfc63f",
+      "source": "repo://video2world/examples/bedroom4/completion/bedroom4_frame64_three_pillows/objects/sam3_pillow_right/sam3_pillow_right.ply",
+      "storage": "hardlink",
+      "verified": true
+    },
+    {
+      "bytes": 203804211,
+      "chunk_count": 195,
+      "maximum_chunk_bytes": 1048576,
+      "object_id": "scene_static_visual_front_residual_recarve",
+      "output": "repo://video2world/web/public/worlds/bedroom4/chunks",
+      "sha256": "7f8a7d9a1fc07cee34754469d5fffe95d90640bfa9d5883b4432e83698e55c0d",
+      "source": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/static-recarve-report.json",
+      "storage": "verified_chunk_adoption",
+      "storage_modes": {
+        "reused_hardlink": 195
+      },
+      "verified": true,
+      "vertices": 821785
+    },
+    {
+      "bytes": 34998559,
+      "local_direct_audit_asset_retained": true,
+      "manifest_references_direct_audit_asset": false,
+      "maximum_publish_chunk_bytes": 1048576,
+      "object_id": "scene_static_collider_front_pillow_carve",
+      "output": "repo://video2world/web/public/worlds/bedroom4/colliders/collider_bedroom4_tsdf_static_carved_unified_pillow.ply",
+      "publish_chunk_count": 34,
+      "publish_transport": "verified_chunks",
+      "release_package_published_as_direct_asset": false,
+      "sha256": "0d746bab37d0b5e6fd0c625f56e0917d80c60d402a0812c66f161239cbd7f35e",
+      "source": "verified_web_bundle_chunks:collider_bedroom4_tsdf_static_carved",
+      "storage": "generated_verified_triangle_carve",
+      "verified": true
+    }
+  ],
+  "materializer": {
+    "path": "repo://video2world/scripts/materialize_bedroom4_unified_pillow.py",
+    "sha256": "97ebf501aca5343f40516ca3769b87f7851e2e6769e57098cf8500a4d04ca72e"
+  },
+  "next_rounds_pending": [
+    "generalized_multiview_amodal_object_completion",
+    "occluded_bed_and_background_geometry_reconstruction",
+    "additional_scene_object_completion_and_review"
+  ],
+  "output_manifest": {
+    "bytes": 192588,
+    "path": "repo://video2world/examples/bedroom4/manifests/bedroom4.unified-pillow.candidate.web.json",
+    "sha256": "7e0a1dcd801225bf21bd5a77e82edcce2318e348523d69ca80b7d1e5b53dc96d",
+    "validate_web_manifest": "required_and_covered_by_tests/web/bedroom4-unified-pillow.test.js"
+  },
+  "primitive_counts": {
+    "collidableObjects": 5,
+    "existingObjectColliderFaces": 67660,
+    "existingObjectGaussians": 480000,
+    "frontMeshVertices": 60237,
+    "frontSurfaceColliderFaces": 97082,
+    "rearRgbPoints": 138926,
+    "staticSceneGaussians": 821785,
+    "totalObjectColliderFaces": 164742,
+    "totalVisualPrimitives": 1500948
+  },
+  "promoted_manifest": {
+    "browser_qa": "pending_promoted_manifest_recheck",
+    "byte_identical_to_deployment_manifest": true,
+    "bytes": 192588,
+    "path": "repo://video2world/web/public/worlds/bedroom4/manifest.json",
+    "sha256": "7e0a1dcd801225bf21bd5a77e82edcce2318e348523d69ca80b7d1e5b53dc96d"
+  },
+  "promotion_blockers": [
+    "promoted_manifest_root_proxy_browser_qa_pending"
+  ],
+  "promotion_scope": "current_demo_only",
+  "quality_policy": {
+    "accepted": "overall shape is credible, main color is close, and interpenetration is not obvious",
+    "blockingConditions": [
+      "obvious deformation",
+      "wrong main color",
+      "missing surface",
+      "significant scene interpenetration"
+    ],
+    "minorAcceptedLimitations": [
+      "minor texture or backside hallucination",
+      "minor backside floral-pattern difference on the front pillow"
+    ]
+  },
+  "scene_collider_carve": {
+    "additionalRemovedFaceCount": 16485,
+    "baselineFaceCount": 1265671,
+    "boundsEvidence": {
+      "completedWorldAabb": {
+        "max": [
+          0.4289947900649813,
+          1.1346495540655943,
+          15.761865082748717
+        ],
+        "min": [
+          -2.5142857068948183,
+          -1.472561065044762,
+          13.865914034685625
+        ]
+      },
+      "expandedAabb": {
+        "max": [
+          0.6542440223693847,
+          1.2146495540655944,
+          15.957863883972168
+        ],
+        "min": [
+          -2.5942857068948184,
+          -1.552561065044762,
+          13.108576698303223
+        ]
+      },
+      "margin": 0.08,
+      "sourceSplitAabb": {
+        "max": [
+          0.5742440223693848,
+          1.1270780563354492,
+          15.877863883972168
+        ],
+        "min": [
+          -2.463304042816162,
+          -1.4221960306167603,
+          13.188576698303223
+        ]
+      },
+      "unionAabb": {
+        "max": [
+          0.5742440223693848,
+          1.1346495540655943,
+          15.877863883972168
+        ],
+        "min": [
+          -2.5142857068948183,
+          -1.472561065044762,
+          13.188576698303223
+        ]
+      }
+    },
+    "chunkCount": 34,
+    "chunkSize": 1048576,
+    "directOversizedAssetPublished": false,
+    "faceIndicesValid": true,
+    "finite": true,
+    "inputFaceCount": 1265671,
+    "maximumChunkBytes": 1048576,
+    "outputBytes": 34998559,
+    "outputFaceCount": 1249186,
+    "outputSha256": "0d746bab37d0b5e6fd0c625f56e0917d80c60d402a0812c66f161239cbd7f35e",
+    "protectedSupportFaceCount": 2797,
+    "removedFaceCount": 16485,
+    "retainedIntersectingFaces": 2797,
+    "retainedUnprotectedIntersectingFaces": 0,
+    "status": "passed",
+    "supportProtection": {
+      "classification": "down_side_near_world_up_support_surface",
+      "inwardBand": 0.1,
+      "minimumNormalAlignment": 0.75,
+      "objectDownSideCoordinate": 1.1346495540655943,
+      "outwardBand": 0.1,
+      "worldUp": [
+        0.0,
+        -1.0,
+        0.0
+      ]
+    },
+    "transportMode": "verified_chunks",
+    "vertexCount": 694773
+  },
+  "schema_version": "1.0",
+  "stable_manifest": {
+    "byte_identical_to_base_manifest": true,
+    "bytes": 157533,
+    "fixed_expected_sha256": "3805f0e5bab09add424b3b78f9349cd2eca6d1262777ef683e13cda07695e82b",
+    "path": "repo://video2world/web/public/worlds/bedroom4/manifest.web-demo-baseline-stable.json",
+    "sha256": "3805f0e5bab09add424b3b78f9349cd2eca6d1262777ef683e13cda07695e82b"
+  },
+  "static_visual_residual_carve": {
+    "backgroundAndBedCompletion": "not_proven",
+    "browserReview": {
+      "path": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/static-recarve-browser-comparison.json",
+      "sha256": "e97d5554d1508b66722e946ddf0206297295c7dae5c316c41346b873ca15df2c",
+      "status": "candidate_passed"
+    },
+    "chunkCount": 195,
+    "chunkSize": 1048576,
+    "inputStaticGaussianCount": 823391,
+    "mode": "semantic-covariance",
+    "outputBytes": 203804211,
+    "outputSha256": "7f8a7d9a1fc07cee34754469d5fffe95d90640bfa9d5883b4432e83698e55c0d",
+    "promotionScope": "current_demo_only",
+    "recarveReport": {
+      "path": "repo://video2world/examples/bedroom4/completion/trellis2_pillow_front_seed42/composition-review/static-recarve-report.json",
+      "sha256": "8d119fb87b329b9abd122335b8d1c7d0b75be0f9bd53fe64b0a28ff3be4dc36b"
+    },
+    "removedStaticGaussianCount": 1606,
+    "retainedStaticGaussianCount": 821785,
+    "status": "passed_current_demo_only"
+  },
+  "status": "materialized_pending_promoted_manifest_browser_qa"
+}

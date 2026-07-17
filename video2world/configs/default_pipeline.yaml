@@ -18,6 +18,14 @@ stages:
     outputs:
       frames_manifest: "{run_dir}/artifacts/ingest/frames.json"
       cameras: "{run_dir}/artifacts/ingest/cameras.json"
+  inventory:
+    adapter: scene_inventory
+    needs: [ingest]
+    command: null
+    cwd: "{run_dir}"
+    outputs:
+      scene_inventory: "{run_dir}/artifacts/inventory/scene-inventory.json"
+      occlusion_graph: "{run_dir}/artifacts/inventory/occlusion-graph.json"
   da3:
     adapter: holi_da3
     needs: [ingest]
@@ -36,7 +44,7 @@ stages:
       scene_mesh: "{run_dir}/artifacts/pgsr/tsdf_scene.ply"
   sam3:
     adapter: holi_sam3
-    needs: [ingest]
+    needs: [ingest, inventory]
     command: null
     cwd: "{run_dir}"
     outputs:
@@ -57,16 +65,27 @@ stages:
     cwd: "{run_dir}"
     outputs:
       object_facts: "{run_dir}/artifacts/cognition/object_facts.json"
-  trellis:
-    adapter: embodiedgen_trellis
-    needs: [ingest, sam3, fusion, cognition]
+  completion_plan:
+    adapter: layered_completion_plan
+    needs: [inventory, sam3, fusion, cognition]
     command: null
     cwd: "{run_dir}"
     outputs:
-      object_assets_manifest: "{run_dir}/artifacts/trellis/object_assets.json"
+      layered_completion_plan: "{run_dir}/artifacts/completion/plan.json"
+  layered_completion:
+    adapter: layered_completion
+    needs: [completion_plan, pgsr, sam3, fusion, cognition]
+    command: null
+    cwd: "{run_dir}"
+    outputs:
+      completed_object_assets_manifest: "{run_dir}/artifacts/completion/object-assets.json"
+      clean_scene_gaussian: "{run_dir}/artifacts/completion/clean-scene-gaussian.ply"
+      clean_scene_mesh: "{run_dir}/artifacts/completion/clean-scene-mesh.ply"
+      clean_plate_manifest: "{run_dir}/artifacts/completion/clean-plates.json"
+      layered_completion_report: "{run_dir}/artifacts/completion/report.json"
   placement:
     adapter: object_placement
-    needs: [pgsr, fusion, trellis]
+    needs: [fusion, layered_completion]
     command: null
     cwd: "{run_dir}"
     outputs:
@@ -74,7 +93,7 @@ stages:
       collision_manifest: "{run_dir}/artifacts/placement/colliders.json"
   bundle:
     adapter: world_bundle
-    needs: [pgsr, fusion, cognition, placement]
+    needs: [fusion, cognition, layered_completion, placement]
     command: null
     cwd: "{run_dir}"
     outputs:

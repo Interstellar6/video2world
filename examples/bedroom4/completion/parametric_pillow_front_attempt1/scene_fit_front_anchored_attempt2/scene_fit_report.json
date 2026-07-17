@@ -1,0 +1,221 @@
+{
+  "acceptance_gates": {
+    "finite_linear_transform": true,
+    "front_surface_anchor_alignment": true,
+    "gaussian_finite": true,
+    "gaussian_nonempty": true,
+    "mesh_watertight": true,
+    "mesh_winding_consistent": true,
+    "positive_transform_determinant": true,
+    "target_obb_extent_fit": true
+  },
+  "all_acceptance_gates_passed": true,
+  "baked_relative_transform": {
+    "linear_row_major": [
+      [
+        3.0756812105423132,
+        1.0425543408678497,
+        -1.0697254123826976
+      ],
+      [
+        -0.6830416577673537,
+        2.8464921517504647,
+        1.1202693266218853
+      ],
+      [
+        1.5711990666728797,
+        -0.8033941120498254,
+        2.5810383008273075
+      ]
+    ],
+    "runtime_pivot": [
+      -0.9486739472003689,
+      -0.10531408309315968,
+      14.846275700709047
+    ],
+    "runtime_rotation_euler_deg": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "runtime_scale": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "scale_before_rotation": [
+      3.520657228734763,
+      3.136061099997211,
+      3.0101618781063433
+    ]
+  },
+  "completed_obb": {
+    "axes_columns": [
+      [
+        0.8736099570953225,
+        0.33244069794073106,
+        -0.35537139054317207
+      ],
+      [
+        -0.1940097014252143,
+        0.9076647619375133,
+        0.3721624856024797
+      ],
+      [
+        0.44628004505781715,
+        -0.25617935570532724,
+        0.8574416942822383
+      ]
+    ],
+    "center": [
+      -0.9486739472003689,
+      -0.10531408309315968,
+      14.846275700709047
+    ],
+    "extents": [
+      3.7627024971492875,
+      3.136061099997211,
+      0.9030485993158289
+    ]
+  },
+  "created_at": "2026-07-16T20:22:45.491658+00:00",
+  "fit": {
+    "aabb_center_relative_to_pivot": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "aabb_extents": [
+      4.107447772774992,
+      3.4627903753806777,
+      2.721183180971044
+    ],
+    "projected_fitted_extents": [
+      3.762702516642733,
+      3.1360610288980517,
+      0.9030485895235689
+    ],
+    "relative_extent_error": [
+      5.180703374556163e-09,
+      2.2671484126654812e-08,
+      1.0843558154322914e-08
+    ],
+    "source_extents": [
+      1.068750023841858,
+      1.0,
+      0.30000001192092896
+    ]
+  },
+  "gaussian": {
+    "bounds": [
+      [
+        -2.053001880645752,
+        -1.7312531471252441,
+        -1.3603515625
+      ],
+      [
+        2.053492307662964,
+        1.731230616569519,
+        1.3604183197021484
+      ]
+    ],
+    "bytes": 19841530,
+    "sha256": "7209c933ec9201a809699b741cb5111c8b866590f37e9f655205adf71989dfba",
+    "vertex_count": 80000
+  },
+  "kind": "video2world.object_scene_fit",
+  "mesh": {
+    "bounds": [
+      [
+        -2.053723886387496,
+        -1.7313951876903388,
+        -1.360591590485522
+      ],
+      [
+        2.053723886387496,
+        1.7313951876903388,
+        1.360591590485522
+      ]
+    ],
+    "extents": [
+      4.107447772774992,
+      3.4627903753806777,
+      2.721183180971044
+    ],
+    "faces": 20448,
+    "glb_bytes": 410044,
+    "glb_sha256": "8ca1b1a99ed14744910b77d3ed6c57d510aa28ebf2146c6c0bc1a54244c9e0b3",
+    "obj_bytes": 1053478,
+    "obj_sha256": "a71d9b958fbe3bbd83cd5599891d9f912e539cd1a063317cf904f9bdfa4455b9",
+    "vertices": 10226,
+    "watertight": true,
+    "winding_consistent": true
+  },
+  "object_id": "sam3_pillow_front",
+  "placement_evidence": {
+    "completion_direction_sign": 1.0,
+    "front_surface_anchor_error": 0.0,
+    "max_thickness_ratio": 0.24,
+    "mode": "observed_front_surface",
+    "observed_thickness": 1.4420788444486754,
+    "thickness_axis": 2,
+    "thickness_reference": 3.7627024971492875,
+    "view_direction": [
+      -0.14424341860185597,
+      0.012424991484787769,
+      0.9894642266280538
+    ]
+  },
+  "promotion_blockers": [
+    "scene_visual_overlay_review",
+    "scene_interpenetration_gate",
+    "support_contact_review",
+    "accepted_clean_plate_or_static_scene_carve"
+  ],
+  "promotion_status": "held_pending_scene_browser_review",
+  "schema_version": 1,
+  "sources": {
+    "gaussian": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/sam3_pillow_front_gaussian.ply",
+      "sha256": "edb09d79acf4e10d8ebae62679fe1dd438fa513402a7d01eade696f35de10415"
+    },
+    "instance_report": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/bedroom4_frame64_three_pillows/instance_cloud_split_report.json",
+      "sha256": "2d3386f690c71b88d1236756d865f4504095b3465244e688ac8ecfd2c1b931ac"
+    },
+    "mesh": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/sam3_pillow_front.glb",
+      "sha256": "44254d30107af4d88046cffac9f2ea26516c27b17f451c38cb8aa4371b286f8e"
+    }
+  },
+  "status": "technical_gates_passed",
+  "target_obb": {
+    "axes_columns": [
+      [
+        0.8736099570953225,
+        0.33244069794073106,
+        -0.35537139054317207
+      ],
+      [
+        -0.1940097014252143,
+        0.9076647619375133,
+        0.3721624856024797
+      ],
+      [
+        0.44628004505781715,
+        -0.25617935570532724,
+        0.8574416942822383
+      ]
+    ],
+    "center": [
+      -0.7882151289669039,
+      -0.273354488763768,
+      14.459119940200763
+    ],
+    "extents": [
+      3.7627024971492875,
+      3.136061099997211,
+      1.4420788444486754
+    ]
+  }
+}

@@ -24,8 +24,19 @@ examples/bedroom4/world.manifest.local.json
 examples/bedroom4/world.materialization.local.json
 examples/**/cognition/outputs.failed.*/
 examples/bedroom4/evidence/pillow_delta_20260716/raw/
+rollback/
 **/.video2world/
 *.log
+
+# Per-frame experiment media is retained locally; curated documentation copies remain tracked.
+examples/bedroom4/completion/**/*.png
+examples/bedroom4/completion/**/*.jpg
+examples/bedroom4/completion/**/*.jpeg
+examples/bedroom4/completion/**/*.exr
+examples/bedroom4/completion/**/*.mp4
+examples/bedroom4/completion/**/*.webm
+examples/bedroom4/scene-audit/evidence/
+examples/bedroom4/scene-command-qa/*.png
 
 # Generated 3D assets stay local or remote and are materialized from manifests.
 *.blend
@@ -58,3 +69,10 @@ downloads/
 
 # Tiny committed browser fixture used by fresh-clone smoke and E2E tests.
 !web/public/test-fixtures/tiny-points.ply
+
+# Curated Bedroom 4 evidence needed to reproduce the accepted unified-PBR candidate.
+!examples/bedroom4/completion/trellis2_pillow_front_seed42/pbr/asset_pbr.glb
+!examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/sam3_pillow_front.scene-fit.glb
+!examples/bedroom4/completion/bedroom4_frame64_three_pillows/objects/sam3_pillow_front/sam3_pillow_front.ply
+!examples/bedroom4/completion/bedroom4_frame64_three_pillows/objects/sam3_pillow_left/sam3_pillow_left.ply
+!examples/bedroom4/completion/bedroom4_frame64_three_pillows/objects/sam3_pillow_right/sam3_pillow_right.ply

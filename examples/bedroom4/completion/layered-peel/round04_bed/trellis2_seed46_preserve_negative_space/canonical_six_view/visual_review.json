@@ -1,0 +1,123 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.object_six_view_visual_review",
+  "created_at": "2026-07-17T10:48:50+08:00",
+  "object_id": "sam3_bed_01_seed46",
+  "status": "rejected",
+  "promotion_allowed": false,
+  "promotion_scope": "none",
+  "acceptance_policy": "usability_first_minor_artifacts",
+  "decision_summary_zh": "床头和床垫主体可辨认，木质深棕与床品浅色也基本正确；但输入中的黑色枕头负空间被重建成了大块深蓝实体，并在床头附近与床垫融合。该错误会与后续独立枕头重叠，不能作为统一视觉和碰撞主体。",
+  "candidate_comparison": {
+    "rank_among_seed46_seed47": 2,
+    "preferred_among_compared_candidates": false,
+    "preferred_candidate": "../../trellis2_seed47_preserve_negative_space_ref67/asset_pbr.glb",
+    "reason": "Seed46 has the larger, more asymmetric dark solid mound and a less continuous mattress silhouette than seed47."
+  },
+  "asset": {
+    "sha256": "528aa75599948383c526216d59cb0524cb7979868a6246cb16e22bfd9b854595",
+    "size_bytes": 3292520,
+    "vertices": 62010,
+    "faces": 95412,
+    "material_profile": "pbr_single_material_pending_semantic_tuning",
+    "collision_topology": "surface_bvh",
+    "watertight": false,
+    "winding_consistent": true
+  },
+  "source_input": {
+    "semantic_role": "frame71_observed_sam3_rgba_with_negative_space",
+    "sha256": "33a4ba5189ff4e0dc5f97b8269e4e6ec4f1a3ad4d3f1fc274efdb1d6fc1d50b2",
+    "processed_input": "../processed_input.png",
+    "processed_input_sha256": "39f0a8953ad02d601fbf76079746b0e88cf749613b9ce181fb55f0c2c0c69c9a"
+  },
+  "technical_receipt": {
+    "path": "../trellis2_asset_receipt.json",
+    "sha256": "27aace02bcdd7bb69902453b9177584d5ad77b4cb6a627b5618eb8af7fa07ef9",
+    "status": "technical_passed_visual_pending",
+    "provider": "official_microsoft_trellis2_mesh_first",
+    "seed": 46
+  },
+  "canonical_review": {
+    "receipt": "object_six_view_review.json",
+    "receipt_sha256": "12cadea3b0bff2bee9f873cc9c98e22ae2a59e99bdbd48ac1914d33338ac21a4",
+    "contact_sheet": "object_six_view_contact_sheet.png",
+    "contact_sheet_sha256": "7cc4aea7add5e1067f0b20ea9d13879196ca94086532761dca52347ca01db54d",
+    "views": [
+      "front",
+      "right",
+      "back",
+      "left",
+      "top",
+      "bottom"
+    ],
+    "horizontal_orbit_accepted_as_six_view": false,
+    "browser_console_errors": [],
+    "browser_console_warnings": []
+  },
+  "gates": {
+    "all_required_views_rendered": true,
+    "bed_category_recognizable": true,
+    "primary_bed_colors_basically_correct": true,
+    "negative_space_preserved_as_empty": false,
+    "extra_foreground_mass_absent": false,
+    "overall_shape_usable": false,
+    "significant_scene_interpenetration_absent": false,
+    "usable_as_unified_visual_and_collision_subject": false
+  },
+  "blocking_issues": [
+    {
+      "issue_type": "shape_mismatch",
+      "views": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "top",
+        "bottom"
+      ],
+      "explanation": "The removed-pillow cavity is reconstructed as a large asymmetric solid mound at the head of the bed. The top and side views prove that the region is positive geometry rather than preserved empty space or a completed mattress surface."
+    },
+    {
+      "issue_type": "primary_color_category_error",
+      "views": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "top",
+        "bottom"
+      ],
+      "explanation": "A black alpha hole in the observed RGBA has become a saturated dark-blue material region. This color has no valid bed-surface evidence and would remain visible after independent white pillows are inserted."
+    },
+    {
+      "issue_type": "significant_scene_interpenetration",
+      "views": [
+        "front",
+        "right",
+        "back",
+        "left",
+        "top"
+      ],
+      "explanation": "The generated blue mass is fused into the mattress and headboard region. Reintroducing the separately modeled pillows would cause obvious visual and collision overlap."
+    }
+  ],
+  "warnings": [
+    {
+      "issue_type": "minor_material_or_pattern_drift",
+      "views": [
+        "top",
+        "bottom"
+      ],
+      "explanation": "The light bedspread is smoothed and smeared in places. This alone would be acceptable, but it is secondary to the blocking solid-mass error."
+    }
+  ],
+  "positive_evidence": [
+    "The wooden headboard and long mattress silhouette are recognizable.",
+    "The intended dark-brown headboard and light bedding categories are largely retained outside the occlusion region.",
+    "All six canonical object-local views rendered without browser console errors."
+  ],
+  "scene_review": {
+    "status": "not_run_candidate_rejected_before_scene_fit",
+    "reason": "Canonical geometry review failed before Bedroom4 adoption."
+  }
+}

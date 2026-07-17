@@ -27,6 +27,15 @@ Matrix4 = tuple[
     float,
     float,
 ]
+CollisionTopology = Literal["surface_bvh", "closed_volume"]
+UNIFIED_PBR_GLB_MEDIA_TYPE = "model/gltf-binary"
+_VOLUME_CLAIM_PROVENANCE_KEYS = (
+    "closed_volume_claim",
+    "inside_outside_queries_allowed",
+    "is_volume",
+    "volume_claim",
+    "volume_physics",
+)
 
 
 class StrictModel(BaseModel):
@@ -55,6 +64,31 @@ class AssetRef(StrictModel):
     role: str = Field(min_length=1)
     status: Literal["candidate", "validated", "rejected"] = "candidate"
     provenance: dict[str, Any] = Field(default_factory=dict)
+
+
+def validate_unified_pbr_glb_asset(
+    asset: AssetRef,
+    topology: CollisionTopology | None,
+) -> None:
+    """Validate the shared visual, logical, and collision asset contract."""
+
+    if asset.role != "unified_pbr_glb":
+        raise ValueError("unified PBR GLB asset role must be 'unified_pbr_glb'")
+    if asset.status != "validated":
+        raise ValueError("unified PBR GLB asset must be validated")
+    if asset.media_type != UNIFIED_PBR_GLB_MEDIA_TYPE:
+        raise ValueError(f"unified PBR GLB media_type must be {UNIFIED_PBR_GLB_MEDIA_TYPE!r}")
+    if topology == "closed_volume" and asset.provenance.get("watertight") is not True:
+        raise ValueError("closed_volume requires explicit watertight=true provenance")
+    if topology == "surface_bvh":
+        volume_claims = [
+            key for key in _VOLUME_CLAIM_PROVENANCE_KEYS if asset.provenance.get(key) is True
+        ]
+        if volume_claims:
+            raise ValueError(
+                "surface_bvh cannot claim volume or inside/outside semantics: "
+                + ", ".join(volume_claims)
+            )
 
 
 class CoordinateSystem(StrictModel):
@@ -227,6 +261,14 @@ class WorldObject(StrictModel):
     name: LocalizedText
     category: str = Field(min_length=1)
     aliases: list[str] = Field(default_factory=list)
+    semantic_granularity: Literal[
+        "independent_root_asset",
+        "independent_child_asset",
+        "merged_component",
+    ] = "independent_root_asset"
+    parent_object_id: str | None = Field(default=None, pattern=r"^[A-Za-z0-9_.-]+$")
+    moves_with_parent: bool = False
+    independently_movable: bool = True
     description: DescriptionEvidence = Field(default_factory=DescriptionEvidence)
     evidence: ObjectEvidence = Field(default_factory=ObjectEvidence)
     bbox_scene: Bounds3D | None = None
@@ -234,6 +276,8 @@ class WorldObject(StrictModel):
     visual: AssetRef | None = None
     render_mesh: AssetRef | None = None
     collider: AssetRef | None = None
+    unified_pbr_glb: AssetRef | None = None
+    collision_topology: CollisionTopology | None = None
     transform_scene_from_asset: SceneTransform | None = None
     relations: list[Relation] = Field(default_factory=list)
     quality_gates: QualityGates = Field(default_factory=QualityGates)
@@ -241,6 +285,42 @@ class WorldObject(StrictModel):
 
     @model_validator(mode="after")
     def interactive_contract(self) -> WorldObject:
+        is_child = self.semantic_granularity == "independent_child_asset"
+        if is_child != (self.parent_object_id is not None):
+            raise ValueError(
+                "independent_child_asset and parent_object_id must be declared together"
+            )
+        if self.moves_with_parent != is_child:
+            raise ValueError("moves_with_parent must be true exactly for child assets")
+        if self.semantic_granularity == "merged_component" and self.independently_movable:
+            raise ValueError("merged components cannot be independently movable")
+        if self.parent_object_id == self.id:
+            raise ValueError("an object cannot be its own parent")
+        if self.unified_pbr_glb is not None:
+            separate_assets = [
+                name
+                for name in ("visual", "render_mesh", "collider")
+                if getattr(self, name) is not None
+            ]
+            if separate_assets:
+                raise ValueError(
+                    "unified PBR GLB cannot be mixed with separate object assets: "
+                    + ", ".join(separate_assets)
+                )
+            validate_unified_pbr_glb_asset(self.unified_pbr_glb, self.collision_topology)
+            if self.interaction.collision_enabled and self.collision_topology is None:
+                raise ValueError("collision-enabled unified PBR GLB requires collision_topology")
+            if not self.interaction.collision_enabled and self.collision_topology is not None:
+                raise ValueError(
+                    "visual-only interaction cannot declare unified PBR GLB collision_topology"
+                )
+            if (
+                not self.interaction.collision_enabled
+                and self.quality_gates.collision.status == "passed"
+            ):
+                raise ValueError("visual-only interaction must not pass the collision gate")
+        elif self.collision_topology is not None:
+            raise ValueError("collision_topology requires unified_pbr_glb")
         enabled = (
             self.interaction.selectable
             or self.interaction.double_click_action != "none"
@@ -252,27 +332,35 @@ class WorldObject(StrictModel):
             return self
         missing = [
             field
-            for field in ("bbox_scene", "visual", "transform_scene_from_asset")
+            for field in ("bbox_scene", "transform_scene_from_asset")
             if getattr(self, field) is None
         ]
+        visual_assets = [
+            asset
+            for asset in (self.visual, self.render_mesh, self.unified_pbr_glb)
+            if asset is not None
+        ]
+        if not visual_assets:
+            missing.append("visual, render_mesh, or unified_pbr_glb")
         if missing:
             raise ValueError(f"interactive object is missing: {', '.join(missing)}")
         if not self.quality_gates.visual_interaction_ready():
             raise ValueError(
                 "interactive visual objects require passed file/semantic/alignment/visual gates"
             )
-        assert self.visual is not None
-        if self.visual.status != "validated":
-            raise ValueError("interactive visual asset must be validated")
+        if any(asset.status != "validated" for asset in visual_assets):
+            raise ValueError("every interactive visual representation must be validated")
         if self.interaction.collision_enabled:
-            if self.collider is None:
+            if self.unified_pbr_glb is None and self.collider is None:
                 raise ValueError("collision-enabled interactive object is missing: collider")
             if self.quality_gates.collision.status != "passed":
                 raise ValueError(
                     "collision-enabled interactive object requires a passed collision gate"
                 )
-            if self.collider.status != "validated":
-                raise ValueError("interactive collider asset must be validated")
+            if self.unified_pbr_glb is None:
+                assert self.collider is not None
+                if self.collider.status != "validated":
+                    raise ValueError("interactive collider asset must be validated")
         else:
             if self.collider is not None:
                 raise ValueError("visual-only interactive object must not declare a collider")
@@ -311,6 +399,11 @@ class WorldManifest(StrictModel):
         if self.created_at.tzinfo is None or self.created_at.utcoffset() is None:
             raise ValueError("created_at must include an explicit timezone")
         scoped_ids: set[str] = set()
+        object_ids = [item.id for item in self.objects]
+        if len(object_ids) != len(set(object_ids)):
+            raise ValueError("world object ids must be unique")
+        objects_by_id = {item.id: item for item in self.objects}
+        known_object_ids = set(objects_by_id)
         scene_frame = self.scene.coordinate_system.frame_id
         if self.scene.bounds and self.scene.bounds.frame_id != scene_frame:
             raise ValueError("scene bounds are not in the scene frame")
@@ -321,6 +414,17 @@ class WorldManifest(StrictModel):
             if item.scoped_id in scoped_ids:
                 raise ValueError(f"duplicate scoped object identity: {item.scoped_id}")
             scoped_ids.add(item.scoped_id)
+            if item.parent_object_id and item.parent_object_id not in known_object_ids:
+                raise ValueError(
+                    f"object {item.scoped_id} has unknown parent {item.parent_object_id!r}"
+                )
+            if (
+                item.parent_object_id
+                and objects_by_id[item.parent_object_id].semantic_granularity == "merged_component"
+            ):
+                raise ValueError(
+                    f"merged component {item.parent_object_id!r} cannot own child assets"
+                )
             if item.bbox_scene and item.bbox_scene.frame_id != scene_frame:
                 raise ValueError(f"object {item.scoped_id} bbox is not in the scene frame")
             if item.obb_scene and item.obb_scene.frame_id != scene_frame:
@@ -332,6 +436,20 @@ class WorldManifest(StrictModel):
                 raise ValueError(
                     f"object {item.scoped_id} transform does not target the scene frame"
                 )
+
+        parents = {
+            item.id: item.parent_object_id
+            for item in self.objects
+            if item.parent_object_id is not None
+        }
+        for item_id in parents:
+            seen: set[str] = set()
+            cursor: str | None = item_id
+            while cursor is not None:
+                if cursor in seen:
+                    raise ValueError("world interaction hierarchy contains a cycle")
+                seen.add(cursor)
+                cursor = parents.get(cursor)
 
         if self.manifest_status == "validated":
             scene_assets = (self.scene.visual, self.scene.collider, self.scene.semantic_visual)
@@ -348,7 +466,7 @@ class WorldManifest(StrictModel):
         yield "scene.semantic_visual", self.scene.semantic_visual
         for item in self.objects:
             prefix = f"objects[{item.scoped_id}]"
-            for name in ("visual", "render_mesh", "collider"):
+            for name in ("visual", "render_mesh", "collider", "unified_pbr_glb"):
                 asset = getattr(item, name)
                 if asset:
                     yield f"{prefix}.{name}", asset

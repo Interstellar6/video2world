@@ -967,6 +967,22 @@
           ],
           "default": null
         },
+        "collision_topology": {
+          "anyOf": [
+            {
+              "enum": [
+                "surface_bvh",
+                "closed_volume"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Collision Topology"
+        },
         "description": {
           "$ref": "#/$defs/DescriptionEvidence"
         },
@@ -979,8 +995,18 @@
           "title": "Id",
           "type": "string"
         },
+        "independently_movable": {
+          "default": true,
+          "title": "Independently Movable",
+          "type": "boolean"
+        },
         "interaction": {
           "$ref": "#/$defs/InteractionPolicy"
+        },
+        "moves_with_parent": {
+          "default": false,
+          "title": "Moves With Parent",
+          "type": "boolean"
         },
         "name": {
           "$ref": "#/$defs/LocalizedText"
@@ -995,6 +1021,19 @@
             }
           ],
           "default": null
+        },
+        "parent_object_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Object Id"
         },
         "quality_gates": {
           "$ref": "#/$defs/QualityGates"
@@ -1022,6 +1061,16 @@
           "title": "Scoped Id",
           "type": "string"
         },
+        "semantic_granularity": {
+          "default": "independent_root_asset",
+          "enum": [
+            "independent_root_asset",
+            "independent_child_asset",
+            "merged_component"
+          ],
+          "title": "Semantic Granularity",
+          "type": "string"
+        },
         "source_run_id": {
           "minLength": 1,
           "title": "Source Run Id",
@@ -1031,6 +1080,17 @@
           "anyOf": [
             {
               "$ref": "#/$defs/SceneTransform"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "unified_pbr_glb": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetRef"
             },
             {
               "type": "null"

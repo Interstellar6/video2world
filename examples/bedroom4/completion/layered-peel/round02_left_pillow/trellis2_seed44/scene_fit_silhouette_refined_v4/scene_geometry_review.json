@@ -1,0 +1,31 @@
+{
+  "claim_scope": "Anchor-envelope, source-camera support-edge, and preserved-front-plane proxies; not a signed scene-mesh penetration proof.",
+  "gates": {
+    "anchor_tangent_envelope": true,
+    "no_additional_front_plane_overshoot": true,
+    "source_camera_support_edge": true,
+    "support_plane_drift": true
+  },
+  "gravity_direction": [
+    0.0,
+    1.0,
+    0.0
+  ],
+  "metrics": {
+    "additional_front_plane_overshoot": 0.0,
+    "fitted_front_plane_min": -0.4525949681097063,
+    "fitted_support_coordinate": 1.2439960244409547,
+    "maximum_tangent_anchor_ratio": 1.0746038752147296,
+    "source_camera_support_edge_error_px": 1,
+    "source_front_plane_min": -0.45259498608339555,
+    "source_support_coordinate": 1.3752842839556583,
+    "support_drift": 0.13128825951470358,
+    "tangent_overflow_vertex_fraction": 0.007851871425605405
+  },
+  "status": "passed",
+  "thresholds": {
+    "maximum_anchor_overflow_ratio": 0.1,
+    "maximum_support_drift": 0.41853328545691537,
+    "maximum_support_edge_error_px": 12.0
+  }
+}

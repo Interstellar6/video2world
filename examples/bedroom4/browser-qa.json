@@ -5,12 +5,12 @@
   "placementReview": {
     "status": "passed",
     "reviewer": "codex_screenshot_review",
-    "reviewedAt": "2026-07-16T15:46:18.211Z"
+    "reviewedAt": "2026-07-16T21:33:14.925Z"
   },
-  "startedAt": "2026-07-16T15:24:27.913Z",
-  "finishedAt": "2026-07-16T15:25:29.885Z",
-  "durationSeconds": 61.97,
-  "url": "http://127.0.0.1:4175/?manifest=/worlds/bedroom4/manifest.json&allowCandidateColliders=1&collisionDebug=on",
+  "startedAt": "2026-07-16T21:31:03.000Z",
+  "finishedAt": "2026-07-16T21:32:48.257Z",
+  "durationSeconds": 105.26,
+  "url": "http://127.0.0.1:4177/?manifest=/worlds/bedroom4/manifest.json&allowCandidateColliders=1&collisionDebug=on",
   "browser": {
     "engine": "chromium",
     "channel": "chrome",
@@ -21,7 +21,7 @@
     ]
   },
   "manifestPath": "web-bundle://bedroom4/manifest.json",
-  "manifestSha256": "8aae122689dcc5580d22780babf8b5a10e112071afd68c98d03d9d99f57aa1fb",
+  "manifestSha256": "3805f0e5bab09add424b3b78f9349cd2eca6d1262777ef683e13cda07695e82b",
   "counts": {
     "staticGaussians": 823391,
     "objectGaussians": 480000,
@@ -252,7 +252,7 @@
       "appearance": {
         "status": "resolved",
         "intent": "appearance",
-        "answer": "枕头组合 / Pillow ensemble: 这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。 无法从视觉证据推断度量尺度。 无法仅凭图像确认确切织物与内部填充物；该接受 mask 不提供稳定的单枕头 ID。",
+        "answer": "枕头组合 / Pillow ensemble: 这个已接受整体由床上三只相接的浅色枕头组成：两只较大的灰白/米白色绗缝枕头带低饱和棕色花卉拼接，位于一只较小的白色/灰白色方枕后方；整体处在深色雕花木质观感床头板前，暖色室内光会使表面略显偏黄。 无法从视觉证据推断度量尺度。 无法仅凭图像确认确切织物与内部填充物；该接受 mask 不提供稳定的单枕头 ID。",
         "entityId": "sam3_pillow_01",
         "focusEntityId": "sam3_pillow_01",
         "candidates": []
@@ -927,17 +927,17 @@
   },
   "performance": {
     "fpsSamples": [
-      42,
-      43,
       40,
-      38,
-      38
+      43,
+      45,
+      40,
+      40
     ],
-    "averageFps": 40.2,
-    "minimumFps": 38,
+    "averageFps": 41.6,
+    "minimumFps": 40,
     "memory": {
-      "usedJSHeapSize": 478156721,
-      "totalJSHeapSize": 539778101,
+      "usedJSHeapSize": 471221742,
+      "totalJSHeapSize": 530187902,
       "jsHeapSizeLimit": 4395630592
     }
   },
@@ -961,7 +961,7 @@
     "appearance": {
       "status": "resolved",
       "intent": "appearance",
-      "answer": "枕头组合 / Pillow ensemble: 这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。 无法从视觉证据推断度量尺度。 无法仅凭图像确认确切织物与内部填充物；该接受 mask 不提供稳定的单枕头 ID。",
+      "answer": "枕头组合 / Pillow ensemble: 这个已接受整体由床上三只相接的浅色枕头组成：两只较大的灰白/米白色绗缝枕头带低饱和棕色花卉拼接，位于一只较小的白色/灰白色方枕后方；整体处在深色雕花木质观感床头板前，暖色室内光会使表面略显偏黄。 无法从视觉证据推断度量尺度。 无法仅凭图像确认确切织物与内部填充物；该接受 mask 不提供稳定的单枕头 ID。",
       "entityId": "sam3_pillow_01",
       "focusEntityId": "sam3_pillow_01",
       "candidates": []
@@ -993,7 +993,7 @@
         "rightInset": 12,
         "scrollWidth": 366,
         "clientWidth": 366,
-        "scrollHeight": 1358,
+        "scrollHeight": 1392,
         "clientHeight": 768
       },
       "body": {
@@ -1006,14 +1006,14 @@
         "left": 27,
         "top": 275.03125,
         "right": 359,
-        "bottom": 377.984375,
+        "bottom": 412.765625,
         "width": 332,
-        "height": 102.953125,
-        "text": "枕头组合 / Pillow ensemble: 这个已接受整体由床上三只相接的枕头组成：两只较大的浅绿色拼接枕头位于一只较小的浅色方枕后方，整体处在深色雕花木质观感床头板前。 无法从视觉证据推断度量尺度。 无法仅凭图像确认确切织物与内部填充物；该接受 mask 不提供稳定的单枕头 ID。",
+        "height": 137.734375,
+        "text": "枕头组合 / Pillow ensemble: 这个已接受整体由床上三只相接的浅色枕头组成：两只较大的灰白/米白色绗缝枕头带低饱和棕色花卉拼接，位于一只较小的白色/灰白色方枕后方；整体处在深色雕花木质观感床头板前，暖色室内光会使表面略显偏黄。 无法从视觉证据推断度量尺度。 无法仅凭图像确认确切织物与内部填充物；该接受 mask 不提供稳定的单枕头 ID。",
         "scrollWidth": 330,
         "clientWidth": 330,
-        "scrollHeight": 103,
-        "clientHeight": 103
+        "scrollHeight": 138,
+        "clientHeight": 138
       },
       "queryRow": {
         "left": 27,
@@ -1025,9 +1025,9 @@
       },
       "metrics": {
         "left": 27,
-        "top": 389.984375,
+        "top": 424.765625,
         "right": 359,
-        "bottom": 624.734375,
+        "bottom": 659.515625,
         "width": 332,
         "height": 234.75
       },
@@ -1035,15 +1035,15 @@
         "left": 12,
         "top": 64,
         "right": 374,
-        "bottom": 639.734375,
+        "bottom": 674.515625,
         "width": 362,
-        "height": 575.734375
+        "height": 610.515625
       },
       "controls": {
         "left": 12,
-        "top": 651.734375,
+        "top": 686.515625,
         "right": 374,
-        "bottom": 1421.609375,
+        "bottom": 1456.390625,
         "width": 362,
         "height": 769.875
       },
@@ -1102,5 +1102,5 @@
     ]
   },
   "failures": [],
-  "manifestSha256AfterPromotion": "e0702f76e144dbf4bcd5c277ed5540ee51f7f9e8098770a145ceea63679ba2de"
+  "manifestSha256AfterPromotion": "3805f0e5bab09add424b3b78f9349cd2eca6d1262777ef683e13cda07695e82b"
 }

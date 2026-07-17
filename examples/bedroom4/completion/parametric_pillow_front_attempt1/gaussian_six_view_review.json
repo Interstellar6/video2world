@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "kind": "video2world.gaussian_six_view_browser_review",
+  "state": "ready",
+  "objectId": "sam3_pillow_front",
+  "assetUrl": "/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/parametric_pillow_front_attempt1/sam3_pillow_front_gaussian.ply",
+  "assetSha256": "edb09d79acf4e10d8ebae62679fe1dd438fa513402a7d01eade696f35de10415",
+  "assetBytes": 19841530,
+  "renderMode": "spark-sh0-direct-color",
+  "viewIds": [
+    "front",
+    "right",
+    "back",
+    "left",
+    "top",
+    "bottom"
+  ],
+  "pointCount": 80000,
+  "sourceBounds": {
+    "min": [
+      -0.53418,
+      -0.5,
+      -0.150024
+    ],
+    "max": [
+      0.53418,
+      0.5,
+      0.150024
+    ],
+    "size": [
+      1.068359,
+      1,
+      0.300049
+    ]
+  },
+  "framingBounds": {
+    "min": [
+      -0.53418,
+      -0.5,
+      -0.150024
+    ],
+    "max": [
+      0.53418,
+      0.5,
+      0.150024
+    ],
+    "size": [
+      1.068359,
+      1,
+      0.300049
+    ]
+  },
+  "framingCenter": [
+    0,
+    0,
+    0
+  ],
+  "boundsOverride": false,
+  "sourceColor": {
+    "sampledPoints": 80000,
+    "meanRgb": [
+      210.084,
+      211.712,
+      212.483
+    ],
+    "meanLuminance": 211.422,
+    "chroma": 2.398
+  },
+  "expected": {
+    "extents": [
+      1.06875,
+      1,
+      0.3
+    ],
+    "meanRgb": [
+      210,
+      212,
+      212
+    ],
+    "colorFamily": "light-neutral"
+  },
+  "thresholds": {
+    "extentTolerance": 0.08,
+    "minThicknessRatio": 0.18,
+    "minLuminance": 160,
+    "maxChroma": 35,
+    "maxMeanRgbError": 45
+  },
+  "viewMetrics": {
+    "front": {
+      "canvasWidth": 512,
+      "canvasHeight": 384,
+      "nonTransparentPixels": 48649,
+      "fillFraction": 0.247442,
+      "maxAlpha": 255,
+      "pixelBounds": [
+        140,
+        83,
+        371,
+        300
+      ],
+      "edgeMarginPixels": 83,
+      "meanRgb": [
+        211.02,
+        212.702,
+        213.44
+      ],
+      "meanLuminance": 212.398,
+      "chroma": 2.419,
+      "nonblank": true,
+      "framingOk": true
+    },
+    "right": {
+      "canvasWidth": 512,
+      "canvasHeight": 384,
+      "nonTransparentPixels": 16222,
+      "fillFraction": 0.082509,
+      "maxAlpha": 255,
+      "pixelBounds": [
+        220,
+        75,
+        291,
+        308
+      ],
+      "edgeMarginPixels": 75,
+      "meanRgb": [
+        209.301,
+        210.729,
+        211.383
+      ],
+      "meanLuminance": 210.472,
+      "chroma": 2.082,
+      "nonblank": true,
+      "framingOk": true
+    },
+    "back": {
+      "canvasWidth": 512,
+      "canvasHeight": 384,
+      "nonTransparentPixels": 48643,
+      "fillFraction": 0.247411,
+      "maxAlpha": 255,
+      "pixelBounds": [
+        140,
+        83,
+        371,
+        300
+      ],
+      "edgeMarginPixels": 83,
+      "meanRgb": [
+        210.981,
+        212.662,
+        213.388
+      ],
+      "meanLuminance": 212.357,
+      "chroma": 2.407,
+      "nonblank": true,
+      "framingOk": true
+    },
+    "left": {
+      "canvasWidth": 512,
+      "canvasHeight": 384,
+      "nonTransparentPixels": 16222,
+      "fillFraction": 0.082509,
+      "maxAlpha": 255,
+      "pixelBounds": [
+        220,
+        75,
+        291,
+        308
+      ],
+      "edgeMarginPixels": 75,
+      "meanRgb": [
+        209.206,
+        210.634,
+        211.27
+      ],
+      "meanLuminance": 210.376,
+      "chroma": 2.064,
+      "nonblank": true,
+      "framingOk": true
+    },
+    "top": {
+      "canvasWidth": 512,
+      "canvasHeight": 384,
+      "nonTransparentPixels": 17137,
+      "fillFraction": 0.087163,
+      "maxAlpha": 255,
+      "pixelBounds": [
+        132,
+        156,
+        379,
+        227
+      ],
+      "edgeMarginPixels": 132,
+      "meanRgb": [
+        208.538,
+        209.683,
+        209.893
+      ],
+      "meanLuminance": 209.455,
+      "chroma": 1.355,
+      "nonblank": true,
+      "framingOk": true
+    },
+    "bottom": {
+      "canvasWidth": 512,
+      "canvasHeight": 384,
+      "nonTransparentPixels": 17138,
+      "fillFraction": 0.087168,
+      "maxAlpha": 255,
+      "pixelBounds": [
+        132,
+        156,
+        379,
+        227
+      ],
+      "edgeMarginPixels": 132,
+      "meanRgb": [
+        206.168,
+        208.135,
+        209.823
+      ],
+      "meanLuminance": 207.839,
+      "chroma": 3.655,
+      "nonblank": true,
+      "framingOk": true
+    }
+  },
+  "gates": {
+    "allSixViewsRendered": true,
+    "allSixViewsNonblank": true,
+    "directColorMatchesExpectation": true,
+    "notSheetlike": true,
+    "boundsMatchExpectation": true,
+    "boundsFrameAllViews": true
+  },
+  "blockers": [],
+  "promotionAllowed": true,
+  "error": null,
+  "geometry": {
+    "extents": [
+      1.068359,
+      1,
+      0.300049
+    ],
+    "thicknessToMaxExtentRatio": 0.28085,
+    "expectedExtentRelativeErrors": [
+      0.000365,
+      0,
+      0.000163
+    ]
+  },
+  "createdAt": "2026-07-16T19:32:56.181Z",
+  "browserEvidence": {
+    "contactSheet": "gaussian_six_view_contact_sheet.png",
+    "bytes": 241926,
+    "sha256": "8437bbf5daec603362c78cb6db7407632d23eee38c5ad35c5b45bd4b7a44f2e8",
+    "viewport": [
+      1440,
+      1280
+    ],
+    "consoleProblems": []
+  }
+}

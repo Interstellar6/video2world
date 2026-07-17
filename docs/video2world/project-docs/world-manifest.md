@@ -3,8 +3,8 @@ title: World Manifest 与质量门禁
 id: video2world-project-world-manifest
 category: 项目文档
 visibility: public
-updated: 2026-07-16
-summary: Video2World world-manifest-1.0.0 的场景层、对象层、坐标、hash、provenance 和交互发布门禁。
+updated: 2026-07-17
+summary: Video2World world-manifest-1.0.0 与 Web 投影如何表达 mesh-first 对象、统一 PBR GLB、collision topology、hash、provenance 和发布门禁。
 tags:
   - Schema
   - Provenance
@@ -22,7 +22,7 @@ World manifest 是 Pipeline 和 Web 的事实边界。代码以 Pydantic 模型�
 | 合同 | 角色 | 验证入口 |
 |---|---|---|
 | `world-manifest-1.0.0` | Pipeline 的规范产物；保存完整资产身份、hash、坐标、来源和五项 gate | `video2world validate` 与 JSON Schema |
-| `video2world-web-manifest-1.0.0` | 面向浏览器的部署投影；保存 URL、相机、交互组件、碰撞代理和场景问答索引 | `web/web-manifest.js` 在任何网络资产加载前 fail-fast 验证 |
+| `video2world-web-manifest-1.0.0` | 面向浏览器的部署投影；保存 URL、相机、统一 PBR GLB/旧兼容组件、碰撞 topology 和场景问答索引 | `web/web-manifest.js` 在任何网络资产加载前 fail-fast 验证 |
 
 新运行的目标数据流是 `WorldManifest -> web stage -> Web manifest`。Web manifest 不是新的事实源；它至少通过 `sourceWorld.worldId/runId/adoptionMode` 记录来源，canonical-first 发布还应给出可解析的 `manifestUri`。当前 Bedroom4 是历史资产迁移样例：旧版 Web demo 资产先被采用并接受浏览器 QA，再由 `materialize_bedroom4_world.py` 固化为规范 WorldManifest。这个例外由 Web manifest 中的 `sourceWorld.adoptionMode=legacy_web_assets_adopted_then_canonical_manifest_validated` 明示，仅用于迁移，不能作为新视频运行的默认顺序。
 
@@ -58,37 +58,97 @@ bedroom_4::holi_fresh_20260714::sam3_plant_01
 
 - 中英名称、category 与 aliases；
 - short/detailed/appearance/location 描述及 provider/model/evidence；
-- source image/mask/point cloud 与 2D/3D bounds；
-- object Gaussian visual、render mesh、collider；
+- source image/mask/可选 point cloud 与 2D/3D bounds；
+- mesh-first `render_mesh`、可选 object Gaussian `visual`、以及 collision-enabled 时的 `collider`；
 - `T_scene_from_asset`、scene pivot 与 scale；
 - scene relations；
 - interaction policy；
-- file/semantic/alignment/collision/visual 五项 gate。
+- file/semantic/alignment/collision/visual 五项 gate 与可追溯 limitation。
+
+规范 WorldManifest 保留 `visual`、`render_mesh`、`collider` 三个语义角色，是为了兼容历史资产并保持 provenance。新 unified 对象不需要 object Gaussian，因此 `visual` 可以为空；`render_mesh` 与 `collider` 可以引用同一个 PBR GLB 的同一 URI/hash。Web stage 会把这两个 canonical 角色折叠成一个 `collision.asset`，而不是把文件复制两次。
+
+## Web manifest 的 unified GLB 合同
+
+新独立对象必须显式声明 `collision.mode=unified-glb`。最小形状如下；刻意没有 `visual`、`collision.renderAsset` 和 `colliderProxy`：
+
+```json
+{
+  "id": "sam3_pillow_front",
+  "placement": {
+    "pivot": [-0.9132, -0.1425, 14.7607],
+    "scale": [1, 1, 1],
+    "generatedCenter": [0, 0, 0]
+  },
+  "collision": {
+    "mode": "unified-glb",
+    "asset": {
+      "url": "./objects/sam3_pillow_front.scene-fit.glb",
+      "fileName": "sam3_pillow_front.scene-fit.glb",
+      "format": "gltf-binary",
+      "faces": 97082,
+      "finite": true,
+      "nondegenerate": true,
+      "windingConsistent": true,
+      "watertight": false
+    },
+    "topology": "surface_bvh",
+    "characterCollision": true,
+    "gate": {
+      "status": "passed",
+      "surfaceCollision": "passed"
+    }
+  },
+  "interaction": {
+    "kind": "spin",
+    "degrees": 360,
+    "durationMs": 900,
+    "drag": "horizontal_yaw"
+  }
+}
+```
+
+实际 manifest 还必须携带部署资产的 size/hash 等字段；上例只突出统一对象语义。`generatedCenter=[0,0,0]` 表示 scene fit 已把局部中心烘焙好，避免 Web 再做一次隐式 recenter/scale。
+
+### Collision topology
+
+| topology | 必须满足 | 可以声称 |
+|---|---|---|
+| `surface_bvh` | binary GLB；1-100,000 faces；finite；nondegenerate；winding consistent；passed gate；`characterCollision=true` | 同一可见 mesh 的表面阻挡；non-watertight 可用，但不声称 volume/inside-outside |
+| `closed_volume` | `surface_bvh` 的全部条件，加 `watertight=true` | 闭合拓扑；不自动等于软体/动力学验证 |
+
+unified GLB 加载或 gate 失败时必须 fail closed，不生成 box、不使用 selection proxy 顶替，也不能把对象降级后仍写成 collision passed。
 
 ## 交互发布门禁
 
-交互对象分成两类，不能把它们的门禁混为一谈：
+交互对象分成三种发布历史/状态，不能把门禁混为一谈：
 
-- **collision-enabled**：Gaussian/mesh 与 collider 同步运动，机器人可以碰撞，五项 gate 必须全部通过；
-- **visual-only**：允许选择、focus、拖拽或 `spin_360`，但 `collision_enabled=false`、collider 为空且 collision gate 必须保持 `not_tested`。枕头属于这一类。
+- **unified collision-enabled（新默认）**：同一 PBR GLB 负责 visual/logic/MeshBVH surface，五项 gate 与 topology 条件必须全部通过；
+- **separate collision-enabled（旧 production）**：Gaussian/mesh 与 simplified collider 同步运动，继续作为兼容模式；
+- **visual-only（旧 production/显式选择）**：允许选择、focus、拖拽或 `spin_360`，但 `collision_enabled=false`、collider 为空且 collision gate 保持 `not_tested`。2026-07-16 production 枕头属于这一类。
 
 collision-enabled 对象的最低要求是：
 
 | Gate | 最低要求 |
 |---|---|
-| file | visual/collider 存在、非空、hash 与声明一致 |
+| file | PBR GLB 存在、非空、hash 与声明一致；unified 模式不要求 object Gaussian |
 | semantic | 生成资产类别与扫描证据一致，没有错误门/柜等替换 |
 | alignment | 显式 scene transform 与 pivot；bbox/支撑面检查通过 |
-| visual | 场景内无遮挡重影、旋转无漂移、对象外观可接受 |
-| collision | 简化 GLB 可重载、BVH 命中、机器人 probe 与 stale-face 检查通过 |
+| visual | 场景内无遮挡重影、旋转无漂移、整体形状与主色类别可接受；minor hallucination 有 limitation |
+| collision | topology 技术条件、BVH 命中、机器人 probe 与 stale-face 检查通过 |
 
-collision-enabled 对象只要一个 gate 是 failed/not-tested，就不能成为“已验证可碰撞对象”。visual-only 对象可以在 file、semantic、alignment、visual 通过后发布视觉交互，但不得携带 collider，也不得把 collision 标为 passed。候选资产仍可记录，但不得伪装成 production-ready。
+collision-enabled 对象只要一个 blocking gate 是 failed/not-tested，就不能成为“已验证可碰撞对象”。轻微背面纹理/材质幻觉可表现为 `status=passed` 并在 `reason`、report 或 limitation sidecar 中记录；明显形变、主色类别错误、缺面/片状、部件断裂、悬空或显著穿模仍必须失败。visual-only 对象可以在 file、semantic、alignment、visual 通过后发布视觉交互，但不得携带 collider，也不得把 collision 标为 passed。候选资产仍可记录，但不得伪装成 production-ready。
 
 ## 坐标与单位
 
 bedroom_4 当前 up axis 为 `-Y`，handedness 为 right，单位状态是 `scene_scale_not_metric`。该状态禁止填写 `metric_scale`。完成真实尺度标定后才可改成 meters/centimeters，并记录标定方法与误差。
 
-Gaussian、render mesh 和 collider 必须共享同一个父 transform。runtime 旋转父组而不是逐个修改子节点，保证视觉与碰撞同步。
+unified PBR GLB 的 PBR visual、逻辑对象和 BVH 必须共享同一个父 transform；runtime 旋转父组而不是复制或逐顶点修改。旧模式中的 Gaussian、render mesh 和 collider 也必须共享父 transform。
+
+## 当前真实候选边界
+
+TRELLIS2 front pillow PBR GLB 有 60,237 vertices / 97,082 faces、PBR material、finite、nondegenerate、winding consistent、non-watertight，因此只适合 `surface_bvh`。source-camera mask IoU 为 `0.709810`、bbox IoU 为 `0.924577`、中心误差为 `4.402 px`。这些 receipt 支持 object-local/source-camera gate，不等于真实 bedroom4 unified 浏览器 QA 已通过；后者仍需验证同一 GLB 的渲染、选择/旋转、BVH robot blocking、支撑、显著穿模和无 fallback。
+
+SDXL clean-plate seed `2026071701` 已由用户以 `pass_with_known_limitation` 放行当前 demo，但 receipt 同时声明没有证明 object-free background、multiview consistency 或 occluded-bed geometry。这个 scope-limited 决定不能被 canonical manifest 扩大成通用背景重建通过。
 
 ## 本地验证
 

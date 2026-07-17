@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.layered_clean_plate_composite_receipt",
+  "round_index": 4,
+  "round_kind": "final_background",
+  "measured_donor_contract_role": "no_measured_donor_evidence",
+  "claims_original_observed_rgb_donor": false,
+  "report": "layered_composite_report.json",
+  "report_sha256": "2c66055adf4afb7e39e3ffdaecd9dc91af15e2098e0fc51ca1a5c2efef9a1736",
+  "input_manifest_sha256": "cdc01a2524ff0dc0b36ce07cc25c89e26e149c2408a2c454e917dc8ec8528a5c",
+  "output_frame_set_sha256": "854bd224ab59580f6d209fbb31a50059e0075007c2f6ef0c6d98cc8fde82dfca",
+  "previous_round_output_report_sha256": "f9f3e6981e4c29fb3188c78e559000d3f5ae3508738c00ac384c671ff81bf1b9",
+  "previous_round_output_receipt_sha256": "e3f69d13a89542b0526717d3b86826324c220cddf085fd3755a5e0e3ef0d707f",
+  "provenance_partition_exact": true,
+  "accepted_with_limitations": true,
+  "demo_use_approved": true,
+  "eligible_as_round04_clean_plate": false,
+  "eligible_as_current_demo_round04_clean_plate": true,
+  "acceptance_status": "accepted_with_limitations",
+  "acceptance_scope": "current_demo_only",
+  "limitations": [
+    "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+    "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+    "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+    "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+    "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+  ],
+  "override_gate_keys": [
+    "visual_quality",
+    "wall_boundary_color_continuity",
+    "wall_boundary_low_frequency_gradient_continuity"
+  ],
+  "overridden_gates": {
+    "visual_quality": "pending_human_or_vlm_review",
+    "wall_boundary_color_continuity": {
+      "observed_maximum": 96.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 24.0
+    },
+    "wall_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 99.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 32.0
+    }
+  },
+  "failed_metrics": {
+    "visual_quality": "pending_human_or_vlm_review",
+    "wall_boundary_color_continuity": {
+      "observed_maximum": 96.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 24.0
+    },
+    "wall_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 99.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 32.0
+    }
+  },
+  "promotion_approved": false
+}

@@ -1,0 +1,51 @@
+{
+  "acceptance_scope": "current_demo_only",
+  "accepted_report": {
+    "path": "accepted_planar_texture_report.json",
+    "sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356",
+    "size_bytes": 105612
+  },
+  "accepted_with_limitations": true,
+  "candidate_report": {
+    "path": "/private/tmp/video2world-planar-background/texture-v23-v3-anchor-seed2026071742/planar_texture_report.json",
+    "sha256": "170771cc35e30197b2bd8069d6d96a046034d5784d74afa50cf8fb192c74cbe9"
+  },
+  "created_at": "2026-07-17T07:41:01.793427+00:00",
+  "demo_use_approved": true,
+  "eligible_as_current_demo_round04_clean_plate": true,
+  "eligible_as_round04_clean_plate": false,
+  "gates": {
+    "fresh_depth_required": true,
+    "fresh_normals_required": true,
+    "materializer_contract": "accepted_planar_texture_report",
+    "visual_quality": "accepted_with_limitations"
+  },
+  "kind": "video2world.planar_texture_acceptance_receipt",
+  "overridden_gates": {
+    "visual_quality": "pending_human_or_vlm_review",
+    "wall_boundary_color_continuity": {
+      "observed_maximum": 96.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 24.0
+    },
+    "wall_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 99.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 32.0
+    }
+  },
+  "override_gate_keys": [
+    "visual_quality",
+    "wall_boundary_color_continuity",
+    "wall_boundary_low_frequency_gradient_continuity"
+  ],
+  "promotion_approved": false,
+  "reviewed_full_resolution_frame_count": 3,
+  "schema_version": 1,
+  "status": "accepted_for_round04_clean_plate",
+  "visual_review": {
+    "decision": "accepted_with_limitations",
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/planar-background/v23-limited-visual-review.json",
+    "sha256": "c5fdf62700ecbd940cd4c802c860420130f5ffe5341e72bb5c7cac36859d78c5"
+  }
+}

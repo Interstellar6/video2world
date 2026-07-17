@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.layered_object_scene_references",
+  "object_id": "sam3_pillow_left",
+  "category": "pillow",
+  "identity_revalidated": true,
+  "identity_revalidated_by": "explicit_3d_anchor_calibrated_multiframe_association",
+  "expected_appearance": {
+    "color_family": "any"
+  },
+  "association": {
+    "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/round01_front_pillow/reinspect_sam3/association.json",
+    "sha256": "25ce62f3c83af0438510a2864b7daeafc0ef254815864b52a66be45e780c1ecb",
+    "source_set_sha256": "bc873ff8acbf6af43b1d59dd152b15cea1fe096b49866baf5ae65a54311cb7de",
+    "selected_evidence_only": true
+  },
+  "frames": [
+    {
+      "frame_id": "000048",
+      "detection_id": "000048:mask:000000",
+      "image_path": "references/000048_4b575e9ee8.rgba.png",
+      "image_sha256": "88db27b7807236f758d0f635b3105f41675924485c359cac631f893e91a1808f",
+      "mask_path": "references/000048_4b575e9ee8.mask.png",
+      "mask_sha256": "e8d954271db53392d76827c8bd0db7b40840d536931aafa70102d44d21d3b18c",
+      "bbox_xyxy": [
+        0,
+        0,
+        256,
+        231
+      ],
+      "source_scene_crop_bbox_xyxy": [
+        295,
+        275,
+        551,
+        506
+      ],
+      "quality_score": 0.9866094420996393,
+      "is_source_frame": false
+    },
+    {
+      "frame_id": "000067",
+      "detection_id": "000067:mask:000060",
+      "image_path": "references/000067_a0db1febea.rgba.png",
+      "image_sha256": "d7b53bb089fe96f5a88e69178b76b42bd0687e9335d7db793a67808119aaa4e5",
+      "mask_path": "references/000067_a0db1febea.mask.png",
+      "mask_sha256": "dca6a31f42a2ec6d80b82fe94748f3c98d22165d975a66128cd23ccac2ac7cd3",
+      "bbox_xyxy": [
+        0,
+        0,
+        267,
+        240
+      ],
+      "source_scene_crop_bbox_xyxy": [
+        410,
+        304,
+        677,
+        544
+      ],
+      "quality_score": 0.9892950670662792,
+      "is_source_frame": true
+    }
+  ]
+}

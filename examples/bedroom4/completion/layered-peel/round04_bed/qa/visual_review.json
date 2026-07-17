@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.clean_plate_visual_review",
+  "created_at": "2026-07-17T10:30:00+08:00",
+  "round_index": 4,
+  "peeled_object_id": "sam3_bed_01",
+  "technical_status": "passed",
+  "semantic_status": "rejected",
+  "scene_promotion_allowed": false,
+  "next_round_reinspection_allowed": false,
+  "final_background_allowed": false,
+  "output_sha256": "9b3004df9e86fbc6d531d136e7158f276b176d912089edeccb9a5cc9795c630b",
+  "technical_qa_sha256": "ef7a1f85043690a9ddeb7917d47d32c306b344b059d744ef87ec5618a31eb564",
+  "contact_sheet_sha256": "6d2099a535b0de17588b364b47b09170b2c4bf12b585c1e151457a8eb7c4e7c7",
+  "preserved_properties": [
+    "25 output frames retain their 1280x720 dimensions",
+    "pixels outside the dilated bed mask are unchanged",
+    "the completed bed mask covers the central pillow-occlusion cavity before inpainting"
+  ],
+  "blocking_issues": [
+    "the removed bed becomes a large blurred bed-shaped field",
+    "the hidden empty wall and floor are not reconstructed",
+    "the result has no plane, depth, normal, or multi-view geometry consistency",
+    "feeding this candidate to PGSR or TSDF would bake a false background surface"
+  ],
+  "root_cause": "The bed is a large persistent occluder with no ordinary temporal donor; 2D propagation cannot infer the hidden room planes.",
+  "required_next_action": "Recover wall and floor planes from calibrated scene geometry, synthesize only unobserved planar texture, and verify multi-view depth and normal consistency before background reconstruction.",
+  "pipeline_disposition": "rejected_clean_plate_not_propagated"
+}

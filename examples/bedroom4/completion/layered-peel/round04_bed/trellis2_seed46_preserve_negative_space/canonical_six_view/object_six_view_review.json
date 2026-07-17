@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "video2world.canonical_object_six_view_review",
+  "createdAt": "2026-07-17T02:47:39.078Z",
+  "state": "captured_visual_pending",
+  "promotionAllowed": false,
+  "sourcePageUrl": "http://127.0.0.1:4179/object-review.html?objectId=sam3_bed_01_seed46&asset=%2F%40fs%2FUsers%2Fzhangyuxiang%2FDesktop%2Fworksplace%2Fvideo2world%2Fexamples%2Fbedroom4%2Fcompletion%2Flayered-peel%2Fround04_bed%2Ftrellis2_seed46_preserve_negative_space%2Fasset_pbr.glb",
+  "canonicalViews": [
+    "front",
+    "right",
+    "back",
+    "left",
+    "top",
+    "bottom"
+  ],
+  "canonicalViewAxes": {
+    "front": {
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "orientationContract": "web/object-review.js VIEW_SPECS orthogonal object-local axes",
+  "horizontalOrbitAcceptedAsSixViewEvidence": false,
+  "visualGate": {
+    "status": "pending",
+    "blocking": [
+      "shape_mismatch",
+      "primary_color_category_error",
+      "missing_surface_or_sheet_geometry",
+      "disconnected_or_floating_parts",
+      "significant_scene_interpenetration"
+    ],
+    "warning": [
+      "minor_backside_texture_hallucination",
+      "minor_material_or_pattern_drift"
+    ]
+  },
+  "objectId": "sam3_bed_01_seed46",
+  "renderMode": "neutral-albedo",
+  "bounds": {
+    "min": [
+      -0.5014665126800537,
+      -0.17430253326892853,
+      -0.33225929737091064
+    ],
+    "max": [
+      0.5011885166168213,
+      0.17419250309467316,
+      0.3319406509399414
+    ],
+    "size": [
+      1.002655029296875,
+      0.3484950363636017,
+      0.664199948310852
+    ],
+    "radius": 0.6260845528921242
+  },
+  "meshCount": 1,
+  "triangleCount": 95412,
+  "asset": {
+    "url": "http://127.0.0.1:4179/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed46_preserve_negative_space/asset_pbr.glb",
+    "sizeBytes": 3292520,
+    "sha256": "528aa75599948383c526216d59cb0524cb7979868a6246cb16e22bfd9b854595"
+  },
+  "views": {
+    "front": {
+      "file": "front_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed46_preserve_negative_space/canonical_six_view/front_object.png",
+      "sizeBytes": 41312,
+      "sha256": "22d451536359d89fbdbe1a76f0e62235a06a26179c259ea04249f94e4da52d6e",
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "file": "right_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed46_preserve_negative_space/canonical_six_view/right_object.png",
+      "sizeBytes": 49242,
+      "sha256": "8e61cdf1e48ef398e3e6f1c33a98ab7d5af344acbca619545287234ebd92963d",
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "file": "back_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed46_preserve_negative_space/canonical_six_view/back_object.png",
+      "sizeBytes": 40165,
+      "sha256": "37c24c76d47fe1571fbf915d2ca161e0fbeadba3fb1cd9e075f2e636b18285d2",
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "file": "left_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed46_preserve_negative_space/canonical_six_view/left_object.png",
+      "sizeBytes": 59333,
+      "sha256": "2521f7ee71a3270ef5c518bac608027e0a30e352162a43c89c06beb85ce5ac18",
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "file": "top_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed46_preserve_negative_space/canonical_six_view/top_object.png",
+      "sizeBytes": 106197,
+      "sha256": "e6eadaaff7be6abe24a9d4335144a4811c51c7b6e1eeb2344963c60ed75bde5a",
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "file": "bottom_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed46_preserve_negative_space/canonical_six_view/bottom_object.png",
+      "sizeBytes": 112162,
+      "sha256": "d2734fcea847b97fad2d8cc545fbfe58ccdb6f432451d5e6856311e5e0139632",
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "contactSheet": {
+    "file": "object_six_view_contact_sheet.png",
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/trellis2_seed46_preserve_negative_space/canonical_six_view/object_six_view_contact_sheet.png",
+    "sizeBytes": 262138,
+    "sha256": "7cc4aea7add5e1067f0b20ea9d13879196ca94086532761dca52347ca01db54d",
+    "layout": "3x2",
+    "viewport": [
+      1440,
+      1280
+    ]
+  },
+  "browser": {
+    "consoleWarnings": [],
+    "consoleErrors": []
+  }
+}

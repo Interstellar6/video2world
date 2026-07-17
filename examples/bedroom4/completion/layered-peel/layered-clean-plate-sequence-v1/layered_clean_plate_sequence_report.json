@@ -1,0 +1,268 @@
+{
+  "acceptance_scope": "current_demo_only",
+  "acceptance_status": "accepted_with_limitations",
+  "accepted_with_limitations": true,
+  "failed_metrics": {
+    "visual_quality": "pending_human_or_vlm_review",
+    "wall_boundary_color_continuity": {
+      "observed_maximum": 96.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 24.0
+    },
+    "wall_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 99.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 32.0
+    }
+  },
+  "final_output_frame_set_sha256": "854bd224ab59580f6d209fbb31a50059e0075007c2f6ef0c6d98cc8fde82dfca",
+  "frame_count": 25,
+  "gates": {
+    "all_inputs_hash_revalidated_after_path_rebase": true,
+    "every_round_unresolved_pixels_zero": true,
+    "fixed_removed_and_remaining_mappings_enforced": true,
+    "limited_scope_and_failures_propagated": true,
+    "removed_objects_are_never_rendered_again": true,
+    "round2_plus_source_is_previous_composite_hash": true,
+    "round4_is_final_background_without_measured_donor": true,
+    "round4_structural_background_covers_full_cumulative_mask": true,
+    "strict_four_round_order_executed": true
+  },
+  "inputs": {
+    "measured_rounds": [
+      {
+        "cumulative_manifest": {
+          "path": "../../../../../../../../root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round01_front_pillow/manifest/cumulative_removal_manifest.json",
+          "sha256": "87a21ae22eba35d890accc0b4b532d711d0bd53ac112ae73fda3c7e6b50ea0af"
+        },
+        "measured_receipt": {
+          "path": "../../../../../../../../root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round01_front_pillow/output/multiview_prefill_receipt.json",
+          "sha256": "578c9658d944833783450595140c275094a0f46c0080d780f14f2089a1d0cb73"
+        },
+        "measured_report": {
+          "path": "../../../../../../../../root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round01_front_pillow/output/multiview_prefill_report.json",
+          "sha256": "aae81c30666f54afeeffe0911b2cc7b90035d6aabf3c85332aee1b9bc1cf6aec"
+        },
+        "round_index": 1
+      },
+      {
+        "cumulative_manifest": {
+          "path": "../../../../../../../../root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/manifest/cumulative_removal_manifest.json",
+          "sha256": "e310958cb8d0caaa2c6c12f00eb3667b1997aad3949973494ae5bb16673d66ed"
+        },
+        "measured_receipt": {
+          "path": "../../../../../../../../root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/multiview_prefill_receipt.json",
+          "sha256": "2713f38751329d073712d6ff4d2cd61522c08aa8aecce80e86873ab223be5bea"
+        },
+        "measured_report": {
+          "path": "../../../../../../../../root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round02_left_pillow/output/multiview_prefill_report.json",
+          "sha256": "2be4c23e52d46f928b0aa41e80dd60af9d6ce9af333dab7fe2c28e656da45573"
+        },
+        "round_index": 2
+      },
+      {
+        "cumulative_manifest": {
+          "path": "../../../../../../../../root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/manifest/cumulative_removal_manifest.json",
+          "sha256": "445dfc643a916b0aa61853a35a0f7f5833fc49d9ebdbaae1babbbfa4ea647129"
+        },
+        "measured_receipt": {
+          "path": "../../../../../../../../root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/multiview_prefill_receipt.json",
+          "sha256": "817b0d5eaca89da55b575666746b899e2ab8da20c8d8b0821877bed4c2c2e783"
+        },
+        "measured_report": {
+          "path": "../../../../../../../../root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round03_right_pillow/output/multiview_prefill_report.json",
+          "sha256": "67369ef4d8aec9ca643025dd6173449c15627c1d92475a9a78bdc51dce24fecc"
+        },
+        "round_index": 3
+      }
+    ],
+    "pbr_batch_receipt": {
+      "path": "../../inputs/pbr/batch_receipt.json",
+      "sha256": "69cc1e141b44125e5f0899cbda8b113d85119189c58559697b000070c6705189"
+    },
+    "pbr_render_index": {
+      "path": "../../inputs/pbr/render_index.json",
+      "sha256": "a698bdd7352547f4947886fc58d30c8441512634d367aa52c522ddcd8b1e05c7"
+    },
+    "round4_cumulative_masks": {
+      "path": "normalized_inputs/round04_cumulative_masks/cumulative_removal_mask_index.json",
+      "sha256": "4fb4abdf232c274ac0781a51e3b94c1cabc3bae545bbd47773994892d71a4f3c"
+    },
+    "structural_background_index": {
+      "path": "../../inputs/structural/structural_background_render_index.json",
+      "sha256": "bbeb0fe18b30f4e59098db27d73814a40235a5366ed74da503f7c4a8372ac2c1"
+    },
+    "structural_background_receipt": {
+      "path": "../../inputs/structural/structural_background_render_receipt.json",
+      "sha256": "701ed5075ebd611caebdd9c9f66569902c1f5d38785eb84b0bc905782d64701e"
+    }
+  },
+  "kind": "video2world.layered_clean_plate_sequence_report",
+  "limitations": [
+    "A low-frequency bed-shaped color boundary remains visible on the completed wall and floor in all reviewed views.",
+    "Atlas boundary color p95 is 96 against a threshold of 24, and gradient p95 is 99 against a threshold of 32.",
+    "Full-resolution boundary color p95 reaches 112 and gradient p95 reaches 112.66666666666667.",
+    "Acceptance is limited to the current Bedroom4 demo under the user's explicit pass-with-known-limitations decision; it is not evidence of general background-completion quality.",
+    "Fresh depth estimation, PGSR optimization, and TSDF reconstruction remain required; legacy scene depth cannot be reused as completed-scene geometry."
+  ],
+  "overridden_gates": {
+    "visual_quality": "pending_human_or_vlm_review",
+    "wall_boundary_color_continuity": {
+      "observed_maximum": 96.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 24.0
+    },
+    "wall_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 99.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 32.0
+    }
+  },
+  "path_rebase_rules": [
+    {
+      "new": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/accepted-demo-v23",
+      "old": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round04_bed/planar-background/accepted-demo-v23"
+    },
+    {
+      "new": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717/inputs/support/planar-v20",
+      "old": "/private/tmp/video2world-planar-background/planar-v20"
+    }
+  ],
+  "promotion_approved": false,
+  "removed_object_order": [
+    "sam3_pillow_front",
+    "sam3_pillow_left",
+    "sam3_pillow_right",
+    "sam3_bed_01"
+  ],
+  "round_remaining_object_ids": {
+    "round01_front_pillow": [
+      "sam3_pillow_left",
+      "sam3_pillow_right",
+      "sam3_bed_01"
+    ],
+    "round02_left_pillow": [
+      "sam3_pillow_right",
+      "sam3_bed_01"
+    ],
+    "round03_right_pillow": [
+      "sam3_bed_01"
+    ],
+    "round04_bed": []
+  },
+  "rounds": [
+    {
+      "manifest": {
+        "path": "round01_front_pillow/compositor_input_manifest.json",
+        "sha256": "111115d47388c1053437b71064bdd7abb250181b2dee0ed3988b901bb592da5b"
+      },
+      "output_frame_set_sha256": "42435b0a933078fe0b015ec32ca0d0efb4aa2829f9f69a613c8146ee8433ddd2",
+      "receipt": {
+        "path": "round01_front_pillow/composite/layered_composite_receipt.json",
+        "sha256": "e1e4e09791322bb8e1625040bc078cc3e06a7125dfe16efb2ca0224117f323ea"
+      },
+      "remaining_object_ids": [
+        "sam3_pillow_left",
+        "sam3_pillow_right",
+        "sam3_bed_01"
+      ],
+      "removed_object_ids": [
+        "sam3_pillow_front"
+      ],
+      "report": {
+        "path": "round01_front_pillow/composite/layered_composite_report.json",
+        "sha256": "92a33bfd4027cb0f4ce39fa5f7cfaa44f059d03832f4db47d0fa71b7c1c08c63"
+      },
+      "round_index": 1,
+      "round_kind": "object_peel",
+      "round_name": "round01_front_pillow",
+      "status": "technical_passed_complete_partition",
+      "unresolved_pixels": 0
+    },
+    {
+      "manifest": {
+        "path": "round02_left_pillow/compositor_input_manifest.json",
+        "sha256": "7c8ffca06107f7acf9691c1d81430b8049d1273a9be6e2331743839c5fda9255"
+      },
+      "output_frame_set_sha256": "feac1e67c06a15054ed0ff29beb279fff912421abec145e4bde6930740be17d1",
+      "receipt": {
+        "path": "round02_left_pillow/composite/layered_composite_receipt.json",
+        "sha256": "f7031350b367f8d7032fca2b187d3d5f9d5760159f3d5d722ca56c8b0a42e96f"
+      },
+      "remaining_object_ids": [
+        "sam3_pillow_right",
+        "sam3_bed_01"
+      ],
+      "removed_object_ids": [
+        "sam3_pillow_front",
+        "sam3_pillow_left"
+      ],
+      "report": {
+        "path": "round02_left_pillow/composite/layered_composite_report.json",
+        "sha256": "156df1ea29e770c59bc1e744547ee273b318af22403823ec22b3bbd42f087985"
+      },
+      "round_index": 2,
+      "round_kind": "object_peel",
+      "round_name": "round02_left_pillow",
+      "status": "technical_passed_complete_partition",
+      "unresolved_pixels": 0
+    },
+    {
+      "manifest": {
+        "path": "round03_right_pillow/compositor_input_manifest.json",
+        "sha256": "8971f7008c66a3b7c041edc463084910ba62fa6c7139707ecdbdcbb78cf86bd1"
+      },
+      "output_frame_set_sha256": "e2230aa445ad049246b39049a92b53145547146d9cf1bfa05b6a43c136bd0f19",
+      "receipt": {
+        "path": "round03_right_pillow/composite/layered_composite_receipt.json",
+        "sha256": "e3f69d13a89542b0526717d3b86826324c220cddf085fd3755a5e0e3ef0d707f"
+      },
+      "remaining_object_ids": [
+        "sam3_bed_01"
+      ],
+      "removed_object_ids": [
+        "sam3_pillow_front",
+        "sam3_pillow_left",
+        "sam3_pillow_right"
+      ],
+      "report": {
+        "path": "round03_right_pillow/composite/layered_composite_report.json",
+        "sha256": "f9f3e6981e4c29fb3188c78e559000d3f5ae3508738c00ac384c671ff81bf1b9"
+      },
+      "round_index": 3,
+      "round_kind": "object_peel",
+      "round_name": "round03_right_pillow",
+      "status": "technical_passed_complete_partition",
+      "unresolved_pixels": 0
+    },
+    {
+      "manifest": {
+        "path": "round04_bed/compositor_input_manifest.json",
+        "sha256": "cdc01a2524ff0dc0b36ce07cc25c89e26e149c2408a2c454e917dc8ec8528a5c"
+      },
+      "output_frame_set_sha256": "854bd224ab59580f6d209fbb31a50059e0075007c2f6ef0c6d98cc8fde82dfca",
+      "receipt": {
+        "path": "round04_bed/composite/layered_composite_receipt.json",
+        "sha256": "ff61be109c1fb2cc0725587fcaa32f27937d786bbd48128f85c8fa77137cc0be"
+      },
+      "remaining_object_ids": [],
+      "removed_object_ids": [
+        "sam3_pillow_front",
+        "sam3_pillow_left",
+        "sam3_pillow_right",
+        "sam3_bed_01"
+      ],
+      "report": {
+        "path": "round04_bed/composite/layered_composite_report.json",
+        "sha256": "2c66055adf4afb7e39e3ffdaecd9dc91af15e2098e0fc51ca1a5c2efef9a1736"
+      },
+      "round_index": 4,
+      "round_kind": "final_background",
+      "round_name": "round04_bed",
+      "status": "technical_passed_complete_partition_with_limitations",
+      "unresolved_pixels": 0
+    }
+  ],
+  "schema_version": 1,
+  "status": "technical_passed_complete_sequence_with_limitations"
+}

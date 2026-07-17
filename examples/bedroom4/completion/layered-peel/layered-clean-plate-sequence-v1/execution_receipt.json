@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.layered_clean_plate_sequence_execution_receipt",
+  "status": "technical_passed_complete_sequence_with_limitations",
+  "verified_at": "2026-07-17T09:00:01Z",
+  "execution_host": "master",
+  "python": "3.10.19",
+  "remote_run_root": "/data/design/zyx/workspace/video2world_runs/bedroom4_layered_sequence_20260717",
+  "promotion_approved": false,
+  "acceptance_scope": "current_demo_only",
+  "scripts": {
+    "compose_layered_clean_plate.py": "ae8001e29010c9404129de5ac5e35276add164fe170f309a49ee6142a24f34b6",
+    "compose_layered_clean_plate_sequence.py": "99ce93914f4b4477f02452f50077856121bdf2f027e66d8b4ea2beac68939dc1"
+  },
+  "inputs": {
+    "cumulative_rgbd_provenance_upgrade_receipt_sha256": "14a06b09344973151f75a1e7a74e5e4137293f5597d9a1fd3fc3de4fd8807a44",
+    "pbr_render_index_sha256": "a698bdd7352547f4947886fc58d30c8441512634d367aa52c522ddcd8b1e05c7",
+    "pbr_batch_receipt_sha256": "69cc1e141b44125e5f0899cbda8b113d85119189c58559697b000070c6705189",
+    "structural_background_index_sha256": "bbeb0fe18b30f4e59098db27d73814a40235a5366ed74da503f7c4a8372ac2c1",
+    "structural_background_receipt_sha256": "701ed5075ebd611caebdd9c9f66569902c1f5d38785eb84b0bc905782d64701e",
+    "accepted_planar_texture_report_sha256": "1081b0f804905e73184a20651a7f72c5113ad1736352fcdcc1a7004bfd596356"
+  },
+  "rounds": [
+    {
+      "round_index": 1,
+      "removed_object_ids": ["sam3_pillow_front"],
+      "remaining_object_ids": ["sam3_pillow_left", "sam3_pillow_right", "sam3_bed_01"],
+      "unresolved_pixels": 0,
+      "output_frame_set_sha256": "42435b0a933078fe0b015ec32ca0d0efb4aa2829f9f69a613c8146ee8433ddd2",
+      "report_sha256": "92a33bfd4027cb0f4ce39fa5f7cfaa44f059d03832f4db47d0fa71b7c1c08c63",
+      "receipt_sha256": "e1e4e09791322bb8e1625040bc078cc3e06a7125dfe16efb2ca0224117f323ea"
+    },
+    {
+      "round_index": 2,
+      "removed_object_ids": ["sam3_pillow_front", "sam3_pillow_left"],
+      "remaining_object_ids": ["sam3_pillow_right", "sam3_bed_01"],
+      "unresolved_pixels": 0,
+      "output_frame_set_sha256": "feac1e67c06a15054ed0ff29beb279fff912421abec145e4bde6930740be17d1",
+      "report_sha256": "156df1ea29e770c59bc1e744547ee273b318af22403823ec22b3bbd42f087985",
+      "receipt_sha256": "f7031350b367f8d7032fca2b187d3d5f9d5760159f3d5d722ca56c8b0a42e96f"
+    },
+    {
+      "round_index": 3,
+      "removed_object_ids": ["sam3_pillow_front", "sam3_pillow_left", "sam3_pillow_right"],
+      "remaining_object_ids": ["sam3_bed_01"],
+      "unresolved_pixels": 0,
+      "output_frame_set_sha256": "e2230aa445ad049246b39049a92b53145547146d9cf1bfa05b6a43c136bd0f19",
+      "report_sha256": "f9f3e6981e4c29fb3188c78e559000d3f5ae3508738c00ac384c671ff81bf1b9",
+      "receipt_sha256": "e3f69d13a89542b0526717d3b86826324c220cddf085fd3755a5e0e3ef0d707f"
+    },
+    {
+      "round_index": 4,
+      "removed_object_ids": ["sam3_pillow_front", "sam3_pillow_left", "sam3_pillow_right", "sam3_bed_01"],
+      "remaining_object_ids": [],
+      "unresolved_pixels": 0,
+      "output_frame_set_sha256": "854bd224ab59580f6d209fbb31a50059e0075007c2f6ef0c6d98cc8fde82dfca",
+      "report_sha256": "2c66055adf4afb7e39e3ffdaecd9dc91af15e2098e0fc51ca1a5c2efef9a1736",
+      "receipt_sha256": "ff61be109c1fb2cc0725587fcaa32f27937d786bbd48128f85c8fa77137cc0be"
+    }
+  ],
+  "outputs": {
+    "sequence_report": {
+      "path": "layered_clean_plate_sequence_report.json",
+      "sha256": "672ccc38d2d0187a4e99e85a1f54a451039deab5c6d73eb81f71108275483e88"
+    },
+    "sequence_receipt": {
+      "path": "layered_clean_plate_sequence_receipt.json",
+      "sha256": "cdf2ffc02dbacf184391dafd1cd35c427fd5cf868b084548d4c7e2d7496d4d25"
+    },
+    "final_output_frame_set_sha256": "854bd224ab59580f6d209fbb31a50059e0075007c2f6ef0c6d98cc8fde82dfca"
+  },
+  "superseded_wrong_stage_input": {
+    "receipt_sha256": "aaf5837dc931b7d34f0097366297537358821d28a6a274fe8eb5789d4f42ce6d",
+    "eligible_for_da3_pgsr_tsdf_or_web": false
+  },
+  "gates": {
+    "strict_front_to_back_order_executed": true,
+    "round2_to_round4_sources_bind_previous_composite_sha256": true,
+    "all_rounds_have_zero_unresolved_pixels": true,
+    "removed_objects_never_reappear_as_downstream_layers": true,
+    "round4_is_background_only": true,
+    "general_promotion_is_forbidden": true
+  }
+}

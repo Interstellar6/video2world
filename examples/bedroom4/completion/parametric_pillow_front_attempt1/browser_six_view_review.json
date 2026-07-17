@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.browser_six_view_review",
+  "created_at": "2026-07-16T19:20:32Z",
+  "object_id": "sam3_pillow_front",
+  "source_asset_sha256": "44254d30107af4d88046cffac9f2ea26516c27b17f451c38cb8aa4371b286f8e",
+  "render_mode": "neutral-albedo",
+  "required_views": [
+    "front",
+    "right",
+    "back",
+    "left",
+    "top",
+    "bottom"
+  ],
+  "decision": "passed_with_caveats",
+  "checks": {
+    "closed_back_surface_visible": true,
+    "left_and_right_thickness_visible": true,
+    "top_and_bottom_surfaces_visible": true,
+    "all_six_sides_white_or_light_neutral": true,
+    "no_dark_or_pink_back_surface": true,
+    "no_opening_or_detached_part_visible": true,
+    "front_aspect_matches_source": true,
+    "top_bottom_uv_radial_artifact_visible": false
+  },
+  "caveats": [
+    "The deterministic category prior is smoother and less tufted than the observed front pillow.",
+    "The browser review covers the GLB; the Gaussian visual still needs an actual Spark canvas render review.",
+    "Scene scale, pose, support contact, and interpenetration are not validated by this object-only review."
+  ],
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "gaussian_browser_render_review",
+    "scene_scale_and_pose_fit",
+    "bed_support_contact_review",
+    "scene_interpenetration_gate",
+    "accepted_clean_plate_or_static_scene_carve"
+  ],
+  "artifacts": {
+    "contact_sheet": {
+      "path": "browser_six_view_contact_sheet.png",
+      "bytes": 87614,
+      "sha256": "3d94fa48f8bcc899e6e804a0b6f9df1bd18cb6effea70bb530e4809a058f3ed9"
+    },
+    "front": {
+      "path": "browser_views/front_object.png",
+      "bytes": 17969,
+      "sha256": "8058a0b119f82caa6bcb7d4198c5b2d38c1df8d16c56cdf0c0950987a93e1d11"
+    },
+    "right": {
+      "path": "browser_views/right_object.png",
+      "bytes": 9244,
+      "sha256": "b7a87a73f02441b881d4bb20f942febae3b806b0c3949ce65d965b8ac11b118e"
+    },
+    "back": {
+      "path": "browser_views/back_object.png",
+      "bytes": 17969,
+      "sha256": "8058a0b119f82caa6bcb7d4198c5b2d38c1df8d16c56cdf0c0950987a93e1d11"
+    },
+    "left": {
+      "path": "browser_views/left_object.png",
+      "bytes": 9244,
+      "sha256": "b7a87a73f02441b881d4bb20f942febae3b806b0c3949ce65d965b8ac11b118e"
+    },
+    "top": {
+      "path": "browser_views/top_object.png",
+      "bytes": 6507,
+      "sha256": "30efb33e7b6bd9459047458a342660da4f36a41f87a4e6bea9a13986d0c629d7"
+    },
+    "bottom": {
+      "path": "browser_views/bottom_object.png",
+      "bytes": 6007,
+      "sha256": "a84356456a5e40e0e766aa4f9afadb25838fbb01391e187ae5a09d134741281c"
+    }
+  }
+}

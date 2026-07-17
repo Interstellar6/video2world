@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "kind": "video2world.object_six_view_visual_review",
+  "created_at": "2026-07-17T10:30:00+08:00",
+  "object_id": "sam3_pillow_right",
+  "candidate_id": "trellis2_seed43",
+  "status": "accepted_with_warnings",
+  "promotion_allowed": true,
+  "promotion_scope": "object_asset_candidate_only",
+  "acceptance_policy": "usability_first_minor_artifacts",
+  "asset": {
+    "sha256": "a239242865ccd598ae1ba9d8b897c08fa6594451c416ad682fb4b5d9c2419296",
+    "size_bytes": 3057972,
+    "faces": 98226,
+    "provider_receipt_sha256": "15541bdb2e4a38e9201b4a3dd2bb81305ae718c5cafa697f94ba50ab94bb9256"
+  },
+  "canonical_review": {
+    "receipt_sha256": "8bbaf9926bbca4add032e4ce6a02334f9684b9ac522b7bc275de825b391b2994",
+    "contact_sheet_sha256": "eaa92b5095329f603f8342ba422fe1c443e4ab61966826fa42263fade17f0c87",
+    "views": [
+      "front",
+      "right",
+      "back",
+      "left",
+      "top",
+      "bottom"
+    ]
+  },
+  "gates": {
+    "overall_shape_usable": true,
+    "complete_six_side_surface": true,
+    "primary_color_basically_correct": true,
+    "disconnected_or_floating_parts_absent": true
+  },
+  "blocking_issues": [],
+  "warnings": [
+    {
+      "issue_type": "minor_backside_texture_hallucination",
+      "views": [
+        "back"
+      ],
+      "explanation": "A dark patch appears on the generated back but does not remove surface coverage or alter the main light color category."
+    },
+    {
+      "issue_type": "minor_material_or_pattern_drift",
+      "views": [
+        "left",
+        "right",
+        "bottom"
+      ],
+      "explanation": "Pattern placement differs slightly between generated sides; this is accepted under the current minor-hallucination policy."
+    }
+  ],
+  "scene_integration": "pending_scene_fit_and_interpenetration_review",
+  "decision": "Accept as the Round 3 right-pillow PBR asset candidate; scene placement remains a separate gate."
+}
