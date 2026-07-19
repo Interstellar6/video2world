@@ -185,6 +185,7 @@ def build_qa(spec_path: Path, output_root: Path) -> dict[str, Any]:
         "minimum_recall",
         "minimum_bbox_iou",
         "maximum_center_error_px",
+        "minimum_observed_mask_iou",
         "minimum_observed_bbox_iou",
         "minimum_observed_recall",
         "maximum_observed_center_error_px",
@@ -237,6 +238,9 @@ def build_qa(spec_path: Path, output_root: Path) -> dict[str, Any]:
             "observed_bbox_iou": (
                 observed_metrics["bbox_iou"] >= thresholds["minimum_observed_bbox_iou"]
             ),
+            "observed_mask_iou": (
+                observed_metrics["mask_iou"] >= thresholds["minimum_observed_mask_iou"]
+            ),
             "observed_recall": (
                 observed_metrics["analytic_recall"] >= thresholds["minimum_observed_recall"]
             ),
@@ -264,7 +268,8 @@ def build_qa(spec_path: Path, output_root: Path) -> dict[str, Any]:
                 "observed_sam_vs_rendered_metrics": observed_metrics,
                 "observed_sam_claim_scope": (
                     "Visible SAM mask versus full PBR layer; amodal regions behind other objects "
-                    "may lower mask IoU, so bbox, recall, and center are the alignment gates."
+                    "may lower mask IoU. This full-mask comparison therefore remains a strict "
+                    "clean-plate eligibility gate, not merely a scene-fit diagnostic."
                 ),
                 "thresholds": thresholds,
                 "gates": gates,

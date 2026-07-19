@@ -1,6 +1,6 @@
 {
   "camera_convention": "camera_to_world_right_down_forward; image_y_down",
-  "created_at": "2026-07-17T06:12:09.705695+00:00",
+  "created_at": "2026-07-18T03:56:25.124626+00:00",
   "frame_id": "000067",
   "kind": "video2world.source_camera_pbr_layer_qa",
   "layers": [
@@ -12,6 +12,7 @@
         "mask_iou": true,
         "observed_bbox_iou": true,
         "observed_center_error": true,
+        "observed_mask_iou": false,
         "observed_recall": true,
         "precision": true,
         "recall": true
@@ -41,7 +42,7 @@
         "rendered_precision": 0.9835554111147221,
         "union_pixels": 16916
       },
-      "observed_sam_claim_scope": "Visible SAM mask versus full PBR layer; amodal regions behind other objects may lower mask IoU, so bbox, recall, and center are the alignment gates.",
+      "observed_sam_claim_scope": "Visible SAM mask versus full PBR layer; amodal regions behind other objects may lower mask IoU. This full-mask comparison therefore remains a strict clean-plate eligibility gate, not merely a scene-fit diagnostic.",
       "observed_sam_vs_rendered_metrics": {
         "analytic_bbox_xyxy": [
           579,
@@ -97,13 +98,14 @@
           "sha256": "da26014b1ecc29eb1dfcf8d45b74d98bd539b69945e029a6512ea6a2ab8769cd"
         }
       },
-      "status": "passed",
+      "status": "rejected",
       "thresholds": {
         "maximum_center_error_px": 10.0,
         "maximum_observed_center_error_px": 40.0,
         "minimum_bbox_iou": 0.8,
         "minimum_mask_iou": 0.85,
         "minimum_observed_bbox_iou": 0.75,
+        "minimum_observed_mask_iou": 0.75,
         "minimum_observed_recall": 0.65,
         "minimum_precision": 0.95,
         "minimum_recall": 0.85
@@ -117,6 +119,7 @@
         "mask_iou": true,
         "observed_bbox_iou": true,
         "observed_center_error": true,
+        "observed_mask_iou": false,
         "observed_recall": true,
         "precision": true,
         "recall": true
@@ -146,7 +149,7 @@
         "rendered_precision": 0.9933354831774697,
         "union_pixels": 30286
       },
-      "observed_sam_claim_scope": "Visible SAM mask versus full PBR layer; amodal regions behind other objects may lower mask IoU, so bbox, recall, and center are the alignment gates.",
+      "observed_sam_claim_scope": "Visible SAM mask versus full PBR layer; amodal regions behind other objects may lower mask IoU. This full-mask comparison therefore remains a strict clean-plate eligibility gate, not merely a scene-fit diagnostic.",
       "observed_sam_vs_rendered_metrics": {
         "analytic_bbox_xyxy": [
           436,
@@ -202,13 +205,14 @@
           "sha256": "1f551500f5a540dfd46b9aaba33a503f36efc47c5e7169dc953ed779f40a98c7"
         }
       },
-      "status": "passed",
+      "status": "rejected",
       "thresholds": {
         "maximum_center_error_px": 10.0,
         "maximum_observed_center_error_px": 40.0,
         "minimum_bbox_iou": 0.8,
         "minimum_mask_iou": 0.85,
         "minimum_observed_bbox_iou": 0.75,
+        "minimum_observed_mask_iou": 0.75,
         "minimum_observed_recall": 0.65,
         "minimum_precision": 0.95,
         "minimum_recall": 0.85
@@ -222,6 +226,7 @@
         "mask_iou": true,
         "observed_bbox_iou": true,
         "observed_center_error": true,
+        "observed_mask_iou": false,
         "observed_recall": true,
         "precision": true,
         "recall": true
@@ -251,7 +256,7 @@
         "rendered_precision": 0.9967373572593801,
         "union_pixels": 23258
       },
-      "observed_sam_claim_scope": "Visible SAM mask versus full PBR layer; amodal regions behind other objects may lower mask IoU, so bbox, recall, and center are the alignment gates.",
+      "observed_sam_claim_scope": "Visible SAM mask versus full PBR layer; amodal regions behind other objects may lower mask IoU. This full-mask comparison therefore remains a strict clean-plate eligibility gate, not merely a scene-fit diagnostic.",
       "observed_sam_vs_rendered_metrics": {
         "analytic_bbox_xyxy": [
           654,
@@ -307,13 +312,14 @@
           "sha256": "d9ec2811d33372cfda174b7073e574385da283bc191a09fa89cbc6175da41155"
         }
       },
-      "status": "passed",
+      "status": "rejected",
       "thresholds": {
         "maximum_center_error_px": 10.0,
         "maximum_observed_center_error_px": 40.0,
         "minimum_bbox_iou": 0.8,
         "minimum_mask_iou": 0.85,
         "minimum_observed_bbox_iou": 0.75,
+        "minimum_observed_mask_iou": 0.75,
         "minimum_observed_recall": 0.65,
         "minimum_precision": 0.95,
         "minimum_recall": 0.85
@@ -327,6 +333,7 @@
         "mask_iou": true,
         "observed_bbox_iou": true,
         "observed_center_error": true,
+        "observed_mask_iou": false,
         "observed_recall": true,
         "precision": true,
         "recall": true
@@ -356,7 +363,7 @@
         "rendered_precision": 0.9710413944743634,
         "union_pixels": 253917
       },
-      "observed_sam_claim_scope": "Visible SAM mask versus full PBR layer; amodal regions behind other objects may lower mask IoU, so bbox, recall, and center are the alignment gates.",
+      "observed_sam_claim_scope": "Visible SAM mask versus full PBR layer; amodal regions behind other objects may lower mask IoU. This full-mask comparison therefore remains a strict clean-plate eligibility gate, not merely a scene-fit diagnostic.",
       "observed_sam_vs_rendered_metrics": {
         "analytic_bbox_xyxy": [
           299,
@@ -412,13 +419,14 @@
           "sha256": "2f3b8b29d2270964fe8931c4826b2b126e60266cfd97d157af5b8cdd971a6adc"
         }
       },
-      "status": "passed",
+      "status": "rejected",
       "thresholds": {
         "maximum_center_error_px": 10.0,
         "maximum_observed_center_error_px": 40.0,
         "minimum_bbox_iou": 0.8,
         "minimum_mask_iou": 0.85,
         "minimum_observed_bbox_iou": 0.75,
+        "minimum_observed_mask_iou": 0.75,
         "minimum_observed_recall": 0.65,
         "minimum_precision": 0.95,
         "minimum_recall": 0.85
@@ -436,7 +444,7 @@
     },
     "render_index": {
       "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/render_index.json",
-      "sha256": "cfdefc5a037c2edd378e0f6f568a7d255466b55bc87cf1b125e202432d54660e"
+      "sha256": "769889fd9ed6d8621139b725dff5471c6c9a1c39b995cd46614aee4f8e090a27"
     }
   },
   "promotion_approved": false,
@@ -453,8 +461,8 @@
     },
     "spec": {
       "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-qa-000067/qa-spec.json",
-      "sha256": "8829ad1ef36c15d8e7a5a83e807a47fca3efa1d7409095eb0076578d68b8b452"
+      "sha256": "36febc6f1602b60c2b853cab1becd2e28c7ec9aecbb3b866da92d9d019564cae"
     }
   },
-  "status": "passed_single_frame_only"
+  "status": "rejected"
 }

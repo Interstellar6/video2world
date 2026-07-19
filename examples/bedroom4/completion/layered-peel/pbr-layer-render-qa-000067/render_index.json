@@ -91,5 +91,5 @@
     "round04_bed": []
   },
   "schema_version": 1,
-  "status": "qa_passed_single_frame_only"
+  "status": "rejected"
 }

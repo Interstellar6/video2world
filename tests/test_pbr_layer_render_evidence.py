@@ -42,9 +42,9 @@ def test_single_frame_pbr_layer_evidence_is_self_consistent() -> None:
     report = read_json(ROOT / "source_camera_pbr_layer_qa.json")
     render_index = read_json(ROOT / "render_index.json")
     index_receipt = read_json(ROOT / "render_index_receipt.json")
-    assert report["status"] == "passed_single_frame_only"
+    assert report["status"] == "rejected"
     assert report["promotion_approved"] is False
-    assert render_index["status"] == "qa_passed_single_frame_only"
+    assert render_index["status"] == "rejected"
     assert render_index["frame_ids"] == ["000067"]
     assert render_index["layer_order"] == list(LAYER_ORDER)
     assert render_index["contract"]["this_index_is_not_a_final_composite"] is True
@@ -82,13 +82,15 @@ def test_single_frame_pbr_layer_evidence_is_self_consistent() -> None:
         valid_depth = np.isfinite(depth) & (depth > 0)
         assert np.array_equal(alpha, valid_depth)
         assert int(alpha.sum()) == receipt["alpha_pixels"] == receipt["depth_valid_pixels"]
-        assert report_layers[layer_id]["status"] == "passed"
-        assert all(report_layers[layer_id]["gates"].values())
+        assert report_layers[layer_id]["status"] == "rejected"
+        assert report_layers[layer_id]["gates"]["observed_mask_iou"] is False
+        assert (
+            report_layers[layer_id]["metrics"]["mask_iou"]
+            >= report_layers[layer_id]["thresholds"]["minimum_mask_iou"]
+        )
 
     outputs = report["outputs"]
-    assert outputs["contact_sheet"]["sha256"] == sha256_file(
-        Path(outputs["contact_sheet"]["path"])
-    )
+    assert outputs["contact_sheet"]["sha256"] == sha256_file(Path(outputs["contact_sheet"]["path"]))
     assert outputs["observed_sam_contact_sheet"]["sha256"] == sha256_file(
         Path(outputs["observed_sam_contact_sheet"]["path"])
     )

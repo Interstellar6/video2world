@@ -39,6 +39,7 @@
     "minimum_recall": 0.85,
     "minimum_bbox_iou": 0.8,
     "maximum_center_error_px": 10.0,
+    "minimum_observed_mask_iou": 0.75,
     "minimum_observed_bbox_iou": 0.75,
     "minimum_observed_recall": 0.65,
     "maximum_observed_center_error_px": 40.0

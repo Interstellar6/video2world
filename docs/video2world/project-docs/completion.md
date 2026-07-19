@@ -3,8 +3,8 @@ title: 通用遮挡、背面与背景分层补全
 id: video2world-project-layered-completion
 category: 项目文档
 visibility: public
-updated: 2026-07-18
-summary: Video2World 如何按遮挡顺序生成 mesh-first PBR GLB、补全不可见背面和物体移除后的背景，并用六视图、支撑、穿模、clean-plate 与 canonical Web 门禁控制 current-demo-only 发布。
+updated: 2026-07-19
+summary: Video2World 如何按遮挡顺序生成 mesh-first PBR GLB、补全不可见背面和物体移除后的背景，并区分规范合同、corrected clean-plate 当前状态与 archived current-demo-only 历史结果。
 tags:
   - Completion
   - Occlusion
@@ -165,7 +165,7 @@ object-local 资产通过后，`place_object` 才把 canonical bounds 拟合到�
 
 旧 parametric front 对象经历了三次保留证据的 placement 尝试，Attempt 3 得到 mask IoU `0.8026`、bbox IoU `0.9104`、中心误差 `4.75 px`。当前 TRELLIS2 PBR GLB 复用同一前表面锚定与 source-mask 尺度约束，真实回投结果为 mask IoU `0.709810`、bbox IoU `0.924577`、中心误差 `4.402 px`，三项 source-camera silhouette gate 均通过。
 
-source-camera 回投本身仍不等于 unified browser scene pass。旧 parametric Attempt 3 的 browser receipt 中 `scene <-> sam3_pillow_front` 有一组相交，五个 support offset 全为负，旧静态层从对象左半部和内部明显透出；这段失败证据继续保留。后续严格 clean scene 与四个 TRELLIS2 PBR GLB 已通过 canonical desktop/mobile QA 并完成 `current_demo_only` promotion，详见下文；该结果不会反向把旧 Attempt 3 改写成通过，也不会把 R4 背景升级成高质量补全。
+source-camera 回投本身仍不等于 unified browser scene pass，更不等于 PBR render 可以作为 clean-plate 遮挡层真值。旧 parametric Attempt 3 的 browser receipt 中 `scene <-> sam3_pillow_front` 有一组相交，五个 support offset 全为负，旧静态层从对象左半部和内部明显透出；这段失败证据继续保留。2026-07-17 的四对象 Web 运行曾完成 `current_demo_only` promotion，但它现在只作为历史交互与加载证据保留，不会反向把旧 Attempt 3、旧 R1-R4 或 R4 背景改写成高质量补全。
 
 ## Clean plate：先找真实 donor，再生成残余洞
 
@@ -179,27 +179,33 @@ clean plate 不是把物体 mask 直接交给视频 inpainting。通用顺序是
 6. 跨标定视角检查纹理、边界和结构连续性；
 7. RGB 通过后重新估计 depth/normal，再重建 PGSR/TSDF。
 
-![Calibrated donor prefill](../assets/completion/clean-plate-donor-prefill.png "标定 donor reprojection 的 source/mask/prefill/support/residual 对照；mask 外严格不变，但有效 donor 太少")
+![Archived category-level donor prefill](../assets/completion/clean-plate-donor-prefill.png "旧 all-pillow category-union donor 对照；mask 外严格不变，但它不是 corrected physical-instance 合同")
 
-bedroom_4 的保守 donor coverage 只有 `0.62% / 0.17% / 0.59%`，也就是三张代表帧分别只覆盖 removal mask 的 113/18,346、40/23,065、127/21,440 像素。残余洞仍为 `99.38% / 99.83% / 99.41%`，因此不能声称“用多视角恢复了床面”。
-
-把 foreground exclusion margin 降到 0 后 coverage 看似升到约 9.86%-11.89%，但 support 只形成原物体边缘的一圈浅色泄漏：
+旧实验把 donor 帧中所有 `pillow` detection 按类别取 union 后统一排除。该 all-pillow control 在三个代表帧只得到 113/18,346、40/23,065、127/21,440，也就是 `0.62% / 0.17% / 0.59%`；它过度排除了本轮仍应保留的 left/right pillow，不是正确的 physical-instance 合同。把 foreground exclusion margin 降到 0 后 coverage 虽看似升到约 9.86%-11.89%，support 却只形成原物体边缘的一圈浅色泄漏：
 
 ![Foreground edge leakage control](../assets/completion/clean-plate-edge-leakage.png "零 margin 失败对照：增加的 support 是原前景边缘，不是被遮挡背景的观测")
 
-这类数值提升不能冒充 observed donor。Round 1 的 full-mask ProPainter 真实运行虽然 25/25 帧、尺寸、mask 外 RGB 和输出非空等技术 gate 通过，视觉上仍是灰白低频光斑。Round 2 证明相机路径几乎没有观察到隐藏床面。
+corrected 审计先用三个显式 3D anchor 在原始 80 帧上建立 physical identity，不读取 SAM3 文件名、逐帧 ordinal 或 detection 顺序。association 状态为 `passed`：front/left/right 分别有 79/73/80 个 high-confidence assignments；frame `000000` 没有可靠 front assignment，因此从 front donor pool 排除，而不是把缺失 mask 当作安全空 mask。association report SHA-256 为 `049689c7c967ccd24aacf10cf90efe6323944f3a2c33cef77b436509ff068cdb`。
 
-Round 3 使用固定 revision 的 SDXL inpainting 生成三个单帧 anchor。用户已人工选择 seed `2026071701`，以 `pass_with_known_limitation` 放行当前 bedroom4 demo 和独立对象集成 QA。该 1280x720 候选处理 20,791 个 mask 像素，mask 外 changed pixels 为 0；但它仍在移除区生成了枕头状外观，所以这次人工放行只说明“当前 demo 视觉可以先用”，不证明 object-free clean plate、跨视图背景一致性或被遮挡床面几何已经恢复。通用 pipeline 的 multiview/depth/normal gate 仍保留，不能把 scoped demo exception 写成几何真值。
+在相同 source RGB、R1 core、相机、DA3 depth 和 fusion 参数下，只排除 physical `sam3_pillow_front` 后，25 帧 diagnostic coverage 从 all-pillow control 的 1,320/532,888（`0.2477%`）升到 21,717/532,888（`4.0753%`），提升 `16.45x`。但这些像素的 `96.14%` 位于 core 边界 8px 内；深内部仅覆盖 839/418,506（`0.2005%`）。因此 audit verdict 是 `boundary_constraint_only_not_clean_plate_fill`、`promotion_approved=false`，不能声称已经用多视角恢复了隐藏床面。audit report SHA-256 为 `86c8f5ec2ec8d0fce90f931fab2490021523455ca18cbe1f88a58bda37823d7c`。
 
-![User-approved SDXL demo anchor](../assets/completion/clean-plate-sdxl-seed-2026071701.png "seed 2026071701 已由用户按当前 demo 范围人工放行；图中生成残留仍不构成 object-free 或多视图几何证据")
+![Physical-instance donor audit](../assets/completion/clean-plate-physical-donor-audit.png "corrected front-only physical exclusion 与旧 all-pillow category union 的 25 帧对照；青色 support 增多，但仍集中在当前轮廓边界")
 
-## 真实四轮逐层 Clean Plate：不是一次性全抠除
+生产合同还要用更大的 foreground exclusion 作为 boundary guard 复算 support。frame `000064` 在配置 dilation 下出现 256 个候选 support；8px guard 后 stable support 为 0，最终 measured coverage 为 0/23,065，residual 保持 23,065。严格报告因此为 `technical_failed`、`promotion_approved=false`，失败项是 `donor_support_not_boundary_concentrated=false`。本次 corrected manifest SHA-256 为 `7ad7ed45c46ffda1234bf3982e362233e900680e60c18546cfef34838e9a955f`，strict report SHA-256 为 `410eb5be0805458ee6d16b713832e26d93e5d50f83833c1461e7e6fea62a3a34`，raw associated-index receipt SHA-256 为 `62fc0b386998b95043806141f767285da5202fb889b99b9cf913ebd825574f4c`。
 
-2026-07-17 的 bedroom_4 已按遮挡关系真正执行四轮，而不是把三个枕头和床合成一个全局 mask 后一次性修背景。顺序固定为 `sam3_pillow_front -> sam3_pillow_left -> sam3_pillow_right -> sam3_bed_01 -> structural background`。**严格输入不变量是：R1 输入原始 RGB，R2 输入 R1 clean plate/composite，R3 输入 R2 clean plate/composite，R4 输入 R3 clean plate/composite。** 这里有两条不能混淆的数据流：R2-R4 每一帧的场景 RGB 输入必须是紧邻上一轮 composite，路径和 SHA-256 都要相等；每轮的 measured RGB-D donor 则始终只能来自原始观测帧和原始 DA3 depth，并用截至本轮的累计 removed masks 排除前景。上一轮生成/PBR/ProPainter 像素和 unresolved residual 永远不能反过来冒充 observed donor。
+![Boundary-guard rejection](../assets/completion/clean-plate-boundary-guard-rejection.png "frame 000064 strict R1：普通参数得到的 256 个边界 support 在 8px guard 下全部归零；该图是拒绝证据，不是 clean plate 结果")
+
+历史 full-mask ProPainter 虽通过 25/25 帧、尺寸、mask 外 RGB 和输出非空等技术检查，视觉上仍是灰白低频光斑。固定 revision 的 SDXL seed `2026071701` 曾由用户以 `pass_with_known_limitation` 放行旧 bedroom4 demo 和独立对象集成 QA；该单帧候选处理 20,791 个 mask 像素且 mask 外 changed pixels 为 0，但移除区仍有枕头状生成。这项决定只是一条 archived demo exception，不证明 object-free clean plate、跨视图一致性或被遮挡几何已经恢复。
+
+![Archived user-approved SDXL demo anchor](../assets/completion/clean-plate-sdxl-seed-2026071701.png "seed 2026071701 曾按旧 demo 范围人工放行；图中生成残留仍不构成 corrected object-free 或多视图几何证据")
+
+## 逐层 Clean Plate 的规范合同
+
+规范顺序固定为 `sam3_pillow_front -> sam3_pillow_left -> sam3_pillow_right -> sam3_bed_01 -> structural background`。**R1 必须输入原始 RGB，R2 必须输入 accepted R1 clean plate，R3 必须输入 accepted R2 clean plate，R4 必须输入 accepted R3 clean plate。** R2-R4 每一帧的 segmentation source、scene RGB source 和紧邻上一轮 accepted composite 必须是同一份 bytes；路径和 SHA-256 都要闭合。measured RGB-D donor 始终只能来自原始观测帧和原始 depth，并以 physical object ID 累计排除已经 peeled 的实例。上一轮 generated/PBR/ProPainter 像素和 unresolved residual 永远不能冒充 observed donor。
 
 ![Layered clean-plate source views](../assets/completion/layered-source-25view.png "000048-000072 的 25 个原始观测视角；三个枕头、床和房间背景同时存在")
 
-四轮输入和产出是串行闭合的；任何一行失败，下一行都没有合法输入：
+这张表定义必须满足的 pipeline 合同，不是在声称当前已经执行完成。任何一行失败，下一行都没有合法输入：
 
 | Round | 唯一合法的场景 RGB 输入 | 累计 mask 与 measured RGB-D donor | 本轮独立物体产出 | 本轮场景产出 / 下一步 |
 |---|---|---|---|---|
@@ -208,23 +214,27 @@ Round 3 使用固定 revision 的 SDXL inpainting 生成三个单帧 anchor。�
 | R3 right pillow | R2 clean plate/composite | mask=`front+left+right`；仍只投影原始 RGB-D，同时排除三个 pillow | `sam3_pillow_right` scene-fit PBR GLB | R3 clean plate/composite，唯一允许输入 R4 |
 | R4 bed | R3 clean plate/composite | mask=`front+left+right+bed`；本轮 measured donor 为 0 | `sam3_bed_01` support-adjusted PBR GLB | structural background 覆盖累计 mask，得到最终 R4 clean plate |
 
-这张表也说明了为什么“逐层”不只是顺序跑四次 inpainting：每个 object round 一边交付可独立选择和旋转的 PBR GLB，一边只从场景底图中移除当前最前层；最后才由 structural background 处理床移除后仍不可见的墙面/地面。当前采用的四个对象资产分别位于 `examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/`、`round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined_v6/`、`round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/` 与 `round04_bed/component_assembly_v2_support_adjusted/`。它们是各层的独立对象结果，不是 clean plate 像素来源。
+“逐层”不只是顺序跑四次 inpainting：每个 object round 一边交付可独立选择和旋转的 PBR GLB，一边只从场景底图移除当前最前层；最后才由 structural background 处理床移除后仍不可见的墙面/地面。四个 object-local 资产仍分别位于 `examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/`、`round02_left_pillow/trellis2_seed44/scene_fit_silhouette_refined_v6/`、`round03_right_pillow/trellis2_seed43/scene_fit_silhouette_refined_v6/` 与 `round04_bed/component_assembly_v2_support_adjusted/`。它们可以独立通过对象门禁，但不是 clean-plate observed pixels，也不能凭 object-local pass 自动取得遮挡层资格。
 
-R1 只移除最前面的枕头。左枕头、右枕头和床仍以 source-camera PBR render 参与遮挡合成，因此本轮不会把它们错误地当作背景补掉。
+## 旧四轮执行：archived current-demo-only，当前已拒绝
 
-![Round 1 front pillow peel](../assets/completion/layered-round01-front-pillow.png "R1：只去除 front pillow；left pillow、right pillow 和 bed 仍属于 remaining layers")
+2026-07-17 的旧实现确实按 front -> left -> right -> bed 顺序生成过四轮文件，并闭合了当时记录的 predecessor hashes；但新审计发现合同层错误，因此这条链现在只能保留为失败复现和旧 demo 记录，不能再称为 corrected clean plate。
 
-R2 只在 R1 composite 上累计移除左枕头，R1 已移除的 front pillow 不允许重新出现；R3 也只能在 R2 composite 上累计移除右枕头，只留下床。中间图中的 PBR 外观是遮挡层和深度分区证据，不是 measured donor，也不是最终 Web 截图；对象发布质量仍由各自六视图、scene fit、支撑和穿模报告决定。
+最直接的问题是 source lineage。旧 R2 的 25/25 帧 masks 在上一轮 measured-prefill/ProPainter source 上生成，却应用到不同的 R1 PBR composite；例如 frame `000048` 的 segmentation source SHA-256 为 `b6800ebe...`，实际 compositor source 为 `492f1180...`。旧 R3 同样 25/25 不匹配，frame `000048` 分别为 `dc8cb86b...` 与 `62cabf4e...`。此外，frame `000067` 的 observed SAM 与 PBR layer IoU 对 front/left/right/bed 分别只有 `0.6526 / 0.6955 / 0.5369 / 0.6212`，全部低于 clean-plate eligibility 阈值 `0.75`；该 source-camera PBR layer QA 状态为 `rejected`。因此旧链虽然“hash-closed”，却没有绑定正确的 mask source，也没有通过真实 observed boundary gate。
 
-![Round 2 left pillow peel](../assets/completion/layered-round02-left-pillow.png "R2：front+left pillow 已移除；right pillow 和 bed 保留")
+下面四张图继续保留，但 caption 明确标记为 archived rejected evidence，而不是当前每轮 clean plate：
 
-![Round 3 right pillow peel](../assets/completion/layered-round03-right-pillow.png "R3：三个 pillow 均已移除；bed 是唯一 remaining object layer")
+![Archived round 1 front pillow peel](../assets/completion/layered-round01-front-pillow.png "旧 R1 失败证据：front pillow 被 PBR layer 替换；remaining layers 的 source-camera observed boundary 未通过当前门禁")
 
-R4 以 R3 composite 为 source，累计 mask 覆盖三个枕头和床；本轮没有 measured donor，也没有 remaining object，8,259,257 个 removal pixels 全部由同一套结构背景 RGBA/depth 分区覆盖。背景仍有明显床形低频色块和简化平面，因此 sequence-stage report 记录 `promotion_approved=false`，禁止 R4 RGB 不经重建/QA 就直接发布，也不能把它作为通用背景补全质量证据。后文的 canonical `promoted_current_demo_only` 是在 fresh DA3/PGSR/TSDF、alignment 和 desktop/mobile QA 全部完成后的独立 finalization，不会修改这条 R4 质量判断。
+![Archived round 2 left pillow peel](../assets/completion/layered-round02-left-pillow.png "旧 R2 失败证据：mask segmentation source 与实际 R1 PBR composite 在 25/25 帧不一致")
 
-![Round 4 final background](../assets/completion/layered-round04-final-background.png "R4：移除 bed 后只保留结构背景；可见床形低频色块作为 current-demo-only limitation 保留")
+![Archived round 3 right pillow peel](../assets/completion/layered-round03-right-pillow.png "旧 R3 失败证据：mask segmentation source 与实际 R2 PBR composite 在 25/25 帧不一致")
 
-真实执行的像素分区如下。每行的 removal pixels 都是**截至本轮的累计 mask**，不是只统计当轮新增对象。`measured` 只允许来自原始观测 RGB-D；R1-R3 report 都显式声明 `generated_pixels=0`、`propainter_pixels=0`，并绑定 `previous_cumulative_manifest_sha256` / `previous_prefill_report_sha256`。PBR 与 structural 只填 measured residual，不能被重标成 measured donor。
+旧 R4 用 structural background 覆盖 8,259,257 个累计 removal pixels，仍有明显床形低频色块、拉伸和简化平面；旧 sequence report 自始至终记录 `promotion_approved=false`。
+
+![Archived round 4 final background](../assets/completion/layered-round04-final-background.png "旧 R4 失败证据：床形低频色块与简化结构仍可见；不得作为通用背景补全质量证据")
+
+下表是旧 receipt 的原始像素账本，只用于复现历史执行。`unresolved=0` 表示当时所有 residual 最终被 PBR 或 structural pixels 填入，不表示这些像素是 observed，也不表示 clean plate 语义正确。
 
 | Round | 累计 removed | Remaining | Removal pixels | Measured | PBR render | Structural | Unresolved | Frame-set SHA-256 |
 |---|---|---|---:|---:|---:|---:|---:|---|
@@ -233,54 +243,116 @@ R4 以 R3 composite 为 source，累计 mask 覆盖三个枕头和床；本轮�
 | R3 | front + left + right pillow | bed | 1,636,824 | 12,443 | 1,622,757 | 1,624 | 0 | `e2230aa4...0f19` |
 | R4 | three pillows + bed | none | 8,259,257 | 0 | 0 | 8,259,257 | 0 | `854bd224...dfca` |
 
-Sequence report SHA-256 为 `672ccc38d2d0187a4e99e85a1f54a451039deab5c6d73eb81f71108275483e88`，receipt 为 `cdf2ffc02dbacf184391dafd1cd35c427fd5cf868b084548d4c7e2d7496d4d25`。机器证据同时绑定四轮 manifest/report/receipt、R2-R4 predecessor、25 个 portable R4 masks 和五张 contact sheet；本地 focused evidence tests 会重新计算这些 hash。
+旧 sequence report SHA-256 为 `672ccc38d2d0187a4e99e85a1f54a451039deab5c6d73eb81f71108275483e88`，receipt 为 `cdf2ffc02dbacf184391dafd1cd35c427fd5cf868b084548d4c7e2d7496d4d25`；两者继续保留，但已被 corrected source-lineage 与 boundary audit supersede。
 
-此前 `clean-scene-reconstruction-input-v23` 只绑定单独的 R4 背景候选，不具备 R1-R4 predecessor chain。基于它启动的 PGSR 已在 4,210/30,000 主动停止，TSDF 未运行；作废 receipt SHA-256 为 `aaf5837dc931b7d34f0097366297537358821d28a6a274fe8eb5789d4f42ce6d`。新的 reconstruction package 只硬链接严格 R4 最终 RGB 和相机，明确不包含旧 geometry/composite/DA3 depth；其 manifest SHA-256 为 `3645fc895d202d537a9104d91a21c4ff86e87352c60e3c0f118bdea06adc0299`，package receipt SHA-256 为 `33532775d7fe8c3f76724c73b13b68ab01f489d62b5742823a185d52400a468d`。
+## 本轮已拒绝的通用候选
 
-fresh DA3 的 25 张 `720x1280 float32` depth 共 23,040,000 个值，全部 finite 且为正，范围为 7.7331486-22.4680824。重新生成的 `pointcloud_da3.ply` 有 4,000,000 个 finite/nonzero XYZ，bbox extent 为 `[26.352661, 17.238593, 16.871765]`，PLY SHA-256 为 `196d170d95404976b0a56ba41654cc23c71cc248955f8fc109a14f10b8ac58d3`。DA3 stage receipt SHA-256 为 `287fc496a1bdfc8a44cbd36ab913da8a9263413af8631eccb7c89019352af230`；它只允许进入 current-demo PGSR，不允许直接进入 TSDF、Web 或 general promotion。
+这些实验都遵循“代表帧先过，再扩到 25 帧”的停止规则。`rejected` 只表示当前 Bedroom4 证据下没有通过，不等于宣称该模型在所有数据上无效。
 
-fresh PGSR 随后在同一严格 package 上完成 iteration 30,000，状态为 `technical_passed_pgsr_30000_current_demo_only`：L1 `0.0091873651`、PSNR `33.2610672 dB`、454,617 Gaussians、112,746,547 bytes，训练耗时 3,088.6 秒。`point_cloud.ply` SHA-256 为 `4eeb1403194e0248f0ab4cbf206572af5bb1ece635a03775cda6e0358133c9bf`，stage receipt SHA-256 为 `0224cc0868e0fb03822b3f3053f414d909056bc70857e44291b9389b776f349b`。
+| 方法族 | 实际观察 | 当前状态 |
+|---|---|---|
+| ProPainter full/context mask | 小 dilation 留前景；较大 dilation 形成灰白或平滑色块，原 silhouette 仍明显 | `rejected` |
+| SDXL 单帧/25 帧 inpaint | 多个 seed 重新生成中央枕头；layer-specific 版本还有内部硬 seam | `rejected`；seed `2026071701` 仅保留历史 demo exception |
+| Canny / semantic ControlNet | Canny 和 ADE20K pillow/bed control 都重新生成一到两个中央枕头 | `rejected` |
+| LaMa exact residual/context | exact residual 重建完整白色 front pillow；扩大 context 后变成灰棕平板和高亮边界弧 | `rejected` |
+| reflection / harmonic / translation texture fill | 局部纹理改善，但 core 轮廓和内部标签仍可辨认 | `rejected` |
+| 原 RGB 点投影与真实 bed cloud | visible SAM 对齐较好，但 frame 000064 hidden core 仅 63/23,065（`0.2731%`），留下大洞 | `rejected_as_complete_fill`；只可作稀疏 measured evidence |
+| full80 continuous RGB-D transport | 排除 target frame 与无可靠 front identity 的 frame 000000 后，用 78 个 donors、8px physical guard、depth cluster 与至少 2 视角一致性；core 只恢复 135/23,065，deep-8 为 0/18,297 | `pure_transport_no_go`；99.4147% 仍需 inference |
+| PowerPaint v2-1 | exact physical mask 的三个 seed 都重新生成装饰枕；rounded bbox、convex hull 与 large context 三种 shape-neutral mask 又生成两个枕头状物体、黑洞或暗缝 | `6/6 rejected`；`full25_approved=false`，停止继续调 seed/CFG |
+| PowerPaint + 离散 PBR ownership hybrid | PowerPaint 只负责左右后枕，真实床面纹理负责 bed；外圈接缝通过，但内部硬分区保留原 front silhouette，并把后枕切成碎片 | `rejected`；停止单帧调参，转向连续 depth/alpha 或 joint layer optimization |
+| continuous PBR remaining-scene fit | 不使用 core 内 ownership；对 left/right/bed GLB 做 core 外 SAM/RGB、transform/color/depth/soft-alpha 联合拟合并连续 soft-z 合成 | `no_go_current_scene_fit_pbr_assets`；全覆盖但形成灰色 bed 硬板与错误 pillow 纹理 |
+| DiffuEraser exact physical mask | 25 帧时序补全的外圈 byte exact，但在每一帧都重生米色中央枕头；audited RAFT 也未通过 | `rejected`；SAM3 residual `25/25` |
+| DiffuEraser shape-neutral mask | 输入 mask 改成 `union(convex hull + rounded bbox) + 32px`，面积均值为 physical mask 的 `2.292x`；输出变成硬边米色枕头/平板，接缝反而恶化 | `rejected`；SAM3 residual `25/25`，停止该模型族 |
+| Nerfacto visible-region baseline | 79 视角数据、相机和 keep-mask 可训练；1,000 step 后固定 25 帧 source-camera render 在 hole core 内仍保留/重建白色中央枕头 | `baseline_only_not_a_clean_plate`；只验证数据链，不是 R1 候选 |
+| NeRFiller `grid-prior-du-no-depth` | 官方命令真实执行到 `stabilityai/stable-diffusion-2-inpainting` 加载；mil8 无官方 snapshot，官方 endpoint 超时，镜像无法解析该模型 | `blocked_on_official_sd2_access`；未进行补全质量实验 |
+| GaussianEditor external physical-mask vote | 把 79 帧 physical front mask 按官方 CUDA vote 投到 PGSR，选中 5,668/871,317 个前景 Gaussian；79 帧回投 micro IoU `0.95696` | `technical_passed_delete_mask_prep`；只证明删除区域，不证明背景补全 |
 
-TSDF 也已在该 PGSR 输出上完成。最终 `tsdf_fusion_post.ply` 为 94,989,275 bytes、1,805,667 vertices / 3,556,615 faces，所有 vertices finite、faces 均为有效三角形，bbox extent 为 `[26.1068731, 18.3792248, 17.0562393]`；文件 SHA-256 为 `ccd48c2376d2cc8d81b979813a09c58feb158b66a441d66512466125b0c8f344`，stage receipt SHA-256 为 `c45d92dcc6810034772d1f8dbb058c34424765cd3d41ad03bdfffe100acad5c2`。alignment receipt `16839c7f0897c0095bf01ada6768d60dd23f636e102e17111fbc505e8fe27d49` 进一步验证 PGSR/TSDF 共坐标、相机子集精确、对象 placement 共用目标坐标系；结论仍限定为 `passed_current_demo_only`，不消除 R4 背景的视觉局限。
+![PowerPaint v2-1 rejected candidates](../assets/completion/clean-plate-powerpaint-v2-1-rejected.png "PowerPaint v2-1 的三组 exact-mask seed 与三组 shape-neutral mask 全部被拒绝；输入清空、exact-core+6px 合成和 mask 外不变合同均通过，但模型仍重生枕头或留下黑洞")
 
-## Canonical Web promotion：只在 current demo 范围通过
+PowerPaint 实验固定官方代码 commit `5b4c3d52291709fcec2a1870d987da693fd3549c` 与模型 snapshot `5ae2be3ac38b162df209b7ad5de036d339081e33`；五个推理必需权重逐文件 size/SHA-256 通过。最终 visual-review receipt SHA-256 为 `ca386fe3852a364d014c3c4dcf59ba62665b822a3b42230f61b538592d03f37a`，总览图 SHA-256 为 `b318268e8eae71bde4d09bef72ccc45696162b7d426dbe1cdb2a32e49d4f4cac`。这说明失败来自当前 R1 条件下的生成语义，不是模型未加载、输入未清空或合成越界。
 
-严格 clean scene 与四个 unified PBR objects 已写入 canonical `web/public/worlds/bedroom4/manifest.json`，最终 manifest SHA-256 为 `58cc2b06ec1a7feb70fc0e0060078e0e0e1db409f3e96843c53948c74d3ab7cb`。final browser QA `qa/clean-unified-scene-browser-qa.final-promoted.json` 的 SHA-256 为 `0dc5f2b312e6bef0e272920169993d2485c9e967dec596db047bedd95aa7b961`，状态 `passed_current_demo_only`、`automatedGate=passed`、`failures=[]`，测试前后 manifest bytes 未变。
+![PowerPaint layer hybrid rejected](../assets/completion/clean-plate-powerpaint-layer-hybrid-rejected.png "frame 000064 离散 ownership hybrid 拒绝证据：外圈可连续，但中央床面仍是枕头形硬楔片，左右后枕也被切出不自然缺口")
 
-QA report 本身保持 `publishingPerformed=false`，不直接执行发布。随后 finalization receipt 以 same-directory atomic rename 把这份**精确 QA 过的 manifest bytes**移到 canonical 路径，状态为 `promoted_current_demo_only`、`promotionAllowed=true`；receipt SHA-256 为 `a7a0691a0effd8898ee2e1a89b3c2a103b966b13005eed51cb52acdb8260c041`。稳定基线别名 `manifest.web-demo-baseline-stable.json` 被原样保留，SHA-256 仍为 `3805f0e5bab09add424b3b78f9349cd2eca6d1262777ef683e13cda07695e82b`。
+hybrid 保持 exact core+6px collar 外 `0` 像素变化，outer seam color/gradient p95 为 `14.88 / 15.33`，但 internal cross-ownership seam p95 为 `25.77`，core 黑像素 `0.6157%` 超过 `0.2%` 门槛，原 front silhouette edge recurrence 为 `59.22%`，超过 `35%` 门槛。人工审查确认中央床面仍是原枕头形硬楔片，左右后枕被离散 ownership 切成碎片；因此 R1、full25 和 promotion 全部为 `false`。rejection receipt SHA-256 为 `6f7c9eec39b6fd73a7d113c7cadbf45a2f6b45f9b33a87fda6088831abcf9af2`，report SHA-256 为 `ac7600acf7320853956bc59a6091d92a638f11d5c96bb6fc4c3506f1860b75c8`。该结果排除的是离散硬分区实现，不是连续几何传输或联合层优化。
+
+![Continuous observed transport audit](../assets/completion/clean-plate-continuous-transport-audit.png "frame 000064 full80 continuous RGB-D transport：青色 observed support 仍只在边界，红色区域需要 inference；deep-8 没有真实观测")
+
+continuous transport 审计使用 stride 1、splat radius 1、per-donor target z-buffer、至少 2 视角支持，以及 `max(0.08 scene-unit, 1%)` 的 depth cluster。frame `000064` core 共 23,065 pixels：left 为 33/2,479、right 为 102/4,426、bed 为 0/16,160；三层 deep-8 都是 0。135 个支持像素全部位于 core 边界 0-8px，inference-required 为 22,930/23,065（`99.4147%`）。因此 pure observed transport 明确 no-go，不是 splat radius 太小导致的假阴性。audit report SHA-256 为 `a062a24702060723a75d2cee0badfe6af0440445e7a85eada59832b677074f0c`，receipt SHA-256 为 `ec97c1a5536c631fb2c1fa6e6a5bb06071d033e9b73014be159ff95bdca3093f`。
+
+![Continuous PBR remaining-scene rejection](../assets/completion/clean-plate-continuous-pbr-rejected.png "frame 000064 continuous PBR：不做离散 ownership 且 alpha 全覆盖，但现有 bed GLB 是灰色硬板，left/right PBR 纹理与真实观测不匹配")
+
+continuous PBR PoC 只使用现有 left/right pillow 与 support-adjusted bed GLB 的真实 RGB/depth/alpha render，不调用生成或 inpainting。core 外 visible IoU 对 left/right/bed 为 `0.8233 / 0.7177 / 0.8878`，但 color-fit RGB MAE 为 `32.10 / 41.85 / 23.51`，高频 NCC 只有 `0.0217 / 0.0071 / 0.0076`。虽然 core uncovered 为 0、编辑区外变化为 0，front silhouette recurrence 仍有 `53.27%`，最终是无纹理灰色 bed slab 与错误 pillow 材质。该实现因此只证明 continuous depth/alpha 可以消除空洞，不能证明当前 PBR 资产能恢复背景；report SHA-256 为 `185b46165431001a87c2c55fb790d438adec2f392257588c81ea75b125c6622b`，rejection receipt SHA-256 为 `aeb10de82d6bd7171dcb4edbab4f0594af1fe0a0a684c4546005a52e1c13cda2`。
+
+![DiffuEraser exact-mask rejection](../assets/completion/clean-plate-diffueraser-v1-rejected.png "DiffuEraser v1：source、physical core、ProPainter prior、raw output、exact-core composite 与边界 crop；边界比旧方法稳定，但原位置重生米色中央枕头")
+
+DiffuEraser v1 固定官方代码 commit `8e6f279ac7531e27ad1849c6f8dab5372a8597e7` 与模型 snapshot `ad510dca07fa8e155d4bd8d002085bb8ec8f60e5`；BrushNet/UNet、SD1.5 text encoder、VAE、PCM 与 ProPainter/RAFT 权重均按实际 bytes 和 SHA-256 验签。25 帧保持 exact physical core+6px collar 外 `0` channel mismatch，outer seam mean 为 `3.948`；但真实 SAM3 在 `25/25` 帧检测到 substantial pillow residual。frame `000064` 最佳 pillow mask 与 removed core 的 IoU 为 `0.797`，core coverage `0.895`，detection coverage `0.880`。audited RAFT 生成 48 个 pair 与 23 个 triplet artifacts，但 34 pair failed、14 pair not-evaluable、14 triplet failed、9 triplet not-evaluable，status 为 `not_evaluable`。immutable rejection receipt SHA-256 为 `deb266105876f6385dc9553ed0e7c4938574f8ed7dd794f1accc5d3d47cebd14`。
+
+![DiffuEraser shape-neutral rejection](../assets/completion/clean-plate-diffueraser-v2-rejected.png "DiffuEraser v2：唯一一次 shape-neutral mask ablation；扩大上下文后没有暴露后层，反而生成硬边米色枕头/平板")
+
+v2 只改变 mask strategy，不扫 seed 或 CFG；lossless input gate 通过，最终仍只写 exact physical core+6px collar。它继续在 `25/25` 帧触发 SAM3 pillow residual；frame `000064` IoU/core coverage/detection coverage 为 `0.790 / 0.886 / 0.880`。outer seam mean 从 v1 的 `3.948` 恶化到 `10.772`，人工审查可见硬边平板、左右截断和底部阴影。因此 v2 未再浪费算力跑 audited RAFT，receipt 明确记录该项为 `null`，immutable rejection receipt SHA-256 为 `743912ee04a2816bb2d888abbfbfc08a73819b1be86147909a34460616c2c70e`。DiffuEraser 族到此停止；其中 ProPainter 先验受 S-Lab License 1.0 限制，只允许非商业研究用途，商业使用还需要另行许可。
+
+![Nerfacto visible baseline rejected](../assets/completion/clean-plate-nerfiller-visible-baseline-rejected.png "五个固定代表视角：source、physical hole、1,000-step visible Nerfacto 与四倍绝对误差；hole 内仍是中央枕头，因此不是 clean plate")
+
+NeRFiller 的 79 视角 dataset contract、camera conversion 与 parser/data-loader 均通过，普通 `nerfacto-nerfiller` 训练 1,000 step 用时 133.44 秒并生成 242,883,154-byte checkpoint；固定 25 帧 `1280x720` source-camera render 用时 221.93 秒，峰值 CUDA allocated 为 11,250,060,288 bytes。visible-region mean PSNR/SSIM 为 `20.66 dB / 0.786`；frame `000064` visible 与 8px collar 分别为 `20.25 dB / 0.774`、`20.78 dB / 0.733`。这些指标只验证已观测区域，hole 内没有 clean-plate 真值；人工复核的 `5/5` 代表帧仍出现完整白色中央枕头，所以 acceptance status 是 `baseline_only_not_a_clean_plate`。immutable baseline receipt SHA-256 为 `517805078da99e4f6841428d6dc62f0b88f2e0d07222f1476ef6ee6edd3dc376`。
+
+官方 NeRFiller 固定 commit `fad4ac133144716cad89103c8160310e3874981e`，其 `grid-prior-du-no-depth` offline probe 已真实经过 dataset cache 和 NeRF construction，并在 15.47 秒后准确失败于 `RGBInpainter.from_pretrained("stabilityai/stable-diffusion-2-inpainting")`。本地官方 snapshot 数量为 0；官方 endpoint 在 20-30 秒内超时，镜像带现有 token 仍不能解析该模型。是否 gated 因官方 API 同样不可达而保持 `unresolved`，不能写成已确认 gated。ZoeDepth 尚未执行，也没有换用替代权重。immutable blocked receipt SHA-256 为 `e15ad90ed18da28a247075dfe759fc70d82482ceeb65f59b24052672e4ce65e5`；因此这是外部权重阻塞，不是 NeRFiller 补全质量已被拒绝。
+
+![GaussianEditor external delete-mask preparation](../assets/completion/clean-plate-gaussianeditor-delete-mask-prep.png "frame 000064：source、physical mask、3D Gaussian 回投，以及 TP/FP/FN；3D 删除区域基本贴合前枕，但尚未生成遮挡后的床面")
+
+GaussianEditor 备用链固定官方 commit `9249f847c57036266a0bfb3a210681f94264ede9`，严格使用 `000001..000079` 的 79 个 physical front masks，frame `000000` 因没有可靠 front identity 被排除。它复用官方 CUDA `apply_weights` 与 `weights / (counts + 1e-7) > 0.5` 规则，从 871,317 个 PGSR Gaussian 中选出 5,668 个（`0.65051%`）。79 帧同源回投的 micro IoU/precision/recall 为 `0.95696 / 0.97062 / 0.98551`；frame `000064` 为 `0.95996 / 0.96391 / 0.99575`，其中 FP/FN 为 `860 / 98`。这说明 2D-to-3D delete mask 准备可靠，但 QA 与投票使用同一组 79 视角，不是 held-out test；边界 Gaussian 也可能同时承载少量前景和背景。final receipt SHA-256 为 `93d088617c0d28206e780cc0d695f69b0906b1ef10f3c835fff27a483d29412a`。本轮没有下载或运行 SD1.5/ControlNet，也没有得到填充后的统一 3DGS；GaussianEditor 与 vendored Gaussian Splatting 的非商业/研究用途许可证同样禁止把这次技术准备直接当作可商用交付。
+
+## 历史 fresh reconstruction 与 Web 记录
+
+旧四轮之后确实生成过一套 scope-limited 下游资产，这些文件和指标是真实历史记录，不因当前拒绝而删除；但由于 corrected R1 尚未 accepted，它们不属于当前高质量 clean-plate lineage。corrected R2-R4、fresh DA3/PGSR/TSDF、alignment 和 live promotion 均未运行。
+
+更早的 `clean-scene-reconstruction-input-v23` 只绑定单独的 R4 背景候选，PGSR 在 4,210/30,000 主动停止，TSDF 未运行；作废 receipt SHA-256 为 `aaf5837dc931b7d34f0097366297537358821d28a6a274fe8eb5789d4f42ce6d`。随后历史 current-demo-only package 的 manifest SHA-256 为 `3645fc895d202d537a9104d91a21c4ff86e87352c60e3c0f118bdea06adc0299`，receipt SHA-256 为 `33532775d7fe8c3f76724c73b13b68ab01f489d62b5742823a185d52400a468d`。
+
+该历史 run 的 DA3 有 25 张 `720x1280 float32` depth，23,040,000 个值全部 finite/positive，范围 7.7331486-22.4680824；`pointcloud_da3.ply` 有 4,000,000 个 finite/nonzero XYZ，SHA-256 为 `196d170d95404976b0a56ba41654cc23c71cc248955f8fc109a14f10b8ac58d3`。PGSR 在 iteration 30,000 得到 L1 `0.0091873651`、PSNR `33.2610672 dB`、454,617 Gaussians，PLY SHA-256 为 `4eeb1403194e0248f0ab4cbf206572af5bb1ece635a03775cda6e0358133c9bf`。TSDF post mesh 有 1,805,667 vertices / 3,556,615 faces，SHA-256 为 `ccd48c2376d2cc8d81b979813a09c58feb158b66a441d66512466125b0c8f344`。这些是旧输入上的技术产出，不证明背景语义正确，也不能作为 corrected pipeline 当前结果。
+
+历史 clean scene 与四个 unified PBR objects 曾写入 canonical `web/public/worlds/bedroom4/manifest.json`，manifest SHA-256 为 `58cc2b06ec1a7feb70fc0e0060078e0e0e1db409f3e96843c53948c74d3ab7cb`。final browser QA SHA-256 为 `0dc5f2b312e6bef0e272920169993d2485c9e967dec596db047bedd95aa7b961`，当时状态为 `passed_current_demo_only`、`failures=[]`。
+
+旧 QA report 保持 `publishingPerformed=false`；随后 finalization receipt 曾以 exact QA bytes 做 `promoted_current_demo_only`，SHA-256 为 `a7a0691a0effd8898ee2e1a89b3c2a103b966b13005eed51cb52acdb8260c041`。稳定基线别名 `manifest.web-demo-baseline-stable.json` 始终原样保留，SHA-256 为 `3805f0e5bab09add424b3b78f9349cd2eca6d1262777ef683e13cda07695e82b`。本轮没有覆盖 canonical manifest，也没有修改稳定基线。
 
 桌面 `1440x900` fresh load 的 FPS samples 为 `60/58/51/49/56`，平均 `54.8`、最低 `49`；initial runtime FPS 为 `57`。以 bed 为 overview focus 时，投影 coverage 为 width `0.3338`、height `0.4027`，camera-inside object 列表为空。8/8 visual objects 与 8/8 object colliders ready，degraded collider 为 0；console、page error、request failure 与 HTTP error 都为空。
 
-![Canonical strict clean scene desktop QA](../assets/completion/strict-clean-scene-web-desktop.png "最终 canonical desktop QA：严格 clean scene、bed 与三个 pillow 的 unified PBR GLB、bbox 和问答同屏；这是 current-demo-only 浏览器证据，不代表背景已达到高质量补全")
+![Archived canonical clean scene desktop QA](../assets/completion/strict-clean-scene-web-desktop.png "历史 current-demo-only desktop QA：证明当时资产加载与交互可运行，不证明 corrected clean plate 或高质量背景补全")
 
 移动端 `390x844` fresh load 的五个 FPS samples 均为 `60`，平均/最低均为 `60`；overview coverage 为 width `0.6840`、height `0.2099`，camera-inside object 列表同样为空。画布与 viewport 都是 `390x844`，8/8 visual objects、8/8 colliders、零 degraded，diagnostics 也没有 console/page/request/HTTP 错误。
 
-![Canonical strict clean scene mobile QA](../assets/completion/strict-clean-scene-web-mobile.png "最终 canonical mobile QA：390x844 HUD 与 canvas 通过布局和非空检查，8/8 visual objects 与 colliders ready；背景低频拉伸仍按已知限制保留")
+![Archived canonical clean scene mobile QA](../assets/completion/strict-clean-scene-web-mobile.png "历史 current-demo-only mobile QA：390x844 布局和资产加载通过；背景低频拉伸仍按旧 limitation 保留")
 
-这里的“promoted”只表示 exact manifest、资产加载、交互/碰撞、相机 framing、问答与桌面/移动运行门禁在当前 Bedroom4 demo 范围内通过。R4 的墙面/地面仍可见低频拉伸、床形色块与简化平面，截图也没有证明这些区域被真实观测恢复；因此不能写成“高质量背景补全完成”，也不能把该结论推广到新视频。
+这里的历史“promoted”只表示当时 exact manifest、资产加载、交互/碰撞、相机 framing、问答与桌面/移动运行门禁在 Bedroom4 demo 范围内通过。它不表示 corrected pipeline 当前 promoted；旧 R4 的墙面/地面仍有低频拉伸、床形色块与简化平面，截图也没有证明这些区域被真实观测恢复。
 
 ## 当前 bedroom_4 状态
 
-下表只用于说明门禁如何工作，不把某个场景写成算法特例。
+下表把 object-local 资产、corrected clean plate 和 archived demo 分开，避免一个子系统通过后替另一个子系统背书。
 
 | 子问题 | 当前证据 | 状态 |
 |---|---|---|
-| 三个相触前景的实例拆分 | 单帧 prompt masks + 3D cloud conservation；三个对象 cloud 已单独导出 | 技术通过，跨帧 physical-instance 身份仍需逐对象复核 |
+| 三个相触前景的实例拆分 | full80 显式 3D-anchor association；front/left/right assignments 为 79/73/80 | physical-instance association 技术通过；不等于 clean plate 通过 |
 | 初始 image-to-3D 候选 | front color 不匹配，VLM 指出 missing back | `retry`，未发布 |
 | 旧 parametric 浅色候选 | watertight mesh、80k Gaussian、mesh/Gaussian 六视图、浅色 direct-color | 历史 object-only passed；非新默认格式 |
 | TRELLIS2 PBR GLB | 60,237 vertices / 97,082 faces；完整厚度；PBR；winding consistent；non-watertight | object-local `surface_bvh` passed with recorded backside-texture limitation |
-| scene-space fit + 原相机回投 | PBR mask IoU 0.709810、bbox IoU 0.924577、中心误差 4.402 px；canonical desktop/mobile final QA failures 为空 | source-camera 与 canonical browser passed current-demo-only |
-| 支撑与穿模 | support-adjusted bed receipt 的 9 项 gate 全通过；三个枕头预测 penetration/gap 都在 0.2 scene-unit policy 内；Web 8/8 colliders ready、degraded=0 | 技术与 canonical browser gate 通过；仅 current demo |
+| scene-space fit + 原相机回投 | front object placement 的 mask IoU 0.709810、bbox IoU 0.924577、中心误差 4.402 px | object placement passed；frame 000067 clean-plate PBR layer QA 仍 rejected |
+| 支撑与穿模 | support-adjusted bed receipt 的 9 项 gate 全通过；三个枕头预测 penetration/gap 在 0.2 scene-unit policy 内 | object/placement 技术通过；Web 数字只属于历史 demo |
 | ProPainter full-mask clean plate | 技术执行成功，但产生灰白模糊光斑 | 历史 rejected |
-| 标定 donor clean plate | 有效 coverage 仅 0.17%-0.62%；零 margin 是前景泄漏 | rejected |
-| SDXL anchor seed 2026071701 | mask 外逐像素不变；用户确认“当前效果可以先算通过”；移除区仍有枕头状生成 | `accepted_for_current_demo`；不证明 object-free/multiview/occluded geometry |
-| 严格 R1-R4 sequence | 25 帧；front -> left -> right -> bed；每轮 predecessor hash 闭合、`unresolved=0`；最终 frame-set `854bd224...dfca` | `technical_passed_complete_sequence_with_limitations`；仅 current demo |
-| 新 reconstruction input | 25 个严格 R4 RGB、camera subset、transforms、manifest/receipt；无任何旧 depth/NPY/NPZ | package passed；旧 v23 重建资格已作废 |
-| fresh DA3 | 25 张 720x1280 depth 全 finite/positive；4M 点云全 finite/nonzero；严格四轮 lineage 已重哈希 | technical passed；仅允许进入 current-demo PGSR |
-| fresh PGSR / TSDF | PGSR 30k：454,617 Gaussians、PSNR 33.2610672 dB；TSDF post：1,805,667 vertices / 3,556,615 faces；sequence/DA3/PGSR/TSDF hash 闭合 | `technical_passed_*_current_demo_only`；alignment passed |
-| canonical Web promotion | manifest `58cc2b06...ab7cb`；final QA `passed_current_demo_only` 且 `failures=[]`；finalization receipt 绑定 exact QA bytes；stable alias `3805f0e5...5e82b` 未变 | `promoted_current_demo_only`；旧稳定基线保留 |
+| corrected physical donor diagnostic | front-only 21,717/532,888，但 96.14% 在边界 8px 内；深内部 0.2005% | boundary constraint only；`promotion_approved=false` |
+| corrected strict R1 | exact source binding、physical exclusion 和 cumulative contract 通过；frame 000064 support 256 -> guard-stable 0 | `technical_failed`；尚无 accepted R1 |
+| full80 continuous transport | 78 donors + depth/2-view consistency 后 core 0.5853%，deep-8 0%；bed support 0 | `pure_transport_no_go` |
+| PowerPaint/PBR layer hybrid | 外圈 exactness 与 seam 通过；内部 silhouette recurrence 59.22%，hard ownership 仍留下枕头形楔片 | `rejected`；未扩到 full25 |
+| continuous PBR scene fit | alpha 全覆盖、outside exact；高频 NCC 近 0，front silhouette recurrence 53.27% | `rejected`；当前 scene-fit GLB 不可作隐藏背景 |
+| DiffuEraser v1/v2 | 两轮均 outside collar 0 mismatch；v1 SAM3 `25/25` residual 且 RAFT 不通过，v2 形成硬边平板且 SAM3 仍 `25/25` | `rejected`；模型族已停止 |
+| Nerfacto visible baseline | 79-view parser/train 通过；fixed25 mean visible PSNR 20.66 dB，但 5/5 代表帧 hole 内仍是白色中央枕头 | `baseline_only_not_a_clean_plate` |
+| NeRFiller grid-prior | offline probe 到达官方 SD2 加载；本地无 snapshot、官方 endpoint 超时、镜像不可解析 | external weight blocked；生成补全未运行 |
+| GaussianEditor 3D delete mask | 5,668/871,317 Gaussians；79-view micro IoU 0.95696，frame 000064 IoU 0.95996 | delete-mask prep 技术通过；背景 completion 未运行 |
+| SDXL seed 2026071701 | mask 外逐像素不变；移除区仍有枕头状生成 | archived `accepted_for_current_demo` exception；不属于 corrected R1 |
+| 旧 R1-R4 sequence | predecessor hash 曾闭合；但 R2/R3 source 25/25 mismatch，PBR observed boundary QA rejected | archived/rejected；不得作为当前 clean plate |
+| corrected R2-R4 | R1 尚未 accepted | blocked，未运行 |
+| 旧 DA3 / PGSR / TSDF | 25 depth、4M DA3 points、454,617 Gaussians、TSDF 1,805,667 vertices | 真实 historical current-demo-only artifacts；输入链已被当前审计拒绝 |
+| corrected fresh reconstruction | 需要 accepted R4 | DA3/PGSR/TSDF/alignment 均未运行 |
+| canonical Web | 旧 manifest/QA/finalization receipt 仍作历史记录；stable alias `3805f0e5...5e82b` 未变 | 本轮未 promotion、未更新 live |
 
-因此当前结论必须写成：**TRELLIS2 PBR 枕头的整体形状、完整厚度、浅色主色与 source-camera silhouette 已通过，背面花纹偏差作为 minor limitation 保留；bedroom_4 已真实执行 front -> left -> right -> bed 的四轮 clean plate，每一轮只消费紧邻上一轮 composite，并用累计 mask 约束原始 RGB-D donor。最终背景、fresh DA3、PGSR 30k、TSDF、坐标对齐与 canonical Web finalization receipt 已形成 hash-closed 链，逐轮 `unresolved=0`，desktop/mobile QA failures 为空。canonical 状态是 `promoted_current_demo_only`，不是高质量背景补全完成；R4 的低频拉伸、床形色块和简化平面仍是明确 limitation。**
+因此当前结论必须写成：**独立 TRELLIS2 PBR 枕头在整体形状、完整厚度、浅色主色和 object placement 上可以按 minor-limitation 口径放行；clean plate 是另一条尚未通过的链。corrected full80 physical association 已通过，但 measured donor 只足以约束边界，strict frame 000064 在 boundary guard 后 coverage 为 0，R1 尚未 accepted。按照前一轮未通过则后续不得启动的合同，corrected R2-R4、fresh DA3/PGSR/TSDF、alignment 和 live promotion 均未运行。旧 R1-R4、旧 reconstruction 和旧 Web promotion 仅作为 archived current-demo-only 历史证据保留，不能称为当前高质量背景补全。**
 
 ## Scene commands 如何触发补全
 
@@ -310,6 +382,16 @@ QA report 本身保持 `publishingPerformed=false`，不直接执行发布。随
 | `assets/completion/object-pbr-six-view.png` | `examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/canonical_six_view_review/object_six_view_contact_sheet.png` | `5b11f4069bcf66bbe09638fef849c24afc43d14d147648e7e44acd6e0f7a9f5a` |
 | `assets/completion/clean-plate-donor-prefill.png` | `examples/bedroom4/completion/clean_plate_round2_multiview/multiview_prefill_contact_sheet.png` | `e0691b29a0df1d21c7fecf1cb62892e64bb1e03b5b2bba7bbd1cbe165787ccf1` |
 | `assets/completion/clean-plate-edge-leakage.png` | `examples/bedroom4/completion/clean_plate_round2_multiview/frame64_zero_margin_support.png` | `b8fa37496391f42d6823fc9b7421a7fc75926d504b1fc1fa7bb763a3ed4689b4` |
+| `assets/completion/clean-plate-physical-donor-audit.png` | `/data/design/zyx/workspace/video2world_runs/bedroom4_clean_plate_boundary_fix_20260718/r1_front_only_multiview_prefill_20260719_v1/audit_full25_repv2params/front_only_vs_all_pillow_contact_sheet.png` | `4a5bc7a71907e20cdafd736a9831984f34caf3c3d00a978b722ca6627fb9ec18` |
+| `assets/completion/clean-plate-boundary-guard-rejection.png` | `/data/design/zyx/workspace/video2world_runs/bedroom4_clean_plate_boundary_fix_20260718/r1_strict_physical_pipeline_smoke_20260719_v2/prefill_frame64_default_guard/multiview_prefill_contact_sheet.png` | `35238cd70530792c7f49687126c5a10d3059502531b5c3cde4c75c16219a4590` |
+| `assets/completion/clean-plate-powerpaint-v2-1-rejected.png` | `/data/design/zyx/workspace/video2world_runs/bedroom4_clean_plate_boundary_fix_20260718/powerpaint_v2_1_frame000064_smoke_20260719_v1/contact_sheet_final_all_six_rejected.png` | `b318268e8eae71bde4d09bef72ccc45696162b7d426dbe1cdb2a32e49d4f4cac` |
+| `assets/completion/clean-plate-powerpaint-layer-hybrid-rejected.png` | `/data/design/zyx/workspace/video2world_runs/bedroom4_clean_plate_boundary_fix_20260718/video2world-powerpaint-layer-hybrid-frame000064-v1/output/contact_crop.png` | `0f65e5fe9fa057edfca5564f91502a44e3e17daa2900b2a00563a34a96d45b34` |
+| `assets/completion/clean-plate-continuous-transport-audit.png` | `/data/design/zyx/workspace/video2world_runs/bedroom4_clean_plate_boundary_fix_20260718/continuous_depth_alpha_transport_audit_frame000064_v1/output/contact_crop.png` | `7639bdcd223007145429cb87764822f4c2343bdd2b433232479ebb22cd37b931` |
+| `assets/completion/clean-plate-continuous-pbr-rejected.png` | `/data/design/zyx/workspace/video2world_runs/bedroom4_clean_plate_boundary_fix_20260718/continuous_pbr_remaining_scene_frame000064_v1/output/contact_crop.png` | `2e43292ae8a40a02152514365377265a27c26428454c16838dd20991ab2aa8ca` |
+| `assets/completion/clean-plate-diffueraser-v1-rejected.png` | `/data/design/zyx/workspace/video2world_runs/bedroom4_clean_plate_boundary_fix_20260718/diffueraser_full25_r1_20260719_v1/qa/contact_sheet_keyframes.png` | `753a0799c7721aeeb178f20fc32090f48b7bd110bfc11d5129b14ff346b43e49` |
+| `assets/completion/clean-plate-diffueraser-v2-rejected.png` | `/data/design/zyx/workspace/video2world_runs/bedroom4_clean_plate_boundary_fix_20260718/diffueraser_full25_r1_shape_neutral_v2_20260719_v1/qa/contact_sheet_keyframes.png` | `07704e78151a06dc9905dd963bcd799504fe6810a73e6fff31da39278b2e82d4` |
+| `assets/completion/clean-plate-nerfiller-visible-baseline-rejected.png` | `/data/design/zyx/workspace/video2world_runs/bedroom4_clean_plate_boundary_fix_20260718/nerfiller_front_pillow_physical79_20260719_v1/visible_baseline_nerfacto/qa_fixed25/visible_baseline_fixed25_contact_sheet.png` | `9e9f63c9a6fb4365dc37fbe31d29193889b412ff8a97c0551a7e31e561f354cb` |
+| `assets/completion/clean-plate-gaussianeditor-delete-mask-prep.png` | `/data/design/zyx/workspace/video2world_runs/bedroom4_clean_plate_boundary_fix_20260718/gaussianeditor_external_mask_prep_20260719_v1/output/qa/frame000064_projection_contact.png` | `a16f7616882fcebdfb4b6ee81cda29c328bf3a2040c4b6d42bc677ec9cfaae1a` |
 | `assets/completion/source-camera-silhouette.png` | `examples/bedroom4/completion/parametric_pillow_front_attempt1/scene_fit_silhouette_refined_attempt3/source_camera_review/source_camera_silhouette_overlay.png` | `e8c7648f6b18bcebb217031f34b366e813da25dfcbff928093fc808a6a8263d3` |
 | `assets/completion/source-camera-pbr-silhouette.png` | `examples/bedroom4/completion/trellis2_pillow_front_seed42/scene_fit_silhouette_refined/source_camera_review/source_camera_silhouette_overlay.png` | `ade9e0c9632da1ac9f01300d0ca8805754ff82b7188614704913b2ac0d3f6aa0` |
 | `assets/completion/clean-plate-sdxl-seed-2026071701.png` | `examples/bedroom4/completion/clean_plate_round3_sdxl_anchor/candidate_seed_2026071701.png` | `26a734c0296d98790ed4daaf5a5a7b45c64f25430ab95e6115e9a26eff41d7b0` |
@@ -321,7 +403,7 @@ QA report 本身保持 `publishingPerformed=false`，不直接执行发布。随
 | `assets/completion/strict-clean-scene-web-desktop.png` | `web/public/worlds/bedroom4/qa/clean-unified-scene-browser-final-promoted/desktop-1440x900.png` | `c7b6bbbec80aad6fad79db7a71db0413c8af65d2e64e6f95eb760ed12566cc3d` |
 | `assets/completion/strict-clean-scene-web-mobile.png` | `web/public/worlds/bedroom4/qa/clean-unified-scene-browser-final-promoted/mobile-390x844.png` | `3ed94cb223727c8397bda9166f40eaab73fefdc2e5f667c8258e06c8d884a692` |
 
-完整机器可读证据还包括 `layered-clean-plate-sequence-v1/execution_receipt.json`、`layered_clean_plate_sequence_report.json`、四轮 `layered_composite_report.json`/receipt、portable R4 mask index 和 `qa/visual_review.json`。累计 mask / donor 合同位于 `examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/summary.json` 及三个 `round0*/manifest/cumulative_removal_manifest.json`；fresh geometry 证据位于 `examples/bedroom4/assets-local/strict-clean-scene-mirror/reconstruction/receipts/`，实际 PGSR/TSDF 产物位于同一 mirror 的 `reconstruction/pgsr_scannetppv2_all/bedroom_4/`。canonical Web 证据为 `web/public/worlds/bedroom4/manifest.json`、`qa/clean-unified-scene-browser-qa.final-promoted.json` 与 `qa/strict-clean-scene-finalization-receipt.json`。文档只解释 receipt，不覆盖 receipt。
+corrected 当前证据位于 mil8 的 `/data/design/zyx/workspace/video2world_runs/bedroom4_clean_plate_boundary_fix_20260718/`：full80 association、physical front-only audit 与 `r1_strict_physical_pipeline_smoke_20260719_v2/` 分别绑定 identity、diagnostic boundary coverage 和 strict R1 rejection；`nerfiller_front_pillow_physical79_20260719_v1/` 绑定 79-view NeRF baseline 与官方 SD2 access blocker；`gaussianeditor_external_mask_prep_20260719_v1/` 绑定 2D-to-3D delete-mask preparation。旧 `layered-clean-plate-sequence-v1/execution_receipt.json`、sequence report、四轮 composite receipts、portable R4 mask index、旧 fresh geometry receipts 与 canonical Web finalization receipt 继续保留为 archived current-demo-only 证据。文档只解释 receipt，不覆盖 receipt；旧 receipt 的存在也不会覆盖 corrected gate 的拒绝结论。
 
 ## 最低发布条件
 

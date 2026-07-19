@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 from pathlib import Path
 from typing import Any
 
@@ -282,3 +283,32 @@ def test_camera_convention_and_peeled_ids_fail_closed(tmp_path: Path) -> None:
                 "filename_invented_identity",
             )
         )
+
+
+@pytest.mark.parametrize("mutation", ["same_path", "same_sha"])
+def test_duplicate_mask_path_or_bytes_fail_closed(tmp_path: Path, mutation: str) -> None:
+    paths = make_fixture(tmp_path)
+    index = json.loads(paths["index"].read_text(encoding="utf-8"))
+    first, second = index["items"][:2]
+    if mutation == "same_path":
+        second["mask_path"] = first["mask_path"]
+        expected = "reuses a mask path"
+    else:
+        duplicate = tmp_path / "masks" / "duplicate-mask.png"
+        shutil.copyfile(first["mask_path"], duplicate)
+        second["mask_path"] = str(duplicate)
+        expected = "reuses mask bytes"
+    write_json(paths["index"], index)
+
+    with pytest.raises(ValueError, match=expected):
+        associate(fixture_args(paths, tmp_path / "duplicate.json"))
+
+
+def test_declared_missing_images_fail_closed(tmp_path: Path) -> None:
+    paths = make_fixture(tmp_path)
+    index = json.loads(paths["index"].read_text(encoding="utf-8"))
+    index["missing_images"] = [index["items"][0]["image"]]
+    write_json(paths["index"], index)
+
+    with pytest.raises(ValueError, match="declares missing input images"):
+        associate(fixture_args(paths, tmp_path / "missing.json"))

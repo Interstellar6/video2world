@@ -338,8 +338,12 @@ def load_detections(
     value = read_json(index_path)
     if not isinstance(value, dict) or not isinstance(value.get("items"), list):
         raise ValueError("SAM3 mask index must contain an items array")
+    if "missing_images" in value and value.get("missing_images") != []:
+        raise ValueError("SAM3 mask index declares missing input images")
     detections: list[Detection] = []
     skipped = 0
+    seen_mask_paths: dict[str, set[Path]] = defaultdict(set)
+    seen_mask_sha256: dict[str, set[str]] = defaultdict(set)
     for item_index, item in enumerate(value["items"]):
         if not isinstance(item, dict):
             raise ValueError(f"SAM3 item {item_index} must be an object")
@@ -372,10 +376,17 @@ def load_detections(
         )
         if not path.is_file():
             raise FileNotFoundError(path)
+        frame_id = Path(image).stem
+        if path in seen_mask_paths[frame_id]:
+            raise ValueError(f"SAM3 frame {frame_id} reuses a mask path: {path}")
+        mask_sha256 = sha256_file(path)
+        if mask_sha256 in seen_mask_sha256[frame_id]:
+            raise ValueError(f"SAM3 frame {frame_id} reuses mask bytes")
+        seen_mask_paths[frame_id].add(path)
+        seen_mask_sha256[frame_id].add(mask_sha256)
         with Image.open(path) as image_handle:
             mask = np.asarray(image_handle.convert("L"), dtype=np.uint8) > 0
         actual_bbox = mask_bbox(mask)
-        frame_id = Path(image).stem
         detections.append(
             Detection(
                 detection_id=f"{frame_id}:mask:{item_index:06d}",
@@ -386,7 +397,7 @@ def load_detections(
                 score=float(score),
                 declared_path=mask_path_value,
                 path=path,
-                sha256=sha256_file(path),
+                sha256=mask_sha256,
                 size=path.stat().st_size,
                 mask=mask,
                 area_pixels=int(mask.sum()),
@@ -1005,7 +1016,11 @@ def associate(args: argparse.Namespace) -> dict[str, Any]:
         "status": status,
         "created_at": datetime.now(timezone.utc).isoformat(),  # noqa: UP017 - mil8 is Python 3.10
         "execution": {
-            "script": {"path": str(script_path), "sha256": sha256_file(script_path)},
+            "script": {
+                "path": str(script_path),
+                "sha256": sha256_file(script_path),
+                "bytes": script_path.stat().st_size,
+            },
             "argv": list(sys.argv),
             "python": platform.python_version(),
             "numpy": np.__version__,
