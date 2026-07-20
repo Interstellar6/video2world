@@ -2,10 +2,11 @@
 """Materialize one review-only clean-plate candidate per ordered source frame.
 
 The selection manifest names one complete source batch and may select frames
-from any number of diffusion batch/fallback receipts.  This tool revalidates
-all hashes, source-RGB lineage, frame order, dimensions, receipt exactness, and
-the outside-editable RGB invariant before copying a new immutable candidate
-sequence.  Materialization is deliberately not a quality or promotion gate.
+from any number of audited diffusion or generic inpaint batch receipts.  This
+tool revalidates all hashes, source-RGB lineage, frame order, dimensions,
+receipt exactness, and the outside-editable RGB invariant before copying a new
+immutable candidate sequence.  Materialization is deliberately not a quality
+or promotion gate.
 """
 
 from __future__ import annotations
@@ -28,8 +29,17 @@ from PIL import Image, ImageDraw
 
 INPUT_KIND = "video2world.clean_plate_candidate_selection_input"
 RECEIPT_KIND = "video2world.clean_plate_candidate_selection_receipt"
-BATCH_RECEIPT_KIND = "video2world.diffusion_clean_plate_batch_run"
-FRAME_RECEIPT_KIND = "video2world.diffusion_clean_plate_frame_run"
+DIFFUSION_BATCH_RECEIPT_KIND = "video2world.diffusion_clean_plate_batch_run"
+DIFFUSION_FRAME_RECEIPT_KIND = "video2world.diffusion_clean_plate_frame_run"
+INPAINT_BATCH_RECEIPT_KIND = "video2world.inpaint_clean_plate_batch_run"
+INPAINT_FRAME_RECEIPT_KIND = "video2world.inpaint_clean_plate_frame_run"
+BATCH_FRAME_RECEIPT_KINDS = {
+    DIFFUSION_BATCH_RECEIPT_KIND: DIFFUSION_FRAME_RECEIPT_KIND,
+    INPAINT_BATCH_RECEIPT_KIND: INPAINT_FRAME_RECEIPT_KIND,
+}
+# Backward-compatible names used by existing callers and fixtures.
+BATCH_RECEIPT_KIND = DIFFUSION_BATCH_RECEIPT_KIND
+FRAME_RECEIPT_KIND = DIFFUSION_FRAME_RECEIPT_KIND
 SCHEMA_VERSION = 1
 STATUS = "materialized_candidate_selection_pending_human_review"
 FRAME_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
@@ -54,6 +64,7 @@ class BatchReceipt:
     root: Path
     frames_by_id: dict[str, dict[str, Any]]
     ordered_frame_ids: tuple[str, ...]
+    frame_receipt_kind: str
 
 
 @dataclass(frozen=True)
@@ -214,7 +225,8 @@ def load_batch_receipt(value: Any, *, manifest_path: Path, label: str) -> BatchR
     asset = resolve_asset(value, relative_to=manifest_path.parent, label=label)
     receipt = read_json(asset.path)
     require(receipt.get("schema_version") == 1, f"{label} schema_version must be 1")
-    require(receipt.get("kind") == BATCH_RECEIPT_KIND, f"{label} kind is invalid")
+    batch_kind = receipt.get("kind")
+    require(batch_kind in BATCH_FRAME_RECEIPT_KINDS, f"{label} kind is invalid")
     require(receipt.get("promotion_allowed") is False, f"{label} must remain review-only")
     review = receipt.get("review")
     require(isinstance(review, dict), f"{label}.review must be an object")
@@ -235,6 +247,7 @@ def load_batch_receipt(value: Any, *, manifest_path: Path, label: str) -> BatchR
         root=asset.path.parent,
         frames_by_id={str(frame["frame_id"]): frame for frame in frames},
         ordered_frame_ids=ordered,
+        frame_receipt_kind=BATCH_FRAME_RECEIPT_KINDS[str(batch_kind)],
     )
 
 
@@ -262,7 +275,10 @@ def validate_frame_receipt(
         label=f"candidate frame {frame_id} receipt",
     )
     receipt = read_json(receipt_asset.path)
-    require(receipt.get("kind") == FRAME_RECEIPT_KIND, f"frame {frame_id} receipt kind is invalid")
+    require(
+        receipt.get("kind") == batch.frame_receipt_kind,
+        f"frame {frame_id} receipt kind is invalid for its batch kind",
+    )
     require(receipt.get("frame_id") == frame_id, f"frame {frame_id} receipt frame_id mismatch")
     require(receipt.get("promotion_allowed") is False, f"frame {frame_id} receipt is promotable")
     review = receipt.get("review")

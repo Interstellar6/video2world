@@ -15,6 +15,8 @@ import scripts.materialize_clean_plate_candidate_selection as selection_module
 from scripts.materialize_clean_plate_candidate_selection import (
     BATCH_RECEIPT_KIND,
     FRAME_RECEIPT_KIND,
+    INPAINT_BATCH_RECEIPT_KIND,
+    INPAINT_FRAME_RECEIPT_KIND,
     INPUT_KIND,
     RECEIPT_KIND,
     CleanPlateCandidateSelectionError,
@@ -81,6 +83,8 @@ def make_batch(
     *,
     candidate_offset: int,
     outside_violation_frame: str | None = None,
+    batch_kind: str = BATCH_RECEIPT_KIND,
+    frame_kind: str = FRAME_RECEIPT_KIND,
 ) -> Path:
     frame_records: list[dict[str, Any]] = []
     for sequence_index, frame_id in enumerate(frame_ids):
@@ -126,7 +130,7 @@ def make_batch(
         masks = {"ownership_pixels": int(core.sum()), "editable_pixels": int(editable.sum())}
         frame_receipt = {
             "schema_version": 1,
-            "kind": FRAME_RECEIPT_KIND,
+            "kind": frame_kind,
             "status": "generated_candidate_pending_review",
             "promotion_allowed": False,
             "sequence_index": sequence_index,
@@ -152,7 +156,7 @@ def make_batch(
         )
     batch_receipt = {
         "schema_version": 1,
-        "kind": BATCH_RECEIPT_KIND,
+        "kind": batch_kind,
         "status": "generated_batch_pending_review",
         "promotion_allowed": False,
         "frames": frame_records,
@@ -174,6 +178,8 @@ def make_fixture(
     outside_violation_frame: str | None = None,
     fallback_source_path: Path | None = None,
     contact_sheet: bool = True,
+    batch_kind: str = BATCH_RECEIPT_KIND,
+    frame_kind: str = FRAME_RECEIPT_KIND,
 ) -> tuple[Path, Path, Path, dict[str, Path]]:
     sources: dict[str, Path] = {}
     for index, frame_id in enumerate(FRAME_IDS):
@@ -185,6 +191,8 @@ def make_fixture(
         FRAME_IDS,
         sources,
         candidate_offset=40,
+        batch_kind=batch_kind,
+        frame_kind=frame_kind,
     )
     fallback_sources = dict(sources)
     if fallback_source_path is not None:
@@ -195,6 +203,8 @@ def make_fixture(
         fallback_sources,
         candidate_offset=70,
         outside_violation_frame=outside_violation_frame,
+        batch_kind=batch_kind,
+        frame_kind=frame_kind,
     )
     manifest_path = tmp_path / "selection_input.json"
     source_batch = json.loads(source_batch_path.read_text(encoding="utf-8"))
@@ -283,6 +293,33 @@ def test_materializes_candidates_from_multiple_batches_with_exact_receipt(tmp_pa
         )
         assert (output / "masks" / "core" / f"{sequence_index:04d}.png").is_file()
         assert (output / "masks" / "editable" / f"{sequence_index:04d}.png").is_file()
+
+
+def test_materializes_generic_inpaint_batch_without_claiming_diffusion(tmp_path: Path) -> None:
+    manifest_path, _, _, _ = make_fixture(
+        tmp_path,
+        batch_kind=INPAINT_BATCH_RECEIPT_KIND,
+        frame_kind=INPAINT_FRAME_RECEIPT_KIND,
+    )
+
+    receipt = materialize_clean_plate_candidate_selection(
+        manifest_path,
+        tmp_path / "selected-inpaint",
+    )
+
+    assert receipt["aggregate"]["frame_count"] == len(FRAME_IDS)
+    assert receipt["aggregate"]["all_outputs_outside_editable_rgb_exact_recomputed"] is True
+
+
+def test_rejects_frame_kind_that_does_not_match_inpaint_batch(tmp_path: Path) -> None:
+    manifest_path, _, _, _ = make_fixture(
+        tmp_path,
+        batch_kind=INPAINT_BATCH_RECEIPT_KIND,
+        frame_kind=FRAME_RECEIPT_KIND,
+    )
+
+    with pytest.raises(CleanPlateCandidateSelectionError, match="receipt kind is invalid"):
+        materialize_clean_plate_candidate_selection(manifest_path, tmp_path / "selected")
 
 
 def test_rejects_candidate_with_different_source_rgb_lineage(tmp_path: Path) -> None:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a fail-closed boundary-QA manifest from one diffusion batch receipt.
+"""Build fail-closed boundary-QA input from one audited inpaint batch receipt.
 
 The bridge does not treat receipt booleans as sufficient evidence.  It verifies
 the batch and per-frame receipt hashes, reopens every bound source/core/editable
@@ -28,8 +28,16 @@ from typing import Any
 import numpy as np
 from PIL import Image
 
-BATCH_RECEIPT_KIND = "video2world.diffusion_clean_plate_batch_run"
-FRAME_RECEIPT_KIND = "video2world.diffusion_clean_plate_frame_run"
+DIFFUSION_BATCH_RECEIPT_KIND = "video2world.diffusion_clean_plate_batch_run"
+DIFFUSION_FRAME_RECEIPT_KIND = "video2world.diffusion_clean_plate_frame_run"
+INPAINT_BATCH_RECEIPT_KIND = "video2world.inpaint_clean_plate_batch_run"
+INPAINT_FRAME_RECEIPT_KIND = "video2world.inpaint_clean_plate_frame_run"
+BATCH_FRAME_RECEIPT_KINDS = {
+    DIFFUSION_BATCH_RECEIPT_KIND: DIFFUSION_FRAME_RECEIPT_KIND,
+    INPAINT_BATCH_RECEIPT_KIND: INPAINT_FRAME_RECEIPT_KIND,
+}
+BATCH_RECEIPT_KIND = DIFFUSION_BATCH_RECEIPT_KIND
+FRAME_RECEIPT_KIND = DIFFUSION_FRAME_RECEIPT_KIND
 OUTPUT_KIND = "video2world.layered_clean_plate_boundary_qa_manifest"
 SCHEMA_VERSION = 1
 SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
@@ -213,6 +221,7 @@ def verify_frame_receipt(
     frame_id: str,
     batch_root: Path,
     input_manifest_sha256: str,
+    expected_frame_receipt_kind: str,
 ) -> tuple[Asset, dict[str, Any]]:
     receipt_asset = resolve_asset(
         batch_frame.get("receipt"),
@@ -221,7 +230,10 @@ def verify_frame_receipt(
     )
     receipt = read_json(receipt_asset.path)
     require(receipt.get("schema_version") == SCHEMA_VERSION, f"frame {frame_id} schema invalid")
-    require(receipt.get("kind") == FRAME_RECEIPT_KIND, f"frame {frame_id} receipt kind invalid")
+    require(
+        receipt.get("kind") == expected_frame_receipt_kind,
+        f"frame {frame_id} receipt kind invalid for its batch kind",
+    )
     require(receipt.get("sequence_index") == sequence_index, f"frame {frame_id} index mismatch")
     require(receipt.get("frame_id") == frame_id, f"frame {frame_id} receipt id mismatch")
     require(receipt.get("promotion_allowed") is False, f"frame {frame_id} is promotable")
@@ -464,7 +476,7 @@ def build_manifest(
     expected_batch_receipt_sha256: str | None = None,
     created_at: datetime | None = None,
 ) -> dict[str, Any]:
-    """Verify one complete diffusion batch and write its boundary-QA manifest."""
+    """Verify one complete inpaint batch and write its boundary-QA manifest."""
 
     batch_path = Path(batch_receipt_path).expanduser().resolve()
     require(batch_path.is_file(), f"batch receipt does not exist: {batch_path}")
@@ -484,7 +496,8 @@ def build_manifest(
     batch_root = batch_path.parent
     batch = read_json(batch_path)
     require(batch.get("schema_version") == SCHEMA_VERSION, "batch schema_version must be 1")
-    require(batch.get("kind") == BATCH_RECEIPT_KIND, "batch receipt kind is invalid")
+    batch_kind = batch.get("kind")
+    require(batch_kind in BATCH_FRAME_RECEIPT_KINDS, "batch receipt kind is invalid")
     require(batch.get("promotion_allowed") is False, "batch receipt must remain review-only")
     review = batch.get("review")
     require(
@@ -524,6 +537,7 @@ def build_manifest(
             frame_id=frame_id,
             batch_root=batch_root,
             input_manifest_sha256=input_manifest.sha256,
+            expected_frame_receipt_kind=BATCH_FRAME_RECEIPT_KINDS[str(batch_kind)],
         )
         qa_record, recomputed = verify_frame_assets(
             raw_frame,

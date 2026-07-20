@@ -11,6 +11,8 @@ import pytest
 from PIL import Image
 
 from scripts.build_layered_clean_plate_boundary_qa_manifest import (
+    INPAINT_BATCH_RECEIPT_KIND,
+    INPAINT_FRAME_RECEIPT_KIND,
     TEXTURE_SAMPLING,
     THRESHOLDS,
     BoundaryQAManifestBuildError,
@@ -59,7 +61,13 @@ def textured_source(sequence_index: int) -> np.ndarray:
     return source
 
 
-def make_fixture(tmp_path: Path, *, outside_change: bool = False) -> dict[str, Any]:
+def make_fixture(
+    tmp_path: Path,
+    *,
+    outside_change: bool = False,
+    batch_kind: str = "video2world.diffusion_clean_plate_batch_run",
+    frame_kind: str = "video2world.diffusion_clean_plate_frame_run",
+) -> dict[str, Any]:
     root = tmp_path / "batch"
     root.mkdir(parents=True)
     source_manifest = root / "source-input-manifest.json"
@@ -165,7 +173,7 @@ def make_fixture(tmp_path: Path, *, outside_change: bool = False) -> dict[str, A
         }
         frame_receipt = {
             "schema_version": 1,
-            "kind": "video2world.diffusion_clean_plate_frame_run",
+            "kind": frame_kind,
             "status": "generated_candidate_pending_review",
             "promotion_allowed": False,
             "sequence_index": sequence_index,
@@ -208,7 +216,7 @@ def make_fixture(tmp_path: Path, *, outside_change: bool = False) -> dict[str, A
 
     batch_receipt = {
         "schema_version": 1,
-        "kind": "video2world.diffusion_clean_plate_batch_run",
+        "kind": batch_kind,
         "status": "generated_batch_pending_review",
         "promotion_allowed": False,
         "input_manifest": source_manifest_asset,
@@ -286,6 +294,29 @@ def test_builds_consumer_compatible_manifest_with_explicit_self_check_contract(
     assert qa_report["status"] == "technical_passed"
     assert qa_report["boundary_texture_gate_passed"] is True
     assert qa_report["promotion_approved"] is False
+
+
+def test_builds_boundary_manifest_for_generic_inpaint_receipts(tmp_path: Path) -> None:
+    fixture = make_fixture(
+        tmp_path,
+        batch_kind=INPAINT_BATCH_RECEIPT_KIND,
+        frame_kind=INPAINT_FRAME_RECEIPT_KIND,
+    )
+
+    manifest = build_manifest(fixture["batch_path"], fixture["output"])
+
+    assert manifest["frame_ids"] == list(FRAME_IDS)
+    assert manifest["verification_gates"]["pixel_exactness_recomputed_from_assets"] is True
+
+
+def test_rejects_mismatched_generic_inpaint_frame_kind(tmp_path: Path) -> None:
+    fixture = make_fixture(
+        tmp_path,
+        batch_kind=INPAINT_BATCH_RECEIPT_KIND,
+    )
+
+    with pytest.raises(BoundaryQAManifestBuildError, match="receipt kind invalid"):
+        build_manifest(fixture["batch_path"], fixture["output"])
 
 
 def test_rejects_tampered_frame_receipt_hash_without_output(tmp_path: Path) -> None:
