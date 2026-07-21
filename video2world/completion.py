@@ -848,6 +848,10 @@ class LayeredCompletionRoundReceipt(StrictModel):
                 raise ValueError("object_layer receipts require object completion evidence")
             if self.background_rebuild_receipt is not None:
                 raise ValueError("object_layer receipts cannot claim final background rebuild")
+            _require_scoped_next_round_clean_plate(
+                self.output_clean_plate,
+                context=f"round {self.index} output_clean_plate",
+            )
         else:
             if self.target_ids:
                 raise ValueError("final_background receipts cannot contain target_ids")
@@ -855,6 +859,10 @@ class LayeredCompletionRoundReceipt(StrictModel):
                 raise ValueError("final_background receipts cannot contain object completions")
             if self.background_rebuild_receipt is None:
                 raise ValueError("final_background receipts require background rebuild evidence")
+            _require_scoped_terminal_clean_plate(
+                self.output_clean_plate,
+                context=f"round {self.index} output_clean_plate",
+            )
         return self
 
 
