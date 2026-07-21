@@ -577,6 +577,12 @@ class CompletionArtifactEvidence(StrictModel):
     canonical_or_live_manifest_modified: bool | None = None
 
 
+class ObjectCompletionEvidence(CompletionArtifactEvidence):
+    """Evidence for one completed object target in a layered completion round."""
+
+    target_id: str = Field(pattern=r"^[A-Za-z0-9_.:-]+$")
+
+
 NEXT_ROUND_CLEAN_PLATE_ACCEPTANCE_SCOPE = "corrected_clean_plate_next_round_source_only"
 NEXT_ROUND_CLEAN_PLATE_LINEAGE_SCOPE = "corrected_clean_plate_round_source"
 TERMINAL_CLEAN_PLATE_ACCEPTANCE_SCOPE = "corrected_full_pipeline"
@@ -831,7 +837,7 @@ class LayeredCompletionRoundReceipt(StrictModel):
     sam3_receipt: CompletionArtifactEvidence
     output_clean_plate: CompletionArtifactEvidence
     quality_report: CompletionArtifactEvidence
-    object_completion_receipts: list[CompletionArtifactEvidence] = Field(default_factory=list)
+    object_completion_receipts: list[ObjectCompletionEvidence] = Field(default_factory=list)
     background_rebuild_receipt: CompletionArtifactEvidence | None = None
     acceptance_gates: dict[str, bool] = Field(min_length=1)
     warnings: list[str] = Field(default_factory=list)
@@ -846,6 +852,15 @@ class LayeredCompletionRoundReceipt(StrictModel):
                 raise ValueError("object_layer receipts require target_ids")
             if not self.object_completion_receipts:
                 raise ValueError("object_layer receipts require object completion evidence")
+            receipt_targets = [receipt.target_id for receipt in self.object_completion_receipts]
+            if len(receipt_targets) != len(set(receipt_targets)):
+                raise ValueError(
+                    f"round {self.index} object completion receipts duplicate targets"
+                )
+            if set(receipt_targets) != set(self.target_ids):
+                raise ValueError(
+                    f"round {self.index} object completion receipts must match target_ids"
+                )
             if self.background_rebuild_receipt is not None:
                 raise ValueError("object_layer receipts cannot claim final background rebuild")
             _require_scoped_next_round_clean_plate(

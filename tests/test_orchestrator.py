@@ -460,6 +460,12 @@ def _completion_evidence(name: str, digest: str) -> dict[str, object]:
     }
 
 
+def _object_completion_evidence(target_id: str, name: str, digest: str) -> dict[str, object]:
+    evidence = _completion_evidence(name, digest)
+    evidence["target_id"] = target_id
+    return evidence
+
+
 def _next_round_clean_plate_evidence(name: str, digest: str) -> dict[str, object]:
     evidence = _completion_evidence(name, digest)
     evidence.update(
@@ -513,7 +519,11 @@ def _valid_layered_completion_report() -> dict[str, object]:
                 "output_clean_plate": dict(round1),
                 "quality_report": _completion_evidence("r1-quality.json", "f"),
                 "object_completion_receipts": [
-                    _completion_evidence("r1-pillow-trellis2.json", "1")
+                    _object_completion_evidence(
+                        "pillow-front",
+                        "r1-pillow-trellis2.json",
+                        "1",
+                    )
                 ],
                 "acceptance_gates": {"object_shape": True, "clean_plate": True},
             },
@@ -946,7 +956,12 @@ def test_layered_completion_report_binds_clean_plate_scope_lineage(
         (
             lambda payload: payload["rounds"][0].__setitem__(
                 "object_completion_receipts",
-                [dict(payload["rounds"][0]["quality_report"])],
+                [
+                    {
+                        **dict(payload["rounds"][0]["quality_report"]),
+                        "target_id": "pillow-front",
+                    }
+                ],
             ),
             r"round 1 object_completion_receipts\[1\] must be distinct "
             "from round 1 quality_report",
@@ -954,7 +969,13 @@ def test_layered_completion_report_binds_clean_plate_scope_lineage(
         (
             lambda payload: payload["rounds"][1].__setitem__(
                 "background_rebuild_receipt",
-                dict(payload["rounds"][0]["object_completion_receipts"][0]),
+                {
+                    key: value
+                    for key, value in payload["rounds"][0][
+                        "object_completion_receipts"
+                    ][0].items()
+                    if key != "target_id"
+                },
             ),
             "round 2 background_rebuild_receipt must be distinct from "
             r"round 1 object_completion_receipts\[1\]",
@@ -979,6 +1000,57 @@ def test_layered_completion_report_binds_clean_plate_scope_lineage(
     ],
 )
 def test_layered_completion_report_rejects_reused_execution_evidence(
+    tmp_path: Path,
+    mutation,
+    expected: str,
+) -> None:
+    report_payload = _valid_layered_completion_report()
+    mutation(report_payload)
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+
+    with pytest.raises(ArtifactError, match=expected):
+        get_adapter("layered_completion").validate_outputs(
+            {"layered_completion_report": snapshot_path(report_path)}
+        )
+
+
+@pytest.mark.parametrize(
+    ("mutation", "expected"),
+    [
+        (
+            lambda payload: payload["rounds"][0]["object_completion_receipts"][0].pop(
+                "target_id"
+            ),
+            "target_id",
+        ),
+        (
+            lambda payload: payload["rounds"][0]["object_completion_receipts"][0].__setitem__(
+                "target_id",
+                "wrong-pillow",
+            ),
+            "round 1 object completion receipts must match target_ids",
+        ),
+        (
+            lambda payload: payload["rounds"][0].__setitem__(
+                "target_ids",
+                ["pillow-front", "pillow-left"],
+            ),
+            "round 1 object completion receipts must match target_ids",
+        ),
+        (
+            lambda payload: payload["rounds"][0].__setitem__(
+                "object_completion_receipts",
+                [
+                    _object_completion_evidence("pillow-front", "r1-a.json", "6"),
+                    _object_completion_evidence("pillow-front", "r1-b.json", "7"),
+                ],
+            ),
+            "round 1 object completion receipts duplicate targets",
+        ),
+    ],
+)
+def test_layered_completion_report_binds_object_completion_receipts_to_targets(
     tmp_path: Path,
     mutation,
     expected: str,
