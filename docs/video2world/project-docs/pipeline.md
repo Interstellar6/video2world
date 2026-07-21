@@ -3,7 +3,7 @@ title: Pipeline：从视频到可交互 3D 世界
 id: video2world-project-pipeline
 category: 项目文档
 visibility: public
-updated: 2026-07-18
+updated: 2026-07-22
 summary: Video2World 十二阶段 pipeline 的职责、上下游、mesh-first PBR GLB、严格前向后逐层 clean plate、canonical Web promotion 门禁，以及 bedroom_4 的真实产物统计与图像证据。
 tags:
   - Pipeline
@@ -165,6 +165,8 @@ EmbodiedGen V2 / TRELLIS 是 generative image-to-3D 后端之一：将带 alpha 
 ![Nightstand Gaussian object](../assets/pipeline/09-nightstand-gaussian.png "TRELLIS 生成的独立床头柜 Gaussian")
 
 旧 production 真实归档有 9 个 final Gaussian PLY 和 9 组 GLB/OBJ。该 auto-completion 资产实际引用较早的 2026-07-13 Holi run，不是 07-14 fresh run，因此不能只凭同名 `object_id` 绑定。可接入 bedroom_4 的首批对象是经过单独 source-anchor 与 placement QA 的 `nightstand_01/02` 与 `plant_01/02`；两扇 door 因语义不符被拒绝。这个 Gaussian visual + render mesh + simplified collider 的三份资产模式保留为 2026-07-16 生产历史，不再作为新对象的默认格式。
+
+direct TRELLIS2 refit 的 plant 证据进一步暴露了“语义类别 mask 不等于完整对象条件”的问题。`plant-mask-parts-audit/review/mask-part-audit.json` 对 `sam3_plant_01/02` 都是 `rejected_missing_required_part_mask`：原始 plant modal masks 主要跟随叶冠，缺少可见 flower pot/container，不能通过裁剪 support surface 或膨胀 bbox 伪造成完整盆栽。随后 targeted `potted plant` / `flower pot` / `planter` SAM3 pass 通过 `targeted-pot-segmentation/materialized/targeted-potted-plant-mask-manifest.json`，为两个 plant 各提供 25 帧 modal source-view conditioning 和 scene-fit silhouette evidence；但该 manifest 明确不证明遮挡背面、底面、3D 资产、clean plate 或 production promotion。`sam3_plant_02` 另有 measured planar support receipt 与 geometry-selected PBR material correction receipt，后者仍是 `technical_passed_visual_review_pending`，必须继续做六视图/场景审核。
 
 每个候选还要分别渲染 front/right/back/left/top/bottom。确定性 gate 检查 finite、非退化、winding、厚度、front silhouette、source/front/material 色差与六视图非空；VLM 检查 identity、颜色、材质、部件布局、缺背面和跨视图风格。审核按 severity 决策：轻微不可见面纹理/材质幻觉可以 `status=passed` 并记录 limitation；明显形变、主色类别错误、缺面/片状、部件断裂、悬空或显著穿模才 retry/reject。最多三轮，第三轮仍有 blocking issue 才标为 exhausted。
 

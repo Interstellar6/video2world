@@ -3,7 +3,7 @@ title: 通用遮挡、背面与背景分层补全
 id: video2world-project-layered-completion
 category: 项目文档
 visibility: public
-updated: 2026-07-19
+updated: 2026-07-22
 summary: Video2World 如何按遮挡顺序生成 mesh-first PBR GLB、补全不可见背面和物体移除后的背景，并区分规范合同、corrected clean-plate 当前状态与 archived current-demo-only 历史结果。
 tags:
   - Completion
@@ -132,6 +132,8 @@ receipt 固定记录 source commit、model revision、config hash、seed、输�
 ![TRELLIS2 PBR pillow six-view](../assets/completion/object-pbr-six-view.png "真实 TRELLIS2 PBR GLB 的 front/right/back/left/top/bottom 正交视图：完整厚度通过；物体局部 back 是原视频可见的浅色侧，另一侧花纹属于已记录的轻微生成偏差")
 
 早期 image-to-3D 候选因 `front_color_fidelity=false` 和 `missing_back_surface` 被判定 `retry`，没有因为文件能打开而放行。这正是六视图合同要消除的错误。
+
+plant refit 另有一个部件完整性反例。普通 `plant` modal masks 在 25 帧中能稳定跟随叶冠，但 `plant-mask-parts-audit/review/mask-part-audit.json` 对 `sam3_plant_01/02` 均 fail closed：没有 hash-bound flower pot/container mask 时，不能把 support surface、nightstand/lamp crop、bbox expansion 或 morphology dilation 当成完整盆栽。targeted `potted plant` pass 后，`targeted-pot-segmentation/materialized/targeted-potted-plant-mask-manifest.json` 对两个 plant 都是 `passed`，并由 `manual-review.json` 限定为 “source-view modal masks only”。它可以作为 TRELLIS2 conditioning 和 scene-fit silhouette evidence；它仍不批准任何 reconstructed 3D asset、amodal back/bottom、clean plate 或 production manifest mutation。
 
 ## VLM 审核与最多三次尝试
 
