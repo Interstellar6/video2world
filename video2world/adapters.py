@@ -207,6 +207,7 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             raise ValueError(
                 f"provider receipt is missing layered completion outputs: {missing_outputs}"
             )
+        seen_output_paths: dict[Path, str] = {}
         for role in sorted(LAYERED_COMPLETION_REQUIRED_OUTPUT_ROLES):
             output_snapshot = receipt_outputs.get(role)
             if not isinstance(output_snapshot, dict):
@@ -222,11 +223,19 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
                 output_path = output_snapshot.get("path")
                 if not isinstance(output_path, str) or not output_path:
                     raise ValueError(f"provider receipt output {role} path is missing")
-                _require_matching_receipt_snapshot(
-                    output_snapshot,
-                    digest_path(output_path),
-                    context=f"{role} output",
+                    _require_matching_receipt_snapshot(
+                        output_snapshot,
+                        digest_path(output_path),
+                        context=f"{role} output",
+                    )
+            resolved_output_path = Path(output_path).expanduser().resolve()
+            previous_output_role = seen_output_paths.get(resolved_output_path)
+            if previous_output_role is not None:
+                raise ValueError(
+                    f"provider receipt output {role} path must be distinct from "
+                    f"{previous_output_role}"
                 )
+            seen_output_paths[resolved_output_path] = role
             _validate_layered_receipt_artifact(role, Path(output_path))
         inputs = receipt.get("inputs")
         if not isinstance(inputs, dict):

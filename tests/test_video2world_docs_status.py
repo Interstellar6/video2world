@@ -33,6 +33,7 @@ def test_pipeline_docs_keep_corrected_clean_plate_status_fail_closed() -> None:
     assert "objects[*].id" in getting_started
     assert "scene_id/run_id" in getting_started
     assert "clean_plate_manifest.final_clean_plate" in getting_started
+    assert "输出角色路径不能互相复用" in getting_started
     assert "不能复用原始" in getting_started
     assert "hash 或路径" in getting_started
     assert "terminal report 必须显式绑定 clean_scene_gaussian/clean_scene_mesh" in getting_started
