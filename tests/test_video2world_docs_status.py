@@ -25,6 +25,19 @@ def test_pipeline_docs_keep_corrected_clean_plate_status_fail_closed() -> None:
     getting_started = (DOCS / "getting-started.md").read_text(encoding="utf-8")
     assert "provider receipt 本身也会被校验" in getting_started
     assert "越权 next-round source" in getting_started
+    assert "provider_receipt.inputs" in getting_started
+    assert "provider_receipt.outputs" in getting_started
+    for phrase in (
+        "frames_manifest",
+        "layered_completion_plan",
+        "semantic_gaussian",
+        "object_facts",
+        "completed_object_assets_manifest",
+        "clean_scene_mesh",
+        "clean_plate_manifest",
+    ):
+        assert phrase in getting_started
+        assert phrase in completion or phrase in pipeline
 
     stale_claims = (
         "### Bedroom4 真实 R1-R4 clean plate 与 fresh DA3/PGSR/TSDF",
