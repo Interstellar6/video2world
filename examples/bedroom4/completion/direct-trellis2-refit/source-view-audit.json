@@ -1,0 +1,1661 @@
+{
+  "claim_scope": "Read-only evidence manifest for refitting four existing TRELLIS/TRELLIS2 object assets to the original bedroom4 scene. It does not modify or promote a production world manifest.",
+  "created_at": "2026-07-20T10:19:37.403216+00:00",
+  "global_limitations": [
+    "The 25-frame source window is a narrow camera trajectory; the best per-object maximum view-ray baselines are only about 3.12 to 5.23 degrees.",
+    "No selected evidence observes a complete back, top, or bottom surface.",
+    "SAM3 masks are modal visible-region masks, not amodal object silhouettes.",
+    "This evidence is sufficient for source-camera placement and visible-proportion refit, not for claiming complete object geometry."
+  ],
+  "kind": "video2world.direct_trellis2_source_view_audit",
+  "objects": [
+    {
+      "category": "nightstand",
+      "coverage": {
+        "amodal_back_side_completion_evidence_ready": false,
+        "limitation": "The source window provides a narrow camera arc only. Use these views to fit scene placement and visible proportions; do not claim back, top, or bottom geometry is observed.",
+        "maximum_selected_view_ray_baseline_deg": 5.234319547169806,
+        "placement_and_visible_proportion_refit_ready": true,
+        "selected_view_count": 3,
+        "top_bottom_back_view_coverage": "not_available_in_selected_source_window"
+      },
+      "frame_selection": {
+        "candidate_frame_count": 25,
+        "candidate_frame_window": [
+          "000048",
+          "000049",
+          "000050",
+          "000051",
+          "000052",
+          "000053",
+          "000054",
+          "000055",
+          "000056",
+          "000057",
+          "000058",
+          "000059",
+          "000060",
+          "000061",
+          "000062",
+          "000063",
+          "000064",
+          "000065",
+          "000066",
+          "000067",
+          "000068",
+          "000069",
+          "000070",
+          "000071",
+          "000072"
+        ],
+        "maximin_third": {
+          "angles_to_maximum_pair_deg": {
+            "000048": 3.0822598422498038,
+            "000063": 2.7490838904155033
+          },
+          "frame_id": "000055",
+          "minimum_view_ray_angle_to_maximum_pair_deg": 2.7490838904155033
+        },
+        "maximum_pair": {
+          "frame_ids": [
+            "000048",
+            "000063"
+          ],
+          "view_ray_angle_deg": 5.234319547169806
+        },
+        "policy": "maximum_pairwise_camera_to_object_view_ray_angle_then_maximin_third_frame",
+        "selected_frame_ids": [
+          "000048",
+          "000055",
+          "000063"
+        ]
+      },
+      "object_id": "sam3_nightstand_01",
+      "source_anchor": {
+        "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/evidence/sam3_nightstand_01.source-anchor.ply",
+        "coordinate_frame": "pgsr_native_shared_frame_20260714",
+        "point_count": 75728,
+        "repo_uri": "repo://video2world/web/public/worlds/bedroom4/evidence/sam3_nightstand_01.source-anchor.ply",
+        "robust_bounds": {
+          "center": [
+            -8.857548,
+            2.9190715,
+            14.5170345
+          ],
+          "extent": [
+            4.876246,
+            4.019931,
+            4.307599
+          ],
+          "max": [
+            -6.419425,
+            4.929037,
+            16.670834
+          ],
+          "min": [
+            -11.295671,
+            0.909106,
+            12.363235
+          ],
+          "quantileHigh": 0.99,
+          "quantileLow": 0.01
+        },
+        "sha256": "6f374ebbd9507aa737c692c449dc612fa4a1db9984f997bd662a4795ef5365b5",
+        "units": "scene_scale_not_metric"
+      },
+      "status": "three_source_views_materialized_limited_viewpoint_baseline",
+      "views": [
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "nightstand_02.png",
+                "hit_ratio": 0.905596925294259,
+                "sha256": "e7ef7d50b2ec972f3db9932e3b6f05329f8a6c6934591157ebab7535c5fbcd1e"
+              },
+              {
+                "file_name": "nightstand_01.png",
+                "hit_ratio": 0.0,
+                "sha256": "b395a5c86ca5d40abde958172ae1fe8523c2894a3a0a2c4d8b4b2a343fb5a5c3"
+              }
+            ],
+            "hit_ratio_margin": 0.905596925294259,
+            "method": "project_exact_source_3d_anchor_with_declared_camera_then_select_same_category_mask_with_maximum_projected_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              5.008877462842065e-05,
+              436.4323113586482,
+              285.1710955837236,
+              719.9281566439142
+            ],
+            "projected_anchor_point_count_inside_image": 74934,
+            "runner_up_hit_ratio": 0.0,
+            "runner_up_mask_file_name": "nightstand_01.png",
+            "selected_hit_ratio": 0.905596925294259,
+            "selected_mask_file_name": "nightstand_02.png",
+            "status": "passed_unambiguous_for_selected_frame"
+          },
+          "camera": {
+            "fx": 639.9410000000001,
+            "fy": 680.253,
+            "height": 720,
+            "id": 48,
+            "img_name": "000048",
+            "position": [
+              1.1472794721451285,
+              -1.2381905446015729,
+              1.561939204168138
+            ],
+            "record_index": 48,
+            "rotation_camera_to_world": [
+              [
+                0.9996753834670338,
+                0.020923894940073972,
+                -0.014536805928821485
+              ],
+              [
+                -0.020803149307108856,
+                0.9997482326375902,
+                0.008408367237029354
+              ],
+              [
+                0.01470908171782348,
+                -0.008103226593361384,
+                0.99985898046401
+              ]
+            ],
+            "source_file_repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+            "source_file_sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330",
+            "width": 1280
+          },
+          "frame_id": "000048",
+          "mask": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000048/nightstand_02.png",
+            "file_name": "nightstand_02.png",
+            "mask_index_bbox_xyxy": [
+              -1.9496536254882812,
+              436.7555847167969,
+              280.2503356933594,
+              720.4967651367188
+            ],
+            "mask_index_label": "nightstand",
+            "pixel_bbox_xyxy_exclusive": [
+              0,
+              438,
+              279,
+              719
+            ],
+            "pixel_count": 28547,
+            "sam3_score": 0.9624769687652588,
+            "sha256": "e7ef7d50b2ec972f3db9932e3b6f05329f8a6c6934591157ebab7535c5fbcd1e"
+          },
+          "source_rgb": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000048.png",
+            "authoritative_receipt_hash_match": true,
+            "authoritative_upstream_path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000048.png",
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000048.png",
+            "sha256": "fd898eec479773edbd603a91c56e1d721fbe77f492d6de0c8e0761b04f3d1271"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "nightstand_02.png",
+                "hit_ratio": 0.9121799910172917,
+                "sha256": "eee626abc177d80611512051377844f567912ad38dd38e826db3bdc266a20924"
+              },
+              {
+                "file_name": "nightstand_01.png",
+                "hit_ratio": 0.0,
+                "sha256": "62f01072f65469c0053f11e89d7c9b6d0ab0d2d7820224447015c73ebe155303"
+              }
+            ],
+            "hit_ratio_margin": 0.9121799910172917,
+            "method": "project_exact_source_3d_anchor_with_declared_camera_then_select_same_category_mask_with_maximum_projected_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              0.0009675850509438533,
+              471.10557958199774,
+              285.45163341570117,
+              719.9796646265777
+            ],
+            "projected_anchor_point_count_inside_image": 71248,
+            "runner_up_hit_ratio": 0.0,
+            "runner_up_mask_file_name": "nightstand_01.png",
+            "selected_hit_ratio": 0.9121799910172917,
+            "selected_mask_file_name": "nightstand_02.png",
+            "status": "passed_unambiguous_for_selected_frame"
+          },
+          "camera": {
+            "fx": 639.9410000000001,
+            "fy": 680.253,
+            "height": 720,
+            "id": 55,
+            "img_name": "000055",
+            "position": [
+              0.9354276301877911,
+              -1.9746445580416028,
+              2.168367265838615
+            ],
+            "record_index": 55,
+            "rotation_camera_to_world": [
+              [
+                0.9994542012182944,
+                0.02363214177338993,
+                -0.023082932032558998
+              ],
+              [
+                -0.023430586075522744,
+                0.9996852811090352,
+                0.008963620394275533
+              ],
+              [
+                0.02328749690659903,
+                -0.008417881539767072,
+                0.999693368926481
+              ]
+            ],
+            "source_file_repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+            "source_file_sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330",
+            "width": 1280
+          },
+          "frame_id": "000055",
+          "mask": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000055/nightstand_02.png",
+            "file_name": "nightstand_02.png",
+            "mask_index_bbox_xyxy": [
+              -0.6005954742431641,
+              471.52508544921875,
+              277.09796142578125,
+              720.8107299804688
+            ],
+            "mask_index_label": "nightstand",
+            "pixel_bbox_xyxy_exclusive": [
+              0,
+              471,
+              278,
+              719
+            ],
+            "pixel_count": 29182,
+            "sam3_score": 0.9610593914985657,
+            "sha256": "eee626abc177d80611512051377844f567912ad38dd38e826db3bdc266a20924"
+          },
+          "source_rgb": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000055.png",
+            "authoritative_receipt_hash_match": true,
+            "authoritative_upstream_path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000055.png",
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000055.png",
+            "sha256": "bdb9d3222d59cb43c9e0dd770ab0b5eaa0665a346f22dcdab5eed38e7ad6fdae"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "nightstand_02.png",
+                "hit_ratio": 0.9052918742111049,
+                "sha256": "808125382ff1df1211d8d58cbccba98e4b87c9a36d42ad0c1905efe4947726f4"
+              },
+              {
+                "file_name": "nightstand_01.png",
+                "hit_ratio": 0.0,
+                "sha256": "d18b395a72d66861ec100b1b50bb69d7eb9c219f12da406225e681a565d39b7a"
+              }
+            ],
+            "hit_ratio_margin": 0.9052918742111049,
+            "method": "project_exact_source_3d_anchor_with_declared_camera_then_select_same_category_mask_with_maximum_projected_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              15.623018375674178,
+              475.4437999733072,
+              328.9800477502756,
+              719.9864148907147
+            ],
+            "projected_anchor_point_count_inside_image": 73679,
+            "runner_up_hit_ratio": 0.0,
+            "runner_up_mask_file_name": "nightstand_01.png",
+            "selected_hit_ratio": 0.9052918742111049,
+            "selected_mask_file_name": "nightstand_02.png",
+            "status": "passed_unambiguous_for_selected_frame"
+          },
+          "camera": {
+            "fx": 639.9410000000001,
+            "fy": 680.253,
+            "height": 720,
+            "id": 63,
+            "img_name": "000063",
+            "position": [
+              1.1682321049471331,
+              -2.1465415171679747,
+              3.007147122136783
+            ],
+            "record_index": 63,
+            "rotation_camera_to_world": [
+              [
+                0.9925051047981295,
+                0.03318923419882459,
+                -0.11760993629006374
+              ],
+              [
+                -0.03201822160725736,
+                0.9994172405737738,
+                0.01183271529747569
+              ],
+              [
+                0.11793411663282954,
+                -0.007978370729549327,
+                0.992989372961671
+              ]
+            ],
+            "source_file_repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+            "source_file_sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330",
+            "width": 1280
+          },
+          "frame_id": "000063",
+          "mask": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000063/nightstand_02.png",
+            "file_name": "nightstand_02.png",
+            "mask_index_bbox_xyxy": [
+              20.94829559326172,
+              475.5857849121094,
+              323.2962341308594,
+              720.1748657226562
+            ],
+            "mask_index_label": "nightstand",
+            "pixel_bbox_xyxy_exclusive": [
+              21,
+              477,
+              322,
+              718
+            ],
+            "pixel_count": 30731,
+            "sam3_score": 0.9595462083816528,
+            "sha256": "808125382ff1df1211d8d58cbccba98e4b87c9a36d42ad0c1905efe4947726f4"
+          },
+          "source_rgb": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000063.png",
+            "authoritative_receipt_hash_match": true,
+            "authoritative_upstream_path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000063.png",
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000063.png",
+            "sha256": "29706947c8c90221281a94243152d0b34f865038dcccbd3869c43d7a70c18919"
+          }
+        }
+      ]
+    },
+    {
+      "category": "nightstand",
+      "coverage": {
+        "amodal_back_side_completion_evidence_ready": false,
+        "limitation": "The source window provides a narrow camera arc only. Use these views to fit scene placement and visible proportions; do not claim back, top, or bottom geometry is observed.",
+        "maximum_selected_view_ray_baseline_deg": 3.5182185666114982,
+        "placement_and_visible_proportion_refit_ready": true,
+        "selected_view_count": 3,
+        "top_bottom_back_view_coverage": "not_available_in_selected_source_window"
+      },
+      "frame_selection": {
+        "candidate_frame_count": 25,
+        "candidate_frame_window": [
+          "000048",
+          "000049",
+          "000050",
+          "000051",
+          "000052",
+          "000053",
+          "000054",
+          "000055",
+          "000056",
+          "000057",
+          "000058",
+          "000059",
+          "000060",
+          "000061",
+          "000062",
+          "000063",
+          "000064",
+          "000065",
+          "000066",
+          "000067",
+          "000068",
+          "000069",
+          "000070",
+          "000071",
+          "000072"
+        ],
+        "maximin_third": {
+          "angles_to_maximum_pair_deg": {
+            "000048": 1.8047686648515098,
+            "000062": 1.716193292861486
+          },
+          "frame_id": "000053",
+          "minimum_view_ray_angle_to_maximum_pair_deg": 1.716193292861486
+        },
+        "maximum_pair": {
+          "frame_ids": [
+            "000048",
+            "000062"
+          ],
+          "view_ray_angle_deg": 3.5182185666114982
+        },
+        "policy": "maximum_pairwise_camera_to_object_view_ray_angle_then_maximin_third_frame",
+        "selected_frame_ids": [
+          "000048",
+          "000053",
+          "000062"
+        ]
+      },
+      "object_id": "sam3_nightstand_02",
+      "source_anchor": {
+        "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/evidence/sam3_nightstand_02.source-anchor.ply",
+        "coordinate_frame": "pgsr_native_shared_frame_20260714",
+        "point_count": 25498,
+        "repo_uri": "repo://video2world/web/public/worlds/bedroom4/evidence/sam3_nightstand_02.source-anchor.ply",
+        "robust_bounds": {
+          "center": [
+            5.6283455,
+            1.3599195,
+            21.160014
+          ],
+          "extent": [
+            5.425765,
+            2.602103,
+            5.475722
+          ],
+          "max": [
+            8.341228,
+            2.660971,
+            23.897875
+          ],
+          "min": [
+            2.915463,
+            0.058868,
+            18.422153
+          ],
+          "quantileHigh": 0.99,
+          "quantileLow": 0.01
+        },
+        "sha256": "0356ad6285b97eb7aac917a35b08ae6d7a31395cfb64bfefc6f6734c0524ce23",
+        "units": "scene_scale_not_metric"
+      },
+      "status": "three_source_views_materialized_limited_viewpoint_baseline",
+      "views": [
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "nightstand_01.png",
+                "hit_ratio": 0.7820221193819124,
+                "sha256": "b395a5c86ca5d40abde958172ae1fe8523c2894a3a0a2c4d8b4b2a343fb5a5c3"
+              },
+              {
+                "file_name": "nightstand_02.png",
+                "hit_ratio": 0.0,
+                "sha256": "e7ef7d50b2ec972f3db9932e3b6f05329f8a6c6934591157ebab7535c5fbcd1e"
+              }
+            ],
+            "hit_ratio_margin": 0.7820221193819124,
+            "method": "project_exact_source_3d_anchor_with_declared_camera_then_select_same_category_mask_with_maximum_projected_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              697.999995817803,
+              395.90667145678077,
+              883.477633800095,
+              514.7484051885759
+            ],
+            "projected_anchor_point_count_inside_image": 25498,
+            "runner_up_hit_ratio": 0.0,
+            "runner_up_mask_file_name": "nightstand_02.png",
+            "selected_hit_ratio": 0.7820221193819124,
+            "selected_mask_file_name": "nightstand_01.png",
+            "status": "passed_unambiguous_for_selected_frame"
+          },
+          "camera": {
+            "fx": 639.9410000000001,
+            "fy": 680.253,
+            "height": 720,
+            "id": 48,
+            "img_name": "000048",
+            "position": [
+              1.1472794721451285,
+              -1.2381905446015729,
+              1.561939204168138
+            ],
+            "record_index": 48,
+            "rotation_camera_to_world": [
+              [
+                0.9996753834670338,
+                0.020923894940073972,
+                -0.014536805928821485
+              ],
+              [
+                -0.020803149307108856,
+                0.9997482326375902,
+                0.008408367237029354
+              ],
+              [
+                0.01470908171782348,
+                -0.008103226593361384,
+                0.99985898046401
+              ]
+            ],
+            "source_file_repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+            "source_file_sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330",
+            "width": 1280
+          },
+          "frame_id": "000048",
+          "mask": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000048/nightstand_01.png",
+            "file_name": "nightstand_01.png",
+            "mask_index_bbox_xyxy": [
+              699.5901489257812,
+              402.3302307128906,
+              879.801513671875,
+              495.1902770996094
+            ],
+            "mask_index_label": "nightstand",
+            "pixel_bbox_xyxy_exclusive": [
+              699,
+              402,
+              881,
+              494
+            ],
+            "pixel_count": 6287,
+            "sam3_score": 0.9464240670204163,
+            "sha256": "b395a5c86ca5d40abde958172ae1fe8523c2894a3a0a2c4d8b4b2a343fb5a5c3"
+          },
+          "source_rgb": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000048.png",
+            "authoritative_receipt_hash_match": true,
+            "authoritative_upstream_path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000048.png",
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000048.png",
+            "sha256": "fd898eec479773edbd603a91c56e1d721fbe77f492d6de0c8e0761b04f3d1271"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "nightstand_01.png",
+                "hit_ratio": 0.8028472821397756,
+                "sha256": "bc0a163e28cdff553e06cd7ed92188b9e4d208dc075d044bb7de4d8c39d2a899"
+              },
+              {
+                "file_name": "nightstand_02.png",
+                "hit_ratio": 0.0,
+                "sha256": "935c5849801e7b8ac89598a0302ee1b02bde32a1abbcb5b3f613b6e00d505a21"
+              }
+            ],
+            "hit_ratio_margin": 0.8028472821397756,
+            "method": "project_exact_source_3d_anchor_with_declared_camera_then_select_same_category_mask_with_maximum_projected_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              706.82247050406,
+              417.4829570176715,
+              896.1994016737185,
+              537.8975603502392
+            ],
+            "projected_anchor_point_count_inside_image": 25498,
+            "runner_up_hit_ratio": 0.0,
+            "runner_up_mask_file_name": "nightstand_02.png",
+            "selected_hit_ratio": 0.8028472821397756,
+            "selected_mask_file_name": "nightstand_01.png",
+            "status": "passed_unambiguous_for_selected_frame"
+          },
+          "camera": {
+            "fx": 639.9410000000001,
+            "fy": 680.253,
+            "height": 720,
+            "id": 53,
+            "img_name": "000053",
+            "position": [
+              1.011759537211121,
+              -1.7834925808881132,
+              1.9727996552729419
+            ],
+            "record_index": 53,
+            "rotation_camera_to_world": [
+              [
+                0.9995268390294663,
+                0.023229870580979164,
+                -0.020161116290317405
+              ],
+              [
+                -0.02304860498758968,
+                0.9996922233235466,
+                0.009177149267266219
+              ],
+              [
+                0.02036809528175865,
+                -0.00870812111414327,
+                0.9997546244101891
+              ]
+            ],
+            "source_file_repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+            "source_file_sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330",
+            "width": 1280
+          },
+          "frame_id": "000053",
+          "mask": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000053/nightstand_01.png",
+            "file_name": "nightstand_01.png",
+            "mask_index_bbox_xyxy": [
+              708.5565795898438,
+              420.5498046875,
+              894.4524536132812,
+              529.4136962890625
+            ],
+            "mask_index_label": "nightstand",
+            "pixel_bbox_xyxy_exclusive": [
+              708,
+              420,
+              894,
+              529
+            ],
+            "pixel_count": 7288,
+            "sam3_score": 0.9506402015686035,
+            "sha256": "bc0a163e28cdff553e06cd7ed92188b9e4d208dc075d044bb7de4d8c39d2a899"
+          },
+          "source_rgb": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000053.png",
+            "authoritative_receipt_hash_match": true,
+            "authoritative_upstream_path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000053.png",
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000053.png",
+            "sha256": "b681ba697632ffc94ded9123d927cd9896a51e316769b354147964b818935483"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "nightstand_01.png",
+                "hit_ratio": 0.8235547886108714,
+                "sha256": "48891f59e9f07565beb2028b18a2b81e7398c442ed34b00117db18c4cc1157ba"
+              },
+              {
+                "file_name": "nightstand_02.png",
+                "hit_ratio": 0.0,
+                "sha256": "54991e4c9c5ca2f4ea1fa37c90ebc50f97bdc8bbebfdf0387832bd27a91d5c6a"
+              }
+            ],
+            "hit_ratio_margin": 0.8235547886108714,
+            "method": "project_exact_source_3d_anchor_with_declared_camera_then_select_same_category_mask_with_maximum_projected_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              750.6625599353038,
+              437.2397264333488,
+              958.065337895001,
+              571.2845669982981
+            ],
+            "projected_anchor_point_count_inside_image": 25498,
+            "runner_up_hit_ratio": 0.0,
+            "runner_up_mask_file_name": "nightstand_02.png",
+            "selected_hit_ratio": 0.8235547886108714,
+            "selected_mask_file_name": "nightstand_01.png",
+            "status": "passed_unambiguous_for_selected_frame"
+          },
+          "camera": {
+            "fx": 639.9410000000001,
+            "fy": 680.253,
+            "height": 720,
+            "id": 62,
+            "img_name": "000062",
+            "position": [
+              1.085522776557118,
+              -2.1816986230700595,
+              2.968591910382206
+            ],
+            "record_index": 62,
+            "rotation_camera_to_world": [
+              [
+                0.9956423995914372,
+                0.03043806589269394,
+                -0.08814611321408349
+              ],
+              [
+                -0.029611346892008537,
+                0.9995045184032127,
+                0.010671735559527638
+              ],
+              [
+                0.08842726539523399,
+                -0.008015107567797957,
+                0.9960503891302606
+              ]
+            ],
+            "source_file_repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+            "source_file_sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330",
+            "width": 1280
+          },
+          "frame_id": "000062",
+          "mask": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000062/nightstand_01.png",
+            "file_name": "nightstand_01.png",
+            "mask_index_bbox_xyxy": [
+              751.5318603515625,
+              439.50225830078125,
+              956.36669921875,
+              573.994384765625
+            ],
+            "mask_index_label": "nightstand",
+            "pixel_bbox_xyxy_exclusive": [
+              751,
+              440,
+              957,
+              574
+            ],
+            "pixel_count": 9659,
+            "sam3_score": 0.9548252820968628,
+            "sha256": "48891f59e9f07565beb2028b18a2b81e7398c442ed34b00117db18c4cc1157ba"
+          },
+          "source_rgb": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000062.png",
+            "authoritative_receipt_hash_match": true,
+            "authoritative_upstream_path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000062.png",
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000062.png",
+            "sha256": "938b7196853c7757ddc9a190fdf05e6b7a1f6f87df7b557395a65703a352654a"
+          }
+        }
+      ]
+    },
+    {
+      "category": "plant",
+      "coverage": {
+        "amodal_back_side_completion_evidence_ready": false,
+        "limitation": "The source window provides a narrow camera arc only. Use these views to fit scene placement and visible proportions; do not claim back, top, or bottom geometry is observed.",
+        "maximum_selected_view_ray_baseline_deg": 3.1189109401814092,
+        "placement_and_visible_proportion_refit_ready": true,
+        "selected_view_count": 3,
+        "top_bottom_back_view_coverage": "not_available_in_selected_source_window"
+      },
+      "frame_selection": {
+        "candidate_frame_count": 25,
+        "candidate_frame_window": [
+          "000048",
+          "000049",
+          "000050",
+          "000051",
+          "000052",
+          "000053",
+          "000054",
+          "000055",
+          "000056",
+          "000057",
+          "000058",
+          "000059",
+          "000060",
+          "000061",
+          "000062",
+          "000063",
+          "000064",
+          "000065",
+          "000066",
+          "000067",
+          "000068",
+          "000069",
+          "000070",
+          "000071",
+          "000072"
+        ],
+        "maximin_third": {
+          "angles_to_maximum_pair_deg": {
+            "000048": 1.7445450351426217,
+            "000061": 1.4716927899937768
+          },
+          "frame_id": "000068",
+          "minimum_view_ray_angle_to_maximum_pair_deg": 1.4716927899937768
+        },
+        "maximum_pair": {
+          "frame_ids": [
+            "000048",
+            "000061"
+          ],
+          "view_ray_angle_deg": 3.1189109401814092
+        },
+        "policy": "maximum_pairwise_camera_to_object_view_ray_angle_then_maximin_third_frame",
+        "selected_frame_ids": [
+          "000048",
+          "000061",
+          "000068"
+        ]
+      },
+      "object_id": "sam3_plant_01",
+      "source_anchor": {
+        "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/evidence/sam3_plant_01.source-anchor.ply",
+        "coordinate_frame": "pgsr_native_shared_frame_20260714",
+        "point_count": 5284,
+        "repo_uri": "repo://video2world/web/public/worlds/bedroom4/evidence/sam3_plant_01.source-anchor.ply",
+        "robust_bounds": {
+          "center": [
+            5.606413,
+            -0.5816215,
+            21.7986965
+          ],
+          "extent": [
+            1.61465,
+            0.931801,
+            3.432319
+          ],
+          "max": [
+            6.413738,
+            -0.115721,
+            23.514856
+          ],
+          "min": [
+            4.799088,
+            -1.047522,
+            20.082537
+          ],
+          "quantileHigh": 0.99,
+          "quantileLow": 0.01
+        },
+        "sha256": "badfec3efea8373c79e66de15e09472e3a9ae19785a0308c25042dfdf4202340",
+        "units": "scene_scale_not_metric"
+      },
+      "status": "three_source_views_materialized_limited_viewpoint_baseline",
+      "views": [
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.8190764572293717,
+                "sha256": "33b967a12ddc87fdeb8356030add894a4c5479122ad3fc7b0343685b340017aa"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sha256": "e266d01b81e08279bd2f7db2236d95a9bab513e0c4ae86d320804a747e147ff4"
+              }
+            ],
+            "hit_ratio_margin": 0.8190764572293717,
+            "method": "project_exact_source_3d_anchor_with_declared_camera_then_select_same_category_mask_with_maximum_projected_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              766.683342055301,
+              361.3539506500382,
+              818.5630160990431,
+              401.1355223893828
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "runner_up_mask_file_name": "plant_01.png",
+            "selected_hit_ratio": 0.8190764572293717,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed_unambiguous_for_selected_frame"
+          },
+          "camera": {
+            "fx": 639.9410000000001,
+            "fy": 680.253,
+            "height": 720,
+            "id": 48,
+            "img_name": "000048",
+            "position": [
+              1.1472794721451285,
+              -1.2381905446015729,
+              1.561939204168138
+            ],
+            "record_index": 48,
+            "rotation_camera_to_world": [
+              [
+                0.9996753834670338,
+                0.020923894940073972,
+                -0.014536805928821485
+              ],
+              [
+                -0.020803149307108856,
+                0.9997482326375902,
+                0.008408367237029354
+              ],
+              [
+                0.01470908171782348,
+                -0.008103226593361384,
+                0.99985898046401
+              ]
+            ],
+            "source_file_repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+            "source_file_sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330",
+            "width": 1280
+          },
+          "frame_id": "000048",
+          "mask": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000048/plant_02.png",
+            "file_name": "plant_02.png",
+            "mask_index_bbox_xyxy": [
+              770.3884887695312,
+              363.8193054199219,
+              816.829345703125,
+              395.0391845703125
+            ],
+            "mask_index_label": "plant",
+            "pixel_bbox_xyxy_exclusive": [
+              771,
+              363,
+              816,
+              394
+            ],
+            "pixel_count": 1084,
+            "sam3_score": 0.9255197048187256,
+            "sha256": "33b967a12ddc87fdeb8356030add894a4c5479122ad3fc7b0343685b340017aa"
+          },
+          "source_rgb": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000048.png",
+            "authoritative_receipt_hash_match": true,
+            "authoritative_upstream_path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000048.png",
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000048.png",
+            "sha256": "fd898eec479773edbd603a91c56e1d721fbe77f492d6de0c8e0761b04f3d1271"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8166161998485996,
+                "sha256": "f0a8bb6ce66def4d91eb6f4d82d8f53e056f0e680af021a0eb355dc835d776ee"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sha256": "5bfd09d8db2de518c22acaf30bb91a63536994062c5becb7f76ae282d126c083"
+              }
+            ],
+            "hit_ratio_margin": 0.8166161998485996,
+            "method": "project_exact_source_3d_anchor_with_declared_camera_then_select_same_category_mask_with_maximum_projected_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              813.4542423110183,
+              394.69866425721045,
+              868.8367710678239,
+              444.4794491792814
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "runner_up_mask_file_name": "plant_02.png",
+            "selected_hit_ratio": 0.8166161998485996,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed_unambiguous_for_selected_frame"
+          },
+          "camera": {
+            "fx": 639.9410000000001,
+            "fy": 680.253,
+            "height": 720,
+            "id": 61,
+            "img_name": "000061",
+            "position": [
+              1.028996792821609,
+              -2.182352055942438,
+              2.8865896431986102
+            ],
+            "record_index": 61,
+            "rotation_camera_to_world": [
+              [
+                0.9974597906075174,
+                0.028135577568261464,
+                -0.06543970756616375
+              ],
+              [
+                -0.02752724100298964,
+                0.9995692219395272,
+                0.010179466692368843
+              ],
+              [
+                0.06569792275413291,
+                -0.008352234089036466,
+                0.9978046016486498
+              ]
+            ],
+            "source_file_repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+            "source_file_sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330",
+            "width": 1280
+          },
+          "frame_id": "000061",
+          "mask": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000061/plant_01.png",
+            "file_name": "plant_01.png",
+            "mask_index_bbox_xyxy": [
+              816.7379150390625,
+              401.1822204589844,
+              868.1127319335938,
+              436.5667724609375
+            ],
+            "mask_index_label": "plant",
+            "pixel_bbox_xyxy_exclusive": [
+              818,
+              400,
+              868,
+              435
+            ],
+            "pixel_count": 1395,
+            "sam3_score": 0.9325583577156067,
+            "sha256": "f0a8bb6ce66def4d91eb6f4d82d8f53e056f0e680af021a0eb355dc835d776ee"
+          },
+          "source_rgb": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000061.png",
+            "authoritative_receipt_hash_match": true,
+            "authoritative_upstream_path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000061.png",
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000061.png",
+            "sha256": "bb0b213216747a4af8d3072e8ea17c69eb5084f59b71e9f3b877daba2b739dbc"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8077214231642695,
+                "sha256": "ae8d90ae70bd5c5cde36232b5ad56eb643b8120d3b08449fb3e138f8fd59afc4"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sha256": "f5414ddb21f9692a7656b60953d32a344ea5b9ab89c6720270ce293f1df5118e"
+              }
+            ],
+            "hit_ratio_margin": 0.8077214231642695,
+            "method": "project_exact_source_3d_anchor_with_declared_camera_then_select_same_category_mask_with_maximum_projected_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              946.8771692745488,
+              393.2635918030807,
+              1013.8460285304375,
+              444.51681486996574
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "runner_up_mask_file_name": "plant_02.png",
+            "selected_hit_ratio": 0.8077214231642695,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed_unambiguous_for_selected_frame"
+          },
+          "camera": {
+            "fx": 639.9410000000001,
+            "fy": 680.253,
+            "height": 720,
+            "id": 68,
+            "img_name": "000068",
+            "position": [
+              1.3131792639616875,
+              -1.7881110180301365,
+              2.756921097778318
+            ],
+            "record_index": 68,
+            "rotation_camera_to_world": [
+              [
+                0.963260798142105,
+                0.05241508574728947,
+                -0.2634033820011084
+              ],
+              [
+                -0.050693248291539796,
+                0.9986252559542627,
+                0.013333962195185567
+              ],
+              [
+                0.26374017032141667,
+                0.00050868091632654,
+                0.9645936502789133
+              ]
+            ],
+            "source_file_repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+            "source_file_sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330",
+            "width": 1280
+          },
+          "frame_id": "000068",
+          "mask": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000068/plant_01.png",
+            "file_name": "plant_01.png",
+            "mask_index_bbox_xyxy": [
+              952.8785400390625,
+              397.8653259277344,
+              1013.07861328125,
+              436.75531005859375
+            ],
+            "mask_index_label": "plant",
+            "pixel_bbox_xyxy_exclusive": [
+              954,
+              398,
+              1013,
+              436
+            ],
+            "pixel_count": 1752,
+            "sam3_score": 0.9362912774085999,
+            "sha256": "ae8d90ae70bd5c5cde36232b5ad56eb643b8120d3b08449fb3e138f8fd59afc4"
+          },
+          "source_rgb": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000068.png",
+            "authoritative_receipt_hash_match": true,
+            "authoritative_upstream_path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000068.png",
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000068.png",
+            "sha256": "e0dd873ab695350cdb67fb65ab268a7ac36d9391d7cfccca97e48deebeee930b"
+          }
+        }
+      ]
+    },
+    {
+      "category": "plant",
+      "coverage": {
+        "amodal_back_side_completion_evidence_ready": false,
+        "limitation": "The source window provides a narrow camera arc only. Use these views to fit scene placement and visible proportions; do not claim back, top, or bottom geometry is observed.",
+        "maximum_selected_view_ray_baseline_deg": 4.780983754869297,
+        "placement_and_visible_proportion_refit_ready": true,
+        "selected_view_count": 3,
+        "top_bottom_back_view_coverage": "not_available_in_selected_source_window"
+      },
+      "frame_selection": {
+        "candidate_frame_count": 25,
+        "candidate_frame_window": [
+          "000048",
+          "000049",
+          "000050",
+          "000051",
+          "000052",
+          "000053",
+          "000054",
+          "000055",
+          "000056",
+          "000057",
+          "000058",
+          "000059",
+          "000060",
+          "000061",
+          "000062",
+          "000063",
+          "000064",
+          "000065",
+          "000066",
+          "000067",
+          "000068",
+          "000069",
+          "000070",
+          "000071",
+          "000072"
+        ],
+        "maximin_third": {
+          "angles_to_maximum_pair_deg": {
+            "000048": 2.748269013423086,
+            "000064": 2.765172480351833
+          },
+          "frame_id": "000055",
+          "minimum_view_ray_angle_to_maximum_pair_deg": 2.748269013423086
+        },
+        "maximum_pair": {
+          "frame_ids": [
+            "000048",
+            "000064"
+          ],
+          "view_ray_angle_deg": 4.780983754869297
+        },
+        "policy": "maximum_pairwise_camera_to_object_view_ray_angle_then_maximin_third_frame",
+        "selected_frame_ids": [
+          "000048",
+          "000055",
+          "000064"
+        ]
+      },
+      "object_id": "sam3_plant_02",
+      "source_anchor": {
+        "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/evidence/sam3_plant_02.source-anchor.ply",
+        "coordinate_frame": "pgsr_native_shared_frame_20260714",
+        "point_count": 4630,
+        "repo_uri": "repo://video2world/web/public/worlds/bedroom4/evidence/sam3_plant_02.source-anchor.ply",
+        "robust_bounds": {
+          "center": [
+            -10.1043695,
+            0.195119,
+            14.9292585
+          ],
+          "extent": [
+            1.753715,
+            0.798368,
+            2.248233
+          ],
+          "max": [
+            -9.227512,
+            0.594303,
+            16.053375
+          ],
+          "min": [
+            -10.981227,
+            -0.204065,
+            13.805142
+          ],
+          "quantileHigh": 0.99,
+          "quantileLow": 0.01
+        },
+        "sha256": "87ab2b3946cee1009b97e9193e950c5e6741e85d06416dcceb5a20a6e360941c",
+        "units": "scene_scale_not_metric"
+      },
+      "status": "three_source_views_materialized_limited_viewpoint_baseline",
+      "views": [
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8740820734341253,
+                "sha256": "e266d01b81e08279bd2f7db2236d95a9bab513e0c4ae86d320804a747e147ff4"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sha256": "33b967a12ddc87fdeb8356030add894a4c5479122ad3fc7b0343685b340017aa"
+              }
+            ],
+            "hit_ratio_margin": 0.8740820734341253,
+            "method": "project_exact_source_3d_anchor_with_declared_camera_then_select_same_category_mask_with_maximum_projected_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              62.9956117633584,
+              384.78893432139125,
+              158.7801801857787,
+              443.03655150062747
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "runner_up_mask_file_name": "plant_02.png",
+            "selected_hit_ratio": 0.8740820734341253,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed_unambiguous_for_selected_frame"
+          },
+          "camera": {
+            "fx": 639.9410000000001,
+            "fy": 680.253,
+            "height": 720,
+            "id": 48,
+            "img_name": "000048",
+            "position": [
+              1.1472794721451285,
+              -1.2381905446015729,
+              1.561939204168138
+            ],
+            "record_index": 48,
+            "rotation_camera_to_world": [
+              [
+                0.9996753834670338,
+                0.020923894940073972,
+                -0.014536805928821485
+              ],
+              [
+                -0.020803149307108856,
+                0.9997482326375902,
+                0.008408367237029354
+              ],
+              [
+                0.01470908171782348,
+                -0.008103226593361384,
+                0.99985898046401
+              ]
+            ],
+            "source_file_repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+            "source_file_sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330",
+            "width": 1280
+          },
+          "frame_id": "000048",
+          "mask": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000048/plant_01.png",
+            "file_name": "plant_01.png",
+            "mask_index_bbox_xyxy": [
+              61.06239318847656,
+              395.6034240722656,
+              145.1668701171875,
+              442.62286376953125
+            ],
+            "mask_index_label": "plant",
+            "pixel_bbox_xyxy_exclusive": [
+              62,
+              395,
+              145,
+              442
+            ],
+            "pixel_count": 2971,
+            "sam3_score": 0.9501763582229614,
+            "sha256": "e266d01b81e08279bd2f7db2236d95a9bab513e0c4ae86d320804a747e147ff4"
+          },
+          "source_rgb": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000048.png",
+            "authoritative_receipt_hash_match": true,
+            "authoritative_upstream_path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000048.png",
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000048.png",
+            "sha256": "fd898eec479773edbd603a91c56e1d721fbe77f492d6de0c8e0761b04f3d1271"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.8252699784017279,
+                "sha256": "b49e2ed4525071d1eb24a240778c20f29b77ade127aafc1aed24e8b787b52ef0"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sha256": "e0234cbc73f5546fb05e73031a876de44594eb17541c3803658489a1429c64fe"
+              }
+            ],
+            "hit_ratio_margin": 0.8252699784017279,
+            "method": "project_exact_source_3d_anchor_with_declared_camera_then_select_same_category_mask_with_maximum_projected_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              54.02165466869951,
+              419.4147792375693,
+              155.06872662494493,
+              486.70416041856566
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "runner_up_mask_file_name": "plant_01.png",
+            "selected_hit_ratio": 0.8252699784017279,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed_unambiguous_for_selected_frame"
+          },
+          "camera": {
+            "fx": 639.9410000000001,
+            "fy": 680.253,
+            "height": 720,
+            "id": 55,
+            "img_name": "000055",
+            "position": [
+              0.9354276301877911,
+              -1.9746445580416028,
+              2.168367265838615
+            ],
+            "record_index": 55,
+            "rotation_camera_to_world": [
+              [
+                0.9994542012182944,
+                0.02363214177338993,
+                -0.023082932032558998
+              ],
+              [
+                -0.023430586075522744,
+                0.9996852811090352,
+                0.008963620394275533
+              ],
+              [
+                0.02328749690659903,
+                -0.008417881539767072,
+                0.999693368926481
+              ]
+            ],
+            "source_file_repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+            "source_file_sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330",
+            "width": 1280
+          },
+          "frame_id": "000055",
+          "mask": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000055/plant_02.png",
+            "file_name": "plant_02.png",
+            "mask_index_bbox_xyxy": [
+              52.341609954833984,
+              435.4258117675781,
+              141.03707885742188,
+              486.8398742675781
+            ],
+            "mask_index_label": "plant",
+            "pixel_bbox_xyxy_exclusive": [
+              53,
+              435,
+              141,
+              487
+            ],
+            "pixel_count": 3367,
+            "sam3_score": 0.9512709379196167,
+            "sha256": "b49e2ed4525071d1eb24a240778c20f29b77ade127aafc1aed24e8b787b52ef0"
+          },
+          "source_rgb": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000055.png",
+            "authoritative_receipt_hash_match": true,
+            "authoritative_upstream_path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000055.png",
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000055.png",
+            "sha256": "bdb9d3222d59cb43c9e0dd770ab0b5eaa0665a346f22dcdab5eed38e7ad6fdae"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7568034557235421,
+                "sha256": "c3a38a561e71922a064fa0fc4c7fd410ce6e1d0864d01a5c80cf54b2b910a745"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sha256": "8dd8aa81837317f24f5fbd67b547ec84a9ba19780992f1e240a5502c41b773e8"
+              }
+            ],
+            "hit_ratio_margin": 0.7568034557235421,
+            "method": "project_exact_source_3d_anchor_with_declared_camera_then_select_same_category_mask_with_maximum_projected_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              132.37537938607704,
+              417.2933661207422,
+              228.06063908914427,
+              482.8577333414438
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "runner_up_mask_file_name": "plant_01.png",
+            "selected_hit_ratio": 0.7568034557235421,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed_unambiguous_for_selected_frame"
+          },
+          "camera": {
+            "fx": 639.9410000000001,
+            "fy": 680.253,
+            "height": 720,
+            "id": 64,
+            "img_name": "000064",
+            "position": [
+              1.2315421131957078,
+              -2.111757372204312,
+              3.0145712194889565
+            ],
+            "record_index": 64,
+            "rotation_camera_to_world": [
+              [
+                0.9888502915762648,
+                0.03699891361004726,
+                -0.144243417390082
+              ],
+              [
+                -0.03557708275391279,
+                0.9992896925512466,
+                0.012424991380406708
+              ],
+              [
+                0.1446006716838286,
+                -0.007154692149785288,
+                0.9894642183156678
+              ]
+            ],
+            "source_file_repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+            "source_file_sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330",
+            "width": 1280
+          },
+          "frame_id": "000064",
+          "mask": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000064/plant_02.png",
+            "file_name": "plant_02.png",
+            "mask_index_bbox_xyxy": [
+              127.92654418945312,
+              432.87176513671875,
+              209.6421661376953,
+              481.94879150390625
+            ],
+            "mask_index_label": "plant",
+            "pixel_bbox_xyxy_exclusive": [
+              129,
+              433,
+              209,
+              482
+            ],
+            "pixel_count": 2986,
+            "sam3_score": 0.9472607374191284,
+            "sha256": "c3a38a561e71922a064fa0fc4c7fd410ce6e1d0864d01a5c80cf54b2b910a745"
+          },
+          "source_rgb": {
+            "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000064.png",
+            "authoritative_receipt_hash_match": true,
+            "authoritative_upstream_path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames/000064.png",
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000064.png",
+            "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3"
+          }
+        }
+      ]
+    }
+  ],
+  "objects_in_scope": [
+    "sam3_nightstand_01",
+    "sam3_nightstand_02",
+    "sam3_plant_01",
+    "sam3_plant_02"
+  ],
+  "production_manifest_changed": false,
+  "schema_version": 1,
+  "selection_policy": {
+    "candidate_frame_window": [
+      "000048",
+      "000049",
+      "000050",
+      "000051",
+      "000052",
+      "000053",
+      "000054",
+      "000055",
+      "000056",
+      "000057",
+      "000058",
+      "000059",
+      "000060",
+      "000061",
+      "000062",
+      "000063",
+      "000064",
+      "000065",
+      "000066",
+      "000067",
+      "000068",
+      "000069",
+      "000070",
+      "000071",
+      "000072"
+    ],
+    "fail_closed_conditions": [
+      "missing source RGB",
+      "source RGB hash mismatch against authoritative receipt",
+      "missing camera record",
+      "missing same-category SAM3 mask",
+      "ambiguous maximum mask association",
+      "non-finite source anchor"
+    ],
+    "mask_instance_association": "same-category SAM3 candidates ranked by projected exact source-anchor point hit ratio",
+    "required_views_per_object": 3,
+    "selected_views_per_object": 3,
+    "view_diversity": "select maximum camera-to-object ray baseline pair, then the frame maximizing its minimum angle to that pair"
+  },
+  "source_contract": {
+    "camera_info": {
+      "authoritative_upstream_path_from_receipt": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/video2mesh/scene/cameras/camera_info.json",
+      "evidence_receipt_repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/anchor-projection-supplement/v2-authoritative/object_anchor_supplement_manifest.json",
+      "extrinsic_type_recorded_by_authoritative_receipt": "world_to_camera",
+      "limitation": "The upstream camera_info.json bytes are not present locally, so its recorded hash cannot be reverified in this audit. The byte-identical local/external cameras.json is the executable source-camera contract used here.",
+      "sha256_recorded_by_authoritative_receipt": "2901497f144c7378961ad6116a48474dfec475acd35a7a80258db18d36b87568",
+      "status": "not_materialized_in_local_tmp_remote_results_or_video2world"
+    },
+    "cameras": {
+      "absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+      "byte_identity_verified": true,
+      "camera_count": 80,
+      "external_mirror_absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/cameras.json",
+      "external_mirror_sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330",
+      "projection_convention": "camera_points=(world_points-position)@rotation; u=fx*x/z+width/2; v=height/2+fy*y/z",
+      "repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+      "rotation_convention": "camera_to_world",
+      "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+    },
+    "sam3_masks": {
+      "mask_index_absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/mask_index.json",
+      "mask_index_declared_image_root": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/dslr/resized_undistorted_images",
+      "mask_index_declared_mask_root": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4",
+      "mask_index_sha256": "08a0bb11dab795cb77f1648a1d2b55cea9a722360710d5e711e055f5146dfa75",
+      "materialized_root_absolute_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4",
+      "warning": "Per-frame file suffixes are detector output ordinals, not persistent object IDs. Every selected mask is associated through source-anchor projection."
+    },
+    "source_rgb": {
+      "all_files_present": true,
+      "all_hashes_match_authoritative_anchor_projection_receipt": true,
+      "authoritative_receipt": {
+        "repo_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/round04_bed/anchor-projection-supplement/v2-authoritative/object_anchor_supplement_manifest.json",
+        "sha256": "fbfe05b23d0c7b0a38b06dc64acf51915ff09b8ae06a9b3ca8260d86329d261d"
+      },
+      "frame_count": 25,
+      "frame_window": [
+        "000048",
+        "000049",
+        "000050",
+        "000051",
+        "000052",
+        "000053",
+        "000054",
+        "000055",
+        "000056",
+        "000057",
+        "000058",
+        "000059",
+        "000060",
+        "000061",
+        "000062",
+        "000063",
+        "000064",
+        "000065",
+        "000066",
+        "000067",
+        "000068",
+        "000069",
+        "000070",
+        "000071",
+        "000072"
+      ],
+      "repo_root_uri": "repo://video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source"
+    }
+  },
+  "status": "ready_for_source_camera_placement_refit_with_limited_viewpoint_baseline"
+}

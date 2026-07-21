@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.multiview_scene_fit_evidence_config",
+  "cameras": {
+    "path": "../layered-peel/scene-fit-evidence/cameras.json",
+    "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+  },
+  "mask_index": {
+    "path": "../layered-peel/round01_front_pillow/reinspect_sam3/mask_index.json",
+    "sha256": "f93067d48886ef6a11bc4525ed8aee1d2ef42e8ca65572f2e2455566c5709b26"
+  },
+  "mask_root": "source-masks/pillows-original",
+  "source_rgb_dir": "../layered-peel/pbr-layer-render-batch-v2-geometry-matte/source",
+  "frame_ids": [
+    "000048",
+    "000049",
+    "000050",
+    "000051",
+    "000052",
+    "000053",
+    "000054",
+    "000055",
+    "000056",
+    "000057",
+    "000058",
+    "000059",
+    "000060",
+    "000061",
+    "000062",
+    "000063",
+    "000064",
+    "000065",
+    "000066",
+    "000067",
+    "000068",
+    "000069",
+    "000070",
+    "000071",
+    "000072"
+  ],
+  "selected_view_count": 3,
+  "thresholds": {
+    "minimum_sam3_score": 0.8,
+    "minimum_anchor_hit_ratio": 0.25,
+    "minimum_anchor_hit_margin": 0.05
+  },
+  "objects": [
+    {
+      "object_id": "sam3_pillow_front",
+      "category": "pillow",
+      "anchor": {
+        "path": "../bedroom4_frame64_three_pillows/objects/sam3_pillow_front/sam3_pillow_front.ply",
+        "sha256": "a9d29a9d79bfaaf48d5802d50c163d2e3600367551f589c7d66cd625ca093351"
+      }
+    },
+    {
+      "object_id": "sam3_pillow_left",
+      "category": "pillow",
+      "anchor": {
+        "path": "../bedroom4_frame64_three_pillows/objects/sam3_pillow_left/sam3_pillow_left.ply",
+        "sha256": "b8c45454d887a77a99b17558c0fa0f0e49d81ab00099e346aeffc940eacdb400"
+      },
+      "occluder_object_ids": [
+        "sam3_pillow_front"
+      ]
+    },
+    {
+      "object_id": "sam3_pillow_right",
+      "category": "pillow",
+      "anchor": {
+        "path": "../bedroom4_frame64_three_pillows/objects/sam3_pillow_right/sam3_pillow_right.ply",
+        "sha256": "09537489887ad6ba3cbccf9cbaae99142eccbb4a65ab82b8829d4fe140bfc63f"
+      },
+      "occluder_object_ids": [
+        "sam3_pillow_front"
+      ]
+    }
+  ]
+}

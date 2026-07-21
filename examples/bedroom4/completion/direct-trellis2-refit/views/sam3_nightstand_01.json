@@ -1,0 +1,42 @@
+{
+  "kind": "video2world.completed_object_source_view_manifest",
+  "object_id": "sam3_nightstand_01",
+  "occlusion_policy": {
+    "same_category_objects_are_not_implicit_occluders": true,
+    "status": "no_explicit_occluder_relation_evidence"
+  },
+  "schema_version": 1,
+  "source_audit": {
+    "path": "../source-view-audit.json",
+    "sha256": "c1a4e5b402398a565e5e02884e95da0d8057f6a512b84e98fcc16341d01a581e"
+  },
+  "views": [
+    {
+      "frame_id": "000048",
+      "is_source_view": true,
+      "observed_mask": {
+        "path": "../../../../../../Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000048/nightstand_02.png",
+        "sha256": "e7ef7d50b2ec972f3db9932e3b6f05329f8a6c6934591157ebab7535c5fbcd1e"
+      },
+      "occluder_masks": []
+    },
+    {
+      "frame_id": "000055",
+      "is_source_view": true,
+      "observed_mask": {
+        "path": "../../../../../../Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000055/nightstand_02.png",
+        "sha256": "eee626abc177d80611512051377844f567912ad38dd38e826db3bdc266a20924"
+      },
+      "occluder_masks": []
+    },
+    {
+      "frame_id": "000063",
+      "is_source_view": true,
+      "observed_mask": {
+        "path": "../../../../../../Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000063/nightstand_02.png",
+        "sha256": "808125382ff1df1211d8d58cbccba98e4b87c9a36d42ad0c1905efe4947726f4"
+      },
+      "occluder_masks": []
+    }
+  ]
+}

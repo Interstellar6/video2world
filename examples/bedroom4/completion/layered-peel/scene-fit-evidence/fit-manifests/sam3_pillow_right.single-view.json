@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.scene_fit_view_evidence",
+  "evidence_scope": "single_view_provisional",
+  "object_id": "sam3_pillow_right",
+  "views": [
+    {
+      "frame_id": "000064",
+      "observed_mask": {
+        "path": "../pillow_01.png",
+        "sha256": "ebf444538c714b5ab96cfe2e23a9445be86cf799012356ccb509af96d4a325fa"
+      },
+      "occluder_masks": [
+        {
+          "path": "../pillow_03.png",
+          "sha256": "bdcd739f36d4c129f12bc42964195ce17522fa030900b7427f78b8e8f73d24d6"
+        }
+      ],
+      "is_source_view": true
+    }
+  ]
+}

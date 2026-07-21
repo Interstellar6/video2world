@@ -1,0 +1,24 @@
+{
+  "kind": "video2world.source_rgba_condition_config",
+  "audit": {
+    "path": "./source-view-audit.json",
+    "sha256": "c1a4e5b402398a565e5e02884e95da0d8057f6a512b84e98fcc16341d01a581e"
+  },
+  "object_ids": [
+    "sam3_nightstand_01",
+    "sam3_nightstand_02",
+    "sam3_plant_01",
+    "sam3_plant_02"
+  ],
+  "selection": {
+    "ranking": "foreground_pixel_count_desc_then_frame_id",
+    "minimum_edge_distance_px": 1
+  },
+  "crop": {
+    "padding_ratio": 0.12,
+    "condition_size": 1024,
+    "background": "transparent",
+    "emit_white_background": true
+  },
+  "output_directory": "./source-rgba-conditions"
+}

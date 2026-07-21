@@ -1,0 +1,57 @@
+{
+  "evidence_scope": "multiview_source_modal_masks",
+  "kind": "video2world.completed_object_source_view_manifest",
+  "object_id": "sam3_pillow_right",
+  "schema_version": 1,
+  "source_audit": {
+    "path": "../source-view-audit.json",
+    "sha256": "ba7a108d11f9cdd6188fa1c5b75130b15a11e5a0678d122217ce0fc71d384b84"
+  },
+  "views": [
+    {
+      "frame_id": "000061",
+      "is_source_view": true,
+      "observed_mask": {
+        "path": "../../source-masks/pillows-original/000061/pillow_02.png",
+        "sha256": "a8c74a6dbcfa201fe1fd4b322d068f113e102c226e57bf5d2de92d2990b7a5bd"
+      },
+      "occluder_masks": [
+        {
+          "object_id": "sam3_pillow_front",
+          "path": "../../source-masks/pillows-original/000061/pillow_03.png",
+          "sha256": "ea7211ce27b26d24238da2049e8faeb24cbf559431f42d0e26cf8e161ae38e91"
+        }
+      ]
+    },
+    {
+      "frame_id": "000068",
+      "is_source_view": true,
+      "observed_mask": {
+        "path": "../../source-masks/pillows-original/000068/pillow_01.png",
+        "sha256": "48cdf8aba68625ae102c6f346475c511a14abda43afc7359df3366f3285edb29"
+      },
+      "occluder_masks": [
+        {
+          "object_id": "sam3_pillow_front",
+          "path": "../../source-masks/pillows-original/000068/pillow_03.png",
+          "sha256": "86f0819eba5ad3ec53db77b2038cef61c33de8825aa55df418598d7ad5e8b79c"
+        }
+      ]
+    },
+    {
+      "frame_id": "000072",
+      "is_source_view": true,
+      "observed_mask": {
+        "path": "../../source-masks/pillows-original/000072/pillow_01.png",
+        "sha256": "9756a13922f9fe2875e648ba38d938206b4fe1205969cce5678c7ccb27a08dda"
+      },
+      "occluder_masks": [
+        {
+          "object_id": "sam3_pillow_front",
+          "path": "../../source-masks/pillows-original/000072/pillow_03.png",
+          "sha256": "f1e6f4bf5393a111f26e925b3b13b2ddd94fd00019defd6d8b97b90283c8beb3"
+        }
+      ]
+    }
+  ]
+}
