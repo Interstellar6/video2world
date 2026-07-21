@@ -288,6 +288,24 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             raise ValueError(
                 "completed_object_assets_manifest objects differ from planned target ids"
             )
+        clean_plate_snapshot = receipt_outputs.get("clean_plate_manifest")
+        if not isinstance(clean_plate_snapshot, dict):
+            raise ValueError("provider receipt has no clean_plate_manifest output")
+        clean_plate_path = clean_plate_snapshot.get("path")
+        if not isinstance(clean_plate_path, str) or not clean_plate_path:
+            raise ValueError("provider receipt has no clean_plate_manifest path")
+        clean_plate_manifest = json.loads(Path(clean_plate_path).read_text(encoding="utf-8"))
+        if not isinstance(clean_plate_manifest, dict):
+            raise ValueError("clean_plate_manifest root must be an object")
+        final_clean_plate = clean_plate_manifest.get("final_clean_plate")
+        if not isinstance(final_clean_plate, dict):
+            raise ValueError("clean_plate_manifest must bind final_clean_plate")
+        if (
+            final_clean_plate.get("uri") != report.final_clean_plate.uri
+            or final_clean_plate.get("sha256") != report.final_clean_plate.sha256
+            or final_clean_plate.get("size_bytes") != report.final_clean_plate.size_bytes
+        ):
+            raise ValueError("clean_plate_manifest final_clean_plate differs from report")
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError) as exc:
         raise ArtifactError(
             "layered completion plan/receipt lineage validation failed: "
