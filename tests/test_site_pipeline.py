@@ -174,6 +174,43 @@ def _site_fixture(tmp_path: Path, *, adopt_ingest: bool = False) -> dict[str, Pa
     return result
 
 
+def test_site_profile_layered_completion_adoption_requires_provider_receipt(
+    tmp_path: Path,
+) -> None:
+    fixture = _site_fixture(tmp_path)
+    profile_payload = yaml.safe_load(fixture["profile"].read_text(encoding="utf-8"))
+    layered_outputs = {
+        role: f"{role}.json"
+        for role in get_adapter("layered_completion").required_outputs
+        if role not in {"clean_scene_gaussian", "clean_scene_mesh"}
+    }
+    layered_outputs["clean_scene_gaussian"] = "clean-scene-gaussian.ply"
+    layered_outputs["clean_scene_mesh"] = "clean-scene-mesh.ply"
+    assert "provider_receipt" not in layered_outputs
+    profile_payload["stages"]["layered_completion"] = {
+        "mode": "adopt",
+        "artifact_root": "layered",
+        "source_run_id": "archived-current-demo-only",
+        "outputs": layered_outputs,
+    }
+    profile = tmp_path / "profile-layered-adopt-missing-receipt.yaml"
+    profile.write_text(yaml.safe_dump(profile_payload, sort_keys=False), encoding="utf-8")
+    layered_root = tmp_path / "layered"
+    layered_root.mkdir()
+
+    with pytest.raises(ConfigurationError, match="provider_receipt"):
+        create_site_run(
+            fixture["run"],
+            video=fixture["video"],
+            scene_id="scene",
+            run_id="site-run-1",
+            profile_path=profile,
+            provider_contract_path=fixture["contract"],
+            checkout_roots={"provider": fixture["provider"]},
+            artifact_roots={"layered": layered_root},
+        )
+
+
 def test_site_cli_binds_all_twelve_stages_and_executes_real_ingest(tmp_path: Path, capsys) -> None:
     fixture = _site_fixture(tmp_path)
     exit_code = main(

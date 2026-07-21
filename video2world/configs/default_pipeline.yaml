@@ -83,6 +83,7 @@ stages:
       clean_scene_mesh: "{run_dir}/artifacts/completion/clean-scene-mesh.ply"
       clean_plate_manifest: "{run_dir}/artifacts/completion/clean-plates.json"
       layered_completion_report: "{run_dir}/artifacts/completion/report.json"
+      provider_receipt: "{run_dir}/artifacts/completion/provider-receipt.json"
   placement:
     adapter: object_placement
     needs: [fusion, layered_completion]

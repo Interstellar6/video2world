@@ -459,7 +459,14 @@ def _bound_template(
         site_stage = profile.stages[stage_id]
         adapter = get_adapter(base.adapter)
         required_outputs = set(adapter.required_outputs)
-        outputs = {role: path for role, path in base.outputs.items() if role in required_outputs}
+        adoption_required_outputs = set(required_outputs)
+        if base.adapter == "layered_completion":
+            adoption_required_outputs.add("provider_receipt")
+        outputs = {
+            role: path
+            for role, path in base.outputs.items()
+            if role in adoption_required_outputs
+        }
         inputs = CANONICAL_STAGE_INPUTS[stage_id]
         fingerprints = {"site_binding": str(binding_path)}
         if site_stage.mode == "execute":
@@ -483,11 +490,11 @@ def _bound_template(
             environment = provider_environment
         else:
             provided_outputs = set(site_stage.outputs)
-            if provided_outputs != required_outputs:
+            if provided_outputs != adoption_required_outputs:
                 raise ConfigurationError(
                     f"adoption output roles differ for {stage_id}; "
-                    f"missing={sorted(required_outputs - provided_outputs)}, "
-                    f"extra={sorted(provided_outputs - required_outputs)}"
+                    f"missing={sorted(adoption_required_outputs - provided_outputs)}, "
+                    f"extra={sorted(provided_outputs - adoption_required_outputs)}"
                 )
             timeout = base.timeout_seconds
             command = _adoption_guard_command(stage_id, driver_python=str(driver_python))

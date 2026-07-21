@@ -495,14 +495,22 @@ def test_layered_completion_report_requires_corrected_full_pipeline_lineage(
         )
 
 
+def test_layered_completion_report_requires_provider_receipt_lineage(
+    tmp_path: Path,
+) -> None:
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(_valid_layered_completion_report()), encoding="utf-8")
+
+    with pytest.raises(ArtifactError, match="requires provider_receipt"):
+        get_adapter("layered_completion").validate_outputs(
+            {"layered_completion_report": snapshot_path(report_path)}
+        )
+
+
 @pytest.mark.parametrize(
     ("role", "valid_payload"),
     [
         ("clean_plate_manifest", {"frame_records": [{"frame_id": "000064"}]}),
-        (
-            "layered_completion_report",
-            _valid_layered_completion_report(),
-        ),
     ],
 )
 def test_completion_json_roles_require_role_specific_payload_fields(

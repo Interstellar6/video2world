@@ -146,7 +146,12 @@ class StageAdapter:
                     "world_manifest must be validated and pass local asset hash verification: "
                     f"{result['issues']}"
                 )
-        if "layered_completion_report" in outputs and "provider_receipt" in outputs:
+        if "layered_completion_report" in outputs:
+            if "provider_receipt" not in outputs:
+                raise ArtifactError(
+                    "layered_completion_report requires provider_receipt so the report can be "
+                    "bound to the executed completion plan"
+                )
             _validate_layered_completion_lineage(outputs)
 
 
