@@ -40,6 +40,8 @@ from PIL import Image
 INPUT_KIND = "video2world.accepted_clean_plate_next_round_materialization_input"
 OUTPUT_KIND = "video2world.accepted_clean_plate_next_round_source_manifest"
 OUTPUT_RECEIPT_KIND = "video2world.accepted_clean_plate_next_round_source_receipt"
+NEXT_ROUND_SOURCE_ACCEPTANCE_SCOPE = "corrected_clean_plate_next_round_source_only"
+NEXT_ROUND_SOURCE_LINEAGE_SCOPE = "corrected_clean_plate_round_source"
 SELECTION_KIND = "video2world.clean_plate_candidate_selection_receipt"
 SELECTION_STATUS = "materialized_candidate_selection_pending_human_review"
 BOUNDARY_KIND = "video2world.layered_clean_plate_boundary_qa_report"
@@ -822,8 +824,24 @@ def validate_previous_accepted_source(
     require(previous_ids == selection.ordered_frame_ids, "previous source frame order differs")
     require(manifest.get("next_round_source_approved") is True, "previous source is not approved")
     require(
+        manifest.get("acceptance_scope") == NEXT_ROUND_SOURCE_ACCEPTANCE_SCOPE,
+        "previous source acceptance_scope is not next-round-source only",
+    )
+    require(
+        manifest.get("lineage_scope") == NEXT_ROUND_SOURCE_LINEAGE_SCOPE,
+        "previous source lineage_scope is invalid",
+    )
+    require(
+        manifest.get("corrected_full_pipeline") is False,
+        "previous source must not claim corrected full-pipeline completion",
+    )
+    require(
         manifest.get("promotion_approved") is False,
         "previous source exceeded scoped authority",
+    )
+    require(
+        manifest.get("canonical_promotion_approved") is False,
+        "previous source claims canonical promotion",
     )
     require(
         manifest.get("canonical_or_live_manifest_modified") is False,
@@ -2505,8 +2523,21 @@ def materialize_accepted_clean_plate_next_round(
             "frame_count": EXPECTED_FRAME_COUNT,
             "ordered_frame_ids": list(selection.ordered_frame_ids),
             "next_round_source_approved": True,
+            "acceptance_scope": NEXT_ROUND_SOURCE_ACCEPTANCE_SCOPE,
+            "lineage_scope": NEXT_ROUND_SOURCE_LINEAGE_SCOPE,
+            "corrected_full_pipeline": False,
             "promotion_approved": False,
+            "canonical_promotion_approved": False,
             "canonical_or_live_manifest_modified": False,
+            "allowed_consumers": [
+                "next_round_segmentation_source",
+                "next_round_sam_semantic_source",
+                "completion_round_validation",
+            ],
+            "forbidden_claims": {
+                "canonical_or_live_promotion_claimed": False,
+                "corrected_full_pipeline_terminal_report_claimed": False,
+            },
             "evidence": evidence_outputs,
             "contributor_label_registry": label_registry,
             "frame_records": frame_records,
@@ -2553,7 +2584,11 @@ def materialize_accepted_clean_plate_next_round(
             "ordered_frame_ids": list(selection.ordered_frame_ids),
             "frame_set_sha256": output_manifest["aggregate"]["frame_set_sha256"],
             "next_round_source_approved": True,
+            "acceptance_scope": NEXT_ROUND_SOURCE_ACCEPTANCE_SCOPE,
+            "lineage_scope": NEXT_ROUND_SOURCE_LINEAGE_SCOPE,
+            "corrected_full_pipeline": False,
             "promotion_approved": False,
+            "canonical_promotion_approved": False,
             "canonical_or_live_manifest_modified": False,
             "materialization": {
                 "same_parent_staging": True,

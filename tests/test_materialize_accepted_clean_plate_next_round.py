@@ -28,6 +28,8 @@ from scripts.materialize_accepted_clean_plate_next_round import (
     OUTPUT_RECEIPT_KIND,
     SELECTION_KIND,
     SELECTION_STATUS,
+    NEXT_ROUND_SOURCE_ACCEPTANCE_SCOPE,
+    NEXT_ROUND_SOURCE_LINEAGE_SCOPE,
     TEMPORAL_KIND,
     VISUAL_REVIEW_KIND,
     AcceptedCleanPlateMaterializationError,
@@ -687,9 +689,21 @@ def test_materializes_exact_25_frame_next_round_source_without_touching_canonica
     assert manifest["frame_count"] == EXPECTED_FRAME_COUNT
     assert manifest["ordered_frame_ids"] == list(FRAME_IDS)
     assert manifest["next_round_source_approved"] is True
+    assert manifest["acceptance_scope"] == NEXT_ROUND_SOURCE_ACCEPTANCE_SCOPE
+    assert manifest["lineage_scope"] == NEXT_ROUND_SOURCE_LINEAGE_SCOPE
+    assert manifest["corrected_full_pipeline"] is False
     assert manifest["promotion_approved"] is False
+    assert manifest["canonical_promotion_approved"] is False
     assert manifest["canonical_or_live_manifest_modified"] is False
+    assert manifest["forbidden_claims"] == {
+        "canonical_or_live_promotion_claimed": False,
+        "corrected_full_pipeline_terminal_report_claimed": False,
+    }
     assert receipt["kind"] == OUTPUT_RECEIPT_KIND
+    assert receipt["acceptance_scope"] == NEXT_ROUND_SOURCE_ACCEPTANCE_SCOPE
+    assert receipt["lineage_scope"] == NEXT_ROUND_SOURCE_LINEAGE_SCOPE
+    assert receipt["corrected_full_pipeline"] is False
+    assert receipt["canonical_promotion_approved"] is False
     assert receipt["materialization"] == {
         "same_parent_staging": True,
         "atomic_directory_rename": True,
@@ -1203,6 +1217,56 @@ def test_round2_rejects_predecessor_without_accepted_status(tmp_path: Path) -> N
     )
 
     with pytest.raises(AcceptedCleanPlateMaterializationError, match="status is not accepted"):
+        materialize_accepted_clean_plate_next_round(
+            round2_paths["acceptance"], tmp_path / "round2-output"
+        )
+
+
+def test_round2_rejects_predecessor_without_next_round_only_scope(tmp_path: Path) -> None:
+    round1_paths = make_fixture(tmp_path / "round1")
+    round1_output = tmp_path / "accepted-round1"
+    materialize_accepted_clean_plate_next_round(round1_paths["acceptance"], round1_output)
+    previous_manifest = round1_output / "next_round_source_manifest.json"
+    round2_paths = make_fixture(
+        tmp_path / "round2",
+        round_index=2,
+        previous_manifest=previous_manifest,
+    )
+    previous = json.loads(previous_manifest.read_text(encoding="utf-8"))
+    del previous["acceptance_scope"]
+    write_json(previous_manifest, previous)
+    update_acceptance_asset(
+        round2_paths,
+        "previous_accepted_next_round_source_manifest",
+        previous_manifest,
+    )
+
+    with pytest.raises(AcceptedCleanPlateMaterializationError, match="acceptance_scope"):
+        materialize_accepted_clean_plate_next_round(
+            round2_paths["acceptance"], tmp_path / "round2-output"
+        )
+
+
+def test_round2_rejects_predecessor_that_claims_corrected_full_pipeline(tmp_path: Path) -> None:
+    round1_paths = make_fixture(tmp_path / "round1")
+    round1_output = tmp_path / "accepted-round1"
+    materialize_accepted_clean_plate_next_round(round1_paths["acceptance"], round1_output)
+    previous_manifest = round1_output / "next_round_source_manifest.json"
+    round2_paths = make_fixture(
+        tmp_path / "round2",
+        round_index=2,
+        previous_manifest=previous_manifest,
+    )
+    previous = json.loads(previous_manifest.read_text(encoding="utf-8"))
+    previous["corrected_full_pipeline"] = True
+    write_json(previous_manifest, previous)
+    update_acceptance_asset(
+        round2_paths,
+        "previous_accepted_next_round_source_manifest",
+        previous_manifest,
+    )
+
+    with pytest.raises(AcceptedCleanPlateMaterializationError, match="corrected full-pipeline"):
         materialize_accepted_clean_plate_next_round(
             round2_paths["acceptance"], tmp_path / "round2-output"
         )
