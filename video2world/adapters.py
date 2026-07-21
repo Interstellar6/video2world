@@ -269,6 +269,28 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
                 context=f"{role} input",
             )
             _validate_layered_receipt_artifact(role, Path(input_path))
+        scene_gaussian_input = inputs.get("scene_gaussian")
+        semantic_gaussian_input = inputs.get("semantic_gaussian")
+        if not isinstance(scene_gaussian_input, dict) or not isinstance(
+            semantic_gaussian_input,
+            dict,
+        ):
+            raise ValueError("provider receipt cannot compare scene_gaussian to semantic_gaussian")
+        scene_gaussian_path = scene_gaussian_input.get("path")
+        semantic_gaussian_path = semantic_gaussian_input.get("path")
+        if not isinstance(scene_gaussian_path, str) or not isinstance(
+            semantic_gaussian_path,
+            str,
+        ):
+            raise ValueError(
+                "provider receipt cannot compare scene_gaussian to semantic_gaussian paths"
+            )
+        if Path(scene_gaussian_path).expanduser().resolve() == Path(
+            semantic_gaussian_path
+        ).expanduser().resolve():
+            raise ValueError("semantic_gaussian path must differ from scene_gaussian input path")
+        if scene_gaussian_input.get("sha256") == semantic_gaussian_input.get("sha256"):
+            raise ValueError("semantic_gaussian must not reuse scene_gaussian input artifact")
         for input_role, output_role in (
             ("scene_gaussian", "clean_scene_gaussian"),
             ("semantic_gaussian", "clean_scene_gaussian"),

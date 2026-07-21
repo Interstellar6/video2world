@@ -1312,6 +1312,88 @@ def test_layered_completion_report_validates_receipt_input_semantics(
         )
 
 
+def test_layered_completion_report_rejects_semantic_gaussian_reusing_scene_gaussian_input(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    inputs = _layered_completion_input_snapshots(tmp_path, plan_path)
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    payload = _semantic_gaussian_header() + ("0 " * 15 + "0\n").encode("ascii")
+    scene_path = Path(inputs["scene_gaussian"]["path"])
+    semantic_path = Path(inputs["semantic_gaussian"]["path"])
+    scene_path.write_bytes(payload)
+    semantic_path.write_bytes(payload)
+    inputs["scene_gaussian"] = _artifact_snapshot_payload(scene_path)
+    inputs["semantic_gaussian"] = _artifact_snapshot_payload(semantic_path)
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=inputs,
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ArtifactError,
+        match="semantic_gaussian must not reuse scene_gaussian input artifact",
+    ):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
+def test_layered_completion_report_rejects_semantic_gaussian_reusing_scene_gaussian_path(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    inputs = _layered_completion_input_snapshots(tmp_path, plan_path)
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    reused_path = Path(inputs["scene_gaussian"]["path"])
+    reused_path.write_bytes(_semantic_gaussian_header() + ("0 " * 15 + "0\n").encode("ascii"))
+    reused_snapshot = _artifact_snapshot_payload(reused_path)
+    inputs["scene_gaussian"] = reused_snapshot
+    inputs["semantic_gaussian"] = reused_snapshot
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=inputs,
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ArtifactError,
+        match="semantic_gaussian path must differ from scene_gaussian input path",
+    ):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
 def test_layered_completion_report_requires_complete_provider_receipt_inputs(
     tmp_path: Path,
 ) -> None:
