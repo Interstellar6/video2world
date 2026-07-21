@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING, Any
 
 from video2world.config import StageConfig, render_template
 from video2world.errors import ArtifactError, ConfigurationError
+from video2world.hashing import digest_path
 
 if TYPE_CHECKING:
     from video2world.state import ArtifactSnapshot
@@ -185,7 +186,7 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
         _require_matching_receipt_snapshot(
             report_output_snapshot,
             outputs["layered_completion_report"],
-            context="layered_completion_report",
+            context="layered_completion_report output",
         )
         inputs = receipt.get("inputs")
         if not isinstance(inputs, dict):
@@ -198,6 +199,11 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
         plan_path = plan_snapshot.get("path")
         if not isinstance(plan_path, str) or not plan_path:
             raise ValueError("provider receipt has no completion plan path")
+        _require_matching_receipt_snapshot(
+            plan_snapshot,
+            digest_path(plan_path),
+            context="layered_completion_plan input",
+        )
         plan = load_layered_completion_plan(plan_path)
         if plan.scene_id != report.scene_id or plan.run_id != report.run_id:
             raise ValueError("completion report scene/run differs from the executed plan")
@@ -234,12 +240,12 @@ def _require_matching_receipt_snapshot(
         or receipt_snapshot.get("size_bytes") != artifact.size_bytes
         or receipt_snapshot.get("file_count") != artifact.file_count
     ):
-        raise ValueError(f"provider receipt {context} output snapshot does not match")
+        raise ValueError(f"provider receipt {context} snapshot does not match")
     snapshot_path = receipt_snapshot.get("path")
     if not isinstance(snapshot_path, str) or not snapshot_path:
-        raise ValueError(f"provider receipt {context} output path is missing")
+        raise ValueError(f"provider receipt {context} path is missing")
     if Path(snapshot_path).expanduser().resolve() != Path(artifact.path).expanduser().resolve():
-        raise ValueError(f"provider receipt {context} output path does not match")
+        raise ValueError(f"provider receipt {context} path does not match")
 
 
 def _validate_json(path: Path, role: str) -> None:

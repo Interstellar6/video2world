@@ -605,6 +605,38 @@ def test_layered_completion_report_requires_provider_receipt_output_snapshot(
         )
 
 
+def test_layered_completion_report_requires_provider_receipt_input_snapshot(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    bad_plan_snapshot = _artifact_snapshot_payload(plan_path)
+    bad_plan_snapshot["size_bytes"] = bad_plan_snapshot["size_bytes"] + 1
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs={"layered_completion_plan": bad_plan_snapshot},
+                outputs={"layered_completion_report": _artifact_snapshot_payload(report_path)},
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ArtifactError, match="layered_completion_plan input snapshot"):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
 @pytest.mark.parametrize(
     ("mutation", "expected"),
     [
