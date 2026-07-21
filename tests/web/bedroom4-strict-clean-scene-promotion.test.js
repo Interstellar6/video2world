@@ -1092,7 +1092,9 @@ describe.skipIf(!fs.existsSync(realStableAlias))(
     qa.manifest.sha256After = fixture.candidateManifestSha;
     writeJson(fixture.candidateBrowserQaReport, qa);
 
-    expect(() => promote(fixture)).toThrow(/lineage scope must remain archived current-demo-only/u);
+    expect(() => promote(fixture)).toThrow(
+      /candidateBuild\.lineageScope must equal archived_current_demo_only/u,
+    );
     expect(fs.existsSync(`${fixture.backupWorld}.swap-journal.json`)).toBe(false);
   });
 

@@ -2,6 +2,17 @@ const WEB_MANIFEST_SCHEMA_VERSION = 1;
 const WEB_MANIFEST_CONTRACT = "video2world-web-manifest-1.0.0";
 const SCENE_COMMAND_SERVICE_CONTRACT = "video2world-scene-command-service-1.0.0";
 const LOGICAL_HIERARCHY_ROLE = "unrendered_unselectable_hierarchy_ancestor";
+const ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE = "archived_current_demo_only";
+const STRICT_CLEAN_SCENE_BUILD_STATUSES = new Set([
+  "candidate_materialized_strict_clean_scene_browser_qa_pending",
+  "materialized_pending_promoted_manifest_recheck",
+  "promoted_current_demo_only",
+]);
+const STRICT_CLEAN_SCENE_SOURCE_ADOPTION_MODES = new Set([
+  "strict_layered_clean_scene_candidate_atomic_materialization",
+  "strict_clean_scene_swapped_pending_promoted_manifest_recheck",
+  "strict_clean_scene_promoted_current_demo_only",
+]);
 const SEMANTIC_GRANULARITIES = new Set([
   "independent_root_asset",
   "independent_child_asset",
@@ -472,6 +483,45 @@ function validateSceneCommandService(service) {
   );
 }
 
+function validateArchivedCurrentDemoLineage(record, path, { requireCanonicalLayeredCompletion = false } = {}) {
+  requireCondition(isRecord(record), `${path} must be an object`);
+  requireCondition(
+    record.lineageScope === ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+    `${path}.lineageScope must equal ${ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE}`,
+  );
+  requireCondition(
+    record.correctedFullPipeline === false,
+    `${path}.correctedFullPipeline must be false`,
+  );
+  if (requireCanonicalLayeredCompletion) {
+    requireCondition(
+      record.canonicalLayeredCompletion === false,
+      `${path}.canonicalLayeredCompletion must be false`,
+    );
+  }
+}
+
+function validateStrictCleanSceneLineage(manifest) {
+  const build = manifest.candidateBuild;
+  if (build == null) return;
+  requireCondition(isRecord(build), "candidateBuild must be an object");
+  const cleanScene = build.cleanScene;
+  const isStrictCleanScene = STRICT_CLEAN_SCENE_BUILD_STATUSES.has(build.status)
+    || cleanScene?.status === "strict_layered_clean_scene_materialized_current_demo_only";
+  if (!isStrictCleanScene) return;
+  validateArchivedCurrentDemoLineage(build, "candidateBuild", {
+    requireCanonicalLayeredCompletion: true,
+  });
+  requireCondition(
+    cleanScene?.acceptanceScope === "current_demo_only",
+    "candidateBuild.cleanScene.acceptanceScope must equal current_demo_only",
+  );
+  validateArchivedCurrentDemoLineage(cleanScene, "candidateBuild.cleanScene");
+  if (build.promotionSwap != null) {
+    validateArchivedCurrentDemoLineage(build.promotionSwap, "candidateBuild.promotionSwap");
+  }
+}
+
 export function validateWebManifest(value) {
   requireCondition(isRecord(value), "root must be an object");
   requireCondition(value.schemaVersion === WEB_MANIFEST_SCHEMA_VERSION, "schemaVersion must equal 1");
@@ -497,11 +547,15 @@ export function validateWebManifest(value) {
   if (value.sceneCommandService != null) {
     validateSceneCommandService(value.sceneCommandService);
   }
+  validateStrictCleanSceneLineage(value);
   if (value.sourceWorld != null) {
     requireCondition(isRecord(value.sourceWorld), "sourceWorld must be an object");
     requireCondition(typeof value.sourceWorld.worldId === "string", "sourceWorld.worldId");
     requireCondition(typeof value.sourceWorld.runId === "string", "sourceWorld.runId");
     requireCondition(typeof value.sourceWorld.adoptionMode === "string", "sourceWorld.adoptionMode");
+    if (STRICT_CLEAN_SCENE_SOURCE_ADOPTION_MODES.has(value.sourceWorld.adoptionMode)) {
+      validateArchivedCurrentDemoLineage(value.sourceWorld, "sourceWorld");
+    }
     if (value.sourceWorld.manifestSha256 != null) {
       requireCondition(
         typeof value.sourceWorld.manifestSha256 === "string"

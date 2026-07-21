@@ -192,7 +192,7 @@ describe.skipIf(!localArtifactEvidenceAvailable)("strict clean-scene finalizatio
       stagedManifest: fixture.stagedManifestPath,
       outputReceipt: fixture.outputReceipt,
       validateQa: () => {},
-    })).toThrow(/archived current-demo-only lineage/u);
+    })).toThrow(/candidateBuild\.lineageScope must equal archived_current_demo_only/u);
     expect(sha256File(fixture.manifestPath)).toBe(fixture.manifestSha);
   });
 

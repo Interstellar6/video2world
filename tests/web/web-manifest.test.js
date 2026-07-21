@@ -47,6 +47,37 @@ function makeUnifiedObject(object, { topology = "surface_bvh", watertight = fals
   return object;
 }
 
+function addStrictCleanSceneLineage(manifest) {
+  manifest.candidateBuild = {
+    status: "promoted_current_demo_only",
+    lineageScope: "archived_current_demo_only",
+    correctedFullPipeline: false,
+    canonicalLayeredCompletion: false,
+    cleanScene: {
+      status: "strict_layered_clean_scene_materialized_current_demo_only",
+      acceptanceScope: "current_demo_only",
+      lineageScope: "archived_current_demo_only",
+      correctedFullPipeline: false,
+      promotionApproved: true,
+    },
+    promotionSwap: {
+      status: "promoted_current_demo_only",
+      lineageScope: "archived_current_demo_only",
+      correctedFullPipeline: false,
+      finalQaClaimed: true,
+      promotionAllowed: true,
+    },
+  };
+  manifest.sourceWorld = {
+    worldId: "bedroom4",
+    runId: "fixture-run",
+    adoptionMode: "strict_clean_scene_promoted_current_demo_only",
+    lineageScope: "archived_current_demo_only",
+    correctedFullPipeline: false,
+  };
+  return manifest;
+}
+
 describe("Web manifest contract", () => {
   it("accepts the runtime fixture once its GLB collider has an explicit passed gate", () => {
     const manifest = validateWebManifest(fixture());
@@ -285,6 +316,31 @@ describe("Web manifest contract", () => {
 
     manifest.sourceWorld.manifestSha256 = "A".repeat(64);
     expect(() => validateWebManifest(manifest)).toThrow("64 lowercase hexadecimal");
+  });
+
+  it("requires archived current-demo lineage for strict clean-scene manifests", () => {
+    const accepted = addStrictCleanSceneLineage(fixture());
+    expect(validateWebManifest(accepted).candidateBuild.lineageScope).toBe(
+      "archived_current_demo_only",
+    );
+
+    const missingBuildLineage = addStrictCleanSceneLineage(fixture());
+    delete missingBuildLineage.candidateBuild.lineageScope;
+    expect(() => validateWebManifest(missingBuildLineage)).toThrow(
+      "candidateBuild.lineageScope must equal archived_current_demo_only",
+    );
+
+    const correctedClaim = addStrictCleanSceneLineage(fixture());
+    correctedClaim.candidateBuild.correctedFullPipeline = true;
+    expect(() => validateWebManifest(correctedClaim)).toThrow(
+      "candidateBuild.correctedFullPipeline must be false",
+    );
+
+    const missingSourceLineage = addStrictCleanSceneLineage(fixture());
+    delete missingSourceLineage.sourceWorld.lineageScope;
+    expect(() => validateWebManifest(missingSourceLineage)).toThrow(
+      "sourceWorld.lineageScope must equal archived_current_demo_only",
+    );
   });
 
   it("validates only the interaction modes implemented by the runtime", () => {
