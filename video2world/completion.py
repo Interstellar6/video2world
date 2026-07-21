@@ -569,6 +569,65 @@ class CompletionArtifactEvidence(StrictModel):
     uri: str = Field(min_length=1)
     sha256: Sha256
     size_bytes: int = Field(gt=0)
+    acceptance_scope: str | None = None
+    lineage_scope: str | None = None
+    corrected_full_pipeline: bool | None = None
+    promotion_approved: bool | None = None
+    canonical_promotion_approved: bool | None = None
+    canonical_or_live_manifest_modified: bool | None = None
+
+
+NEXT_ROUND_CLEAN_PLATE_ACCEPTANCE_SCOPE = "corrected_clean_plate_next_round_source_only"
+NEXT_ROUND_CLEAN_PLATE_LINEAGE_SCOPE = "corrected_clean_plate_round_source"
+TERMINAL_CLEAN_PLATE_ACCEPTANCE_SCOPE = "corrected_full_pipeline"
+TERMINAL_CLEAN_PLATE_LINEAGE_SCOPE = "corrected_full_pipeline"
+
+
+def _require_scoped_next_round_clean_plate(
+    evidence: CompletionArtifactEvidence,
+    *,
+    context: str,
+) -> None:
+    if evidence.acceptance_scope != NEXT_ROUND_CLEAN_PLATE_ACCEPTANCE_SCOPE:
+        raise ValueError(
+            f"{context} acceptance_scope must equal "
+            f"{NEXT_ROUND_CLEAN_PLATE_ACCEPTANCE_SCOPE}"
+        )
+    if evidence.lineage_scope != NEXT_ROUND_CLEAN_PLATE_LINEAGE_SCOPE:
+        raise ValueError(
+            f"{context} lineage_scope must equal {NEXT_ROUND_CLEAN_PLATE_LINEAGE_SCOPE}"
+        )
+    if evidence.corrected_full_pipeline is not False:
+        raise ValueError(f"{context} must not claim corrected full-pipeline completion")
+    if evidence.promotion_approved is not False:
+        raise ValueError(f"{context} must not claim promotion approval")
+    if evidence.canonical_promotion_approved is not False:
+        raise ValueError(f"{context} must not claim canonical promotion approval")
+    if evidence.canonical_or_live_manifest_modified is not False:
+        raise ValueError(f"{context} must not claim canonical/live manifest mutation")
+
+
+def _require_scoped_terminal_clean_plate(
+    evidence: CompletionArtifactEvidence,
+    *,
+    context: str,
+) -> None:
+    if evidence.acceptance_scope != TERMINAL_CLEAN_PLATE_ACCEPTANCE_SCOPE:
+        raise ValueError(
+            f"{context} acceptance_scope must equal {TERMINAL_CLEAN_PLATE_ACCEPTANCE_SCOPE}"
+        )
+    if evidence.lineage_scope != TERMINAL_CLEAN_PLATE_LINEAGE_SCOPE:
+        raise ValueError(
+            f"{context} lineage_scope must equal {TERMINAL_CLEAN_PLATE_LINEAGE_SCOPE}"
+        )
+    if evidence.corrected_full_pipeline is not True:
+        raise ValueError(f"{context} must claim corrected full-pipeline completion")
+    if evidence.promotion_approved is not True:
+        raise ValueError(f"{context} must claim promotion approval")
+    if evidence.canonical_promotion_approved is not True:
+        raise ValueError(f"{context} must claim canonical promotion approval")
+    if evidence.canonical_or_live_manifest_modified is not False:
+        raise ValueError(f"{context} must not claim canonical/live manifest mutation")
 
 
 class CompletionPlanEvidence(CompletionArtifactEvidence):
@@ -839,6 +898,11 @@ class LayeredCompletionExecutionReport(StrictModel):
         scene_audit_receipts: set[str] = set()
         sam3_receipts: set[str] = set()
         for round_item in self.rounds:
+            if round_item.index > 1:
+                _require_scoped_next_round_clean_plate(
+                    round_item.input_clean_plate,
+                    context=f"round {round_item.index} input_clean_plate",
+                )
             if (
                 round_item.input_clean_plate.sha256 != previous.sha256
                 or round_item.input_clean_plate.size_bytes != previous.size_bytes
@@ -856,6 +920,16 @@ class LayeredCompletionExecutionReport(StrictModel):
             scene_audit_receipts.add(round_item.scene_audit_receipt.sha256)
             sam3_receipts.add(round_item.sam3_receipt.sha256)
             seen_targets.update(round_item.target_ids)
+            if round_item.kind == "object_layer":
+                _require_scoped_next_round_clean_plate(
+                    round_item.output_clean_plate,
+                    context=f"round {round_item.index} output_clean_plate",
+                )
+            else:
+                _require_scoped_terminal_clean_plate(
+                    round_item.output_clean_plate,
+                    context=f"round {round_item.index} output_clean_plate",
+                )
             previous = round_item.output_clean_plate
         if seen_targets != set(self.planned_target_ids):
             raise ValueError(
@@ -866,6 +940,10 @@ class LayeredCompletionExecutionReport(StrictModel):
             or self.final_clean_plate.size_bytes != previous.size_bytes
         ):
             raise ValueError("final_clean_plate does not match the terminal round output")
+        _require_scoped_terminal_clean_plate(
+            self.final_clean_plate,
+            context="final_clean_plate",
+        )
         return self
 
 

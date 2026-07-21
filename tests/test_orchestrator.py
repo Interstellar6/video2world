@@ -341,10 +341,40 @@ def _completion_evidence(name: str, digest: str) -> dict[str, object]:
     }
 
 
+def _next_round_clean_plate_evidence(name: str, digest: str) -> dict[str, object]:
+    evidence = _completion_evidence(name, digest)
+    evidence.update(
+        {
+            "acceptance_scope": "corrected_clean_plate_next_round_source_only",
+            "lineage_scope": "corrected_clean_plate_round_source",
+            "corrected_full_pipeline": False,
+            "promotion_approved": False,
+            "canonical_promotion_approved": False,
+            "canonical_or_live_manifest_modified": False,
+        }
+    )
+    return evidence
+
+
+def _terminal_clean_plate_evidence(name: str, digest: str) -> dict[str, object]:
+    evidence = _completion_evidence(name, digest)
+    evidence.update(
+        {
+            "acceptance_scope": "corrected_full_pipeline",
+            "lineage_scope": "corrected_full_pipeline",
+            "corrected_full_pipeline": True,
+            "promotion_approved": True,
+            "canonical_promotion_approved": True,
+            "canonical_or_live_manifest_modified": False,
+        }
+    )
+    return evidence
+
+
 def _valid_layered_completion_report() -> dict[str, object]:
     initial = _completion_evidence("round0-clean-plate.json", "a")
-    round1 = _completion_evidence("round1-clean-plate.json", "b")
-    final = _completion_evidence("final-clean-plate.json", "c")
+    round1 = _next_round_clean_plate_evidence("round1-clean-plate.json", "b")
+    final = _terminal_clean_plate_evidence("final-clean-plate.json", "c")
     return {
         "lineage_scope": "corrected_full_pipeline",
         "scene_id": "bedroom_4",
@@ -361,7 +391,7 @@ def _valid_layered_completion_report() -> dict[str, object]:
                 "input_clean_plate": initial,
                 "scene_audit_receipt": _completion_evidence("r1-audit.json", "d"),
                 "sam3_receipt": _completion_evidence("r1-sam3.json", "e"),
-                "output_clean_plate": round1,
+                "output_clean_plate": dict(round1),
                 "quality_report": _completion_evidence("r1-quality.json", "f"),
                 "object_completion_receipts": [
                     _completion_evidence("r1-pillow-trellis2.json", "1")
@@ -372,16 +402,16 @@ def _valid_layered_completion_report() -> dict[str, object]:
                 "index": 2,
                 "kind": "final_background",
                 "target_ids": [],
-                "input_clean_plate": round1,
+                "input_clean_plate": dict(round1),
                 "scene_audit_receipt": _completion_evidence("r2-audit.json", "2"),
                 "sam3_receipt": _completion_evidence("r2-sam3.json", "3"),
-                "output_clean_plate": final,
+                "output_clean_plate": dict(final),
                 "quality_report": _completion_evidence("r2-quality.json", "4"),
                 "background_rebuild_receipt": _completion_evidence("r2-background.json", "5"),
                 "acceptance_gates": {"revealed_background": True},
             },
         ],
-        "final_clean_plate": final,
+        "final_clean_plate": dict(final),
     }
 
 
@@ -480,6 +510,57 @@ def test_layered_completion_report_binds_executed_plan_and_provider_receipt(
     ],
 )
 def test_layered_completion_report_requires_corrected_full_pipeline_lineage(
+    tmp_path: Path,
+    mutation,
+    expected: str,
+) -> None:
+    report_payload = _valid_layered_completion_report()
+    mutation(report_payload)
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+
+    with pytest.raises(ArtifactError, match=expected):
+        get_adapter("layered_completion").validate_outputs(
+            {"layered_completion_report": snapshot_path(report_path)}
+        )
+
+
+@pytest.mark.parametrize(
+    ("mutation", "expected"),
+    [
+        (
+            lambda payload: payload["rounds"][0]["output_clean_plate"].pop(
+                "acceptance_scope"
+            ),
+            "round 1 output_clean_plate acceptance_scope",
+        ),
+        (
+            lambda payload: payload["rounds"][0]["output_clean_plate"].__setitem__(
+                "corrected_full_pipeline", True
+            ),
+            "round 1 output_clean_plate must not claim corrected full-pipeline",
+        ),
+        (
+            lambda payload: payload["rounds"][1]["input_clean_plate"].__setitem__(
+                "lineage_scope", "current_demo_only"
+            ),
+            "round 2 input_clean_plate lineage_scope",
+        ),
+        (
+            lambda payload: payload["rounds"][1]["output_clean_plate"].__setitem__(
+                "acceptance_scope", "corrected_clean_plate_next_round_source_only"
+            ),
+            "round 2 output_clean_plate acceptance_scope",
+        ),
+        (
+            lambda payload: payload["final_clean_plate"].__setitem__(
+                "canonical_promotion_approved", False
+            ),
+            "final_clean_plate must claim canonical promotion approval",
+        ),
+    ],
+)
+def test_layered_completion_report_binds_clean_plate_scope_lineage(
     tmp_path: Path,
     mutation,
     expected: str,
