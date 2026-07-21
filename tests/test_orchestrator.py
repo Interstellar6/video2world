@@ -346,6 +346,7 @@ def _valid_layered_completion_report() -> dict[str, object]:
     round1 = _completion_evidence("round1-clean-plate.json", "b")
     final = _completion_evidence("final-clean-plate.json", "c")
     return {
+        "lineage_scope": "corrected_full_pipeline",
         "scene_id": "bedroom_4",
         "run_id": "full-layered-run",
         "created_at": "2026-07-17T00:00:00Z",
@@ -465,6 +466,32 @@ def test_layered_completion_report_binds_executed_plan_and_provider_receipt(
                 "layered_completion_report": snapshot_path(report_path),
                 "provider_receipt": snapshot_path(receipt_path),
             }
+        )
+
+
+@pytest.mark.parametrize(
+    ("mutation", "expected"),
+    [
+        (lambda payload: payload.pop("lineage_scope"), "lineage_scope"),
+        (
+            lambda payload: payload.__setitem__("lineage_scope", "current_demo_only"),
+            "corrected_full_pipeline",
+        ),
+    ],
+)
+def test_layered_completion_report_requires_corrected_full_pipeline_lineage(
+    tmp_path: Path,
+    mutation,
+    expected: str,
+) -> None:
+    report_payload = _valid_layered_completion_report()
+    mutation(report_payload)
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+
+    with pytest.raises(ArtifactError, match=expected):
+        get_adapter("layered_completion").validate_outputs(
+            {"layered_completion_report": snapshot_path(report_path)}
         )
 
 

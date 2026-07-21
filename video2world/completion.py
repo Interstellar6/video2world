@@ -806,6 +806,7 @@ class LayeredCompletionExecutionReport(StrictModel):
     kind: Literal["video2world.layered_completion_execution_report"] = (
         "video2world.layered_completion_execution_report"
     )
+    lineage_scope: Literal["corrected_full_pipeline"]
     scene_id: str = Field(min_length=1)
     run_id: str = Field(min_length=1)
     created_at: datetime

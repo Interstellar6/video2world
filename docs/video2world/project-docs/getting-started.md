@@ -3,7 +3,7 @@ title: 安装、配置与恢复执行
 id: video2world-project-getting-started
 category: 项目文档
 visibility: public
-updated: 2026-07-17
+updated: 2026-07-22
 summary: 安装 Video2World、初始化十二阶段 run、规划分层补全、绑定 Web 场景命令，并按内容 hash 恢复执行。
 tags:
   - CLI
@@ -75,7 +75,7 @@ uv run video2world site-run runs/my-room
 
 `site-init` 生成的 12 个 stage 都有非空 argv。`site-preflight` 只检查 binding、Git commit、解释器、driver、仓库和 checkpoint，不启动模型；`site-run` 对 execute stage 复用无 shell provider contract，对 adopt stage 写内容寻址 adoption state。每步都有 stage state，整次调用另写 site preflight/run receipt。profile、provider contract 或源文件变化后缓存失效；任一 provider/artifact 缺失时 fail closed，不生成 synthetic placeholder。
 
-`layered_completion` 的 terminal report 只有在全部 front-to-back rounds 完成时才通过：round 必须连续消费上一轮 clean plate hash，每轮都绑定新的 scene-audit receipt、SAM3 receipt、quality report 与 output clean plate；object round 还要有对象建模 receipt，末轮必须是带真实 background rebuild receipt 的 `final_background`。单个 front pillow 候选不能满足这个合同。
+`layered_completion` 的 terminal report 只有在全部 front-to-back rounds 完成时才通过：report 必须显式声明 `lineage_scope="corrected_full_pipeline"`，round 必须连续消费上一轮 clean plate hash，每轮都绑定新的 scene-audit receipt、SAM3 receipt、quality report 与 output clean plate；object round 还要有对象建模 receipt，末轮必须是带真实 background rebuild receipt 的 `final_background`。`current_demo_only`、archived Web promotion、旧四轮 sequence 或单个 front pillow 候选都不能满足这个合同。
 
 `examples/bedroom4/site-profile.partial.yaml` 把当前真实 PGSR、SAM3、fusion 和 cognition 文件映射到对应 adoption role。fusion 的五项输入 hash 已从现有归档完整恢复；但旧归档没有原始视频 hash，PGSR/SAM3/cognition 也缺部分 canonical input receipt，所以这些 stage 故意不填完整 `expected_inputs`，`site-preflight` 会阻断采用。找回并填写输入 hash 后才能登记。inventory/DA3、completion plan、完整 layered completion、placement、bundle 与 Web 仍保持 execute；在真实逐层补全完成前不会产生 `complete_pipeline=true`。
 
