@@ -82,6 +82,13 @@ LAYERED_COMPLETION_REQUIRED_INPUT_ROLES = {
     "semantic_gaussian",
     "object_facts",
 }
+LAYERED_COMPLETION_REQUIRED_OUTPUT_ROLES = {
+    "completed_object_assets_manifest",
+    "clean_scene_gaussian",
+    "clean_scene_mesh",
+    "clean_plate_manifest",
+    "layered_completion_report",
+}
 _CLEAN_PLATE_COLLECTION_KEYS = {
     "frames",
     "frame_records",
@@ -192,14 +199,30 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
         receipt_outputs = receipt.get("outputs")
         if not isinstance(receipt_outputs, dict):
             raise ValueError("provider receipt has no output snapshots")
-        report_output_snapshot = receipt_outputs.get("layered_completion_report")
-        if not isinstance(report_output_snapshot, dict):
-            raise ValueError("provider receipt has no layered_completion_report output")
-        _require_matching_receipt_snapshot(
-            report_output_snapshot,
-            outputs["layered_completion_report"],
-            context="layered_completion_report output",
-        )
+        missing_outputs = sorted(LAYERED_COMPLETION_REQUIRED_OUTPUT_ROLES - set(receipt_outputs))
+        if missing_outputs:
+            raise ValueError(
+                f"provider receipt is missing layered completion outputs: {missing_outputs}"
+            )
+        for role in sorted(LAYERED_COMPLETION_REQUIRED_OUTPUT_ROLES):
+            output_snapshot = receipt_outputs.get(role)
+            if not isinstance(output_snapshot, dict):
+                raise ValueError(f"provider receipt output {role} must be a snapshot object")
+            if role in outputs:
+                _require_matching_receipt_snapshot(
+                    output_snapshot,
+                    outputs[role],
+                    context=f"{role} output",
+                )
+            else:
+                output_path = output_snapshot.get("path")
+                if not isinstance(output_path, str) or not output_path:
+                    raise ValueError(f"provider receipt output {role} path is missing")
+                _require_matching_receipt_snapshot(
+                    output_snapshot,
+                    digest_path(output_path),
+                    context=f"{role} output",
+                )
         inputs = receipt.get("inputs")
         if not isinstance(inputs, dict):
             raise ValueError("provider receipt has no input snapshots")

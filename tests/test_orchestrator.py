@@ -334,6 +334,15 @@ LAYERED_COMPLETION_INPUT_ROLES = {
 }
 
 
+LAYERED_COMPLETION_OUTPUT_ROLES = {
+    "completed_object_assets_manifest",
+    "clean_scene_gaussian",
+    "clean_scene_mesh",
+    "clean_plate_manifest",
+    "layered_completion_report",
+}
+
+
 def _layered_completion_input_snapshots(tmp_path: Path, plan_path: Path) -> dict[str, object]:
     inputs: dict[str, object] = {
         "layered_completion_plan": _artifact_snapshot_payload(plan_path)
@@ -343,6 +352,17 @@ def _layered_completion_input_snapshots(tmp_path: Path, plan_path: Path) -> dict
         path.write_text(f"{role}\n", encoding="utf-8")
         inputs[role] = _artifact_snapshot_payload(path)
     return inputs
+
+
+def _layered_completion_output_snapshots(tmp_path: Path, report_path: Path) -> dict[str, object]:
+    outputs: dict[str, object] = {
+        "layered_completion_report": _artifact_snapshot_payload(report_path)
+    }
+    for role in sorted(LAYERED_COMPLETION_OUTPUT_ROLES - {"layered_completion_report"}):
+        path = tmp_path / f"{role}.output"
+        path.write_text(f"{role}\n", encoding="utf-8")
+        outputs[role] = _artifact_snapshot_payload(path)
+    return outputs
 
 
 def _provider_receipt_payload(
@@ -548,7 +568,7 @@ def test_layered_completion_report_binds_executed_plan_and_provider_receipt(
         json.dumps(
             _provider_receipt_payload(
                 inputs=_layered_completion_input_snapshots(tmp_path, plan_path),
-                outputs={"layered_completion_report": _artifact_snapshot_payload(report_path)},
+                outputs=_layered_completion_output_snapshots(tmp_path, report_path),
             )
         ),
         encoding="utf-8",
@@ -566,7 +586,7 @@ def test_layered_completion_report_binds_executed_plan_and_provider_receipt(
         json.dumps(
             _provider_receipt_payload(
                 inputs=_layered_completion_input_snapshots(tmp_path, plan_path),
-                outputs={"layered_completion_report": _artifact_snapshot_payload(report_path)},
+                outputs=_layered_completion_output_snapshots(tmp_path, report_path),
             )
         ),
         encoding="utf-8",
@@ -590,14 +610,16 @@ def test_layered_completion_report_requires_provider_receipt_output_snapshot(
     report_payload["completion_plan_sha256"] = plan_sha
     report_path = tmp_path / "report.json"
     report_path.write_text(json.dumps(report_payload), encoding="utf-8")
-    bad_report_snapshot = _artifact_snapshot_payload(report_path)
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    bad_report_snapshot = dict(outputs["layered_completion_report"])
     bad_report_snapshot["sha256"] = "f" * 64
+    outputs["layered_completion_report"] = bad_report_snapshot
     receipt_path = tmp_path / "provider-receipt.json"
     receipt_path.write_text(
         json.dumps(
             _provider_receipt_payload(
                 inputs=_layered_completion_input_snapshots(tmp_path, plan_path),
-                outputs={"layered_completion_report": bad_report_snapshot},
+                outputs=outputs,
             )
         ),
         encoding="utf-8",
@@ -631,13 +653,45 @@ def test_layered_completion_report_requires_provider_receipt_input_snapshot(
         json.dumps(
             _provider_receipt_payload(
                 inputs=inputs,
-                outputs={"layered_completion_report": _artifact_snapshot_payload(report_path)},
+                outputs=_layered_completion_output_snapshots(tmp_path, report_path),
             )
         ),
         encoding="utf-8",
     )
 
     with pytest.raises(ArtifactError, match="layered_completion_plan input snapshot"):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
+def test_layered_completion_report_requires_complete_provider_receipt_outputs(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    del outputs["clean_scene_mesh"]
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=_layered_completion_input_snapshots(tmp_path, plan_path),
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ArtifactError, match="missing layered completion outputs"):
         get_adapter("layered_completion").validate_outputs(
             {
                 "layered_completion_report": snapshot_path(report_path),
@@ -663,7 +717,7 @@ def test_layered_completion_report_requires_complete_provider_receipt_inputs(
         json.dumps(
             _provider_receipt_payload(
                 inputs=inputs,
-                outputs={"layered_completion_report": _artifact_snapshot_payload(report_path)},
+                outputs=_layered_completion_output_snapshots(tmp_path, report_path),
             )
         ),
         encoding="utf-8",
