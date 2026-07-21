@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs/video2world/project-docs"
 
@@ -27,6 +26,8 @@ def test_pipeline_docs_keep_corrected_clean_plate_status_fail_closed() -> None:
     assert "越权 next-round source" in getting_started
     assert "provider_receipt.inputs" in getting_started
     assert "provider_receipt.outputs" in getting_started
+    assert "JSON/PLY" in getting_started
+    assert "object_probability" in getting_started
     for phrase in (
         "frames_manifest",
         "layered_completion_plan",
@@ -41,7 +42,7 @@ def test_pipeline_docs_keep_corrected_clean_plate_status_fail_closed() -> None:
 
     stale_claims = (
         "### Bedroom4 真实 R1-R4 clean plate 与 fresh DA3/PGSR/TSDF",
-        "### Canonical strict clean scene Web：promoted current-demo-only",
+        "### Canonical strict clean scene Web: promoted current-demo-only",
         "新链已经把 TRELLIS2 PBR objects",
         "严格 clean scene 与四个 unified PBR objects 已进入 canonical",
     )
