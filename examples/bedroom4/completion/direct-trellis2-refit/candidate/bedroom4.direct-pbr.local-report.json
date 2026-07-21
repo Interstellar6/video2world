@@ -1,0 +1,238 @@
+{
+  "carve": {
+    "performed": false
+  },
+  "claim_scope": "The original PGSR visual PLY and original TSDF collider PLY are referenced byte-for-byte without carve or clean plate. Each adopted scene-local PBR GLB is the unified visual, logical, selection, and collision asset. This is not a deployable or promoted manifest.",
+  "clean_plate": {
+    "consumed": false,
+    "generated": false
+  },
+  "created_at": "2026-07-20T11:42:35.539316+00:00",
+  "inputs": {
+    "base_manifest": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/manifest.json",
+      "sha256": "58cc2b06ec1a7feb70fc0e0060078e0e0e1db409f3e96843c53948c74d3ab7cb"
+    },
+    "config": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/candidate/bedroom4.direct-pbr.local-config.json",
+      "sha256": "2c07639ce96e8ed48d3571d1683a9453d5210b312f072901f33132cf25d05a3c"
+    },
+    "static_collider": {
+      "bounds": [
+        [
+          -13.186935391083065,
+          -13.875,
+          0.5750000000000001
+        ],
+        [
+          17.688766728282857,
+          7.125000000000001,
+          24.63632082700183
+        ]
+      ],
+      "byte_for_byte_preserved": true,
+      "bytes": 36328043,
+      "carved": false,
+      "clean_plate_applied": false,
+      "degenerate_triangles": 0,
+      "face_count": 1351454,
+      "face_indices_valid": true,
+      "finite": true,
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/mesh/tsdf_fusion_post.ply",
+      "sha256": "1cd9faf084a51f3959cd19dfc3ef05fb2dba9d6e1cdca944bfbeba6c33a1859d",
+      "vertex_count": 694773
+    },
+    "static_scene": {
+      "bounds": [
+        [
+          -14.451483726501465,
+          -14.092606544494629,
+          -3.047991991043091
+        ],
+        [
+          17.380931854248047,
+          7.19534158706665,
+          25.302595138549805
+        ]
+      ],
+      "byte_for_byte_preserved": true,
+      "bytes": 216088147,
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/point_cloud/iteration_30000/point_cloud.ply",
+      "sha256": "6b2b84b372d452f9fb70328d6fddb4bdc8dfebf8c2072c7a5b5d5985f5e54f13",
+      "vertex_count": 871317
+    }
+  },
+  "kind": "video2world.direct_trellis_scene_candidate_report",
+  "objects": {
+    "sam3_pillow_front": {
+      "legacy_proxy_fields_absent": true,
+      "runtime_pivot": [
+        -0.8643341453855005,
+        -0.19812782276105578,
+        14.452637069273116
+      ],
+      "scene_fit_receipt": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_front/scene_fit_receipt.json",
+        "sha256": "8215f1194577d44dfd89c966cf4df2db5a5c8ff6d4e92b02cba1f530f5404083"
+      },
+      "scene_local_glb": {
+        "bounds": [
+          [
+            -1.6921865940093994,
+            -1.484196662902832,
+            -0.6182197332382202
+          ],
+          [
+            1.4865244626998901,
+            1.5790516138076782,
+            0.7025406360626221
+          ]
+        ],
+        "bytes": 3256900,
+        "faces": 97082,
+        "material_types": [
+          "PBRMaterial"
+        ],
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_front/sam3_pillow_front.scene-local.glb",
+        "sha256": "c845d7c2fa0620bbea7c608e3c5324979c4cf4811476c031336d5823db926f89",
+        "url": "/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_front/sam3_pillow_front.scene-local.glb",
+        "vertices": 60237
+      },
+      "unified_visual_logic_collision": true,
+      "world_bounds": [
+        [
+          -2.5565207393949,
+          -1.6823244856638877,
+          13.834417336034896
+        ],
+        [
+          0.6221903173143897,
+          1.3809237910466226,
+          15.155177705335738
+        ]
+      ]
+    },
+    "sam3_pillow_left": {
+      "legacy_proxy_fields_absent": true,
+      "runtime_pivot": [
+        -3.4464905604460907,
+        -0.8509000379682582,
+        14.33022318680735
+      ],
+      "scene_fit_receipt": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_left/scene_fit_receipt.json",
+        "sha256": "6b7cd1001f728a2cfcb50e2250af2838db894e34379db87a0603fe28ed2cb1b0"
+      },
+      "scene_local_glb": {
+        "bounds": [
+          [
+            -1.2786014080047607,
+            -2.0455877780914307,
+            -1.718580722808838
+          ],
+          [
+            1.2955039739608765,
+            2.0449137687683105,
+            1.7014579772949219
+          ]
+        ],
+        "bytes": 3441088,
+        "faces": 98230,
+        "material_types": [
+          "PBRMaterial"
+        ],
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_left/sam3_pillow_left.scene-local.glb",
+        "sha256": "d1309d30cafb86563842d96704ca11a5625dfe7a8f69b03db797b185e76044b4",
+        "url": "/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_left/sam3_pillow_left.scene-local.glb",
+        "vertices": 52981
+      },
+      "unified_visual_logic_collision": true,
+      "world_bounds": [
+        [
+          -4.725091968450851,
+          -2.8964878160596887,
+          12.611642463998512
+        ],
+        [
+          -2.1509865864852142,
+          1.1940137308000525,
+          16.031681164102274
+        ]
+      ]
+    },
+    "sam3_pillow_right": {
+      "legacy_proxy_fields_absent": true,
+      "runtime_pivot": [
+        0.7155998115685337,
+        -0.80583304284581,
+        16.197900872822864
+      ],
+      "scene_fit_receipt": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_right/scene_fit_receipt.json",
+        "sha256": "3a4a801e64848d06d5360300008a6dbecf6f49a8fb61e599a20e91aabe17f0fb"
+      },
+      "scene_local_glb": {
+        "bounds": [
+          [
+            -2.0733189582824707,
+            -1.7473105192184448,
+            -1.326586365699768
+          ],
+          [
+            1.7927807569503784,
+            1.8172746896743774,
+            1.491694688796997
+          ]
+        ],
+        "bytes": 3406168,
+        "faces": 98226,
+        "material_types": [
+          "PBRMaterial"
+        ],
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_right/sam3_pillow_right.scene-local.glb",
+        "sha256": "84bf13aa1cf1b6da689f7a42ca4c9fd09cee42444fcd7d44973ca3fdb17f51cb",
+        "url": "/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_right/sam3_pillow_right.scene-local.glb",
+        "vertices": 54968
+      },
+      "unified_visual_logic_collision": true,
+      "world_bounds": [
+        [
+          -1.357719146713937,
+          -2.553143562064255,
+          14.871314507123095
+        ],
+        [
+          2.5083805685189122,
+          1.0114416468285674,
+          17.68959556161986
+        ]
+      ]
+    }
+  },
+  "output_manifest": {
+    "bytes": 119324,
+    "local_qa_only": true,
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/candidate/bedroom4.direct-pbr.local-manifest.json",
+    "sha256": "76341eeae3ae070334cbefa8fdbf30aee8a9009bca6d61008284ff31f8a837a7"
+  },
+  "promotion_allowed": false,
+  "promotion_blockers": [
+    "local_fs_asset_urls_are_not_deployable",
+    "candidate_browser_qa_pending",
+    "original_scene_object_overlap_is_intentional"
+  ],
+  "public_manifests": {
+    "count": 6,
+    "mutated": false,
+    "sha256_by_path": {
+      "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/test-fixtures/manifest.json": "da997af317449f29f7e5c9e0134bb150c436a94cec7e8b6ea716d2a13b7fba65",
+      "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/manifest.json": "58cc2b06ec1a7feb70fc0e0060078e0e0e1db409f3e96843c53948c74d3ab7cb",
+      "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/manifest.unified-pillow.json": "7e0a1dcd801225bf21bd5a77e82edcce2318e348523d69ca80b7d1e5b53dc96d",
+      "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/manifest.web-demo-baseline-stable.json": "3805f0e5bab09add424b3b78f9349cd2eca6d1262777ef683e13cda07695e82b",
+      "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/qa/finalization/manifest.pending-bfb8a1f89ab9b6ab.json": "bfb8a1f89ab9b6ab8b6314c69a8bbd6d2bf9eefd23804ce0d0cd0c93a9b22b3e",
+      "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/recarve-candidates/semantic-covariance/manifest.json": "edae5c8d8df4f98da97477d7545dc9cb80a9104ed7ab4707b603381549364cb7"
+    }
+  },
+  "schema_version": 1,
+  "status": "local_qa_candidate_materialized"
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.direct_trellis_scene_candidate_config",
+  "candidate_version": "bedroom4-direct-trellis2-three-pillows-no-clean-plate-local-qa-20260720",
+  "base_manifest": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/manifest.json",
+    "sha256": "58cc2b06ec1a7feb70fc0e0060078e0e0e1db409f3e96843c53948c74d3ab7cb"
+  },
+  "static_scene": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/point_cloud/iteration_30000/point_cloud.ply",
+    "sha256": "6b2b84b372d452f9fb70328d6fddb4bdc8dfebf8c2072c7a5b5d5985f5e54f13",
+    "role": "original_uncarved_pgsr_full_scene"
+  },
+  "static_collider": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/mesh/tsdf_fusion_post.ply",
+    "sha256": "1cd9faf084a51f3959cd19dfc3ef05fb2dba9d6e1cdca944bfbeba6c33a1859d",
+    "role": "original_uncarved_scene_mesh"
+  },
+  "maximum_collision_faces": 100000,
+  "unadopted_object_policy": "original_static_scene_only_with_logical_ancestors",
+  "objects": [
+    {
+      "object_id": "sam3_pillow_front",
+      "scene_fit_receipt": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_front/scene_fit_receipt.json",
+        "sha256": "8215f1194577d44dfd89c966cf4df2db5a5c8ff6d4e92b02cba1f530f5404083"
+      }
+    },
+    {
+      "object_id": "sam3_pillow_left",
+      "scene_fit_receipt": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_left/scene_fit_receipt.json",
+        "sha256": "6b7cd1001f728a2cfcb50e2250af2838db894e34379db87a0603fe28ed2cb1b0"
+      }
+    },
+    {
+      "object_id": "sam3_pillow_right",
+      "scene_fit_receipt": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_right/scene_fit_receipt.json",
+        "sha256": "3a4a801e64848d06d5360300008a6dbecf6f49a8fb61e599a20e91aabe17f0fb"
+      }
+    }
+  ]
+}

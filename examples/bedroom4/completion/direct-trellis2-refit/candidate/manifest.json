@@ -1,0 +1,1404 @@
+{
+  "alignment": {
+    "canonicalCameraSubsetSha256": "3979165d74943efb68a597d89a3f13d5057150ce74a605c7bdb9c73ce1d6374b",
+    "id": "pgsr_native_shared_frame_20260714",
+    "method": "identity_same_camera_calibration",
+    "note": "Identity alignment is admitted only by the hash-bound clean-scene alignment receipt.",
+    "receiptSha256": "16839c7f0897c0095bf01ada6768d60dd23f636e102e17111fbc505e8fe27d49",
+    "rotationMatrix": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "scale": 1,
+    "translation": [
+      0,
+      0,
+      0
+    ]
+  },
+  "assets": {
+    "collider": {
+      "bbox": {
+        "max": [
+          17.688766728282857,
+          7.125000000000001,
+          24.63632082700183
+        ],
+        "min": [
+          -13.186935391083065,
+          -13.875,
+          0.5750000000000001
+        ]
+      },
+      "byteForBytePreserved": true,
+      "carved": false,
+      "cleanPlateApplied": false,
+      "degenerateTriangles": 0,
+      "faceCount": 1351454,
+      "faceIndexType": "uint32",
+      "faceIndicesValid": true,
+      "fileName": "tsdf_fusion_post.ply",
+      "fileType": "ply",
+      "finite": true,
+      "format": "open3d-binary-little-endian-triangle-mesh-ply",
+      "id": "direct_original_uncarved_scene_mesh",
+      "label": "Original uncarved scene TSDF mesh (local QA)",
+      "sha256": "1cd9faf084a51f3959cd19dfc3ef05fb2dba9d6e1cdca944bfbeba6c33a1859d",
+      "size": 36328043,
+      "sourcePath": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/mesh/tsdf_fusion_post.ply",
+      "transportMode": "local_fs_single_file",
+      "url": "/@fs/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/mesh/tsdf_fusion_post.ply",
+      "vertexCount": 694773,
+      "vertexPositionType": "float64",
+      "vertexProperties": [
+        "x",
+        "y",
+        "z",
+        "red",
+        "green",
+        "blue"
+      ]
+    },
+    "visual": {
+      "bbox": {
+        "max": [
+          17.380931854248047,
+          7.19534158706665,
+          25.302595138549805
+        ],
+        "min": [
+          -14.451483726501465,
+          -14.092606544494629,
+          -3.047991991043091
+        ]
+      },
+      "byteForBytePreserved": true,
+      "carved": false,
+      "cleanPlateApplied": false,
+      "fileName": "point_cloud.ply",
+      "fileType": "ply",
+      "format": "graphdeco-3dgs-ply",
+      "id": "direct_original_uncarved_pgsr_full_scene",
+      "label": "Original uncarved PGSR full-scene Gaussians (local QA)",
+      "renderer": "spark",
+      "sha256": "6b2b84b372d452f9fb70328d6fddb4bdc8dfebf8c2072c7a5b5d5985f5e54f13",
+      "size": 216088147,
+      "sourcePath": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/point_cloud/iteration_30000/point_cloud.ply",
+      "url": "/@fs/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/point_cloud/iteration_30000/point_cloud.ply",
+      "vertexCount": 871317,
+      "vertexProperties": [
+        "x",
+        "y",
+        "z",
+        "nx",
+        "ny",
+        "nz",
+        "f_dc_0",
+        "f_dc_1",
+        "f_dc_2",
+        "f_rest_0",
+        "f_rest_1",
+        "f_rest_2",
+        "f_rest_3",
+        "f_rest_4",
+        "f_rest_5",
+        "f_rest_6",
+        "f_rest_7",
+        "f_rest_8",
+        "f_rest_9",
+        "f_rest_10",
+        "f_rest_11",
+        "f_rest_12",
+        "f_rest_13",
+        "f_rest_14",
+        "f_rest_15",
+        "f_rest_16",
+        "f_rest_17",
+        "f_rest_18",
+        "f_rest_19",
+        "f_rest_20",
+        "f_rest_21",
+        "f_rest_22",
+        "f_rest_23",
+        "f_rest_24",
+        "f_rest_25",
+        "f_rest_26",
+        "f_rest_27",
+        "f_rest_28",
+        "f_rest_29",
+        "f_rest_30",
+        "f_rest_31",
+        "f_rest_32",
+        "f_rest_33",
+        "f_rest_34",
+        "f_rest_35",
+        "f_rest_36",
+        "f_rest_37",
+        "f_rest_38",
+        "f_rest_39",
+        "f_rest_40",
+        "f_rest_41",
+        "f_rest_42",
+        "f_rest_43",
+        "f_rest_44",
+        "opacity",
+        "scale_0",
+        "scale_1",
+        "scale_2",
+        "rot_0",
+        "rot_1",
+        "rot_2",
+        "rot_3"
+      ]
+    }
+  },
+  "cameraPresets": {
+    "doorway": {
+      "coordinateFrame": "visual_native",
+      "eye": [
+        -4.259808124205683,
+        1.963646527046706,
+        -6.4737616480170415
+      ],
+      "forward": [
+        0.21489584373036277,
+        -0.0009998972193683907,
+        0.976636482087327
+      ],
+      "id": "pgsr_input_camera_000000",
+      "label": "Doorway entry",
+      "sourceFrame": "000000",
+      "sourcePath": "artifact://video2mesh/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/cameras.json",
+      "targetDistance": 6,
+      "up": [
+        -0.016398570246294243,
+        0.999854805545369,
+        0.004631952091720971
+      ],
+      "verticalFovDeg": 55.776917
+    },
+    "reference": {
+      "coordinateFrame": "visual_native",
+      "eye": [
+        -1.62950243820192,
+        1.818849050201853,
+        -2.5396998253837135
+      ],
+      "forward": [
+        0.31380919609254937,
+        0.005869813544282999,
+        0.9494679394693233
+      ],
+      "id": "pgsr_input_camera_000018",
+      "label": "Reference interior",
+      "sourceFrame": "000018",
+      "sourcePath": "artifact://video2mesh/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/cameras.json",
+      "targetDistance": 6,
+      "up": [
+        -0.027003895871585824,
+        0.9996315591734393,
+        0.0027451343575030564
+      ],
+      "verticalFovDeg": 55.776917
+    }
+  },
+  "candidateBuild": {
+    "completionClaim": "direct_trellis_scene_fit_without_clean_plate_local_qa_only",
+    "forbiddenProxyFields": [
+      "colliderProxy",
+      "renderAsset",
+      "visual"
+    ],
+    "forbiddenProxyFieldsScope": "adopted_objects",
+    "inputs": {
+      "baseManifestSha256": "58cc2b06ec1a7feb70fc0e0060078e0e0e1db409f3e96843c53948c74d3ab7cb",
+      "sceneFitReceipts": {
+        "sam3_pillow_front": "8215f1194577d44dfd89c966cf4df2db5a5c8ff6d4e92b02cba1f530f5404083",
+        "sam3_pillow_left": "6b7cd1001f728a2cfcb50e2250af2838db894e34379db87a0603fe28ed2cb1b0",
+        "sam3_pillow_right": "3a4a801e64848d06d5360300008a6dbecf6f49a8fb61e599a20e91aabe17f0fb"
+      },
+      "sceneLocalGlbs": {
+        "sam3_pillow_front": "c845d7c2fa0620bbea7c608e3c5324979c4cf4811476c031336d5823db926f89",
+        "sam3_pillow_left": "d1309d30cafb86563842d96704ca11a5625dfe7a8f69b03db797b185e76044b4",
+        "sam3_pillow_right": "84bf13aa1cf1b6da689f7a42ca4c9fd09cee42444fcd7d44973ca3fdb17f51cb"
+      },
+      "staticColliderSha256": "1cd9faf084a51f3959cd19dfc3ef05fb2dba9d6e1cdca944bfbeba6c33a1859d",
+      "staticVisualSha256": "6b2b84b372d452f9fb70328d6fddb4bdc8dfebf8c2072c7a5b5d5985f5e54f13"
+    },
+    "localAssetTransport": "/@fs",
+    "logicalAncestorObjectIds": [
+      "sam3_bed_01"
+    ],
+    "objectHierarchyMetadata": "preserved_from_base_manifest",
+    "objectIds": [
+      "sam3_pillow_front",
+      "sam3_pillow_left",
+      "sam3_pillow_right"
+    ],
+    "originalStaticSceneIsSoleRepresentationForRemovedObjects": true,
+    "promotionAllowed": false,
+    "promotionBlockers": [
+      "local_fs_asset_urls_are_not_deployable",
+      "candidate_browser_qa_pending",
+      "original_scene_object_overlap_is_intentional"
+    ],
+    "removedUnadoptedObjectIds": [
+      "sam3_nightstand_01",
+      "sam3_nightstand_02",
+      "sam3_plant_01",
+      "sam3_plant_02"
+    ],
+    "representation": "one_scene_local_pbr_glb_per_object_for_visual_logic_selection_and_collision",
+    "runtimeInteractiveObjectIds": [
+      "sam3_pillow_front",
+      "sam3_pillow_left",
+      "sam3_pillow_right",
+      "sam3_bed_01"
+    ],
+    "staticScene": {
+      "byteForBytePreserved": true,
+      "carvePerformed": false,
+      "cleanPlateGenerated": false,
+      "collider": {
+        "bytes": 36328043,
+        "faceCount": 1351454,
+        "role": "original_uncarved_scene_mesh",
+        "sha256": "1cd9faf084a51f3959cd19dfc3ef05fb2dba9d6e1cdca944bfbeba6c33a1859d",
+        "vertexCount": 694773
+      },
+      "knownOverlap": "captured_objects_remain_in_the_static_scene",
+      "mode": "original_uncarved_pgsr_full_scene",
+      "sha256": "6b2b84b372d452f9fb70328d6fddb4bdc8dfebf8c2072c7a5b5d5985f5e54f13",
+      "visual": {
+        "bytes": 216088147,
+        "role": "original_uncarved_pgsr_full_scene",
+        "sha256": "6b2b84b372d452f9fb70328d6fddb4bdc8dfebf8c2072c7a5b5d5985f5e54f13",
+        "vertexCount": 871317
+      }
+    },
+    "status": "local_qa_candidate_materialized",
+    "unadoptedObjectPolicy": "original_static_scene_only_with_logical_ancestors"
+  },
+  "chunkSize": 1048576,
+  "collisionWorld": {
+    "baselineBoundsAssetKey": "collider",
+    "gate": {
+      "byteForBytePreserved": true,
+      "carved": false,
+      "cleanPlateApplied": false,
+      "degenerateTriangles": 0,
+      "faceCount": 1351454,
+      "faceIndicesValid": true,
+      "finite": true,
+      "status": "passed_local_qa_input_audit",
+      "vertexCount": 694773
+    },
+    "objectFaceRemovalRequired": false,
+    "replacementMode": "original_uncarved_scene_mesh",
+    "sceneAssetKey": "collider",
+    "sceneAssetTransport": {
+      "byteForBytePreserved": true,
+      "bytes": 36328043,
+      "mode": "local_fs_single_file",
+      "sha256": "1cd9faf084a51f3959cd19dfc3ef05fb2dba9d6e1cdca944bfbeba6c33a1859d",
+      "url": "/@fs/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/pgsr_scannetppv2_all/bedroom_4/mesh/tsdf_fusion_post.ply"
+    }
+  },
+  "contract": "video2world-web-manifest-1.0.0",
+  "coordinateSystem": {
+    "source": "pgsr_input_camera_000018_image_up",
+    "worldUp": [
+      0,
+      -1,
+      0
+    ]
+  },
+  "initialState": {
+    "cameraFocusObjectId": "sam3_pillow_front",
+    "cameraPreset": "reference",
+    "robotObstacleCollision": true,
+    "robotSpawn": {
+      "coordinateFrame": "visual_native",
+      "forward": [
+        0.31380919609254937,
+        0,
+        0.9494679394693233
+      ],
+      "groundPoint": [
+        5.968559,
+        6.051313,
+        7.851893
+      ],
+      "id": "fixed-user-approved-interior-20260716"
+    }
+  },
+  "interactiveObjects": [
+    {
+      "aliases": [
+        "pillow",
+        "front pillow",
+        "small pillow",
+        "枕头",
+        "前排枕头",
+        "小白枕"
+      ],
+      "bbox": {
+        "center": [
+          -0.9671652110402551,
+          -0.15070034730863258,
+          14.494797520685317
+        ],
+        "coordinateFrame": "visual_native",
+        "extent": [
+          3.1787110567092896,
+          3.0632482767105103,
+          1.3207603693008423
+        ],
+        "max": [
+          0.6221903173143897,
+          1.3809237910466226,
+          15.155177705335738
+        ],
+        "min": [
+          -2.5565207393949,
+          -1.6823244856638877,
+          13.834417336034896
+        ]
+      },
+      "category": "pillow",
+      "childObjectIds": [],
+      "collision": {
+        "asset": {
+          "bounds": [
+            [
+              -1.6921865940093994,
+              -1.484196662902832,
+              -0.6182197332382202
+            ],
+            [
+              1.4865244626998901,
+              1.5790516138076782,
+              0.7025406360626221
+            ]
+          ],
+          "faces": 97082,
+          "fileName": "sam3_pillow_front.scene-local.glb",
+          "fileType": "glb",
+          "finite": true,
+          "format": "gltf-binary",
+          "id": "sam3_pillow_front_direct_trellis_scene_local_glb",
+          "label": "前排浅色枕头 / Front light pillow scene-local PBR GLB",
+          "logicalRoot": "sam3_pillow_front",
+          "nondegenerate": true,
+          "sha256": "c845d7c2fa0620bbea7c608e3c5324979c4cf4811476c031336d5823db926f89",
+          "size": 3256900,
+          "sourcePath": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_front/sam3_pillow_front.scene-local.glb",
+          "url": "/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_front/sam3_pillow_front.scene-local.glb",
+          "vertices": 60237,
+          "watertight": false,
+          "windingConsistent": true
+        },
+        "characterCollision": true,
+        "gate": {
+          "candidateBrowserQa": "pending",
+          "faceBudget": "passed",
+          "finalBounds": "passed",
+          "finalBytesHash": "passed",
+          "localQaOnly": true,
+          "sceneFitReceiptSha256": "8215f1194577d44dfd89c966cf4df2db5a5c8ff6d4e92b02cba1f530f5404083",
+          "status": "passed",
+          "surfaceCollision": "passed"
+        },
+        "mode": "unified-glb",
+        "topology": "surface_bvh",
+        "walkable": false
+      },
+      "description": {
+        "appearance": {
+          "en": "An off-white stuffed form with a soft fabric PBR surface.",
+          "zh": "主体为灰白或米白色, 保留了柔软填充形态。"
+        },
+        "confidence": null,
+        "detailed": {
+          "en": "A completed PBR mesh with accepted minor generated texture variation.",
+          "zh": "可见面与背面已形成完整 PBR 网格; 轻微生成纹理差异按当前验收口径保留。"
+        },
+        "evidence_frames": [
+          "000064"
+        ],
+        "location": {
+          "en": "At the 前排 position on the mattress.",
+          "zh": "位于床垫上的前排位置。"
+        },
+        "model": "TRELLIS.2 PBR completion",
+        "provider": "TRELLIS.2+scene_fit+joint_QA",
+        "short": {
+          "en": "A light-colored 前排 pillow on the bed.",
+          "zh": "床上的前排浅色软枕。"
+        }
+      },
+      "fidelity": "direct_trellis_scene_fit_local_qa_candidate",
+      "id": "sam3_pillow_front",
+      "independentlyMovable": true,
+      "independentlyRecognized": true,
+      "interaction": {
+        "degrees": 360,
+        "drag": "horizontal_yaw",
+        "durationMs": 1250,
+        "kind": "spin"
+      },
+      "label": "前排浅色枕头 / Front light pillow",
+      "limitations": [
+        "Local QA candidate only; browser review is pending.",
+        "The original PGSR scene is intentionally uncarved, so its captured object remains visible under the completed mesh."
+      ],
+      "movesWithParent": true,
+      "name": "前排浅色枕头",
+      "parentObjectId": "sam3_bed_01",
+      "placement": {
+        "assetCoordinatesBaked": true,
+        "coordinateFrame": "visual_native",
+        "eulerOrder": "XYZ",
+        "generatedCenter": [
+          0,
+          0,
+          0
+        ],
+        "pivot": [
+          -0.8643341453855005,
+          -0.19812782276105578,
+          14.452637069273116
+        ],
+        "rotationEulerDeg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "sourceCoordinateFrame": "scene_local_about_target_pivot",
+        "transform": "scene_local_glb_plus_runtime_pivot"
+      },
+      "semanticGranularity": "independent_child_asset",
+      "visualOnly": false
+    },
+    {
+      "aliases": [
+        "left pillow",
+        "left rear pillow",
+        "左枕头",
+        "左侧后排枕头"
+      ],
+      "bbox": {
+        "center": [
+          -3.4380392774680324,
+          -0.8512370426298181,
+          14.321661814050394
+        ],
+        "coordinateFrame": "visual_native",
+        "extent": [
+          2.5741053819656368,
+          4.090501546859741,
+          3.4200387001037615
+        ],
+        "max": [
+          -2.1509865864852142,
+          1.1940137308000525,
+          16.031681164102274
+        ],
+        "min": [
+          -4.725091968450851,
+          -2.8964878160596887,
+          12.611642463998512
+        ]
+      },
+      "category": "pillow",
+      "childObjectIds": [],
+      "collision": {
+        "asset": {
+          "bounds": [
+            [
+              -1.2786014080047607,
+              -2.0455877780914307,
+              -1.718580722808838
+            ],
+            [
+              1.2955039739608765,
+              2.0449137687683105,
+              1.7014579772949219
+            ]
+          ],
+          "faces": 98230,
+          "fileName": "sam3_pillow_left.scene-local.glb",
+          "fileType": "glb",
+          "finite": true,
+          "format": "gltf-binary",
+          "id": "sam3_pillow_left_direct_trellis_scene_local_glb",
+          "label": "左侧后排浅色枕头 / Left rear light pillow scene-local PBR GLB",
+          "logicalRoot": "sam3_pillow_left",
+          "nondegenerate": true,
+          "sha256": "d1309d30cafb86563842d96704ca11a5625dfe7a8f69b03db797b185e76044b4",
+          "size": 3441088,
+          "sourcePath": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_left/sam3_pillow_left.scene-local.glb",
+          "url": "/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_left/sam3_pillow_left.scene-local.glb",
+          "vertices": 52981,
+          "watertight": false,
+          "windingConsistent": true
+        },
+        "characterCollision": true,
+        "gate": {
+          "candidateBrowserQa": "pending",
+          "faceBudget": "passed",
+          "finalBounds": "passed",
+          "finalBytesHash": "passed",
+          "localQaOnly": true,
+          "sceneFitReceiptSha256": "6b7cd1001f728a2cfcb50e2250af2838db894e34379db87a0603fe28ed2cb1b0",
+          "status": "passed",
+          "surfaceCollision": "passed"
+        },
+        "mode": "unified-glb",
+        "topology": "surface_bvh",
+        "walkable": false
+      },
+      "description": {
+        "appearance": {
+          "en": "An off-white stuffed form with a soft fabric PBR surface.",
+          "zh": "主体为灰白或米白色, 保留了柔软填充形态。"
+        },
+        "confidence": null,
+        "detailed": {
+          "en": "A completed PBR mesh with accepted minor generated texture variation.",
+          "zh": "可见面与背面已形成完整 PBR 网格; 轻微生成纹理差异按当前验收口径保留。"
+        },
+        "evidence_frames": [
+          "000064"
+        ],
+        "location": {
+          "en": "At the 左后排 position on the mattress.",
+          "zh": "位于床垫上的左后排位置。"
+        },
+        "model": "TRELLIS.2 PBR completion",
+        "provider": "TRELLIS.2+scene_fit+joint_QA",
+        "short": {
+          "en": "A light-colored 左后排 pillow on the bed.",
+          "zh": "床上的左后排浅色软枕。"
+        }
+      },
+      "fidelity": "direct_trellis_scene_fit_local_qa_candidate",
+      "id": "sam3_pillow_left",
+      "independentlyMovable": true,
+      "independentlyRecognized": true,
+      "interaction": {
+        "degrees": 360,
+        "drag": "horizontal_yaw",
+        "durationMs": 1250,
+        "kind": "spin"
+      },
+      "label": "左侧后排浅色枕头 / Left rear light pillow",
+      "limitations": [
+        "Local QA candidate only; browser review is pending.",
+        "The original PGSR scene is intentionally uncarved, so its captured object remains visible under the completed mesh."
+      ],
+      "movesWithParent": true,
+      "name": "左侧后排浅色枕头",
+      "parentObjectId": "sam3_bed_01",
+      "placement": {
+        "assetCoordinatesBaked": true,
+        "coordinateFrame": "visual_native",
+        "eulerOrder": "XYZ",
+        "generatedCenter": [
+          0,
+          0,
+          0
+        ],
+        "pivot": [
+          -3.4464905604460907,
+          -0.8509000379682582,
+          14.33022318680735
+        ],
+        "rotationEulerDeg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "sourceCoordinateFrame": "scene_local_about_target_pivot",
+        "transform": "scene_local_glb_plus_runtime_pivot"
+      },
+      "semanticGranularity": "independent_child_asset",
+      "visualOnly": false
+    },
+    {
+      "aliases": [
+        "right pillow",
+        "right rear pillow",
+        "右枕头",
+        "右侧后排枕头"
+      ],
+      "bbox": {
+        "center": [
+          0.5753307109024877,
+          -0.7708509576178438,
+          16.280455034371478
+        ],
+        "coordinateFrame": "visual_native",
+        "extent": [
+          3.866099715232849,
+          3.5645852088928223,
+          2.818281054496765
+        ],
+        "max": [
+          2.5083805685189122,
+          1.0114416468285674,
+          17.68959556161986
+        ],
+        "min": [
+          -1.357719146713937,
+          -2.553143562064255,
+          14.871314507123095
+        ]
+      },
+      "category": "pillow",
+      "childObjectIds": [],
+      "collision": {
+        "asset": {
+          "bounds": [
+            [
+              -2.0733189582824707,
+              -1.7473105192184448,
+              -1.326586365699768
+            ],
+            [
+              1.7927807569503784,
+              1.8172746896743774,
+              1.491694688796997
+            ]
+          ],
+          "faces": 98226,
+          "fileName": "sam3_pillow_right.scene-local.glb",
+          "fileType": "glb",
+          "finite": true,
+          "format": "gltf-binary",
+          "id": "sam3_pillow_right_direct_trellis_scene_local_glb",
+          "label": "右侧后排浅色枕头 / Right rear light pillow scene-local PBR GLB",
+          "logicalRoot": "sam3_pillow_right",
+          "nondegenerate": true,
+          "sha256": "84bf13aa1cf1b6da689f7a42ca4c9fd09cee42444fcd7d44973ca3fdb17f51cb",
+          "size": 3406168,
+          "sourcePath": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_right/sam3_pillow_right.scene-local.glb",
+          "url": "/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_right/sam3_pillow_right.scene-local.glb",
+          "vertices": 54968,
+          "watertight": false,
+          "windingConsistent": true
+        },
+        "characterCollision": true,
+        "gate": {
+          "candidateBrowserQa": "pending",
+          "faceBudget": "passed",
+          "finalBounds": "passed",
+          "finalBytesHash": "passed",
+          "localQaOnly": true,
+          "sceneFitReceiptSha256": "3a4a801e64848d06d5360300008a6dbecf6f49a8fb61e599a20e91aabe17f0fb",
+          "status": "passed",
+          "surfaceCollision": "passed"
+        },
+        "mode": "unified-glb",
+        "topology": "surface_bvh",
+        "walkable": false
+      },
+      "description": {
+        "appearance": {
+          "en": "An off-white stuffed form with a soft fabric PBR surface.",
+          "zh": "主体为灰白或米白色, 保留了柔软填充形态。"
+        },
+        "confidence": null,
+        "detailed": {
+          "en": "A completed PBR mesh with accepted minor generated texture variation.",
+          "zh": "可见面与背面已形成完整 PBR 网格; 轻微生成纹理差异按当前验收口径保留。"
+        },
+        "evidence_frames": [
+          "000064"
+        ],
+        "location": {
+          "en": "At the 右后排 position on the mattress.",
+          "zh": "位于床垫上的右后排位置。"
+        },
+        "model": "TRELLIS.2 PBR completion",
+        "provider": "TRELLIS.2+scene_fit+joint_QA",
+        "short": {
+          "en": "A light-colored 右后排 pillow on the bed.",
+          "zh": "床上的右后排浅色软枕。"
+        }
+      },
+      "fidelity": "direct_trellis_scene_fit_local_qa_candidate",
+      "id": "sam3_pillow_right",
+      "independentlyMovable": true,
+      "independentlyRecognized": true,
+      "interaction": {
+        "degrees": 360,
+        "drag": "horizontal_yaw",
+        "durationMs": 1250,
+        "kind": "spin"
+      },
+      "label": "右侧后排浅色枕头 / Right rear light pillow",
+      "limitations": [
+        "Local QA candidate only; browser review is pending.",
+        "The original PGSR scene is intentionally uncarved, so its captured object remains visible under the completed mesh."
+      ],
+      "movesWithParent": true,
+      "name": "右侧后排浅色枕头",
+      "parentObjectId": "sam3_bed_01",
+      "placement": {
+        "assetCoordinatesBaked": true,
+        "coordinateFrame": "visual_native",
+        "eulerOrder": "XYZ",
+        "generatedCenter": [
+          0,
+          0,
+          0
+        ],
+        "pivot": [
+          0.7155998115685337,
+          -0.80583304284581,
+          16.197900872822864
+        ],
+        "rotationEulerDeg": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "sourceCoordinateFrame": "scene_local_about_target_pivot",
+        "transform": "scene_local_glb_plus_runtime_pivot"
+      },
+      "semanticGranularity": "independent_child_asset",
+      "visualOnly": false
+    },
+    {
+      "aliases": [
+        "bed",
+        "double bed",
+        "床",
+        "双人床",
+        "床架",
+        "床垫"
+      ],
+      "category": "bed",
+      "childObjectIds": [
+        "sam3_pillow_front",
+        "sam3_pillow_left",
+        "sam3_pillow_right"
+      ],
+      "id": "sam3_bed_01",
+      "independentlyMovable": false,
+      "label": "双人床 / Bed",
+      "logicalHierarchyOnly": true,
+      "logicalRole": "unrendered_unselectable_hierarchy_ancestor",
+      "movesWithParent": false,
+      "name": "双人床",
+      "parentObjectId": null,
+      "semanticGranularity": "independent_root_asset"
+    }
+  ],
+  "presentation": {
+    "pivot": [
+      2.250915668599896,
+      -3.375,
+      12.605660413500916
+    ],
+    "referenceBoundsAssetKey": "collider",
+    "sourceCommit": "252a85c52106838b9bd796f4e70253f7e68af488",
+    "yawDeg": 180
+  },
+  "sceneKnowledge": {
+    "coordinateFrame": "visual_native",
+    "missingInstances": [],
+    "objects": [
+      {
+        "aliases": [
+          "nightstand",
+          "bedside table",
+          "床头柜"
+        ],
+        "bbox": {
+          "center": [
+            -8.857548,
+            2.9190715,
+            14.5170345
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            4.876246,
+            4.019931,
+            4.307599
+          ],
+          "max": [
+            -6.419425,
+            4.929037,
+            16.670834
+          ],
+          "min": [
+            -11.295671,
+            0.909106,
+            12.363235
+          ]
+        },
+        "category": "nightstand",
+        "description": {
+          "appearance": {
+            "en": "A plain dark warm-brown nightstand has a smooth wood-like finish, a rectangular top and apron, and four straight square-section legs, with no visible drawer or handle.",
+            "zh": "这件素面深暖棕色床头柜呈平滑木质观感，具有矩形柜面、围板和四条方截面直腿，未见抽屉或把手。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "Colors: dark warm brown; Material appearance: smooth wood-like finish; Geometry: rectangular top and apron, four straight square-section legs; Visible components: top, apron, four legs; Style or pattern: plain with minimal ornament",
+            "zh": "颜色: 深暖棕色; 材质观感: 平滑的木质观感表面; 几何形态: 矩形柜面与围板, 四条方截面直腿; 可见组件: 柜面, 围板, 四条柜腿; 风格或纹理: 素面、装饰极少"
+          },
+          "evidence_frames": [],
+          "fidelity_caveat": {
+            "en": "Metric scale cannot be inferred from the visual evidence. The exact substrate is not visually confirmed; no drawer or handle is visible from this view.",
+            "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认确切基材；此视角未见抽屉或把手。"
+          },
+          "location": {
+            "en": "Shown upright on its visible legs; room support and placement cannot be inferred. Scene position cannot be inferred from this isolated reference.",
+            "zh": "图中以可见柜腿直立展示；无法推断其在房间中的支撑面与摆放位置。 无法从这张孤立参考图推断场景位置。"
+          },
+          "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+          "provider": "local_huggingface_transformers+agent_visual_audit",
+          "short": {
+            "en": "A plain dark warm-brown nightstand has a smooth wood-like finish, a rectangular top and apron, and four straight square-section legs, with no visible drawer or handle.",
+            "zh": "这件素面深暖棕色床头柜呈平滑木质观感，具有矩形柜面、围板和四条方截面直腿，未见抽屉或把手。"
+          }
+        },
+        "id": "sam3_nightstand_01",
+        "independentlyRecognized": true,
+        "interactiveObjectId": "sam3_nightstand_01",
+        "name": "Nightstand 01",
+        "visualOnly": false
+      },
+      {
+        "aliases": [
+          "nightstand",
+          "bedside table",
+          "床头柜"
+        ],
+        "bbox": {
+          "center": [
+            5.6283455,
+            1.3599195,
+            21.160014
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            5.425765,
+            2.602103,
+            5.475722
+          ],
+          "max": [
+            8.341228,
+            2.660971,
+            23.897875
+          ],
+          "min": [
+            2.915463,
+            0.058868,
+            18.422153
+          ]
+        },
+        "category": "nightstand",
+        "description": {
+          "appearance": {
+            "en": "A warm reddish-brown nightstand with a smooth wood-like finish has one front drawer with a round dark knob, a raised curved back-and-side lip, and four legs.",
+            "zh": "这件暖红棕色床头柜呈平滑木质观感，正面有一只带深色圆形旋钮的抽屉，并带抬高的弧形后沿与侧沿和四条柜腿。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "Colors: warm reddish brown, dark knob; Material appearance: smooth wood-like finish; Geometry: rectangular body, raised curved back and side lip, four straight legs; Visible components: top, one front drawer, round dark knob, curved lip, four legs; Style or pattern: simple furniture profile with curved trim",
+            "zh": "颜色: 暖红棕色, 深色旋钮; 材质观感: 平滑的木质观感表面; 几何形态: 矩形柜体, 抬高的弧形后沿与侧沿, 四条直腿; 可见组件: 柜面, 一只正面抽屉, 深色圆形旋钮, 弧形围沿, 四条柜腿; 风格或纹理: 带弧形收边的简洁家具轮廓"
+          },
+          "evidence_frames": [],
+          "fidelity_caveat": {
+            "en": "Metric scale cannot be inferred from the visual evidence. The exact substrate and hidden rear geometry are not visually confirmed.",
+            "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认确切基材与背面隐藏几何。"
+          },
+          "location": {
+            "en": "Shown upright on its visible legs; room support and placement cannot be inferred. Scene position cannot be inferred from this isolated reference.",
+            "zh": "图中以可见柜腿直立展示；无法推断其在房间中的支撑面与摆放位置。 无法从这张孤立参考图推断场景位置。"
+          },
+          "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+          "provider": "local_huggingface_transformers+agent_visual_audit",
+          "short": {
+            "en": "A warm reddish-brown nightstand with a smooth wood-like finish has one front drawer with a round dark knob, a raised curved back-and-side lip, and four legs.",
+            "zh": "这件暖红棕色床头柜呈平滑木质观感，正面有一只带深色圆形旋钮的抽屉，并带抬高的弧形后沿与侧沿和四条柜腿。"
+          }
+        },
+        "id": "sam3_nightstand_02",
+        "independentlyRecognized": true,
+        "interactiveObjectId": "sam3_nightstand_02",
+        "name": "Nightstand 02",
+        "visualOnly": false
+      },
+      {
+        "aliases": [
+          "plant",
+          "potted plant",
+          "植物",
+          "盆栽",
+          "绿植"
+        ],
+        "bbox": {
+          "center": [
+            5.606413,
+            -0.5816215,
+            21.7986965
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            1.61465,
+            0.931801,
+            3.432319
+          ],
+          "max": [
+            6.413738,
+            -0.115721,
+            23.514856
+          ],
+          "min": [
+            4.799088,
+            -1.047522,
+            20.082537
+          ]
+        },
+        "category": "plant",
+        "description": {
+          "appearance": {
+            "en": "A dense rounded topiary-like plant has many small oval dark-green leaves with lighter edges, multiple woody-looking stems, and a smooth off-white cylindrical pot.",
+            "zh": "这株浓密的圆冠造型植物由许多带浅色叶缘的深绿色小椭圆叶、数根木质观感枝干和一个光滑的灰白色圆柱形花盆组成。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "Colors: dark green leaves, lighter leaf edges, off-white pot; Material appearance: matte leaf surfaces, woody-looking stems, smooth off-white pot; Geometry: dense rounded crown, small oval leaves, cylindrical pot; Visible components: many leaves, multiple stems, pot; Style or pattern: lighter leaf edging, compact topiary-like silhouette",
+            "zh": "颜色: 深绿色叶片, 浅色叶缘, 灰白色花盆; 材质观感: 哑光叶面, 木质观感枝干, 光滑灰白色花盆; 几何形态: 浓密圆形冠幅, 小椭圆叶片, 圆柱形花盆; 可见组件: 大量叶片, 数根枝干, 花盆; 风格或纹理: 浅色叶缘, 紧凑的圆冠造型轮廓"
+          },
+          "evidence_frames": [],
+          "fidelity_caveat": {
+            "en": "Metric scale cannot be inferred from the visual evidence. The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+            "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+          },
+          "location": {
+            "en": "Visible stems emerge from and are supported within the pot. Scene position cannot be inferred from this isolated reference.",
+            "zh": "可见枝干从花盆内部伸出并由花盆承托。 无法从这张孤立参考图推断场景位置。"
+          },
+          "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+          "provider": "local_huggingface_transformers+agent_visual_audit",
+          "short": {
+            "en": "A dense rounded topiary-like plant has many small oval dark-green leaves with lighter edges, multiple woody-looking stems, and a smooth off-white cylindrical pot.",
+            "zh": "这株浓密的圆冠造型植物由许多带浅色叶缘的深绿色小椭圆叶、数根木质观感枝干和一个光滑的灰白色圆柱形花盆组成。"
+          }
+        },
+        "id": "sam3_plant_01",
+        "independentlyRecognized": true,
+        "interactiveObjectId": "sam3_plant_01",
+        "name": "Plant 01",
+        "visualOnly": false
+      },
+      {
+        "aliases": [
+          "plant",
+          "potted plant",
+          "植物",
+          "盆栽",
+          "绿植"
+        ],
+        "bbox": {
+          "center": [
+            -10.1043695,
+            0.195119,
+            14.9292585
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            1.753715,
+            0.798368,
+            2.248233
+          ],
+          "max": [
+            -9.227512,
+            0.594303,
+            16.053375
+          ],
+          "min": [
+            -10.981227,
+            -0.204065,
+            13.805142
+          ]
+        },
+        "category": "plant",
+        "description": {
+          "appearance": {
+            "en": "A dense rounded potted plant has palmate-looking green-and-cream variegated leaves, multiple upright stems, and a smooth off-white cylindrical pot.",
+            "zh": "这株浓密的圆冠盆栽具有掌状观感的绿奶油色斑锦叶、数根直立枝干和一个光滑的灰白色圆柱形花盆。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "Colors: green and cream variegated leaves, off-white pot; Material appearance: smooth leaf surfaces, woody-looking stems, smooth off-white pot; Geometry: dense rounded crown, palmate-looking leaf clusters, cylindrical pot; Visible components: variegated leaves, multiple stems, pot; Style or pattern: green-and-cream variegation",
+            "zh": "颜色: 绿奶油色斑锦叶, 灰白色花盆; 材质观感: 平滑叶面, 木质观感枝干, 光滑灰白色花盆; 几何形态: 浓密圆形冠幅, 掌状观感叶簇, 圆柱形花盆; 可见组件: 斑锦叶片, 数根枝干, 花盆; 风格或纹理: 绿奶油色斑锦纹理"
+          },
+          "evidence_frames": [],
+          "fidelity_caveat": {
+            "en": "Metric scale cannot be inferred from the visual evidence. The species and exact leaf, stem, and pot materials cannot be confirmed visually.",
+            "zh": "无法从视觉证据推断度量尺度。 无法仅凭图像确认植物品种及叶片、枝干和花盆的确切材质。"
+          },
+          "location": {
+            "en": "Visible stems emerge from and are supported within the pot. Scene position cannot be inferred from this isolated reference.",
+            "zh": "可见枝干从花盆内部伸出并由花盆承托。 无法从这张孤立参考图推断场景位置。"
+          },
+          "model": "Qwen/Qwen2.5-VL-3B-Instruct@66285546d2b821cf421d4f5eb2576359d3770cd3",
+          "provider": "local_huggingface_transformers+agent_visual_audit",
+          "short": {
+            "en": "A dense rounded potted plant has palmate-looking green-and-cream variegated leaves, multiple upright stems, and a smooth off-white cylindrical pot.",
+            "zh": "这株浓密的圆冠盆栽具有掌状观感的绿奶油色斑锦叶、数根直立枝干和一个光滑的灰白色圆柱形花盆。"
+          }
+        },
+        "id": "sam3_plant_02",
+        "independentlyRecognized": true,
+        "interactiveObjectId": "sam3_plant_02",
+        "name": "Plant 02",
+        "visualOnly": false
+      },
+      {
+        "aliases": [
+          "pillow",
+          "front pillow",
+          "small pillow",
+          "枕头",
+          "前排枕头",
+          "小白枕"
+        ],
+        "bbox": {
+          "center": [
+            -0.9671652110402551,
+            -0.15070034730863258,
+            14.494797520685317
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            3.1787110567092896,
+            3.0632482767105103,
+            1.3207603693008423
+          ],
+          "max": [
+            0.6221903173143897,
+            1.3809237910466226,
+            15.155177705335738
+          ],
+          "min": [
+            -2.5565207393949,
+            -1.6823244856638877,
+            13.834417336034896
+          ]
+        },
+        "category": "pillow",
+        "description": {
+          "appearance": {
+            "en": "An off-white stuffed form with a soft fabric PBR surface.",
+            "zh": "主体为灰白或米白色, 保留了柔软填充形态。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "A completed PBR mesh with accepted minor generated texture variation.",
+            "zh": "可见面与背面已形成完整 PBR 网格; 轻微生成纹理差异按当前验收口径保留。"
+          },
+          "evidence_frames": [
+            "000064"
+          ],
+          "location": {
+            "en": "At the 前排 position on the mattress.",
+            "zh": "位于床垫上的前排位置。"
+          },
+          "model": "TRELLIS.2 PBR completion",
+          "provider": "TRELLIS.2+scene_fit+joint_QA",
+          "short": {
+            "en": "A light-colored 前排 pillow on the bed.",
+            "zh": "床上的前排浅色软枕。"
+          }
+        },
+        "id": "sam3_pillow_front",
+        "interaction": {
+          "double_click_action": "spin_360",
+          "drag_action": "rotate_yaw",
+          "movable": true,
+          "selectable": true
+        },
+        "name": "前排浅色枕头"
+      },
+      {
+        "aliases": [
+          "left pillow",
+          "left rear pillow",
+          "左枕头",
+          "左侧后排枕头"
+        ],
+        "bbox": {
+          "center": [
+            -3.4380392774680324,
+            -0.8512370426298181,
+            14.321661814050394
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            2.5741053819656368,
+            4.090501546859741,
+            3.4200387001037615
+          ],
+          "max": [
+            -2.1509865864852142,
+            1.1940137308000525,
+            16.031681164102274
+          ],
+          "min": [
+            -4.725091968450851,
+            -2.8964878160596887,
+            12.611642463998512
+          ]
+        },
+        "category": "pillow",
+        "description": {
+          "appearance": {
+            "en": "An off-white stuffed form with a soft fabric PBR surface.",
+            "zh": "主体为灰白或米白色, 保留了柔软填充形态。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "A completed PBR mesh with accepted minor generated texture variation.",
+            "zh": "可见面与背面已形成完整 PBR 网格; 轻微生成纹理差异按当前验收口径保留。"
+          },
+          "evidence_frames": [
+            "000064"
+          ],
+          "location": {
+            "en": "At the 左后排 position on the mattress.",
+            "zh": "位于床垫上的左后排位置。"
+          },
+          "model": "TRELLIS.2 PBR completion",
+          "provider": "TRELLIS.2+scene_fit+joint_QA",
+          "short": {
+            "en": "A light-colored 左后排 pillow on the bed.",
+            "zh": "床上的左后排浅色软枕。"
+          }
+        },
+        "id": "sam3_pillow_left",
+        "interaction": {
+          "double_click_action": "spin_360",
+          "drag_action": "rotate_yaw",
+          "movable": true,
+          "selectable": true
+        },
+        "name": "左侧后排浅色枕头"
+      },
+      {
+        "aliases": [
+          "right pillow",
+          "right rear pillow",
+          "右枕头",
+          "右侧后排枕头"
+        ],
+        "bbox": {
+          "center": [
+            0.5753307109024877,
+            -0.7708509576178438,
+            16.280455034371478
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            3.866099715232849,
+            3.5645852088928223,
+            2.818281054496765
+          ],
+          "max": [
+            2.5083805685189122,
+            1.0114416468285674,
+            17.68959556161986
+          ],
+          "min": [
+            -1.357719146713937,
+            -2.553143562064255,
+            14.871314507123095
+          ]
+        },
+        "category": "pillow",
+        "description": {
+          "appearance": {
+            "en": "An off-white stuffed form with a soft fabric PBR surface.",
+            "zh": "主体为灰白或米白色, 保留了柔软填充形态。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "A completed PBR mesh with accepted minor generated texture variation.",
+            "zh": "可见面与背面已形成完整 PBR 网格; 轻微生成纹理差异按当前验收口径保留。"
+          },
+          "evidence_frames": [
+            "000064"
+          ],
+          "location": {
+            "en": "At the 右后排 position on the mattress.",
+            "zh": "位于床垫上的右后排位置。"
+          },
+          "model": "TRELLIS.2 PBR completion",
+          "provider": "TRELLIS.2+scene_fit+joint_QA",
+          "short": {
+            "en": "A light-colored 右后排 pillow on the bed.",
+            "zh": "床上的右后排浅色软枕。"
+          }
+        },
+        "id": "sam3_pillow_right",
+        "interaction": {
+          "double_click_action": "spin_360",
+          "drag_action": "rotate_yaw",
+          "movable": true,
+          "selectable": true
+        },
+        "name": "右侧后排浅色枕头"
+      },
+      {
+        "aliases": [
+          "bed",
+          "double bed",
+          "床",
+          "双人床",
+          "床架",
+          "床垫"
+        ],
+        "bbox": {
+          "center": [
+            0.5512032005178886,
+            1.1493947935754947,
+            10.652915506271459
+          ],
+          "coordinateFrame": "visual_native",
+          "extent": [
+            15.071468376336364,
+            11.482184396598988,
+            20.88049451680081
+          ],
+          "max": [
+            8.08693738868607,
+            6.8904869918749885,
+            21.093162764671863
+          ],
+          "min": [
+            -6.9845309876502935,
+            -4.591697404723999,
+            0.21266824787105598
+          ]
+        },
+        "category": "bed",
+        "description": {
+          "appearance": {
+            "en": "Light bedding over a dark wooden frame and headboard.",
+            "zh": "浅色床垫与床品配深色木质床架和床头板。"
+          },
+          "confidence": null,
+          "detailed": {
+            "en": "Six closed PBR parts act as one selectable, rotatable, collidable root.",
+            "zh": "床由六个闭合 PBR 部件组成, 但在场景中由一个根节点统一选择、旋转和碰撞。"
+          },
+          "evidence_frames": [
+            "000064",
+            "000067",
+            "000071"
+          ],
+          "location": {
+            "en": "In the bedroom center, supporting the three pillows.",
+            "zh": "位于卧室中央, 三只枕头在床垫上。"
+          },
+          "model": "deterministic PBR fixture assembly",
+          "provider": "component_assembly+support_adjustment+joint_QA",
+          "short": {
+            "en": "A double bed with mattress, frame, and headboard.",
+            "zh": "一张带软垫、床架和床头板的双人床。"
+          }
+        },
+        "id": "sam3_bed_01",
+        "interaction": {
+          "double_click_action": "spin_360",
+          "drag_action": "rotate_yaw",
+          "movable": true,
+          "selectable": true
+        },
+        "name": "双人床"
+      }
+    ],
+    "relations": [
+      {
+        "confidence": 0.9723717570304871,
+        "evidence": "scene_fit_front_surface_anchor_and_user_current_demo_acceptance",
+        "object": "sam3_bed_01",
+        "predicate": "OnTopOf",
+        "subject": "sam3_pillow_front",
+        "targetLabel": {
+          "en": "the bed",
+          "zh": "床"
+        },
+        "verified": true
+      },
+      {
+        "confidence": 0.9660567045211792,
+        "evidence": "sam3_frame_000064_geometry_split",
+        "object": "sam3_bed_01",
+        "predicate": "OnTopOf",
+        "subject": "sam3_pillow_left",
+        "targetLabel": {
+          "en": "the bed",
+          "zh": "床"
+        },
+        "verified": true
+      },
+      {
+        "confidence": 0.9715292453765869,
+        "evidence": "sam3_frame_000064_geometry_split",
+        "object": "sam3_bed_01",
+        "predicate": "OnTopOf",
+        "subject": "sam3_pillow_right",
+        "targetLabel": {
+          "en": "the bed",
+          "zh": "床"
+        },
+        "verified": true
+      }
+    ]
+  },
+  "schemaVersion": 1,
+  "sourceWorld": {
+    "adoptionMode": "direct_original_uncarved_scene_local_qa_only",
+    "manifestSha256": "7e0a1dcd801225bf21bd5a77e82edcce2318e348523d69ca80b7d1e5b53dc96d",
+    "runId": "bedroom4-production-20260716",
+    "schemaVersion": "world-manifest-1.0.0",
+    "worldId": "bedroom_4"
+  },
+  "version": "bedroom4-direct-trellis2-three-pillows-no-clean-plate-local-qa-20260720"
+}
