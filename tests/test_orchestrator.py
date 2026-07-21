@@ -911,6 +911,70 @@ def test_layered_completion_report_rejects_clean_scene_reusing_raw_scene_inputs(
     )
     reused_path = Path(inputs[input_role]["path"])
     reused_path.write_bytes(payload)
+    output_path = Path(outputs[output_role]["path"])
+    output_path.write_bytes(payload)
+    inputs[input_role] = _artifact_snapshot_payload(reused_path)
+    outputs[output_role] = _artifact_snapshot_payload(output_path)
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=inputs,
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ArtifactError, match=expected):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
+@pytest.mark.parametrize(
+    ("input_role", "output_role", "payload_kind", "expected"),
+    [
+        (
+            "scene_gaussian",
+            "clean_scene_gaussian",
+            "gaussian",
+            "clean_scene_gaussian path must differ from scene_gaussian input path",
+        ),
+        (
+            "scene_mesh",
+            "clean_scene_mesh",
+            "mesh",
+            "clean_scene_mesh path must differ from scene_mesh input path",
+        ),
+    ],
+)
+def test_layered_completion_report_rejects_clean_scene_reusing_raw_scene_input_paths(
+    tmp_path: Path,
+    input_role: str,
+    output_role: str,
+    payload_kind: str,
+    expected: str,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    inputs = _layered_completion_input_snapshots(tmp_path, plan_path)
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    payload = (
+        _clean_gaussian_header() + ("0 " * 13 + "0\n").encode("ascii")
+        if payload_kind == "gaussian"
+        else _valid_clean_mesh_payload()
+    )
+    reused_path = Path(inputs[input_role]["path"])
+    reused_path.write_bytes(payload)
     reused_snapshot = _artifact_snapshot_payload(reused_path)
     inputs[input_role] = reused_snapshot
     outputs[output_role] = reused_snapshot

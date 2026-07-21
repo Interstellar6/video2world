@@ -259,6 +259,14 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
                 raise ValueError(
                     f"provider receipt cannot compare {input_role} to {output_role}"
                 )
+            input_path = input_snapshot.get("path")
+            output_path = output_snapshot.get("path")
+            if not isinstance(input_path, str) or not isinstance(output_path, str):
+                raise ValueError(
+                    f"provider receipt cannot compare {input_role} to {output_role} paths"
+                )
+            if Path(input_path).expanduser().resolve() == Path(output_path).expanduser().resolve():
+                raise ValueError(f"{output_role} path must differ from {input_role} input path")
             if input_snapshot.get("sha256") == output_snapshot.get("sha256"):
                 raise ValueError(f"{output_role} must not reuse {input_role} input artifact")
         plan_snapshot = inputs.get("layered_completion_plan")
