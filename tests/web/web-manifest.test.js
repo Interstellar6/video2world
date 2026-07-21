@@ -105,6 +105,93 @@ describe("Web manifest contract", () => {
     });
   });
 
+  it("accepts a stripped logical hierarchy ancestor without runtime assets", () => {
+    const manifest = fixture();
+    const ancestor = manifest.interactiveObjects[0];
+    const child = manifest.interactiveObjects[2];
+    for (const field of ["placement", "colliderProxy", "visual", "collision", "interaction"]) {
+      delete ancestor[field];
+    }
+    Object.assign(ancestor, {
+      semanticGranularity: "independent_root_asset",
+      parentObjectId: null,
+      movesWithParent: false,
+      independentlyMovable: false,
+      logicalHierarchyOnly: true,
+      logicalRole: "unrendered_unselectable_hierarchy_ancestor",
+      childObjectIds: [child.id],
+    });
+    Object.assign(child, {
+      semanticGranularity: "independent_child_asset",
+      parentObjectId: ancestor.id,
+      movesWithParent: true,
+      independentlyMovable: true,
+      childObjectIds: [],
+    });
+
+    const validated = validateWebManifest(manifest);
+    expect(validated.interactiveObjects[0]).toMatchObject({
+      logicalHierarchyOnly: true,
+      independentlyMovable: false,
+      childObjectIds: [child.id],
+    });
+    expect(validated.interactiveObjects[0]).not.toHaveProperty("placement");
+    expect(validated.interactiveObjects[0]).not.toHaveProperty("collision");
+  });
+
+  it("rejects logical hierarchy ancestors that retain runtime asset fields", () => {
+    const manifest = fixture();
+    Object.assign(manifest.interactiveObjects[0], {
+      independentlyMovable: false,
+      logicalHierarchyOnly: true,
+      logicalRole: "unrendered_unselectable_hierarchy_ancestor",
+      childObjectIds: [],
+    });
+    expect(() => validateWebManifest(manifest)).toThrow(
+      "logical hierarchy nodes must not declare placement",
+    );
+  });
+
+  it("rejects logical hierarchy ancestors without filtered child metadata", () => {
+    const manifest = fixture();
+    const ancestor = manifest.interactiveObjects[0];
+    for (const field of ["placement", "colliderProxy", "visual", "collision", "interaction"]) {
+      delete ancestor[field];
+    }
+    Object.assign(ancestor, {
+      independentlyMovable: false,
+      logicalHierarchyOnly: true,
+      logicalRole: "unrendered_unselectable_hierarchy_ancestor",
+    });
+    expect(() => validateWebManifest(manifest)).toThrow(
+      "childObjectIds is required for logical hierarchy nodes",
+    );
+  });
+
+  it("rejects logical hierarchy child metadata that disagrees with parent ids", () => {
+    const manifest = fixture();
+    const ancestor = manifest.interactiveObjects[0];
+    const child = manifest.interactiveObjects[2];
+    for (const field of ["placement", "colliderProxy", "visual", "collision", "interaction"]) {
+      delete ancestor[field];
+    }
+    Object.assign(ancestor, {
+      independentlyMovable: false,
+      logicalHierarchyOnly: true,
+      logicalRole: "unrendered_unselectable_hierarchy_ancestor",
+      childObjectIds: [manifest.interactiveObjects[1].id],
+    });
+    Object.assign(child, {
+      semanticGranularity: "independent_child_asset",
+      parentObjectId: ancestor.id,
+      movesWithParent: true,
+    });
+
+    expect(() => validateWebManifest(manifest)).toThrow(
+      "childObjectIds must exactly match parentObjectId relationships",
+    );
+  });
+
   it("rejects incomplete child declarations and unknown parents", () => {
     const missingParent = fixture();
     Object.assign(missingParent.interactiveObjects[2], {

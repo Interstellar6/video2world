@@ -2,11 +2,17 @@ import { fileURLToPath } from "node:url";
 
 import { defineConfig } from "vite";
 
+const repoRoot = fileURLToPath(new URL(".", import.meta.url));
+const workspaceRoot = fileURLToPath(new URL("..", import.meta.url));
+
 export default defineConfig({
   root: "web",
   publicDir: "public",
   server: {
     host: "127.0.0.1",
+    fs: {
+      allow: [repoRoot, workspaceRoot],
+    },
   },
   build: {
     outDir: "../dist/web",

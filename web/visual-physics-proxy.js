@@ -960,7 +960,7 @@ function exposeDebugApi() {
   });
   window.__getInteractiveObjectScreenPoint = (objectId) => {
     const component = interactiveObjects.get(String(objectId));
-    if (!component) return null;
+    if (!component || component.logicalHierarchyOnly) return null;
     component.group.updateMatrixWorld(true);
     const collisionBounds = interactiveObjectCollisionBounds(component);
     const worldPoint = collisionBounds && !collisionBounds.isEmpty()
@@ -1200,6 +1200,7 @@ function exposeDebugApi() {
       parentObjectId: component.definition.parentObjectId,
       movesWithParent: component.definition.movesWithParent,
       independentlyMovable: component.definition.independentlyMovable,
+      logicalHierarchyOnly: component.logicalHierarchyOnly === true,
       childObjectIds: Array.from(component.childComponents, (child) => child.definition.id),
       hierarchyAttachmentMatrixDelta: component.hierarchyAttachmentMatrixDelta,
       visualReady: component.visualReady,
@@ -1584,10 +1585,15 @@ async function loadManifest() {
     state.robotObstacleCollision = initialState.robotObstacleCollision;
   }
   state.interactiveObjectCount = Array.isArray(manifest.interactiveObjects)
-    ? manifest.interactiveObjects.length
+    ? manifest.interactiveObjects.filter(
+      (definition) => !isLogicalHierarchyDefinition(definition)
+    ).length
     : 0;
   state.objectColliderCount = Array.isArray(manifest.interactiveObjects)
-    ? manifest.interactiveObjects.filter((definition) => definition.collision?.mode !== "none").length
+    ? manifest.interactiveObjects.filter(
+      (definition) => !isLogicalHierarchyDefinition(definition)
+        && definition.collision?.mode !== "none"
+    ).length
     : 0;
   sceneKnowledgeIndex = buildSceneKnowledgeIndex(manifest);
   sceneCommandEndpoint = manifest.sceneCommandService?.endpoint
@@ -1613,6 +1619,18 @@ function getAssetPartSources(part) {
     ...sources.filter((source) => source.key !== preferred.key && source.key !== "origin"),
     sources[0],
   ];
+}
+
+function singleAssetFetchUrl(value) {
+  const url = String(value);
+  if (
+    url.startsWith(".")
+    || url.startsWith("/")
+    || /^[a-z][a-z0-9+.-]*:/iu.test(url)
+  ) {
+    return url;
+  }
+  return `./assets/${url}`;
 }
 
 async function sha256Hex(bytes) {
@@ -1669,7 +1687,7 @@ async function getChunkedAssetBytes(asset, assetKey = "asset") {
     const url = asset?.url || asset?.fileName;
     if (!url) throw new Error(`No chunk list or URL for ${assetKey}`);
     let bytes = await fetchPart({
-      url: String(url).startsWith(".") ? url : `./assets/${url}`,
+      url: singleAssetFetchUrl(url),
       size: asset.transportSize,
       sha256: asset.transportSha256,
     }, asset.label || assetKey);
@@ -1766,7 +1784,59 @@ async function loadVisualSplat(transform) {
   setLayerVisibility();
 }
 
+function isLogicalHierarchyDefinition(definition) {
+  return definition?.logicalHierarchyOnly === true;
+}
+
+function createLogicalHierarchyComponent(definition) {
+  const group = new THREE.Group();
+  group.name = `${definition.id} logical hierarchy ancestor`;
+  const content = new THREE.Group();
+  content.name = `${definition.id} logical hierarchy content`;
+  group.add(content);
+  const outline = new THREE.Object3D();
+  outline.name = `${definition.id} disabled logical selection outline`;
+  outline.visible = false;
+  group.add(outline);
+  const component = {
+    definition,
+    group,
+    content,
+    splat: null,
+    visualKind: "logical-hierarchy-only",
+    proxy: null,
+    outline,
+    ready: true,
+    visualReady: false,
+    colliderReady: false,
+    collisionSettled: true,
+    collisionMode: "none",
+    collisionRoot: null,
+    collisionMeshes: [],
+    collisionFaces: 0,
+    collisionBounds: null,
+    splatLocalBounds: null,
+    meshVisualVertexCount: 0,
+    spin: null,
+    turns: 0,
+    dragYawRadians: 0,
+    restQuaternion: group.quaternion.clone(),
+    parentComponent: null,
+    childComponents: new Set(),
+    hierarchyAttachmentMatrixDelta: 0,
+    hierarchyResolved: false,
+    unifiedLoadPromise: null,
+    logicalHierarchyOnly: true,
+  };
+  interactiveObjects.set(definition.id, component);
+  interactiveObjectLayer.add(group);
+  return component;
+}
+
 function createInteractiveObjectComponent(definition) {
+  if (isLogicalHierarchyDefinition(definition)) {
+    return createLogicalHierarchyComponent(definition);
+  }
   const unified = definition.collision?.mode === "unified-glb";
   const group = new THREE.Group();
   group.name = `${definition.id} interactive visual-collider component`;
@@ -2076,6 +2146,7 @@ function initializeInteractiveObjectComponents() {
 
 async function loadInteractiveObject(definition) {
   const component = interactiveObjects.get(definition.id) || createInteractiveObjectComponent(definition);
+  if (isLogicalHierarchyDefinition(definition)) return component;
   if (definition.collision?.mode === "unified-glb") {
     return loadUnifiedInteractiveObject(component);
   }
@@ -2371,19 +2442,22 @@ function ensureInteractiveObjectCollidersLoaded() {
 
 function ensureInteractiveObjectsLoaded() {
   const definitions = Array.isArray(manifest?.interactiveObjects) ? manifest.interactiveObjects : [];
-  if (!definitions.length || state.interactiveObjectReadyCount === definitions.length) {
+  const loadableDefinitions = definitions.filter(
+    (definition) => !isLogicalHierarchyDefinition(definition)
+  );
+  if (!loadableDefinitions.length || state.interactiveObjectReadyCount === loadableDefinitions.length) {
     return Promise.resolve(Array.from(interactiveObjects.values()));
   }
   if (interactiveObjectLoadPromise) return interactiveObjectLoadPromise;
   interactiveObjectLoadPromise = (async () => {
     initializeInteractiveObjectComponents();
-    for (const definition of definitions) {
+    for (const definition of loadableDefinitions) {
       if (interactiveObjects.get(definition.id)?.ready) continue;
       await loadInteractiveObject(definition);
     }
     applyEffectiveVisualTransform();
     setLayerVisibility();
-    showToast(`${definitions.length} interactive visual objects ready.`);
+    showToast(`${loadableDefinitions.length} interactive visual objects ready.`);
     return Array.from(interactiveObjects.values());
   })().finally(() => {
     interactiveObjectLoadPromise = null;
@@ -3467,7 +3541,7 @@ function setCameraOrbitView(preset = "reference", { announce = false, immediate 
   camera.updateProjectionMatrix();
   const overviewId = manifest?.initialState?.cameraFocusObjectId;
   const overview = overviewId ? interactiveObjects.get(String(overviewId)) : null;
-  if (overview) {
+  if (overview && !overview.logicalHierarchyOnly) {
     focusCameraOnInteractiveComponent(overview, {
       immediate,
       referenceEye: eye,
@@ -3610,9 +3684,10 @@ function focusSceneEntity(entityOrId, { focus = true } = {}) {
     ? sceneKnowledgeIndex?.entities.get(entityOrId)
     : entityOrId;
   if (!entity) return false;
-  state.selectedSceneEntity = entity.id;
   const componentId = entity.interactiveObjectId || entity.id;
   const component = interactiveObjects.get(componentId);
+  if (component?.logicalHierarchyOnly) return false;
+  state.selectedSceneEntity = entity.id;
   if (component) {
     disposeSceneEntityOutline();
     selectInteractiveObject(component, { focus });
@@ -4122,16 +4197,17 @@ function focusCameraOnInteractiveComponent(component, {
 }
 
 function selectInteractiveObject(component, { focus = false } = {}) {
-  if (!component) return;
+  if (!component || component.logicalHierarchyOnly) return false;
   state.selectedInteractiveObject = component.definition.id;
   state.selectedSceneEntity = component.definition.id;
   for (const candidate of interactiveObjects.values()) {
     const selected = candidate === component;
-    candidate.outline.material.color.setHex(selected ? 0xefb35f : 0x58d7c9);
+    candidate.outline.material?.color?.setHex(selected ? 0xefb35f : 0x58d7c9);
   }
   applyInteractiveObjectVisibility();
   if (focus) focusCameraOnInteractiveComponent(component);
   updateHud();
+  return true;
 }
 
 function startInteractiveObjectSpin(component) {
@@ -4264,7 +4340,9 @@ function updateInteractiveObjectAnimations(dt) {
 }
 
 function focusNextInteractiveObject() {
-  const ready = Array.from(interactiveObjects.values()).filter((component) => component.ready);
+  const ready = Array.from(interactiveObjects.values()).filter(
+    (component) => component.ready && !component.logicalHierarchyOnly
+  );
   if (!ready.length) {
     showToast("Interactive objects are still loading.");
     return;

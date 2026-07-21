@@ -1,6 +1,7 @@
 const WEB_MANIFEST_SCHEMA_VERSION = 1;
 const WEB_MANIFEST_CONTRACT = "video2world-web-manifest-1.0.0";
 const SCENE_COMMAND_SERVICE_CONTRACT = "video2world-scene-command-service-1.0.0";
+const LOGICAL_HIERARCHY_ROLE = "unrendered_unselectable_hierarchy_ancestor";
 const SEMANTIC_GRANULARITIES = new Set([
   "independent_root_asset",
   "independent_child_asset",
@@ -223,6 +224,50 @@ function validateInteractiveObject(object, index, ids) {
   );
   requireCondition(typeof object.movesWithParent === "boolean", `${path}.movesWithParent`);
   requireCondition(typeof object.independentlyMovable === "boolean", `${path}.independentlyMovable`);
+  if (object.childObjectIds != null) {
+    requireCondition(
+      Array.isArray(object.childObjectIds)
+        && object.childObjectIds.every((childId) => typeof childId === "string" && childId.length > 0)
+        && new Set(object.childObjectIds).size === object.childObjectIds.length,
+      `${path}.childObjectIds must contain unique non-empty ids`,
+    );
+  }
+  if (object.logicalHierarchyOnly != null) {
+    requireCondition(
+      typeof object.logicalHierarchyOnly === "boolean",
+      `${path}.logicalHierarchyOnly must be a boolean`,
+    );
+  }
+  if (object.logicalHierarchyOnly === true) {
+    requireCondition(
+      object.logicalRole === LOGICAL_HIERARCHY_ROLE,
+      `${path}.logicalRole must equal ${LOGICAL_HIERARCHY_ROLE}`,
+    );
+    requireCondition(
+      Array.isArray(object.childObjectIds),
+      `${path}.childObjectIds is required for logical hierarchy nodes`,
+    );
+    requireCondition(
+      object.independentlyMovable === false,
+      `${path} logical hierarchy nodes cannot be independently movable`,
+    );
+    for (const field of [
+      "placement",
+      "collision",
+      "visual",
+      "renderAsset",
+      "colliderProxy",
+      "interaction",
+      "carve",
+      "sourceAnchor",
+    ]) {
+      requireCondition(
+        !Object.prototype.hasOwnProperty.call(object, field),
+        `${path} logical hierarchy nodes must not declare ${field}`,
+      );
+    }
+    return;
+  }
   requireCondition(isRecord(object.placement), `${path}.placement`);
   requireCondition(isFiniteVector(object.placement.pivot), `${path}.placement.pivot`);
   requireCondition(isFiniteVector(object.placement.scale), `${path}.placement.scale`);
@@ -341,6 +386,7 @@ function validateInteractiveObject(object, index, ids) {
 
 function validateInteractiveObjectHierarchy(objects, ids) {
   const parents = new Map();
+  const childrenByParent = new Map(Array.from(ids, (id) => [id, []]));
   objects.forEach((object, index) => {
     const path = `interactiveObjects[${index}]`;
     const isChild = object.semanticGranularity === "independent_child_asset";
@@ -363,6 +409,18 @@ function validateInteractiveObjectHierarchy(objects, ids) {
       `${path}.parentObjectId references unknown object ${object.parentObjectId}`,
     );
     parents.set(object.id, object.parentObjectId);
+    childrenByParent.get(object.parentObjectId).push(object.id);
+  });
+
+  objects.forEach((object, index) => {
+    if (object.logicalHierarchyOnly !== true) return;
+    const declared = [...object.childObjectIds].sort();
+    const derived = [...childrenByParent.get(object.id)].sort();
+    requireCondition(
+      declared.length === derived.length
+        && declared.every((childId, childIndex) => childId === derived[childIndex]),
+      `interactiveObjects[${index}].childObjectIds must exactly match parentObjectId relationships`,
+    );
   });
 
   for (const object of objects) {

@@ -41,7 +41,7 @@ Generated models and run outputs are intentionally excluded from Git.
 - A verified Bedroom 4 legacy-adoption example: 1,512,870 visual primitives,
   four separate GLB colliders, one visual-only pillow component, and
   desktop/mobile browser QA. This historical production mode is retained while
-  the newer one-PBR-GLB object mode completes scene-level browser QA.
+  newer one-PBR-GLB object candidates are gated separately.
 
 The checked-in root demo is intentionally a tiny fixture. Real PGSR, TSDF,
 semantic Gaussian, TRELLIS, and cognition assets remain local or remote and are
@@ -50,9 +50,12 @@ referenced by hash-bearing manifests.
 The current Bedroom 4 mesh-first candidate is a TRELLIS2 PBR GLB with 60,237
 vertices and 97,082 faces. It is finite, nondegenerate, winding-consistent, and
 non-watertight, so its honest collision contract is `surface_bvh`: character
-surface blocking without volume or inside/outside claims. Its unified real-scene
-browser QA is still pending; the older verified production bundle remains a
-separate historical baseline.
+surface blocking without volume or inside/outside claims. The direct local
+three-pillow candidate now has a passed no-clean-plate browser QA report at
+`examples/bedroom4/completion/direct-trellis2-refit/candidate/browser-qa-report.json`;
+it verifies desktop/mobile unified GLB loading, MeshBVH robot blocking, pointer
+focus, yaw transforms and the logical-only bed ancestor. The older verified
+production bundle remains a separate historical baseline.
 
 The provider profile is an executable integration boundary, not a claim that
 arbitrary videos are zero-configuration or already verified. Copy

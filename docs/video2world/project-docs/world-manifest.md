@@ -160,7 +160,9 @@ unified PBR GLB 的 PBR visual、逻辑对象和 BVH 必须共享同一个父 tr
 
 ## 当前真实候选边界
 
-TRELLIS2 front pillow PBR GLB 有 60,237 vertices / 97,082 faces、PBR material、finite、nondegenerate、winding consistent、non-watertight，因此只适合 `surface_bvh`。source-camera mask IoU 为 `0.709810`、bbox IoU 为 `0.924577`、中心误差为 `4.402 px`。这些 receipt 支持 object-local/source-camera gate，不等于真实 bedroom4 unified 浏览器 QA 已通过；后者仍需验证同一 GLB 的渲染、选择/旋转、BVH robot blocking、支撑、显著穿模和无 fallback。
+TRELLIS2 front pillow PBR GLB 有 60,237 vertices / 97,082 faces、PBR material、finite、nondegenerate、winding consistent、non-watertight，因此只适合 `surface_bvh`。source-camera mask IoU 为 `0.709810`、bbox IoU 为 `0.924577`、中心误差为 `4.402 px`。这些 receipt 支持 object-local/source-camera gate。
+
+2026-07-22 的 direct local 三枕头候选进一步通过了真实浏览器合同 QA：`examples/bedroom4/completion/direct-trellis2-refit/candidate/browser-qa-report.json` 状态为 `passed`，manifest SHA-256 为 `c6ebd4820028616597568406683b79d88a5d6434b2883096099ef18337c29623`，desktop `1440x900` 与 mobile `390x844` 都加载原始 TSDF collider `1,351,454` faces、三个 unified PBR GLB colliders `293,538` faces，确认 PBR material、MeshBVH、pointer focus、yaw 后 visual/collision 同步、机器人 object blocking、无 degraded/proxy fallback，并确认逻辑 `sam3_bed_01` 祖先不能 focus、不能提供 screen point、没有 visual/collider。该报告的 scope 仍是 `direct_original_uncarved_scene_local_qa_only`：没有执行 clean plate、没有 carve 原始 PGSR、没有最终支撑/显著穿模质量放行，也没有 promotion。
 
 SDXL clean-plate seed `2026071701` 已由用户以 `pass_with_known_limitation` 放行当前 demo，但 receipt 同时声明没有证明 object-free background、multiview consistency 或 occluded-bed geometry。这个 scope-limited 决定不能被 canonical manifest 扩大成通用背景重建通过。
 

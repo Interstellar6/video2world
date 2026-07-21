@@ -87,12 +87,12 @@ __probeCollisionRay(origin, direction, distance)
 
 2026-07-16 旧 production E2E/浏览器 QA 已检查真实 GLB loader + BVH、多表示父组 drag、双击回位、query/focus、输入隔离与 console。报告记录 823,391 个 static Gaussians、480,000 个 object Gaussians、209,479 个 pillow RGB points，共 1,512,870 个视觉 primitives；另有 1,265,671 个 static collider faces、67,660 个 object collider faces、4/4 separate GLB colliders ready。四对象 robot blocking、旧枕头 visual-only drag/360、location/appearance query、`390x844` fresh-load 布局均通过；5 个 FPS 样本为 42/43/40/38/38，平均 40.2、最低 38，runtime errors 为零。完整截图与逐项证据见 [bedroom_4 实测记录](../progress/bedroom4-20260716.md)。
 
-当前 unified GLB 代码合同和 fixture 测试不等于真实 bedroom4 PBR 浏览器验收。TRELLIS2 枕头仍待根任务逐项确认：
+当前 unified GLB 代码合同和 fixture 测试不等于真实 bedroom4 PBR 浏览器验收；新的 direct local QA 已补上第一层真实页面证据，但仍不能扩大成 clean-scene production。`examples/bedroom4/completion/direct-trellis2-refit/candidate/browser-qa-report.json` 在 2026-07-22 通过，覆盖：
 
-1. PBR material 在实际页面可见且同一 GLB 只加载一次；
-2. pointer selection、horizontal-yaw drag 和双击 360 均作用于同一对象；
-3. MeshBVH 从同一 mesh 构建，robot blocking 命中且 `volumePhysics=false`；
-4. manifest/runtime 没有 `visual`、`renderAsset`、`colliderProxy` 或 box fallback；
-5. 支撑、显著穿模、静态 carve/clean plate、桌面/移动性能和 console 通过。
+1. desktop `1440x900` 与 mobile `390x844` 都能通过 `/@fs` 本地 manifest 加载原始 TSDF scene collider 与三个 pillow unified PBR GLB；
+2. 三个 pillow 的 PBR material、MeshBVH、`collision.mode=unified-glb`、`surface_bvh`、face count 与无 proxy/degraded fallback 均通过；
+3. pointer focus 命中真实对象，yaw hook 会同步移动 group、visual mesh 与 collision mesh；
+4. robot collision harness 对三个 pillow 分别得到 `blocked=true`、`lastCollisionKind=object` 和对应 object ID；
+5. 逻辑 `sam3_bed_01` 祖先只保留 hierarchy，拒绝 focus/screen point，且不加载 visual/collider。
 
-在这些真实浏览器检查完成前，本文只声明 object-local、source-camera 和 manifest/runtime contract，不声明 unified production passed。
+仍未完成的是 production promotion 级验收：direct candidate 没有 clean plate、没有静态 carve、没有最终支撑/显著穿模质量放行，也没有证明完整背景恢复。因此本文可以声明 direct local unified runtime QA passed，但不能声明 unified production passed。

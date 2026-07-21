@@ -78,6 +78,33 @@ function hierarchyFixture() {
   return manifest;
 }
 
+function logicalHierarchyFixture() {
+  const manifest = runtimeFixture();
+  const ancestor = manifest.interactiveObjects.find((item) => item.id === "sam3_plant_01");
+  const child = manifest.interactiveObjects.find((item) => item.id === "sam3_pillow_01");
+  for (const field of ["placement", "colliderProxy", "visual", "collision", "interaction"]) {
+    delete ancestor[field];
+  }
+  Object.assign(ancestor, {
+    semanticGranularity: "independent_root_asset",
+    parentObjectId: null,
+    movesWithParent: false,
+    independentlyMovable: false,
+    logicalHierarchyOnly: true,
+    logicalRole: "unrendered_unselectable_hierarchy_ancestor",
+    childObjectIds: [child.id],
+  });
+  Object.assign(child, {
+    semanticGranularity: "independent_child_asset",
+    parentObjectId: ancestor.id,
+    movesWithParent: true,
+    independentlyMovable: true,
+    childObjectIds: [],
+  });
+  manifest.initialState.cameraFocusObjectId = ancestor.id;
+  return manifest;
+}
+
 function cameraOverviewFixture() {
   const manifest = runtimeFixture();
   const target = manifest.interactiveObjects.find((item) => item.id === "sam3_plant_01");
@@ -758,6 +785,49 @@ test("parent rotation carries a child while child rotation leaves the parent unc
     matrixGram(beforeChildYaw.child.splatMatrixWorld),
   );
   expect(consoleProblems).toEqual([]);
+});
+
+test("logical hierarchy ancestors do not load colliders or accept focus", async ({ page }) => {
+  const manifest = logicalHierarchyFixture();
+  await page.route(
+    (url) => url.pathname === "/test-fixtures/logical-hierarchy-manifest.json",
+    (route) => route.fulfill({ json: manifest }),
+  );
+  await page.goto("/?visual=off&manifest=/test-fixtures/logical-hierarchy-manifest.json", {
+    waitUntil: "domcontentloaded",
+  });
+  await page.waitForFunction(() => typeof window.__loadInteractiveObjectVisuals === "function");
+  await page.evaluate(() => window.__loadInteractiveObjectVisuals());
+  await page.waitForFunction(() => window.__visualPhysicsDemoState?.interactiveObjects?.length === 3);
+
+  const before = await page.evaluate(() => ({
+    state: window.__visualPhysicsDemoState,
+    ancestor: window.__inspectInteractiveObject("sam3_plant_01"),
+    child: window.__inspectInteractiveObject("sam3_pillow_01"),
+  }));
+  expect(before.state.interactiveObjectCount).toBe(2);
+  expect(before.ancestor).toMatchObject({
+    logicalHierarchyOnly: true,
+    visualReady: false,
+    colliderReady: false,
+    collisionMode: "none",
+    childObjectIds: ["sam3_pillow_01"],
+  });
+  expect(before.child).toMatchObject({
+    parentObjectId: "sam3_plant_01",
+    movesWithParent: true,
+    independentlyMovable: true,
+  });
+
+  const ancestorFocus = await page.evaluate(() => window.__focusSceneEntity("sam3_plant_01"));
+  expect(ancestorFocus.focused).toBe(false);
+  expect(ancestorFocus.state.selectedSceneEntity).toBeNull();
+  expect(ancestorFocus.state.selectedInteractiveObject).toBeNull();
+
+  const childFocus = await page.evaluate(() => window.__focusSceneEntity("sam3_pillow_01"));
+  expect(childFocus.focused).toBe(true);
+  expect(childFocus.state.selectedSceneEntity).toBe("sam3_pillow_01");
+  expect(childFocus.state.selectedInteractiveObject).toBe("sam3_pillow_01");
 });
 
 test("camera presets frame a bed-sized overview target outside every interactive AABB", async ({ page }) => {

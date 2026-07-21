@@ -3,7 +3,7 @@ title: Video2World 架构研究与接入决策
 id: video2world-research-architecture
 category: 调研目录
 visibility: public
-updated: 2026-07-17
+updated: 2026-07-22
 summary: 基于 Holi-Spatial、PGSR、SAM3、Video2Mesh、EmbodiedGen V2 和既有 Web Demo 的实证审计，确定场景 PGSR/TSDF 分层与独立对象统一 PBR GLB 的数据合同。
 tags:
   - Architecture
@@ -56,7 +56,7 @@ EmbodiedGen V2 的论文目标比本项目当前实测更宽，包括 sim-ready 
 |---|---|---|
 | Holi fresh bedroom_4 | 80 帧；PGSR 871,317 Gaussians；TSDF 694,773 vertices / 1,351,454 faces；13 个 3D records；701,608 个语义选中 Gaussians | 基础 fusion 实际 `min_votes=1`；详细 VLM caption、官方 spatial QA 未跑；raw Gaussian 数值健康为 unsafe；本地归档不是自包含 run bundle |
 | EmbodiedGen auto completion（旧 production） | 9 个最终 Gaussian PLY；9 组 GLB/OBJ；文件和轻量几何 QA 通过 | 资产实际引用较早 2026-07-13 Holi run，不是 07-14 fresh；三份表示模式只作为历史兼容 |
-| TRELLIS2 front pillow seed 42 | PBR GLB 60,237 vertices / 97,082 faces；PBR material；六视图完整厚度；winding consistent；non-watertight | `surface_bvh` only；背面花纹是已记录 minor hallucination；真实 unified browser QA 待执行 |
+| TRELLIS2 direct 三枕头 local candidate | front/left/right 三个 PBR GLB 均以 `unified-glb` 进入 Web；object collider faces 共 293,538；desktop/mobile browser QA、PBR material、MeshBVH、pointer focus、yaw 同步、robot object blocking 与逻辑 bed 拒绝 focus 均通过 | `surface_bvh` only；scope 是 `direct_original_uncarved_scene_local_qa_only`，未 clean plate、未静态 carve、未 production promotion |
 | Web stable baseline `252a85c` | PGSR + TSDF 同帧展示、机器人 mesh 碰撞、相机与性能验证 | 无独立交互物体与 scene QA |
 | Web experiment `a5af3ae` | 4 个独立 Gaussian、静态场景 carve、bbox proxy、双击 360 度、机器人跳跃 | collider 仍是 box；无 GLB loader、caption、查询或动态物体碰撞 |
 
@@ -152,7 +152,7 @@ video
 - TRELLIS PBR GLB 必须做语义、尺度、对齐、支撑面、finite/nondegenerate/winding、face budget 与 topology QA；`surface_bvh` 不要求 watertight，但只能声称表面阻挡。
 - pillow、被子和植物叶片属于 soft/deformable candidate；第一版只把同一 GLB 当作静态/kinematic 表面，不声称软体仿真或体积恢复。
 - 外观门禁按 severity：轻微不可见面纹理/材质幻觉可 `passed + limitation`；明显形变、主色类别错误、缺面/片状、部件断裂、悬空或显著穿模必须 retry/reject，最多三轮。
-- Web 端必须禁用 scene Gaussian raycast，并验证 canvas 非空、PBR material、单次 GLB load、实际 asset ID/face count、bbox、双击/拖拽、同 mesh 机器人碰撞、无 fallback、桌面和移动端布局。当前 TRELLIS2 unified 浏览器 QA 仍待根任务执行，不能引用旧 production 结果替代。
+- Web 端必须禁用 scene Gaussian raycast，并验证 canvas 非空、PBR material、单次 GLB load、实际 asset ID/face count、bbox、双击/拖拽、同 mesh 机器人碰撞、无 fallback、桌面和移动端布局。当前 direct TRELLIS2 三枕头候选已通过 local browser QA，但仍不能引用旧 production 或 direct local 报告替代 clean-scene production promotion、背景补全和最终支撑/穿模 QA。
 
 ## 接入结论
 

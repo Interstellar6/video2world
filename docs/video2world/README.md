@@ -3,7 +3,7 @@ title: Video2World
 id: video2world-home
 category: Video2World
 visibility: public
-updated: 2026-07-17
+updated: 2026-07-22
 summary: 从扫描视频构建分层、可交互、可查询 3D 世界：场景保留 PGSR/TSDF，独立对象优先使用统一 PBR GLB，并包含可审计的背面、遮挡与 clean-plate 补全。
 tags:
   - Video2World
@@ -18,7 +18,7 @@ Video2World 把扫描视频转成一组职责明确、可以单独验证的数�
 
 ![Video2World production world](assets/pipeline/13-web-production-overview.png "真实 bedroom_4 production world：PGSR 场景视觉、独立对象组件、TSDF/GLB 碰撞、机器人与场景问答在同一 Web runtime 中运行")
 
-上图对应 2026-07-16 已验证的旧多表示 production。当前 front pillow 已有一个 60,237 vertices / 97,082 faces 的 TRELLIS2 PBR GLB，六视图厚度和 source-camera silhouette 已通过，背面花纹差异按 minor limitation 记录；它的 unified PBR/BVH 真实浏览器 QA 仍待完成，不能用旧 production 报告替代。
+上图对应 2026-07-16 已验证的旧多表示 production。当前 direct TRELLIS2 no-clean-plate 本地候选已把三个枕头作为统一 PBR GLB 加入真实 Web runtime：desktop `1440x900` 与 mobile `390x844` 浏览器 QA 均通过，三对象共 293,538 个 object collider faces，机器人分别被 `sam3_pillow_front`、`sam3_pillow_left`、`sam3_pillow_right` 的 unified GLB 表面阻挡，逻辑 `bed` 祖先拒绝 focus 且不加载 collider。这个报告仍只是 `direct_original_uncarved_scene_local_qa_only`，没有证明 clean plate、静态 carve、支撑/穿模最终质量或 production promotion，不能用旧 production 报告替代，也不能把本地候选扩大成通用补全完成。
 
 ## 文档导航
 
