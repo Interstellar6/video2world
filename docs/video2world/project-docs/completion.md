@@ -66,6 +66,8 @@ Qwen scene audit 只负责类别、可见数量、可见颜色/形状/材质和�
 
 所有前景对象完成后才进入 `final_background`。该轮只重建墙、地面、天花板与剩余结构，不再产出独立对象。计划的停止条件是：没有未建模的主要/次要对象；每个既有 round 的 mask 外区域和跨视图门禁通过；只剩结构背景。
 
+每个通过的 object round 只把 clean plate 交给下一轮，不拥有发布权。对应 manifest/receipt 必须声明 `acceptance_scope="corrected_clean_plate_next_round_source_only"`、`lineage_scope="corrected_clean_plate_round_source"`、`corrected_full_pipeline=false`、`promotion_approved=false` 与 `canonical_promotion_approved=false`；R2 之后还必须把上一轮 accepted next-round source 的 frame order、source RGB hash、累计 removal mask 和 contributor labels 原样传递。terminal `layered_completion_report` 必须同时绑定同批 `provider_receipt`，而 provider receipt 会检查真实 execution wrapper 的 inputs/outputs snapshots。只有 `final_background` 的 output 和 `final_clean_plate` 才能声明 corrected full-pipeline promotion；中间 source、archived current-demo-only Web manifest 或旧四轮 sequence 都不得升级成 canonical evidence。
+
 ## 后端不是按类别硬编码
 
 `completion_routing.py` 先验证同物理实例和外观合同，再按直接证据强度选择后端。下表分数是当前确定性路由优先级，不是生成质量分数。
