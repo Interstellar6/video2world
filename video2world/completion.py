@@ -903,8 +903,24 @@ class LayeredCompletionExecutionReport(StrictModel):
             raise ValueError("planned_target_ids cannot contain duplicates")
         previous = self.initial_clean_plate
         seen_targets: set[str] = set()
-        scene_audit_receipts: set[str] = set()
-        sam3_receipts: set[str] = set()
+        clean_plate_digests: set[str] = {self.initial_clean_plate.sha256}
+        execution_receipts: dict[str, str] = {}
+
+        def register_execution_receipt(
+            evidence: CompletionArtifactEvidence,
+            *,
+            context: str,
+        ) -> None:
+            if evidence.sha256 in clean_plate_digests:
+                raise ValueError(f"{context} must not reuse a clean plate artifact")
+            previous_context = execution_receipts.get(evidence.sha256)
+            if previous_context is not None:
+                raise ValueError(
+                    f"{context} must be distinct from {previous_context}; "
+                    "completion execution evidence cannot be reused across roles or rounds"
+                )
+            execution_receipts[evidence.sha256] = context
+
         for round_item in self.rounds:
             if round_item.index > 1:
                 _require_scoped_next_round_clean_plate(
@@ -921,12 +937,34 @@ class LayeredCompletionExecutionReport(StrictModel):
             duplicates = sorted(seen_targets.intersection(round_item.target_ids))
             if duplicates:
                 raise ValueError(f"objects cannot be peeled twice: {duplicates}")
-            if round_item.scene_audit_receipt.sha256 in scene_audit_receipts:
-                raise ValueError("each completion round requires a new scene-audit receipt")
-            if round_item.sam3_receipt.sha256 in sam3_receipts:
-                raise ValueError("each completion round requires a new SAM3 receipt")
-            scene_audit_receipts.add(round_item.scene_audit_receipt.sha256)
-            sam3_receipts.add(round_item.sam3_receipt.sha256)
+            register_execution_receipt(
+                round_item.scene_audit_receipt,
+                context=f"round {round_item.index} scene_audit_receipt",
+            )
+            register_execution_receipt(
+                round_item.sam3_receipt,
+                context=f"round {round_item.index} sam3_receipt",
+            )
+            register_execution_receipt(
+                round_item.quality_report,
+                context=f"round {round_item.index} quality_report",
+            )
+            for receipt_index, receipt in enumerate(
+                round_item.object_completion_receipts,
+                start=1,
+            ):
+                register_execution_receipt(
+                    receipt,
+                    context=(
+                        f"round {round_item.index} object_completion_receipts"
+                        f"[{receipt_index}]"
+                    ),
+                )
+            if round_item.background_rebuild_receipt is not None:
+                register_execution_receipt(
+                    round_item.background_rebuild_receipt,
+                    context=f"round {round_item.index} background_rebuild_receipt",
+                )
             seen_targets.update(round_item.target_ids)
             if round_item.kind == "object_layer":
                 _require_scoped_next_round_clean_plate(
@@ -938,7 +976,14 @@ class LayeredCompletionExecutionReport(StrictModel):
                     round_item.output_clean_plate,
                     context=f"round {round_item.index} output_clean_plate",
                 )
+            reused_context = execution_receipts.get(round_item.output_clean_plate.sha256)
+            if reused_context is not None:
+                raise ValueError(
+                    f"round {round_item.index} output_clean_plate must be distinct from "
+                    f"{reused_context}"
+                )
             previous = round_item.output_clean_plate
+            clean_plate_digests.add(round_item.output_clean_plate.sha256)
         if seen_targets != set(self.planned_target_ids):
             raise ValueError(
                 "completion receipt targets differ from the completion plan target list"

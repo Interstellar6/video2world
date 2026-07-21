@@ -926,6 +926,74 @@ def test_layered_completion_report_binds_clean_plate_scope_lineage(
         )
 
 
+@pytest.mark.parametrize(
+    ("mutation", "expected"),
+    [
+        (
+            lambda payload: payload["rounds"][0].__setitem__(
+                "sam3_receipt",
+                dict(payload["rounds"][0]["scene_audit_receipt"]),
+            ),
+            "round 1 sam3_receipt must be distinct from round 1 scene_audit_receipt",
+        ),
+        (
+            lambda payload: payload["rounds"][1].__setitem__(
+                "quality_report",
+                dict(payload["rounds"][0]["quality_report"]),
+            ),
+            "round 2 quality_report must be distinct from round 1 quality_report",
+        ),
+        (
+            lambda payload: payload["rounds"][0].__setitem__(
+                "object_completion_receipts",
+                [dict(payload["rounds"][0]["quality_report"])],
+            ),
+            r"round 1 object_completion_receipts\[1\] must be distinct "
+            "from round 1 quality_report",
+        ),
+        (
+            lambda payload: payload["rounds"][1].__setitem__(
+                "background_rebuild_receipt",
+                dict(payload["rounds"][0]["object_completion_receipts"][0]),
+            ),
+            "round 2 background_rebuild_receipt must be distinct from "
+            r"round 1 object_completion_receipts\[1\]",
+        ),
+        (
+            lambda payload: payload["rounds"][0].__setitem__(
+                "quality_report",
+                dict(payload["initial_clean_plate"]),
+            ),
+            "round 1 quality_report must not reuse a clean plate artifact",
+        ),
+        (
+            lambda payload: payload["rounds"][0].__setitem__(
+                "output_clean_plate",
+                {
+                    **dict(payload["rounds"][0]["output_clean_plate"]),
+                    "sha256": payload["rounds"][0]["quality_report"]["sha256"],
+                },
+            ),
+            "round 1 output_clean_plate must be distinct from round 1 quality_report",
+        ),
+    ],
+)
+def test_layered_completion_report_rejects_reused_execution_evidence(
+    tmp_path: Path,
+    mutation,
+    expected: str,
+) -> None:
+    report_payload = _valid_layered_completion_report()
+    mutation(report_payload)
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+
+    with pytest.raises(ArtifactError, match=expected):
+        get_adapter("layered_completion").validate_outputs(
+            {"layered_completion_report": snapshot_path(report_path)}
+        )
+
+
 def test_layered_completion_report_requires_provider_receipt_lineage(
     tmp_path: Path,
 ) -> None:
