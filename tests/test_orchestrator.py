@@ -299,6 +299,47 @@ def test_named_adapters_reject_mislabeled_geometry_and_json(tmp_path: Path) -> N
         get_adapter("holi_sam3").validate_outputs({"masks_manifest": snapshot_path(fake_json)})
 
 
+def _provider_receipt_snapshot(name: str, digest: str) -> dict[str, object]:
+    return {
+        "path": f"/tmp/video2world/{name}",
+        "kind": "file",
+        "sha256": digest * 64,
+        "size_bytes": 1024,
+        "file_count": 1,
+    }
+
+
+def _provider_receipt_payload(
+    *,
+    inputs: dict[str, object] | None = None,
+    outputs: dict[str, object] | None = None,
+) -> dict[str, object]:
+    return {
+        "schema_version": 1,
+        "kind": "video2world.provider_execution_receipt",
+        "status": "completed",
+        "provider_id": "site-test-provider",
+        "provider_stage_id": "layered_completion",
+        "provider": "Video2World layered completion providers",
+        "inputs": inputs or {},
+        "outputs": outputs or {"result": _provider_receipt_snapshot("result.json", "a")},
+    }
+
+
+def test_provider_receipt_role_uses_typed_contract(tmp_path: Path) -> None:
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(json.dumps(_provider_receipt_payload()), encoding="utf-8")
+    get_adapter("holi_ingest").validate_outputs({"provider_receipt": snapshot_path(receipt_path)})
+
+    broken = _provider_receipt_payload()
+    broken["outputs"] = {"result": {"path": "/tmp/result.json", "sha256": "a" * 64}}
+    receipt_path.write_text(json.dumps(broken), encoding="utf-8")
+    with pytest.raises(ArtifactError, match=r"provider_receipt outputs\.result\.kind"):
+        get_adapter("holi_ingest").validate_outputs(
+            {"provider_receipt": snapshot_path(receipt_path)}
+        )
+
+
 @pytest.mark.parametrize(
     ("adapter_name", "role"),
     [
@@ -468,16 +509,22 @@ def test_layered_completion_report_binds_executed_plan_and_provider_receipt(
     receipt_path = tmp_path / "provider-receipt.json"
     receipt_path.write_text(
         json.dumps(
-            {
-                "kind": "video2world.provider_execution_receipt",
-                "status": "completed",
-                "inputs": {
+            _provider_receipt_payload(
+                inputs={
                     "layered_completion_plan": {
                         "path": str(plan_path),
+                        "kind": "file",
                         "sha256": plan_sha,
+                        "size_bytes": plan_path.stat().st_size,
+                        "file_count": 1,
                     }
                 },
-            }
+                outputs={
+                    "layered_completion_report": _provider_receipt_snapshot(
+                        "report.json", "b"
+                    )
+                },
+            )
         ),
         encoding="utf-8",
     )

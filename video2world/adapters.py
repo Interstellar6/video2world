@@ -32,6 +32,7 @@ JSON_OUTPUT_ROLES = {
     "layered_completion_report",
     "completed_object_assets_manifest",
     "clean_plate_manifest",
+    "provider_receipt",
     "web_bundle_manifest",
 }
 PLY_OUTPUT_ROLES = {
@@ -65,6 +66,7 @@ SEMANTIC_JSON_ROLES = {
     "layered_completion_report",
     "completed_object_assets_manifest",
     "clean_plate_manifest",
+    "provider_receipt",
 }
 CLEAN_SCENE_PLY_ROLES = {"clean_scene_gaussian", "clean_scene_mesh"}
 _CLEAN_PLATE_COLLECTION_KEYS = {
@@ -254,8 +256,52 @@ def _validate_semantic_json(value: dict[str, Any] | list[Any], path: Path, role:
             from video2world.completion import LayeredCompletionExecutionReport
 
             LayeredCompletionExecutionReport.model_validate(value)
+        elif role == "provider_receipt":
+            _validate_provider_receipt(value)
     except (TypeError, ValueError) as exc:
         raise ArtifactError(f"{role} failed semantic validation: {path}: {exc}") from exc
+
+
+def _validate_provider_receipt(value: dict[str, Any]) -> None:
+    if value.get("kind") != "video2world.provider_execution_receipt":
+        raise ValueError("provider_receipt kind must be video2world.provider_execution_receipt")
+    if value.get("status") != "completed":
+        raise ValueError("provider_receipt status must be completed")
+    for key in ("provider_id", "provider_stage_id", "provider"):
+        if not isinstance(value.get(key), str) or not value[key]:
+            raise ValueError(f"provider_receipt requires non-empty {key}")
+    for key in ("inputs", "outputs"):
+        snapshots = value.get(key)
+        if not isinstance(snapshots, dict):
+            raise ValueError(f"provider_receipt {key} must be an object")
+        for role, snapshot in snapshots.items():
+            if not isinstance(role, str) or not role:
+                raise ValueError(f"provider_receipt {key} role names must be non-empty")
+            if not isinstance(snapshot, dict):
+                raise ValueError(f"provider_receipt {key}.{role} must be an object")
+            _validate_provider_receipt_snapshot(snapshot, context=f"{key}.{role}")
+
+
+def _validate_provider_receipt_snapshot(
+    snapshot: dict[str, Any],
+    *,
+    context: str,
+) -> None:
+    if not isinstance(snapshot.get("path"), str) or not snapshot["path"]:
+        raise ValueError(f"provider_receipt {context}.path must be non-empty")
+    if snapshot.get("kind") not in {"file", "directory"}:
+        raise ValueError(f"provider_receipt {context}.kind must be file or directory")
+    sha256 = snapshot.get("sha256")
+    if not (
+        isinstance(sha256, str)
+        and len(sha256) == 64
+        and all(character in "0123456789abcdef" for character in sha256)
+    ):
+        raise ValueError(f"provider_receipt {context}.sha256 must be lowercase SHA-256")
+    if not isinstance(snapshot.get("size_bytes"), int) or snapshot["size_bytes"] <= 0:
+        raise ValueError(f"provider_receipt {context}.size_bytes must be positive")
+    if not isinstance(snapshot.get("file_count"), int) or snapshot["file_count"] <= 0:
+        raise ValueError(f"provider_receipt {context}.file_count must be positive")
 
 
 def _require_json_collection(
