@@ -256,6 +256,8 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             raise ValueError(
                 f"provider receipt is missing layered completion inputs: {missing_inputs}"
             )
+        seen_input_paths: dict[Path, str] = {}
+        seen_input_digests: dict[str, str] = {}
         for role in sorted(LAYERED_COMPLETION_REQUIRED_INPUT_ROLES):
             input_snapshot = inputs.get(role)
             if not isinstance(input_snapshot, dict):
@@ -269,6 +271,24 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
                 context=f"{role} input",
             )
             _validate_layered_receipt_artifact(role, Path(input_path))
+            resolved_input_path = Path(input_path).expanduser().resolve()
+            previous_input_role = seen_input_paths.get(resolved_input_path)
+            if previous_input_role is not None:
+                raise ValueError(
+                    f"provider receipt input {role} path must be distinct from "
+                    f"{previous_input_role}"
+                )
+            seen_input_paths[resolved_input_path] = role
+            input_digest = input_snapshot.get("sha256")
+            if not isinstance(input_digest, str) or not input_digest:
+                raise ValueError(f"provider receipt input {role} sha256 is missing")
+            previous_digest_role = seen_input_digests.get(input_digest)
+            if previous_digest_role is not None:
+                raise ValueError(
+                    f"provider receipt input {role} artifact must be distinct from "
+                    f"{previous_digest_role}"
+                )
+            seen_input_digests[input_digest] = role
         scene_gaussian_input = inputs.get("scene_gaussian")
         semantic_gaussian_input = inputs.get("semantic_gaussian")
         if not isinstance(scene_gaussian_input, dict) or not isinstance(

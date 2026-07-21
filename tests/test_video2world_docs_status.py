@@ -27,6 +27,7 @@ def test_pipeline_docs_keep_corrected_clean_plate_status_fail_closed() -> None:
     assert "provider receipt 本身也会被校验" in getting_started
     assert "越权 next-round source" in getting_started
     assert "provider_receipt.inputs" in getting_started
+    assert "canonical input 角色路径和内容 hash 不能互相复用" in getting_started
     assert "provider_receipt.outputs" in getting_started
     assert "JSON/PLY" in getting_started
     assert "object_probability" in getting_started

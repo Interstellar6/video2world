@@ -1312,6 +1312,87 @@ def test_layered_completion_report_validates_receipt_input_semantics(
         )
 
 
+def test_layered_completion_report_rejects_reused_input_role_paths(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    inputs = _layered_completion_input_snapshots(tmp_path, plan_path)
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    inputs["masks_manifest"] = dict(inputs["captions_manifest"])
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=inputs,
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ArtifactError,
+        match="provider receipt input masks_manifest path must be distinct from captions_manifest",
+    ):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
+def test_layered_completion_report_rejects_reused_input_role_artifacts(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    inputs = _layered_completion_input_snapshots(tmp_path, plan_path)
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    payload = json.dumps({"records": [{"id": "same-sam3-placeholder"}]})
+    captions_path = Path(inputs["captions_manifest"]["path"])
+    masks_path = Path(inputs["masks_manifest"]["path"])
+    captions_path.write_text(payload, encoding="utf-8")
+    masks_path.write_text(payload, encoding="utf-8")
+    inputs["captions_manifest"] = _artifact_snapshot_payload(captions_path)
+    inputs["masks_manifest"] = _artifact_snapshot_payload(masks_path)
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=inputs,
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ArtifactError,
+        match=(
+            "provider receipt input masks_manifest artifact must be distinct from "
+            "captions_manifest"
+        ),
+    ):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
 def test_layered_completion_report_rejects_semantic_gaussian_reusing_scene_gaussian_input(
     tmp_path: Path,
 ) -> None:
@@ -1344,7 +1425,10 @@ def test_layered_completion_report_rejects_semantic_gaussian_reusing_scene_gauss
 
     with pytest.raises(
         ArtifactError,
-        match="semantic_gaussian must not reuse scene_gaussian input artifact",
+        match=(
+            "provider receipt input semantic_gaussian artifact must be distinct from "
+            "scene_gaussian"
+        ),
     ):
         get_adapter("layered_completion").validate_outputs(
             {
@@ -1384,7 +1468,7 @@ def test_layered_completion_report_rejects_semantic_gaussian_reusing_scene_gauss
 
     with pytest.raises(
         ArtifactError,
-        match="semantic_gaussian path must differ from scene_gaussian input path",
+        match="provider receipt input semantic_gaussian path must be distinct from scene_gaussian",
     ):
         get_adapter("layered_completion").validate_outputs(
             {
