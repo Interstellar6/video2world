@@ -70,6 +70,18 @@ SEMANTIC_JSON_ROLES = {
     "provider_receipt",
 }
 CLEAN_SCENE_PLY_ROLES = {"clean_scene_gaussian", "clean_scene_mesh"}
+LAYERED_COMPLETION_REQUIRED_INPUT_ROLES = {
+    "frames_manifest",
+    "cameras",
+    "layered_completion_plan",
+    "scene_gaussian",
+    "scene_mesh",
+    "masks_manifest",
+    "captions_manifest",
+    "object_clouds_manifest",
+    "semantic_gaussian",
+    "object_facts",
+}
 _CLEAN_PLATE_COLLECTION_KEYS = {
     "frames",
     "frame_records",
@@ -191,6 +203,23 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
         inputs = receipt.get("inputs")
         if not isinstance(inputs, dict):
             raise ValueError("provider receipt has no input snapshots")
+        missing_inputs = sorted(LAYERED_COMPLETION_REQUIRED_INPUT_ROLES - set(inputs))
+        if missing_inputs:
+            raise ValueError(
+                f"provider receipt is missing layered completion inputs: {missing_inputs}"
+            )
+        for role in sorted(LAYERED_COMPLETION_REQUIRED_INPUT_ROLES):
+            input_snapshot = inputs.get(role)
+            if not isinstance(input_snapshot, dict):
+                raise ValueError(f"provider receipt input {role} must be a snapshot object")
+            input_path = input_snapshot.get("path")
+            if not isinstance(input_path, str) or not input_path:
+                raise ValueError(f"provider receipt input {role} path is missing")
+            _require_matching_receipt_snapshot(
+                input_snapshot,
+                digest_path(input_path),
+                context=f"{role} input",
+            )
         plan_snapshot = inputs.get("layered_completion_plan")
         if not isinstance(plan_snapshot, dict):
             raise ValueError("provider receipt has no layered_completion_plan input")
@@ -199,11 +228,6 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
         plan_path = plan_snapshot.get("path")
         if not isinstance(plan_path, str) or not plan_path:
             raise ValueError("provider receipt has no completion plan path")
-        _require_matching_receipt_snapshot(
-            plan_snapshot,
-            digest_path(plan_path),
-            context="layered_completion_plan input",
-        )
         plan = load_layered_completion_plan(plan_path)
         if plan.scene_id != report.scene_id or plan.run_id != report.run_id:
             raise ValueError("completion report scene/run differs from the executed plan")
