@@ -634,6 +634,33 @@ def test_layered_completion_report_requires_provider_receipt_output_snapshot(
         )
 
 
+def test_layered_completion_report_requires_layered_provider_stage_id(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    receipt = _provider_receipt_payload(
+        inputs=_layered_completion_input_snapshots(tmp_path, plan_path),
+        outputs=_layered_completion_output_snapshots(tmp_path, report_path),
+    )
+    receipt["provider_stage_id"] = "placement"
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
+
+    with pytest.raises(ArtifactError, match="wrong provider_stage_id"):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
 def test_layered_completion_report_requires_provider_receipt_input_snapshot(
     tmp_path: Path,
 ) -> None:

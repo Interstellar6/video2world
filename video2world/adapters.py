@@ -196,6 +196,8 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             raise ValueError("layered completion requires a provider execution receipt")
         if receipt.get("status") != "completed":
             raise ValueError("layered completion provider receipt is not completed")
+        if receipt.get("provider_stage_id") != "layered_completion":
+            raise ValueError("layered completion provider receipt has wrong provider_stage_id")
         receipt_outputs = receipt.get("outputs")
         if not isinstance(receipt_outputs, dict):
             raise ValueError("provider receipt has no output snapshots")
