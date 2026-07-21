@@ -3,7 +3,7 @@ title: World Manifest 与质量门禁
 id: video2world-project-world-manifest
 category: 项目文档
 visibility: public
-updated: 2026-07-17
+updated: 2026-07-22
 summary: Video2World world-manifest-1.0.0 与 Web 投影如何表达 mesh-first 对象、统一 PBR GLB、collision topology、hash、provenance 和发布门禁。
 tags:
   - Schema
@@ -108,6 +108,20 @@ bedroom_4::holi_fresh_20260714::sam3_plant_01
 ```
 
 实际 manifest 还必须携带部署资产的 size/hash 等字段；上例只突出统一对象语义。`generatedCenter=[0,0,0]` 表示 scene fit 已把局部中心烘焙好，避免 Web 再做一次隐式 recenter/scale。
+
+### 逻辑层级祖先
+
+当本轮只采用子对象的 TRELLIS2 scene-fit 结果、但其父对象没有被替换时，Web manifest 可以保留一个逻辑祖先节点。例如直接采用三个 pillow 的 PBR GLB、暂不采用 bed mesh 时，`bed` 仍可作为 unrendered parent 保留，保证“移动床会带动枕头”的 scene graph 语义可以被表达；但它不能被渲染、选中、碰撞或作为旧 proxy fallback。
+
+逻辑祖先必须满足：
+
+- `logicalHierarchyOnly=true`；
+- `logicalRole="unrendered_unselectable_hierarchy_ancestor"`；
+- `independentlyMovable=false`；
+- `childObjectIds` 与所有 child 的 `parentObjectId` 精确一致；
+- 不允许声明 `placement`、`collision`、`visual`、`renderAsset`、`colliderProxy`、`interaction`、`carve` 或 `sourceAnchor`。
+
+子对象仍使用 `semanticGranularity="independent_child_asset"`、`movesWithParent=true`、`independentlyMovable=true`。运行时会创建不可选中的父组并把 child 挂在其下；选择、focus、drag、双击和机器人碰撞只作用于真实 adopted child。这样可以在 direct TRELLIS2 refit 阶段保留嵌套关系，同时避免把未采用父对象伪装成已验证 runtime asset。
 
 ### Collision topology
 

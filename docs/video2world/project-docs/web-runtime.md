@@ -3,7 +3,7 @@ title: Web Runtime：场景 3DGS 与统一 PBR GLB 对象
 id: video2world-project-web-runtime
 category: 项目文档
 visibility: public
-updated: 2026-07-17
+updated: 2026-07-22
 summary: Video2World Web 如何保留 PGSR/TSDF 场景层，并让同一个 PBR GLB 同时承担独立对象的视觉、选择/旋转逻辑和 MeshBVH 表面碰撞。
 tags:
   - Web
@@ -34,6 +34,14 @@ tags:
 每个交互对象创建一个 `THREE.Group`，父组原点位于 scene-space pivot。unified 模式下 PBR GLB 与 bbox outline 是子节点；拖拽和双击只修改父组 quaternion，同一 GLB 的可见表面与 BVH world transform 因而保持一致。旧模式仍可把 Gaussian、render mesh 与 collision mesh 作为多个子节点，但不再是必需结构。
 
 unified 模式左键直接 raycast 同一个 PBR GLB；命中对象进入 object-yaw drag，未命中才交给 orbit camera。双击对象播放完整 360 度并精确恢复开始 quaternion，避免多次交互累积漂移。旧 visual-only 模式才可能使用 bbox selection helper，且它不参与 character collision。
+
+### 逻辑层级父节点
+
+direct TRELLIS2 refit 有一种中间状态：只采用某些 child object 的 PBR GLB，而它们的 parent 仍停留在原始静态 PGSR 场景里。此时 Web manifest 可以保留 `logicalHierarchyOnly=true` 的 parent，例如 `bed` 只作为三个 pillow 的逻辑祖先存在。
+
+运行时会为逻辑祖先创建一个空父组，但不会加载视觉资产、不会注册 BVH、不会参与 raycast、不会出现在 focus-next 队列，也不会计入 ready visual/collider 数。它只承担层级关系：child 的 transform 挂在 parent 下，因此将来父对象被正式 adopted 后，可以自然带动 child；当前阶段用户直接选择 child 时，旋转只作用于 child 自己，不会反向旋转 parent 或其它 sibling。
+
+逻辑祖先不能作为 fallback。只要它声明了 `placement`、`collision`、`visual`、`renderAsset`、`colliderProxy`、`interaction`、`carve` 或 `sourceAnchor`，manifest 验证会失败。这样 direct scene candidate 可以保留“床包含枕头”的语义，同时诚实地说明 bed 还没有通过统一 PBR/BVH 浏览器验收。
 
 ## 碰撞世界
 
