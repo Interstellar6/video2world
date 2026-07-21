@@ -41,6 +41,7 @@ const UNIFIED_OBJECT_IDS = Object.freeze([
 const PILLOW_OBJECT_IDS = Object.freeze(UNIFIED_OBJECT_IDS.slice(0, 3));
 const BED_OBJECT_ID = "sam3_bed_01";
 const MATRIX_EPSILON = 1e-5;
+const ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE = "archived_current_demo_only";
 const IMPLEMENTATION_EVIDENCE = Object.freeze({
   qaRunner: "scripts/qa_bedroom4_clean_unified_scene_browser.mjs",
   runtime: "web/visual-physics-proxy.js",
@@ -363,6 +364,15 @@ function validateCandidateManifest(manifest, manifestSha, candidatePrefix, adopt
   );
   requireCondition(manifest.candidateBuild?.promotionAllowed === false, "candidate promotionAllowed must be false");
   requireCondition(
+    manifest.candidateBuild?.lineageScope === ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+    "candidate lineage scope must remain archived current-demo-only",
+  );
+  requireCondition(
+    manifest.candidateBuild?.correctedFullPipeline === false
+      && manifest.candidateBuild?.canonicalLayeredCompletion === false,
+    "candidate must not claim corrected full-pipeline layered completion",
+  );
+  requireCondition(
     manifest.candidateBuild?.cleanScene?.status
       === "strict_layered_clean_scene_materialized_current_demo_only",
     "candidate strict clean-scene status is invalid",
@@ -370,6 +380,11 @@ function validateCandidateManifest(manifest, manifestSha, candidatePrefix, adopt
   requireCondition(
     manifest.candidateBuild?.cleanScene?.acceptanceScope === "current_demo_only",
     "candidate clean-scene scope is invalid",
+  );
+  requireCondition(
+    manifest.candidateBuild?.cleanScene?.lineageScope === ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE
+      && manifest.candidateBuild?.cleanScene?.correctedFullPipeline === false,
+    "candidate clean-scene lineage must remain archived current-demo-only",
   );
   requireCondition(
     manifest.candidateBuild?.cleanScene?.promotionApproved === false,
@@ -424,6 +439,11 @@ function validateAdoptionReport(report, candidateManifestSha, canonicalManifestS
     "adoption report status is invalid",
   );
   requireCondition(report.acceptanceScope === "current_demo_only", "adoption report scope is invalid");
+  requireCondition(
+    report.lineageScope === ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE
+      && report.correctedFullPipeline === false,
+    "adoption report lineage must remain archived current-demo-only",
+  );
   requireCondition(report.promotionApproved === false, "adoption report promotion must remain false");
   requireCondition(report.browserQa === "pending", "adoption report must predate candidate browser QA");
   requireCondition(
@@ -1629,12 +1649,17 @@ export function promoteBedroom4StrictCleanScene(options) {
   );
   promotedManifest.candidateBuild.status = "materialized_pending_promoted_manifest_recheck";
   promotedManifest.candidateBuild.promotionAllowed = false;
+  promotedManifest.candidateBuild.lineageScope = ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE;
+  promotedManifest.candidateBuild.correctedFullPipeline = false;
+  promotedManifest.candidateBuild.canonicalLayeredCompletion = false;
   promotedManifest.candidateBuild.promotionBlockers = [
     "promoted_manifest_browser_qa_recheck_pending",
     "finalization_not_performed",
   ];
   promotedManifest.candidateBuild.promotionSwap = {
     status: "materialized_pending_promoted_manifest_recheck",
+    lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+    correctedFullPipeline: false,
     candidateManifestSha256: candidateManifestShaBefore,
     candidateBrowserQaReportSha256: candidateQaSha,
     candidateAdoptionReportSha256: adoptionReportSha,
@@ -1650,6 +1675,8 @@ export function promoteBedroom4StrictCleanScene(options) {
   promotedManifest.sourceWorld = {
     ...(promotedManifest.sourceWorld || {}),
     adoptionMode: "strict_clean_scene_swapped_pending_promoted_manifest_recheck",
+    lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+    correctedFullPipeline: false,
   };
   validateWebManifest(promotedManifest);
   const promotedManifestBytes = Buffer.from(`${JSON.stringify(promotedManifest, null, 2)}\n`);
@@ -1670,6 +1697,8 @@ export function promoteBedroom4StrictCleanScene(options) {
     status: "in_progress",
     phase: "prepared",
     acceptanceScope: "current_demo_only",
+    lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+    correctedFullPipeline: false,
     promotionAllowed: false,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -1770,6 +1799,8 @@ export function promoteBedroom4StrictCleanScene(options) {
       kind: "video2world.bedroom4_strict_clean_scene_swap_receipt",
       status: "materialized_pending_promoted_manifest_recheck",
       acceptanceScope: "current_demo_only",
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
       promotionAllowed: false,
       promotionApproved: false,
       finalQaClaimed: false,

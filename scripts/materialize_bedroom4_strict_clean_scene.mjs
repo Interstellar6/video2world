@@ -63,6 +63,7 @@ const IDENTITY_ROTATION = Object.freeze([
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const defaultProjectRoot = path.resolve(scriptDir, "..");
+const ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE = "archived_current_demo_only";
 
 function requireCondition(condition, message) {
   if (!condition) throw new Error(message);
@@ -747,10 +748,19 @@ function updateManifestForStrictCleanScene({
     manifest.presentation.referenceBoundsAssetKey = "collider";
   }
   const build = manifest.candidateBuild;
+  build.lineageScope = ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE;
+  build.correctedFullPipeline = false;
+  build.canonicalLayeredCompletion = false;
+  build.notCorrectedFullPipelineReason = (
+    "Strict clean-scene materialization is preserved as archived current-demo-only evidence; "
+    + "it is not a corrected_full_pipeline layered_completion_report."
+  );
   build.cleanScene = {
     status: "strict_layered_clean_scene_materialized_current_demo_only",
     claim: "The static scene comes from the strict front-to-back four-round clean plate followed by fresh depth, PGSR, and TSDF reconstruction.",
     method: "front_to_back_cumulative_peel_then_clean_plate_reconstruction",
+    lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+    correctedFullPipeline: false,
     removedObjectOrder: [...CLEAN_PLATE_UNIFIED_OBJECT_IDS],
     freshReconstruction: true,
     alignmentReceiptSha256: alignment.receiptSha256,
@@ -783,6 +793,8 @@ function updateManifestForStrictCleanScene({
   manifest.sourceWorld = {
     ...(manifest.sourceWorld || {}),
     adoptionMode: "strict_layered_clean_scene_candidate_atomic_materialization",
+    lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+    correctedFullPipeline: false,
     manifestSha256: publicManifestSha,
   };
   if (manifest.productionBuild && typeof manifest.productionBuild === "object") {
@@ -1011,6 +1023,8 @@ export function materializeStrictCleanScene(options) {
       kind: "video2world.strict_clean_scene_adoption_report",
       status: "candidate_materialized_browser_qa_pending",
       acceptanceScope: "current_demo_only",
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
       promotionApproved: false,
       browserQa: "pending",
       inputs: {

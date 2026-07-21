@@ -35,6 +35,7 @@ const realPendingManifest = realFinalizationReceipt == null
     path.basename(realFinalizationReceipt.manifest.pendingBackupPath),
   );
 const roots = [];
+const ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE = "archived_current_demo_only";
 
 afterEach(() => {
   for (const root of roots.splice(0)) fs.rmSync(root, { recursive: true, force: true });
@@ -62,6 +63,8 @@ function makeFixture() {
   writeJson(swapReceiptPath, {
     kind: "video2world.bedroom4_strict_clean_scene_swap_receipt",
     status: "materialized_pending_promoted_manifest_recheck",
+    lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+    correctedFullPipeline: false,
     promotionAllowed: false,
     finalQaClaimed: false,
     promotedManifest: { path: manifestPath, sha256: manifestSha },
@@ -99,9 +102,25 @@ describe.skipIf(!localArtifactEvidenceAvailable)("strict clean-scene finalizatio
 
     expect(finalized.candidateBuild).toMatchObject({
       status: "promoted_current_demo_only",
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
+      canonicalLayeredCompletion: false,
       promotionAllowed: true,
       promotionBlockers: [],
-      promotionSwap: { finalQaClaimed: true, promotionAllowed: true },
+      cleanScene: {
+        lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+        correctedFullPipeline: false,
+      },
+      promotionSwap: {
+        lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+        correctedFullPipeline: false,
+        finalQaClaimed: true,
+        promotionAllowed: true,
+      },
+    });
+    expect(finalized.sourceWorld).toMatchObject({
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
     });
     expect(finalized.assets).toEqual(manifest.assets);
     expect(finalized.interactiveObjects).toEqual(manifest.interactiveObjects);
@@ -130,6 +149,8 @@ describe.skipIf(!localArtifactEvidenceAvailable)("strict clean-scene finalizatio
     expect(fs.existsSync(fixture.stagedManifestPath)).toBe(false);
     expect(result.receipt).toMatchObject({
       status: "promoted_current_demo_only",
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
       promotionAllowed: true,
       finalQaClaimed: true,
       manifest: { exactQaTestedBytesMovedAtomically: true },
@@ -151,6 +172,27 @@ describe.skipIf(!localArtifactEvidenceAvailable)("strict clean-scene finalizatio
       outputReceipt: fixture.outputReceipt,
       validateQa: () => {},
     })).toThrow(/finalized promotion contract/u);
+    expect(sha256File(fixture.manifestPath)).toBe(fixture.manifestSha);
+  });
+
+  test("rejects a staged manifest that claims corrected full-pipeline lineage", () => {
+    const fixture = makeFixture();
+    const staged = JSON.parse(fs.readFileSync(fixture.stagedManifestPath, "utf8"));
+    staged.candidateBuild.lineageScope = "corrected_full_pipeline";
+    staged.candidateBuild.correctedFullPipeline = true;
+    staged.candidateBuild.canonicalLayeredCompletion = true;
+    staged.candidateBuild.promotionSwap.lineageScope = "corrected_full_pipeline";
+    staged.candidateBuild.promotionSwap.correctedFullPipeline = true;
+    writeJson(fixture.stagedManifestPath, staged);
+
+    expect(() => commitFinalizedManifest({
+      world: fixture.world,
+      finalQaReport: fixture.finalQaReport,
+      swapReceipt: fixture.swapReceiptPath,
+      stagedManifest: fixture.stagedManifestPath,
+      outputReceipt: fixture.outputReceipt,
+      validateQa: () => {},
+    })).toThrow(/archived current-demo-only lineage/u);
     expect(sha256File(fixture.manifestPath)).toBe(fixture.manifestSha);
   });
 

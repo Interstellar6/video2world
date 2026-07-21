@@ -50,6 +50,7 @@ const UNIFIED_IDS = [
   "sam3_pillow_right",
   "sam3_bed_01",
 ];
+const ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE = "archived_current_demo_only";
 
 afterEach(() => {
   for (const root of roots.splice(0)) fs.rmSync(root, { recursive: true, force: true });
@@ -301,11 +302,16 @@ function minimalManifest({ worldDir, prefix, strictCandidate }) {
     manifest.initialState = { cameraFocusObjectId: "sam3_bed_01" };
     manifest.candidateBuild = {
       status: "candidate_materialized_strict_clean_scene_browser_qa_pending",
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
+      canonicalLayeredCompletion: false,
       promotionAllowed: false,
       promotionBlockers: ["candidate_browser_qa_pending"],
       report: `${prefix}/qa/strict-clean-scene-adoption-report.json`,
       cleanScene: {
         status: "strict_layered_clean_scene_materialized_current_demo_only",
+        lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+        correctedFullPipeline: false,
         acceptanceScope: "current_demo_only",
         promotionApproved: false,
       },
@@ -683,6 +689,8 @@ function makeFixture() {
     kind: "video2world.strict_clean_scene_adoption_report",
     status: "candidate_materialized_browser_qa_pending",
     acceptanceScope: "current_demo_only",
+    lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+    correctedFullPipeline: false,
     promotionApproved: false,
     browserQa: "pending",
     outputManifest: { sha256: candidateManifestSha },
@@ -787,7 +795,18 @@ describe.skipIf(!fs.existsSync(realStableAlias))(
     expect(() => validateWebManifest(manifest)).not.toThrow();
     expect(manifest.candidateBuild.status).toBe("materialized_pending_promoted_manifest_recheck");
     expect(manifest.candidateBuild.promotionAllowed).toBe(false);
+    expect(manifest.candidateBuild.lineageScope).toBe(ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE);
+    expect(manifest.candidateBuild.correctedFullPipeline).toBe(false);
+    expect(manifest.candidateBuild.canonicalLayeredCompletion).toBe(false);
     expect(manifest.candidateBuild.promotionSwap.finalQaClaimed).toBe(false);
+    expect(manifest.candidateBuild.promotionSwap).toMatchObject({
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
+    });
+    expect(manifest.sourceWorld).toMatchObject({
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
+    });
     const strings = collectStrings(manifest);
     expect(strings.some((value) => value.startsWith(`${fixture.candidatePrefix}/`))).toBe(false);
     expect(strings.some((value) => value.startsWith(`${fixture.canonicalPrefix}/`))).toBe(true);
@@ -795,6 +814,8 @@ describe.skipIf(!fs.existsSync(realStableAlias))(
     const receipt = JSON.parse(fs.readFileSync(result.receiptPath));
     expect(receipt).toMatchObject({
       status: "materialized_pending_promoted_manifest_recheck",
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
       promotionAllowed: false,
       promotionApproved: false,
       finalQaClaimed: false,
@@ -825,6 +846,8 @@ describe.skipIf(!fs.existsSync(realStableAlias))(
     expect(journal).toMatchObject({
       status: "complete_pending_promoted_manifest_recheck",
       phase: "complete",
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
       promotionAllowed: false,
     });
     expect(receipt.swap.mode).toBe("durable_journaled_two_rename_transaction");
@@ -1047,6 +1070,29 @@ describe.skipIf(!fs.existsSync(realStableAlias))(
     writeJson(fixture.candidateBrowserQaReport, qa);
 
     expect(() => promote(fixture)).toThrow(/must be an independently movable child/u);
+    expect(fs.existsSync(`${fixture.backupWorld}.swap-journal.json`)).toBe(false);
+  });
+
+  test("rejects a candidate that drops archived current-demo lineage before any transaction state is written", () => {
+    const fixture = makeFixture();
+    const manifest = JSON.parse(fs.readFileSync(fixture.candidateManifestPath));
+    delete manifest.candidateBuild.lineageScope;
+    writeJson(fixture.candidateManifestPath, manifest);
+    fixture.candidateManifestSha = sha256File(fixture.candidateManifestPath);
+    const adoptionPath = path.join(
+      fixture.candidateWorld,
+      "qa",
+      "strict-clean-scene-adoption-report.json",
+    );
+    const adoption = JSON.parse(fs.readFileSync(adoptionPath));
+    adoption.outputManifest.sha256 = fixture.candidateManifestSha;
+    writeJson(adoptionPath, adoption);
+    const qa = JSON.parse(fs.readFileSync(fixture.candidateBrowserQaReport));
+    qa.manifest.sha256Before = fixture.candidateManifestSha;
+    qa.manifest.sha256After = fixture.candidateManifestSha;
+    writeJson(fixture.candidateBrowserQaReport, qa);
+
+    expect(() => promote(fixture)).toThrow(/lineage scope must remain archived current-demo-only/u);
     expect(fs.existsSync(`${fixture.backupWorld}.swap-journal.json`)).toBe(false);
   });
 

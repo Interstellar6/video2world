@@ -15,6 +15,7 @@ import { validateWebManifest } from "../../web/web-manifest.js";
 const roots = [];
 const SOURCE_URL_PREFIX = "./worlds/bedroom4";
 const OUTPUT_URL_PREFIX = "./worlds/bedroom4-strict-clean-candidate";
+const ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE = "archived_current_demo_only";
 const TARGET_FRAME = "pgsr_native_shared_frame_20260714";
 const PILLOW_IDS = CLEAN_PLATE_UNIFIED_OBJECT_IDS.slice(0, 3);
 const BED_MATRIX_ROW_MAJOR = Object.freeze([
@@ -497,14 +498,27 @@ describe("strict layered clean-scene adoption materializer", () => {
 
     const manifest = JSON.parse(fs.readFileSync(path.join(fixture.outputWorld, "manifest.json")));
     expect(() => validateWebManifest(manifest)).not.toThrow();
+    expect(manifest.candidateBuild).toMatchObject({
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
+      canonicalLayeredCompletion: false,
+    });
     expect(manifest.candidateBuild.cleanScene.status)
       .toBe("strict_layered_clean_scene_materialized_current_demo_only");
+    expect(manifest.candidateBuild.cleanScene).toMatchObject({
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
+    });
     expect(manifest.candidateBuild.cleanScene.staticLegacyCarveObjectIds)
       .toEqual(LEGACY_CARVE_OBJECT_IDS);
     expect(manifest.candidateBuild.cleanScene.cleanPlateObjectIdsNotCarvedAgain)
       .toEqual(CLEAN_PLATE_UNIFIED_OBJECT_IDS);
     expect(manifest.candidateBuild.cleanScene.alignmentReceiptSha256)
       .toBe(fixture.alignmentReceiptSha);
+    expect(manifest.sourceWorld).toMatchObject({
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
+    });
     expect(manifest.alignment.canonicalCameraSubsetSha256).toBe(fixture.canonicalCameraSha);
 
     for (const descriptor of [manifest.assets.visual, manifest.assets.colliderStaticCarved]) {
@@ -574,6 +588,10 @@ describe("strict layered clean-scene adoption materializer", () => {
     const report = JSON.parse(
       fs.readFileSync(path.join(fixture.outputWorld, "qa", "strict-clean-scene-adoption-report.json")),
     );
+    expect(report).toMatchObject({
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
+    });
     expect(report.runtimeAssetResolution).toMatchObject({
       status: "passed",
       allManifestWorldUrlsResolve: true,

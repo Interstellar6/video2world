@@ -18,6 +18,7 @@ const scriptPath = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(scriptPath), "..");
 const CANONICAL_WORLD_NAME = "bedroom4";
 const STABLE_ALIAS_FILE = "manifest.web-demo-baseline-stable.json";
+const ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE = "archived_current_demo_only";
 
 function requireCondition(condition, message) {
   if (!condition) throw new Error(message);
@@ -99,6 +100,11 @@ function validateSwapReceipt(receipt, receiptPath, world, canonicalManifestSha) 
   );
   requireCondition(receipt.promotionAllowed === false && receipt.finalQaClaimed === false,
     "swap receipt prematurely claims final QA or promotion");
+  requireCondition(
+    receipt.lineageScope === ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE
+      && receipt.correctedFullPipeline === false,
+    "swap receipt lineage must remain archived current-demo-only",
+  );
   requireCondition(receipt.promotedManifest?.sha256 === canonicalManifestSha,
     "swap receipt does not bind the current canonical manifest SHA-256");
   requireCondition(path.resolve(receipt.promotedManifest?.path || "") === path.join(world, "manifest.json"),
@@ -124,13 +130,20 @@ export function buildFinalizedManifest(manifest, evidence) {
   const finalized = structuredClone(manifest);
   finalized.candidateBuild.status = "promoted_current_demo_only";
   finalized.candidateBuild.promotionAllowed = true;
+  finalized.candidateBuild.lineageScope = ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE;
+  finalized.candidateBuild.correctedFullPipeline = false;
+  finalized.candidateBuild.canonicalLayeredCompletion = false;
   finalized.candidateBuild.promotionBlockers = [];
   finalized.candidateBuild.cleanScene.promotionApproved = true;
+  finalized.candidateBuild.cleanScene.lineageScope = ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE;
+  finalized.candidateBuild.cleanScene.correctedFullPipeline = false;
   finalized.candidateBuild.unifiedPbrObjects.status =
     "browser_qa_passed_promoted_current_demo_only";
   finalized.candidateBuild.promotionSwap = {
     ...finalized.candidateBuild.promotionSwap,
     status: "promoted_current_demo_only",
+    lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+    correctedFullPipeline: false,
     preFinalManifestSha256: evidence.preFinalManifestSha256,
     canonicalPreflightQaReportSha256: evidence.canonicalPreflightQaReportSha256,
     swapReceiptSha256: evidence.swapReceiptSha256,
@@ -145,6 +158,8 @@ export function buildFinalizedManifest(manifest, evidence) {
   finalized.sourceWorld = {
     ...(finalized.sourceWorld || {}),
     adoptionMode: "strict_clean_scene_promoted_current_demo_only",
+    lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+    correctedFullPipeline: false,
   };
   validateWebManifest(finalized);
   return finalized;
@@ -272,6 +287,14 @@ export function commitFinalizedManifest(options) {
     && stagedManifest.candidateBuild.promotionSwap?.finalQaClaimed === true,
   "staged manifest does not carry the finalized promotion contract");
   requireCondition(
+    stagedManifest.candidateBuild.lineageScope === ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE
+      && stagedManifest.candidateBuild.correctedFullPipeline === false
+      && stagedManifest.candidateBuild.canonicalLayeredCompletion === false
+      && stagedManifest.candidateBuild.promotionSwap.lineageScope === ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE
+      && stagedManifest.candidateBuild.promotionSwap.correctedFullPipeline === false,
+    "staged manifest does not preserve archived current-demo-only lineage",
+  );
+  requireCondition(
     stagedManifest.candidateBuild.promotionSwap.preFinalManifestSha256 === canonicalManifestSha,
     "staged manifest does not bind the pending canonical manifest",
   );
@@ -313,6 +336,8 @@ export function commitFinalizedManifest(options) {
       kind: "video2world.bedroom4_strict_clean_scene_finalization_receipt",
       status: "promoted_current_demo_only",
       acceptanceScope: "current_demo_only",
+      lineageScope: ARCHIVED_CURRENT_DEMO_LINEAGE_SCOPE,
+      correctedFullPipeline: false,
       promotionAllowed: true,
       finalQaClaimed: true,
       finalizedAt: new Date().toISOString(),
