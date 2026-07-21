@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 import json
 import struct
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -54,12 +55,9 @@ def write_float_exr(path: Path, value: np.ndarray, *, compression: int = 0) -> N
     )
     chunk_size = 8 + width * 4
     first_chunk = len(header) + height * 8
-    offsets = b"".join(
-        struct.pack("<Q", first_chunk + row * chunk_size) for row in range(height)
-    )
+    offsets = b"".join(struct.pack("<Q", first_chunk + row * chunk_size) for row in range(height))
     chunks = b"".join(
-        struct.pack("<iI", row, width * 4)
-        + np.asarray(value[row], dtype="<f4").tobytes()
+        struct.pack("<iI", row, width * 4) + np.asarray(value[row], dtype="<f4").tobytes()
         for row in range(height)
     )
     path.write_bytes(header + offsets + chunks)
@@ -103,6 +101,15 @@ def test_scene_fit_transform_supports_affine_and_baked_pivot() -> None:
     assert mode == "baked_linear_plus_runtime_pivot"
     assert np.array_equal(matrix[:3, 3], [4.0, 5.0, 6.0])
 
+    mode, matrix = MODULE.scene_fit_raw_transform(
+        {
+            "kind": "video2world.completed_object_scene_fit",
+            "scene_local_runtime": {"placement": {"pivot": [7.0, 8.0, 9.0]}},
+        }
+    )
+    assert mode == "scene_local_rotation_scale_baked_plus_runtime_pivot"
+    assert np.array_equal(matrix[:3, 3], [7.0, 8.0, 9.0])
+
 
 def test_scene_fit_transform_fails_closed_on_ambiguous_or_non_affine_values() -> None:
     with pytest.raises(ValueError, match="no supported"):
@@ -110,9 +117,7 @@ def test_scene_fit_transform_fails_closed_on_ambiguous_or_non_affine_values() ->
     bad = np.eye(4)
     bad[3, 0] = 0.1
     with pytest.raises(ValueError, match="affine"):
-        MODULE.scene_fit_raw_transform(
-            {"runtime_transform": {"matrix_row_major": bad.tolist()}}
-        )
+        MODULE.scene_fit_raw_transform({"runtime_transform": {"matrix_row_major": bad.tolist()}})
 
 
 def test_fitted_mesh_hash_takes_precedence_over_source_asset_hash() -> None:
@@ -125,6 +130,108 @@ def test_fitted_mesh_hash_takes_precedence_over_source_asset_hash() -> None:
         )
         == "fitted"
     )
+
+
+def test_completed_object_scene_local_hash_takes_precedence() -> None:
+    assert (
+        MODULE.expected_mesh_sha256(
+            {
+                "exports": {"scene_local": {"glb": {"sha256": "scene-local"}}},
+                "mesh": {"glb_sha256": "legacy-fitted"},
+                "sources": {"mesh": {"sha256": "source"}},
+            }
+        )
+        == "scene-local"
+    )
+
+
+def test_neutral_review_lighting_contract_is_distance_invariant() -> None:
+    contract = MODULE.lighting_profile_contract("neutral-review")
+
+    assert contract["profile"] == "neutral-review"
+    assert contract["film_transparent"] is True
+    assert contract["distance_dependence"] == "none"
+    assert contract["world"]["mode"] == "nodes_background"
+    assert contract["world"]["strength"] > 0
+    assert contract["view_settings"]["exposure"] == 1.0
+    assert len(contract["lights"]) == 2
+    assert {light["type"] for light in contract["lights"]} == {"SUN"}
+    for light in contract["lights"]:
+        assert light["energy"] > 0
+        assert light["direction_frame"] == "camera_local"
+        assert np.linalg.norm(light["direction"]) == pytest.approx(1.0)
+
+
+def test_legacy_point_lighting_contract_preserves_old_energy_and_locations() -> None:
+    contract = MODULE.lighting_profile_contract("legacy-point")
+
+    assert contract["distance_dependence"] == "inverse_square"
+    assert contract["world"]["color_rgba"] == [0.08, 0.08, 0.08, 1.0]
+    assert contract["view_settings"]["exposure"] == 0.0
+    assert [light["type"] for light in contract["lights"]] == ["POINT", "POINT"]
+    assert [light["energy"] for light in contract["lights"]] == [1400.0, 1000.0]
+    assert contract["lights"][1]["location"] == [1.0, -4.0, 8.0]
+
+
+def test_lighting_contract_rejects_unknown_profile() -> None:
+    with pytest.raises(ValueError, match="unsupported lighting profile"):
+        MODULE.lighting_profile_contract("unknown")
+
+
+def test_rejected_scene_fit_requires_explicit_review_override(tmp_path: Path) -> None:
+    mesh = tmp_path / "candidate.glb"
+    mesh.write_bytes(b"review candidate")
+    report = {
+        "kind": "video2world.completed_object_scene_fit",
+        "object_id": "plant",
+        "status": "rejected",
+        "all_acceptance_gates_passed": False,
+        "exports": {"scene_local": {"glb": {"sha256": MODULE.sha256_file(mesh)}}},
+        "scene_local_runtime": {"placement": {"pivot": [1.0, 2.0, 3.0]}},
+    }
+
+    with pytest.raises(ValueError, match="not accepted"):
+        MODULE.validate_scene_fit(report, mesh, "plant")
+
+    disposition = MODULE.validate_scene_fit(
+        report,
+        mesh,
+        "plant",
+        allow_rejected_for_review=True,
+    )
+    assert disposition == {
+        "report_status": "rejected",
+        "all_acceptance_gates_passed": False,
+        "review_override_used": True,
+        "promotion_eligible": False,
+    }
+
+
+def test_cli_defaults_to_neutral_review_lighting(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "render_source_camera_pbr_layer.py",
+            "--mesh",
+            "object.glb",
+            "--scene-fit-report",
+            "fit.json",
+            "--cameras",
+            "cameras.json",
+            "--layer-id",
+            "plant",
+            "--frame-id",
+            "000001",
+            "--output",
+            "output",
+        ],
+    )
+
+    args = MODULE.parse_args()
+
+    assert args.lighting_profile == "neutral-review"
+    assert args.allow_rejected_scene_fit_for_review is False
 
 
 def test_uncompressed_float_exr_reader_preserves_scanline_orientation(tmp_path: Path) -> None:

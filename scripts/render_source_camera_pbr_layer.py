@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Render one accepted scene-fit GLB into calibrated source-camera RGBA and Z.
+"""Render one scene-fit GLB into calibrated source-camera RGBA and Z.
 
 Run this script with Blender and pass script arguments after ``--``. The
 renderer fails closed unless a built-in plane probe proves that Blender's
 Depth pass is positive camera-axis metric Z for the running Blender build.
+Neutral distance-invariant review lighting is the default; ``legacy-point``
+reproduces the original fixed point-light evidence. Rejected fits require an
+explicit review-only override and remain ineligible for promotion.
 """
 
 from __future__ import annotations
@@ -30,6 +33,79 @@ RAW_TO_BLENDER = np.asarray(
     dtype=np.float64,
 )
 PBR_RECEIPT_KIND = "video2world.pbr_layer_render_receipt"
+LIGHTING_PROFILES = ("neutral-review", "legacy-point")
+
+
+def normalized_direction(values: tuple[float, float, float]) -> list[float]:
+    direction = np.asarray(values, dtype=np.float64)
+    norm = float(np.linalg.norm(direction))
+    if direction.shape != (3,) or not np.isfinite(norm) or norm <= 0:
+        raise ValueError("lighting direction must be a finite non-zero 3-vector")
+    return [float(value) for value in direction / norm]
+
+
+def lighting_profile_contract(profile: str) -> dict[str, Any]:
+    if profile == "neutral-review":
+        return {
+            "profile": profile,
+            "purpose": "distance_invariant_neutral_pbr_material_review",
+            "film_transparent": True,
+            "distance_dependence": "none",
+            "world": {
+                "mode": "nodes_background",
+                "color_rgba": [0.12, 0.12, 0.12, 1.0],
+                "strength": 0.5,
+            },
+            "view_settings": {"exposure": 1.0},
+            "lights": [
+                {
+                    "name": "neutral_key",
+                    "type": "SUN",
+                    "energy": 8.0,
+                    "angle_radians": 0.25,
+                    "direction_frame": "camera_local",
+                    "direction": normalized_direction((0.35, -0.45, -1.0)),
+                },
+                {
+                    "name": "neutral_fill",
+                    "type": "SUN",
+                    "energy": 3.0,
+                    "angle_radians": 0.4,
+                    "direction_frame": "camera_local",
+                    "direction": normalized_direction((-0.55, 0.1, -1.0)),
+                },
+            ],
+        }
+    if profile == "legacy-point":
+        return {
+            "profile": profile,
+            "purpose": "reproduce_fixed_world_space_point_lighting_v1",
+            "film_transparent": True,
+            "distance_dependence": "inverse_square",
+            "world": {
+                "mode": "color",
+                "color_rgba": [0.08, 0.08, 0.08, 1.0],
+            },
+            "view_settings": {"exposure": 0.0},
+            "lights": [
+                {
+                    "name": "camera_fill",
+                    "type": "POINT",
+                    "energy": 1400.0,
+                    "shadow_soft_size": 4.0,
+                    "location_rule": "camera_position_blender_plus_0_0_1",
+                },
+                {
+                    "name": "room_fill",
+                    "type": "POINT",
+                    "energy": 1000.0,
+                    "shadow_soft_size": 4.0,
+                    "location_frame": "raw_scene",
+                    "location": [1.0, -4.0, 8.0],
+                },
+            ],
+        }
+    raise ValueError(f"unsupported lighting profile: {profile}")
 
 
 def read_json(path: Path) -> Any:
@@ -81,9 +157,7 @@ def load_camera(path: Path, frame_id: str) -> dict[str, Any]:
         raise ValueError("camera intrinsics must be positive")
     cx = float(camera.get("cx", width / 2.0))
     cy = float(camera.get("cy", height / 2.0))
-    if not np.isclose(cx, width / 2.0, atol=1e-6) or not np.isclose(
-        cy, height / 2.0, atol=1e-6
-    ):
+    if not np.isclose(cx, width / 2.0, atol=1e-6) or not np.isclose(cy, height / 2.0, atol=1e-6):
         raise ValueError("non-centered principal points are not yet supported")
     return {
         "frame_id": frame_id,
@@ -131,6 +205,14 @@ def scene_fit_raw_transform(report: dict[str, Any]) -> tuple[str, np.ndarray]:
         matrix = np.eye(4, dtype=np.float64)
         matrix[:3, 3] = pivot
         mode = "baked_linear_plus_runtime_pivot"
+    elif report.get("kind") == "video2world.completed_object_scene_fit":
+        placement = report.get("scene_local_runtime", {}).get("placement", {})
+        pivot = np.asarray(placement.get("pivot"), dtype=np.float64)
+        if pivot.shape != (3,) or not np.all(np.isfinite(pivot)):
+            raise ValueError("completed-object scene-local receipt has no finite pivot")
+        matrix = np.eye(4, dtype=np.float64)
+        matrix[:3, 3] = pivot
+        mode = "scene_local_rotation_scale_baked_plus_runtime_pivot"
     else:
         raise ValueError("scene-fit report has no supported placement transform")
     if matrix.shape != (4, 4) or not np.all(np.isfinite(matrix)):
@@ -145,6 +227,9 @@ def raw_transform_to_blender(matrix: np.ndarray) -> np.ndarray:
 
 
 def expected_mesh_sha256(report: dict[str, Any]) -> str:
+    scene_local_sha = report.get("exports", {}).get("scene_local", {}).get("glb", {}).get("sha256")
+    if isinstance(scene_local_sha, str):
+        return scene_local_sha
     fitted_mesh_sha = report.get("mesh", {}).get("glb_sha256")
     if isinstance(fitted_mesh_sha, str):
         return fitted_mesh_sha
@@ -154,14 +239,30 @@ def expected_mesh_sha256(report: dict[str, Any]) -> str:
     raise ValueError("scene-fit report does not bind its GLB")
 
 
-def validate_scene_fit(report: dict[str, Any], mesh_path: Path, layer_id: str) -> None:
+def validate_scene_fit(
+    report: dict[str, Any],
+    mesh_path: Path,
+    layer_id: str,
+    *,
+    allow_rejected_for_review: bool = False,
+) -> dict[str, Any]:
     if report.get("object_id") != layer_id:
         raise ValueError("layer id does not match scene-fit object id")
-    if report.get("all_acceptance_gates_passed") is not True:
-        raise ValueError("scene-fit report is not accepted")
+    accepted = report.get("all_acceptance_gates_passed") is True
+    if not accepted:
+        if not allow_rejected_for_review:
+            raise ValueError("scene-fit report is not accepted")
+        if report.get("status") != "rejected":
+            raise ValueError("review override requires an explicitly rejected scene-fit report")
     if sha256_file(mesh_path) != expected_mesh_sha256(report):
         raise ValueError("GLB hash does not match scene-fit report")
     scene_fit_raw_transform(report)
+    return {
+        "report_status": report.get("status"),
+        "all_acceptance_gates_passed": accepted,
+        "review_override_used": not accepted,
+        "promotion_eligible": accepted,
+    }
 
 
 def read_cstring(stream: BinaryIO) -> str:
@@ -272,9 +373,7 @@ def configure_depth_output(bpy: Any, scene: Any, path: Path) -> None:
     scene.render.filepath = str(path.parent) + "/"
     scene.view_layers[0].use_pass_z = True
     scene.use_nodes = True
-    node_group = bpy.data.node_groups.new(
-        f"video2world_depth_{path.stem}", "CompositorNodeTree"
-    )
+    node_group = bpy.data.node_groups.new(f"video2world_depth_{path.stem}", "CompositorNodeTree")
     scene.compositing_node_group = node_group
     render_layers = node_group.nodes.new("CompositorNodeRLayers")
     file_output = node_group.nodes.new("CompositorNodeOutputFile")
@@ -390,13 +489,105 @@ def make_blender_camera(bpy: Any, Matrix: Any, camera: dict[str, Any]) -> Any:
     return camera_object
 
 
-def add_point_light(bpy: Any, Vector: Any, name: str, location: np.ndarray, energy: float) -> None:
+def add_point_light(
+    bpy: Any,
+    Vector: Any,
+    name: str,
+    location: np.ndarray,
+    energy: float,
+    shadow_soft_size: float,
+) -> None:
     data = bpy.data.lights.new(name=name, type="POINT")
     data.energy = energy
-    data.shadow_soft_size = 4.0
+    data.shadow_soft_size = shadow_soft_size
     light = bpy.data.objects.new(name, data)
     bpy.context.collection.objects.link(light)
     light.location = Vector(location.tolist())
+
+
+def add_sun_light(
+    bpy: Any,
+    Vector: Any,
+    *,
+    name: str,
+    direction_world_blender: list[float],
+    energy: float,
+    angle_radians: float,
+) -> None:
+    direction = Vector(direction_world_blender).normalized()
+    data = bpy.data.lights.new(name=name, type="SUN")
+    data.energy = energy
+    data.angle = angle_radians
+    light = bpy.data.objects.new(name, data)
+    bpy.context.collection.objects.link(light)
+    light.rotation_euler = direction.to_track_quat("-Z", "Y").to_euler()
+
+
+def configure_world_lighting(scene: Any, contract: dict[str, Any]) -> None:
+    world = scene.world
+    mode = contract["mode"]
+    color = contract["color_rgba"]
+    if mode == "color":
+        world.use_nodes = False
+        world.color = color[:3]
+        return
+    if mode != "nodes_background":
+        raise ValueError(f"unsupported world lighting mode: {mode}")
+    world.use_nodes = True
+    nodes = world.node_tree.nodes
+    links = world.node_tree.links
+    background = nodes.get("Background") or nodes.new("ShaderNodeBackground")
+    output = nodes.get("World Output") or nodes.new("ShaderNodeOutputWorld")
+    background.inputs["Color"].default_value = color
+    background.inputs["Strength"].default_value = float(contract["strength"])
+    if not any(
+        link.to_node == output and link.to_socket == output.inputs["Surface"] for link in links
+    ):
+        links.new(background.outputs["Background"], output.inputs["Surface"])
+
+
+def configure_lighting_profile(
+    *,
+    bpy: Any,
+    Vector: Any,
+    scene: Any,
+    camera_object: Any,
+    profile: str,
+) -> dict[str, Any]:
+    contract = lighting_profile_contract(profile)
+    configure_world_lighting(scene, contract["world"])
+    scene.view_settings.exposure = float(contract["view_settings"]["exposure"])
+    if profile == "neutral-review":
+        camera_rotation = camera_object.matrix_world.to_3x3()
+        for light in contract["lights"]:
+            camera_direction = Vector(light["direction"])
+            world_direction = (camera_rotation @ camera_direction).normalized()
+            light["direction_world_blender"] = [float(value) for value in world_direction]
+            add_sun_light(
+                bpy,
+                Vector,
+                name=light["name"],
+                direction_world_blender=light["direction_world_blender"],
+                energy=light["energy"],
+                angle_radians=light["angle_radians"],
+            )
+        return contract
+    if profile == "legacy-point":
+        camera_location = np.asarray(camera_object.matrix_world.translation, dtype=np.float64)
+        room_location = RAW_TO_BLENDER @ np.asarray([1.0, -4.0, 8.0, 1.0])
+        locations = [camera_location + np.asarray([0.0, 0.0, 1.0]), room_location[:3]]
+        for light, location in zip(contract["lights"], locations, strict=True):
+            light["location_world_blender"] = [float(value) for value in location]
+            add_point_light(
+                bpy,
+                Vector,
+                light["name"],
+                location,
+                light["energy"],
+                light["shadow_soft_size"],
+            )
+        return contract
+    raise ValueError(f"unsupported lighting profile: {profile}")
 
 
 def import_scene_fit_glb(
@@ -604,9 +795,7 @@ def plan_alpha_depth_sanitization(
             "low-coverage antialiasing support"
         )
     spatial_sanitization_mask = sanitization_mask & boundary_collar
-    low_coverage_sanitization_mask = (
-        sanitization_mask & ~boundary_collar & low_coverage_aa
-    )
+    low_coverage_sanitization_mask = sanitization_mask & ~boundary_collar & low_coverage_aa
     if not np.array_equal(
         spatial_sanitization_mask | low_coverage_sanitization_mask,
         sanitization_mask,
@@ -756,6 +945,8 @@ def render_frame(
     minimum_silhouette_bbox_iou: float,
     maximum_silhouette_center_error_px: float,
     alpha_depth_alignment_mode: str,
+    lighting_profile: str,
+    scene_fit_validation: dict[str, Any],
 ) -> dict[str, Any]:
     frame_started = time.monotonic()
     reset_blender_scene(bpy)
@@ -775,16 +966,13 @@ def render_frame(
         fx=camera["fx"],
         fy=camera["fy"],
     )
-    raw_position = RAW_TO_BLENDER @ np.append(camera["position"], 1.0)
-    add_point_light(
-        bpy,
-        Vector,
-        "camera_fill",
-        raw_position[:3] + np.asarray([0.0, 0.0, 1.0]),
-        1400.0,
+    lighting_receipt = configure_lighting_profile(
+        bpy=bpy,
+        Vector=Vector,
+        scene=scene,
+        camera_object=camera_object,
+        profile=lighting_profile,
     )
-    room_fill = RAW_TO_BLENDER @ np.asarray([1.0, -4.0, 8.0, 1.0])
-    add_point_light(bpy, Vector, "room_fill", room_fill[:3], 1000.0)
 
     rgba_path = output_root / "rgba" / f"{frame_id}.png"
     depth_path = output_root / "depth" / f"{frame_id}.npy"
@@ -863,21 +1051,15 @@ def render_frame(
             alignment["final_alpha_mask"],
         )
         alignment_receipt = {
-            "geometry_matte_provenance": (
-                "raw_blender_z_within_evaluated_geometry_depth_bounds"
-            ),
+            "geometry_matte_provenance": ("raw_blender_z_within_evaluated_geometry_depth_bounds"),
             "geometry_matte_binary_alpha": True,
             "geometry_matte_cleared_pixels": int(alignment["cleared_mask"].sum()),
             "geometry_matte_filled_pixels": int(alignment["filled_mask"].sum()),
             "geometry_matte_changed_pixels": int(alignment["changed_mask"].sum()),
             "geometry_matte_union_pixels": alignment["union_pixels"],
             "geometry_matte_intersection_pixels": alignment["intersection_pixels"],
-            "geometry_matte_changed_union_fraction": alignment[
-                "changed_union_fraction"
-            ],
-            "geometry_matte_initial_alpha_vs_depth_iou": alignment[
-                "initial_alpha_vs_depth_iou"
-            ],
+            "geometry_matte_changed_union_fraction": alignment["changed_union_fraction"],
+            "geometry_matte_initial_alpha_vs_depth_iou": alignment["initial_alpha_vs_depth_iou"],
             "geometry_matte_minimum_initial_alpha_vs_depth_iou": alignment[
                 "minimum_initial_alpha_vs_depth_iou"
             ],
@@ -922,8 +1104,7 @@ def render_frame(
                 analytic_metrics["bbox_iou"] >= minimum_silhouette_bbox_iou
             ),
             "analytic_silhouette_center_error": (
-                analytic_metrics["center_error_px"]
-                <= maximum_silhouette_center_error_px
+                analytic_metrics["center_error_px"] <= maximum_silhouette_center_error_px
             ),
         }
         if not all(analytic_gates.values()):
@@ -941,9 +1122,18 @@ def render_frame(
     receipt = {
         "schema_version": 1,
         "kind": PBR_RECEIPT_KIND,
-        "status": "technical_passed",
+        "status": (
+            "technical_passed"
+            if scene_fit_validation["promotion_eligible"]
+            else "technical_review_only"
+        ),
         "promotion_approved": False,
-        "promotion_blocker": "source-camera silhouette and scene occlusion QA",
+        "promotion_blocker": (
+            "source-camera silhouette and scene occlusion QA"
+            if scene_fit_validation["promotion_eligible"]
+            else "scene-fit acceptance gates failed; explicit review-only render"
+        ),
+        "scene_fit_input": scene_fit_validation,
         "layer_id": layer_id,
         "frame_id": frame_id,
         "role": "downstream_object_render",
@@ -991,6 +1181,7 @@ def render_frame(
             "pixel_filter_size": float(scene.render.filter_size),
             "rgb_sample_policy": "configured_eevee_render_samples",
             "alpha_policy": alpha_depth_alignment_mode,
+            "lighting": lighting_receipt,
         },
         "camera_convention": {
             "extrinsic": "camera_to_world",
@@ -1046,6 +1237,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--minimum-silhouette-iou", type=float, default=0.85)
     parser.add_argument("--minimum-silhouette-bbox-iou", type=float, default=0.8)
     parser.add_argument("--maximum-silhouette-center-error-px", type=float, default=10.0)
+    parser.add_argument(
+        "--lighting-profile",
+        choices=LIGHTING_PROFILES,
+        default="neutral-review",
+        help="PBR review lighting; legacy-point reproduces the original fixed point lights",
+    )
+    parser.add_argument(
+        "--allow-rejected-scene-fit-for-review",
+        action="store_true",
+        help="render an explicitly rejected fit as non-promotable review evidence",
+    )
     parser.add_argument("--keep-raw-depth-exr", action="store_true")
     parser.add_argument("--output", type=Path, required=True)
     argv = sys.argv[sys.argv.index("--") + 1 :] if "--" in sys.argv else sys.argv[1:]
@@ -1067,7 +1269,12 @@ def main() -> int:
     report = read_json(report_path)
     if not isinstance(report, dict):
         raise ValueError("scene-fit report must be a JSON object")
-    validate_scene_fit(report, mesh_path, args.layer_id)
+    scene_fit_validation = validate_scene_fit(
+        report,
+        mesh_path,
+        args.layer_id,
+        allow_rejected_for_review=args.allow_rejected_scene_fit_for_review,
+    )
     frame_ids = parse_frame_ids(args.frame_id)
     analytic_silhouette_dir = (
         args.analytic_silhouette_dir.expanduser().resolve()
@@ -1106,6 +1313,8 @@ def main() -> int:
             minimum_silhouette_bbox_iou=args.minimum_silhouette_bbox_iou,
             maximum_silhouette_center_error_px=args.maximum_silhouette_center_error_px,
             alpha_depth_alignment_mode=args.alpha_depth_alignment_mode,
+            lighting_profile=args.lighting_profile,
+            scene_fit_validation=scene_fit_validation,
         )
         receipt = result["receipt"]
         receipt["sources"]["scene_fit_report"] = {
@@ -1132,12 +1341,18 @@ def main() -> int:
         "schema_version": 1,
         "kind": "video2world.source_camera_pbr_layer_render_set",
         "created_at": datetime.now(UTC).isoformat(),
-        "status": "technical_passed_pending_silhouette_qa",
+        "status": (
+            "technical_passed_pending_silhouette_qa"
+            if scene_fit_validation["promotion_eligible"]
+            else "technical_review_only_scene_fit_rejected"
+        ),
         "promotion_approved": False,
+        "scene_fit_input": scene_fit_validation,
         "layer_id": args.layer_id,
         "role": "downstream_object_render",
         "claims_measured_donor": False,
         "alpha_depth_alignment_mode": args.alpha_depth_alignment_mode,
+        "lighting_profile": args.lighting_profile,
         "sources": {
             "mesh": {"path": str(mesh_path), "sha256": sha256_file(mesh_path)},
             "scene_fit_report": {
@@ -1148,9 +1363,7 @@ def main() -> int:
         },
         "depth_probe_receipt": {
             "path": str(output_root / "calibration" / "depth_semantics_receipt.json"),
-            "sha256": sha256_file(
-                output_root / "calibration" / "depth_semantics_receipt.json"
-            ),
+            "sha256": sha256_file(output_root / "calibration" / "depth_semantics_receipt.json"),
         },
         "analytic_silhouette_dir": (
             str(analytic_silhouette_dir) if analytic_silhouette_dir else None
