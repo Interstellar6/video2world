@@ -793,6 +793,42 @@ def test_layered_completion_report_validates_receipt_output_semantics(
         )
 
 
+def test_layered_completion_report_binds_completed_assets_to_planned_targets(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    assets_path = Path(outputs["completed_object_assets_manifest"]["path"])
+    assets_payload = _valid_completed_object_assets_manifest()
+    assets_payload["objects"][0]["id"] = "wrong-pillow"
+    assets_path.write_text(json.dumps(assets_payload), encoding="utf-8")
+    outputs["completed_object_assets_manifest"] = _artifact_snapshot_payload(assets_path)
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=_layered_completion_input_snapshots(tmp_path, plan_path),
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ArtifactError, match="objects differ from planned target ids"):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
 def test_layered_completion_report_validates_receipt_input_semantics(
     tmp_path: Path,
 ) -> None:
@@ -1105,23 +1141,23 @@ def _valid_completed_object_assets_manifest() -> dict[str, object]:
         "created_at": "2026-07-17T00:00:00Z",
         "objects": [
             {
-                "id": "pillow-01",
+                "id": "pillow-front",
                 "render_mesh": {
-                    "uri": "artifact://pillow-01.glb",
+                    "uri": "artifact://pillow-front.glb",
                     "sha256": "a" * 64,
                     "size_bytes": 1024,
                     "role": "render_mesh",
                     "status": "validated",
                 },
                 "collider": {
-                    "uri": "artifact://pillow-01-collider.glb",
+                    "uri": "artifact://pillow-front-collider.glb",
                     "sha256": "b" * 64,
                     "size_bytes": 512,
                     "role": "collider",
                     "status": "validated",
                 },
                 "closed_surface_verified": True,
-                "completion_report_uri": "artifact://pillow-01/report.json",
+                "completion_report_uri": "artifact://pillow-front/report.json",
             }
         ],
     }

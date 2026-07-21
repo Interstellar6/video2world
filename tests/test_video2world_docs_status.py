@@ -30,6 +30,7 @@ def test_pipeline_docs_keep_corrected_clean_plate_status_fail_closed() -> None:
     assert "provider_receipt.outputs" in getting_started
     assert "JSON/PLY" in getting_started
     assert "object_probability" in getting_started
+    assert "objects[*].id" in getting_started
     for phrase in (
         "frames_manifest",
         "layered_completion_plan",

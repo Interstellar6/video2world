@@ -179,6 +179,7 @@ class StageAdapter:
 
 def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -> None:
     from video2world.completion import (
+        CompletedObjectAssetsManifest,
         LayeredCompletionExecutionReport,
         load_layered_completion_plan,
     )
@@ -273,6 +274,20 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
         planned_targets = [target for round_item in plan.rounds for target in round_item.target_ids]
         if report.planned_target_ids != planned_targets:
             raise ValueError("completion report planned targets differ from the executed plan")
+        assets_snapshot = receipt_outputs.get("completed_object_assets_manifest")
+        if not isinstance(assets_snapshot, dict):
+            raise ValueError("provider receipt has no completed_object_assets_manifest output")
+        assets_path = assets_snapshot.get("path")
+        if not isinstance(assets_path, str) or not assets_path:
+            raise ValueError("provider receipt has no completed_object_assets_manifest path")
+        assets_manifest = CompletedObjectAssetsManifest.model_validate_json(
+            Path(assets_path).read_text(encoding="utf-8")
+        )
+        completed_object_ids = [item.id for item in assets_manifest.objects]
+        if sorted(completed_object_ids) != sorted(planned_targets):
+            raise ValueError(
+                "completed_object_assets_manifest objects differ from planned target ids"
+            )
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError) as exc:
         raise ArtifactError(
             "layered completion plan/receipt lineage validation failed: "
