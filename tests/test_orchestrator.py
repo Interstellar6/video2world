@@ -873,6 +873,58 @@ def test_layered_completion_report_rejects_reused_output_role_paths(
         )
 
 
+def test_layered_completion_report_rejects_reused_output_role_artifacts(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    payload = _valid_clean_gaussian_mesh_payload()
+    gaussian_path = Path(outputs["clean_scene_gaussian"]["path"])
+    mesh_path = Path(outputs["clean_scene_mesh"]["path"])
+    gaussian_path.write_bytes(payload)
+    mesh_path.write_bytes(payload)
+    outputs["clean_scene_gaussian"] = _artifact_snapshot_payload(gaussian_path)
+    outputs["clean_scene_mesh"] = _artifact_snapshot_payload(mesh_path)
+    report_payload = json.loads(report_path.read_text(encoding="utf-8"))
+    report_payload["clean_scene_gaussian"] = _clean_scene_asset_ref_from_snapshot(
+        outputs["clean_scene_gaussian"],
+        "clean_scene_gaussian",
+    )
+    report_payload["clean_scene_mesh"] = _clean_scene_asset_ref_from_snapshot(
+        outputs["clean_scene_mesh"],
+        "clean_scene_mesh",
+    )
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    outputs["layered_completion_report"] = _artifact_snapshot_payload(report_path)
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=_layered_completion_input_snapshots(tmp_path, plan_path),
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(
+        ArtifactError,
+        match="output clean_scene_mesh artifact must be distinct from clean_scene_gaussian",
+    ):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
 def test_layered_completion_report_validates_receipt_output_semantics(
     tmp_path: Path,
 ) -> None:
@@ -1699,6 +1751,39 @@ def _valid_clean_mesh_payload() -> bytes:
         1,
         2,
     )
+
+
+def _valid_clean_gaussian_mesh_payload() -> bytes:
+    properties = [
+        "x",
+        "y",
+        "z",
+        "f_dc_0",
+        "f_dc_1",
+        "f_dc_2",
+        "opacity",
+        "scale_0",
+        "scale_1",
+        "scale_2",
+        "rot_0",
+        "rot_1",
+        "rot_2",
+        "rot_3",
+    ]
+    lines = [
+        "ply",
+        "format ascii 1.0",
+        "element vertex 3",
+        *(f"property float {name}" for name in properties),
+        "element face 1",
+        "property list uchar int vertex_indices",
+        "end_header",
+        "0 0 0 0 0 0 1 1 1 1 1 0 0 0",
+        "1 0 0 0 0 0 1 1 1 1 1 0 0 0",
+        "0 1 0 0 0 0 1 1 1 1 1 0 0 0",
+        "3 0 1 2",
+    ]
+    return ("\n".join(lines) + "\n").encode("ascii")
 
 
 @pytest.mark.parametrize(
