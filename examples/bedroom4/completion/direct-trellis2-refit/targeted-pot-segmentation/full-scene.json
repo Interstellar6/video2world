@@ -1,0 +1,36 @@
+{
+  "scene": "bedroom_4",
+  "per_image": {
+    "000048.png": ["flower pot", "planter", "potted plant"],
+    "000049.png": ["flower pot", "planter", "potted plant"],
+    "000050.png": ["flower pot", "planter", "potted plant"],
+    "000051.png": ["flower pot", "planter", "potted plant"],
+    "000052.png": ["flower pot", "planter", "potted plant"],
+    "000053.png": ["flower pot", "planter", "potted plant"],
+    "000054.png": ["flower pot", "planter", "potted plant"],
+    "000055.png": ["flower pot", "planter", "potted plant"],
+    "000056.png": ["flower pot", "planter", "potted plant"],
+    "000057.png": ["flower pot", "planter", "potted plant"],
+    "000058.png": ["flower pot", "planter", "potted plant"],
+    "000059.png": ["flower pot", "planter", "potted plant"],
+    "000060.png": ["flower pot", "planter", "potted plant"],
+    "000061.png": ["flower pot", "planter", "potted plant"],
+    "000062.png": ["flower pot", "planter", "potted plant"],
+    "000063.png": ["flower pot", "planter", "potted plant"],
+    "000064.png": ["flower pot", "planter", "potted plant"],
+    "000065.png": ["flower pot", "planter", "potted plant"],
+    "000066.png": ["flower pot", "planter", "potted plant"],
+    "000067.png": ["flower pot", "planter", "potted plant"],
+    "000068.png": ["flower pot", "planter", "potted plant"],
+    "000069.png": ["flower pot", "planter", "potted plant"],
+    "000070.png": ["flower pot", "planter", "potted plant"],
+    "000071.png": ["flower pot", "planter", "potted plant"],
+    "000072.png": ["flower pot", "planter", "potted plant"]
+  },
+  "provenance": {
+    "purpose": "Targeted SAM3 inference for the two visible Bedroom4 plant containers.",
+    "source_frame_range": "000048-000072",
+    "selection": "all 25 calibrated frames used by the direct TRELLIS2 refit audit",
+    "generation": "Independent text prompts only; no box expansion, morphology, inpainting, or relabeling."
+  }
+}

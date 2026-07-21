@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.targeted_potted_plant_mask_config",
+  "source_audit": {
+    "path": "../plant-mask-parts-audit/multiview-evidence/source-view-audit.json",
+    "sha256": "5ecad1985083206cabe4968beacca5f236dbf29564e6260ce9f8254585cabcb9"
+  },
+  "cameras": {
+    "path": "../../layered-peel/scene-fit-evidence/cameras.json",
+    "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+  },
+  "original_mask_index": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/mask_index.json",
+    "sha256": "08a0bb11dab795cb77f1648a1d2b55cea9a722360710d5e711e055f5146dfa75"
+  },
+  "original_mask_root": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4",
+  "targeted_mask_index": {
+    "path": "./remote-output/output/bedroom_4/mask_index.json",
+    "sha256": "ba0b14a32bd576c722daa66832dbf27bba3d2762daf5cc2e801d6541e0a7c523"
+  },
+  "targeted_mask_root": "./remote-output/output/bedroom_4",
+  "object_ids": [
+    "sam3_plant_01",
+    "sam3_plant_02"
+  ],
+  "prompt_contract": {
+    "complete_instance": "potted plant",
+    "container_parts": [
+      "flower pot",
+      "planter"
+    ],
+    "contaminant_labels": [
+      "nightstand",
+      "lamp"
+    ]
+  },
+  "thresholds": {
+    "minimum_complete_anchor_hit_ratio": 0.65,
+    "minimum_complete_anchor_hit_margin": 0.65,
+    "minimum_foliage_coverage": 0.99,
+    "minimum_container_inside_complete": 0.88,
+    "minimum_container_outside_foliage": 0.75,
+    "maximum_contaminant_overlap": 0.01,
+    "maximum_horizontal_center_offset_foliage_widths": 0.25,
+    "maximum_container_top_gap_foliage_heights": 0.1,
+    "minimum_complete_bottom_extension_foliage_heights": 0.35
+  },
+  "inference": {
+    "remote_host": "mil8 (hostname master)",
+    "remote_output_directory": "/data/design/zyx/workspace/video2world_targeted_pots/bedroom4_sam3_text_20260720_full",
+    "scene_config": {
+      "path": "./remote-output/scene.json",
+      "sha256": "4ca261b1d84ba38e5777eb6166104bcc49b5b188e59673eba0cabf04c6f4ba77"
+    },
+    "runner": {
+      "path": "./remote-output/sam3_holi_runner.py",
+      "sha256": "93b34a5fe50a8ff000b047479ca3ecea1f16f65b74e5cda6b20461120d1f3e44"
+    },
+    "log": {
+      "path": "./remote-output/run.log",
+      "sha256": "b7a2b911d34654ff2709483ffb31ca933d1825a0213d25e9fa01037a7cadc5c0"
+    },
+    "checkpoint": {
+      "path": "/data/zyx/workspace/third_party/sam3_from_wzj/checkpoints/sam3/sam3.pt",
+      "sha256": "9999e2341ceef5e136daa386eecb55cb414446a00ac2b55eb2dfd2f7c3cf8c9e",
+      "size_bytes": 3450062241
+    },
+    "sam3_source_files": [
+      {
+        "path": "/data/zyx/workspace/third_party/sam3_from_wzj/sam3/model_builder.py",
+        "sha256": "2ff215a97192d73ddea83d4b0c5977573b6697a5c6075b5ea5163b1265abee57",
+        "size_bytes": 24219
+      },
+      {
+        "path": "/data/zyx/workspace/third_party/sam3_from_wzj/sam3/model/sam3_image_processor.py",
+        "sha256": "271f25b2d72d4b37579e354a75a52ec96393bb87fe32e1272db3cc2f1e5cee03",
+        "size_bytes": 8917
+      }
+    ],
+    "argv": [
+      "/data/anaconda3/envs/sam3d-objects/bin/python",
+      "./sam3_holi_runner.py",
+      "--data-root",
+      "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data",
+      "--scene-json",
+      "./scene.json",
+      "--output-dir",
+      "./output",
+      "--sam3-checkpoint",
+      "/data/zyx/workspace/third_party/sam3_from_wzj/checkpoints/sam3/sam3.pt",
+      "--save-mask-images"
+    ],
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "7",
+      "PYTHONUNBUFFERED": "1",
+      "PYTHONPATH": "/data/zyx/workspace/third_party/sam3_from_wzj",
+      "python": "3.11.0",
+      "torch": "2.5.1+cu121",
+      "torch_cuda": "12.1",
+      "numpy": "1.26.4",
+      "pillow": "12.0.0",
+      "pycocotools": "2.0.7",
+      "sam3_distribution": "0.1.0"
+    }
+  },
+  "review": {
+    "columns": 5,
+    "panel_width": 170,
+    "panel_height": 130,
+    "crop_padding_ratio": 0.35
+  },
+  "output_directory": "./materialized"
+}

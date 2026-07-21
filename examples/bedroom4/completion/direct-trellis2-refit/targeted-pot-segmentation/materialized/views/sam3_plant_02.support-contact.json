@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.completed_object_support_contact_manifest",
+  "object_id": "sam3_plant_02",
+  "evidence_scope": "independent_targeted_sam3_visible_pot_masks",
+  "views": [
+    {
+      "frame_id": "000048",
+      "support_contact_mask": {
+        "path": "../parts/sam3_plant_02/000048.pot.png",
+        "sha256": "f473773ca0454e54becb2a799749e586cccd17c8cb6fd0ba27b2e7e54f804130"
+      }
+    },
+    {
+      "frame_id": "000055",
+      "support_contact_mask": {
+        "path": "../parts/sam3_plant_02/000055.pot.png",
+        "sha256": "91583483bd09045e19a6b6598d9a65f2bfae96ff9cdee67a3159fc31e8233f82"
+      }
+    },
+    {
+      "frame_id": "000064",
+      "support_contact_mask": {
+        "path": "../parts/sam3_plant_02/000064.pot.png",
+        "sha256": "99c63ec3cbd193abd8b884d6003c4083f50addb0b48c923cda1516b1ef5cd940"
+      }
+    }
+  ],
+  "limitations": [
+    "The masks describe visible modal pot pixels, not an amodal support footprint.",
+    "The bottom row is used only as calibrated source-camera contact evidence."
+  ]
+}

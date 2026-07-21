@@ -1,0 +1,39 @@
+{
+  "evidence_scope": "targeted_sam3_complete_potted_plant_modal_masks",
+  "kind": "video2world.completed_object_source_view_manifest",
+  "object_id": "sam3_plant_02",
+  "schema_version": 1,
+  "source_audit": {
+    "path": "../targeted-potted-plant-mask-manifest.json",
+    "sha256": "b60f8a0376a52ec9f9089c9df7cb24215befeeb27cb14d7c214375e2824f68b1"
+  },
+  "views": [
+    {
+      "frame_id": "000048",
+      "is_source_view": true,
+      "observed_mask": {
+        "path": "../masks/sam3_plant_02/000048.png",
+        "sha256": "613dbe80ee3e47381c6303dda4aad2ba4de9f19e0c5cf83b7a625a8c5dbbc388"
+      },
+      "occluder_masks": []
+    },
+    {
+      "frame_id": "000055",
+      "is_source_view": true,
+      "observed_mask": {
+        "path": "../masks/sam3_plant_02/000055.png",
+        "sha256": "353b6d6c744dd578920cf441ffb7d3b52c1c6f6746292f70303c9d85911aa481"
+      },
+      "occluder_masks": []
+    },
+    {
+      "frame_id": "000064",
+      "is_source_view": true,
+      "observed_mask": {
+        "path": "../masks/sam3_plant_02/000064.png",
+        "sha256": "5447fa07c58ba251c4329459d493fd1a3e4bc652b39f04de84d2b817f007be59"
+      },
+      "occluder_masks": []
+    }
+  ]
+}

@@ -1,0 +1,360 @@
+{
+  "acceptance_gates": {
+    "largest_component_fraction_at_least_0_95": true,
+    "object_anchor_robustly_above_support": true,
+    "object_center_projection_inside_support_hull": true,
+    "observed_support_exists_within_four_connectivity_radii": true,
+    "output_has_at_least_64_points": true,
+    "p95_residual_within_inlier_distance": true,
+    "plane_tilt_within_limit": true
+  },
+  "all_acceptance_gates_passed": true,
+  "claim_scope": "Measured points from the support object's top planar surface. The plane may interpolate through an occlusion gap, but does not reconstruct the supported object.",
+  "fit_completed_object_to_scene_recommendation": {
+    "center_error_score_weight": 0.01,
+    "maximum_center_error_px": 10.0,
+    "maximum_rotation_degrees": 5.0,
+    "maximum_scale_anisotropy": 1.15,
+    "maximum_up_tilt_degrees": 5.0,
+    "placement_mode": "volume_center",
+    "required_support_arguments": {
+      "expected_support_anchor_sha256": "a18ba8d185327a37548a51aef1bba4cea68eff6584a2be8edd0939d400ad70a9",
+      "support_anchor_ply": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/support-surfaces/sam3_plant_02/sam3_nightstand_01.tabletop-support.ply"
+    },
+    "source_up_axis": "+Y",
+    "warning": "The object anchor is above the measured surface and does not directly prove pot contact. Use complete potted-plant masks plus the support constraint.",
+    "world_up_axis": "-Y"
+  },
+  "inputs": {
+    "object_anchor": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/evidence/sam3_plant_02.source-anchor.ply",
+      "point_count": 4630,
+      "sha256": "87ab2b3946cee1009b97e9193e950c5e6741e85d06416dcceb5a20a6e360941c"
+    },
+    "support_anchor": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/evidence/sam3_nightstand_01.source-anchor.ply",
+      "point_count": 75728,
+      "sha256": "6f374ebbd9507aa737c692c449dc612fa4a1db9984f997bd662a4795ef5365b5"
+    }
+  },
+  "kind": "video2world.planar_support_surface_receipt",
+  "object_relation": {
+    "center_projection_hull_margin_scene_units": 0.9069753358831091,
+    "center_projection_inside_support_hull": true,
+    "local_observed_support_counts_by_radius": {
+      "0.075": 0,
+      "0.15": 0,
+      "0.3": 9,
+      "0.6": 788
+    },
+    "nearest_observed_support_point_in_plane_scene_units": 0.2486674636546523,
+    "object_anchor_median_xyz": [
+      -9.7472243309021,
+      0.18888749927282333,
+      14.166638851165771
+    ],
+    "object_anchor_signed_height_quantiles": {
+      "maximum": 1.3838635106554313,
+      "median": 0.9915009084450852,
+      "minimum": 0.2627903762284598,
+      "q005": 0.43893008126196326,
+      "q01": 0.4890219372724877,
+      "q05": 0.668142105750452,
+      "q95": 1.2668759785103076,
+      "q99": 1.3348024455737477,
+      "q995": 1.3507746002941272
+    },
+    "object_center_projected_to_surface_xyz": [
+      -9.745193630049748,
+      1.2196320603986872,
+      14.29711694227972
+    ],
+    "object_center_signed_height_above_surface": 1.038972091202281,
+    "occlusion_interpolation_required_at_object_center": true
+  },
+  "output": {
+    "support_surface_ply": {
+      "format": "ascii PLY retaining source vertex properties",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/support-surfaces/sam3_plant_02/sam3_nightstand_01.tabletop-support.ply",
+      "point_count": 14356,
+      "sha256": "a18ba8d185327a37548a51aef1bba4cea68eff6584a2be8edd0939d400ad70a9"
+    }
+  },
+  "parameters": {
+    "candidate_top_fraction": 0.3,
+    "connectivity_radius": 0.075,
+    "inlier_distance": 0.02,
+    "maximum_normal_tilt_degrees": 10.0,
+    "random_seed": 20260720,
+    "ransac_trials": 4000,
+    "refinement_iterations": 12,
+    "world_up_axis": "-Y",
+    "world_up_vector": [
+      0.0,
+      -1.0,
+      0.0
+    ]
+  },
+  "schema_version": 1,
+  "selection": {
+    "candidate_fraction_of_support_anchor": 0.3000079230931756,
+    "candidate_height_threshold": -1.3152750611305237,
+    "candidate_point_count": 22719,
+    "connectivity": {
+      "component_count": 23,
+      "connectivity_radius": 0.075,
+      "largest_component_count": 14366,
+      "largest_component_fraction": 0.997361843932241,
+      "nearest_neighbor_distance_quantiles": {
+        "maximum": 0.36102952158769575,
+        "median": 0.011805475252179641,
+        "minimum": 0.00010219030971688207,
+        "q005": 0.0010304695091859705,
+        "q01": 0.0013873185311085254,
+        "q05": 0.003102911710575608,
+        "q95": 0.028053154607402975,
+        "q99": 0.04120145812716828,
+        "q995": 0.050051386469050045
+      },
+      "second_largest_component_count": 11
+    },
+    "pre_connectivity_inlier_count": 14404,
+    "refinement_trace": [
+      {
+        "inlier_count": 14369,
+        "iteration": 0,
+        "normal": [
+          -0.002084178234091359,
+          -0.9920349216732519,
+          -0.12594590260041658
+        ],
+        "offset": -2.9910671333458883,
+        "tilt_degrees": 7.2363796453053935
+      },
+      {
+        "inlier_count": 14402,
+        "iteration": 1,
+        "normal": [
+          -0.002076799665173487,
+          -0.9920608863158176,
+          -0.12574134063793638
+        ],
+        "offset": -2.9878868541017303,
+        "tilt_degrees": 7.224559728254172
+      },
+      {
+        "inlier_count": 14412,
+        "iteration": 2,
+        "normal": [
+          -0.00203275298094294,
+          -0.9920730149588335,
+          -0.12564633263971048
+        ],
+        "offset": -2.98676491211262,
+        "tilt_degrees": 7.219031794446032
+      },
+      {
+        "inlier_count": 14399,
+        "iteration": 3,
+        "normal": [
+          -0.0019896203310686015,
+          -0.9920777616355303,
+          -0.12560953896569346
+        ],
+        "offset": -2.986536656279907,
+        "tilt_degrees": 7.216867230557248
+      },
+      {
+        "inlier_count": 14404,
+        "iteration": 4,
+        "normal": [
+          -0.001970573187924579,
+          -0.9920798309963889,
+          -0.1255934941447515
+        ],
+        "offset": -2.986451772562523,
+        "tilt_degrees": 7.215923365264501
+      },
+      {
+        "inlier_count": 14404,
+        "iteration": 5,
+        "normal": [
+          -0.001957295214403266,
+          -0.9920808883219946,
+          -0.12558534955035877
+        ],
+        "offset": -2.9864403379620326,
+        "tilt_degrees": 7.215441056419951
+      },
+      {
+        "inlier_count": 14401,
+        "iteration": 6,
+        "normal": [
+          -0.0019494339513890329,
+          -0.9920814441505441,
+          -0.12558108089772116
+        ],
+        "offset": -2.9864462148329567,
+        "tilt_degrees": 7.215187497230549
+      },
+      {
+        "inlier_count": 14405,
+        "iteration": 7,
+        "normal": [
+          -0.0019464602120325006,
+          -0.9920826940951656,
+          -0.12557125216195403
+        ],
+        "offset": -2.986328446318493,
+        "tilt_degrees": 7.214617262140445
+      },
+      {
+        "inlier_count": 14406,
+        "iteration": 8,
+        "normal": [
+          -0.0019403341341840583,
+          -0.9920841108678281,
+          -0.1255601531818068
+        ],
+        "offset": -2.9862144727255258,
+        "tilt_degrees": 7.213970864504157
+      },
+      {
+        "inlier_count": 14404,
+        "iteration": 9,
+        "normal": [
+          -0.0019391748457017102,
+          -0.9920843759894408,
+          -0.12555807627771176
+        ],
+        "offset": -2.9861920868995813,
+        "tilt_degrees": 7.213849897284188
+      },
+      {
+        "inlier_count": 14404,
+        "iteration": 10,
+        "normal": [
+          -0.0019391748457017102,
+          -0.9920843759894408,
+          -0.12555807627771176
+        ],
+        "offset": -2.9861920868995813,
+        "tilt_degrees": 7.213849897284188
+      },
+      {
+        "inlier_count": 14404,
+        "iteration": 11,
+        "normal": [
+          -0.0019391748457017102,
+          -0.9920843759894408,
+          -0.12555807627771176
+        ],
+        "offset": -2.9861920868995813,
+        "tilt_degrees": 7.213849897284188
+      }
+    ],
+    "valid_ransac_plane_count": 3015
+  },
+  "status": "passed",
+  "surface": {
+    "bounds_max_xyz": [
+      -6.5001139640808105,
+      1.3152610063552856,
+      17.180198669433594
+    ],
+    "bounds_min_xyz": [
+      -11.545888900756836,
+      0.8492770195007324,
+      13.364545822143555
+    ],
+    "down_normal_for_fit_consumer": [
+      0.0019545287785370496,
+      0.992081086541125,
+      0.1255838267637787
+    ],
+    "offset_for_dot_x_up_normal": -2.986413295559114,
+    "planar_hull_area_scene_units_squared": 13.744257847621869,
+    "plane_equation_up_normal": [
+      -0.0019545287785370496,
+      -0.992081086541125,
+      -0.1255838267637787,
+      2.986413295559114
+    ],
+    "point_count": 14356,
+    "residual_abs_distance_quantiles": {
+      "maximum": 0.019994911375815327,
+      "median": 0.00818808300344398,
+      "minimum": 1.054779286135954e-08,
+      "q005": 7.542608134378794e-05,
+      "q01": 0.0001528139719690902,
+      "q05": 0.0007908953376865036,
+      "q95": 0.01830185142266827,
+      "q99": 0.019568724391918833,
+      "q995": 0.019761432450208175
+    },
+    "robust_bounds_q005_xyz": [
+      -11.138574051856995,
+      0.8744934588670731,
+      13.458007454872131
+    ],
+    "robust_bounds_q995_xyz": [
+      -6.629554641246796,
+      1.3141486465930938,
+      16.984424781799316
+    ],
+    "tilt_from_world_up_degrees": 7.215350633362498,
+    "up_normal": [
+      -0.0019545287785370496,
+      -0.992081086541125,
+      -0.1255838267637787
+    ]
+  },
+  "visual_review": {
+    "camera_file": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+      "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+    },
+    "frames": [
+      {
+        "frame_id": "000048",
+        "projected_points_drawn": {
+          "object_anchor": 4630,
+          "selected_surface": 7178,
+          "support_anchor": 9370
+        },
+        "source": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000048.png",
+          "sha256": "fd898eec479773edbd603a91c56e1d721fbe77f492d6de0c8e0761b04f3d1271"
+        }
+      },
+      {
+        "frame_id": "000055",
+        "projected_points_drawn": {
+          "object_anchor": 4630,
+          "selected_surface": 7178,
+          "support_anchor": 8929
+        },
+        "source": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000055.png",
+          "sha256": "bdb9d3222d59cb43c9e0dd770ab0b5eaa0665a346f22dcdab5eed38e7ad6fdae"
+        }
+      },
+      {
+        "frame_id": "000063",
+        "projected_points_drawn": {
+          "object_anchor": 4630,
+          "selected_surface": 7178,
+          "support_anchor": 9208
+        },
+        "source": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000063.png",
+          "sha256": "29706947c8c90221281a94243152d0b34f865038dcccbd3869c43d7a70c18919"
+        }
+      }
+    ],
+    "height": 720,
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/support-surfaces/sam3_plant_02/support_surface_source_camera_contact_sheet.png",
+    "sha256": "5b375b64d0d0933f5c185e69584b980cbf451333dbe4cc72b096dc2603e6117f",
+    "width": 1280
+  }
+}

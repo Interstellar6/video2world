@@ -1,0 +1,3095 @@
+{
+  "claim_scope": "Source-camera placement and visible-proportion evidence only. Modal SAM masks and the selected camera arc do not prove unobserved back, top, or bottom geometry.",
+  "config": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/plant-mask-parts-audit/plant-multiview-config.json",
+    "sha256": "b7936ce812f62db8a752f5a44ad3889fa5209c6de47ba96ce566599ce8d2b9d8"
+  },
+  "created_at": "2026-07-20T11:44:20.904205+00:00",
+  "inputs": {
+    "cameras": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/scene-fit-evidence/cameras.json",
+      "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+    },
+    "frame_ids": [
+      "000048",
+      "000049",
+      "000050",
+      "000051",
+      "000052",
+      "000053",
+      "000054",
+      "000055",
+      "000056",
+      "000057",
+      "000058",
+      "000059",
+      "000060",
+      "000061",
+      "000062",
+      "000063",
+      "000064",
+      "000065",
+      "000066",
+      "000067",
+      "000068",
+      "000069",
+      "000070",
+      "000071",
+      "000072"
+    ],
+    "mask_index": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/mask_index.json",
+      "sha256": "08a0bb11dab795cb77f1648a1d2b55cea9a722360710d5e711e055f5146dfa75"
+    },
+    "mask_root": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4",
+    "source_rgb_dir": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source"
+  },
+  "kind": "video2world.multiview_scene_fit_evidence_audit",
+  "objects": [
+    {
+      "category": "plant",
+      "eligible_frame_count": 25,
+      "frame_selection": {
+        "maximin_additions": [
+          {
+            "angles_to_prior_selected_deg": [
+              1.842692654916812,
+              1.5490676361517293
+            ],
+            "frame_id": "000068",
+            "minimum_angle_to_selected_deg": 1.5490676361517293
+          }
+        ],
+        "maximum_pair": {
+          "frame_ids": [
+            "000048",
+            "000061"
+          ],
+          "view_ray_angle_deg": 3.289646653311865
+        },
+        "policy": "maximum_pairwise_camera_to_object_view_ray_angle_then_maximin_additions",
+        "selected_frame_ids": [
+          "000048",
+          "000061",
+          "000068"
+        ]
+      },
+      "object_id": "sam3_plant_01",
+      "occluder_object_ids": [],
+      "source_anchor": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/evidence/sam3_plant_01.source-anchor.ply",
+        "point_count": 5284,
+        "robust_center": [
+          5.413415431976318,
+          -0.5776275098323822,
+          20.84340763092041
+        ],
+        "sample_stride": 1,
+        "sha256": "badfec3efea8373c79e66de15e09472e3a9ae19785a0308c25042dfdf4202340"
+      },
+      "views": [
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.8205904617713853,
+                "sam3_score": 0.9255197048187256,
+                "sha256": "33b967a12ddc87fdeb8356030add894a4c5479122ad3fc7b0343685b340017aa"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9501763582229614,
+                "sha256": "e266d01b81e08279bd2f7db2236d95a9bab513e0c4ae86d320804a747e147ff4"
+              }
+            ],
+            "hit_ratio_margin": 0.8205904617713853,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              766.683342055301,
+              361.3539506500382,
+              818.5630160990431,
+              401.1355223893828
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8205904617713853,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000048",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              770.3884887695312,
+              363.8193054199219,
+              816.829345703125,
+              395.0391845703125
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000048/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              771,
+              363,
+              816,
+              394
+            ],
+            "pixel_count": 1084,
+            "sam3_score": 0.9255197048187256,
+            "sha256": "33b967a12ddc87fdeb8356030add894a4c5479122ad3fc7b0343685b340017aa"
+          },
+          "selected_for_fit": true,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000048.png",
+            "sha256": "fd898eec479773edbd603a91c56e1d721fbe77f492d6de0c8e0761b04f3d1271"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.8124526873580621,
+                "sam3_score": 0.9328618049621582,
+                "sha256": "d54c81875952aee773d52d0532f1e9ccb4302f00e516f0ff486964b95577ef04"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9510128498077393,
+                "sha256": "0084e439cb996911fbad6a7970d42e0bf6e13314faae47d24419c000d930a9b3"
+              }
+            ],
+            "hit_ratio_margin": 0.8124526873580621,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              768.1513557330984,
+              364.70797333067463,
+              820.222528442681,
+              405.26365627329795
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8124526873580621,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000049",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              771.76123046875,
+              367.6427917480469,
+              817.8722534179688,
+              398.5042419433594
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000049/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              772,
+              367,
+              817,
+              398
+            ],
+            "pixel_count": 1098,
+            "sam3_score": 0.9328618049621582,
+            "sha256": "d54c81875952aee773d52d0532f1e9ccb4302f00e516f0ff486964b95577ef04"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000049.png",
+            "sha256": "b492f6fd0194bff43291dbe3aae2507f660dbce5d172b385f96053282bff04cf"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.8204012112036336,
+                "sam3_score": 0.9292921423912048,
+                "sha256": "fca1b139780224f98b0718f6a8a990851ca5d338dcc973eea6180e6ca598f7be"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9491449594497681,
+                "sha256": "60de32f9684c970e464ba9248d07d284d8afb373f44f366630f5c6ace8d41987"
+              }
+            ],
+            "hit_ratio_margin": 0.8204012112036336,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              770.1875469290551,
+              368.6447293261916,
+              822.3752162738217,
+              409.93734068446395
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8204012112036336,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000050",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              774.779541015625,
+              371.2629089355469,
+              820.0405883789062,
+              403.66888427734375
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000050/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              775,
+              371,
+              819,
+              403
+            ],
+            "pixel_count": 1124,
+            "sam3_score": 0.9292921423912048,
+            "sha256": "fca1b139780224f98b0718f6a8a990851ca5d338dcc973eea6180e6ca598f7be"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000050.png",
+            "sha256": "2105aa0784b35b40e404924e87133347df2cc1698b25cc90a73922105f58d079"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8020439061317184,
+                "sam3_score": 0.9306052327156067,
+                "sha256": "a850d06dcea0556b1061e94f6d16de09c0694917fe08eaa3a34c33a2845c4547"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9521381258964539,
+                "sha256": "5f1e18ce60f98da6aa852deddf13fb5f237e48f86c4050dc18307192a5254de4"
+              }
+            ],
+            "hit_ratio_margin": 0.8020439061317184,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              772.6608057657456,
+              371.74774166666225,
+              824.8936192099314,
+              413.7532690325484
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8020439061317184,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000051",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              777.339111328125,
+              374.9382019042969,
+              822.4859008789062,
+              406.9206848144531
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000051/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              777,
+              375,
+              822,
+              406
+            ],
+            "pixel_count": 1115,
+            "sam3_score": 0.9306052327156067,
+            "sha256": "a850d06dcea0556b1061e94f6d16de09c0694917fe08eaa3a34c33a2845c4547"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000051.png",
+            "sha256": "7f37cd722b92e0beb73464941ffcb89d9e3c31a2fc2d868cafc2a143a9fa9e35"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8279712339137018,
+                "sam3_score": 0.9303114414215088,
+                "sha256": "a68eaba36612b607f320cdb67ffee40932906ba11e01c3d8b696a2426489b634"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9499369859695435,
+                "sha256": "2fab2b52e7f2d68b42959b46f28c0f06eeda8ab91da670e8b5b20439cebc528f"
+              }
+            ],
+            "hit_ratio_margin": 0.8279712339137018,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              774.8269343870877,
+              375.23279189004046,
+              827.0489738652766,
+              418.0287750706967
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8279712339137018,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000052",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              778.2807006835938,
+              378.4436950683594,
+              824.9609985351562,
+              411.61407470703125
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000052/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              779,
+              378,
+              825,
+              411
+            ],
+            "pixel_count": 1175,
+            "sam3_score": 0.9303114414215088,
+            "sha256": "a68eaba36612b607f320cdb67ffee40932906ba11e01c3d8b696a2426489b634"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000052.png",
+            "sha256": "c2d51786982fe51c8d9ae9d07f9abc64e7520e5706aa0bb6a66df38ad218acc7"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.822672218016654,
+                "sam3_score": 0.9323289394378662,
+                "sha256": "0adc05667107fccb4897a86775b06f5ddb26f8d8e1cc68a190f8862cd6b7181c"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9493382573127747,
+                "sha256": "7796075fe369e421f3f3219cd028cd91c29dc95beb29962403ee5f111517861e"
+              }
+            ],
+            "hit_ratio_margin": 0.822672218016654,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              777.3851730047284,
+              379.08896532111584,
+              829.5759940412826,
+              422.8392557382252
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.822672218016654,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000053",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              780.4140625,
+              382.7089538574219,
+              827.74755859375,
+              415.9315185546875
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000053/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              782,
+              382,
+              827,
+              415
+            ],
+            "pixel_count": 1181,
+            "sam3_score": 0.9323289394378662,
+            "sha256": "0adc05667107fccb4897a86775b06f5ddb26f8d8e1cc68a190f8862cd6b7181c"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000053.png",
+            "sha256": "b681ba697632ffc94ded9123d927cd9896a51e316769b354147964b818935483"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8043149129447388,
+                "sam3_score": 0.9348190426826477,
+                "sha256": "cff3986f9f2c6147fb8d43fb93b8f768bc1669ddcd33e658c390621392e41bb2"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9514599442481995,
+                "sha256": "c3d5ceb1db6af120ef062071a17b3ad60014ef2be636f07c756f1232a9dea6a6"
+              }
+            ],
+            "hit_ratio_margin": 0.8043149129447388,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              780.4660938466175,
+              383.08459322453416,
+              832.660689925134,
+              427.75133263774933
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8043149129447388,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000054",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              783.3165283203125,
+              387.4438171386719,
+              831.3992309570312,
+              419.9615478515625
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000054/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              784,
+              387,
+              831,
+              419
+            ],
+            "pixel_count": 1181,
+            "sam3_score": 0.9348190426826477,
+            "sha256": "cff3986f9f2c6147fb8d43fb93b8f768bc1669ddcd33e658c390621392e41bb2"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000054.png",
+            "sha256": "75d7224152e018eaafa72d06ab4cc37c910491906cbf294208218d47e3dff542"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8245647236941711,
+                "sam3_score": 0.9320826530456543,
+                "sha256": "e0234cbc73f5546fb05e73031a876de44594eb17541c3803658489a1429c64fe"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9512709379196167,
+                "sha256": "b49e2ed4525071d1eb24a240778c20f29b77ade127aafc1aed24e8b787b52ef0"
+              }
+            ],
+            "hit_ratio_margin": 0.8245647236941711,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              783.2658571809392,
+              385.7248701149123,
+              835.5384186495771,
+              431.2540977786496
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8245647236941711,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000055",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              786.211181640625,
+              390.4548645019531,
+              834.46142578125,
+              424.7611389160156
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000055/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              787,
+              390,
+              834,
+              424
+            ],
+            "pixel_count": 1240,
+            "sam3_score": 0.9320826530456543,
+            "sha256": "e0234cbc73f5546fb05e73031a876de44594eb17541c3803658489a1429c64fe"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000055.png",
+            "sha256": "bdb9d3222d59cb43c9e0dd770ab0b5eaa0665a346f22dcdab5eed38e7ad6fdae"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8185087055261165,
+                "sam3_score": 0.9335222244262695,
+                "sha256": "c3663a0763e4651648f1ed729175021b26d912ea3dd080dd7a6d2525a6fad0fd"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9511520266532898,
+                "sha256": "6363c70f9103babd345e492e7a04c2de87c933002445bb3868f28837ee83b444"
+              }
+            ],
+            "hit_ratio_margin": 0.8185087055261165,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              785.8855487541184,
+              388.0000296012823,
+              838.317866885985,
+              434.3165492875953
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8185087055261165,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000056",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              789.5189208984375,
+              392.5828857421875,
+              837.034423828125,
+              427.1151428222656
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000056/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              790,
+              392,
+              836,
+              426
+            ],
+            "pixel_count": 1252,
+            "sam3_score": 0.9335222244262695,
+            "sha256": "c3663a0763e4651648f1ed729175021b26d912ea3dd080dd7a6d2525a6fad0fd"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000056.png",
+            "sha256": "3518cd5553fe19ec4db8df855a3dd577fcd8df0c1c8f257558f3759eac841ced"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8071536714610144,
+                "sam3_score": 0.9366123676300049,
+                "sha256": "e402d622a1ca042b60fa5a4b031059fbdfe0e2bbbbac2412c19dd16f8d790a4a"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.951225996017456,
+                "sha256": "e164969e3df37c382a12b73a50145cdd7257ea6096bc7fdd933560e1a2863fef"
+              }
+            ],
+            "hit_ratio_margin": 0.8071536714610144,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              789.6376083629336,
+              389.75543381113107,
+              842.3466105570236,
+              436.8435761409957
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8071536714610144,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000057",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              793.56005859375,
+              394.93450927734375,
+              840.8873291015625,
+              429.3302001953125
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000057/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              794,
+              395,
+              841,
+              428
+            ],
+            "pixel_count": 1250,
+            "sam3_score": 0.9366123676300049,
+            "sha256": "e402d622a1ca042b60fa5a4b031059fbdfe0e2bbbbac2412c19dd16f8d790a4a"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000057.png",
+            "sha256": "aba06073005f0295581f8d4113c8f5225046665e59b1d2a28fbadc3aa78ee11f"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.7950416351249053,
+                "sam3_score": 0.9355418682098389,
+                "sha256": "344edf1fd5987b43ba1b72d208462f9192570484e4ffb44abe326f6fbd967bc0"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9537023901939392,
+                "sha256": "596a9d2baf2741e59677a8f81a744fc4a57b43a332f00efecc9b6180beeb5c7e"
+              }
+            ],
+            "hit_ratio_margin": 0.7950416351249053,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              792.7164512976299,
+              390.9930367024943,
+              845.7539848835299,
+              438.69244968323244
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7950416351249053,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000058",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              795.61865234375,
+              396.00421142578125,
+              844.1400756835938,
+              430.415283203125
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000058/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              796,
+              396,
+              844,
+              430
+            ],
+            "pixel_count": 1265,
+            "sam3_score": 0.9355418682098389,
+            "sha256": "344edf1fd5987b43ba1b72d208462f9192570484e4ffb44abe326f6fbd967bc0"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000058.png",
+            "sha256": "ab17232a20d141d2726f41301182b33eeb0058a61c17e95d89b1e446b3eb67d3"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.7969341408024224,
+                "sam3_score": 0.9338854551315308,
+                "sha256": "79eeef932eb789c541cd2c5ba7fe60c8f5bcfd209f5652c34f849e88a84112dc"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9532466530799866,
+                "sha256": "d28f0c2642c4920cd9e5c06a11db32315198ef53eacca54eae54eb72f19afdf8"
+              }
+            ],
+            "hit_ratio_margin": 0.7969341408024224,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              797.0018320296103,
+              391.62252051786754,
+              850.5584358744754,
+              439.9725721111553
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7969341408024224,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000059",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              798.95751953125,
+              396.93536376953125,
+              848.7167358398438,
+              431.6392822265625
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000059/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              800,
+              397,
+              848,
+              431
+            ],
+            "pixel_count": 1283,
+            "sam3_score": 0.9338854551315308,
+            "sha256": "79eeef932eb789c541cd2c5ba7fe60c8f5bcfd209f5652c34f849e88a84112dc"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000059.png",
+            "sha256": "9e2e4e676426fbccd07d09d5e7a498574b012abdbcaff44fc83d3e12e04983c4"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8266464799394398,
+                "sam3_score": 0.9277539849281311,
+                "sha256": "852742ea36a0f98db1517eb3cb86d85835b82dc8988d9a5daa668af6c5853be9"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9530634880065918,
+                "sha256": "438d5b0bd346aeb1cb67957c30a1af72368a973613c897f50c5ad3c75c3998a0"
+              }
+            ],
+            "hit_ratio_margin": 0.8266464799394398,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              803.453215290421,
+              392.89430491676137,
+              857.7905061100685,
+              441.9783411737122
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8266464799394398,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000060",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              806.8006591796875,
+              398.2635803222656,
+              856.4764404296875,
+              434.89166259765625
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000060/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              807,
+              398,
+              856,
+              434
+            ],
+            "pixel_count": 1375,
+            "sam3_score": 0.9277539849281311,
+            "sha256": "852742ea36a0f98db1517eb3cb86d85835b82dc8988d9a5daa668af6c5853be9"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000060.png",
+            "sha256": "d6fcf5020b8ba320c424d18e9743cd62ba32aee89e816e967a35d45810d3e8d7"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8147236941710825,
+                "sam3_score": 0.9325583577156067,
+                "sha256": "f0a8bb6ce66def4d91eb6f4d82d8f53e056f0e680af021a0eb355dc835d776ee"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9524655342102051,
+                "sha256": "5bfd09d8db2de518c22acaf30bb91a63536994062c5becb7f76ae282d126c083"
+              }
+            ],
+            "hit_ratio_margin": 0.8147236941710825,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              813.4542423110183,
+              394.69866425721045,
+              868.8367710678239,
+              444.4794491792814
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8147236941710825,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000061",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              816.7379150390625,
+              401.1822204589844,
+              868.1127319335938,
+              436.5667724609375
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000061/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              818,
+              400,
+              868,
+              435
+            ],
+            "pixel_count": 1395,
+            "sam3_score": 0.9325583577156067,
+            "sha256": "f0a8bb6ce66def4d91eb6f4d82d8f53e056f0e680af021a0eb355dc835d776ee"
+          },
+          "selected_for_fit": true,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000061.png",
+            "sha256": "bb0b213216747a4af8d3072e8ea17c69eb5084f59b71e9f3b877daba2b739dbc"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.7978803936411809,
+                "sam3_score": 0.9320438504219055,
+                "sha256": "0829cbe20297b7cc78a97ee9f52514269708de63e179193c4a5b1866c37689e5"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9518346786499023,
+                "sha256": "32f3015572771311abfd8cce833eaa65487ea4d929eaf294ef766af5a0bcf433"
+              }
+            ],
+            "hit_ratio_margin": 0.7978803936411809,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              827.4792273630474,
+              395.61016729610526,
+              884.1483366440821,
+              446.081543507493
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7978803936411809,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000062",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              831.458251953125,
+              401.1396789550781,
+              883.0349731445312,
+              437.2857360839844
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000062/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              833,
+              401,
+              883,
+              437
+            ],
+            "pixel_count": 1414,
+            "sam3_score": 0.9320438504219055,
+            "sha256": "0829cbe20297b7cc78a97ee9f52514269708de63e179193c4a5b1866c37689e5"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000062.png",
+            "sha256": "938b7196853c7757ddc9a190fdf05e6b7a1f6f87df7b557395a65703a352654a"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8154806964420893,
+                "sam3_score": 0.9301040768623352,
+                "sha256": "9d544a3f894ac7ee5cf9411934a31d22e3b7b274eca63e4986dcdb2aaaab1670"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9467742443084717,
+                "sha256": "41ecc85fb3d99bfd24e25f754a1124e1697fb78c6211e555c6152a36a342dd0a"
+              }
+            ],
+            "hit_ratio_margin": 0.8154806964420893,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              845.1204944358034,
+              395.1891796906729,
+              903.4962044166987,
+              446.1102706749234
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8154806964420893,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000063",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              849.165771484375,
+              401.08349609375,
+              902.417724609375,
+              437.44378662109375
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000063/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              850,
+              401,
+              902,
+              437
+            ],
+            "pixel_count": 1482,
+            "sam3_score": 0.9301040768623352,
+            "sha256": "9d544a3f894ac7ee5cf9411934a31d22e3b7b274eca63e4986dcdb2aaaab1670"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000063.png",
+            "sha256": "29706947c8c90221281a94243152d0b34f865038dcccbd3869c43d7a70c18919"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.7903103709311128,
+                "sam3_score": 0.9353210926055908,
+                "sha256": "8dd8aa81837317f24f5fbd67b547ec84a9ba19780992f1e240a5502c41b773e8"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9472607374191284,
+                "sha256": "c3a38a561e71922a064fa0fc4c7fd410ce6e1d0864d01a5c80cf54b2b910a745"
+              }
+            ],
+            "hit_ratio_margin": 0.7903103709311128,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              861.5253952302307,
+              395.42800788755716,
+              921.4739667004802,
+              446.7066723214777
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7903103709311128,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000064",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              867.0535888671875,
+              400.9477233886719,
+              920.5428466796875,
+              438.1620178222656
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000064/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              868,
+              401,
+              920,
+              437
+            ],
+            "pixel_count": 1479,
+            "sam3_score": 0.9353210926055908,
+            "sha256": "8dd8aa81837317f24f5fbd67b547ec84a9ba19780992f1e240a5502c41b773e8"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000064.png",
+            "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8128311884935655,
+                "sam3_score": 0.9376893639564514,
+                "sha256": "f87f420111dfb55095cee8d289ef8dca3e72e2afdd8a7533837b57c5b7c40d17"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9475748538970947,
+                "sha256": "92cc87d3d1f7e1fe35de84219d1958a9ca88a5535c5a6d27c2e3c4740cdeb6f0"
+              }
+            ],
+            "hit_ratio_margin": 0.8128311884935655,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              881.7932321673088,
+              396.41844066318487,
+              943.5256274337659,
+              447.97353794871964
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8128311884935655,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000065",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              885.8602905273438,
+              402.1492614746094,
+              942.4322509765625,
+              439.7237854003906
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000065/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              887,
+              402,
+              942,
+              439
+            ],
+            "pixel_count": 1590,
+            "sam3_score": 0.9376893639564514,
+            "sha256": "f87f420111dfb55095cee8d289ef8dca3e72e2afdd8a7533837b57c5b7c40d17"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000065.png",
+            "sha256": "23ea18aefdcc69d23f0ab46e2d675c6f84e2f3ff7e22866ea1d8a55125e41406"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8126419379258137,
+                "sam3_score": 0.936845064163208,
+                "sha256": "dbf5ee8aec56dcaa5c05384a2bf89f320eabc7a244ae658f23eec7dc173ab0bd"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9466893672943115,
+                "sha256": "5703bbb034024817ed08656c2ec1a550313bdfeee8c62efdd9ed59bce4894bee"
+              }
+            ],
+            "hit_ratio_margin": 0.8126419379258137,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              902.962814218373,
+              395.6107560655523,
+              966.5190259081237,
+              447.26386165590753
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8126419379258137,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000066",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              908.4652099609375,
+              401.00616455078125,
+              965.3467407226562,
+              438.8817138671875
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000066/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              909,
+              401,
+              964,
+              438
+            ],
+            "pixel_count": 1623,
+            "sam3_score": 0.936845064163208,
+            "sha256": "dbf5ee8aec56dcaa5c05384a2bf89f320eabc7a244ae658f23eec7dc173ab0bd"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000066.png",
+            "sha256": "b39de626c7656cacf4a8e932343e36cc54a46901804d9999806323e638d428cf"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8073429220287661,
+                "sam3_score": 0.935172438621521,
+                "sha256": "ecbdac26f006c587747c57d96974879ec704c812ed811761fc27858b6ba253ef"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9459782242774963,
+                "sha256": "a7a452de9622308d9950cff39d30cc294150c9294dcd8257d3c5b2e0fa9798e1"
+              }
+            ],
+            "hit_ratio_margin": 0.8073429220287661,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              925.0354615809766,
+              394.85850895917696,
+              990.3587663015273,
+              446.45021103996544
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8073429220287661,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000067",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              930.934814453125,
+              400.2788391113281,
+              989.5540771484375,
+              437.8623962402344
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000067/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              932,
+              400,
+              989,
+              437
+            ],
+            "pixel_count": 1685,
+            "sam3_score": 0.935172438621521,
+            "sha256": "ecbdac26f006c587747c57d96974879ec704c812ed811761fc27858b6ba253ef"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000067.png",
+            "sha256": "e31bc25f5f2e3191800b223157561e41212b35000391d01c501f7d07980ab792"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8096139288417865,
+                "sam3_score": 0.9362912774085999,
+                "sha256": "ae8d90ae70bd5c5cde36232b5ad56eb643b8120d3b08449fb3e138f8fd59afc4"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.943060576915741,
+                "sha256": "f5414ddb21f9692a7656b60953d32a344ea5b9ab89c6720270ce293f1df5118e"
+              }
+            ],
+            "hit_ratio_margin": 0.8096139288417865,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              946.8771692745488,
+              393.2635918030807,
+              1013.8460285304375,
+              444.51681486996574
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8096139288417865,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000068",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              952.8785400390625,
+              397.8653259277344,
+              1013.07861328125,
+              436.75531005859375
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000068/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              954,
+              398,
+              1013,
+              436
+            ],
+            "pixel_count": 1752,
+            "sam3_score": 0.9362912774085999,
+            "sha256": "ae8d90ae70bd5c5cde36232b5ad56eb643b8120d3b08449fb3e138f8fd59afc4"
+          },
+          "selected_for_fit": true,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000068.png",
+            "sha256": "e0dd873ab695350cdb67fb65ab268a7ac36d9391d7cfccca97e48deebeee930b"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8238077214231643,
+                "sam3_score": 0.9365806579589844,
+                "sha256": "12d98d819b9813e1659144b2ff459f04b907d4981fca9e684a459fc93070963c"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9430948495864868,
+                "sha256": "31538122bd6c2c692dd1433b4539da4471c89dd7691597630d0e6986e5db0a1d"
+              }
+            ],
+            "hit_ratio_margin": 0.8238077214231643,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              969.203807434066,
+              389.60591183507586,
+              1038.0133304789895,
+              440.39189984976304
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8238077214231643,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000069",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              975.1196899414062,
+              393.39630126953125,
+              1036.722900390625,
+              432.45458984375
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000069/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              976,
+              394,
+              1036,
+              432
+            ],
+            "pixel_count": 1816,
+            "sam3_score": 0.9365806579589844,
+            "sha256": "12d98d819b9813e1659144b2ff459f04b907d4981fca9e684a459fc93070963c"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000069.png",
+            "sha256": "0ff93ca8cddf4ba56ddf4c5874ff6867a419e030002ecf0ec9f90b7cdf921f7d"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8292959878879637,
+                "sam3_score": 0.9374475479125977,
+                "sha256": "eab5db3ea28f3c06a5b731eb81a197b0b9ba18aa9a7420e1dfda8c0d500f6a5b"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9378652572631836,
+                "sha256": "131eb64238130ac1cda558d174e148fcd29aebb76354e00f457624194115d05b"
+              }
+            ],
+            "hit_ratio_margin": 0.8292959878879637,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              988.7859347275166,
+              386.9804500361859,
+              1059.1881624297073,
+              437.38816136725194
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8292959878879637,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000070",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              995.0678100585938,
+              390.14739990234375,
+              1058.3992919921875,
+              429.09442138671875
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000070/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              997,
+              390,
+              1058,
+              429
+            ],
+            "pixel_count": 1876,
+            "sam3_score": 0.9374475479125977,
+            "sha256": "eab5db3ea28f3c06a5b731eb81a197b0b9ba18aa9a7420e1dfda8c0d500f6a5b"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000070.png",
+            "sha256": "a5d99a128d82706c70fdcf5b5bea9e80d63c8e20b3d3c01a62b73972ddedfc5c"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8143451930355791,
+                "sam3_score": 0.9411054849624634,
+                "sha256": "c32e82cf5f9bb992aa2a4f40fef1ac97b2b8f6c1343b383bea20bcdb8fab90c1"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9398775100708008,
+                "sha256": "e9e562cc816e893c9789a6019cdfdcf43e94cba80440a38aee4eed8340639606"
+              }
+            ],
+            "hit_ratio_margin": 0.8143451930355791,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              1014.885292670778,
+              384.1488565158205,
+              1087.5208134917048,
+              434.3240590073518
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8143451930355791,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000071",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              1021.2916259765625,
+              386.8077697753906,
+              1085.474609375,
+              426.3915100097656
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000071/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              1023,
+              387,
+              1085,
+              425
+            ],
+            "pixel_count": 1914,
+            "sam3_score": 0.9411054849624634,
+            "sha256": "c32e82cf5f9bb992aa2a4f40fef1ac97b2b8f6c1343b383bea20bcdb8fab90c1"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000071.png",
+            "sha256": "03a1e7ee7ce03c508bfa173ec62320d42b170797d1b3db0b06cb44db768a6af3"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8164269492808478,
+                "sam3_score": 0.9385383725166321,
+                "sha256": "06f3c326e4d69335f889e4968a113d06e41c9280275543813a24545222240cb4"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9346247315406799,
+                "sha256": "aae483d4682079b09b62fbc5e20860ed2a2fe7da94ecaf213196e973d55824b6"
+              }
+            ],
+            "hit_ratio_margin": 0.8164269492808478,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              1042.3266106445271,
+              380.9517739902517,
+              1117.4460352791182,
+              430.8765154524728
+            ],
+            "projected_anchor_point_count_inside_image": 5284,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8164269492808478,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000072",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              1049.307861328125,
+              383.88922119140625,
+              1116.0064697265625,
+              423.02276611328125
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000072/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              1051,
+              385,
+              1115,
+              422
+            ],
+            "pixel_count": 1964,
+            "sam3_score": 0.9385383725166321,
+            "sha256": "06f3c326e4d69335f889e4968a113d06e41c9280275543813a24545222240cb4"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000072.png",
+            "sha256": "df1dccbe91f762e0ff2ed1851b97814bab5991bd8bc29581a0916a098ef2a3e8"
+          }
+        }
+      ]
+    },
+    {
+      "category": "plant",
+      "eligible_frame_count": 25,
+      "frame_selection": {
+        "maximin_additions": [
+          {
+            "angles_to_prior_selected_deg": [
+              2.8980216805693977,
+              2.9262760416487614
+            ],
+            "frame_id": "000055",
+            "minimum_angle_to_selected_deg": 2.8980216805693977
+          }
+        ],
+        "maximum_pair": {
+          "frame_ids": [
+            "000048",
+            "000064"
+          ],
+          "view_ray_angle_deg": 5.0623387412047345
+        },
+        "policy": "maximum_pairwise_camera_to_object_view_ray_angle_then_maximin_additions",
+        "selected_frame_ids": [
+          "000048",
+          "000055",
+          "000064"
+        ]
+      },
+      "object_id": "sam3_plant_02",
+      "occluder_object_ids": [],
+      "source_anchor": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/web/public/worlds/bedroom4/evidence/sam3_plant_02.source-anchor.ply",
+        "point_count": 4630,
+        "robust_center": [
+          -9.7472243309021,
+          0.18888749927282333,
+          14.166638851165771
+        ],
+        "sample_stride": 1,
+        "sha256": "87ab2b3946cee1009b97e9193e950c5e6741e85d06416dcceb5a20a6e360941c"
+      },
+      "views": [
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8561555075593953,
+                "sam3_score": 0.9501763582229614,
+                "sha256": "e266d01b81e08279bd2f7db2236d95a9bab513e0c4ae86d320804a747e147ff4"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9255197048187256,
+                "sha256": "33b967a12ddc87fdeb8356030add894a4c5479122ad3fc7b0343685b340017aa"
+              }
+            ],
+            "hit_ratio_margin": 0.8561555075593953,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              62.9956117633584,
+              384.78893432139125,
+              158.7801801857787,
+              443.03655150062747
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8561555075593953,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000048",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              61.06239318847656,
+              395.6034240722656,
+              145.1668701171875,
+              442.62286376953125
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000048/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              62,
+              395,
+              145,
+              442
+            ],
+            "pixel_count": 2971,
+            "sam3_score": 0.9501763582229614,
+            "sha256": "e266d01b81e08279bd2f7db2236d95a9bab513e0c4ae86d320804a747e147ff4"
+          },
+          "selected_for_fit": true,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000048.png",
+            "sha256": "fd898eec479773edbd603a91c56e1d721fbe77f492d6de0c8e0761b04f3d1271"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8505399568034557,
+                "sam3_score": 0.9510128498077393,
+                "sha256": "0084e439cb996911fbad6a7970d42e0bf6e13314faae47d24419c000d930a9b3"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9328618049621582,
+                "sha256": "d54c81875952aee773d52d0532f1e9ccb4302f00e516f0ff486964b95577ef04"
+              }
+            ],
+            "hit_ratio_margin": 0.8505399568034557,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              59.737010973592646,
+              389.51856853271426,
+              156.5988759510838,
+              449.1136622965776
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8505399568034557,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000049",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              57.42909240722656,
+              401.70758056640625,
+              142.2067413330078,
+              448.53216552734375
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000049/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              59,
+              401,
+              142,
+              448
+            ],
+            "pixel_count": 3023,
+            "sam3_score": 0.9510128498077393,
+            "sha256": "0084e439cb996911fbad6a7970d42e0bf6e13314faae47d24419c000d930a9b3"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000049.png",
+            "sha256": "b492f6fd0194bff43291dbe3aae2507f660dbce5d172b385f96053282bff04cf"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.8390928725701944,
+                "sam3_score": 0.9491449594497681,
+                "sha256": "60de32f9684c970e464ba9248d07d284d8afb373f44f366630f5c6ace8d41987"
+              },
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9292921423912048,
+                "sha256": "fca1b139780224f98b0718f6a8a990851ca5d338dcc973eea6180e6ca598f7be"
+              }
+            ],
+            "hit_ratio_margin": 0.8390928725701944,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              57.23052464259729,
+              394.80638361187494,
+              155.0943166813068,
+              455.70834611519246
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8390928725701944,
+            "selected_mask_file_name": "plant_01.png",
+            "status": "passed"
+          },
+          "frame_id": "000050",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              55.231746673583984,
+              406.7481994628906,
+              141.75027465820312,
+              455.29180908203125
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000050/plant_01.png",
+            "pixel_bbox_xyxy_exclusive": [
+              56,
+              407,
+              141,
+              455
+            ],
+            "pixel_count": 3076,
+            "sam3_score": 0.9491449594497681,
+            "sha256": "60de32f9684c970e464ba9248d07d284d8afb373f44f366630f5c6ace8d41987"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000050.png",
+            "sha256": "2105aa0784b35b40e404924e87133347df2cc1698b25cc90a73922105f58d079"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.82829373650108,
+                "sam3_score": 0.9521381258964539,
+                "sha256": "5f1e18ce60f98da6aa852deddf13fb5f237e48f86c4050dc18307192a5254de4"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9306052327156067,
+                "sha256": "a850d06dcea0556b1061e94f6d16de09c0694917fe08eaa3a34c33a2845c4547"
+              }
+            ],
+            "hit_ratio_margin": 0.82829373650108,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              56.497705181276274,
+              399.1671175137596,
+              154.9926794977161,
+              461.2765776110194
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.82829373650108,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000051",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              54.2412109375,
+              412.0818176269531,
+              140.3213653564453,
+              460.4580383300781
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000051/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              55,
+              412,
+              140,
+              461
+            ],
+            "pixel_count": 3111,
+            "sam3_score": 0.9521381258964539,
+            "sha256": "5f1e18ce60f98da6aa852deddf13fb5f237e48f86c4050dc18307192a5254de4"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000051.png",
+            "sha256": "7f37cd722b92e0beb73464941ffcb89d9e3c31a2fc2d868cafc2a143a9fa9e35"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.8269978401727862,
+                "sam3_score": 0.9499369859695435,
+                "sha256": "2fab2b52e7f2d68b42959b46f28c0f06eeda8ab91da670e8b5b20439cebc528f"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9303114414215088,
+                "sha256": "a68eaba36612b607f320cdb67ffee40932906ba11e01c3d8b696a2426489b634"
+              }
+            ],
+            "hit_ratio_margin": 0.8269978401727862,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              56.67482095983871,
+              404.1211465631258,
+              155.52077677114966,
+              467.35424360876846
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8269978401727862,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000052",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              54.52749252319336,
+              417.8027648925781,
+              141.5663299560547,
+              466.9923400878906
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000052/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              56,
+              418,
+              141,
+              467
+            ],
+            "pixel_count": 3169,
+            "sam3_score": 0.9499369859695435,
+            "sha256": "2fab2b52e7f2d68b42959b46f28c0f06eeda8ab91da670e8b5b20439cebc528f"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000052.png",
+            "sha256": "c2d51786982fe51c8d9ae9d07f9abc64e7520e5706aa0bb6a66df38ad218acc7"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.8215982721382289,
+                "sam3_score": 0.9493382573127747,
+                "sha256": "7796075fe369e421f3f3219cd028cd91c29dc95beb29962403ee5f111517861e"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9323289394378662,
+                "sha256": "0adc05667107fccb4897a86775b06f5ddb26f8d8e1cc68a190f8862cd6b7181c"
+              }
+            ],
+            "hit_ratio_margin": 0.8215982721382289,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              56.454963802918655,
+              409.6269820657892,
+              155.81769158067124,
+              474.23007096912505
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8215982721382289,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000053",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              54.28352737426758,
+              424.2095031738281,
+              141.7158660888672,
+              474.2304382324219
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000053/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              55,
+              424,
+              142,
+              474
+            ],
+            "pixel_count": 3201,
+            "sam3_score": 0.9493382573127747,
+            "sha256": "7796075fe369e421f3f3219cd028cd91c29dc95beb29962403ee5f111517861e"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000053.png",
+            "sha256": "b681ba697632ffc94ded9123d927cd9896a51e316769b354147964b818935483"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.8032397408207343,
+                "sam3_score": 0.9514599442481995,
+                "sha256": "c3d5ceb1db6af120ef062071a17b3ad60014ef2be636f07c756f1232a9dea6a6"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9348190426826477,
+                "sha256": "cff3986f9f2c6147fb8d43fb93b8f768bc1669ddcd33e658c390621392e41bb2"
+              }
+            ],
+            "hit_ratio_margin": 0.8032397408207343,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              55.950453830180095,
+              415.23614038759314,
+              156.00513668514282,
+              481.191255117741
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.8032397408207343,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000054",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              53.85891342163086,
+              431.1805419921875,
+              141.82485961914062,
+              480.029541015625
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000054/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              55,
+              431,
+              142,
+              480
+            ],
+            "pixel_count": 3221,
+            "sam3_score": 0.9514599442481995,
+            "sha256": "c3d5ceb1db6af120ef062071a17b3ad60014ef2be636f07c756f1232a9dea6a6"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000054.png",
+            "sha256": "75d7224152e018eaafa72d06ab4cc37c910491906cbf294208218d47e3dff542"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.813390928725702,
+                "sam3_score": 0.9512709379196167,
+                "sha256": "b49e2ed4525071d1eb24a240778c20f29b77ade127aafc1aed24e8b787b52ef0"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9320826530456543,
+                "sha256": "e0234cbc73f5546fb05e73031a876de44594eb17541c3803658489a1429c64fe"
+              }
+            ],
+            "hit_ratio_margin": 0.813390928725702,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              54.02165466869951,
+              419.4147792375693,
+              155.06872662494493,
+              486.70416041856566
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.813390928725702,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000055",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              52.341609954833984,
+              435.4258117675781,
+              141.03707885742188,
+              486.8398742675781
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000055/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              53,
+              435,
+              141,
+              487
+            ],
+            "pixel_count": 3367,
+            "sam3_score": 0.9512709379196167,
+            "sha256": "b49e2ed4525071d1eb24a240778c20f29b77ade127aafc1aed24e8b787b52ef0"
+          },
+          "selected_for_fit": true,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000055.png",
+            "sha256": "bdb9d3222d59cb43c9e0dd770ab0b5eaa0665a346f22dcdab5eed38e7ad6fdae"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7995680345572355,
+                "sam3_score": 0.9511520266532898,
+                "sha256": "6363c70f9103babd345e492e7a04c2de87c933002445bb3868f28837ee83b444"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9335222244262695,
+                "sha256": "c3663a0763e4651648f1ed729175021b26d912ea3dd080dd7a6d2525a6fad0fd"
+              }
+            ],
+            "hit_ratio_margin": 0.7995680345572355,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              50.989539462000835,
+              423.04329666526604,
+              153.28517545659201,
+              491.5975298062043
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7995680345572355,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000056",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              49.28624725341797,
+              439.908935546875,
+              137.52700805664062,
+              491.6333312988281
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000056/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              50,
+              440,
+              138,
+              491
+            ],
+            "pixel_count": 3378,
+            "sam3_score": 0.9511520266532898,
+            "sha256": "6363c70f9103babd345e492e7a04c2de87c933002445bb3868f28837ee83b444"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000056.png",
+            "sha256": "3518cd5553fe19ec4db8df855a3dd577fcd8df0c1c8f257558f3759eac841ced"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7941684665226781,
+                "sam3_score": 0.951225996017456,
+                "sha256": "e164969e3df37c382a12b73a50145cdd7257ea6096bc7fdd933560e1a2863fef"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9366123676300049,
+                "sha256": "e402d622a1ca042b60fa5a4b031059fbdfe0e2bbbbac2412c19dd16f8d790a4a"
+              }
+            ],
+            "hit_ratio_margin": 0.7941684665226781,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              49.51641612032324,
+              425.57722816888,
+              152.88734000475552,
+              495.1808703661035
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7941684665226781,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000057",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              47.6057014465332,
+              442.41351318359375,
+              138.42239379882812,
+              494.94757080078125
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000057/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              49,
+              442,
+              138,
+              494
+            ],
+            "pixel_count": 3450,
+            "sam3_score": 0.951225996017456,
+            "sha256": "e164969e3df37c382a12b73a50145cdd7257ea6096bc7fdd933560e1a2863fef"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000057.png",
+            "sha256": "aba06073005f0295581f8d4113c8f5225046665e59b1d2a28fbadc3aa78ee11f"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.790280777537797,
+                "sam3_score": 0.9537023901939392,
+                "sha256": "596a9d2baf2741e59677a8f81a744fc4a57b43a332f00efecc9b6180beeb5c7e"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9355418682098389,
+                "sha256": "344edf1fd5987b43ba1b72d208462f9192570484e4ffb44abe326f6fbd967bc0"
+              }
+            ],
+            "hit_ratio_margin": 0.790280777537797,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              47.78763930884713,
+              427.1710909565931,
+              152.18240965512433,
+              497.55835367504415
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.790280777537797,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000058",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              45.56936264038086,
+              444.6617736816406,
+              136.8284912109375,
+              497.9383239746094
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000058/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              46,
+              444,
+              137,
+              497
+            ],
+            "pixel_count": 3528,
+            "sam3_score": 0.9537023901939392,
+            "sha256": "596a9d2baf2741e59677a8f81a744fc4a57b43a332f00efecc9b6180beeb5c7e"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000058.png",
+            "sha256": "ab17232a20d141d2726f41301182b33eeb0058a61c17e95d89b1e446b3eb67d3"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7868250539956804,
+                "sam3_score": 0.9532466530799866,
+                "sha256": "d28f0c2642c4920cd9e5c06a11db32315198ef53eacca54eae54eb72f19afdf8"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9338854551315308,
+                "sha256": "79eeef932eb789c541cd2c5ba7fe60c8f5bcfd209f5652c34f849e88a84112dc"
+              }
+            ],
+            "hit_ratio_margin": 0.7868250539956804,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              47.597098506290195,
+              427.82855093655076,
+              152.8506608942369,
+              498.86873287590464
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7868250539956804,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000059",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              45.622047424316406,
+              445.9500427246094,
+              137.12461853027344,
+              499.20703125
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000059/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              47,
+              446,
+              138,
+              499
+            ],
+            "pixel_count": 3557,
+            "sam3_score": 0.9532466530799866,
+            "sha256": "d28f0c2642c4920cd9e5c06a11db32315198ef53eacca54eae54eb72f19afdf8"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000059.png",
+            "sha256": "9e2e4e676426fbccd07d09d5e7a498574b012abdbcaff44fc83d3e12e04983c4"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7762419006479482,
+                "sam3_score": 0.9530634880065918,
+                "sha256": "438d5b0bd346aeb1cb67957c30a1af72368a973613c897f50c5ad3c75c3998a0"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9277539849281311,
+                "sha256": "852742ea36a0f98db1517eb3cb86d85835b82dc8988d9a5daa668af6c5853be9"
+              }
+            ],
+            "hit_ratio_margin": 0.7762419006479482,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              51.53270973077326,
+              428.2838064178277,
+              157.0034308899755,
+              499.6003923460728
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7762419006479482,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000060",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              49.42459487915039,
+              446.41094970703125,
+              139.96865844726562,
+              498.97064208984375
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000060/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              50,
+              446,
+              141,
+              499
+            ],
+            "pixel_count": 3547,
+            "sam3_score": 0.9530634880065918,
+            "sha256": "438d5b0bd346aeb1cb67957c30a1af72368a973613c897f50c5ad3c75c3998a0"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000060.png",
+            "sha256": "d6fcf5020b8ba320c424d18e9743cd62ba32aee89e816e967a35d45810d3e8d7"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7680345572354211,
+                "sam3_score": 0.9524655342102051,
+                "sha256": "5bfd09d8db2de518c22acaf30bb91a63536994062c5becb7f76ae282d126c083"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9325583577156067,
+                "sha256": "f0a8bb6ce66def4d91eb6f4d82d8f53e056f0e680af021a0eb355dc835d776ee"
+              }
+            ],
+            "hit_ratio_margin": 0.7680345572354211,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              61.86467024759952,
+              428.16996877904614,
+              166.56618823795503,
+              499.09084474267524
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7680345572354211,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000061",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              58.787261962890625,
+              446.5091857910156,
+              148.67288208007812,
+              499.0083923339844
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000061/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              60,
+              446,
+              149,
+              499
+            ],
+            "pixel_count": 3494,
+            "sam3_score": 0.9524655342102051,
+            "sha256": "5bfd09d8db2de518c22acaf30bb91a63536994062c5becb7f76ae282d126c083"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000061.png",
+            "sha256": "bb0b213216747a4af8d3072e8ea17c69eb5084f59b71e9f3b877daba2b739dbc"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7667386609071274,
+                "sam3_score": 0.9518346786499023,
+                "sha256": "32f3015572771311abfd8cce833eaa65487ea4d929eaf294ef766af5a0bcf433"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9320438504219055,
+                "sha256": "0829cbe20297b7cc78a97ee9f52514269708de63e179193c4a5b1866c37689e5"
+              }
+            ],
+            "hit_ratio_margin": 0.7667386609071274,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              80.68647992535568,
+              426.2238925237369,
+              183.14895007541384,
+              496.0191403503529
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7667386609071274,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000062",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              77.29914855957031,
+              443.75128173828125,
+              166.0626983642578,
+              495.7369384765625
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000062/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              78,
+              444,
+              166,
+              495
+            ],
+            "pixel_count": 3379,
+            "sam3_score": 0.9518346786499023,
+            "sha256": "32f3015572771311abfd8cce833eaa65487ea4d929eaf294ef766af5a0bcf433"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000062.png",
+            "sha256": "938b7196853c7757ddc9a190fdf05e6b7a1f6f87df7b557395a65703a352654a"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7676025917926566,
+                "sam3_score": 0.9467742443084717,
+                "sha256": "41ecc85fb3d99bfd24e25f754a1124e1697fb78c6211e555c6152a36a342dd0a"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9301040768623352,
+                "sha256": "9d544a3f894ac7ee5cf9411934a31d22e3b7b274eca63e4986dcdb2aaaab1670"
+              }
+            ],
+            "hit_ratio_margin": 0.7676025917926566,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              107.40045320763852,
+              421.70180909743794,
+              206.3728235990788,
+              489.3309357455571
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7676025917926566,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000063",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              103.88627624511719,
+              438.81072998046875,
+              188.19613647460938,
+              489.2841491699219
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000063/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              105,
+              439,
+              188,
+              489
+            ],
+            "pixel_count": 3191,
+            "sam3_score": 0.9467742443084717,
+            "sha256": "41ecc85fb3d99bfd24e25f754a1124e1697fb78c6211e555c6152a36a342dd0a"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000063.png",
+            "sha256": "29706947c8c90221281a94243152d0b34f865038dcccbd3869c43d7a70c18919"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7390928725701944,
+                "sam3_score": 0.9472607374191284,
+                "sha256": "c3a38a561e71922a064fa0fc4c7fd410ce6e1d0864d01a5c80cf54b2b910a745"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9353210926055908,
+                "sha256": "8dd8aa81837317f24f5fbd67b547ec84a9ba19780992f1e240a5502c41b773e8"
+              }
+            ],
+            "hit_ratio_margin": 0.7390928725701944,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              132.37537938607704,
+              417.2933661207422,
+              228.06063908914427,
+              482.8577333414438
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7390928725701944,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000064",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              127.92654418945312,
+              432.87176513671875,
+              209.6421661376953,
+              481.94879150390625
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000064/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              129,
+              433,
+              209,
+              482
+            ],
+            "pixel_count": 2986,
+            "sam3_score": 0.9472607374191284,
+            "sha256": "c3a38a561e71922a064fa0fc4c7fd410ce6e1d0864d01a5c80cf54b2b910a745"
+          },
+          "selected_for_fit": true,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000064.png",
+            "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7386609071274298,
+                "sam3_score": 0.9475748538970947,
+                "sha256": "92cc87d3d1f7e1fe35de84219d1958a9ca88a5535c5a6d27c2e3c4740cdeb6f0"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9376893639564514,
+                "sha256": "f87f420111dfb55095cee8d289ef8dca3e72e2afdd8a7533837b57c5b7c40d17"
+              }
+            ],
+            "hit_ratio_margin": 0.7386609071274298,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              163.28671419346483,
+              413.14685606476087,
+              254.88827724461055,
+              476.20998870007077
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7386609071274298,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000065",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              159.14129638671875,
+              428.0853271484375,
+              236.2855682373047,
+              475.98956298828125
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000065/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              160,
+              428,
+              235,
+              476
+            ],
+            "pixel_count": 2790,
+            "sam3_score": 0.9475748538970947,
+            "sha256": "92cc87d3d1f7e1fe35de84219d1958a9ca88a5535c5a6d27c2e3c4740cdeb6f0"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000065.png",
+            "sha256": "23ea18aefdcc69d23f0ab46e2d675c6f84e2f3ff7e22866ea1d8a55125e41406"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7468682505399568,
+                "sam3_score": 0.9466893672943115,
+                "sha256": "5703bbb034024817ed08656c2ec1a550313bdfeee8c62efdd9ed59bce4894bee"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.936845064163208,
+                "sha256": "dbf5ee8aec56dcaa5c05384a2bf89f320eabc7a244ae658f23eec7dc173ab0bd"
+              }
+            ],
+            "hit_ratio_margin": 0.7468682505399568,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              194.63919366141965,
+              407.3633081572292,
+              282.17974520249146,
+              467.8451758311311
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7468682505399568,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000066",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              190.23170471191406,
+              420.5927734375,
+              264.8646240234375,
+              467.2413330078125
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000066/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              191,
+              421,
+              265,
+              467
+            ],
+            "pixel_count": 2614,
+            "sam3_score": 0.9466893672943115,
+            "sha256": "5703bbb034024817ed08656c2ec1a550313bdfeee8c62efdd9ed59bce4894bee"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000066.png",
+            "sha256": "b39de626c7656cacf4a8e932343e36cc54a46901804d9999806323e638d428cf"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.745572354211663,
+                "sam3_score": 0.9459782242774963,
+                "sha256": "a7a452de9622308d9950cff39d30cc294150c9294dcd8257d3c5b2e0fa9798e1"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.935172438621521,
+                "sha256": "ecbdac26f006c587747c57d96974879ec704c812ed811761fc27858b6ba253ef"
+              }
+            ],
+            "hit_ratio_margin": 0.745572354211663,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              225.79041660528463,
+              401.7546491007569,
+              309.45171299376085,
+              459.6894512022833
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.745572354211663,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000067",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              220.86892700195312,
+              414.7375793457031,
+              292.3611755371094,
+              459.1005554199219
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000067/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              222,
+              415,
+              292,
+              459
+            ],
+            "pixel_count": 2440,
+            "sam3_score": 0.9459782242774963,
+            "sha256": "a7a452de9622308d9950cff39d30cc294150c9294dcd8257d3c5b2e0fa9798e1"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000067.png",
+            "sha256": "e31bc25f5f2e3191800b223157561e41212b35000391d01c501f7d07980ab792"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7481641468682505,
+                "sam3_score": 0.943060576915741,
+                "sha256": "f5414ddb21f9692a7656b60953d32a344ea5b9ab89c6720270ce293f1df5118e"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9362912774085999,
+                "sha256": "ae8d90ae70bd5c5cde36232b5ad56eb643b8120d3b08449fb3e138f8fd59afc4"
+              }
+            ],
+            "hit_ratio_margin": 0.7481641468682505,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              254.61793391351148,
+              395.19624887449845,
+              334.89420710250755,
+              450.603151474629
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7481641468682505,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000068",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              249.95211791992188,
+              407.360595703125,
+              318.6244201660156,
+              450.1492614746094
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000068/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              251,
+              407,
+              319,
+              450
+            ],
+            "pixel_count": 2238,
+            "sam3_score": 0.943060576915741,
+            "sha256": "f5414ddb21f9692a7656b60953d32a344ea5b9ab89c6720270ce293f1df5118e"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000068.png",
+            "sha256": "e0dd873ab695350cdb67fb65ab268a7ac36d9391d7cfccca97e48deebeee930b"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7593952483801296,
+                "sam3_score": 0.9430948495864868,
+                "sha256": "31538122bd6c2c692dd1433b4539da4471c89dd7691597630d0e6986e5db0a1d"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9365806579589844,
+                "sha256": "12d98d819b9813e1659144b2ff459f04b907d4981fca9e684a459fc93070963c"
+              }
+            ],
+            "hit_ratio_margin": 0.7593952483801296,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              282.83722551726316,
+              386.9471250184195,
+              359.935011491868,
+              439.8440751162304
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7593952483801296,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000069",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              278.7039794921875,
+              397.482177734375,
+              344.0936279296875,
+              439.5548400878906
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000069/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              279,
+              397,
+              343,
+              439
+            ],
+            "pixel_count": 2107,
+            "sam3_score": 0.9430948495864868,
+            "sha256": "31538122bd6c2c692dd1433b4539da4471c89dd7691597630d0e6986e5db0a1d"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000069.png",
+            "sha256": "0ff93ca8cddf4ba56ddf4c5874ff6867a419e030002ecf0ec9f90b7cdf921f7d"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7583153347732181,
+                "sam3_score": 0.9378652572631836,
+                "sha256": "131eb64238130ac1cda558d174e148fcd29aebb76354e00f457624194115d05b"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9374475479125977,
+                "sha256": "eab5db3ea28f3c06a5b731eb81a197b0b9ba18aa9a7420e1dfda8c0d500f6a5b"
+              }
+            ],
+            "hit_ratio_margin": 0.7583153347732181,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              306.14848670272346,
+              380.6232029747053,
+              380.8158959437267,
+              431.49665334659255
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7583153347732181,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000070",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              302.43121337890625,
+              391.1402893066406,
+              364.9929504394531,
+              431.3612365722656
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000070/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              303,
+              391,
+              365,
+              431
+            ],
+            "pixel_count": 1968,
+            "sam3_score": 0.9378652572631836,
+            "sha256": "131eb64238130ac1cda558d174e148fcd29aebb76354e00f457624194115d05b"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000070.png",
+            "sha256": "a5d99a128d82706c70fdcf5b5bea9e80d63c8e20b3d3c01a62b73972ddedfc5c"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7745140388768899,
+                "sam3_score": 0.9398775100708008,
+                "sha256": "e9e562cc816e893c9789a6019cdfdcf43e94cba80440a38aee4eed8340639606"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9411054849624634,
+                "sha256": "c32e82cf5f9bb992aa2a4f40fef1ac97b2b8f6c1343b383bea20bcdb8fab90c1"
+              }
+            ],
+            "hit_ratio_margin": 0.7745140388768899,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              335.38647785078905,
+              373.86087497965343,
+              407.2283464293462,
+              422.39022420678424
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7745140388768899,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000071",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              331.94439697265625,
+              382.4771728515625,
+              393.3813171386719,
+              421.9325866699219
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000071/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              333,
+              383,
+              393,
+              422
+            ],
+            "pixel_count": 1875,
+            "sam3_score": 0.9398775100708008,
+            "sha256": "e9e562cc816e893c9789a6019cdfdcf43e94cba80440a38aee4eed8340639606"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000071.png",
+            "sha256": "03a1e7ee7ce03c508bfa173ec62320d42b170797d1b3db0b06cb44db768a6af3"
+          }
+        },
+        {
+          "association": {
+            "all_same_category_candidates": [
+              {
+                "file_name": "plant_02.png",
+                "hit_ratio": 0.7784017278617711,
+                "sam3_score": 0.9346247315406799,
+                "sha256": "aae483d4682079b09b62fbc5e20860ed2a2fe7da94ecaf213196e973d55824b6"
+              },
+              {
+                "file_name": "plant_01.png",
+                "hit_ratio": 0.0,
+                "sam3_score": 0.9385383725166321,
+                "sha256": "06f3c326e4d69335f889e4968a113d06e41c9280275543813a24545222240cb4"
+              }
+            ],
+            "hit_ratio_margin": 0.7784017278617711,
+            "method": "project_exact_source_3d_anchor_then_maximize_same_category_mask_point_hit_ratio",
+            "projected_anchor_bbox_xyxy": [
+              365.15531990277293,
+              367.0114542260252,
+              434.2399064646055,
+              413.277068717656
+            ],
+            "projected_anchor_point_count_inside_image": 4630,
+            "runner_up_hit_ratio": 0.0,
+            "selected_hit_ratio": 0.7784017278617711,
+            "selected_mask_file_name": "plant_02.png",
+            "status": "passed"
+          },
+          "frame_id": "000072",
+          "mask": {
+            "mask_index_bbox_xyxy": [
+              361.56243896484375,
+              374.7806091308594,
+              419.1438293457031,
+              413.53033447265625
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/000072/plant_02.png",
+            "pixel_bbox_xyxy_exclusive": [
+              363,
+              374,
+              419,
+              413
+            ],
+            "pixel_count": 1716,
+            "sam3_score": 0.9346247315406799,
+            "sha256": "aae483d4682079b09b62fbc5e20860ed2a2fe7da94ecaf213196e973d55824b6"
+          },
+          "selected_for_fit": false,
+          "source_rgb": {
+            "dimensions_wh": [
+              1280,
+              720
+            ],
+            "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000072.png",
+            "sha256": "df1dccbe91f762e0ff2ed1851b97814bab5991bd8bc29581a0916a098ef2a3e8"
+          }
+        }
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "status": "source_multiview_modal_masks_ready_for_scene_fit",
+  "thresholds": {
+    "minimum_anchor_hit_margin": 0.05,
+    "minimum_anchor_hit_ratio": 0.25,
+    "minimum_sam3_score": 0.8
+  }
+}

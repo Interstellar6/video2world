@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.multiview_mask_part_manual_review",
+  "reviewed_at": "2026-07-20T11:51:26Z",
+  "status": "rejected_missing_pot_modal_masks",
+  "promotion_eligible": false,
+  "union_ready": false,
+  "machine_report": {
+    "path": "./review/mask-part-audit.json",
+    "sha256": "4724a30007bb60a23270e6e47fa85a32f6b5b0e483dc9d49e77381e38206bc42"
+  },
+  "reviewed_contact_sheets": [
+    {
+      "object_id": "sam3_plant_01",
+      "frame_count": 25,
+      "path": "./review/sam3_plant_01/all-frames-source-mask-contact-sheet.png",
+      "sha256": "a6fe406f21f167f6fff318a6cc4d9fc91829dcd741cfcca6b59c00fa57684339",
+      "finding": "The selected mask follows the foliage in every reviewed frame and excludes the visible silver container below it."
+    },
+    {
+      "object_id": "sam3_plant_02",
+      "frame_count": 25,
+      "path": "./review/sam3_plant_02/all-frames-source-mask-contact-sheet.png",
+      "sha256": "2a18d32c08a42fff2212c15613f0337725582d3c9b0290f64425a3688b055ba0",
+      "finding": "The selected mask follows the foliage in every reviewed frame and excludes the visible dark container below it."
+    }
+  ],
+  "findings": [
+    "The 25-frame mask index contains exactly two plant masks per frame, matching the two physical foliage instances after 3D-anchor projection association.",
+    "Detector suffixes change during the sequence, so plant_01 and plant_02 filenames are not stable physical instance identifiers.",
+    "No pot, flowerpot, planter, or vase label occurs in any of the 25 frames.",
+    "The visible containers are not separate plant-category instances and are not part of the selected plant modal masks.",
+    "The 3D anchors reliably disambiguate the two foliage instances, but do not create independent segmentation evidence for the missing containers."
+  ],
+  "fail_closed_reasons": [
+    "There is no hash-bound container mask to union with either foliage mask.",
+    "Cropping a nightstand or lamp mask around the container would relabel support or neighboring geometry without instance evidence.",
+    "Expanding the foliage mask by morphology or a bounding box would absorb tabletop and lamp pixels and is not an acceptable source condition."
+  ],
+  "required_next_step": "Run a targeted source-frame segmentation pass for complete potted plant instances or explicitly segment and 3D-associate foliage and container parts before materializing a union condition.",
+  "scope": "Local audit evidence only. No TRELLIS run, generated mask, clean plate, or production manifest mutation was performed."
+}

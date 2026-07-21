@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.targeted_potted_plant_manual_review",
+  "reviewed_at": "2026-07-20T12:35:00Z",
+  "status": "accepted_for_modal_conditioning_and_scene_fit",
+  "promotion_scope": "source-view modal masks only",
+  "machine_manifest": {
+    "path": "./materialized/targeted-potted-plant-mask-manifest.json",
+    "sha256": "b60f8a0376a52ec9f9089c9df7cb24215befeeb27cb14d7c214375e2824f68b1"
+  },
+  "reviewed_contact_sheets": [
+    {
+      "object_id": "sam3_plant_01",
+      "frame_count": 25,
+      "path": "./materialized/review/sam3_plant_01/all-frames-targeted-pot-contact-sheet.png",
+      "sha256": "9ffebaa531a3489aceaf38e1a0b71cfaf4492a35d484181b2b4e99954bdb1e6a"
+    },
+    {
+      "object_id": "sam3_plant_02",
+      "frame_count": 25,
+      "path": "./materialized/review/sam3_plant_02/all-frames-targeted-pot-contact-sheet.png",
+      "sha256": "867652e1658ccdf7f49b76c677ffa0e0c12a26ba990b844e7c49a7dc0abb74c6"
+    }
+  ],
+  "consumable_view_manifests": [
+    {
+      "object_id": "sam3_plant_01",
+      "path": "./materialized/views/sam3_plant_01.json",
+      "sha256": "71986e2414b1781e3c9f5d0cedfa0aaf0e448274c24c49ff0287f0a23d483b31"
+    },
+    {
+      "object_id": "sam3_plant_02",
+      "path": "./materialized/views/sam3_plant_02.json",
+      "sha256": "c2a37c6cd4b0dc687ff351b3644d2b9b7aea7bd898c68c7589d1e3623742e163"
+    }
+  ],
+  "findings": [
+    "All 25 source frames were reviewed for both physical plant instances.",
+    "The cyan flower-pot or planter masks follow the visible container immediately below the anchor-associated foliage.",
+    "The orange potted-plant masks include both the foliage and visible container in every reviewed frame.",
+    "No reviewed selected container mask visibly absorbs the neighboring lamp or nightstand.",
+    "Detector ordinal changes are resolved by exact 3D-anchor projected-point assignment rather than filename suffixes."
+  ],
+  "limitations": [
+    "These are modal source-view masks and do not expose occluded backs, undersides, or hidden container surfaces.",
+    "Acceptance authorizes use as TRELLIS2 conditioning and scene-fit silhouette evidence; it does not approve any reconstructed 3D asset.",
+    "No clean plate, amodal image completion, mask dilation, bbox expansion, inpainting, or production manifest mutation is part of this result."
+  ]
+}

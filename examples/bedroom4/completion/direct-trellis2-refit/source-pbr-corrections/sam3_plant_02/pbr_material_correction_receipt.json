@@ -1,0 +1,919 @@
+{
+  "claim_scope": "Geometry is unchanged. Only complete connected components inside the lower semantic cylinder receive geometry-rasterized base-color and metallic-roughness texels derived from real SAM3 pot-mask RGB statistics.",
+  "color_evidence": {
+    "frame_count": 25,
+    "frames": [
+      {
+        "frame_id": "000048",
+        "median_luminance_srgb": 0.11339059583991766,
+        "median_rgb_srgb": [
+          0.13725490868091583,
+          0.1098039299249649,
+          0.0784313753247261
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1299,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000048.pot.png",
+          "pixel_count": 1465,
+          "sha256": "f473773ca0454e54becb2a799749e586cccd17c8cb6fd0ba27b2e7e54f804130"
+        },
+        "sample_count": 1299,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000048.png",
+          "sha256": "fd898eec479773edbd603a91c56e1d721fbe77f492d6de0c8e0761b04f3d1271"
+        }
+      },
+      {
+        "frame_id": "000049",
+        "median_luminance_srgb": 0.11257726255506276,
+        "median_rgb_srgb": [
+          0.13333334028720856,
+          0.1098039299249649,
+          0.08235294371843338
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1300,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000049.pot.png",
+          "pixel_count": 1467,
+          "sha256": "243b3435f764b86300ae9f5f51e015b76c5e69bb657886908ee95aed228fa670"
+        },
+        "sample_count": 1300,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000049.png",
+          "sha256": "b492f6fd0194bff43291dbe3aae2507f660dbce5d172b385f96053282bff04cf"
+        }
+      },
+      {
+        "frame_id": "000050",
+        "median_luminance_srgb": 0.10958118706680833,
+        "median_rgb_srgb": [
+          0.13333334028720856,
+          0.10588236153125763,
+          0.07450980693101883
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1343,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000050.pot.png",
+          "pixel_count": 1515,
+          "sha256": "2cd6dd870f34f4a946308c2b189c4f7e383972c83bb5b5659ff4aed5a6a55796"
+        },
+        "sample_count": 1343,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000050.png",
+          "sha256": "2105aa0784b35b40e404924e87133347df2cc1698b25cc90a73922105f58d079"
+        }
+      },
+      {
+        "frame_id": "000051",
+        "median_luminance_srgb": 0.11339059583991766,
+        "median_rgb_srgb": [
+          0.13333334028720856,
+          0.1098039299249649,
+          0.0784313753247261
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1323,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000051.pot.png",
+          "pixel_count": 1493,
+          "sha256": "3114f10f1a668bf70e1ebb474d8b8995451d521b3c958ff5c69da2d3dfe62dda"
+        },
+        "sample_count": 1323,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000051.png",
+          "sha256": "7f37cd722b92e0beb73464941ffcb89d9e3c31a2fc2d868cafc2a143a9fa9e35"
+        }
+      },
+      {
+        "frame_id": "000052",
+        "median_luminance_srgb": 0.11201098807901143,
+        "median_rgb_srgb": [
+          0.12941177189350128,
+          0.1098039299249649,
+          0.0784313753247261
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1301,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000052.pot.png",
+          "pixel_count": 1471,
+          "sha256": "ee8822f90a3ec51f98f9f2864223d6f26e67bef5c731bf9c4e07e546ebf1368d"
+        },
+        "sample_count": 1301,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000052.png",
+          "sha256": "c2d51786982fe51c8d9ae9d07f9abc64e7520e5706aa0bb6a66df38ad218acc7"
+        }
+      },
+      {
+        "frame_id": "000053",
+        "median_luminance_srgb": 0.11087373324483632,
+        "median_rgb_srgb": [
+          0.125490203499794,
+          0.1098039299249649,
+          0.0784313753247261
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1301,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000053.pot.png",
+          "pixel_count": 1471,
+          "sha256": "0314742a9cb654ee387d85c8dc5142adb48aa6aa55a3d80e7da88d483dc7749c"
+        },
+        "sample_count": 1301,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000053.png",
+          "sha256": "b681ba697632ffc94ded9123d927cd9896a51e316769b354147964b818935483"
+        }
+      },
+      {
+        "frame_id": "000054",
+        "median_luminance_srgb": 0.10910510566392913,
+        "median_rgb_srgb": [
+          0.12941177189350128,
+          0.10588236153125763,
+          0.0784313753247261
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1344,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000054.pot.png",
+          "pixel_count": 1516,
+          "sha256": "aba1940b13f300cf11f8712c8f6145aa1c0723565ee74b6bc4198266b5c9b5b2"
+        },
+        "sample_count": 1344,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000054.png",
+          "sha256": "75d7224152e018eaafa72d06ab4cc37c910491906cbf294208218d47e3dff542"
+        }
+      },
+      {
+        "frame_id": "000055",
+        "median_luminance_srgb": 0.10833647849410771,
+        "median_rgb_srgb": [
+          0.12941177189350128,
+          0.10588236153125763,
+          0.07450980693101883
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1321,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000055.pot.png",
+          "pixel_count": 1493,
+          "sha256": "91583483bd09045e19a6b6598d9a65f2bfae96ff9cdee67a3159fc31e8233f82"
+        },
+        "sample_count": 1321,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000055.png",
+          "sha256": "bdb9d3222d59cb43c9e0dd770ab0b5eaa0665a346f22dcdab5eed38e7ad6fdae"
+        }
+      },
+      {
+        "frame_id": "000056",
+        "median_luminance_srgb": 0.10833647849410771,
+        "median_rgb_srgb": [
+          0.12941177189350128,
+          0.10588236153125763,
+          0.07450980693101883
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1337,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000056.pot.png",
+          "pixel_count": 1511,
+          "sha256": "948ff1e1e9efd759bdc25298d31d4b5449f791c4f9d61c973d64cf686f708655"
+        },
+        "sample_count": 1337,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000056.png",
+          "sha256": "3518cd5553fe19ec4db8df855a3dd577fcd8df0c1c8f257558f3759eac841ced"
+        }
+      },
+      {
+        "frame_id": "000057",
+        "median_luminance_srgb": 0.10101255709305405,
+        "median_rgb_srgb": [
+          0.125490203499794,
+          0.10196079313755035,
+          0.06666667014360428
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1384,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000057.pot.png",
+          "pixel_count": 1558,
+          "sha256": "1bd1f8ae0eda98b914dcba2282edb5558894cc2fdde0fcff7fa95f14b159ce25"
+        },
+        "sample_count": 1384,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000057.png",
+          "sha256": "aba06073005f0295581f8d4113c8f5225046665e59b1d2a28fbadc3aa78ee11f"
+        }
+      },
+      {
+        "frame_id": "000058",
+        "median_luminance_srgb": 0.09995608710572124,
+        "median_rgb_srgb": [
+          0.125490203499794,
+          0.09803922474384308,
+          0.07058823853731155
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1452,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000058.pot.png",
+          "pixel_count": 1633,
+          "sha256": "23aca3b0cca52b267ad518212dc1811ed86762e78eaf4d10608bcd45c6fc6381"
+        },
+        "sample_count": 1452,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000058.png",
+          "sha256": "ab17232a20d141d2726f41301182b33eeb0058a61c17e95d89b1e446b3eb67d3"
+        }
+      },
+      {
+        "frame_id": "000059",
+        "median_luminance_srgb": 0.09968000842183827,
+        "median_rgb_srgb": [
+          0.125490203499794,
+          0.09803922474384308,
+          0.07058823853731155
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1455,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000059.pot.png",
+          "pixel_count": 1635,
+          "sha256": "571bd68f639dbfa918c3fc61d3aff48da800f22231f498288a6562fe480a3f5d"
+        },
+        "sample_count": 1455,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000059.png",
+          "sha256": "9e2e4e676426fbccd07d09d5e7a498574b012abdbcaff44fc83d3e12e04983c4"
+        }
+      },
+      {
+        "frame_id": "000060",
+        "median_luminance_srgb": 0.1002462828978896,
+        "median_rgb_srgb": [
+          0.11764706671237946,
+          0.10196079313755035,
+          0.06666667014360428
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1410,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000060.pot.png",
+          "pixel_count": 1586,
+          "sha256": "33446b598665a631ba9cc9c304e428767995e426a93c3c7cf11ff597b59c4280"
+        },
+        "sample_count": 1410,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000060.png",
+          "sha256": "d6fcf5020b8ba320c424d18e9743cd62ba32aee89e816e967a35d45810d3e8d7"
+        }
+      },
+      {
+        "frame_id": "000061",
+        "median_luminance_srgb": 0.1005451064094901,
+        "median_rgb_srgb": [
+          0.125490203499794,
+          0.10196079313755035,
+          0.07450980693101883
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1389,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000061.pot.png",
+          "pixel_count": 1561,
+          "sha256": "7bdbba48592b7394ad059ae40ef76d804b2fb95abf9f4fba8b85df089d28c85f"
+        },
+        "sample_count": 1389,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000061.png",
+          "sha256": "bb0b213216747a4af8d3072e8ea17c69eb5084f59b71e9f3b877daba2b739dbc"
+        }
+      },
+      {
+        "frame_id": "000062",
+        "median_luminance_srgb": 0.10129569433107972,
+        "median_rgb_srgb": [
+          0.125490203499794,
+          0.10196079313755035,
+          0.07058823853731155
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1333,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000062.pot.png",
+          "pixel_count": 1502,
+          "sha256": "70dd5d85e19a83cbd7c8351caa605e276461a857136efee7b828e0e98c62d285"
+        },
+        "sample_count": 1333,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000062.png",
+          "sha256": "938b7196853c7757ddc9a190fdf05e6b7a1f6f87df7b557395a65703a352654a"
+        }
+      },
+      {
+        "frame_id": "000063",
+        "median_luminance_srgb": 0.11024628230184316,
+        "median_rgb_srgb": [
+          0.13333334028720856,
+          0.10588236153125763,
+          0.07450980693101883
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1225,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000063.pot.png",
+          "pixel_count": 1390,
+          "sha256": "75063f274d8e6babd07d745bb91fc771347097faa6047cfaf443eded2b26f584"
+        },
+        "sample_count": 1225,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000063.png",
+          "sha256": "29706947c8c90221281a94243152d0b34f865038dcccbd3869c43d7a70c18919"
+        }
+      },
+      {
+        "frame_id": "000064",
+        "median_luminance_srgb": 0.11087373324483632,
+        "median_rgb_srgb": [
+          0.13333334028720856,
+          0.1098039299249649,
+          0.0784313753247261
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1175,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000064.pot.png",
+          "pixel_count": 1331,
+          "sha256": "99c63ec3cbd193abd8b884d6003c4083f50addb0b48c923cda1516b1ef5cd940"
+        },
+        "sample_count": 1175,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000064.png",
+          "sha256": "0b8c6c8d58cb0b2ddeecc811ac1f91c46ddb5c8d4a66e01d6abdc82f4e57f8d3"
+        }
+      },
+      {
+        "frame_id": "000065",
+        "median_luminance_srgb": 0.10910275268927216,
+        "median_rgb_srgb": [
+          0.12941177189350128,
+          0.10588236153125763,
+          0.07450980693101883
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1034,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000065.pot.png",
+          "pixel_count": 1180,
+          "sha256": "c5b9708fc34e08886e716ca6ca677c74eab8752cb97bc40e933a4becbf29dfe0"
+        },
+        "sample_count": 1034,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000065.png",
+          "sha256": "23ea18aefdcc69d23f0ab46e2d675c6f84e2f3ff7e22866ea1d8a55125e41406"
+        }
+      },
+      {
+        "frame_id": "000066",
+        "median_luminance_srgb": 0.11144000772088766,
+        "median_rgb_srgb": [
+          0.13725490868091583,
+          0.1098039299249649,
+          0.0784313753247261
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 1015,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000066.pot.png",
+          "pixel_count": 1163,
+          "sha256": "e0c7ce4efa69aefe19662d9715c91a7ec912c1a1e3b0f61d878477430ef8ba63"
+        },
+        "sample_count": 1015,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000066.png",
+          "sha256": "b39de626c7656cacf4a8e932343e36cc54a46901804d9999806323e638d428cf"
+        }
+      },
+      {
+        "frame_id": "000067",
+        "median_luminance_srgb": 0.11436275277920066,
+        "median_rgb_srgb": [
+          0.1411764770746231,
+          0.11372549831867218,
+          0.07450980693101883
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 934,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000067.pot.png",
+          "pixel_count": 1075,
+          "sha256": "13a73ae85f019de5cd65d1d39b575e3a0965aa3eae25bf20f93a47448212cb45"
+        },
+        "sample_count": 934,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000067.png",
+          "sha256": "e31bc25f5f2e3191800b223157561e41212b35000391d01c501f7d07980ab792"
+        }
+      },
+      {
+        "frame_id": "000068",
+        "median_luminance_srgb": 0.12172392847482114,
+        "median_rgb_srgb": [
+          0.15294118225574493,
+          0.11764706671237946,
+          0.08235294371843338
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 862,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000068.pot.png",
+          "pixel_count": 998,
+          "sha256": "16c430ab5bcc025a54abf4f4ed815d8393efa0718208d21dcf08c4bc8f4c3a27"
+        },
+        "sample_count": 862,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000068.png",
+          "sha256": "e0dd873ab695350cdb67fb65ab268a7ac36d9391d7cfccca97e48deebeee930b"
+        }
+      },
+      {
+        "frame_id": "000069",
+        "median_luminance_srgb": 0.12806000673025847,
+        "median_rgb_srgb": [
+          0.16470588743686676,
+          0.125490203499794,
+          0.08627451211214066
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 866,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000069.pot.png",
+          "pixel_count": 996,
+          "sha256": "eb61aa5e865e9806123379addac93580b827f7005cabe4a89587c6978aa8ed25"
+        },
+        "sample_count": 866,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000069.png",
+          "sha256": "0ff93ca8cddf4ba56ddf4c5874ff6867a419e030002ecf0ec9f90b7cdf921f7d"
+        }
+      },
+      {
+        "frame_id": "000070",
+        "median_luminance_srgb": 0.14667765638530253,
+        "median_rgb_srgb": [
+          0.18039216101169586,
+          0.14509804546833038,
+          0.09803922474384308
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 805,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000070.pot.png",
+          "pixel_count": 937,
+          "sha256": "d3a5f0a76539203aa1746767cdaf923c60742c8835da6b7a3db20cce74b147d8"
+        },
+        "sample_count": 805,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000070.png",
+          "sha256": "a5d99a128d82706c70fdcf5b5bea9e80d63c8e20b3d3c01a62b73972ddedfc5c"
+        }
+      },
+      {
+        "frame_id": "000071",
+        "median_luminance_srgb": 0.1680251029253006,
+        "median_rgb_srgb": [
+          0.2039215862751007,
+          0.16078431904315948,
+          0.11764706671237946
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 785,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000071.pot.png",
+          "pixel_count": 911,
+          "sha256": "8f4c0826bc1da5f31259df170dfc8ccd311ac7d3191e822f95403f7014d1a2a1"
+        },
+        "sample_count": 785,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000071.png",
+          "sha256": "03a1e7ee7ce03c508bfa173ec62320d42b170797d1b3db0b06cb44db768a6af3"
+        }
+      },
+      {
+        "frame_id": "000072",
+        "median_luminance_srgb": 0.1889654970020056,
+        "median_rgb_srgb": [
+          0.23137256503105164,
+          0.18431372940540314,
+          0.1411764770746231
+        ],
+        "pot_mask": {
+          "eroded_pixel_count": 730,
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/parts/sam3_plant_02/000072.pot.png",
+          "pixel_count": 853,
+          "sha256": "8e7c970eee3d1a2505888e9535283b73f72e55cda6b78b2ac1da5ef9319e958f"
+        },
+        "sample_count": 730,
+        "source_rgb": {
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source/000072.png",
+          "sha256": "df1dccbe91f762e0ff2ed1851b97814bab5991bd8bc29581a0916a098ef2a3e8"
+        }
+      }
+    ],
+    "method": "one-pixel 3x3 binary erosion, then aggregate real source RGB under hash-bound pot masks",
+    "sample_count": 29723
+  },
+  "created_at": "2026-07-20T13:35:39.393226+00:00",
+  "gates": {
+    "all_corner_normals_present": true,
+    "all_meshes_have_uv": true,
+    "all_normal_lengths_unit": true,
+    "all_normals_finite": true,
+    "all_uv_values_finite": true,
+    "in_memory_topology_unchanged": true,
+    "mask_manifest_hash_bound": true,
+    "pbr_bottom_coverage": true,
+    "real_pot_color_samples": true,
+    "roundtrip_base_color_texture_present": true,
+    "roundtrip_bounds_unchanged_at_1e7": true,
+    "roundtrip_face_count_unchanged": true,
+    "roundtrip_material_count_unchanged": true,
+    "roundtrip_materials_double_sided": true,
+    "roundtrip_mesh_count_unchanged": true,
+    "roundtrip_metallic_roughness_texture_present": true,
+    "roundtrip_primitive_count_unchanged": true,
+    "roundtrip_unique_vertex_count_unchanged": true,
+    "roundtrip_vertex_count_unchanged": true,
+    "roundtrip_world_triangle_geometry_unchanged": true,
+    "selected_base_color_matches_real_mask_target": true,
+    "selected_face_fraction_in_bounds": true,
+    "selected_pot_texture_alpha_is_opaque": true,
+    "source_hash_bound": true,
+    "source_leaf_texture_pixels_preserved_outside_selected_uv": true
+  },
+  "geometry": {
+    "after_material_assignment": {
+      "canonical_world_triangles_rounded_1e7_sha256": "dcd0951e36a7d8870b3cdd6a7322efe9c653ad5cf77740d0156a4e4d701ecfd7",
+      "face_count": 736036,
+      "mesh_count": 1,
+      "object_local_topology_sha256": "6bd42b54f77e5b8defd510f813271bbce0b5b96b48af1a48d39d30918b629536",
+      "unique_world_vertex_count_at_1e7": 367027,
+      "vertex_count": 495125,
+      "world_bounds_max": [
+        0.3963920772075653,
+        0.38172173500061035,
+        0.49947255849838257
+      ],
+      "world_bounds_min": [
+        -0.38496649265289307,
+        -0.38069605827331543,
+        -0.5004203915596008
+      ]
+    },
+    "roundtrip_output": {
+      "canonical_world_triangles_rounded_1e7_sha256": "dcd0951e36a7d8870b3cdd6a7322efe9c653ad5cf77740d0156a4e4d701ecfd7",
+      "face_count": 736036,
+      "mesh_count": 1,
+      "object_local_topology_sha256": "6bd42b54f77e5b8defd510f813271bbce0b5b96b48af1a48d39d30918b629536",
+      "unique_world_vertex_count_at_1e7": 367027,
+      "vertex_count": 495125,
+      "world_bounds_max": [
+        0.3963920772075653,
+        0.38172173500061035,
+        0.49947255849838257
+      ],
+      "world_bounds_min": [
+        -0.38496649265289307,
+        -0.38069605827331543,
+        -0.5004203915596008
+      ]
+    },
+    "source": {
+      "canonical_world_triangles_rounded_1e7_sha256": "dcd0951e36a7d8870b3cdd6a7322efe9c653ad5cf77740d0156a4e4d701ecfd7",
+      "face_count": 736036,
+      "mesh_count": 1,
+      "object_local_topology_sha256": "6bd42b54f77e5b8defd510f813271bbce0b5b96b48af1a48d39d30918b629536",
+      "unique_world_vertex_count_at_1e7": 367027,
+      "vertex_count": 495125,
+      "world_bounds_max": [
+        0.3963920772075653,
+        0.38172173500061035,
+        0.49947255849838257
+      ],
+      "world_bounds_min": [
+        -0.38496649265289307,
+        -0.38069605827331543,
+        -0.5004203915596008
+      ]
+    }
+  },
+  "geometry_preserving_material_patch": {
+    "donor_image_count": 2,
+    "geometry_contract_unchanged": true,
+    "method": "source GLB geometry chunks plus Blender-exported PBR donor images/material",
+    "output_binary_size_bytes": 22593202,
+    "output_geometry_contract_sha256": "b6a7d5ac5dcf3aa976d53c8a40a404512daab86539918a6670af6e283aec97b9",
+    "source_binary_prefix_size_bytes": 20449952,
+    "source_geometry_contract_sha256": "b6a7d5ac5dcf3aa976d53c8a40a404512daab86539918a6670af6e283aec97b9",
+    "temporary_donor_sha256": "e2cd0824af150c5e21c41e2fd14173645ad37ba0b683bd63ee16cf19f584c616",
+    "temporary_donor_size_bytes": 81609064
+  },
+  "glb_structure": {
+    "roundtrip_output": {
+      "alpha_modes": [
+        "OPAQUE"
+      ],
+      "base_color_texture_count": 1,
+      "double_sided_material_count": 1,
+      "material_count": 1,
+      "mesh_count": 1,
+      "metallic_roughness_texture_count": 1,
+      "primitive_count": 1
+    },
+    "source": {
+      "alpha_modes": [
+        "OPAQUE"
+      ],
+      "base_color_texture_count": 1,
+      "double_sided_material_count": 0,
+      "material_count": 1,
+      "mesh_count": 1,
+      "metallic_roughness_texture_count": 0,
+      "primitive_count": 1
+    }
+  },
+  "inputs": {
+    "mask_manifest": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/targeted-pot-segmentation/materialized/targeted-potted-plant-mask-manifest.json",
+      "sha256": "b60f8a0376a52ec9f9089c9df7cb24215befeeb27cb14d7c214375e2824f68b1",
+      "size_bytes": 483858
+    },
+    "source_glb": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/embodiedgen_v2_bedroom4_mesh_exports_20260716/output/sam3_plant_02/sam3_plant_02.glb",
+      "sha256": "e264ab00554e963ddcaf6ce49fc9dc5c77ce913d4c7f5bf6269795ab6ecf2c1d",
+      "size_bytes": 20451292
+    }
+  },
+  "kind": "video2world.geometry_selected_pbr_region_correction",
+  "limitations": [
+    "Real masks are modal and provide appearance evidence only for visible pot surfaces.",
+    "The target material neutralizes warm scene illumination instead of baking it into albedo.",
+    "Visual six-view review remains mandatory before scene-fit or candidate adoption."
+  ],
+  "material": {
+    "base_color": {
+      "clamp_srgb": [
+        0.06,
+        0.18
+      ],
+      "neutralization": "equal RGB channels; scene illuminant chroma is not baked into metal albedo",
+      "observed_luminance_srgb_quantiles": {
+        "0.05": 0.07414353375807405,
+        "0.25": 0.09378274854272603,
+        "0.5": 0.11312314541339874,
+        "0.75": 0.14619922187328338,
+        "0.95": 0.22406433017253874
+      },
+      "observed_rgb_srgb_quantiles": {
+        "0.05": [
+          0.09803922474384308,
+          0.06666667014360428,
+          0.019607843831181526
+        ],
+        "0.25": [
+          0.11372549831867218,
+          0.09019608050584793,
+          0.05490196496248245
+        ],
+        "0.5": [
+          0.13725490868091583,
+          0.1098039299249649,
+          0.0784313753247261
+        ],
+        "0.75": [
+          0.16862745583057404,
+          0.14509804546833038,
+          0.11764706671237946
+        ],
+        "0.95": [
+          0.2392157018184662,
+          0.22352942824363708,
+          0.20784315466880798
+        ]
+      },
+      "target_base_color_linear": [
+        0.012181481577953825,
+        0.012181481577953825,
+        0.012181481577953825,
+        1.0
+      ],
+      "target_base_color_srgb": [
+        0.11312314541339874,
+        0.11312314541339874,
+        0.11312314541339874,
+        1.0
+      ]
+    },
+    "metallic": 0.65,
+    "name": "Material_0",
+    "roughness": 0.42,
+    "source_leaf_texture_unchanged_outside_selected_uv": true,
+    "texture_region": {
+      "base_color_link_replaces_unlinked_default": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1.0
+      ],
+      "corrected_base_texture": {
+        "full_pixel_float32_sha256": "40054a6fe1876a0877853fea609557bf11c1b21189f37bda2fa9cb70b3f50d32",
+        "image_name": "Image_0_PotCorrected",
+        "outside_selected_uv_pixel_float32_sha256": "2356eeb26340bc8076879d05f6e740c866175db857b1d6c22c04712262595dca"
+      },
+      "corrected_use_backface_culling": false,
+      "glb_double_sided_requested": true,
+      "material_name": "Material_0",
+      "selected_alpha_after": 1.0,
+      "selected_alpha_before_quantiles": {
+        "0.0": 1.0,
+        "0.05": 1.0,
+        "0.5": 1.0,
+        "0.95": 1.0,
+        "1.0": 1.0
+      },
+      "source_base_texture": {
+        "dimensions_wh": [
+          1024,
+          1024
+        ],
+        "full_pixel_float32_sha256": "d5c16903c86be99324a2babe9b5ccd32eb7030cda8eda6fcb88a288165cdc5d2",
+        "image_name": "Image_0",
+        "outside_selected_uv_pixel_float32_sha256": "2356eeb26340bc8076879d05f6e740c866175db857b1d6c22c04712262595dca"
+      },
+      "source_metallic_factor": 1.0,
+      "source_roughness_factor": 1.0,
+      "source_use_backface_culling": true,
+      "target_metallic": 0.65,
+      "target_roughness": 0.42,
+      "target_texture_rgb_srgb": [
+        0.11312314867973328,
+        0.11312314867973328,
+        0.11312314867973328
+      ],
+      "uv_projection": {
+        "conflict_exclusion_texel_count": 190,
+        "conflict_texel_count": 22,
+        "dilated_overlap_sample_count": 3865,
+        "method": "rasterized selected triangle UVs; seam dilation only when overlap audit passes",
+        "one_texel_seam_dilation_applied": false,
+        "selected_face_count": 43266,
+        "selected_texel_count": 95275,
+        "selected_texel_fraction": 0.09086132049560547,
+        "selected_uv_bounds_max": [
+          0.9995964765548706,
+          0.999596118927002
+        ],
+        "selected_uv_bounds_min": [
+          0.0,
+          0.0
+        ],
+        "selection_mode": "undilated_minus_one_texel_buffer_around_unselected_uv_samples",
+        "texture_dimensions_wh": [
+          1024,
+          1024
+        ],
+        "undilated_overlap_sample_count": 115,
+        "unselected_overlap_sample_count": 0,
+        "unselected_vertex_and_centroid_sample_count": 2771080
+      }
+    }
+  },
+  "mesh_quality": {
+    "roundtrip_output": [
+      {
+        "corner_normal_count": 2208108,
+        "face_count": 736036,
+        "loop_count": 2208108,
+        "material_names": [
+          "Material_0"
+        ],
+        "normal_length_range": [
+          0.9999998308718355,
+          1.0000001636260483
+        ],
+        "normals_finite": true,
+        "object_name": "geometry_0",
+        "uv_finite": true,
+        "uv_layer_count": 1,
+        "vertex_count": 495125
+      }
+    ],
+    "source": [
+      {
+        "corner_normal_count": 2208108,
+        "face_count": 736036,
+        "loop_count": 2208108,
+        "material_names": [
+          "Material_0"
+        ],
+        "normal_length_range": [
+          0.9999998308718355,
+          1.0000001636260483
+        ],
+        "normals_finite": true,
+        "object_name": "geometry_0",
+        "uv_finite": true,
+        "uv_layer_count": 1,
+        "vertex_count": 495125
+      }
+    ]
+  },
+  "object_id": "sam3_plant_02",
+  "output": {
+    "corrected_glb": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/source-pbr-corrections/sam3_plant_02/sam3_plant_02.pot-corrected.glb",
+      "sha256": "d41ffb7296c6d73efca6c73cd296c906806ec5ee5859b9939f4ce1c7b2ed4534",
+      "size_bytes": 22594868
+    }
+  },
+  "pbr_bottom_coverage": {
+    "alpha_threshold": 0.05,
+    "analytic_bottom_row_from_image_bottom": 42,
+    "artifacts": {
+      "analytic": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/source-pbr-corrections/sam3_plant_02/bottom-coverage/analytic-side-alpha.png",
+        "sha256": "b9a91b67cd9a4c836df3687e47808de3fc385ca9360fafc1db08b6bf48505ebd",
+        "size_bytes": 172214
+      },
+      "pbr": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/source-pbr-corrections/sam3_plant_02/bottom-coverage/pbr-side-alpha.png",
+        "sha256": "33287f7d7d7dab28f16af21c232b59354b9303416cada6e1a531aa18ec0a9da0",
+        "size_bytes": 237427
+      }
+    },
+    "gates": {
+      "analytic_render_nonblank": true,
+      "lower_band_analytic_coverage_at_least_0_99": true,
+      "pbr_bottom_gap_at_most_2px": true,
+      "pbr_render_nonblank": true,
+      "whole_silhouette_iou_at_least_0_99": true
+    },
+    "kind": "orthographic_pbr_vs_analytic_bottom_coverage",
+    "lower_band_analytic_coverage": 1.0,
+    "pbr_bottom_gap_px": 0,
+    "pbr_bottom_row_from_image_bottom": 42,
+    "resolution_wh": [
+      512,
+      512
+    ],
+    "semantic_up_axis_gltf": "+Y",
+    "view_axis_blender_world": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "whole_silhouette_iou": 1.0
+  },
+  "region_selector": {
+    "component_count": 10535,
+    "derived_thresholds": {
+      "horizontal_center": [
+        0.005712792277336121,
+        0.0005128383636474609
+      ],
+      "maximum_height": -0.16045678853988643,
+      "maximum_radius": 0.21487360671162606,
+      "semantic_bounds_max": [
+        0.3963920772075653,
+        0.38172173500061035,
+        0.49947255849838257
+      ],
+      "semantic_bounds_min": [
+        -0.38496649265289307,
+        -0.38069605827331543,
+        -0.5004203915596008
+      ]
+    },
+    "kind": "connected_components_inside_lower_semantic_cylinder",
+    "meshes": [
+      {
+        "component_count": 10535,
+        "object_name": "geometry_0",
+        "selected_component_count": 303,
+        "selected_face_count": 43266
+      }
+    ],
+    "parameters": {
+      "component_rule": "all vertices must remain at or below top and inside radius",
+      "connectivity": "shared_mesh_edges",
+      "radius_ratio_of_max_horizontal_half_extent": 0.55,
+      "top_height_ratio": 0.34
+    },
+    "selected_component_count": 303,
+    "selected_face_count": 43266,
+    "selected_face_fraction": 0.05878245085838193,
+    "selected_semantic_bounds_max": [
+      0.14954741299152374,
+      0.18903733789920807,
+      -0.16057074069976807
+    ],
+    "selected_semantic_bounds_min": [
+      -0.19632524251937866,
+      -0.16227750480175018,
+      -0.5004203915596008
+    ],
+    "semantic_up_axis_gltf": "+Y",
+    "semantic_up_vector_blender_world": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "total_face_count": 736036
+  },
+  "schema_version": 1,
+  "status": "technical_passed_visual_review_pending"
+}

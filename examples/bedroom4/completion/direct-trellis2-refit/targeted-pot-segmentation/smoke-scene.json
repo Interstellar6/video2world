@@ -1,0 +1,26 @@
+{
+  "scene": "bedroom_4",
+  "per_image": {
+    "000048.png": [
+      "flower pot",
+      "planter",
+      "potted plant"
+    ],
+    "000060.png": [
+      "flower pot",
+      "planter",
+      "potted plant"
+    ],
+    "000072.png": [
+      "flower pot",
+      "planter",
+      "potted plant"
+    ]
+  },
+  "provenance": {
+    "purpose": "Targeted SAM3 smoke test for the two visible Bedroom4 plant containers.",
+    "source_frame_range": "000048-000072",
+    "selection": "first, middle, and last frames only",
+    "generation": "No box expansion, morphology, inpainting, or relabeling."
+  }
+}

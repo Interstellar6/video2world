@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.multiview_mask_part_audit_config",
+  "source_audit": {
+    "path": "./multiview-evidence/source-view-audit.json",
+    "sha256": "5ecad1985083206cabe4968beacca5f236dbf29564e6260ce9f8254585cabcb9"
+  },
+  "mask_index": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/mask_index.json",
+    "sha256": "08a0bb11dab795cb77f1648a1d2b55cea9a722360710d5e711e055f5146dfa75"
+  },
+  "object_ids": [
+    "sam3_plant_01",
+    "sam3_plant_02"
+  ],
+  "part_label_aliases": {
+    "primary": [
+      "plant"
+    ],
+    "required_container": [
+      "pot",
+      "flowerpot",
+      "planter",
+      "vase"
+    ]
+  },
+  "review": {
+    "crop_padding_ratio": 0.65,
+    "columns": 5,
+    "panel_width": 220,
+    "panel_height": 170
+  },
+  "output_directory": "./review"
+}

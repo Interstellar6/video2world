@@ -85,6 +85,35 @@ rotation, translation, and uniform scale first. Any per-axis correction should
 be bounded and reported separately so scene placement does not silently
 distort object geometry.
 
+## Plant Container Evidence
+
+The generic source-view plant masks are modal foliage/object masks. They are
+not enough to prove that a generated object includes the visible flower pot:
+
+- `plant-mask-parts-audit/review/mask-part-audit.json` is
+  `rejected_missing_required_part_mask` for `sam3_plant_01` and
+  `sam3_plant_02`.
+- The rejection is intentional fail-closed behavior: a support-surface mask
+  must not be cropped or relabeled as a missing object part.
+
+The targeted potted-plant pass then uses independent text-prompt masks:
+
+- `targeted-pot-segmentation/materialized/targeted-potted-plant-mask-manifest.json`
+  is `passed` for `sam3_plant_01` and `sam3_plant_02`.
+- It validates complete modal `potted plant` masks against separate
+  `flower pot`/`planter` evidence and neighboring nightstand/lamp contaminant
+  masks.
+- It is accepted only for modal source-view conditioning and scene-fit
+  silhouette evidence. It does not approve any reconstructed 3D asset, clean
+  plate, amodal back/bottom completion, or production manifest mutation.
+
+`support-surfaces/sam3_plant_02/support_surface_receipt.json` records the
+measured planar support surface used for plant 02 placement constraints.
+`source-pbr-corrections/sam3_plant_02/pbr_material_correction_receipt.json`
+records a geometry-selected PBR region correction; its status remains
+`technical_passed_visual_review_pending`, so visual six-view review is still
+mandatory before adoption.
+
 ## Quick inspection
 
     jq -r '.objects[] |

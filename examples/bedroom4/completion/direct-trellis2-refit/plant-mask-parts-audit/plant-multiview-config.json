@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.multiview_scene_fit_evidence_config",
+  "cameras": {
+    "path": "../../layered-peel/scene-fit-evidence/cameras.json",
+    "sha256": "89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330"
+  },
+  "mask_index": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4/mask_index.json",
+    "sha256": "08a0bb11dab795cb77f1648a1d2b55cea9a722360710d5e711e055f5146dfa75"
+  },
+  "mask_root": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/sam3_masks_scannetppv2_new/bedroom_4",
+  "source_rgb_dir": "../../layered-peel/pbr-layer-render-batch-v2-geometry-matte/source",
+  "frame_ids": [
+    "000048",
+    "000049",
+    "000050",
+    "000051",
+    "000052",
+    "000053",
+    "000054",
+    "000055",
+    "000056",
+    "000057",
+    "000058",
+    "000059",
+    "000060",
+    "000061",
+    "000062",
+    "000063",
+    "000064",
+    "000065",
+    "000066",
+    "000067",
+    "000068",
+    "000069",
+    "000070",
+    "000071",
+    "000072"
+  ],
+  "selected_view_count": 3,
+  "thresholds": {
+    "minimum_sam3_score": 0.8,
+    "minimum_anchor_hit_ratio": 0.25,
+    "minimum_anchor_hit_margin": 0.05
+  },
+  "objects": [
+    {
+      "object_id": "sam3_plant_01",
+      "category": "plant",
+      "anchor": {
+        "path": "../../../../../web/public/worlds/bedroom4/evidence/sam3_plant_01.source-anchor.ply",
+        "sha256": "badfec3efea8373c79e66de15e09472e3a9ae19785a0308c25042dfdf4202340"
+      }
+    },
+    {
+      "object_id": "sam3_plant_02",
+      "category": "plant",
+      "anchor": {
+        "path": "../../../../../web/public/worlds/bedroom4/evidence/sam3_plant_02.source-anchor.ply",
+        "sha256": "87ab2b3946cee1009b97e9193e950c5e6741e85d06416dcceb5a20a6e360941c"
+      }
+    }
+  ]
+}
