@@ -902,6 +902,8 @@ class LayeredCompletionExecutionReport(StrictModel):
     initial_clean_plate: CompletionArtifactEvidence
     rounds: list[LayeredCompletionRoundReceipt] = Field(min_length=1)
     final_clean_plate: CompletionArtifactEvidence
+    clean_scene_gaussian: AssetRef
+    clean_scene_mesh: AssetRef
     limitations: list[str] = Field(default_factory=list)
 
     @model_validator(mode="after")
@@ -1012,6 +1014,14 @@ class LayeredCompletionExecutionReport(StrictModel):
             self.final_clean_plate,
             context="final_clean_plate",
         )
+        for role, asset in (
+            ("clean_scene_gaussian", self.clean_scene_gaussian),
+            ("clean_scene_mesh", self.clean_scene_mesh),
+        ):
+            if asset.role != role:
+                raise ValueError(f"{role} asset has mismatched role {asset.role!r}")
+            if asset.status != "validated":
+                raise ValueError(f"{role} asset must be validated")
         return self
 
 

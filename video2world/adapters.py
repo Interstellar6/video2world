@@ -326,6 +326,18 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             or final_clean_plate.get("size_bytes") != report.final_clean_plate.size_bytes
         ):
             raise ValueError("clean_plate_manifest final_clean_plate differs from report")
+        for role, report_asset in (
+            ("clean_scene_gaussian", report.clean_scene_gaussian),
+            ("clean_scene_mesh", report.clean_scene_mesh),
+        ):
+            output_snapshot = receipt_outputs.get(role)
+            if not isinstance(output_snapshot, dict):
+                raise ValueError(f"provider receipt has no {role} output")
+            if (
+                output_snapshot.get("sha256") != report_asset.sha256
+                or output_snapshot.get("size_bytes") != report_asset.size_bytes
+            ):
+                raise ValueError(f"{role} report asset differs from provider receipt output")
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError) as exc:
         raise ArtifactError(
             "layered completion plan/receipt lineage validation failed: "
