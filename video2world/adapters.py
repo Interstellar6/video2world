@@ -251,6 +251,7 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             _validate_layered_receipt_artifact(role, Path(input_path))
         for input_role, output_role in (
             ("scene_gaussian", "clean_scene_gaussian"),
+            ("semantic_gaussian", "clean_scene_gaussian"),
             ("scene_mesh", "clean_scene_mesh"),
         ):
             input_snapshot = inputs.get(input_role)

@@ -36,6 +36,7 @@ def test_pipeline_docs_keep_corrected_clean_plate_status_fail_closed() -> None:
     assert "hash 或路径" in getting_started
     assert "terminal report 必须显式绑定 clean_scene_gaussian/clean_scene_mesh" in getting_started
     assert "uri/hash/size" in getting_started
+    assert "clean_scene_gaussian` 也不能复用 `semantic_gaussian" in getting_started
     for phrase in (
         "frames_manifest",
         "layered_completion_plan",

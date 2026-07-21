@@ -987,6 +987,12 @@ def test_layered_completion_report_binds_clean_scene_asset_uri_to_receipt_path(
             "clean_scene_gaussian must not reuse scene_gaussian input artifact",
         ),
         (
+            "semantic_gaussian",
+            "clean_scene_gaussian",
+            "semantic_gaussian",
+            "clean_scene_gaussian must not reuse semantic_gaussian input artifact",
+        ),
+        (
             "scene_mesh",
             "clean_scene_mesh",
             "mesh",
@@ -1010,11 +1016,12 @@ def test_layered_completion_report_rejects_clean_scene_reusing_raw_scene_inputs(
     report_path.write_text(json.dumps(report_payload), encoding="utf-8")
     inputs = _layered_completion_input_snapshots(tmp_path, plan_path)
     outputs = _layered_completion_output_snapshots(tmp_path, report_path)
-    payload = (
-        _clean_gaussian_header() + ("0 " * 13 + "0\n").encode("ascii")
-        if payload_kind == "gaussian"
-        else _valid_clean_mesh_payload()
-    )
+    if payload_kind == "gaussian":
+        payload = _clean_gaussian_header() + ("0 " * 13 + "0\n").encode("ascii")
+    elif payload_kind == "semantic_gaussian":
+        payload = _semantic_gaussian_header() + ("0 " * 15 + "0\n").encode("ascii")
+    else:
+        payload = _valid_clean_mesh_payload()
     reused_path = Path(inputs[input_role]["path"])
     reused_path.write_bytes(payload)
     output_path = Path(outputs[output_role]["path"])
@@ -1051,6 +1058,12 @@ def test_layered_completion_report_rejects_clean_scene_reusing_raw_scene_inputs(
             "clean_scene_gaussian path must differ from scene_gaussian input path",
         ),
         (
+            "semantic_gaussian",
+            "clean_scene_gaussian",
+            "semantic_gaussian",
+            "clean_scene_gaussian path must differ from semantic_gaussian input path",
+        ),
+        (
             "scene_mesh",
             "clean_scene_mesh",
             "mesh",
@@ -1074,11 +1087,12 @@ def test_layered_completion_report_rejects_clean_scene_reusing_raw_scene_input_p
     report_path.write_text(json.dumps(report_payload), encoding="utf-8")
     inputs = _layered_completion_input_snapshots(tmp_path, plan_path)
     outputs = _layered_completion_output_snapshots(tmp_path, report_path)
-    payload = (
-        _clean_gaussian_header() + ("0 " * 13 + "0\n").encode("ascii")
-        if payload_kind == "gaussian"
-        else _valid_clean_mesh_payload()
-    )
+    if payload_kind == "gaussian":
+        payload = _clean_gaussian_header() + ("0 " * 13 + "0\n").encode("ascii")
+    elif payload_kind == "semantic_gaussian":
+        payload = _semantic_gaussian_header() + ("0 " * 15 + "0\n").encode("ascii")
+    else:
+        payload = _valid_clean_mesh_payload()
     reused_path = Path(inputs[input_role]["path"])
     reused_path.write_bytes(payload)
     reused_snapshot = _artifact_snapshot_payload(reused_path)
