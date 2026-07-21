@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "video2world.canonical_object_six_view_review",
+  "createdAt": "2026-07-20T11:47:02.054Z",
+  "state": "captured_visual_pending",
+  "promotionAllowed": false,
+  "sourcePageUrl": "http://127.0.0.1:4177/object-review.html?objectId=sam3_pillow_right&asset=%2F%40fs%2F%2FUsers%2Fzhangyuxiang%2FDesktop%2Fworksplace%2Fvideo2world%2Fexamples%2Fbedroom4%2Fcompletion%2Fdirect-trellis2-refit%2Ffits%2Fsam3_pillow_right%2Fsam3_pillow_right.scene-local.glb",
+  "canonicalViews": [
+    "front",
+    "right",
+    "back",
+    "left",
+    "top",
+    "bottom"
+  ],
+  "canonicalViewAxes": {
+    "front": {
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "orientationContract": "web/object-review.js VIEW_SPECS orthogonal object-local axes",
+  "horizontalOrbitAcceptedAsSixViewEvidence": false,
+  "visualGate": {
+    "status": "pending",
+    "blocking": [
+      "shape_mismatch",
+      "primary_color_category_error",
+      "missing_surface_or_sheet_geometry",
+      "disconnected_or_floating_parts",
+      "significant_scene_interpenetration"
+    ],
+    "warning": [
+      "minor_backside_texture_hallucination",
+      "minor_material_or_pattern_drift"
+    ]
+  },
+  "objectId": "sam3_pillow_right",
+  "renderMode": "neutral-albedo",
+  "bounds": {
+    "min": [
+      -2.0733189582824707,
+      -1.7473105192184448,
+      -1.326586365699768
+    ],
+    "max": [
+      1.7927807569503784,
+      1.8172746896743774,
+      1.491694688796997
+    ],
+    "size": [
+      3.866099715232849,
+      3.5645852088928223,
+      2.818281054496765
+    ],
+    "radius": 2.9831067204223687
+  },
+  "meshCount": 1,
+  "triangleCount": 98226,
+  "asset": {
+    "url": "http://127.0.0.1:4177/@fs//Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/fits/sam3_pillow_right/sam3_pillow_right.scene-local.glb",
+    "sizeBytes": 3406168,
+    "sha256": "84bf13aa1cf1b6da689f7a42ca4c9fd09cee42444fcd7d44973ca3fdb17f51cb"
+  },
+  "views": {
+    "front": {
+      "file": "front_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/candidate/object-review/sam3_pillow_right/front_object.png",
+      "sizeBytes": 98371,
+      "sha256": "7393409ceda8f139a982e45787f76543f8325f13df695babf1dd96abd751cb29",
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "file": "right_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/candidate/object-review/sam3_pillow_right/right_object.png",
+      "sizeBytes": 93939,
+      "sha256": "94b58687444b6350bbf512a8993e0b25cc910ecde1ef9f9a3c1ed7f1a137ec1d",
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "file": "back_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/candidate/object-review/sam3_pillow_right/back_object.png",
+      "sizeBytes": 100710,
+      "sha256": "ad10546b21d9e33f2ffbce63c3c42ceafb1224274266fe68b871d4c2cf87764e",
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "file": "left_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/candidate/object-review/sam3_pillow_right/left_object.png",
+      "sizeBytes": 90686,
+      "sha256": "64e2ab1193900742e76980f08b3f7396708b249784b7d119357649785d5daa9a",
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "file": "top_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/candidate/object-review/sam3_pillow_right/top_object.png",
+      "sizeBytes": 88711,
+      "sha256": "cd6aa1c698779098283fcc6410ac9edaaf0eb8f0f4752e780fa64a475fd1c73c",
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "file": "bottom_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/candidate/object-review/sam3_pillow_right/bottom_object.png",
+      "sizeBytes": 81937,
+      "sha256": "dda0ba28a21f9ea77f27be8355a89e55107a8bfa3a9679b20c9e3c64872a9204",
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "contactSheet": {
+    "file": "object_six_view_contact_sheet.png",
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/direct-trellis2-refit/candidate/object-review/sam3_pillow_right/object_six_view_contact_sheet.png",
+    "sizeBytes": 377758,
+    "sha256": "3220983f927ac9c8e553dc7f4260ecff5f819d111af73960bdf869777f87e02f",
+    "layout": "3x2",
+    "viewport": [
+      1440,
+      1280
+    ]
+  },
+  "browser": {
+    "consoleWarnings": [],
+    "consoleErrors": []
+  }
+}

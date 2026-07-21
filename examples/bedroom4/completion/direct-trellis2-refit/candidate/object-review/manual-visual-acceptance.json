@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "kind": "video2world.object_visual_acceptance",
+  "created_at": "2026-07-20T11:50:28Z",
+  "status": "accepted_with_warnings_object_only_scene_pending",
+  "promotion_allowed": false,
+  "decision_basis": "user_relaxed_acceptance_policy_20260720",
+  "policy": {
+    "required": [
+      "basic_shape_matches_the_segmented_object",
+      "primary_color_category_matches_the_source",
+      "front_back_left_right_top_bottom_show_non_sheet_volume",
+      "no_obvious_disconnected_or_floating_parts"
+    ],
+    "allowed_warnings": [
+      "minor_backside_texture_hallucination",
+      "minor_material_or_pattern_drift",
+      "minor_shape_irregularity"
+    ],
+    "not_decided_by_object_only_review": [
+      "scene_placement",
+      "support_contact",
+      "scene_interpenetration",
+      "original_static_scene_overlap",
+      "production_promotion"
+    ]
+  },
+  "objects": [
+    {
+      "object_id": "sam3_pillow_front",
+      "asset_sha256": "c845d7c2fa0620bbea7c608e3c5324979c4cf4811476c031336d5823db926f89",
+      "capture_receipt": {
+        "path": "./sam3_pillow_front/object_six_view_review.json",
+        "sha256": "f6fba60152f046e968a57d5dd2bdfcf912e53e53409bbd54b0737e63729322af"
+      },
+      "contact_sheet": {
+        "path": "./sam3_pillow_front/object_six_view_contact_sheet.png",
+        "sha256": "eb37eef54863fe3074ac251472c5aae767342d8e7b8dcba82c3d4381937ee5b6"
+      },
+      "decision": "accepted_with_warnings",
+      "checks": {
+        "basic_shape_matches_the_segmented_object": true,
+        "primary_color_category_matches_the_source": true,
+        "front_back_left_right_top_bottom_show_non_sheet_volume": true,
+        "no_obvious_disconnected_or_floating_parts": true
+      },
+      "warnings": [
+        "red_floral_pattern_is_hallucinated_on_parts_of_the_front_and_side",
+        "small_corner_and_seam_irregularities"
+      ]
+    },
+    {
+      "object_id": "sam3_pillow_left",
+      "asset_sha256": "d1309d30cafb86563842d96704ca11a5625dfe7a8f69b03db797b185e76044b4",
+      "capture_receipt": {
+        "path": "./sam3_pillow_left/object_six_view_review.json",
+        "sha256": "43048bd9d2a91d94c753bea2ea4cfe1ae3cfc4ca528619f0ff54e47bd40f5219"
+      },
+      "contact_sheet": {
+        "path": "./sam3_pillow_left/object_six_view_contact_sheet.png",
+        "sha256": "8066ff9172eebc787330ad99335c466a83c6c37b5681c601588084ff48099b11"
+      },
+      "decision": "accepted_with_warnings",
+      "checks": {
+        "basic_shape_matches_the_segmented_object": true,
+        "primary_color_category_matches_the_source": true,
+        "front_back_left_right_top_bottom_show_non_sheet_volume": true,
+        "no_obvious_disconnected_or_floating_parts": true
+      },
+      "warnings": [
+        "back_surface_contains_a_visible_generated_seam",
+        "beige_texture_and_brightness_drift_across_unobserved_surfaces"
+      ]
+    },
+    {
+      "object_id": "sam3_pillow_right",
+      "asset_sha256": "84bf13aa1cf1b6da689f7a42ca4c9fd09cee42444fcd7d44973ca3fdb17f51cb",
+      "capture_receipt": {
+        "path": "./sam3_pillow_right/object_six_view_review.json",
+        "sha256": "73533c0b5adef6f33811380e7a8dbb31db8cad7f23707a9fd1c07e55a0333ed5"
+      },
+      "contact_sheet": {
+        "path": "./sam3_pillow_right/object_six_view_contact_sheet.png",
+        "sha256": "3220983f927ac9c8e553dc7f4260ecff5f819d111af73960bdf869777f87e02f"
+      },
+      "decision": "accepted_with_warnings",
+      "checks": {
+        "basic_shape_matches_the_segmented_object": true,
+        "primary_color_category_matches_the_source": true,
+        "front_back_left_right_top_bottom_show_non_sheet_volume": true,
+        "no_obvious_disconnected_or_floating_parts": true
+      },
+      "warnings": [
+        "unobserved_back_and_bottom_include_dark_texture_patches",
+        "completed_silhouette_is_rounder_than_the_observed_front"
+      ]
+    }
+  ]
+}
