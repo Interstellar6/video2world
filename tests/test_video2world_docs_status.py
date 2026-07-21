@@ -1,0 +1,28 @@
+from __future__ import annotations
+
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+DOCS = ROOT / "docs/video2world/project-docs"
+
+
+def test_pipeline_docs_keep_corrected_clean_plate_status_fail_closed() -> None:
+    pipeline = (DOCS / "pipeline.md").read_text(encoding="utf-8")
+    completion = (DOCS / "completion.md").read_text(encoding="utf-8")
+
+    for document in (pipeline, completion):
+        assert "R1 尚未 accepted" in document
+        assert "corrected R2-R4" in document
+        assert "fresh DA3/PGSR/TSDF" in document
+        assert "live promotion 均未运行" in document
+        assert "archived current-demo-only" in document
+
+    stale_claims = (
+        "### Bedroom4 真实 R1-R4 clean plate 与 fresh DA3/PGSR/TSDF",
+        "### Canonical strict clean scene Web：promoted current-demo-only",
+        "新链已经把 TRELLIS2 PBR objects",
+        "严格 clean scene 与四个 unified PBR objects 已进入 canonical",
+    )
+    for phrase in stale_claims:
+        assert phrase not in pipeline

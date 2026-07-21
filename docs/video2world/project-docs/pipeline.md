@@ -176,9 +176,11 @@ direct TRELLIS2 refit 的 plant 证据进一步暴露了“语义类别 mask 不
 
 当前 bedroom_4 的 ProPainter full-mask 与 donor reprojection 失败证据继续保留：保守 donor coverage 只有 `0.62% / 0.17% / 0.59%`，零 margin 约 10% 的数值实际来自前景边缘泄漏。之后 SDXL inpainting 生成三个单帧 anchor；用户已把 seed `2026071701` 以 `pass_with_known_limitation` 放行当前 demo 和对象集成 QA。该候选 mask 外 changed pixels 为 0，但移除区仍有枕头状生成，所以不证明 object-free background、跨视图一致性或遮挡床面几何。
 
-### Bedroom4 真实 R1-R4 clean plate 与 fresh DA3/PGSR/TSDF
+### Bedroom4 archived R1-R4 clean plate 与 corrected 当前状态
 
-2026-07-17 的 bedroom_4 已真正按 `front pillow -> left pillow -> right pillow -> bed -> structural background` 执行四轮，而不是一次性抠除三个枕头和床。R2-R4 每一帧的 source RGB 都由紧邻上一轮 composite 的 SHA-256 绑定；已经 removed 的对象不能作为 downstream layer 重新出现，上一轮不是 complete partition 或仍有 unresolved pixel 时下一轮不会创建。
+2026-07-17 的 bedroom_4 旧运行确实按 `front pillow -> left pillow -> right pillow -> bed -> structural background` 生成过四轮文件，而不是一次性抠除三个枕头和床。这些 receipt、contact sheet 与下游 Web QA 都是真实历史证据；但后续 corrected 审计发现 R2/R3 的 segmentation source 与实际 compositor source 在 25/25 帧不一致，source-camera PBR layer 的 observed boundary QA 也未通过。因此这条链现在只能作为 `archived current-demo-only` 记录保留，不能作为当前 clean plate、fresh reconstruction 或 production promotion 的完成证据。
+
+规范合同仍然不变：R1 必须输入原始 RGB，R2 必须输入 accepted R1 clean plate，R3 必须输入 accepted R2，R4 必须输入 accepted R3；measured donor 始终只来自原始观测 RGB-D，并累计排除已移除对象。corrected 当前状态是：full80 physical association 已通过，但 R1 strict boundary-guard 审计在 frame `000064` 上 stable measured support 为 0，R1 尚未 accepted；因此 corrected R2-R4、fresh DA3/PGSR/TSDF、alignment 与 live promotion 均未运行。
 
 ![Layered clean-plate source views](../assets/completion/layered-source-25view.png "000048-000072 的 25 个原始观测视角；三个枕头、床和结构背景同时存在")
 
@@ -191,7 +193,7 @@ direct TRELLIS2 refit 的 plant 证据进一步暴露了“语义类别 mask 不
 
 因此 object completion 与 clean-scene completion 是每轮的两个不同产出：前者把当前层交付为可独立交互的 PBR GLB，后者把移除当前层后的剩余场景交给下一轮。PBR GLB 只参加遮挡分区和最终对象发布，不会被统计成 measured RGB-D donor。
 
-R1 只移除最前面的枕头，left pillow、right pillow 与 bed 仍作为 source-camera PBR layers 参与深度分区；R2 在 R1 composite 上累计移除 left pillow；R3 再累计移除 right pillow，只保留 bed。这样每一轮 clean plate 都表示“移除当前最前层后剩余的场景”，而不是把后层对象误生成为背景。
+旧 R1 只移除最前面的枕头，left pillow、right pillow 与 bed 仍作为 source-camera PBR layers 参与深度分区；旧 R2 在 R1 composite 上累计移除 left pillow；旧 R3 再累计移除 right pillow，只保留 bed。这一组图用于解释期望的 front-to-back 分区和旧执行结果，不再代表当前 accepted clean plate。
 
 ![Round 1 front pillow peel](../assets/completion/layered-round01-front-pillow.png "R1：只移除 front pillow；left pillow、right pillow 与 bed 仍保留")
 
@@ -199,11 +201,11 @@ R1 只移除最前面的枕头，left pillow、right pillow 与 bed 仍作为 so
 
 ![Round 3 right pillow peel](../assets/completion/layered-round03-right-pillow.png "R3：三个 pillow 均已移除；bed 是唯一 remaining object layer")
 
-R4 以 R3 composite 为 source，再移除 bed。它没有 measured donor、没有 remaining object，累计 removal mask 全部由同一套 structural background RGBA/depth 分区覆盖。背景仍保留床形低频色块与简化平面，所以 sequence-stage report 保持 `promotion_approved=false`，禁止把 R4 RGB 直接当作发布资产；这不是通用背景补全质量证明。后续 `promoted_current_demo_only` 只在 fresh reconstruction、alignment 与 canonical Web QA 之后成立，不会把该字段改写成背景质量通过。
+旧 R4 以旧 R3 composite 为 source，再移除 bed。它没有 measured donor、没有 remaining object，累计 removal mask 全部由同一套 structural background RGBA/depth 分区覆盖。背景仍保留床形低频色块与简化平面，所以 sequence-stage report 保持 `promotion_approved=false`，禁止把 R4 RGB 直接当作发布资产；这不是通用背景补全质量证明。后续旧 `promoted_current_demo_only` 只证明当时 scope-limited Web 资产能加载和交互，不会把该字段改写成背景质量通过。
 
 ![Round 4 final background](../assets/completion/layered-round04-final-background.png "R4：移除 bed 后只保留结构背景；已知低频色块作为 current-demo-only limitation 保留")
 
-下面是四轮 report 中真实的 removal-mask pixel partition。`Measured` 只来自原始观测 RGB-D；PBR 与 structural 只填 measured residual，不能被重标成 measured donor。四轮 aggregate 与全部 25 帧都满足 `unresolved=0`。
+下面是旧四轮 report 中真实的 removal-mask pixel partition。`Measured` 只来自原始观测 RGB-D；PBR 与 structural 只填 measured residual，不能被重标成 measured donor。四轮 aggregate 与全部 25 帧都满足 `unresolved=0`，但这只说明旧 compositor 没有留下未填像素，不说明 corrected clean plate 语义或 source lineage 通过。
 
 | Round | 累计 removed | Remaining | Removal pixels | Measured | PBR render | Structural | Unresolved | Frame-set SHA-256 |
 |---|---|---|---:|---:|---:|---:|---:|---|
@@ -212,19 +214,19 @@ R4 以 R3 composite 为 source，再移除 bed。它没有 measured donor、没�
 | R3 | front + left + right pillow | bed | 1,636,824 | 12,443 | 1,622,757 | 1,624 | 0 | `e2230aa445ad049246b39049a92b53145547146d9cf1bfa05b6a43c136bd0f19` |
 | R4 | three pillows + bed | none | 8,259,257 | 0 | 0 | 8,259,257 | 0 | `854bd224ab59580f6d209fbb31a50059e0075007c2f6ef0c6d98cc8fde82dfca` |
 
-Sequence report SHA-256 是 `672ccc38d2d0187a4e99e85a1f54a451039deab5c6d73eb81f71108275483e88`，receipt SHA-256 是 `cdf2ffc02dbacf184391dafd1cd35c427fd5cf868b084548d4c7e2d7496d4d25`。机器证据还绑定四轮 manifest/report/receipt、R2-R4 predecessor、25 个 portable R4 masks、最终 frame-set 与上面的五张 contact sheet。
+Sequence report SHA-256 是 `672ccc38d2d0187a4e99e85a1f54a451039deab5c6d73eb81f71108275483e88`，receipt SHA-256 是 `cdf2ffc02dbacf184391dafd1cd35c427fd5cf868b084548d4c7e2d7496d4d25`。机器证据还绑定四轮 manifest/report/receipt、R2-R4 predecessor、25 个 portable R4 masks、最终 frame-set 与上面的五张 contact sheet；这些 evidence 继续保留为历史复现材料，已被 corrected source-lineage 与 boundary audit supersede。
 
 旧 `clean-scene-reconstruction-input-v23` 只绑定单独的 R4 背景候选，没有 R1-R4 predecessor chain。基于它启动的 PGSR 已在 4,210/30,000 主动停止，TSDF 未运行；sequence execution 将该输入标为 superseded，作废 receipt SHA-256 为 `aaf5837dc931b7d34f0097366297537358821d28a6a274fe8eb5789d4f42ce6d`，不能再进入 DA3/PGSR/TSDF 或 Web。
 
-新的 reconstruction package 位于远端 run 的 `reconstruction/scannetppv2/data/bedroom_4`，只采用严格 R4 最终 RGB、相机子集与 transforms，不打包旧 geometry、composite depth 或 legacy DA3 depth。其 manifest SHA-256 为 `3645fc895d202d537a9104d91a21c4ff86e87352c60e3c0f118bdea06adc0299`，package receipt SHA-256 为 `33532775d7fe8c3f76724c73b13b68ab01f489d62b5742823a185d52400a468d`。
+旧 reconstruction package 位于远端 run 的 `reconstruction/scannetppv2/data/bedroom_4`，只采用当时 R4 最终 RGB、相机子集与 transforms，不打包旧 geometry、composite depth 或 legacy DA3 depth。其 manifest SHA-256 为 `3645fc895d202d537a9104d91a21c4ff86e87352c60e3c0f118bdea06adc0299`，package receipt SHA-256 为 `33532775d7fe8c3f76724c73b13b68ab01f489d62b5742823a185d52400a468d`。由于 corrected R1 尚未 accepted，这组 package 现在属于历史 `current_demo_only` lineage，不属于当前 corrected fresh reconstruction。
 
 该 package 的 fresh DA3 已达到 `technical_passed_fresh_da3_current_demo_only`：25 个 depth 文件均为 `720x1280 float32`，共 23,040,000 个值，全部 finite 且为正，范围 `7.7331486..22.4680824`；`pointcloud_da3.ply` 有 4,000,000 vertices、60,000,181 bytes，XYZ 全 finite 且 4,000,000 点非零，bbox extent 为 `[26.352661, 17.238593, 16.871765]` scene units。DA3 stage receipt SHA-256 为 `287fc496a1bdfc8a44cbd36ab913da8a9263413af8631eccb7c89019352af230`，PLY SHA-256 为 `196d170d95404976b0a56ba41654cc23c71cc248955f8fc109a14f10b8ac58d3`。
 
 PGSR 已在同一 package 上完成 30,000 iterations，状态为 `technical_passed_pgsr_30000_current_demo_only`：454,617 Gaussians、112,746,547 bytes，L1 `0.0091873651`、PSNR `33.2610672 dB`、耗时 3,088.6 秒。PLY SHA-256 为 `4eeb1403194e0248f0ab4cbf206572af5bb1ece635a03775cda6e0358133c9bf`，PGSR receipt SHA-256 为 `0224cc0868e0fb03822b3f3053f414d909056bc70857e44291b9389b776f349b`。
 
-TSDF 随后完成，`tsdf_fusion_post.ply` 有 1,805,667 vertices / 3,556,615 faces、94,989,275 bytes，bbox extent `[26.1068731, 18.3792248, 17.0562393]`，SHA-256 为 `ccd48c2376d2cc8d81b979813a09c58feb158b66a441d66512466125b0c8f344`；TSDF receipt SHA-256 为 `c45d92dcc6810034772d1f8dbb058c34424765cd3d41ad03bdfffe100acad5c2`。alignment receipt `16839c7f0897c0095bf01ada6768d60dd23f636e102e17111fbc505e8fe27d49` 的相机子集、PGSR/TSDF 共坐标和 object placement target-frame gate 全通过。以上结果只把严格链推进到 `current_demo_only`，不把 R4 低频床形色块包装成通用背景补全质量。
+TSDF 随后完成，`tsdf_fusion_post.ply` 有 1,805,667 vertices / 3,556,615 faces、94,989,275 bytes，bbox extent `[26.1068731, 18.3792248, 17.0562393]`，SHA-256 为 `ccd48c2376d2cc8d81b979813a09c58feb158b66a441d66512466125b0c8f344`；TSDF receipt SHA-256 为 `c45d92dcc6810034772d1f8dbb058c34424765cd3d41ad03bdfffe100acad5c2`。alignment receipt `16839c7f0897c0095bf01ada6768d60dd23f636e102e17111fbc505e8fe27d49` 的相机子集、PGSR/TSDF 共坐标和 object placement target-frame gate 全通过。以上结果只证明旧 scope-limited lineage 的 DA3/PGSR/TSDF 文件真实存在且当时可用于 demo，不把 R4 低频床形色块包装成通用背景补全质量，也不能替代尚未运行的 corrected fresh reconstruction。
 
-本地可核验入口是 `examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/summary.json`、`examples/bedroom4/completion/layered-peel/layered-clean-plate-sequence-v1/layered_clean_plate_sequence_report.json` 和 `examples/bedroom4/assets-local/strict-clean-scene-mirror/reconstruction/receipts/`。PGSR/TSDF 实体在同一 mirror 的 `reconstruction/pgsr_scannetppv2_all/bedroom_4/`；文档中的数值均来自这些 report/receipt，不从旧 production manifest 反推。
+本地可核验入口是 `examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/summary.json`、`examples/bedroom4/completion/layered-peel/layered-clean-plate-sequence-v1/layered_clean_plate_sequence_report.json` 和 `examples/bedroom4/assets-local/strict-clean-scene-mirror/reconstruction/receipts/`。PGSR/TSDF 实体在同一 mirror 的 `reconstruction/pgsr_scannetppv2_all/bedroom_4/`；文档中的数值均来自这些 report/receipt，不从旧 production manifest 反推。当前 corrected rejection、blocked R2-R4 与未运行 fresh reconstruction 的详细证据见 [通用遮挡、背面与背景分层补全](completion.md)。
 
 门禁：source RGBA/seed 与 PBR GLB 记录 hash；类别语义、canonical bounds、非空 mesh、face 数、finite/nondegenerate/winding、PBR 材质、六视图、外观和重载入均需验证。可选 Gaussian 另记 hash，不能成为 GLB 缺失时的隐式替代。clean plate 的通用强声明还必须通过 mask-outside-unchanged、cross-view consistency、revealed-background 与新 background depth/normal；scope-limited 人工放行必须同时记录 allowed scope 和 not-proven claims。
 
@@ -264,9 +266,9 @@ Web 以稳定提交 `252a85c` 的相机、坐标、机器人 spawn 与 PGSR/TSDF
 
 运行时仍显式报告 `sceneReady`、每个对象 collider mode/face 数、BVH target、FPS、选中 object ID 与 degraded count。旧 production 大资产报告同时记录 Chrome 1440×900 与 `390x844` fresh-load：移动端长描述换行、canvas/HUD 尺寸、水平溢出和控件不重叠均通过。
 
-### Canonical strict clean scene Web：promoted current-demo-only
+### Historical strict clean scene Web：archived current-demo-only
 
-严格 clean scene 与四个 unified PBR objects 已进入 canonical `web/public/worlds/bedroom4/manifest.json`，manifest SHA-256 为 `58cc2b06ec1a7feb70fc0e0060078e0e0e1db409f3e96843c53948c74d3ab7cb`。final QA report `qa/clean-unified-scene-browser-qa.final-promoted.json` 的 SHA-256 为 `0dc5f2b312e6bef0e272920169993d2485c9e967dec596db047bedd95aa7b961`，状态 `passed_current_demo_only`、automated gate passed、`failures=[]`，manifest 请求返回的也是这组精确 bytes。
+旧严格 clean scene 与四个 unified PBR objects 曾进入 canonical `web/public/worlds/bedroom4/manifest.json`，manifest SHA-256 为 `58cc2b06ec1a7feb70fc0e0060078e0e0e1db409f3e96843c53948c74d3ab7cb`。final QA report `qa/clean-unified-scene-browser-qa.final-promoted.json` 的 SHA-256 为 `0dc5f2b312e6bef0e272920169993d2485c9e967dec596db047bedd95aa7b961`，状态 `passed_current_demo_only`、automated gate passed、`failures=[]`，manifest 请求返回的也是这组精确 bytes。它现在只作为历史 runtime/interaction evidence 保留，不代表 corrected clean plate 已经 promotion。
 
 QA 与发布是两个步骤：QA report 记录 `publishingPerformed=false`；随后 `qa/strict-clean-scene-finalization-receipt.json` 用 same-directory atomic rename 把精确 QA 过的 manifest 移到 canonical 路径，状态 `promoted_current_demo_only`、`promotionAllowed=true`，receipt SHA-256 为 `a7a0691a0effd8898ee2e1a89b3c2a103b966b13005eed51cb52acdb8260c041`。稳定基线 `manifest.web-demo-baseline-stable.json` 没有被覆盖，SHA-256 仍为 `3805f0e5bab09add424b3b78f9349cd2eca6d1262777ef683e13cda07695e82b`。
 
@@ -281,7 +283,7 @@ QA 与发布是两个步骤：QA report 记录 `publishingPerformed=false`；随
 
 ![Canonical strict clean scene mobile](../assets/completion/strict-clean-scene-web-mobile.png "Canonical 390x844 final QA：HUD、canvas、8/8 visual objects 与 colliders 通过；截图不构成高质量背景补全证明")
 
-这次 promotion 证明的是 exact manifest、对象资产、统一 visual/logic/collision、相机 framing、问答和桌面/移动运行合同。R4 背景仍有明显低频拉伸、床形色块与简化平面，部分视觉只是结构代理；所以状态必须保持 `current_demo_only`，不能写成高质量 clean plate 或通用背景补全完成。
+这次历史 promotion 证明的是 exact manifest、对象资产、统一 visual/logic/collision、相机 framing、问答和桌面/移动运行合同。R4 背景仍有明显低频拉伸、床形色块与简化平面，部分视觉只是结构代理；而且 corrected R1 尚未 accepted，所以它不能写成当前高质量 clean plate、通用背景补全完成或 corrected live promotion。
 
 ## 完成口径
 
@@ -297,4 +299,4 @@ QA 与发布是两个步骤：QA report 记录 `publishingPerformed=false`；随
 8. 浏览器桌面/移动、性能、console、碰撞与交互 QA 有真实记录；
 9. 所有阶段可由 hash state 恢复，所有未完成项保持 candidate/failed/not-tested。
 
-本页同时区分两代证据：2026-07-16 的旧多表示 production 统计继续作为历史基线；2026-07-17 至 2026-07-18 的新链已经把 TRELLIS2 PBR objects、严格 `front -> left -> right -> bed` clean-plate sequence、fresh DA3、PGSR 30k、TSDF、坐标对齐和 canonical desktop/mobile Web finalization 闭合到 `promoted_current_demo_only`。稳定 alias 仍指向旧基线，未被新 canonical manifest 覆盖。R4 的低频拉伸、床形色块和简化平面仍是明确限制，因此本文不声称高质量背景补全完成。详细补全门禁见 [通用遮挡、背面与背景分层补全](completion.md)，稳定运行限制见 [bedroom_4 实测记录](../progress/bedroom4-20260716.md)。
+本页同时区分三类证据：2026-07-16 的旧多表示 production 统计继续作为历史基线；2026-07-17 至 2026-07-18 的旧 scope-limited 链把 TRELLIS2 PBR objects、四轮 clean-plate sequence、fresh DA3、PGSR 30k、TSDF、坐标对齐和 desktop/mobile Web finalization 闭合到 `archived current-demo-only`；最新 corrected clean-plate 审计则把 R1 判为尚未 accepted，因此 corrected R2-R4、fresh DA3/PGSR/TSDF、alignment 与 live promotion 均未运行。稳定 alias 仍指向旧基线，未被新 canonical manifest 覆盖。R4 的低频拉伸、床形色块和简化平面仍是明确限制，因此本文不声称高质量背景补全完成。详细补全门禁见 [通用遮挡、背面与背景分层补全](completion.md)，稳定运行限制见 [bedroom_4 实测记录](../progress/bedroom4-20260716.md)。
