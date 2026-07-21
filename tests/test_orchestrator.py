@@ -309,6 +309,17 @@ def _provider_receipt_snapshot(name: str, digest: str) -> dict[str, object]:
     }
 
 
+def _artifact_snapshot_payload(path: Path) -> dict[str, object]:
+    snapshot = snapshot_path(path)
+    return {
+        "path": snapshot.path,
+        "kind": snapshot.kind,
+        "sha256": snapshot.sha256,
+        "size_bytes": snapshot.size_bytes,
+        "file_count": snapshot.file_count,
+    }
+
+
 def _provider_receipt_payload(
     *,
     inputs: dict[str, object] | None = None,
@@ -506,6 +517,7 @@ def test_layered_completion_report_binds_executed_plan_and_provider_receipt(
     report_payload["completion_plan_sha256"] = plan_sha
     report_path = tmp_path / "report.json"
     report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    report_snapshot = snapshot_path(report_path)
     receipt_path = tmp_path / "provider-receipt.json"
     receipt_path.write_text(
         json.dumps(
@@ -519,25 +531,72 @@ def test_layered_completion_report_binds_executed_plan_and_provider_receipt(
                         "file_count": 1,
                     }
                 },
-                outputs={
-                    "layered_completion_report": _provider_receipt_snapshot(
-                        "report.json", "b"
-                    )
-                },
+                outputs={"layered_completion_report": _artifact_snapshot_payload(report_path)},
             )
         ),
         encoding="utf-8",
     )
 
     outputs = {
-        "layered_completion_report": snapshot_path(report_path),
+        "layered_completion_report": report_snapshot,
         "provider_receipt": snapshot_path(receipt_path),
     }
     get_adapter("layered_completion").validate_outputs(outputs)
 
     report_payload["completion_plan_sha256"] = "f" * 64
     report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs={
+                    "layered_completion_plan": {
+                        "path": str(plan_path),
+                        "kind": "file",
+                        "sha256": plan_sha,
+                        "size_bytes": plan_path.stat().st_size,
+                        "file_count": 1,
+                    }
+                },
+                outputs={"layered_completion_report": _artifact_snapshot_payload(report_path)},
+            )
+        ),
+        encoding="utf-8",
+    )
     with pytest.raises(ArtifactError, match="does not bind the executed plan"):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
+def test_layered_completion_report_requires_provider_receipt_output_snapshot(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    bad_report_snapshot = _artifact_snapshot_payload(report_path)
+    bad_report_snapshot["sha256"] = "f" * 64
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs={
+                    "layered_completion_plan": _artifact_snapshot_payload(plan_path),
+                },
+                outputs={"layered_completion_report": bad_report_snapshot},
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ArtifactError, match="output snapshot does not match"):
         get_adapter("layered_completion").validate_outputs(
             {
                 "layered_completion_report": snapshot_path(report_path),

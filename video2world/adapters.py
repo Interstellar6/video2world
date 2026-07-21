@@ -176,6 +176,17 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             raise ValueError("layered completion requires a provider execution receipt")
         if receipt.get("status") != "completed":
             raise ValueError("layered completion provider receipt is not completed")
+        receipt_outputs = receipt.get("outputs")
+        if not isinstance(receipt_outputs, dict):
+            raise ValueError("provider receipt has no output snapshots")
+        report_output_snapshot = receipt_outputs.get("layered_completion_report")
+        if not isinstance(report_output_snapshot, dict):
+            raise ValueError("provider receipt has no layered_completion_report output")
+        _require_matching_receipt_snapshot(
+            report_output_snapshot,
+            outputs["layered_completion_report"],
+            context="layered_completion_report",
+        )
         inputs = receipt.get("inputs")
         if not isinstance(inputs, dict):
             raise ValueError("provider receipt has no input snapshots")
@@ -209,6 +220,26 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             "layered completion plan/receipt lineage validation failed: "
             f"{report_path}: {exc}"
         ) from exc
+
+
+def _require_matching_receipt_snapshot(
+    receipt_snapshot: dict[str, object],
+    artifact: ArtifactSnapshot,
+    *,
+    context: str,
+) -> None:
+    if (
+        receipt_snapshot.get("kind") != artifact.kind
+        or receipt_snapshot.get("sha256") != artifact.sha256
+        or receipt_snapshot.get("size_bytes") != artifact.size_bytes
+        or receipt_snapshot.get("file_count") != artifact.file_count
+    ):
+        raise ValueError(f"provider receipt {context} output snapshot does not match")
+    snapshot_path = receipt_snapshot.get("path")
+    if not isinstance(snapshot_path, str) or not snapshot_path:
+        raise ValueError(f"provider receipt {context} output path is missing")
+    if Path(snapshot_path).expanduser().resolve() != Path(artifact.path).expanduser().resolve():
+        raise ValueError(f"provider receipt {context} output path does not match")
 
 
 def _validate_json(path: Path, role: str) -> None:
