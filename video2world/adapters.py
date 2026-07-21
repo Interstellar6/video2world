@@ -304,6 +304,8 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
         assets_manifest = CompletedObjectAssetsManifest.model_validate_json(
             Path(assets_path).read_text(encoding="utf-8")
         )
+        if assets_manifest.scene_id != report.scene_id or assets_manifest.run_id != report.run_id:
+            raise ValueError("completed_object_assets_manifest scene/run differs from report")
         completed_object_ids = [item.id for item in assets_manifest.objects]
         if sorted(completed_object_ids) != sorted(planned_targets):
             raise ValueError(
