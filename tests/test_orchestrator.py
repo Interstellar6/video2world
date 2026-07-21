@@ -360,7 +360,19 @@ def _layered_completion_output_snapshots(tmp_path: Path, report_path: Path) -> d
     }
     for role in sorted(LAYERED_COMPLETION_OUTPUT_ROLES - {"layered_completion_report"}):
         path = tmp_path / f"{role}.output"
-        path.write_text(f"{role}\n", encoding="utf-8")
+        if role == "completed_object_assets_manifest":
+            path.write_text(json.dumps(_valid_completed_object_assets_manifest()), encoding="utf-8")
+        elif role == "clean_plate_manifest":
+            path.write_text(
+                json.dumps({"frame_records": [{"frame_id": "000064"}]}),
+                encoding="utf-8",
+            )
+        elif role == "clean_scene_gaussian":
+            path.write_bytes(_clean_gaussian_header() + ("0 " * 13 + "0\n").encode("ascii"))
+        elif role == "clean_scene_mesh":
+            path.write_bytes(_valid_clean_mesh_payload())
+        else:
+            raise AssertionError(f"unhandled layered completion output role: {role}")
         outputs[role] = _artifact_snapshot_payload(path)
     return outputs
 
@@ -727,6 +739,40 @@ def test_layered_completion_report_requires_complete_provider_receipt_outputs(
         )
 
 
+def test_layered_completion_report_validates_receipt_output_semantics(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    mesh_path = Path(outputs["clean_scene_mesh"]["path"])
+    mesh_path.write_text("not a ply\n", encoding="utf-8")
+    outputs["clean_scene_mesh"] = _artifact_snapshot_payload(mesh_path)
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=_layered_completion_input_snapshots(tmp_path, plan_path),
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ArtifactError, match="valid PLY header"):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
 def test_layered_completion_report_requires_complete_provider_receipt_inputs(
     tmp_path: Path,
 ) -> None:
@@ -992,6 +1038,25 @@ def _clean_mesh_header(format_name: str = "binary_little_endian") -> bytes:
         "property list uchar int vertex_indices\n"
         "end_header\n"
     ).encode("ascii")
+
+
+def _valid_clean_mesh_payload() -> bytes:
+    return _clean_mesh_header() + struct.pack(
+        "<9fB3i",
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        3,
+        0,
+        1,
+        2,
+    )
 
 
 @pytest.mark.parametrize(
