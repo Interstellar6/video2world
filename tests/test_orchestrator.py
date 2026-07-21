@@ -349,7 +349,17 @@ def _layered_completion_input_snapshots(tmp_path: Path, plan_path: Path) -> dict
     }
     for role in sorted(LAYERED_COMPLETION_INPUT_ROLES - {"layered_completion_plan"}):
         path = tmp_path / f"{role}.input"
-        path.write_text(f"{role}\n", encoding="utf-8")
+        if role == "scene_gaussian":
+            path.write_bytes(_clean_gaussian_header())
+        elif role == "scene_mesh":
+            path.write_bytes(_clean_mesh_header())
+        elif role == "semantic_gaussian":
+            path.write_bytes(_semantic_gaussian_header())
+        else:
+            path.write_text(
+                json.dumps({"records": [{"id": role}]}),
+                encoding="utf-8",
+            )
         inputs[role] = _artifact_snapshot_payload(path)
     return inputs
 
@@ -773,6 +783,40 @@ def test_layered_completion_report_validates_receipt_output_semantics(
         )
 
 
+def test_layered_completion_report_validates_receipt_input_semantics(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    inputs = _layered_completion_input_snapshots(tmp_path, plan_path)
+    semantic_gaussian_path = Path(inputs["semantic_gaussian"]["path"])
+    semantic_gaussian_path.write_bytes(_clean_gaussian_header())
+    inputs["semantic_gaussian"] = _artifact_snapshot_payload(semantic_gaussian_path)
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=inputs,
+                outputs=_layered_completion_output_snapshots(tmp_path, report_path),
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ArtifactError, match="semantic_gaussian is missing fields"):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
 def test_layered_completion_report_requires_complete_provider_receipt_inputs(
     tmp_path: Path,
 ) -> None:
@@ -1019,6 +1063,31 @@ def _clean_gaussian_header(format_name: str = "ascii") -> bytes:
         "rot_1",
         "rot_2",
         "rot_3",
+    ]
+    lines = ["ply", f"format {format_name} 1.0", "element vertex 1"]
+    lines.extend(f"property float {name}" for name in properties)
+    lines.append("end_header")
+    return ("\n".join(lines) + "\n").encode("ascii")
+
+
+def _semantic_gaussian_header(format_name: str = "ascii") -> bytes:
+    properties = [
+        "x",
+        "y",
+        "z",
+        "f_dc_0",
+        "f_dc_1",
+        "f_dc_2",
+        "opacity",
+        "scale_0",
+        "scale_1",
+        "scale_2",
+        "rot_0",
+        "rot_1",
+        "rot_2",
+        "rot_3",
+        "object_id",
+        "object_probability",
     ]
     lines = ["ply", f"format {format_name} 1.0", "element vertex 1"]
     lines.extend(f"property float {name}" for name in properties)

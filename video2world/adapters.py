@@ -226,7 +226,7 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
                     digest_path(output_path),
                     context=f"{role} output",
                 )
-            _validate_layered_receipt_output(role, Path(output_path))
+            _validate_layered_receipt_artifact(role, Path(output_path))
         inputs = receipt.get("inputs")
         if not isinstance(inputs, dict):
             raise ValueError("provider receipt has no input snapshots")
@@ -247,6 +247,7 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
                 digest_path(input_path),
                 context=f"{role} input",
             )
+            _validate_layered_receipt_artifact(role, Path(input_path))
         plan_snapshot = inputs.get("layered_completion_plan")
         if not isinstance(plan_snapshot, dict):
             raise ValueError("provider receipt has no layered_completion_plan input")
@@ -279,7 +280,7 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
         ) from exc
 
 
-def _validate_layered_receipt_output(role: str, path: Path) -> None:
+def _validate_layered_receipt_artifact(role: str, path: Path) -> None:
     if role in JSON_OUTPUT_ROLES:
         _validate_json(path, role)
     elif role in PLY_OUTPUT_ROLES:
