@@ -32,6 +32,7 @@ def test_pipeline_docs_keep_corrected_clean_plate_status_fail_closed() -> None:
     assert "object_probability" in getting_started
     assert "objects[*].id" in getting_started
     assert "clean_plate_manifest.final_clean_plate" in getting_started
+    assert "不能复用原始" in getting_started
     for phrase in (
         "frames_manifest",
         "layered_completion_plan",

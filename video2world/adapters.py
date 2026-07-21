@@ -249,6 +249,18 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
                 context=f"{role} input",
             )
             _validate_layered_receipt_artifact(role, Path(input_path))
+        for input_role, output_role in (
+            ("scene_gaussian", "clean_scene_gaussian"),
+            ("scene_mesh", "clean_scene_mesh"),
+        ):
+            input_snapshot = inputs.get(input_role)
+            output_snapshot = receipt_outputs.get(output_role)
+            if not isinstance(input_snapshot, dict) or not isinstance(output_snapshot, dict):
+                raise ValueError(
+                    f"provider receipt cannot compare {input_role} to {output_role}"
+                )
+            if input_snapshot.get("sha256") == output_snapshot.get("sha256"):
+                raise ValueError(f"{output_role} must not reuse {input_role} input artifact")
         plan_snapshot = inputs.get("layered_completion_plan")
         if not isinstance(plan_snapshot, dict):
             raise ValueError("provider receipt has no layered_completion_plan input")
