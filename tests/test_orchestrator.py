@@ -942,6 +942,41 @@ def test_layered_completion_report_binds_clean_scene_assets_to_report(
         )
 
 
+def test_layered_completion_report_binds_clean_scene_asset_uri_to_receipt_path(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    report_payload = json.loads(report_path.read_text(encoding="utf-8"))
+    report_payload["clean_scene_gaussian"]["uri"] = "artifact://completion/stale-clean-scene.ply"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    outputs["layered_completion_report"] = _artifact_snapshot_payload(report_path)
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=_layered_completion_input_snapshots(tmp_path, plan_path),
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ArtifactError, match="clean_scene_gaussian report asset uri differs"):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
 @pytest.mark.parametrize(
     ("input_role", "output_role", "payload_kind", "expected"),
     [

@@ -333,6 +333,11 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             output_snapshot = receipt_outputs.get(role)
             if not isinstance(output_snapshot, dict):
                 raise ValueError(f"provider receipt has no {role} output")
+            output_path = output_snapshot.get("path")
+            if not isinstance(output_path, str) or not output_path:
+                raise ValueError(f"provider receipt has no {role} output path")
+            if report_asset.uri != output_path:
+                raise ValueError(f"{role} report asset uri differs from provider receipt output")
             if (
                 output_snapshot.get("sha256") != report_asset.sha256
                 or output_snapshot.get("size_bytes") != report_asset.size_bytes
