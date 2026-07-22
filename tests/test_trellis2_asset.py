@@ -10,6 +10,7 @@ import pytest
 import trimesh
 from PIL import Image
 
+from video2world.models import AssetRef, validate_unified_pbr_glb_asset
 from video2world.providers import trellis2_asset
 from video2world.providers.external import load_provider_contract
 from video2world.providers.trellis2_asset import (
@@ -24,6 +25,7 @@ from video2world.providers.trellis2_asset import (
     model_revision_evidence,
     pretrained_config_name,
     run_trellis2_asset,
+    unified_pbr_glb_provenance,
     validate_generation_parameters,
     validate_input_image,
 )
@@ -186,6 +188,38 @@ def test_final_pbr_audit_accepts_nonwatertight_surface_bvh(tmp_path: Path) -> No
     assert material["double_sided"]["value"] is False
 
 
+def test_unified_pbr_glb_provenance_is_manifest_ready_surface_evidence(tmp_path: Path) -> None:
+    asset = tmp_path / "asset_pbr.glb"
+    write_pbr_glb(asset, watertight=False)
+
+    audit = audit_pbr_glb(asset)
+    provenance = unified_pbr_glb_provenance(audit)
+
+    assert provenance["faces"] == provenance["face_count"] == audit["faces"]
+    assert provenance["watertight"] is False
+    assert provenance["closed_volume_claim"] is False
+    assert provenance["inside_outside_queries_allowed"] is False
+    assert provenance["technical_gates"]["finite_vertices"] is True
+    assert provenance["technical_gates"]["valid_triangle_indices"] is True
+    assert provenance["technical_gates"]["no_degenerate_faces"] is True
+    assert provenance["technical_gates"]["winding_consistent"] is True
+    assert provenance["technical_gates"]["pbr_material_present"] is True
+    assert provenance["technical_gates"]["positive_extents"] is True
+
+    validate_unified_pbr_glb_asset(
+        AssetRef(
+            uri=str(asset),
+            sha256="a" * 64,
+            size_bytes=asset.stat().st_size,
+            media_type="model/gltf-binary",
+            role="unified_pbr_glb",
+            status="validated",
+            provenance=provenance,
+        ),
+        "surface_bvh",
+    )
+
+
 def test_pbr_material_receipt_records_texture_alpha_and_unit_factors(tmp_path: Path) -> None:
     asset = tmp_path / "asset_pbr.glb"
     write_pbr_glb(
@@ -338,6 +372,14 @@ def test_provider_writes_only_required_asset_by_default_and_keeps_visual_pending
     assert receipt["generation"]["seed"] == 42
     assert receipt["outputs"]["unified_pbr_glb"]["collision_topology"] == "surface_bvh"
     assert receipt["outputs"]["unified_pbr_glb"]["status"] == "candidate"
+    assert receipt["outputs"]["unified_pbr_glb"]["provenance"]["faces"] == 11
+    assert receipt["outputs"]["unified_pbr_glb"]["provenance"]["face_count"] == 11
+    assert (
+        receipt["outputs"]["unified_pbr_glb"]["provenance"]["technical_gates"][
+            "pbr_material_present"
+        ]
+        is True
+    )
     assert receipt["visual_review"]["status"] == "pending"
     assert receipt["debug_exports"]["artifacts"] == []
     assert sorted(path.name for path in request.output_dir.iterdir()) == [

@@ -592,6 +592,29 @@ def audit_pbr_glb(path: Path, *, face_limit: int = MAX_DECIMATION_FACES) -> dict
     }
 
 
+def unified_pbr_glb_provenance(audit: dict[str, Any]) -> dict[str, Any]:
+    """Return the manifest-ready topology evidence for a TRELLIS.2 PBR GLB."""
+
+    faces = audit.get("faces")
+    gates = audit.get("technical_gates")
+    return {
+        "mesh_count": audit.get("mesh_count"),
+        "vertices": audit.get("vertices"),
+        "faces": faces,
+        "face_count": faces,
+        "bounds": audit.get("bounds"),
+        "extents": audit.get("extents"),
+        "face_limit": audit.get("face_limit"),
+        "winding_consistent": audit.get("winding_consistent"),
+        "watertight": audit.get("watertight"),
+        "surface_blocking": audit.get("surface_blocking"),
+        "closed_volume_claim": audit.get("closed_volume_claim"),
+        "inside_outside_queries_allowed": audit.get("inside_outside_queries_allowed"),
+        "technical_status": audit.get("technical_status"),
+        "technical_gates": dict(gates) if isinstance(gates, dict) else {},
+    }
+
+
 def canonical_six_view_contract() -> dict[str, Any]:
     return {
         "status": "pending",
@@ -891,6 +914,7 @@ def run_trellis2_asset(
                 "media_type": "model/gltf-binary",
                 "status": "candidate",
                 "collision_topology": audit["collision_topology"],
+                "provenance": unified_pbr_glb_provenance(audit),
             },
             "processed_input": generated.get("processed_input"),
         }
