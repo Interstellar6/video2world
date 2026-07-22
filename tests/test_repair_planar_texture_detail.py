@@ -6,6 +6,7 @@ from types import SimpleNamespace
 
 import numpy as np
 from PIL import Image
+from scipy import ndimage
 
 from scripts.repair_planar_texture_detail import (
     OUTPUT_REPORT_NAME,
@@ -73,13 +74,17 @@ def test_repair_texture_detail_can_use_normalized_gaussian_fill() -> None:
         fill_mode="normalized_gaussian",
         low_frequency_fill_sigma_pixels=8.0,
         minimum_donor_luminance=60.0,
+        minimum_output_luminance=90.0,
     )
 
     assert details["fill_mode"] == "normalized_gaussian"
     assert details["minimum_donor_luminance"] == 60.0
+    assert details["minimum_output_luminance"] == 90.0
     assert details["outside_synthetic_mask_rgb_exact"] is True
     assert np.array_equal(repaired[~mask], image[~mask])
     assert repaired[mask, 0].mean() < image[mask, 0].mean()
+    core = ndimage.binary_erosion(mask, iterations=2, border_value=0)
+    assert repaired[core].mean(axis=1).min() >= 89.5
 
 
 def test_repair_texture_detail_can_split_plane_label_regions() -> None:
@@ -106,10 +111,12 @@ def test_repair_texture_detail_can_split_plane_label_regions() -> None:
         region_donor_mode="plane_label_auto",
         region_labels=labels,
         minimum_donor_luminance=60.0,
+        minimum_output_luminance=70.0,
     )
 
     assert details["region_donor_mode"] == "plane_label_auto"
     assert details["minimum_donor_luminance"] == 60.0
+    assert details["minimum_output_luminance"] == 70.0
     assert details["region_count"] == 2
     assert {region["donor_region"] for region in details["regions"]} == {
         "horizontal",
@@ -206,6 +213,7 @@ def test_build_detail_repair_candidate_rewrites_bound_frames(tmp_path: Path) -> 
             texture_low_frequency_fill_sigma_pixels=8.0,
             texture_region_donor_mode="single",
             texture_minimum_donor_luminance=0.0,
+            texture_minimum_output_luminance=0.0,
             review_contact_sheet_samples=3,
         )
     )

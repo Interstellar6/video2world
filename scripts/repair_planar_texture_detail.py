@@ -39,6 +39,7 @@ DEFAULT_LOW_FREQUENCY_FILL_SIGMA_PIXELS = 18.0
 DEFAULT_REGION_DONOR_MODE = "single"
 REGION_DONOR_MODE_CHOICES = ("single", "plane_label_auto")
 DEFAULT_MINIMUM_DONOR_LUMINANCE = 0.0
+DEFAULT_MINIMUM_OUTPUT_LUMINANCE = 0.0
 
 
 class TextureDetailRepairError(ValueError):
@@ -258,6 +259,7 @@ def transfer_texture_into_region(
     fill_mode: str,
     low_frequency_fill_sigma_pixels: float,
     minimum_donor_luminance: float,
+    minimum_output_luminance: float,
 ) -> tuple[np.ndarray, dict[str, Any]]:
     collar = ndimage.binary_dilation(region_mask, iterations=collar_width_pixels) & ~whole_mask
     require(np.any(collar), "synthetic region lacks a texture donor collar")
@@ -303,6 +305,11 @@ def transfer_texture_into_region(
         base[region_mask]
         + transferred[region_mask] * ramp[region_mask, None] * float(residual_strength)
     )
+    if minimum_output_luminance > 0.0:
+        luminance = repaired_region.mean(axis=1)
+        lift = np.maximum(minimum_output_luminance - luminance, 0.0)
+        lift = lift * ramp[region_mask]
+        repaired_region = repaired_region + lift[:, None]
     return repaired_region, donor_details
 
 
@@ -320,6 +327,7 @@ def repair_texture_detail(
     region_donor_mode: str = DEFAULT_REGION_DONOR_MODE,
     region_labels: np.ndarray | None = None,
     minimum_donor_luminance: float = DEFAULT_MINIMUM_DONOR_LUMINANCE,
+    minimum_output_luminance: float = DEFAULT_MINIMUM_OUTPUT_LUMINANCE,
 ) -> tuple[np.ndarray, dict[str, Any]]:
     require(image.ndim == 3 and image.shape[2] == 3, "image must be RGB")
     require(synthetic_mask.shape == image.shape[:2], "synthetic mask shape mismatch")
@@ -333,6 +341,7 @@ def repair_texture_detail(
         "low-frequency fill sigma must be positive",
     )
     require(minimum_donor_luminance >= 0.0, "minimum donor luminance must be non-negative")
+    require(minimum_output_luminance >= 0.0, "minimum output luminance must be non-negative")
     require(
         region_donor_mode in REGION_DONOR_MODE_CHOICES,
         f"unsupported region donor mode: {region_donor_mode}",
@@ -376,6 +385,7 @@ def repair_texture_detail(
             fill_mode=fill_mode,
             low_frequency_fill_sigma_pixels=low_frequency_fill_sigma_pixels,
             minimum_donor_luminance=minimum_donor_luminance,
+            minimum_output_luminance=minimum_output_luminance,
         )
         repaired[region_mask] = repaired_region
         total_donor_pixels += int(donor_details["selected_donor_collar_pixels"])
@@ -400,6 +410,7 @@ def repair_texture_detail(
         "fill_mode": fill_mode,
         "low_frequency_fill_sigma_pixels": low_frequency_fill_sigma_pixels,
         "minimum_donor_luminance": minimum_donor_luminance,
+        "minimum_output_luminance": minimum_output_luminance,
         "donor_region": donor_region,
         "region_donor_mode": region_donor_mode,
         "region_count": len(region_records),
@@ -507,6 +518,7 @@ def build_detail_repair_candidate(args: argparse.Namespace) -> dict[str, Any]:
         "low_frequency_fill_sigma_pixels": args.texture_low_frequency_fill_sigma_pixels,
         "region_donor_mode": args.texture_region_donor_mode,
         "minimum_donor_luminance": args.texture_minimum_donor_luminance,
+        "minimum_output_luminance": args.texture_minimum_output_luminance,
         "claims_measured_donor": False,
         "outside_synthetic_mask_rgb_exact": True,
         "created_at": datetime.now(UTC).isoformat(),
@@ -549,6 +561,7 @@ def build_detail_repair_candidate(args: argparse.Namespace) -> dict[str, Any]:
             region_donor_mode=args.texture_region_donor_mode,
             region_labels=region_labels,
             minimum_donor_luminance=args.texture_minimum_donor_luminance,
+            minimum_output_luminance=args.texture_minimum_output_luminance,
         )
         output_frame = frames_dir / f"{index:04d}.png"
         Image.fromarray(repaired_image).save(output_frame)
@@ -684,6 +697,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--texture-minimum-donor-luminance",
         type=float,
         default=DEFAULT_MINIMUM_DONOR_LUMINANCE,
+    )
+    parser.add_argument(
+        "--texture-minimum-output-luminance",
+        type=float,
+        default=DEFAULT_MINIMUM_OUTPUT_LUMINANCE,
     )
     parser.add_argument("--review-contact-sheet-samples", type=int, default=6)
     return parser
