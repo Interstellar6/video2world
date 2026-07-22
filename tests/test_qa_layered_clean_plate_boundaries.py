@@ -149,6 +149,9 @@ def test_exact_masks_and_continuous_composite_pass_all_fail_closed_gates(tmp_pat
         == "run_semantic_residual_and_cross_view_review_before_any_promotion"
     )
     assert report["next_action"]["blocking_gate_groups"] == []
+    assert report["next_action"]["failed_frame_ids"] == []
+    assert report["next_action"]["first_failed_frame_id"] is None
+    assert report["next_action"]["failed_frame_gates"] == []
     assert all(gate["passed"] is True for gate in report["gates"].values())
     frame = report["frame_records"][0]
     assert frame["alignment"]["mask_iou"] == 1.0
@@ -175,6 +178,22 @@ def test_offset_target_and_hard_color_seam_fail_geometry_and_continuity(tmp_path
         == "repair_removal_mask_or_target_matte_before_regeneration"
     )
     assert "mask_alignment" in report["next_action"]["blocking_gate_groups"]
+    assert report["next_action"]["failed_frame_ids"] == ["frame-0000"]
+    assert report["next_action"]["first_failed_frame_id"] == "frame-0000"
+    assert report["next_action"]["failed_frame_gates"] == [
+        {
+            "sequence_index": 0,
+            "frame_id": "frame-0000",
+            "failed_gates": [
+                "boundary_distance_p95_lte",
+                "mask_iou_gte",
+                "mask_precision_gte",
+                "mask_recall_gte",
+                "seam_color_p95_lte",
+                "seam_gradient_p95_lte",
+            ],
+        }
+    ]
     assert gates["mask_iou_gte"]["passed"] is False
     assert gates["mask_precision_gte"]["passed"] is False
     assert gates["mask_recall_gte"]["passed"] is False
@@ -205,6 +224,10 @@ def test_blurred_core_fails_texture_gate_while_boundary_gates_pass(tmp_path: Pat
         == "add_observed_donor_or_switch_to_constrained_generation_for_residual"
     )
     assert report["next_action"]["blocking_gate_groups"] == ["core_texture"]
+    assert report["next_action"]["failed_frame_ids"] == ["frame-0000"]
+    assert report["next_action"]["failed_frame_gates"][0]["failed_gates"] == [
+        "core_to_local_ring_laplacian_energy_ratio_gte"
+    ]
     texture = report["frame_records"][0]["texture"]
     assert texture["core_to_local_ring_laplacian_energy_ratio"] < 0.25
     assert (

@@ -606,7 +606,29 @@ def aggregate_gates(
     return gates
 
 
-def clean_plate_next_action(gates: dict[str, dict[str, float | bool]]) -> dict[str, Any]:
+def failed_frame_gate_summaries(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    summaries = []
+    for record in records:
+        failed = sorted(
+            name
+            for name, gate in record["gates"].items()
+            if gate["passed"] is not True
+        )
+        if failed:
+            summaries.append(
+                {
+                    "sequence_index": record["sequence_index"],
+                    "frame_id": record["frame_id"],
+                    "failed_gates": failed,
+                }
+            )
+    return summaries
+
+
+def clean_plate_next_action(
+    gates: dict[str, dict[str, float | bool]],
+    records: list[dict[str, Any]],
+) -> dict[str, Any]:
     failed = {name for name, gate in gates.items() if gate["passed"] is not True}
     groups = {
         "mask_alignment": [
@@ -646,11 +668,15 @@ def clean_plate_next_action(gates: dict[str, dict[str, float | bool]]) -> dict[s
             "The replacement core lacks enough local texture evidence; this usually means measured "
             "donor support is insufficient or concentrated near the boundary."
         )
+    failed_frames = failed_frame_gate_summaries(records)
     return {
         "action": action,
         "reason": reason,
         "blocking_gate_groups": blocking_groups,
         "failed_gates": sorted(failed),
+        "failed_frame_ids": [item["frame_id"] for item in failed_frames],
+        "first_failed_frame_id": failed_frames[0]["frame_id"] if failed_frames else None,
+        "failed_frame_gates": failed_frames,
         "promotion_approved": False,
     }
 
@@ -776,7 +802,7 @@ def validate(args: argparse.Namespace) -> dict[str, Any]:
         )
     gates = aggregate_gates(records, thresholds)
     passed = all(bool(gate["passed"]) for gate in gates.values())
-    next_action = clean_plate_next_action(gates)
+    next_action = clean_plate_next_action(gates, records)
     outputs: dict[str, Any] = {}
     if args.contact_sheet is not None:
         contact_sheet_path = args.contact_sheet.expanduser().resolve()
