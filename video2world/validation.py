@@ -35,13 +35,18 @@ def _local_asset_path(manifest_path: Path, uri: str) -> Path | None:
     return (manifest_path.parent / path).resolve() if not path.is_absolute() else path.resolve()
 
 
-def _validate_gate_report_payload(path: Path, *, gate_status: str) -> None:
+def _validate_gate_report_payload(path: Path, *, gate_name: str, gate_status: str) -> None:
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise ArtifactError(f"gate report is not readable JSON: {path}: {exc}") from exc
     if not isinstance(payload, dict) or not payload:
         raise ArtifactError(f"gate report must be a non-empty JSON object: {path}")
+    report_gate = payload.get("gate")
+    if report_gate is not None and report_gate != gate_name:
+        raise ArtifactError(
+            f"gate report gate {report_gate!r} does not match manifest gate {gate_name!r}"
+        )
     report_status = payload.get("status")
     if report_status is not None and report_status != gate_status:
         raise ArtifactError(
@@ -112,7 +117,11 @@ def validate_world_manifest(
                     issues.append({"location": location, "error": "report_sha256 mismatch"})
                 if current.size_bytes != gate.report_size_bytes:
                     issues.append({"location": location, "error": "report_size_bytes mismatch"})
-                _validate_gate_report_payload(local_path, gate_status=gate.status)
+                _validate_gate_report_payload(
+                    local_path,
+                    gate_name=location.rsplit(".", 1)[-1],
+                    gate_status=gate.status,
+                )
             except ArtifactError as exc:
                 issues.append({"location": location, "error": str(exc)})
     return {
