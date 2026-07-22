@@ -555,6 +555,38 @@ class GeometryReview(StrictModel):
         return self
 
 
+def _geometry_review_rejection_summary(geometry_review: GeometryReview) -> str:
+    details = [f"decision={geometry_review.decision}"]
+    failed_technical = sorted(
+        name for name, passed in geometry_review.technical_gates.items() if not passed
+    )
+    if failed_technical:
+        details.append("failed_technical_gates=" + ",".join(failed_technical))
+    blocking_issues = [
+        issue for issue in geometry_review.issues if issue.severity == "blocking"
+    ]
+    if blocking_issues:
+        details.append(
+            "blocking_issues="
+            + ",".join(issue.issue_type for issue in blocking_issues)
+        )
+        evidence_view_ids = sorted(
+            {view_id for issue in blocking_issues for view_id in issue.evidence_view_ids}
+        )
+        if evidence_view_ids:
+            details.append("evidence_view_ids=" + ",".join(evidence_view_ids))
+        retry_instructions = [
+            issue.retry_prompt_instruction
+            for issue in blocking_issues
+            if issue.retry_prompt_instruction
+        ]
+        if retry_instructions:
+            details.append("retry_prompt_instructions=" + " | ".join(retry_instructions))
+    if geometry_review.retry_prompt:
+        details.append(f"retry_prompt={geometry_review.retry_prompt}")
+    return "[" + "; ".join(details) + "]"
+
+
 def promote_trellis2_unified_pbr_glb_completion(
     *,
     object_id: str,
@@ -575,13 +607,19 @@ def promote_trellis2_unified_pbr_glb_completion(
     if geometry_review.object_id != object_id:
         raise ValueError("geometry review object_id must match the completed object id")
     if geometry_review.decision != "accept":
-        raise ValueError("geometry review must accept the completed object")
+        raise ValueError(
+            "geometry review must accept the completed object "
+            + _geometry_review_rejection_summary(geometry_review)
+        )
     failed_review_gates = sorted(
         name for name, passed in geometry_review.technical_gates.items() if not passed
     )
     if failed_review_gates:
         raise ValueError(
-            "geometry review has failed technical gates: " + ", ".join(failed_review_gates)
+            "geometry review has failed technical gates: "
+            + ", ".join(failed_review_gates)
+            + " "
+            + _geometry_review_rejection_summary(geometry_review)
         )
 
     outputs = trellis2_receipt.get("outputs")

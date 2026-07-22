@@ -800,13 +800,20 @@ def test_trellis2_completion_promotion_rejects_pending_or_retry_review() -> None
         raw_response_sha256=SHA,
     )
 
-    with pytest.raises(ValueError, match="geometry review must accept"):
+    with pytest.raises(ValueError) as exc_info:
         promote_trellis2_unified_pbr_glb_completion(
             object_id="pillow-front",
             trellis2_receipt=_trellis2_receipt_payload(),
             geometry_review=review,
             completion_report_uri="artifact://pillow-front/object-completion-report.json",
         )
+    error = str(exc_info.value)
+    assert "geometry review must accept" in error
+    assert "decision=retry" in error
+    assert "failed_technical_gates=backside_nonempty" in error
+    assert "blocking_issues=missing_back_surface" in error
+    assert "evidence_view_ids=back" in error
+    assert "Regenerate a complete pillow with all six views nonempty." in error
 
 
 def test_trellis2_completion_promotion_rejects_review_for_different_asset() -> None:
