@@ -283,6 +283,46 @@ def test_next_layer_candidates_must_come_from_association(tmp_path: Path) -> Non
         )
 
 
+def test_next_layer_association_failure_surfaces_next_action(tmp_path: Path) -> None:
+    inventory_path, graph_path, status_path = fixture_inputs(tmp_path)
+    association_path = tmp_path / "round1-quality.json"
+    association = json.loads(association_path.read_text(encoding="utf-8"))
+    association["status"] = "failed"
+    association["gates"] = {"passed": False, "mask_identity_closed": False}
+    association["promotion_blocker"] = "next-layer instance association is incomplete"
+    association["next_action"] = {
+        "action": "segment",
+        "blocker": "missing_guard_stable_next_layer_instances",
+        "missing_target_ids": ["left"],
+        "failed_gates": ["mask_identity_closed"],
+        "promotion_approved": False,
+    }
+    write_json(association_path, association)
+    payload = json.loads(status_path.read_text(encoding="utf-8"))
+    for evidence in payload["rounds"][0]["evidence"]:
+        if evidence["role"] == "round_quality_report":
+            evidence["expected_sha256"] = sha256_file(association_path)[0]
+    write_json(status_path, payload)
+
+    with pytest.raises(ValueError) as error:
+        build_plan(
+            project_root=tmp_path,
+            inventory_path=inventory_path,
+            graph_path=graph_path,
+            status_path=status_path,
+        )
+
+    message = str(error.value)
+    assert "next-layer association receipt did not pass its technical gates" in message
+    assert "status=failed" in message
+    assert "gates.passed=False" in message
+    assert "next_layer_target_ids=left,right" in message
+    assert "next_action=segment" in message
+    assert "missing_guard_stable_next_layer_instances" in message
+    assert "missing_target_ids=left" in message
+    assert "failed_gates=mask_identity_closed" in message
+
+
 def test_display_candidate_cannot_be_declared_as_next_round_input(tmp_path: Path) -> None:
     _, _, status_path = fixture_inputs(tmp_path)
     payload = json.loads(status_path.read_text(encoding="utf-8"))

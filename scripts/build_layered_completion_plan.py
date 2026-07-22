@@ -7,7 +7,7 @@ import argparse
 import json
 from datetime import datetime
 from pathlib import Path
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import Field, model_validator
 
@@ -167,6 +167,47 @@ def resolve_evidence(project_root: Path, item: EvidenceInput) -> CompletionPlanE
     )
 
 
+def association_receipt_summary(association: dict[str, Any]) -> str:
+    details: list[str] = []
+    status = association.get("status")
+    if isinstance(status, str) and status:
+        details.append(f"status={status}")
+    gates = association.get("gates")
+    if isinstance(gates, dict):
+        passed = gates.get("passed")
+        if isinstance(passed, bool):
+            details.append(f"gates.passed={passed}")
+    actual_candidates = association.get("next_layer_target_ids")
+    if isinstance(actual_candidates, list):
+        candidates = [item for item in actual_candidates if isinstance(item, str) and item]
+        if candidates:
+            details.append(f"next_layer_target_ids={','.join(candidates)}")
+    promotion_blocker = association.get("promotion_blocker")
+    if isinstance(promotion_blocker, str) and promotion_blocker:
+        details.append(f"promotion_blocker={promotion_blocker}")
+    next_action = association.get("next_action")
+    if isinstance(next_action, dict):
+        action = next_action.get("action")
+        blocker = next_action.get("blocker")
+        if isinstance(action, str) and action:
+            details.append(f"next_action={action}")
+        if isinstance(blocker, str) and blocker:
+            details.append(f"next_blocker={blocker}")
+        missing = next_action.get("missing_target_ids")
+        if isinstance(missing, list) and missing:
+            ids = [item for item in missing if isinstance(item, str) and item]
+            if ids:
+                details.append(f"missing_target_ids={','.join(ids)}")
+        failed_gates = next_action.get("failed_gates")
+        if isinstance(failed_gates, list) and failed_gates:
+            gates = [item for item in failed_gates if isinstance(item, str) and item]
+            if gates:
+                details.append(f"failed_gates={','.join(gates)}")
+    if not details:
+        return ""
+    return " [" + "; ".join(details) + "]"
+
+
 def validate_next_layer_candidates(
     project_root: Path,
     status: RoundStatusInput,
@@ -191,7 +232,10 @@ def validate_next_layer_candidates(
         association.get("status") != "passed"
         or association.get("gates", {}).get("passed") is not True
     ):
-        raise ValueError("next-layer association receipt did not pass its technical gates")
+        raise ValueError(
+            "next-layer association receipt did not pass its technical gates"
+            + association_receipt_summary(association)
+        )
     associated_mask_sha = association.get("sources", {}).get("sam3_mask_index", {}).get("sha256")
     if associated_mask_sha != evidence[mask_index_role].sha256:
         raise ValueError("reinspection mask-index evidence does not match the association receipt")
