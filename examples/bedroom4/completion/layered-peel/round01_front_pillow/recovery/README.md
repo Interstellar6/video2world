@@ -41,4 +41,4 @@ uv run video2world completion-recovery-preflight \
   --output examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_preflight.json
 ```
 
-The current local preflight is `passed` with these overrides. This only verifies local input availability and preserves the declared remote paths beside the effective local mirror paths; it does not accept R1. The RGB frames, cumulative manifest, and donor exclusion index cover `000048`-`000072`. The Holi-Spatial `depth_da3` mirror is present but uses the original `000000`-`000011` numbering, so the recovery executor must still verify camera/depth frame remapping before running donor support.
+The current local preflight is `blocked_binding_semantics`. The RGB frames, camera info, cumulative manifest, and donor exclusion index cover `000048`-`000072`, but the Holi-Spatial `depth_da3` mirror only exposes `000000`-`000011`. Recovery execution must not start until `depth_arrays` is rebound to a depth directory or manifest that covers the same `000048`-`000072` frame IDs, or until an auditable camera/depth remapping artifact is materialized.

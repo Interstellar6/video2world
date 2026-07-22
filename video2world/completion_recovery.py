@@ -137,6 +137,23 @@ class RecoveryPreflightBinding(StrictModel):
     file_count: int | None = Field(default=None, ge=0)
 
 
+class RecoveryPreflightFrameAlignment(StrictModel):
+    role: str = Field(min_length=1)
+    status: Literal[
+        "matched",
+        "binding_unavailable",
+        "missing_required_frames",
+        "unverified",
+    ]
+    expected_frame_count: int = Field(ge=0)
+    available_frame_count: int = Field(ge=0)
+    matched_frame_count: int = Field(ge=0)
+    missing_frame_ids: list[str] = Field(default_factory=list)
+    extra_frame_ids: list[str] = Field(default_factory=list)
+    available_frame_ids: list[str] = Field(default_factory=list)
+    reason: str = Field(min_length=1)
+
+
 class CompletionRecoveryPreflight(StrictModel):
     schema_version: Literal["1.0"] = "1.0"
     kind: Literal["video2world.completion_recovery_preflight"] = (
@@ -144,7 +161,12 @@ class CompletionRecoveryPreflight(StrictModel):
     )
     object_id: str = Field(min_length=1)
     preflight_sha256: Sha256
-    status: Literal["passed", "blocked_input_mismatch", "blocked_missing_bindings"]
+    status: Literal[
+        "passed",
+        "blocked_input_mismatch",
+        "blocked_missing_bindings",
+        "blocked_binding_semantics",
+    ]
     deeper_rounds_blocked: Literal[True] = True
     bundle_sha256: Sha256
     work_order_sha256: Sha256 | None = None
@@ -154,6 +176,9 @@ class CompletionRecoveryPreflight(StrictModel):
     clean_plate_report_verified: bool
     bindings: list[RecoveryPreflightBinding] = Field(default_factory=list)
     missing_roles: list[str] = Field(default_factory=list)
+    required_frame_ids: list[str] = Field(default_factory=list)
+    frame_alignment: list[RecoveryPreflightFrameAlignment] = Field(default_factory=list)
+    semantic_blocking_roles: list[str] = Field(default_factory=list)
     notes: list[str] = Field(default_factory=list)
 
 
@@ -269,6 +294,147 @@ def _normalize_binding_overrides(
             raise ValueError(f"empty recovery preflight binding path for role: {role}")
         normalized[role] = text
     return normalized
+
+
+def _unique_sorted_frame_ids(values: list[object]) -> list[str]:
+    frame_ids = {
+        value
+        for value in values
+        if isinstance(value, str) and value and value.replace("_", "").isalnum()
+    }
+    return sorted(frame_ids)
+
+
+def _required_frame_ids(bundle: CompletionRecoveryBundle) -> list[str]:
+    return _unique_sorted_frame_ids(
+        [frame_id for step in bundle.steps for frame_id in step.frame_ids]
+    )
+
+
+def _frame_ids_from_records(value: object) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    frame_ids: list[object] = []
+    for item in value:
+        if isinstance(item, str):
+            frame_ids.append(Path(item).stem)
+        elif isinstance(item, dict):
+            for key in ("frame_id", "image", "name", "path", "file"):
+                candidate = item.get(key)
+                if isinstance(candidate, str) and candidate:
+                    frame_ids.append(Path(candidate).stem)
+                    break
+    return _unique_sorted_frame_ids(frame_ids)
+
+
+def _json_frame_ids(role: str, path: Path) -> list[str]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        return []
+    if role == "input_manifest":
+        return _frame_ids_from_records(payload.get("frame_records")) or _frame_ids_from_records(
+            payload.get("frames")
+        )
+    if role == "camera_info":
+        subset = payload.get("subset_provenance")
+        if isinstance(subset, dict):
+            subset_ids = _frame_ids_from_records(subset.get("frame_ids"))
+            if subset_ids:
+                return subset_ids
+        images = payload.get("images")
+        if isinstance(images, dict):
+            return _unique_sorted_frame_ids(list(images.keys()))
+        return _frame_ids_from_records(images)
+    if role == "physical_donor_exclusion_index":
+        return _frame_ids_from_records(payload.get("items"))
+    return []
+
+
+def _directory_frame_ids(path: Path) -> list[str]:
+    return _unique_sorted_frame_ids(
+        [child.stem for child in path.iterdir() if child.is_file()]
+    )
+
+
+def _available_frame_ids(binding: RecoveryPreflightBinding) -> list[str]:
+    path = Path(binding.effective_path or binding.path)
+    if binding.expected_kind == "directory":
+        return _directory_frame_ids(path)
+    return _json_frame_ids(binding.role, path)
+
+
+def _frame_alignment(
+    required_frame_ids: list[str],
+    binding: RecoveryPreflightBinding,
+) -> RecoveryPreflightFrameAlignment:
+    if binding.status != "present":
+        return RecoveryPreflightFrameAlignment(
+            role=binding.role,
+            status="binding_unavailable",
+            expected_frame_count=len(required_frame_ids),
+            available_frame_count=0,
+            matched_frame_count=0,
+            missing_frame_ids=required_frame_ids,
+            reason="binding is not present",
+        )
+    if not required_frame_ids:
+        return RecoveryPreflightFrameAlignment(
+            role=binding.role,
+            status="unverified",
+            expected_frame_count=0,
+            available_frame_count=0,
+            matched_frame_count=0,
+            reason="bundle does not declare recovery frame ids",
+        )
+    try:
+        available = _available_frame_ids(binding)
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
+        return RecoveryPreflightFrameAlignment(
+            role=binding.role,
+            status="unverified",
+            expected_frame_count=len(required_frame_ids),
+            available_frame_count=0,
+            matched_frame_count=0,
+            missing_frame_ids=required_frame_ids,
+            reason=f"failed to read frame ids: {exc}",
+        )
+    if not available:
+        return RecoveryPreflightFrameAlignment(
+            role=binding.role,
+            status="unverified",
+            expected_frame_count=len(required_frame_ids),
+            available_frame_count=0,
+            matched_frame_count=0,
+            missing_frame_ids=required_frame_ids,
+            reason="binding does not expose auditable frame ids",
+        )
+    available_set = set(available)
+    required_set = set(required_frame_ids)
+    missing = [frame_id for frame_id in required_frame_ids if frame_id not in available_set]
+    matched = [frame_id for frame_id in required_frame_ids if frame_id in available_set]
+    extra = [frame_id for frame_id in available if frame_id not in required_set]
+    if missing:
+        return RecoveryPreflightFrameAlignment(
+            role=binding.role,
+            status="missing_required_frames",
+            expected_frame_count=len(required_frame_ids),
+            available_frame_count=len(available),
+            matched_frame_count=len(matched),
+            missing_frame_ids=missing,
+            extra_frame_ids=extra,
+            available_frame_ids=available,
+            reason="binding frame ids do not cover the recovery bundle frame ids",
+        )
+    return RecoveryPreflightFrameAlignment(
+        role=binding.role,
+        status="matched",
+        expected_frame_count=len(required_frame_ids),
+        available_frame_count=len(available),
+        matched_frame_count=len(matched),
+        extra_frame_ids=extra,
+        available_frame_ids=available,
+        reason="binding covers all recovery bundle frame ids",
+    )
 
 
 def _binding(
@@ -465,6 +631,8 @@ def materialize_completion_recovery_preflight(
     clean_plate_report_verified = False
     clean_plate_report_sha: str | None = None
     bindings: list[RecoveryPreflightBinding] = []
+    required_frame_ids = _required_frame_ids(bundle)
+    frame_alignment: list[RecoveryPreflightFrameAlignment] = []
 
     if bundle_input_verified:
         work_order_payload = json.loads(Path(bundle.input.path).read_text(encoding="utf-8"))
@@ -493,14 +661,22 @@ def materialize_completion_recovery_preflight(
             )
             for role, (report_key, expected_kind) in _PREFLIGHT_BINDING_SPECS.items()
         ]
+        frame_alignment = [
+            _frame_alignment(required_frame_ids, binding) for binding in bindings
+        ]
 
     missing_roles = [
         item.role for item in bindings if item.status in {"missing", "kind_mismatch"}
+    ]
+    semantic_blocking_roles = [
+        item.role for item in frame_alignment if item.status != "matched"
     ]
     if not bundle_input_verified or not clean_plate_report_verified:
         status = "blocked_input_mismatch"
     elif missing_roles:
         status = "blocked_missing_bindings"
+    elif semantic_blocking_roles:
+        status = "blocked_binding_semantics"
     else:
         status = "passed"
     payload = {
@@ -515,8 +691,14 @@ def materialize_completion_recovery_preflight(
         "clean_plate_report_verified": clean_plate_report_verified,
         "bindings": [item.model_dump(mode="json") for item in bindings],
         "missing_roles": missing_roles,
+        "required_frame_ids": required_frame_ids,
+        "frame_alignment": [item.model_dump(mode="json") for item in frame_alignment],
+        "semantic_blocking_roles": semantic_blocking_roles,
         "notes": [
-            "Preflight checks only local input availability and hashes; it does not run recovery.",
+            (
+                "Preflight checks local input availability, hashes, and frame-id "
+                "alignment; it does not run recovery."
+            ),
             (
                 "Passing preflight does not accept R1; R2-R4 remain blocked until "
                 "recovery execution and strict R1 acceptance pass."

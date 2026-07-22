@@ -190,9 +190,18 @@ def test_completion_recovery_preflight_passes_with_local_bindings(tmp_path: Path
     depth_dir = tmp_path / "depth"
     frames_dir.mkdir()
     depth_dir.mkdir()
-    input_manifest.write_text('{"frames":[]}', encoding="utf-8")
-    camera_info.write_text('{"extrinsic_type":"world_to_camera"}', encoding="utf-8")
-    donor_index.write_text('{"items":[]}', encoding="utf-8")
+    input_manifest.write_text(
+        '{"frame_records":[{"frame_id":"000064"}]}',
+        encoding="utf-8",
+    )
+    camera_info.write_text(
+        '{"extrinsic_type":"world_to_camera","images":{"000064":{"name":"000064.png"}}}',
+        encoding="utf-8",
+    )
+    donor_index.write_text(
+        '{"items":[{"frame_id":"000064","image":"000064.png"}]}',
+        encoding="utf-8",
+    )
     (frames_dir / "000064.png").write_bytes(b"frame")
     (depth_dir / "000064.npy").write_bytes(b"depth")
     _write_route(route)
@@ -225,6 +234,9 @@ def test_completion_recovery_preflight_passes_with_local_bindings(tmp_path: Path
     assert all(item.status == "present" for item in preflight.bindings)
     assert all(item.declared_path == item.effective_path for item in preflight.bindings)
     assert not any(item.override_applied for item in preflight.bindings)
+    assert preflight.required_frame_ids == ["000064"]
+    assert all(item.status == "matched" for item in preflight.frame_alignment)
+    assert preflight.semantic_blocking_roles == []
 
 
 def test_completion_recovery_preflight_passes_with_binding_overrides(
@@ -243,9 +255,18 @@ def test_completion_recovery_preflight_passes_with_binding_overrides(
     depth_dir = tmp_path / "depth"
     frames_dir.mkdir()
     depth_dir.mkdir()
-    input_manifest.write_text('{"frames":[]}', encoding="utf-8")
-    camera_info.write_text('{"extrinsic_type":"world_to_camera"}', encoding="utf-8")
-    donor_index.write_text('{"items":[]}', encoding="utf-8")
+    input_manifest.write_text(
+        '{"frame_records":[{"frame_id":"000064"}]}',
+        encoding="utf-8",
+    )
+    camera_info.write_text(
+        '{"subset_provenance":{"frame_ids":["000064"]},"images":{"000064":{}}}',
+        encoding="utf-8",
+    )
+    donor_index.write_text(
+        '{"items":[{"frame_id":"000064","image":"000064.png"}]}',
+        encoding="utf-8",
+    )
     (frames_dir / "000064.png").write_bytes(b"frame")
     (depth_dir / "000064.npy").write_bytes(b"depth")
     _write_route(route)
@@ -283,6 +304,62 @@ def test_completion_recovery_preflight_passes_with_binding_overrides(
     assert by_role["input_manifest"].declared_path == "/remote/missing/manifest.json"
     assert by_role["input_manifest"].effective_path == str(input_manifest.resolve())
     assert by_role["input_manifest"].path == str(input_manifest.resolve())
+    assert all(item.status == "matched" for item in preflight.frame_alignment)
+
+
+def test_completion_recovery_preflight_blocks_depth_frame_mismatch(
+    tmp_path: Path,
+) -> None:
+    from video2world.completion_recovery import materialize_completion_recovery_preflight
+
+    route = tmp_path / "route.json"
+    report = tmp_path / "report.json"
+    work_order_path = tmp_path / "work-order.json"
+    bundle_path = tmp_path / "bundle.json"
+    input_manifest = tmp_path / "manifest.json"
+    camera_info = tmp_path / "camera-info.json"
+    donor_index = tmp_path / "donor-index.json"
+    frames_dir = tmp_path / "frames"
+    depth_dir = tmp_path / "depth"
+    frames_dir.mkdir()
+    depth_dir.mkdir()
+    input_manifest.write_text(
+        '{"frame_records":[{"frame_id":"000064"}]}',
+        encoding="utf-8",
+    )
+    camera_info.write_text(
+        '{"images":{"000064":{"name":"000064.png"}}}',
+        encoding="utf-8",
+    )
+    donor_index.write_text(
+        '{"items":[{"frame_id":"000064","image":"000064.png"}]}',
+        encoding="utf-8",
+    )
+    (frames_dir / "000064.png").write_bytes(b"frame")
+    (depth_dir / "000000.npy").write_bytes(b"depth")
+    _write_route(route)
+    _write_report(
+        report,
+        bindings={
+            "input_manifest": str(input_manifest),
+            "camera_info": str(camera_info),
+            "donor_frames_dir": str(frames_dir),
+            "depth_dir": str(depth_dir),
+            "donor_mask_index": str(donor_index),
+        },
+    )
+    work_order = materialize_completion_recovery_work_order(route, report)
+    work_order_path.write_text(work_order.model_dump_json(indent=2), encoding="utf-8")
+    bundle = materialize_completion_recovery_bundle(work_order_path)
+    bundle_path.write_text(bundle.model_dump_json(indent=2), encoding="utf-8")
+
+    preflight = materialize_completion_recovery_preflight(bundle_path)
+
+    assert preflight.status == "blocked_binding_semantics"
+    assert preflight.semantic_blocking_roles == ["depth_arrays"]
+    by_role = {item.role: item for item in preflight.frame_alignment}
+    assert by_role["depth_arrays"].status == "missing_required_frames"
+    assert by_role["depth_arrays"].missing_frame_ids == ["000064"]
 
 
 def test_completion_recovery_preflight_cli_blocks_missing_bindings(
