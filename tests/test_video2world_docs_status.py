@@ -33,7 +33,9 @@ def test_pipeline_docs_keep_corrected_clean_plate_status_fail_closed() -> None:
     assert "object_probability" in getting_started
     assert "objects[*].id" in getting_started
     assert "scene_id/run_id" in getting_started
+    assert "final_clean_plate` 也必须是 receipt 中的真实输出" in getting_started
     assert "clean_plate_manifest.final_clean_plate" in getting_started
+    assert "三方 uri/hash/size 一致" in getting_started
     assert "输出角色路径和内容 hash 不能互相复用" in getting_started
     assert "不能复用原始" in getting_started
     assert "hash 或路径" in getting_started
@@ -47,6 +49,7 @@ def test_pipeline_docs_keep_corrected_clean_plate_status_fail_closed() -> None:
         "semantic_gaussian",
         "object_facts",
         "completed_object_assets_manifest",
+        "final_clean_plate",
         "clean_scene_mesh",
         "clean_plate_manifest",
     ):

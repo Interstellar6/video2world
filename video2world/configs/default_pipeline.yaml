@@ -81,6 +81,7 @@ stages:
       completed_object_assets_manifest: "{run_dir}/artifacts/completion/object-assets.json"
       clean_scene_gaussian: "{run_dir}/artifacts/completion/clean-scene-gaussian.ply"
       clean_scene_mesh: "{run_dir}/artifacts/completion/clean-scene-mesh.ply"
+      final_clean_plate: "{run_dir}/artifacts/completion/final-clean-plate"
       clean_plate_manifest: "{run_dir}/artifacts/completion/clean-plates.json"
       layered_completion_report: "{run_dir}/artifacts/completion/report.json"
       provider_receipt: "{run_dir}/artifacts/completion/provider-receipt.json"

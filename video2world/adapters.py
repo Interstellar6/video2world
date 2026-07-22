@@ -86,6 +86,7 @@ LAYERED_COMPLETION_REQUIRED_OUTPUT_ROLES = {
     "completed_object_assets_manifest",
     "clean_scene_gaussian",
     "clean_scene_mesh",
+    "final_clean_plate",
     "clean_plate_manifest",
     "layered_completion_report",
 }
@@ -391,6 +392,25 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             or final_clean_plate.get("size_bytes") != report.final_clean_plate.size_bytes
         ):
             raise ValueError("clean_plate_manifest final_clean_plate differs from report")
+        final_clean_plate_output = receipt_outputs.get("final_clean_plate")
+        if not isinstance(final_clean_plate_output, dict):
+            raise ValueError("provider receipt has no final_clean_plate output")
+        final_clean_plate_output_path = final_clean_plate_output.get("path")
+        if (
+            not isinstance(final_clean_plate_output_path, str)
+            or not final_clean_plate_output_path
+        ):
+            raise ValueError("provider receipt has no final_clean_plate output path")
+        if report.final_clean_plate.uri != final_clean_plate_output_path:
+            raise ValueError(
+                "final_clean_plate report asset uri differs from provider receipt output"
+            )
+        if (
+            final_clean_plate_output.get("sha256") != report.final_clean_plate.sha256
+            or final_clean_plate_output.get("size_bytes")
+            != report.final_clean_plate.size_bytes
+        ):
+            raise ValueError("final_clean_plate report asset differs from provider receipt output")
         for role, report_asset in (
             ("clean_scene_gaussian", report.clean_scene_gaussian),
             ("clean_scene_mesh", report.clean_scene_mesh),
@@ -855,6 +875,7 @@ ADAPTERS = {
                     "completed_object_assets_manifest",
                     "clean_scene_gaussian",
                     "clean_scene_mesh",
+                    "final_clean_plate",
                     "clean_plate_manifest",
                     "layered_completion_report",
                 }

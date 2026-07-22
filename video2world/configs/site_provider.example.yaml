@@ -230,12 +230,14 @@ stages:
       - "{output_clean_scene_gaussian}"
       - --clean-scene-mesh
       - "{output_clean_scene_mesh}"
+      - --final-clean-plate
+      - "{output_final_clean_plate}"
       - --clean-plate-manifest
       - "{output_clean_plate_manifest}"
       - --report
       - "{output_layered_completion_report}"
     input_roles: [frames_manifest, cameras, layered_completion_plan, scene_gaussian, scene_mesh, masks_manifest, captions_manifest, object_clouds_manifest, semantic_gaussian, object_facts]
-    output_roles: [completed_object_assets_manifest, clean_scene_gaussian, clean_scene_mesh, clean_plate_manifest, layered_completion_report]
+    output_roles: [completed_object_assets_manifest, clean_scene_gaussian, clean_scene_mesh, final_clean_plate, clean_plate_manifest, layered_completion_report]
     timeout_seconds: 604800
     requires:
       site_python: {path: "${SITE_PYTHON}", kind: executable}

@@ -338,6 +338,7 @@ LAYERED_COMPLETION_OUTPUT_ROLES = {
     "completed_object_assets_manifest",
     "clean_scene_gaussian",
     "clean_scene_mesh",
+    "final_clean_plate",
     "clean_plate_manifest",
     "layered_completion_report",
 }
@@ -367,27 +368,26 @@ def _layered_completion_input_snapshots(tmp_path: Path, plan_path: Path) -> dict
 def _layered_completion_output_snapshots(tmp_path: Path, report_path: Path) -> dict[str, object]:
     outputs: dict[str, object] = {}
     report_payload = json.loads(report_path.read_text(encoding="utf-8"))
-    for role in sorted(LAYERED_COMPLETION_OUTPUT_ROLES - {"layered_completion_report"}):
+    for role in sorted(
+        LAYERED_COMPLETION_OUTPUT_ROLES - {"clean_plate_manifest", "layered_completion_report"}
+    ):
         path = tmp_path / f"{role}.output"
         if role == "completed_object_assets_manifest":
             path.write_text(json.dumps(_valid_completed_object_assets_manifest()), encoding="utf-8")
-        elif role == "clean_plate_manifest":
-            path.write_text(
-                json.dumps(
-                    {
-                        "final_clean_plate": report_payload["final_clean_plate"],
-                        "frame_records": [{"frame_id": "000064"}],
-                    }
-                ),
-                encoding="utf-8",
-            )
         elif role == "clean_scene_gaussian":
             path.write_bytes(_clean_gaussian_header() + ("0 " * 13 + "0\n").encode("ascii"))
         elif role == "clean_scene_mesh":
             path.write_bytes(_valid_clean_mesh_payload())
+        elif role == "final_clean_plate":
+            path.write_bytes(b"final clean plate frame bytes\n")
         else:
             raise AssertionError(f"unhandled layered completion output role: {role}")
         outputs[role] = _artifact_snapshot_payload(path)
+    final_clean_plate = _terminal_clean_plate_evidence_from_snapshot(
+        outputs["final_clean_plate"]
+    )
+    report_payload["rounds"][-1]["output_clean_plate"] = final_clean_plate
+    report_payload["final_clean_plate"] = final_clean_plate
     report_payload["clean_scene_gaussian"] = _clean_scene_asset_ref_from_snapshot(
         outputs["clean_scene_gaussian"],
         "clean_scene_gaussian",
@@ -396,6 +396,17 @@ def _layered_completion_output_snapshots(tmp_path: Path, report_path: Path) -> d
         outputs["clean_scene_mesh"],
         "clean_scene_mesh",
     )
+    clean_plate_manifest_path = tmp_path / "clean_plate_manifest.output"
+    clean_plate_manifest_path.write_text(
+        json.dumps(
+            {
+                "final_clean_plate": report_payload["final_clean_plate"],
+                "frame_records": [{"frame_id": "000064"}],
+            }
+        ),
+        encoding="utf-8",
+    )
+    outputs["clean_plate_manifest"] = _artifact_snapshot_payload(clean_plate_manifest_path)
     report_path.write_text(json.dumps(report_payload), encoding="utf-8")
     outputs["layered_completion_report"] = _artifact_snapshot_payload(report_path)
     return outputs
@@ -507,6 +518,14 @@ def _terminal_clean_plate_evidence(name: str, digest: str) -> dict[str, object]:
             "canonical_or_live_manifest_modified": False,
         }
     )
+    return evidence
+
+
+def _terminal_clean_plate_evidence_from_snapshot(snapshot: dict[str, object]) -> dict[str, object]:
+    evidence = _terminal_clean_plate_evidence(str(snapshot["path"]), str(snapshot["sha256"])[0])
+    evidence["uri"] = str(snapshot["path"])
+    evidence["sha256"] = snapshot["sha256"]
+    evidence["size_bytes"] = snapshot["size_bytes"]
     return evidence
 
 
@@ -1059,6 +1078,48 @@ def test_layered_completion_report_binds_clean_plate_manifest_to_final_clean_pla
     )
 
     with pytest.raises(ArtifactError, match="final_clean_plate differs from report"):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
+def test_layered_completion_report_binds_final_clean_plate_to_receipt_output(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    stale_final_clean_plate = _terminal_clean_plate_evidence("stale-final-clean-plate.png", "9")
+    report_payload = json.loads(report_path.read_text(encoding="utf-8"))
+    report_payload["rounds"][-1]["output_clean_plate"] = stale_final_clean_plate
+    report_payload["final_clean_plate"] = stale_final_clean_plate
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    outputs["layered_completion_report"] = _artifact_snapshot_payload(report_path)
+    clean_plate_path = Path(outputs["clean_plate_manifest"]["path"])
+    clean_plate_payload = json.loads(clean_plate_path.read_text(encoding="utf-8"))
+    clean_plate_payload["final_clean_plate"] = stale_final_clean_plate
+    clean_plate_path.write_text(json.dumps(clean_plate_payload), encoding="utf-8")
+    outputs["clean_plate_manifest"] = _artifact_snapshot_payload(clean_plate_path)
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=_layered_completion_input_snapshots(tmp_path, plan_path),
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ArtifactError, match="final_clean_plate report asset uri differs"):
         get_adapter("layered_completion").validate_outputs(
             {
                 "layered_completion_report": snapshot_path(report_path),
