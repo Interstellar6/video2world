@@ -164,7 +164,7 @@ uv run video2world completion-route \
   --output runs/my-room/artifacts/completion/objects/chair01/backend-route.json
 ```
 
-`completion-route` 只在 physical instance 与 appearance contract 通过后，才在多视角重建、柔性类别先验、CAD 检索、生成式 image-to-3D 和结构支撑面重建之间选择。证据不足时返回非零并选择 `hold_for_more_evidence`。如果 evidence 携带上一轮 clean plate 的 `clean_plate_next_action`，输出还会包含 `recovery_actions`，用于阻止更深遮挡层启动并指向 donor support、temporal QA、boundary QA 或 residual generation 的下一步修复。详细 round 输入输出与门禁见 [通用遮挡、背面与背景分层补全](completion.md)。
+`completion-route` 只在 physical instance 与 appearance contract 通过后，才在多视角重建、柔性类别先验、CAD 检索、生成式 image-to-3D 和结构支撑面重建之间选择。证据不足时返回非零并选择 `hold_for_more_evidence`。如果 evidence 携带上一轮 clean plate 的 `clean_plate_next_action`，或 `--clean-plate-report` 指向旧式 prefill/QA report 且其中明确 `promotion_approved=false`、仍有 residual/no-support 帧，输出还会包含 `recovery_actions`，用于阻止更深遮挡层启动并指向 donor support、temporal QA、boundary QA 或 residual generation 的下一步修复。详细 round 输入输出与门禁见 [通用遮挡、背面与背景分层补全](completion.md)。
 
 ## 配置 argv adapter
 

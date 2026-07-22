@@ -240,3 +240,56 @@ def test_completion_route_cli_can_inject_failed_clean_plate_report(tmp_path: Pat
     payload = json.loads(output.read_text(encoding="utf-8"))
     assert payload["recovery_actions"][0]["stage"] == "donor_support"
     assert payload["recovery_actions"][0]["frame_ids"] == ["000064"]
+
+
+def test_completion_route_cli_derives_recovery_from_legacy_prefill_report(
+    tmp_path: Path,
+) -> None:
+    source = tmp_path / "evidence.json"
+    report = tmp_path / "legacy-prefill-report.json"
+    output = tmp_path / "route.json"
+    source.write_text(
+        evidence(category="pillow").model_dump_json(indent=2),
+        encoding="utf-8",
+    )
+    report.write_text(
+        json.dumps(
+            {
+                "status": "technical_passed",
+                "promotion_approved": False,
+                "pixel_provenance": {
+                    "unresolved_unobserved_pixels": 23065,
+                },
+                "frame_records": [
+                    {
+                        "frame_id": "000064",
+                        "removal_mask_pixels": 23065,
+                        "residual_mask_pixels": 23065,
+                        "covered_pixels": 0,
+                        "coverage_fraction": 0.0,
+                        "support_max": 0,
+                    }
+                ],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    assert (
+        main(
+            [
+                "completion-route",
+                str(source),
+                "--clean-plate-report",
+                str(report),
+                "--output",
+                str(output),
+            ]
+        )
+        == 0
+    )
+    payload = json.loads(output.read_text(encoding="utf-8"))
+    assert payload["recovery_actions"][0]["stage"] == "donor_support"
+    assert payload["recovery_actions"][0]["frame_ids"] == ["000064"]
+    assert payload["recovery_actions"][0]["allow_deeper_rounds"] is False

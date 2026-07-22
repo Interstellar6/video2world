@@ -174,10 +174,105 @@ def _ordered_unique(values: list[str | None]) -> list[str]:
     return kept
 
 
+def _int_or_none(value: object) -> int | None:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int):
+        return value
+    if isinstance(value, float) and value.is_integer():
+        return int(value)
+    return None
+
+
+def _float_or_none(value: object) -> float | None:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int | float):
+        return float(value)
+    return None
+
+
+def _derive_clean_plate_next_action(report: dict[str, object]) -> CleanPlateNextAction | None:
+    pixel_provenance = report.get("pixel_provenance")
+    unresolved_pixels: int | None = None
+    if isinstance(pixel_provenance, dict):
+        unresolved_pixels = _int_or_none(pixel_provenance.get("unresolved_unobserved_pixels"))
+    frame_records = report.get("frame_records")
+    failed_frame_ids: list[str] = []
+    no_support_frame_ids: list[str] = []
+    if isinstance(frame_records, list):
+        for record in frame_records:
+            if not isinstance(record, dict):
+                continue
+            frame_id = record.get("frame_id")
+            if not isinstance(frame_id, str) or not frame_id:
+                continue
+            residual_pixels = _int_or_none(record.get("residual_mask_pixels")) or 0
+            removal_pixels = _int_or_none(record.get("removal_mask_pixels")) or 0
+            covered_pixels = _int_or_none(record.get("covered_pixels"))
+            coverage_fraction = _float_or_none(record.get("coverage_fraction"))
+            support_max = _int_or_none(record.get("support_max"))
+            if residual_pixels > 0 or (
+                removal_pixels > 0
+                and coverage_fraction is not None
+                and coverage_fraction < 1.0
+            ):
+                failed_frame_ids.append(frame_id)
+            if removal_pixels > 0 and (
+                support_max == 0
+                or covered_pixels == 0
+                or coverage_fraction == 0.0
+            ):
+                no_support_frame_ids.append(frame_id)
+    if unresolved_pixels is None and isinstance(frame_records, list):
+        unresolved_pixels = sum(
+            _int_or_none(record.get("residual_mask_pixels")) or 0
+            for record in frame_records
+            if isinstance(record, dict)
+        )
+    should_derive = (
+        report.get("promotion_approved") is False
+        or (unresolved_pixels is not None and unresolved_pixels > 0)
+        or str(report.get("status", "")).startswith("technical_failed")
+    )
+    if not should_derive:
+        return None
+    failed_frame_ids = _ordered_unique(failed_frame_ids)
+    no_support_frame_ids = _ordered_unique(no_support_frame_ids)
+    first_failed_frame_id = (no_support_frame_ids or failed_frame_ids or [None])[0]
+    if no_support_frame_ids:
+        action = "add_observed_donor_or_switch_to_constrained_generation_for_residual"
+        blocker = "no_guard_stable_measured_donor_support"
+        blocking_gate_groups = ["donor_support"]
+    else:
+        action = "regenerate_residual_with_constrained_background_prior"
+        blocker = "unresolved_unobserved_residual"
+        blocking_gate_groups = ["residual_generation"]
+    return CleanPlateNextAction(
+        action=action,
+        blocker=blocker,
+        blocking_gate_groups=blocking_gate_groups,
+        failed_frame_ids=failed_frame_ids,
+        first_failed_frame_id=first_failed_frame_id,
+        no_support_frame_ids=no_support_frame_ids,
+        unresolved_unobserved_pixels=unresolved_pixels,
+        promotion_approved=(
+            report.get("promotion_approved")
+            if isinstance(report.get("promotion_approved"), bool)
+            else None
+        ),
+    )
+
+
 def clean_plate_next_action_from_report(report: dict[str, object]) -> CleanPlateNextAction:
     value = report.get("next_action")
     if not isinstance(value, dict):
-        raise ValueError("clean plate report must contain a next_action object")
+        derived = _derive_clean_plate_next_action(report)
+        if derived is not None:
+            return derived
+        raise ValueError(
+            "clean plate report must contain a next_action object or failed residual evidence"
+        )
     known = {
         key: item
         for key, item in value.items()
