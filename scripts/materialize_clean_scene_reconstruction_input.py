@@ -77,6 +77,63 @@ def require(condition: bool, message: str) -> None:
         raise RuntimeError(message)
 
 
+def acceptance_failure_summary(report: dict[str, Any]) -> str:
+    details: list[str] = []
+    status = report.get("status")
+    if isinstance(status, str) and status:
+        details.append(f"status={status}")
+    promotion_blocker = report.get("promotion_blocker")
+    if isinstance(promotion_blocker, str) and promotion_blocker:
+        details.append(f"promotion_blocker={promotion_blocker}")
+    for key in (
+        "promotion_approved",
+        "eligible_as_round04_clean_plate",
+        "accepted_with_limitations",
+        "eligible_as_current_demo_round04_clean_plate",
+    ):
+        value = report.get(key)
+        if isinstance(value, bool):
+            details.append(f"{key}={value}")
+    next_action = report.get("next_action")
+    if isinstance(next_action, dict):
+        action = next_action.get("action")
+        blocker = next_action.get("blocker")
+        if isinstance(action, str) and action:
+            details.append(f"next_action={action}")
+        if isinstance(blocker, str) and blocker:
+            details.append(f"next_blocker={blocker}")
+        blocking_groups = next_action.get("blocking_gate_groups")
+        if isinstance(blocking_groups, list) and blocking_groups:
+            groups = [group for group in blocking_groups if isinstance(group, str) and group]
+            if groups:
+                details.append(f"blocking_gate_groups={','.join(groups)}")
+        failed_gates = next_action.get("failed_gates")
+        if isinstance(failed_gates, list) and failed_gates:
+            gates = [gate for gate in failed_gates if isinstance(gate, str) and gate]
+            if gates:
+                details.append(f"failed_gates={','.join(gates)}")
+    gates = report.get("gates")
+    if isinstance(gates, dict):
+        failed = [
+            key
+            for key, value in gates.items()
+            if value is False or (isinstance(value, dict) and value.get("passed") is False)
+        ]
+        if failed:
+            details.append(f"report_failed_gates={','.join(sorted(failed))}")
+        visual_quality = gates.get("visual_quality")
+        if isinstance(visual_quality, str) and visual_quality:
+            details.append(f"visual_quality={visual_quality}")
+    if not details:
+        return ""
+    return " [" + "; ".join(details) + "]"
+
+
+def require_acceptance(condition: bool, message: str, report: dict[str, Any]) -> None:
+    if not condition:
+        raise RuntimeError(message + acceptance_failure_summary(report))
+
+
 def read_json(path: Path) -> dict[str, Any]:
     try:
         value = json.loads(path.read_text(encoding="utf-8"))
@@ -261,21 +318,26 @@ def _validate_limited_user_review_binding(
 
 
 def validate_acceptance(report: dict[str, Any]) -> None:
-    require(
+    require_acceptance(
         report.get("status") == ACCEPTED_TEXTURE_STATUS,
         f"planar texture status must equal {ACCEPTED_TEXTURE_STATUS!r}",
+        report,
     )
-    require(
+    require_acceptance(
         report.get("promotion_blocker") in {None, ""},
         "accepted planar texture report still has a promotion blocker",
+        report,
     )
     gates = report.get("gates")
-    require(isinstance(gates, dict), "planar texture gates are missing")
+    require_acceptance(isinstance(gates, dict), "planar texture gates are missing", report)
     for key in REQUIRED_TEXTURE_GATES:
-        require(_gate_passed(gates.get(key)), f"planar texture gate did not pass: {key}")
-    require(
+        require_acceptance(
+            _gate_passed(gates.get(key)), f"planar texture gate did not pass: {key}", report
+        )
+    require_acceptance(
         gates.get("new_depth_normal_estimation_before_pgsr") == "required_after_visual_acceptance",
         "planar texture report does not require fresh depth/normal before PGSR",
+        report,
     )
 
     limited_flag = report.get("accepted_with_limitations")
@@ -285,13 +347,15 @@ def validate_acceptance(report: dict[str, Any]) -> None:
             limited_flag is None or limited_flag is False,
             "planar texture limited acceptance flag is invalid",
         )
-        require(
+        require_acceptance(
             report.get("promotion_approved") is True,
             "planar texture promotion is not approved",
+            report,
         )
-        require(
+        require_acceptance(
             report.get("eligible_as_round04_clean_plate") is True,
             "planar texture is not eligible as the Round 4 clean plate",
+            report,
         )
         require(
             report.get("acceptance_scope") is None or report.get("acceptance_scope") == "",
@@ -302,36 +366,47 @@ def validate_acceptance(report: dict[str, Any]) -> None:
             "strict planar texture report cannot carry overridden gates",
         )
         for key in REQUIRED_BOUNDARY_GATES:
-            require(_gate_passed(gates.get(key)), f"planar texture gate did not pass: {key}")
-        require(
+            require_acceptance(
+                _gate_passed(gates.get(key)),
+                f"planar texture gate did not pass: {key}",
+                report,
+            )
+        require_acceptance(
             gates.get("visual_quality") in {"passed", "accepted"},
             "planar texture visual quality was not explicitly accepted",
+            report,
         )
         return
 
-    require(
+    require_acceptance(
         report.get("promotion_approved") is False,
         "limited planar texture cannot approve general promotion",
+        report,
     )
-    require(
+    require_acceptance(
         report.get("eligible_as_round04_clean_plate") is False,
         "limited planar texture cannot claim general Round 4 eligibility",
+        report,
     )
-    require(
+    require_acceptance(
         report.get("demo_use_approved") is True,
         "limited planar texture demo use is not approved",
+        report,
     )
-    require(
+    require_acceptance(
         report.get("eligible_as_current_demo_round04_clean_plate") is True,
         "limited planar texture is not eligible for the current demo Round 4 clean plate",
+        report,
     )
-    require(
+    require_acceptance(
         report.get("acceptance_scope") == LIMITED_ACCEPTANCE_SCOPE,
         "limited planar texture acceptance_scope must be current_demo_only",
+        report,
     )
-    require(
+    require_acceptance(
         gates.get("visual_quality") == LIMITED_VISUAL_QUALITY,
         "limited planar texture visual quality must be accepted_with_limitations",
+        report,
     )
     overridden_gates = report.get("overridden_gates")
     require(

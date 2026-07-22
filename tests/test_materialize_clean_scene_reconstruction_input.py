@@ -499,9 +499,18 @@ def test_rejects_pending_or_ineligible_texture_report_without_creating_output(
     report = read_json(accepted_planar_fixture.texture_report)
     report["promotion_approved"] = False
     report["eligible_as_round04_clean_plate"] = False
+    report["promotion_blocker"] = "visual quality review is pending"
+    report["next_action"] = {
+        "action": "run_semantic_texture_and_new_depth_normal_review_before_next_round",
+        "blocker": "semantic_texture_and_depth_normal_pending",
+        "blocking_gate_groups": ["visual_quality"],
+        "failed_gates": ["visual_quality"],
+        "promotion_approved": False,
+    }
+    report["gates"]["visual_quality"] = "pending_human_or_vlm_review"
     write_json(accepted_planar_fixture.texture_report, report)
     output = tmp_path / "must-not-exist"
-    with pytest.raises(RuntimeError, match="promotion is not approved"):
+    with pytest.raises(RuntimeError) as error:
         materialize_package(
             texture_report_path=accepted_planar_fixture.texture_report,
             camera_info_path=accepted_planar_fixture.camera_info,
@@ -509,6 +518,13 @@ def test_rejects_pending_or_ineligible_texture_report_without_creating_output(
             scene_id="bedroom_4_clean",
             storage_mode="copy",
         )
+    message = str(error.value)
+    assert "still has a promotion blocker" in message
+    assert "promotion_blocker=visual quality review is pending" in message
+    assert "run_semantic_texture_and_new_depth_normal_review_before_next_round" in message
+    assert "semantic_texture_and_depth_normal_pending" in message
+    assert "blocking_gate_groups=visual_quality" in message
+    assert "eligible_as_round04_clean_plate=False" in message
     assert not output.exists()
 
 
