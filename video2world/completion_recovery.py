@@ -124,6 +124,36 @@ class CompletionRecoveryBundle(StrictModel):
         return self
 
 
+class RecoveryPreflightBinding(StrictModel):
+    role: str = Field(min_length=1)
+    path: str = ""
+    expected_kind: Literal["file", "directory"]
+    status: Literal["present", "missing", "kind_mismatch"]
+    sha256: Sha256 | None = None
+    size_bytes: int | None = Field(default=None, ge=0)
+    file_count: int | None = Field(default=None, ge=0)
+
+
+class CompletionRecoveryPreflight(StrictModel):
+    schema_version: Literal["1.0"] = "1.0"
+    kind: Literal["video2world.completion_recovery_preflight"] = (
+        "video2world.completion_recovery_preflight"
+    )
+    object_id: str = Field(min_length=1)
+    preflight_sha256: Sha256
+    status: Literal["passed", "blocked_input_mismatch", "blocked_missing_bindings"]
+    deeper_rounds_blocked: Literal[True] = True
+    bundle_sha256: Sha256
+    work_order_sha256: Sha256 | None = None
+    clean_plate_report_sha256: Sha256 | None = None
+    bundle_input_verified: bool
+    work_order_input_verified: bool
+    clean_plate_report_verified: bool
+    bindings: list[RecoveryPreflightBinding] = Field(default_factory=list)
+    missing_roles: list[str] = Field(default_factory=list)
+    notes: list[str] = Field(default_factory=list)
+
+
 def _artifact(
     path: Path,
     role: Literal["completion_backend_route", "clean_plate_report"],
@@ -210,6 +240,63 @@ def _expected_output_roles(stage: RecoveryStage) -> list[str]:
         "candidate_generation_receipt",
         "candidate_review_report",
     ]
+
+
+def _binding(
+    role: str,
+    value: object,
+    expected_kind: Literal["file", "directory"],
+) -> RecoveryPreflightBinding:
+    path = Path(str(value)).expanduser() if isinstance(value, str) and value else Path("")
+    if not value or not isinstance(value, str):
+        return RecoveryPreflightBinding(
+            role=role,
+            path="",
+            expected_kind=expected_kind,
+            status="missing",
+        )
+    resolved = path.resolve()
+    if not resolved.exists():
+        return RecoveryPreflightBinding(
+            role=role,
+            path=str(resolved),
+            expected_kind=expected_kind,
+            status="missing",
+        )
+    if (expected_kind == "file" and not resolved.is_file()) or (
+        expected_kind == "directory" and not resolved.is_dir()
+    ):
+        return RecoveryPreflightBinding(
+            role=role,
+            path=str(resolved),
+            expected_kind=expected_kind,
+            status="kind_mismatch",
+        )
+    digest = digest_path(resolved)
+    return RecoveryPreflightBinding(
+        role=role,
+        path=str(digest.path),
+        expected_kind=expected_kind,
+        status="present",
+        sha256=digest.sha256,
+        size_bytes=digest.size_bytes,
+        file_count=digest.file_count,
+    )
+
+
+def _find_input(work_order: CompletionRecoveryWorkOrder, role: str) -> RecoveryInputArtifact:
+    matches = [item for item in work_order.inputs if item.role == role]
+    if len(matches) != 1:
+        raise ValueError(f"work order must contain exactly one {role} input")
+    return matches[0]
+
+
+def _verify_declared_file(path: str, sha256: str, size_bytes: int) -> tuple[bool, str | None]:
+    resolved = Path(path).expanduser().resolve()
+    if not resolved.is_file():
+        return False, None
+    digest = digest_path(resolved)
+    return digest.sha256 == sha256 and digest.size_bytes == size_bytes, digest.sha256
 
 
 def materialize_completion_recovery_work_order(
@@ -318,4 +405,88 @@ def materialize_completion_recovery_bundle(
     return CompletionRecoveryBundle(
         bundle_sha256=digest_json(bundle_payload),
         **bundle_payload,
+    )
+
+
+def materialize_completion_recovery_preflight(
+    bundle_path: str | Path,
+) -> CompletionRecoveryPreflight:
+    bundle_file = Path(bundle_path).expanduser().resolve()
+    bundle_payload = json.loads(bundle_file.read_text(encoding="utf-8"))
+    if not isinstance(bundle_payload, dict):
+        raise ValueError("recovery bundle root must be an object")
+    bundle = CompletionRecoveryBundle.model_validate(bundle_payload)
+    bundle_digest = digest_path(bundle_file)
+    bundle_input_verified, work_order_actual_sha = _verify_declared_file(
+        bundle.input.path,
+        bundle.input.sha256,
+        bundle.input.size_bytes,
+    )
+
+    work_order: CompletionRecoveryWorkOrder | None = None
+    report_payload: dict[str, Any] | None = None
+    work_order_input_verified = False
+    clean_plate_report_verified = False
+    clean_plate_report_sha: str | None = None
+    bindings: list[RecoveryPreflightBinding] = []
+
+    if bundle_input_verified:
+        work_order_payload = json.loads(Path(bundle.input.path).read_text(encoding="utf-8"))
+        if not isinstance(work_order_payload, dict):
+            raise ValueError("recovery work order root must be an object")
+        work_order = CompletionRecoveryWorkOrder.model_validate(work_order_payload)
+        report_input = _find_input(work_order, "clean_plate_report")
+        clean_plate_report_verified, clean_plate_report_sha = _verify_declared_file(
+            report_input.path,
+            report_input.sha256,
+            report_input.size_bytes,
+        )
+        work_order_input_verified = True
+        if clean_plate_report_verified:
+            report_payload = json.loads(Path(report_input.path).read_text(encoding="utf-8"))
+            if not isinstance(report_payload, dict):
+                raise ValueError("clean plate report root must be an object")
+
+    if report_payload is not None:
+        bindings = [
+            _binding("input_manifest", report_payload.get("input_manifest"), "file"),
+            _binding("camera_info", report_payload.get("camera_info"), "file"),
+            _binding("source_rgb_frames", report_payload.get("donor_frames_dir"), "directory"),
+            _binding("depth_arrays", report_payload.get("depth_dir"), "directory"),
+            _binding(
+                "physical_donor_exclusion_index",
+                report_payload.get("donor_mask_index"),
+                "file",
+            ),
+        ]
+
+    missing_roles = [
+        item.role for item in bindings if item.status in {"missing", "kind_mismatch"}
+    ]
+    if not bundle_input_verified or not clean_plate_report_verified:
+        status = "blocked_input_mismatch"
+    elif missing_roles:
+        status = "blocked_missing_bindings"
+    else:
+        status = "passed"
+    payload = {
+        "object_id": bundle.object_id,
+        "status": status,
+        "deeper_rounds_blocked": True,
+        "bundle_sha256": bundle_digest.sha256,
+        "work_order_sha256": work_order_actual_sha,
+        "clean_plate_report_sha256": clean_plate_report_sha,
+        "bundle_input_verified": bundle_input_verified,
+        "work_order_input_verified": work_order_input_verified,
+        "clean_plate_report_verified": clean_plate_report_verified,
+        "bindings": [item.model_dump(mode="json") for item in bindings],
+        "missing_roles": missing_roles,
+        "notes": [
+            "Preflight checks only local input availability and hashes; it does not run recovery.",
+            "R2-R4 remain blocked while this report is not passed.",
+        ],
+    }
+    return CompletionRecoveryPreflight(
+        preflight_sha256=digest_json(payload),
+        **payload,
     )

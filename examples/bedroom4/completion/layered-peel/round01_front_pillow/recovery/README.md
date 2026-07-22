@@ -27,3 +27,13 @@ uv run video2world completion-recovery-bundle \
   examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_work_order.json \
   --output examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_bundle.json
 ```
+
+Before running recovery, preflight the bundle against local files:
+
+```bash
+uv run video2world completion-recovery-preflight \
+  examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_bundle.json \
+  --output examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_preflight.json
+```
+
+The current local preflight is expected to be `blocked_missing_bindings`: the route/work-order/report hashes verify, but the donor frames, camera info, depth arrays, cumulative manifest, and physical donor exclusion index are still referenced by remote run paths.

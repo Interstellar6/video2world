@@ -257,6 +257,13 @@ def build_parser() -> argparse.ArgumentParser:
     completion_recovery_bundle_parser.add_argument("work_order")
     completion_recovery_bundle_parser.add_argument("--output", required=True)
 
+    completion_recovery_preflight_parser = subparsers.add_parser(
+        "completion-recovery-preflight",
+        help="Preflight a recovery execution bundle without running models",
+    )
+    completion_recovery_preflight_parser.add_argument("bundle")
+    completion_recovery_preflight_parser.add_argument("--output", required=True)
+
     scene_command_validate_parser = subparsers.add_parser(
         "scene-command-validate",
         help="Validate structured natural-language scene intent JSON",
@@ -642,6 +649,16 @@ def _cmd_completion_recovery_bundle(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_completion_recovery_preflight(args: argparse.Namespace) -> int:
+    from video2world.completion_recovery import materialize_completion_recovery_preflight
+
+    preflight = materialize_completion_recovery_preflight(args.bundle)
+    payload = preflight.model_dump(mode="json")
+    atomic_write_json(Path(args.output).expanduser().resolve(), payload)
+    _print_json(payload)
+    return 0 if preflight.status == "passed" else 3
+
+
 def _cmd_scene_command_validate(args: argparse.Namespace) -> int:
     command = load_scene_command(args.command_file)
     _print_json(
@@ -797,6 +814,7 @@ COMMANDS = {
     "completion-route": _cmd_completion_route,
     "completion-recovery-work-order": _cmd_completion_recovery_work_order,
     "completion-recovery-bundle": _cmd_completion_recovery_bundle,
+    "completion-recovery-preflight": _cmd_completion_recovery_preflight,
     "scene-command-validate": _cmd_scene_command_validate,
     "scene-command-plan": _cmd_scene_command_plan,
     "scene-command-submit": _cmd_scene_command_submit,
