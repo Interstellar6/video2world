@@ -368,12 +368,33 @@ def _layered_completion_input_snapshots(tmp_path: Path, plan_path: Path) -> dict
 def _layered_completion_output_snapshots(tmp_path: Path, report_path: Path) -> dict[str, object]:
     outputs: dict[str, object] = {}
     report_payload = json.loads(report_path.read_text(encoding="utf-8"))
+    object_report_path = tmp_path / "r1-pillow-trellis2.json"
+    object_report_uri = str(object_report_path.resolve())
+    object_report_path.write_text(
+        json.dumps(_valid_object_completion_report(completion_report_uri=object_report_uri)),
+        encoding="utf-8",
+    )
+    object_report_snapshot = _artifact_snapshot_payload(object_report_path)
+    report_payload["rounds"][0]["object_completion_receipts"][0].update(
+        {
+            "uri": object_report_snapshot["path"],
+            "sha256": object_report_snapshot["sha256"],
+            "size_bytes": object_report_snapshot["size_bytes"],
+        }
+    )
     for role in sorted(
         LAYERED_COMPLETION_OUTPUT_ROLES - {"clean_plate_manifest", "layered_completion_report"}
     ):
         path = tmp_path / f"{role}.output"
         if role == "completed_object_assets_manifest":
-            path.write_text(json.dumps(_valid_completed_object_assets_manifest()), encoding="utf-8")
+            path.write_text(
+                json.dumps(
+                    _valid_completed_object_assets_manifest(
+                        completion_report_uri=str(object_report_snapshot["path"])
+                    )
+                ),
+                encoding="utf-8",
+            )
         elif role == "clean_scene_gaussian":
             path.write_bytes(_clean_gaussian_header() + ("0 " * 13 + "0\n").encode("ascii"))
         elif role == "clean_scene_mesh":
@@ -1054,6 +1075,87 @@ def test_layered_completion_report_binds_completed_assets_to_object_reports(
     )
 
     with pytest.raises(ArtifactError, match="completion_report_uri differs"):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
+def test_layered_completion_report_requires_local_object_completion_report(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    report_payload = json.loads(report_path.read_text(encoding="utf-8"))
+    report_payload["rounds"][0]["object_completion_receipts"][0]["uri"] = (
+        "artifact://completion/r1-pillow-trellis2.json"
+    )
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    outputs["layered_completion_report"] = _artifact_snapshot_payload(report_path)
+    assets_path = Path(outputs["completed_object_assets_manifest"]["path"])
+    assets_payload = _valid_completed_object_assets_manifest(
+        completion_report_uri="artifact://completion/r1-pillow-trellis2.json"
+    )
+    assets_path.write_text(json.dumps(assets_payload), encoding="utf-8")
+    outputs["completed_object_assets_manifest"] = _artifact_snapshot_payload(assets_path)
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=_layered_completion_input_snapshots(tmp_path, plan_path),
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ArtifactError, match="uri must point to a local artifact path"):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
+def test_layered_completion_report_binds_manifest_asset_to_object_report_asset(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    assets_path = Path(outputs["completed_object_assets_manifest"]["path"])
+    assets_payload = json.loads(assets_path.read_text(encoding="utf-8"))
+    assets_payload["objects"][0]["unified_pbr_glb"]["uri"] = (
+        "artifact://pillow-front/wrong-asset.glb"
+    )
+    assets_path.write_text(json.dumps(assets_payload), encoding="utf-8")
+    outputs["completed_object_assets_manifest"] = _artifact_snapshot_payload(assets_path)
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=_layered_completion_input_snapshots(tmp_path, plan_path),
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ArtifactError, match="differs from object_completion_report"):
         get_adapter("layered_completion").validate_outputs(
             {
                 "layered_completion_report": snapshot_path(report_path),
@@ -1903,7 +2005,10 @@ def test_layered_completion_report_requires_provider_receipt_lineage(
         )
 
 
-def _valid_object_completion_report() -> dict[str, object]:
+def _valid_object_completion_report(
+    *,
+    completion_report_uri: str = "artifact://pillow-front/object-completion-report.json",
+) -> dict[str, object]:
     asset_sha = "a" * 64
     unified_asset = {
         "uri": "artifact://pillow-front/asset_pbr.glb",
@@ -1970,7 +2075,7 @@ def _valid_object_completion_report() -> dict[str, object]:
             "unified_pbr_glb": unified_asset,
             "collision_topology": "surface_bvh",
             "geometry_complete_verified": True,
-            "completion_report_uri": "artifact://pillow-front/object-completion-report.json",
+            "completion_report_uri": completion_report_uri,
         },
     }
 
@@ -1996,7 +2101,10 @@ def test_completion_json_roles_require_role_specific_payload_fields(
     get_adapter("layered_completion").validate_outputs({role: snapshot_path(output)})
 
 
-def _valid_completed_object_assets_manifest() -> dict[str, object]:
+def _valid_completed_object_assets_manifest(
+    *,
+    completion_report_uri: str = "artifact://completion/r1-pillow-trellis2.json",
+) -> dict[str, object]:
     return {
         "scene_id": "bedroom_4",
         "run_id": "full-layered-run",
@@ -2006,14 +2114,15 @@ def _valid_completed_object_assets_manifest() -> dict[str, object]:
                 "id": "pillow-front",
                 "representation_mode": "unified_pbr_glb",
                 "unified_pbr_glb": {
-                    "uri": "artifact://pillow-front.glb",
+                    "uri": "artifact://pillow-front/asset_pbr.glb",
                     "sha256": "a" * 64,
-                    "size_bytes": 1024,
+                    "size_bytes": 4096,
                     "media_type": "model/gltf-binary",
                     "role": "unified_pbr_glb",
                     "status": "validated",
                     "provenance": {
                         "faces": 97082,
+                        "face_count": 97082,
                         "watertight": False,
                         "closed_volume_claim": False,
                         "inside_outside_queries_allowed": False,
@@ -2029,7 +2138,7 @@ def _valid_completed_object_assets_manifest() -> dict[str, object]:
                 },
                 "collision_topology": "surface_bvh",
                 "geometry_complete_verified": True,
-                "completion_report_uri": "artifact://completion/r1-pillow-trellis2.json",
+                "completion_report_uri": completion_report_uri,
             }
         ],
     }

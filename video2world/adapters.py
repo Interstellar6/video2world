@@ -184,6 +184,7 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
     from video2world.completion import (
         CompletedObjectAssetsManifest,
         LayeredCompletionExecutionReport,
+        ObjectCompletionReport,
         load_layered_completion_plan,
     )
 
@@ -376,17 +377,52 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             raise ValueError(
                 "completed_object_assets_manifest objects differ from planned target ids"
             )
-        object_completion_report_uris = {
-            receipt.target_id: receipt.uri
+        object_completion_receipts = {
+            receipt.target_id: receipt
             for round_item in report.rounds
             for receipt in round_item.object_completion_receipts
         }
         for item in assets_manifest.objects:
-            expected_uri = object_completion_report_uris.get(item.id)
-            if item.completion_report_uri != expected_uri:
+            object_receipt = object_completion_receipts.get(item.id)
+            if object_receipt is None:
+                raise ValueError(
+                    f"completed_object_assets_manifest object {item.id} has no "
+                    "round object completion receipt"
+                )
+            if item.completion_report_uri != object_receipt.uri:
                 raise ValueError(
                     "completed_object_assets_manifest completion_report_uri differs from "
                     f"round object completion receipt for {item.id}"
+                )
+            object_report_path = _resolve_local_artifact_uri(
+                object_receipt.uri,
+                base_dir=report_path.parent,
+                context=f"round object completion receipt for {item.id}",
+            )
+            object_report_digest = digest_path(object_report_path)
+            if (
+                object_report_digest.sha256 != object_receipt.sha256
+                or object_report_digest.size_bytes != object_receipt.size_bytes
+                or object_report_digest.file_count != 1
+            ):
+                raise ValueError(
+                    f"round object completion receipt for {item.id} does not match the "
+                    "object_completion_report artifact"
+                )
+            _validate_layered_receipt_artifact("object_completion_report", object_report_path)
+            object_report = ObjectCompletionReport.model_validate_json(
+                object_report_path.read_text(encoding="utf-8")
+            )
+            if object_report.object_id != item.id:
+                raise ValueError(
+                    f"object_completion_report object_id differs from manifest object {item.id}"
+                )
+            if object_report.completed_asset.model_dump(mode="json") != item.model_dump(
+                mode="json"
+            ):
+                raise ValueError(
+                    "completed_object_assets_manifest object differs from "
+                    f"object_completion_report completed_asset for {item.id}"
                 )
         clean_plate_snapshot = receipt_outputs.get("clean_plate_manifest")
         if not isinstance(clean_plate_snapshot, dict):
@@ -454,6 +490,18 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             "layered completion plan/receipt lineage validation failed: "
             f"{report_path}: {exc}"
         ) from exc
+
+
+def _resolve_local_artifact_uri(uri: str, *, base_dir: Path, context: str) -> Path:
+    if uri.startswith("file://"):
+        path = Path(uri.removeprefix("file://"))
+    elif "://" in uri:
+        raise ValueError(f"{context} uri must point to a local artifact path")
+    else:
+        path = Path(uri)
+    if not path.is_absolute():
+        path = base_dir / path
+    return path.expanduser().resolve()
 
 
 def _validate_layered_receipt_artifact(role: str, path: Path) -> None:
