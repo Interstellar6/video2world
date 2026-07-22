@@ -313,6 +313,12 @@ def test_prefill_fuses_donors_and_preserves_outside_mask_exactly(tmp_path: Path)
     assert np.all(np.isnan(measured_depth[~removal]))
     assert report["status"] == "technical_passed"
     assert report["promotion_approved"] is False
+    assert (
+        report["next_action"]["action"]
+        == "run_semantic_texture_and_new_depth_normal_review_before_next_round"
+    )
+    assert report["next_action"]["blocker"] == "semantic_texture_and_depth_normal_pending"
+    assert report["next_action"]["promotion_approved"] is False
     assert report["frame_records"][0]["coverage_fraction"] == 1.0
     assert report["gates"]["new_depth_normal_estimation"].startswith("required")
     record = report["frame_records"][0]
@@ -372,6 +378,12 @@ def test_donor_object_masks_prevent_copying_occluder_pixels(tmp_path: Path) -> N
     assert report["frame_records"][0]["coverage_fraction"] == 0.0
     assert report["status"] == "technical_failed_no_support"
     assert report["gates"]["donor_support_available_for_every_target"] is False
+    assert (
+        report["next_action"]["action"]
+        == "add_observed_donor_or_switch_to_constrained_generation_for_residual"
+    )
+    assert report["next_action"]["blocker"] == "no_guard_stable_measured_donor_support"
+    assert report["next_action"]["no_support_frame_ids"] == ["000000"]
     assert report["donor_mask_index_contract"] == {
         "item_count": 2,
         "frame_count": 2,
@@ -723,6 +735,11 @@ def test_associated_boundary_concentrated_support_stays_unresolved(
     assert concentration["final_measured_pixels_are_guard_stable_only"] is True
     assert report["gates"]["donor_support_not_boundary_concentrated"] is False
     assert report["status"] == "technical_failed"
+    assert (
+        report["next_action"]["action"]
+        == "tighten_physical_donor_exclusion_or_add_nonboundary_donor_views"
+    )
+    assert report["next_action"]["blocker"] == "donor_support_boundary_concentrated"
     assert report["frame_records"][0]["covered_pixels"] == 0
     residual = np.asarray(Image.open(tmp_path / "output" / "masks" / "0000.png")) > 0
     assert np.array_equal(residual, removal)

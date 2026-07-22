@@ -1243,19 +1243,28 @@ def _build_prefill_in_place(args: argparse.Namespace) -> dict[str, Any]:
         if record["donor_boundary_concentration"]["configured_supported_pixels"] == 0
     ]
     donor_support_available_for_every_target = not no_support_frame_ids
+    status = (
+        "technical_failed_no_support"
+        if no_support_frame_ids
+        else (
+            "technical_passed"
+            if outside_exact_passed and boundary_concentration_passed
+            else "technical_failed"
+        )
+    )
+    next_action = donor_prefill_next_action(
+        status=status,
+        outside_exact_passed=outside_exact_passed,
+        boundary_concentration_passed=boundary_concentration_passed,
+        no_support_frame_ids=no_support_frame_ids,
+        total_unresolved_pixels=total_unresolved_pixels,
+        cumulative_contract_enforced=cumulative_contract is not None,
+    )
     report = {
         "schema_version": 2,
         "created_at": datetime.now(timezone.utc).isoformat(),  # noqa: UP017 - mil8 uses Python 3.10
         "purpose": "calibrated multi-view donor prefill before residual video inpainting",
-        "status": (
-            "technical_failed_no_support"
-            if no_support_frame_ids
-            else (
-                "technical_passed"
-                if outside_exact_passed and boundary_concentration_passed
-                else "technical_failed"
-            )
-        ),
+        "status": status,
         "promotion_approved": False,
         "promotion_blocker": (
             "one or more target frames have no configured donor support"
@@ -1266,6 +1275,7 @@ def _build_prefill_in_place(args: argparse.Namespace) -> dict[str, Any]:
                 else "semantic texture continuity review is required"
             )
         ),
+        "next_action": next_action,
         "input_manifest": str(input_manifest_path),
         "input_manifest_sha256": sha256_file(input_manifest_path),
         "camera_info": str(camera_info_path),
@@ -1409,6 +1419,59 @@ def rebase_output_paths(value: Any, *, source_root: Path, target_root: Path) -> 
                 return value
             return str(target_root / relative)
     return value
+
+
+def donor_prefill_next_action(
+    *,
+    status: str,
+    outside_exact_passed: bool,
+    boundary_concentration_passed: bool,
+    no_support_frame_ids: list[str],
+    total_unresolved_pixels: int,
+    cumulative_contract_enforced: bool,
+) -> dict[str, Any]:
+    if not outside_exact_passed:
+        action = "repair_prefill_compositor_before_any_residual_generation"
+        reason = "The prefill changed pixels outside the cumulative removal mask."
+        blocker = "outside_mask_rgb_changed"
+    elif no_support_frame_ids:
+        action = "add_observed_donor_or_switch_to_constrained_generation_for_residual"
+        reason = (
+            "At least one target frame has no guard-stable measured donor support, so the "
+            "residual must stay unresolved or be filled by a separately reviewed generation path."
+        )
+        blocker = "no_guard_stable_measured_donor_support"
+    elif not boundary_concentration_passed:
+        action = "tighten_physical_donor_exclusion_or_add_nonboundary_donor_views"
+        reason = (
+            "Measured donor support exists only under the configured dilation and does not "
+            "survive the boundary guard, indicating foreground-edge leakage."
+        )
+        blocker = "donor_support_boundary_concentrated"
+    elif total_unresolved_pixels > 0:
+        action = "run_constrained_residual_completion_then_semantic_cross_view_review"
+        reason = (
+            "Measured RGB-D donor prefill is valid but incomplete; unresolved pixels are not "
+            "valid donor or geometry evidence."
+        )
+        blocker = "unresolved_residual_requires_reviewed_completion"
+    else:
+        action = "run_semantic_texture_and_new_depth_normal_review_before_next_round"
+        reason = (
+            "Measured donor prefill covered the removal masks, but semantic quality and new "
+            "depth/normal evidence are still required before the next round."
+        )
+        blocker = "semantic_texture_and_depth_normal_pending"
+    return {
+        "action": action,
+        "reason": reason,
+        "blocker": blocker,
+        "status": status,
+        "no_support_frame_ids": no_support_frame_ids,
+        "unresolved_unobserved_pixels": total_unresolved_pixels,
+        "cumulative_contract_enforced": cumulative_contract_enforced,
+        "promotion_approved": False,
+    }
 
 
 def build_prefill(args: argparse.Namespace) -> dict[str, Any]:
