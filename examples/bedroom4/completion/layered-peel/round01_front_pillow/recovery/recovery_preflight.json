@@ -1,49 +1,64 @@
 {
   "bindings": [
     {
+      "declared_path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round01_front_pillow/manifest/cumulative_removal_manifest.json",
+      "effective_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/round01_front_pillow/manifest/cumulative_removal_manifest.json",
       "expected_kind": "file",
-      "file_count": null,
-      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round01_front_pillow/manifest/cumulative_removal_manifest.json",
+      "file_count": 1,
+      "override_applied": true,
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/round01_front_pillow/manifest/cumulative_removal_manifest.json",
       "role": "input_manifest",
-      "sha256": null,
-      "size_bytes": null,
-      "status": "missing"
+      "sha256": "87a21ae22eba35d890accc0b4b532d711d0bd53ac112ae73fda3c7e6b50ea0af",
+      "size_bytes": 48565,
+      "status": "present"
     },
     {
+      "declared_path": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/video2mesh/scene/cameras/camera_info.json",
+      "effective_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/assets-local/clean-scene-reconstruction-input-v23/camera_info.json",
       "expected_kind": "file",
-      "file_count": null,
-      "path": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/video2mesh/scene/cameras/camera_info.json",
+      "file_count": 1,
+      "override_applied": true,
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/assets-local/clean-scene-reconstruction-input-v23/camera_info.json",
       "role": "camera_info",
-      "sha256": null,
-      "size_bytes": null,
-      "status": "missing"
+      "sha256": "eb982e854874b7857d546ac84744e5406a08a7aed27b742b111dbe5e05e16c52",
+      "size_bytes": 19727,
+      "status": "present"
     },
     {
+      "declared_path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames",
+      "effective_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/bedroom4_clean_plate_all_pillows_20260720/frames",
       "expected_kind": "directory",
-      "file_count": null,
-      "path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames",
+      "file_count": 25,
+      "override_applied": true,
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/bedroom4_clean_plate_all_pillows_20260720/frames",
       "role": "source_rgb_frames",
-      "sha256": null,
-      "size_bytes": null,
-      "status": "missing"
+      "sha256": "f3e70252ad44be8acf785db9b2547c3793f1c72bbd6420a495aebd57d76c3b1c",
+      "size_bytes": 25743945,
+      "status": "present"
     },
     {
+      "declared_path": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3",
+      "effective_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3",
       "expected_kind": "directory",
-      "file_count": null,
-      "path": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3",
+      "file_count": 12,
+      "override_applied": true,
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3",
       "role": "depth_arrays",
-      "sha256": null,
-      "size_bytes": null,
-      "status": "missing"
+      "sha256": "84069a7f0b3dd4815dd78b91473b6dab30ddaa66dac5cc4d5026045a2199c102",
+      "size_bytes": 42517888,
+      "status": "present"
     },
     {
+      "declared_path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round01_front_pillow/manifest/donor_exclusion_index.json",
+      "effective_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/round01_front_pillow/manifest/donor_exclusion_index.json",
       "expected_kind": "file",
-      "file_count": null,
-      "path": "/root/autodl-tmp/video2world_layered_bedroom4_20260717/cumulative_clean_plate_rgbd_v1/round01_front_pillow/manifest/donor_exclusion_index.json",
+      "file_count": 1,
+      "override_applied": true,
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/round01_front_pillow/manifest/donor_exclusion_index.json",
       "role": "physical_donor_exclusion_index",
-      "sha256": null,
-      "size_bytes": null,
-      "status": "missing"
+      "sha256": "bfc105f9daa006c88e857fceb097cd3cb902a43ad91c95ddf234ecce8ff93e24",
+      "size_bytes": 9009,
+      "status": "present"
     }
   ],
   "bundle_input_verified": true,
@@ -52,21 +67,16 @@
   "clean_plate_report_verified": true,
   "deeper_rounds_blocked": true,
   "kind": "video2world.completion_recovery_preflight",
-  "missing_roles": [
-    "input_manifest",
-    "camera_info",
-    "source_rgb_frames",
-    "depth_arrays",
-    "physical_donor_exclusion_index"
-  ],
+  "missing_roles": [],
   "notes": [
     "Preflight checks only local input availability and hashes; it does not run recovery.",
-    "R2-R4 remain blocked while this report is not passed."
+    "Passing preflight does not accept R1; R2-R4 remain blocked until recovery execution and strict R1 acceptance pass.",
+    "Local binding overrides were used; declared remote paths are preserved beside effective local mirror paths."
   ],
   "object_id": "sam3_pillow_front",
-  "preflight_sha256": "da5224b0dc4ab13b32f39efad419ec25c15f4e537679ec7b4391934e9c858002",
+  "preflight_sha256": "032eb65ae5d5705db18d2968be0de34b90214e13a797cfd059a127678a191c1b",
   "schema_version": "1.0",
-  "status": "blocked_missing_bindings",
+  "status": "passed",
   "work_order_input_verified": true,
   "work_order_sha256": "e3b09434fe9078e1d9e35b717e053d4ee4be85dee87a034327279d6deac7f448"
 }

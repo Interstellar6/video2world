@@ -33,7 +33,12 @@ Before running recovery, preflight the bundle against local files:
 ```bash
 uv run video2world completion-recovery-preflight \
   examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_bundle.json \
+  --binding input_manifest=/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/round01_front_pillow/manifest/cumulative_removal_manifest.json \
+  --binding camera_info=/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/assets-local/clean-scene-reconstruction-input-v23/camera_info.json \
+  --binding source_rgb_frames=/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/bedroom4_clean_plate_all_pillows_20260720/frames \
+  --binding depth_arrays=/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3 \
+  --binding physical_donor_exclusion_index=/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/round01_front_pillow/manifest/donor_exclusion_index.json \
   --output examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_preflight.json
 ```
 
-The current local preflight is expected to be `blocked_missing_bindings`: the route/work-order/report hashes verify, but the donor frames, camera info, depth arrays, cumulative manifest, and physical donor exclusion index are still referenced by remote run paths.
+The current local preflight is `passed` with these overrides. This only verifies local input availability and preserves the declared remote paths beside the effective local mirror paths; it does not accept R1. The RGB frames, cumulative manifest, and donor exclusion index cover `000048`-`000072`. The Holi-Spatial `depth_da3` mirror is present but uses the original `000000`-`000011` numbering, so the recovery executor must still verify camera/depth frame remapping before running donor support.

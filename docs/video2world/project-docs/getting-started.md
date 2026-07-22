@@ -174,10 +174,15 @@ uv run video2world completion-recovery-bundle \
 
 uv run video2world completion-recovery-preflight \
   runs/my-room/artifacts/completion/objects/chair01/recovery-bundle.json \
+  --binding input_manifest=/abs/local/cumulative_removal_manifest.json \
+  --binding camera_info=/abs/local/camera_info.json \
+  --binding source_rgb_frames=/abs/local/source-rgb-frames \
+  --binding depth_arrays=/abs/local/depth-arrays \
+  --binding physical_donor_exclusion_index=/abs/local/donor_exclusion_index.json \
   --output runs/my-room/artifacts/completion/objects/chair01/recovery-preflight.json
 ```
 
-`completion-route` 只在 physical instance 与 appearance contract 通过后，才在多视角重建、柔性类别先验、CAD 检索、生成式 image-to-3D 和结构支撑面重建之间选择。证据不足时返回非零并选择 `hold_for_more_evidence`。如果 evidence 携带上一轮 clean plate 的 `clean_plate_next_action`，或 `--clean-plate-report` 指向旧式 prefill/QA report 且其中明确 `promotion_approved=false`、仍有 residual/no-support 帧，输出还会包含 `recovery_actions`，用于阻止更深遮挡层启动并指向 donor support、temporal QA、boundary QA 或 residual generation 的下一步修复。`completion-recovery-work-order` 进一步把这些恢复动作和 clean-plate report 中的 frame 级 residual/support 统计合并成 `video2world.completion_recovery_work_order`；`completion-recovery-bundle` 再把任务单拆成有依赖关系、输入角色和预期输出角色的执行清单；`completion-recovery-preflight` 只检查 bundle/work-order/report hash 和本地输入绑定是否可用，缺 donor frames、camera info、depth arrays 或 physical donor exclusion index 时返回非零。三者都只描述 blocked recovery，不生成 clean plate，也不允许 R2-R4 越过 R1。详细 round 输入输出与门禁见 [通用遮挡、背面与背景分层补全](completion.md)。
+`completion-route` 只在 physical instance 与 appearance contract 通过后，才在多视角重建、柔性类别先验、CAD 检索、生成式 image-to-3D 和结构支撑面重建之间选择。证据不足时返回非零并选择 `hold_for_more_evidence`。如果 evidence 携带上一轮 clean plate 的 `clean_plate_next_action`，或 `--clean-plate-report` 指向旧式 prefill/QA report 且其中明确 `promotion_approved=false`、仍有 residual/no-support 帧，输出还会包含 `recovery_actions`，用于阻止更深遮挡层启动并指向 donor support、temporal QA、boundary QA 或 residual generation 的下一步修复。`completion-recovery-work-order` 进一步把这些恢复动作和 clean-plate report 中的 frame 级 residual/support 统计合并成 `video2world.completion_recovery_work_order`；`completion-recovery-bundle` 再把任务单拆成有依赖关系、输入角色和预期输出角色的执行清单；`completion-recovery-preflight` 只检查 bundle/work-order/report hash 和本地输入绑定是否可用，缺 donor frames、camera info、depth arrays 或 physical donor exclusion index 时返回非零。远端 report 路径在本地不存在时，可用可重复的 `--binding role=/abs/local/path` 指向本地镜像；preflight artifact 会同时记录 declared path 与 effective path。三者都只描述 blocked recovery，不生成 clean plate，也不允许 R2-R4 越过 R1。详细 round 输入输出与门禁见 [通用遮挡、背面与背景分层补全](completion.md)。
 
 ## 配置 argv adapter
 

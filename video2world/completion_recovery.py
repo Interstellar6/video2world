@@ -127,6 +127,9 @@ class CompletionRecoveryBundle(StrictModel):
 class RecoveryPreflightBinding(StrictModel):
     role: str = Field(min_length=1)
     path: str = ""
+    declared_path: str = ""
+    effective_path: str = ""
+    override_applied: bool = False
     expected_kind: Literal["file", "directory"]
     status: Literal["present", "missing", "kind_mismatch"]
     sha256: Sha256 | None = None
@@ -242,41 +245,71 @@ def _expected_output_roles(stage: RecoveryStage) -> list[str]:
     ]
 
 
+_PREFLIGHT_BINDING_SPECS: dict[str, tuple[str, Literal["file", "directory"]]] = {
+    "input_manifest": ("input_manifest", "file"),
+    "camera_info": ("camera_info", "file"),
+    "source_rgb_frames": ("donor_frames_dir", "directory"),
+    "depth_arrays": ("depth_dir", "directory"),
+    "physical_donor_exclusion_index": ("donor_mask_index", "file"),
+}
+
+
+def _normalize_binding_overrides(
+    overrides: dict[str, str | Path] | None,
+) -> dict[str, str]:
+    if not overrides:
+        return {}
+    normalized: dict[str, str] = {}
+    unknown = sorted(set(overrides) - set(_PREFLIGHT_BINDING_SPECS))
+    if unknown:
+        raise ValueError(f"unknown recovery preflight binding role(s): {', '.join(unknown)}")
+    for role, value in overrides.items():
+        text = str(value)
+        if not text:
+            raise ValueError(f"empty recovery preflight binding path for role: {role}")
+        normalized[role] = text
+    return normalized
+
+
 def _binding(
     role: str,
     value: object,
     expected_kind: Literal["file", "directory"],
+    *,
+    override_path: str | None = None,
 ) -> RecoveryPreflightBinding:
-    path = Path(str(value)).expanduser() if isinstance(value, str) and value else Path("")
-    if not value or not isinstance(value, str):
+    declared_path = str(value) if isinstance(value, str) and value else ""
+    effective_value = override_path or declared_path
+    path = Path(effective_value).expanduser() if effective_value else Path("")
+    base = {
+        "role": role,
+        "path": str(path.resolve()) if effective_value else "",
+        "declared_path": declared_path,
+        "effective_path": str(path.resolve()) if effective_value else "",
+        "override_applied": override_path is not None,
+        "expected_kind": expected_kind,
+    }
+    if not effective_value:
         return RecoveryPreflightBinding(
-            role=role,
-            path="",
-            expected_kind=expected_kind,
+            **base,
             status="missing",
         )
     resolved = path.resolve()
     if not resolved.exists():
         return RecoveryPreflightBinding(
-            role=role,
-            path=str(resolved),
-            expected_kind=expected_kind,
+            **(base | {"path": str(resolved), "effective_path": str(resolved)}),
             status="missing",
         )
     if (expected_kind == "file" and not resolved.is_file()) or (
         expected_kind == "directory" and not resolved.is_dir()
     ):
         return RecoveryPreflightBinding(
-            role=role,
-            path=str(resolved),
-            expected_kind=expected_kind,
+            **(base | {"path": str(resolved), "effective_path": str(resolved)}),
             status="kind_mismatch",
         )
     digest = digest_path(resolved)
     return RecoveryPreflightBinding(
-        role=role,
-        path=str(digest.path),
-        expected_kind=expected_kind,
+        **(base | {"path": str(digest.path), "effective_path": str(digest.path)}),
         status="present",
         sha256=digest.sha256,
         size_bytes=digest.size_bytes,
@@ -410,7 +443,10 @@ def materialize_completion_recovery_bundle(
 
 def materialize_completion_recovery_preflight(
     bundle_path: str | Path,
+    *,
+    binding_overrides: dict[str, str | Path] | None = None,
 ) -> CompletionRecoveryPreflight:
+    overrides = _normalize_binding_overrides(binding_overrides)
     bundle_file = Path(bundle_path).expanduser().resolve()
     bundle_payload = json.loads(bundle_file.read_text(encoding="utf-8"))
     if not isinstance(bundle_payload, dict):
@@ -449,15 +485,13 @@ def materialize_completion_recovery_preflight(
 
     if report_payload is not None:
         bindings = [
-            _binding("input_manifest", report_payload.get("input_manifest"), "file"),
-            _binding("camera_info", report_payload.get("camera_info"), "file"),
-            _binding("source_rgb_frames", report_payload.get("donor_frames_dir"), "directory"),
-            _binding("depth_arrays", report_payload.get("depth_dir"), "directory"),
             _binding(
-                "physical_donor_exclusion_index",
-                report_payload.get("donor_mask_index"),
-                "file",
-            ),
+                role,
+                report_payload.get(report_key),
+                expected_kind,
+                override_path=overrides.get(role),
+            )
+            for role, (report_key, expected_kind) in _PREFLIGHT_BINDING_SPECS.items()
         ]
 
     missing_roles = [
@@ -483,7 +517,20 @@ def materialize_completion_recovery_preflight(
         "missing_roles": missing_roles,
         "notes": [
             "Preflight checks only local input availability and hashes; it does not run recovery.",
-            "R2-R4 remain blocked while this report is not passed.",
+            (
+                "Passing preflight does not accept R1; R2-R4 remain blocked until "
+                "recovery execution and strict R1 acceptance pass."
+            ),
+            *(
+                [
+                    (
+                        "Local binding overrides were used; declared remote paths are "
+                        "preserved beside effective local mirror paths."
+                    )
+                ]
+                if overrides
+                else []
+            ),
         ],
     }
     return CompletionRecoveryPreflight(

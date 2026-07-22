@@ -262,6 +262,13 @@ def build_parser() -> argparse.ArgumentParser:
         help="Preflight a recovery execution bundle without running models",
     )
     completion_recovery_preflight_parser.add_argument("bundle")
+    completion_recovery_preflight_parser.add_argument(
+        "--binding",
+        action="append",
+        default=[],
+        metavar="ROLE=PATH",
+        help="Override a recovery input binding with a local mirror path; repeatable.",
+    )
     completion_recovery_preflight_parser.add_argument("--output", required=True)
 
     scene_command_validate_parser = subparsers.add_parser(
@@ -649,10 +656,25 @@ def _cmd_completion_recovery_bundle(args: argparse.Namespace) -> int:
     return 0
 
 
+def _parse_recovery_binding_overrides(values: Sequence[str]) -> dict[str, str]:
+    overrides: dict[str, str] = {}
+    for value in values:
+        role, separator, path = value.partition("=")
+        if not separator or not role or not path:
+            raise ValueError("recovery preflight bindings must use ROLE=PATH")
+        if role in overrides:
+            raise ValueError(f"duplicate recovery preflight binding role: {role}")
+        overrides[role] = path
+    return overrides
+
+
 def _cmd_completion_recovery_preflight(args: argparse.Namespace) -> int:
     from video2world.completion_recovery import materialize_completion_recovery_preflight
 
-    preflight = materialize_completion_recovery_preflight(args.bundle)
+    preflight = materialize_completion_recovery_preflight(
+        args.bundle,
+        binding_overrides=_parse_recovery_binding_overrides(args.binding),
+    )
     payload = preflight.model_dump(mode="json")
     atomic_write_json(Path(args.output).expanduser().resolve(), payload)
     _print_json(payload)

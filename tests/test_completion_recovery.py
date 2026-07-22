@@ -223,6 +223,66 @@ def test_completion_recovery_preflight_passes_with_local_bindings(tmp_path: Path
         "physical_donor_exclusion_index",
     }
     assert all(item.status == "present" for item in preflight.bindings)
+    assert all(item.declared_path == item.effective_path for item in preflight.bindings)
+    assert not any(item.override_applied for item in preflight.bindings)
+
+
+def test_completion_recovery_preflight_passes_with_binding_overrides(
+    tmp_path: Path,
+) -> None:
+    from video2world.completion_recovery import materialize_completion_recovery_preflight
+
+    route = tmp_path / "route.json"
+    report = tmp_path / "report.json"
+    work_order_path = tmp_path / "work-order.json"
+    bundle_path = tmp_path / "bundle.json"
+    input_manifest = tmp_path / "manifest.json"
+    camera_info = tmp_path / "camera-info.json"
+    donor_index = tmp_path / "donor-index.json"
+    frames_dir = tmp_path / "frames"
+    depth_dir = tmp_path / "depth"
+    frames_dir.mkdir()
+    depth_dir.mkdir()
+    input_manifest.write_text('{"frames":[]}', encoding="utf-8")
+    camera_info.write_text('{"extrinsic_type":"world_to_camera"}', encoding="utf-8")
+    donor_index.write_text('{"items":[]}', encoding="utf-8")
+    (frames_dir / "000064.png").write_bytes(b"frame")
+    (depth_dir / "000064.npy").write_bytes(b"depth")
+    _write_route(route)
+    _write_report(
+        report,
+        bindings={
+            "input_manifest": "/remote/missing/manifest.json",
+            "camera_info": "/remote/missing/camera_info.json",
+            "donor_frames_dir": "/remote/missing/frames",
+            "depth_dir": "/remote/missing/depth",
+            "donor_mask_index": "/remote/missing/donor-index.json",
+        },
+    )
+    work_order = materialize_completion_recovery_work_order(route, report)
+    work_order_path.write_text(work_order.model_dump_json(indent=2), encoding="utf-8")
+    bundle = materialize_completion_recovery_bundle(work_order_path)
+    bundle_path.write_text(bundle.model_dump_json(indent=2), encoding="utf-8")
+
+    preflight = materialize_completion_recovery_preflight(
+        bundle_path,
+        binding_overrides={
+            "input_manifest": input_manifest,
+            "camera_info": camera_info,
+            "source_rgb_frames": frames_dir,
+            "depth_arrays": depth_dir,
+            "physical_donor_exclusion_index": donor_index,
+        },
+    )
+
+    assert preflight.status == "passed"
+    assert preflight.missing_roles == []
+    assert all(item.status == "present" for item in preflight.bindings)
+    assert all(item.override_applied for item in preflight.bindings)
+    by_role = {item.role: item for item in preflight.bindings}
+    assert by_role["input_manifest"].declared_path == "/remote/missing/manifest.json"
+    assert by_role["input_manifest"].effective_path == str(input_manifest.resolve())
+    assert by_role["input_manifest"].path == str(input_manifest.resolve())
 
 
 def test_completion_recovery_preflight_cli_blocks_missing_bindings(
@@ -257,3 +317,38 @@ def test_completion_recovery_preflight_cli_blocks_missing_bindings(
     assert stdout_payload == file_payload
     assert file_payload["status"] == "blocked_missing_bindings"
     assert "camera_info" in file_payload["missing_roles"]
+
+
+def test_completion_recovery_preflight_cli_rejects_unknown_binding_role(
+    tmp_path: Path,
+    capsys,
+) -> None:
+    route = tmp_path / "route.json"
+    report = tmp_path / "report.json"
+    work_order_path = tmp_path / "work-order.json"
+    bundle_path = tmp_path / "bundle.json"
+    output = tmp_path / "preflight.json"
+    _write_route(route)
+    _write_report(report)
+    work_order = materialize_completion_recovery_work_order(route, report)
+    work_order_path.write_text(work_order.model_dump_json(indent=2), encoding="utf-8")
+    bundle = materialize_completion_recovery_bundle(work_order_path)
+    bundle_path.write_text(bundle.model_dump_json(indent=2), encoding="utf-8")
+
+    exit_code = main(
+        [
+            "completion-recovery-preflight",
+            str(bundle_path),
+            "--binding",
+            f"unknown_role={tmp_path}",
+            "--output",
+            str(output),
+        ]
+    )
+
+    captured = capsys.readouterr()
+    stderr_payload = json.loads(captured.err)
+    assert exit_code == 2
+    assert stderr_payload["status"] == "error"
+    assert "unknown_role" in stderr_payload["message"]
+    assert not output.exists()
