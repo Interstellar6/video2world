@@ -170,6 +170,17 @@ def make_measured_round(
     report = {
         "schema_version": 2,
         "status": "technical_passed",
+        "promotion_blocker": "semantic texture continuity review is required",
+        "next_action": {
+            "action": "run_semantic_texture_and_new_depth_normal_review_before_next_round",
+            "blocker": "semantic_texture_and_depth_normal_pending",
+            "status": "technical_passed",
+            "no_support_frame_ids": [],
+            "unresolved_unobserved_pixels": sum(
+                record["residual_mask_pixels"] for record in report_records
+            ),
+            "promotion_approved": False,
+        },
         "input_manifest": str(manifest_path),
         "input_manifest_sha256": sha256_file(manifest_path),
         "cumulative_removal_contract": {
@@ -588,6 +599,15 @@ def test_sequence_executes_four_rounds_and_rebases_remote_asset(tmp_path: Path) 
     assert [item["round_name"] for item in report["rounds"]] == list(ROUND_NAMES)
     assert [item["unresolved_pixels"] for item in report["rounds"]] == [0, 0, 0, 0]
     assert all(report["gates"].values())
+    measured_inputs = report["inputs"]["measured_rounds"]
+    assert (
+        measured_inputs[0]["measured_action_summary"]["next_action"]["blocker"]
+        == "semantic_texture_and_depth_normal_pending"
+    )
+    assert (
+        measured_inputs[0]["measured_action_summary"]["promotion_blocker"]
+        == "semantic texture continuity review is required"
+    )
     for round_index, item in enumerate(report["rounds"], start=1):
         assert item["removed_object_ids"] == list(OBJECT_ORDER[:round_index])
         assert item["remaining_object_ids"] == ROUND_REMAINING[ROUND_NAMES[round_index - 1]]
@@ -626,6 +646,34 @@ def test_sequence_rejects_missing_pbr_layer_before_output(tmp_path: Path) -> Non
 
     with pytest.raises(ValueError, match="missing a layer"):
         run_sequence(fixture["args"], expected_frame_count=2)
+    assert not fixture["args"].output.exists()
+
+
+def test_sequence_rejects_failed_measured_report_with_next_action(tmp_path: Path) -> None:
+    fixture = make_fixture(tmp_path)
+    report_path = fixture["measured"][1]["report"]
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    report["status"] = "technical_failed_no_support"
+    report["promotion_blocker"] = "one or more target frames have no configured donor support"
+    report["next_action"] = {
+        "action": "add_observed_donor_or_switch_to_constrained_generation_for_residual",
+        "blocker": "no_guard_stable_measured_donor_support",
+        "status": "technical_failed_no_support",
+        "no_support_frame_ids": ["000001"],
+        "unresolved_unobserved_pixels": 42,
+        "promotion_approved": False,
+    }
+    write_json(report_path, report)
+
+    with pytest.raises(ValueError) as error:
+        run_sequence(fixture["args"], expected_frame_count=2)
+
+    message = str(error.value)
+    assert "round 2 measured report did not pass" in message
+    assert "status=technical_failed_no_support" in message
+    assert "add_observed_donor_or_switch_to_constrained_generation_for_residual" in message
+    assert "no_guard_stable_measured_donor_support" in message
+    assert "no_support_frame_ids=000001" in message
     assert not fixture["args"].output.exists()
 
 
