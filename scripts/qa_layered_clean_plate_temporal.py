@@ -496,14 +496,64 @@ def validate_selection_receipt(
         raise InputContractError(f"selection source RGB hash mismatch for {frame_id}")
 
 
+def upstream_boundary_report_summary(report: dict[str, Any]) -> str:
+    details = []
+    for key in (
+        "status",
+        "boundary_texture_gate_passed",
+        "promotion_scope",
+        "promotion_approved",
+    ):
+        if key in report:
+            value = report[key]
+            if isinstance(value, bool):
+                value = str(value).lower()
+            details.append(f"{key}={value}")
+    next_action = report.get("next_action")
+    if isinstance(next_action, dict):
+        for key in (
+            "action",
+            "blocking_gate_groups",
+            "failed_gates",
+            "failed_frame_ids",
+            "first_failed_frame_id",
+        ):
+            value = next_action.get(key)
+            if isinstance(value, list):
+                details.append(f"{key}=" + ",".join(str(item) for item in value))
+            elif value:
+                details.append(f"{key}={value}")
+        failed_frame_gates = next_action.get("failed_frame_gates")
+        if isinstance(failed_frame_gates, list):
+            frame_summaries = []
+            for item in failed_frame_gates:
+                if not isinstance(item, dict):
+                    continue
+                frame_id = item.get("frame_id")
+                failed = item.get("failed_gates")
+                if frame_id and isinstance(failed, list):
+                    frame_summaries.append(
+                        f"{frame_id}:{','.join(str(gate) for gate in failed)}"
+                    )
+            if frame_summaries:
+                details.append("failed_frame_gates=" + "|".join(frame_summaries))
+    return "[" + "; ".join(details) + "]"
+
+
 def validate_boundary_report(asset: Asset, frames: tuple[FrameSpec, ...]) -> None:
     report = require_dict(read_json(asset.path), "upstream boundary report")
     if report.get("kind") != BOUNDARY_REPORT_KIND:
         raise InputContractError("upstream boundary report has the wrong kind")
     if report.get("status") != "technical_passed":
-        raise InputContractError("upstream boundary report did not technically pass")
+        raise InputContractError(
+            "upstream boundary report did not technically pass "
+            + upstream_boundary_report_summary(report)
+        )
     if report.get("boundary_texture_gate_passed") is not True:
-        raise InputContractError("upstream boundary and texture gate did not pass")
+        raise InputContractError(
+            "upstream boundary and texture gate did not pass "
+            + upstream_boundary_report_summary(report)
+        )
     if report.get("promotion_approved") is not False:
         raise InputContractError("upstream boundary report exceeded its scoped authority")
     if report.get("promotion_scope") != "boundary_and_local_texture_only":

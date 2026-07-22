@@ -413,6 +413,50 @@ def test_selection_exactness_and_upstream_boundary_are_required(
     assert state["factory_calls"] == 0
 
 
+def test_upstream_boundary_failure_surfaces_frame_next_action(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    fixture = make_fixture(tmp_path, monkeypatch)
+    root = fixture["root"]
+    boundary_record = fixture["manifest"]["upstream_boundary_report"]
+    boundary_path = root / boundary_record["path"]
+    boundary = json.loads(boundary_path.read_text(encoding="utf-8"))
+    boundary["status"] = "technical_failed"
+    boundary["boundary_texture_gate_passed"] = False
+    boundary["next_action"] = {
+        "action": "repair_removal_mask_or_target_matte_before_regeneration",
+        "blocking_gate_groups": ["mask_alignment"],
+        "failed_gates": ["boundary_distance_p95_lte"],
+        "failed_frame_ids": ["000064"],
+        "first_failed_frame_id": "000064",
+        "failed_frame_gates": [
+            {
+                "sequence_index": 16,
+                "frame_id": "000064",
+                "failed_gates": ["boundary_distance_p95_lte"],
+            }
+        ],
+    }
+    write_json(boundary_path, boundary)
+    boundary_record["sha256"] = temporal.sha256_file(boundary_path)
+    write_json(fixture["manifest_path"], fixture["manifest"])
+
+    report, state = run_with_fake(fixture)
+
+    assert report["status"] == "invalid_input"
+    message = report["error"]["message"]
+    assert "upstream boundary report did not technically pass" in message
+    assert "status=technical_failed" in message
+    assert "boundary_texture_gate_passed=false" in message
+    assert "action=repair_removal_mask_or_target_matte_before_regeneration" in message
+    assert "blocking_gate_groups=mask_alignment" in message
+    assert "failed_frame_ids=000064" in message
+    assert "first_failed_frame_id=000064" in message
+    assert "failed_frame_gates=000064:boundary_distance_p95_lte" in message
+    assert state["factory_calls"] == 0
+
+
 def test_bilinear_sampling_and_fb_formula_are_directional() -> None:
     values = np.arange(16, dtype=np.float64).reshape(4, 4)
     x = np.asarray([[0.5, 2.0]])
