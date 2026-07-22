@@ -329,7 +329,7 @@ def clean_plate_recovery_actions(
             "donor_support",
             "add_observed_donor_or_switch_to_constrained_generation_for_residual",
             "Boundary-guarded measured donor support is missing; do not advance the next layer.",
-            frames=_ordered_unique([*next_action.no_support_frame_ids, *frame_ids]),
+            frames=_ordered_unique([*frame_ids, *next_action.no_support_frame_ids]),
         )
     if next_action.not_evaluable_pair_ids or next_action.not_evaluable_triplet_center_frame_ids:
         add(

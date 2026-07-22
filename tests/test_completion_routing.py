@@ -262,6 +262,14 @@ def test_completion_route_cli_derives_recovery_from_legacy_prefill_report(
                 },
                 "frame_records": [
                     {
+                        "frame_id": "000063",
+                        "removal_mask_pixels": 22000,
+                        "residual_mask_pixels": 22000,
+                        "covered_pixels": 0,
+                        "coverage_fraction": 0.0,
+                        "support_max": 0,
+                    },
+                    {
                         "frame_id": "000064",
                         "removal_mask_pixels": 23065,
                         "residual_mask_pixels": 23065,
@@ -291,5 +299,5 @@ def test_completion_route_cli_derives_recovery_from_legacy_prefill_report(
     )
     payload = json.loads(output.read_text(encoding="utf-8"))
     assert payload["recovery_actions"][0]["stage"] == "donor_support"
-    assert payload["recovery_actions"][0]["frame_ids"] == ["000064"]
+    assert payload["recovery_actions"][0]["frame_ids"] == ["000063", "000064"]
     assert payload["recovery_actions"][0]["allow_deeper_rounds"] is False

@@ -1,0 +1,203 @@
+{
+  "candidates": [
+    {
+      "backend": "support_surface_reconstruction",
+      "eligible": false,
+      "missing_requirements": [
+        "verified appearance",
+        "support geometry"
+      ],
+      "reason": "Use observed planes/depth/normals before synthesizing only residual structure holes.",
+      "score": 0
+    },
+    {
+      "backend": "component_assembly",
+      "eligible": false,
+      "missing_requirements": [
+        "verified fixture identity and appearance",
+        "support geometry",
+        "verified multi-depth negative space"
+      ],
+      "reason": "Preserve verified negative space by reconstructing depth-separated internal components and exporting them under one logical asset root.",
+      "score": 0
+    },
+    {
+      "backend": "multi_view_reconstruction",
+      "eligible": false,
+      "missing_requirements": [
+        "at least three calibrated views",
+        "view baseline >= 0.05",
+        "visible surface fraction >= 0.35"
+      ],
+      "reason": "Calibrated views with usable baseline provide direct geometry evidence.",
+      "score": 0
+    },
+    {
+      "backend": "deformable_category_prior",
+      "eligible": true,
+      "missing_requirements": [],
+      "reason": "A deformable closed-surface prior can preserve observed silhouette and material.",
+      "score": 88
+    },
+    {
+      "backend": "retrieval_cad_prior",
+      "eligible": false,
+      "missing_requirements": [
+        "rigid category profile",
+        "CAD retrieval confidence >= 0.82"
+      ],
+      "reason": "A high-confidence rigid retrieval can be fitted to observed masks and depth.",
+      "score": 0
+    },
+    {
+      "backend": "generative_image_to_3d",
+      "eligible": true,
+      "missing_requirements": [],
+      "reason": "Use generation only where direct geometry or stronger priors are unavailable.",
+      "score": 70
+    },
+    {
+      "backend": "hold_for_more_evidence",
+      "eligible": true,
+      "missing_requirements": [],
+      "reason": "Fail-closed fallback if every reconstruction candidate is rejected.",
+      "score": 1
+    }
+  ],
+  "kind": "video2world.completion_backend_route",
+  "notes": [
+    "The category prior supplies topology only; source evidence still controls aspect, material, and front appearance.",
+    "Clean-plate recovery is pending; deeper occlusion rounds must wait for these actions to pass."
+  ],
+  "object_id": "sam3_pillow_front",
+  "recovery_actions": [
+    {
+      "action": "add_observed_donor_or_switch_to_constrained_generation_for_residual",
+      "allow_deeper_rounds": false,
+      "blocker": "no_guard_stable_measured_donor_support",
+      "frame_ids": [
+        "000048",
+        "000049",
+        "000050",
+        "000051",
+        "000052",
+        "000053",
+        "000054",
+        "000055",
+        "000056",
+        "000057",
+        "000058",
+        "000059",
+        "000060",
+        "000061",
+        "000062",
+        "000063",
+        "000064",
+        "000065",
+        "000066",
+        "000067",
+        "000068",
+        "000069",
+        "000070",
+        "000071",
+        "000072"
+      ],
+      "pair_ids": [],
+      "priority": 1,
+      "reason": "Boundary-guarded measured donor support is missing; do not advance the next layer.",
+      "stage": "donor_support",
+      "triplet_center_frame_ids": []
+    },
+    {
+      "action": "repair_removal_mask_or_target_matte_before_regeneration",
+      "allow_deeper_rounds": false,
+      "blocker": "no_guard_stable_measured_donor_support",
+      "frame_ids": [
+        "000048",
+        "000049",
+        "000050",
+        "000051",
+        "000052",
+        "000053",
+        "000054",
+        "000055",
+        "000056",
+        "000057",
+        "000058",
+        "000059",
+        "000060",
+        "000061",
+        "000062",
+        "000063",
+        "000064",
+        "000065",
+        "000066",
+        "000067",
+        "000068",
+        "000069",
+        "000070",
+        "000071",
+        "000072"
+      ],
+      "pair_ids": [],
+      "priority": 2,
+      "reason": "Boundary or local texture gates failed on specific source frames.",
+      "stage": "boundary_qa",
+      "triplet_center_frame_ids": []
+    },
+    {
+      "action": "regenerate_residual_with_constrained_background_prior",
+      "allow_deeper_rounds": false,
+      "blocker": "no_guard_stable_measured_donor_support",
+      "frame_ids": [
+        "000048",
+        "000049",
+        "000050",
+        "000051",
+        "000052",
+        "000053",
+        "000054",
+        "000055",
+        "000056",
+        "000057",
+        "000058",
+        "000059",
+        "000060",
+        "000061",
+        "000062",
+        "000063",
+        "000064",
+        "000065",
+        "000066",
+        "000067",
+        "000068",
+        "000069",
+        "000070",
+        "000071",
+        "000072"
+      ],
+      "pair_ids": [],
+      "priority": 3,
+      "reason": "The clean plate still has unresolved unobserved pixels after measured support.",
+      "stage": "candidate_generation",
+      "triplet_center_frame_ids": []
+    }
+  ],
+  "required_acceptance_gates": [
+    "instance_identity",
+    "front_observation_fidelity",
+    "appearance_fidelity",
+    "geometry_completeness",
+    "backside_nonempty",
+    "six_view_coverage",
+    "six_side_style_consistency",
+    "placement_alignment",
+    "scene_interpenetration",
+    "collision",
+    "vlm_geometry_review"
+  ],
+  "residual_background_policy": "multi_view_donor_then_constrained_generation",
+  "route_sha256": "1dea8d5669fbb4ba09b69af3723aa39c24b8a10682caaf08be2fc625ece2d774",
+  "schema_version": "1.0",
+  "selected_backend": "deformable_category_prior"
+}
