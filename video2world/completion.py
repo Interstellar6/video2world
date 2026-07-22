@@ -6,7 +6,7 @@ import json
 from collections import defaultdict, deque
 from datetime import datetime
 from pathlib import Path
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import Field, model_validator
 
@@ -525,6 +525,73 @@ class GeometryReview(StrictModel):
         if self.decision == "reject" and self.retry_prompt is not None:
             raise ValueError("rejected geometry cannot declare a retry_prompt")
         return self
+
+
+def promote_trellis2_unified_pbr_glb_completion(
+    *,
+    object_id: str,
+    trellis2_receipt: dict[str, Any],
+    geometry_review: GeometryReview,
+    completion_report_uri: str,
+    asset_uri: str | None = None,
+) -> CompletedObjectAsset:
+    """Build a completed object asset only after technical and visual gates pass."""
+
+    if trellis2_receipt.get("kind") != "video2world.trellis2_mesh_first_asset":
+        raise ValueError("completion promotion requires a TRELLIS2 mesh-first receipt")
+    if trellis2_receipt.get("status") != "technical_passed_visual_pending":
+        raise ValueError("TRELLIS2 receipt must be technical_passed_visual_pending")
+    technical_audit = trellis2_receipt.get("technical_audit")
+    if not isinstance(technical_audit, dict) or technical_audit.get("technical_status") != "passed":
+        raise ValueError("TRELLIS2 technical audit must be passed")
+    if geometry_review.object_id != object_id:
+        raise ValueError("geometry review object_id must match the completed object id")
+    if geometry_review.decision != "accept":
+        raise ValueError("geometry review must accept the completed object")
+    failed_review_gates = sorted(
+        name for name, passed in geometry_review.technical_gates.items() if not passed
+    )
+    if failed_review_gates:
+        raise ValueError(
+            "geometry review has failed technical gates: " + ", ".join(failed_review_gates)
+        )
+
+    outputs = trellis2_receipt.get("outputs")
+    if not isinstance(outputs, dict):
+        raise ValueError("TRELLIS2 receipt is missing outputs")
+    output_asset = outputs.get("unified_pbr_glb")
+    if not isinstance(output_asset, dict):
+        raise ValueError("TRELLIS2 receipt is missing outputs.unified_pbr_glb")
+    if output_asset.get("status") != "candidate":
+        raise ValueError("TRELLIS2 output unified_pbr_glb must still be candidate before review")
+    sha256 = output_asset.get("sha256")
+    if geometry_review.source_asset_sha256 != sha256:
+        raise ValueError("geometry review source_asset_sha256 must match TRELLIS2 output asset")
+    topology = output_asset.get("collision_topology")
+    if topology not in {"surface_bvh", "closed_volume"}:
+        raise ValueError("TRELLIS2 output unified_pbr_glb requires collision_topology")
+    uri = asset_uri or output_asset.get("uri") or output_asset.get("path")
+    if not isinstance(uri, str) or not uri:
+        raise ValueError("TRELLIS2 output unified_pbr_glb requires an asset uri or path")
+
+    completed = CompletedObjectAsset(
+        id=object_id,
+        representation_mode="unified_pbr_glb",
+        unified_pbr_glb=AssetRef(
+            uri=uri,
+            sha256=sha256,
+            size_bytes=output_asset.get("size_bytes"),
+            media_type=output_asset.get("media_type"),
+            role=output_asset.get("role"),
+            status="validated",
+            provenance=output_asset.get("provenance") or {},
+        ),
+        collision_topology=topology,
+        geometry_complete_verified=True,
+        completion_report_uri=completion_report_uri,
+    )
+    validate_unified_pbr_glb_asset(completed.unified_pbr_glb, completed.collision_topology)
+    return completed
 
 
 class CompletionAttempt(StrictModel):

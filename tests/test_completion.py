@@ -20,6 +20,7 @@ from video2world.completion import (
     SceneAssetObservation,
     SceneInventory,
     build_layered_completion_plan,
+    promote_trellis2_unified_pbr_glb_completion,
 )
 from video2world.hashing import digest_json
 from video2world.models import LocalizedText
@@ -633,6 +634,122 @@ def test_retry_review_requires_detailed_remediation_prompt() -> None:
             decision="retry",
             issues=[issue],
             raw_response_sha256=SHA,
+        )
+
+
+def _trellis2_receipt_payload(*, sha256: str = SHA) -> dict[str, object]:
+    return {
+        "kind": "video2world.trellis2_mesh_first_asset",
+        "status": "technical_passed_visual_pending",
+        "technical_audit": {"technical_status": "passed"},
+        "outputs": {
+            "unified_pbr_glb": {
+                "path": "/artifacts/pillow-front/asset_pbr.glb",
+                "sha256": sha256,
+                "size_bytes": 4096,
+                "media_type": "model/gltf-binary",
+                "role": "unified_pbr_glb",
+                "status": "candidate",
+                "collision_topology": "surface_bvh",
+                "provenance": {
+                    "faces": 97082,
+                    "face_count": 97082,
+                    "watertight": False,
+                    "closed_volume_claim": False,
+                    "inside_outside_queries_allowed": False,
+                    "technical_gates": {
+                        "finite_vertices": True,
+                        "valid_triangle_indices": True,
+                        "no_degenerate_faces": True,
+                        "winding_consistent": True,
+                        "pbr_material_present": True,
+                        "positive_extents": True,
+                    },
+                },
+            }
+        },
+    }
+
+
+def _accepted_geometry_review(
+    *,
+    object_id: str = "pillow-front",
+    sha256: str = SHA,
+) -> GeometryReview:
+    return GeometryReview(
+        object_id=object_id,
+        attempt=1,
+        created_at=datetime(2026, 7, 17, tzinfo=UTC),
+        provider="Qwen2.5-VL",
+        model="Qwen2.5-VL-3B-Instruct",
+        source_asset_sha256=sha256,
+        turntable_sha256=SHA,
+        technical_gates={
+            "front_visible": True,
+            "backside_nonempty": True,
+            "top_bottom_nonempty": True,
+            "scene_fit_plausible": True,
+        },
+        decision="accept",
+        raw_response_sha256=SHA,
+    )
+
+
+def test_trellis2_completion_promotion_requires_accepted_visual_review() -> None:
+    completed = promote_trellis2_unified_pbr_glb_completion(
+        object_id="pillow-front",
+        trellis2_receipt=_trellis2_receipt_payload(),
+        geometry_review=_accepted_geometry_review(),
+        completion_report_uri="artifact://pillow-front/object-completion-report.json",
+    )
+
+    assert completed.representation_mode == "unified_pbr_glb"
+    assert completed.geometry_complete_verified is True
+    assert completed.collision_topology == "surface_bvh"
+    assert completed.unified_pbr_glb is not None
+    assert completed.unified_pbr_glb.status == "validated"
+    assert completed.unified_pbr_glb.provenance["faces"] == 97082
+
+
+def test_trellis2_completion_promotion_rejects_pending_or_retry_review() -> None:
+    issue = GeometryReviewIssue(
+        issue_type="missing_back_surface",
+        severity="blocking",
+        evidence_view_ids=["back"],
+        explanation={"en": "Back face is missing.", "zh": "背面缺失。"},
+        retry_prompt_instruction="Regenerate a full pillow with nonempty back and side views.",
+    )
+    review = GeometryReview(
+        object_id="pillow-front",
+        attempt=1,
+        created_at=datetime(2026, 7, 17, tzinfo=UTC),
+        provider="Qwen2.5-VL",
+        model="Qwen2.5-VL-3B-Instruct",
+        source_asset_sha256=SHA,
+        turntable_sha256=SHA,
+        technical_gates={"backside_nonempty": False},
+        decision="retry",
+        issues=[issue],
+        retry_prompt="Regenerate a complete pillow with all six views nonempty.",
+        raw_response_sha256=SHA,
+    )
+
+    with pytest.raises(ValueError, match="geometry review must accept"):
+        promote_trellis2_unified_pbr_glb_completion(
+            object_id="pillow-front",
+            trellis2_receipt=_trellis2_receipt_payload(),
+            geometry_review=review,
+            completion_report_uri="artifact://pillow-front/object-completion-report.json",
+        )
+
+
+def test_trellis2_completion_promotion_rejects_review_for_different_asset() -> None:
+    with pytest.raises(ValueError, match="source_asset_sha256"):
+        promote_trellis2_unified_pbr_glb_completion(
+            object_id="pillow-front",
+            trellis2_receipt=_trellis2_receipt_payload(sha256="b" * 64),
+            geometry_review=_accepted_geometry_review(sha256="c" * 64),
+            completion_report_uri="artifact://pillow-front/object-completion-report.json",
         )
 
 
