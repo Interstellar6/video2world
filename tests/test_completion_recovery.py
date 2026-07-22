@@ -4,7 +4,10 @@ import json
 from pathlib import Path
 
 from video2world.cli import main
-from video2world.completion_recovery import materialize_completion_recovery_work_order
+from video2world.completion_recovery import (
+    materialize_completion_recovery_bundle,
+    materialize_completion_recovery_work_order,
+)
 from video2world.hashing import digest_path
 
 
@@ -121,3 +124,53 @@ def test_completion_recovery_work_order_cli_writes_json(tmp_path: Path, capsys) 
     file_payload = json.loads(output.read_text(encoding="utf-8"))
     assert stdout_payload == file_payload
     assert file_payload["work_items"][0]["frame_records"][0]["support_max"] == 0
+
+
+def test_completion_recovery_bundle_orders_recovery_steps(tmp_path: Path) -> None:
+    route = tmp_path / "route.json"
+    report = tmp_path / "report.json"
+    work_order_path = tmp_path / "work-order.json"
+    _write_route(route)
+    _write_report(report)
+    work_order = materialize_completion_recovery_work_order(route, report)
+    work_order_path.write_text(work_order.model_dump_json(indent=2), encoding="utf-8")
+
+    bundle = materialize_completion_recovery_bundle(work_order_path)
+
+    assert bundle.kind == "video2world.completion_recovery_bundle"
+    assert bundle.status == "ready_for_recovery_execution"
+    assert bundle.output_claim == "execution_plan_only_no_artifacts_generated"
+    assert bundle.final_gate == "rerun_strict_r1_acceptance_before_r2"
+    assert bundle.steps[0].step_id == "01-donor_support"
+    assert bundle.steps[0].depends_on == []
+    assert "measured_prefill_report" in bundle.steps[0].expected_output_roles
+    assert "physical_donor_exclusion_index" in bundle.steps[0].input_roles
+
+
+def test_completion_recovery_bundle_cli_writes_json(tmp_path: Path, capsys) -> None:
+    route = tmp_path / "route.json"
+    report = tmp_path / "report.json"
+    work_order_path = tmp_path / "work-order.json"
+    output = tmp_path / "bundle.json"
+    _write_route(route)
+    _write_report(report)
+    work_order = materialize_completion_recovery_work_order(route, report)
+    work_order_path.write_text(work_order.model_dump_json(indent=2), encoding="utf-8")
+
+    assert (
+        main(
+            [
+                "completion-recovery-bundle",
+                str(work_order_path),
+                "--output",
+                str(output),
+            ]
+        )
+        == 0
+    )
+
+    captured = capsys.readouterr()
+    stdout_payload = json.loads(captured.out)
+    file_payload = json.loads(output.read_text(encoding="utf-8"))
+    assert stdout_payload == file_payload
+    assert file_payload["steps"][0]["allow_deeper_rounds"] is False

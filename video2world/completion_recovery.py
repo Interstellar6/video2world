@@ -69,6 +69,61 @@ class CompletionRecoveryWorkOrder(StrictModel):
         return self
 
 
+class RecoveryBundleInput(StrictModel):
+    path: str = Field(min_length=1)
+    sha256: Sha256
+    size_bytes: int = Field(ge=1)
+    role: Literal["completion_recovery_work_order"]
+
+
+class RecoveryBundleStep(StrictModel):
+    step_id: str = Field(min_length=1, pattern=r"^[A-Za-z0-9_.:-]+$")
+    priority: int = Field(ge=1)
+    stage: RecoveryStage
+    depends_on: list[str] = Field(default_factory=list)
+    action: str = Field(min_length=1)
+    frame_ids: list[str] = Field(default_factory=list)
+    input_roles: list[str] = Field(min_length=1)
+    expected_output_roles: list[str] = Field(min_length=1)
+    required_verification: str = Field(min_length=1)
+    allow_deeper_rounds: Literal[False] = False
+
+
+class CompletionRecoveryBundle(StrictModel):
+    schema_version: Literal["1.0"] = "1.0"
+    kind: Literal["video2world.completion_recovery_bundle"] = (
+        "video2world.completion_recovery_bundle"
+    )
+    object_id: str = Field(min_length=1)
+    bundle_sha256: Sha256
+    status: Literal["ready_for_recovery_execution"] = "ready_for_recovery_execution"
+    deeper_rounds_blocked: Literal[True] = True
+    input: RecoveryBundleInput
+    steps: list[RecoveryBundleStep] = Field(min_length=1)
+    final_gate: Literal["rerun_strict_r1_acceptance_before_r2"] = (
+        "rerun_strict_r1_acceptance_before_r2"
+    )
+    output_claim: Literal["execution_plan_only_no_artifacts_generated"] = (
+        "execution_plan_only_no_artifacts_generated"
+    )
+    notes: list[str] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def verify_bundle_contract(self) -> CompletionRecoveryBundle:
+        priorities = [step.priority for step in self.steps]
+        if priorities != sorted(set(priorities)):
+            raise ValueError("bundle step priorities must be unique and ascending")
+        ids = [step.step_id for step in self.steps]
+        if len(ids) != len(set(ids)):
+            raise ValueError("bundle step ids must be unique")
+        seen: set[str] = set()
+        for step in self.steps:
+            if any(dependency not in seen for dependency in step.depends_on):
+                raise ValueError("bundle step dependencies must reference earlier steps")
+            seen.add(step.step_id)
+        return self
+
+
 def _artifact(
     path: Path,
     role: Literal["completion_backend_route", "clean_plate_report"],
@@ -112,6 +167,49 @@ def _required_verification(stage: RecoveryStage) -> str:
     if stage == "temporal_qa":
         return "rerun temporal pair/triplet QA before candidate promotion"
     return "rerun clean-plate residual generation QA before promotion"
+
+
+def _input_roles(stage: RecoveryStage) -> list[str]:
+    common = ["completion_recovery_work_order", "source_clean_plate_report"]
+    if stage == "donor_support":
+        return [
+            *common,
+            "source_rgb_frames",
+            "camera_info",
+            "depth_arrays",
+            "physical_donor_exclusion_index",
+        ]
+    if stage == "boundary_qa":
+        return [*common, "candidate_clean_plate_frames", "removal_masks", "source_rgb_frames"]
+    if stage == "temporal_qa":
+        return [*common, "candidate_clean_plate_frames", "source_rgb_frames"]
+    return [
+        *common,
+        "residual_masks",
+        "support_geometry_or_structural_prior",
+        "source_rgb_frames",
+    ]
+
+
+def _expected_output_roles(stage: RecoveryStage) -> list[str]:
+    if stage == "donor_support":
+        return [
+            "measured_prefill_report",
+            "measured_prefill_receipt",
+            "residual_masks",
+            "support_visualizations",
+            "measured_depth_evidence",
+        ]
+    if stage == "boundary_qa":
+        return ["boundary_qa_manifest", "boundary_qa_report", "failed_frame_summary"]
+    if stage == "temporal_qa":
+        return ["temporal_qa_manifest", "temporal_qa_report", "failed_pair_summary"]
+    return [
+        "residual_generation_manifest",
+        "generated_candidate_frames",
+        "candidate_generation_receipt",
+        "candidate_review_report",
+    ]
 
 
 def materialize_completion_recovery_work_order(
@@ -171,4 +269,53 @@ def materialize_completion_recovery_work_order(
     return CompletionRecoveryWorkOrder(
         work_order_sha256=digest_json(payload),
         **payload,
+    )
+
+
+def materialize_completion_recovery_bundle(
+    work_order_path: str | Path,
+) -> CompletionRecoveryBundle:
+    work_order_file = Path(work_order_path).expanduser().resolve()
+    payload = json.loads(work_order_file.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise ValueError("recovery work order root must be an object")
+    work_order = CompletionRecoveryWorkOrder.model_validate(payload)
+    work_order_digest = digest_path(work_order_file)
+    steps: list[RecoveryBundleStep] = []
+    for item in work_order.work_items:
+        depends_on = [steps[-1].step_id] if steps else []
+        step = RecoveryBundleStep(
+            step_id=f"{item.priority:02d}-{item.stage}",
+            priority=item.priority,
+            stage=item.stage,
+            depends_on=depends_on,
+            action=item.action,
+            frame_ids=item.frame_ids,
+            input_roles=_input_roles(item.stage),
+            expected_output_roles=_expected_output_roles(item.stage),
+            required_verification=item.required_verification,
+            allow_deeper_rounds=item.allow_deeper_rounds,
+        )
+        steps.append(step)
+    bundle_payload = {
+        "object_id": work_order.object_id,
+        "status": "ready_for_recovery_execution",
+        "deeper_rounds_blocked": True,
+        "input": RecoveryBundleInput(
+            path=str(work_order_digest.path),
+            sha256=work_order_digest.sha256,
+            size_bytes=work_order_digest.size_bytes,
+            role="completion_recovery_work_order",
+        ).model_dump(mode="json"),
+        "steps": [step.model_dump(mode="json") for step in steps],
+        "final_gate": "rerun_strict_r1_acceptance_before_r2",
+        "output_claim": "execution_plan_only_no_artifacts_generated",
+        "notes": [
+            "Execute these steps in order; each step must write its own receipt and QA report.",
+            "The bundle is invalidated if the source work order SHA-256 changes.",
+        ],
+    }
+    return CompletionRecoveryBundle(
+        bundle_sha256=digest_json(bundle_payload),
+        **bundle_payload,
     )

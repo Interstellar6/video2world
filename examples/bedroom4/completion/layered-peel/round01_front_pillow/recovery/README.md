@@ -19,3 +19,11 @@ uv run video2world completion-recovery-work-order \
   --clean-plate-report examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/round01_front_pillow/output/multiview_prefill_report.json \
   --output examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_work_order.json
 ```
+
+The work order can then be converted into ordered recovery execution steps. This still does not run a model or generate clean plates:
+
+```bash
+uv run video2world completion-recovery-bundle \
+  examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_work_order.json \
+  --output examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_bundle.json
+```

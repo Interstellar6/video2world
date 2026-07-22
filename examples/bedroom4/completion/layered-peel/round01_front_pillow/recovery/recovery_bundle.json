@@ -1,0 +1,174 @@
+{
+  "bundle_sha256": "9706c3c287c5e07f6d5a5476513172d8f40807fa9e7062658a6d4ae225c00514",
+  "deeper_rounds_blocked": true,
+  "final_gate": "rerun_strict_r1_acceptance_before_r2",
+  "input": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_work_order.json",
+    "role": "completion_recovery_work_order",
+    "sha256": "e3b09434fe9078e1d9e35b717e053d4ee4be85dee87a034327279d6deac7f448",
+    "size_bytes": 21736
+  },
+  "kind": "video2world.completion_recovery_bundle",
+  "notes": [
+    "Execute these steps in order; each step must write its own receipt and QA report.",
+    "The bundle is invalidated if the source work order SHA-256 changes."
+  ],
+  "object_id": "sam3_pillow_front",
+  "output_claim": "execution_plan_only_no_artifacts_generated",
+  "schema_version": "1.0",
+  "status": "ready_for_recovery_execution",
+  "steps": [
+    {
+      "action": "add_observed_donor_or_switch_to_constrained_generation_for_residual",
+      "allow_deeper_rounds": false,
+      "depends_on": [],
+      "expected_output_roles": [
+        "measured_prefill_report",
+        "measured_prefill_receipt",
+        "residual_masks",
+        "support_visualizations",
+        "measured_depth_evidence"
+      ],
+      "frame_ids": [
+        "000048",
+        "000049",
+        "000050",
+        "000051",
+        "000052",
+        "000053",
+        "000054",
+        "000055",
+        "000056",
+        "000057",
+        "000058",
+        "000059",
+        "000060",
+        "000061",
+        "000062",
+        "000063",
+        "000064",
+        "000065",
+        "000066",
+        "000067",
+        "000068",
+        "000069",
+        "000070",
+        "000071",
+        "000072"
+      ],
+      "input_roles": [
+        "completion_recovery_work_order",
+        "source_clean_plate_report",
+        "source_rgb_frames",
+        "camera_info",
+        "depth_arrays",
+        "physical_donor_exclusion_index"
+      ],
+      "priority": 1,
+      "required_verification": "rerun measured donor support and strict boundary guard before any R2 input",
+      "stage": "donor_support",
+      "step_id": "01-donor_support"
+    },
+    {
+      "action": "repair_removal_mask_or_target_matte_before_regeneration",
+      "allow_deeper_rounds": false,
+      "depends_on": [
+        "01-donor_support"
+      ],
+      "expected_output_roles": [
+        "boundary_qa_manifest",
+        "boundary_qa_report",
+        "failed_frame_summary"
+      ],
+      "frame_ids": [
+        "000048",
+        "000049",
+        "000050",
+        "000051",
+        "000052",
+        "000053",
+        "000054",
+        "000055",
+        "000056",
+        "000057",
+        "000058",
+        "000059",
+        "000060",
+        "000061",
+        "000062",
+        "000063",
+        "000064",
+        "000065",
+        "000066",
+        "000067",
+        "000068",
+        "000069",
+        "000070",
+        "000071",
+        "000072"
+      ],
+      "input_roles": [
+        "completion_recovery_work_order",
+        "source_clean_plate_report",
+        "candidate_clean_plate_frames",
+        "removal_masks",
+        "source_rgb_frames"
+      ],
+      "priority": 2,
+      "required_verification": "rerun boundary QA with failed frame records preserved in the report",
+      "stage": "boundary_qa",
+      "step_id": "02-boundary_qa"
+    },
+    {
+      "action": "regenerate_residual_with_constrained_background_prior",
+      "allow_deeper_rounds": false,
+      "depends_on": [
+        "02-boundary_qa"
+      ],
+      "expected_output_roles": [
+        "residual_generation_manifest",
+        "generated_candidate_frames",
+        "candidate_generation_receipt",
+        "candidate_review_report"
+      ],
+      "frame_ids": [
+        "000048",
+        "000049",
+        "000050",
+        "000051",
+        "000052",
+        "000053",
+        "000054",
+        "000055",
+        "000056",
+        "000057",
+        "000058",
+        "000059",
+        "000060",
+        "000061",
+        "000062",
+        "000063",
+        "000064",
+        "000065",
+        "000066",
+        "000067",
+        "000068",
+        "000069",
+        "000070",
+        "000071",
+        "000072"
+      ],
+      "input_roles": [
+        "completion_recovery_work_order",
+        "source_clean_plate_report",
+        "residual_masks",
+        "support_geometry_or_structural_prior",
+        "source_rgb_frames"
+      ],
+      "priority": 3,
+      "required_verification": "rerun clean-plate residual generation QA before promotion",
+      "stage": "candidate_generation",
+      "step_id": "03-candidate_generation"
+    }
+  ]
+}
