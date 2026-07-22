@@ -140,6 +140,7 @@ try {
     const filePath = path.join(outputDir, fileName);
     fs.writeFileSync(filePath, bytes);
     viewArtifacts[viewId] = {
+      uri: fileName,
       file: fileName,
       path: filePath,
       sizeBytes: bytes.byteLength,
@@ -174,6 +175,7 @@ try {
     },
     views: viewArtifacts,
     contactSheet: {
+      uri: contactSheetName,
       file: contactSheetName,
       path: contactSheetPath,
       sizeBytes: contactSheetBytes.byteLength,

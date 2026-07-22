@@ -123,7 +123,7 @@ node scripts/capture_object_review.mjs \
   --output-dir /absolute/path/to/object-candidate/review
 ```
 
-脚本从 `web/object-review.js` 读取固定的 `front/right/back/left/top/bottom` object-local 视图，输出六张 object-only PNG、3x2 contact sheet 和包含 GLB/图片 hash 的 `video2world.canonical_object_six_view_review` receipt。水平 orbit 即使有六帧也不算六面证据；capture 只完成取证，视觉 gate 仍保持 pending，必须再按形状、主色和场景穿模门禁作出 review 决策。
+脚本从 `web/object-review.js` 读取固定的 `front/right/back/left/top/bottom` object-local 视图，输出六张 object-only PNG、3x2 contact sheet 和包含 GLB/图片 hash 的 `video2world.canonical_object_six_view_review` receipt。每个 view artifact 都写入相对 `uri` 和小写 SHA-256，可由 `video2world.object_review.visual_gate_views_from_canonical_review` 转成 WorldManifest visual gate 的 `views` evidence。水平 orbit 即使有六帧也不算六面证据；capture 只完成取证，视觉 gate 仍保持 pending，必须再按形状、主色和场景穿模门禁作出 review 决策。
 
 ## 规划通用分层补全
 
