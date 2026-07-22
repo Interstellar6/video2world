@@ -1,0 +1,35 @@
+{
+  "blocking_findings": [
+    {
+      "gate": "full_resolution_boundary_color_continuity",
+      "observed_maximum": 117.33333333333333,
+      "severity": "blocking",
+      "threshold_p95_abs_rgb_delta": 48.0
+    },
+    {
+      "gate": "full_resolution_boundary_low_frequency_gradient_continuity",
+      "observed_maximum": 118.0,
+      "severity": "blocking",
+      "threshold_p95_abs_rgb_delta": 64.0
+    }
+  ],
+  "candidate_report": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/04-planar_texture_candidate-v2/planar_texture_report.json",
+    "sha256": "3284868e4d784ccb1540a7895c7b545f3c47e664f4e0a5033907038c2d2c5c25",
+    "status": "texture_candidate_review_pending"
+  },
+  "created_at": "2026-07-22T07:19:04.248601+00:00",
+  "decision": "rejected",
+  "eligible_as_round04_clean_plate": false,
+  "kind": "video2world.planar_texture_visual_review_receipt",
+  "next_action": "repair_texture_candidate_before_acceptance; suggested first attempt is complete_planar_texture_atlas --plane-footprint-neutralization",
+  "promotion_approved": false,
+  "reviewed_full_resolution_frame_count": 3,
+  "schema_version": 1,
+  "status": "texture_candidate_rejected_or_needs_repair",
+  "visual_review": {
+    "path": "planar_texture_visual_review.json",
+    "sha256": "69b76e92c601dd0c8924e853f785693641da9b1a44d2d761ba0153a85450fda5",
+    "size_bytes": 5922
+  }
+}

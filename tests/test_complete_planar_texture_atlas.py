@@ -337,6 +337,36 @@ def test_rectangular_footprint_padding_must_cover_feather_width() -> None:
         )
 
 
+def test_footprint_neutralization_skips_planes_without_completed_atlas() -> None:
+    footprints = {
+        1: np.ones((2, 2), dtype=bool),
+        2: np.zeros((3, 3), dtype=bool),
+    }
+    completed_atlases = {
+        1: {
+            "color": np.zeros((2, 2, 3), dtype=np.uint8),
+            "footprint_weight": np.ones((2, 2), dtype=np.float32),
+        }
+    }
+    atlas_records_by_id = {1: {"plane_id": 1}}
+
+    eligible, skipped = MODULE.filter_footprints_for_completed_atlases(
+        footprints,
+        completed_atlases,
+        atlas_records_by_id,
+    )
+
+    assert set(eligible) == {1}
+    assert skipped == [
+        {
+            "plane_id": 2,
+            "reason": "no_completed_atlas_for_footprint",
+            "footprint_texels": 0,
+            "rendering_required": False,
+        }
+    ]
+
+
 def test_plane_footprint_compositor_preserves_protected_and_outside_pixels() -> None:
     source = np.full((3, 5, 3), [20, 30, 40], dtype=np.uint8)
     rendered = np.full((3, 5, 3), [220, 180, 120], dtype=np.uint8)

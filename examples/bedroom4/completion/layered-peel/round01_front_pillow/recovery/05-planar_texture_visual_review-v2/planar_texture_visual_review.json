@@ -1,0 +1,156 @@
+{
+  "blocking_findings": [
+    {
+      "gate": "full_resolution_boundary_color_continuity",
+      "observed_maximum": 117.33333333333333,
+      "severity": "blocking",
+      "threshold_p95_abs_rgb_delta": 48.0
+    },
+    {
+      "gate": "full_resolution_boundary_low_frequency_gradient_continuity",
+      "observed_maximum": 118.0,
+      "severity": "blocking",
+      "threshold_p95_abs_rgb_delta": 64.0
+    }
+  ],
+  "candidate_report": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/04-planar_texture_candidate-v2/planar_texture_report.json",
+  "candidate_report_sha256": "3284868e4d784ccb1540a7895c7b545f3c47e664f4e0a5033907038c2d2c5c25",
+  "decision": "rejected",
+  "full_resolution_review": [
+    {
+      "blocking_findings": [
+        "full_resolution_boundary_color_continuity",
+        "full_resolution_boundary_low_frequency_gradient_continuity"
+      ],
+      "boundary_color_p95_abs_rgb_delta": 117.33333333333333,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 118.0,
+      "completed_frame_sha256": "2e3de28ea94fff7f70235ac5fd390886fef90bb8da8ff585661fb40b6cdc61d3",
+      "decision": "rejected",
+      "frame_id": "000064",
+      "synthetic_mask_sha256": "6190b713f3c551441d645d66479f29d7c3b020d0c5e8bd80afbf052188bf4253"
+    },
+    {
+      "blocking_findings": [
+        "full_resolution_boundary_color_continuity",
+        "full_resolution_boundary_low_frequency_gradient_continuity"
+      ],
+      "boundary_color_p95_abs_rgb_delta": 117.0,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 117.66666666666667,
+      "completed_frame_sha256": "f21f6d69bc9d686d5fe1e96f059b3aa5252cd8bdd3e75303892a04ed8a0240ce",
+      "decision": "rejected",
+      "frame_id": "000067",
+      "synthetic_mask_sha256": "2a11cb252eec0060f161ef2d12461d596ea63ea055a7780e4a8917c2424f9c10"
+    },
+    {
+      "blocking_findings": [
+        "full_resolution_boundary_color_continuity",
+        "full_resolution_boundary_low_frequency_gradient_continuity"
+      ],
+      "boundary_color_p95_abs_rgb_delta": 117.28333333333333,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 117.0,
+      "completed_frame_sha256": "2c2cb6522d653a14f24686609957a12d8b7a612d98d3531b7bae9a092d32517e",
+      "decision": "rejected",
+      "frame_id": "000072",
+      "synthetic_mask_sha256": "35bed33a5e6ebe7dfb4f579eb03f26be359edcf28dc04698950a50f459588694"
+    }
+  ],
+  "gates": {
+    "full_resolution_boundary_color_continuity": {
+      "observed_maximum": 117.33333333333333,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 48.0
+    },
+    "full_resolution_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 118.0,
+      "passed": false,
+      "threshold_p95_abs_rgb_delta": 64.0
+    },
+    "visual_quality": "rejected_until_repaired_or_human_vlm_accepts"
+  },
+  "kind": "video2world.planar_texture_visual_review",
+  "limitations": [
+    "This automated review only evaluates bound full-resolution boundary metrics.",
+    "A future human or VLM review must still inspect photorealism and semantic plausibility."
+  ],
+  "next_action": "repair_texture_candidate_before_acceptance; suggested first attempt is complete_planar_texture_atlas --plane-footprint-neutralization",
+  "review_authority": {
+    "kind": "automated_metric_review",
+    "reviewed_at": "2026-07-22T07:19:04.248601+00:00",
+    "reviewer_id": "video2world-auto-boundary-reviewer",
+    "scope": "round04_clean_plate_texture_repair_triage"
+  },
+  "schema_version": 1,
+  "status": "completed",
+  "worst_frame_records": [
+    {
+      "boundary_color_p95_abs_rgb_delta": 123.9833333333333,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 124.48333333333335,
+      "frame_id": "000071",
+      "interpolated_pixels": 18571,
+      "synthetic_pixels": 18571
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 118.0,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 123.68333333333324,
+      "frame_id": "000061",
+      "interpolated_pixels": 18895,
+      "synthetic_pixels": 18895
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 118.0,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 123.26666666666672,
+      "frame_id": "000063",
+      "interpolated_pixels": 18905,
+      "synthetic_pixels": 18905
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 117.66666666666667,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 122.0,
+      "frame_id": "000062",
+      "interpolated_pixels": 18898,
+      "synthetic_pixels": 18898
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 117.33333333333333,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 118.0,
+      "frame_id": "000060",
+      "interpolated_pixels": 18747,
+      "synthetic_pixels": 18747
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 117.33333333333333,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 118.0,
+      "frame_id": "000064",
+      "interpolated_pixels": 18768,
+      "synthetic_pixels": 18768
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 117.33333333333333,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 117.41666666666666,
+      "frame_id": "000069",
+      "interpolated_pixels": 18514,
+      "synthetic_pixels": 18514
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 117.28333333333333,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 117.33333333333333,
+      "frame_id": "000049",
+      "interpolated_pixels": 16405,
+      "synthetic_pixels": 16405
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 117.28333333333333,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 117.0,
+      "frame_id": "000072",
+      "interpolated_pixels": 18167,
+      "synthetic_pixels": 18167
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 117.0,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 117.66666666666667,
+      "frame_id": "000067",
+      "interpolated_pixels": 18451,
+      "synthetic_pixels": 18451
+    }
+  ]
+}

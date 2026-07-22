@@ -1390,6 +1390,28 @@ def composite_plane_footprint_render(
     }
 
 
+def filter_footprints_for_completed_atlases(
+    footprints: dict[int, np.ndarray],
+    completed_atlases: dict[int, dict[str, Any]],
+    atlas_records_by_id: dict[int, dict[str, Any]],
+) -> tuple[dict[int, np.ndarray], list[dict[str, Any]]]:
+    eligible: dict[int, np.ndarray] = {}
+    skipped: list[dict[str, Any]] = []
+    for plane_id, footprint in footprints.items():
+        if plane_id in completed_atlases and plane_id in atlas_records_by_id:
+            eligible[plane_id] = footprint
+            continue
+        skipped.append(
+            {
+                "plane_id": plane_id,
+                "reason": "no_completed_atlas_for_footprint",
+                "footprint_texels": int(footprint.sum()),
+                "rendering_required": bool(np.any(footprint)),
+            }
+        )
+    return eligible, skipped
+
+
 def project_cumulative_removal_footprints(
     geometry_report: dict[str, Any],
     camera_info: dict[str, Any],
@@ -1528,6 +1550,8 @@ def render_full_frame_from_weighted_plane_atlases(
         "interpolated": np.zeros(count, dtype=bool),
     }
     for plane_id, plane_record in plane_records.items():
+        if plane_id not in completed_atlases:
+            continue
         atlas = completed_atlases[plane_id]
         plane_weight = atlas["footprint_weight"]
         if not np.any(plane_weight > 0.0):
@@ -1810,7 +1834,14 @@ def build_texture_candidate(args: argparse.Namespace) -> dict[str, Any]:
         )
         footprint_plane_records: list[dict[str, Any]] = []
         atlas_records_by_id = {int(record["plane_id"]): record for record in atlas_records}
-        for plane_id, footprint in footprints.items():
+        eligible_footprints, skipped_footprint_plane_records = (
+            filter_footprints_for_completed_atlases(
+                footprints,
+                completed_atlases,
+                atlas_records_by_id,
+            )
+        )
+        for plane_id, footprint in eligible_footprints.items():
             weight, details = rectangular_footprint_feather_weight(
                 footprint,
                 padding=args.plane_footprint_padding_texels,
@@ -1852,6 +1883,7 @@ def build_texture_candidate(args: argparse.Namespace) -> dict[str, Any]:
             ),
             "projection": projection_record,
             "plane_records": footprint_plane_records,
+            "skipped_plane_records": skipped_footprint_plane_records,
             "all_original_removal_plane_texels_in_weight_one_core": all(
                 record["all_footprint_texels_in_weight_one_core"]
                 for record in footprint_plane_records
