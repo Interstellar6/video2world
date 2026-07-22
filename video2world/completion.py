@@ -455,6 +455,9 @@ class CompletedObjectAssetsManifest(StrictModel):
         object_ids = [item.id for item in self.objects]
         if len(object_ids) != len(set(object_ids)):
             raise ValueError("completed object ids must be unique")
+        report_uris = [item.completion_report_uri for item in self.objects]
+        if len(report_uris) != len(set(report_uris)):
+            raise ValueError("completed object completion_report_uri values must be unique")
         if self.representation_policy == "unified_pbr_glb_preferred_optional_gaussian":
             legacy_ids = [
                 item.id

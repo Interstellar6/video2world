@@ -381,6 +381,21 @@ def test_completed_object_manifest_rejects_unified_surface_without_technical_gat
         CompletedObjectAssetsManifest.model_validate(payload)
 
 
+def test_completed_object_manifest_rejects_reused_completion_report_uri() -> None:
+    payload = _unified_completed_object_assets_payload()
+    second = dict(payload["objects"][0])
+    second["id"] = "pillow-02"
+    second["unified_pbr_glb"] = {
+        **payload["objects"][0]["unified_pbr_glb"],
+        "uri": "artifact://pillow-02.glb",
+        "sha256": "b" * 64,
+    }
+    payload["objects"].append(second)
+
+    with pytest.raises(ValidationError, match="completion_report_uri values must be unique"):
+        CompletedObjectAssetsManifest.model_validate(payload)
+
+
 def test_completed_object_manifest_rejects_unvalidated_optional_representation() -> None:
     payload = _unified_completed_object_assets_payload()
     payload["objects"][0]["object_gaussian"] = {

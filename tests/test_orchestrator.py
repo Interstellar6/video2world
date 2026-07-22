@@ -2059,6 +2059,27 @@ def test_completed_object_assets_manifest_uses_unified_pbr_typed_contract(
         )
 
 
+def test_completed_object_assets_manifest_rejects_reused_object_report_uri(
+    tmp_path: Path,
+) -> None:
+    output = tmp_path / "completed-object-assets.json"
+    payload = _valid_completed_object_assets_manifest()
+    second = dict(payload["objects"][0])
+    second["id"] = "pillow-back"
+    second["unified_pbr_glb"] = {
+        **payload["objects"][0]["unified_pbr_glb"],
+        "uri": "artifact://pillow-back.glb",
+        "sha256": "b" * 64,
+    }
+    payload["objects"].append(second)
+    output.write_text(json.dumps(payload), encoding="utf-8")
+
+    with pytest.raises(ArtifactError, match="completion_report_uri values must be unique"):
+        get_adapter("layered_completion").validate_outputs(
+            {"completed_object_assets_manifest": snapshot_path(output)}
+        )
+
+
 def test_completed_object_assets_manifest_requires_explicit_legacy_policy_for_separate_assets(
     tmp_path: Path,
 ) -> None:

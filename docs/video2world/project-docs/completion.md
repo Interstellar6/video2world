@@ -112,6 +112,8 @@ Web 投影用 `collision.mode=unified-glb` 显式声明该模式。同一 GLB �
 
 `object_completion_receipts[*]` 只能声明 `acceptance_scope="object_completion_report"` 与 `lineage_scope="trellis2_geometry_review_object_asset"`；它们证明单个对象资产通过生成和审核，但不能声明 corrected full pipeline、promotion、canonical promotion 或 canonical/live manifest mutation。最终发布权仍只属于 terminal layered report、final clean plate 和后续 bundle/Web QA。
 
+`completed_object_assets_manifest.objects[*].completion_report_uri` 在同一 manifest 内必须唯一。三枕头、床+枕头或植物+花盆这种多对象拆分不能共用一份 ensemble report；每个可交互对象都要有自己的生成 receipt、GeometryReview 和 completed asset 绑定报告。
+
 材质参数的技术合法性与物体语义分开。`metallicFactor=1` 对金属对象可能正确，因此通用 provider 不把它设为失败条件；scene-fit material profile/VLM 再依据对象类别、原视频主色与材质证据决定是否修正。明显 shape mismatch、主色类别错误和显著 interpenetration 仍是 hard gates；轻微不可见面纹理或材质 hallucination 保持 warning，可记录 limitation 后放行。
 
 receipt 固定记录 source commit、model revision、config hash、seed、输入 RGBA hash、最终 GLB hash、debug flags、运行时和完整 mesh audit。随后必须运行 `scripts/capture_object_review.mjs`，从 canonical `object-review` 页面取得 `front/right/back/left/top/bottom` 六个正交 object-local render、3x2 contact sheet 及逐文件 hash receipt。旧 wrapper 的水平 orbit 只能作动画预览，不能替代 top/bottom 与正交侧面证据。
