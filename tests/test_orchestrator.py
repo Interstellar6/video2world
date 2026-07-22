@@ -1835,10 +1835,83 @@ def test_layered_completion_report_requires_provider_receipt_lineage(
         )
 
 
+def _valid_object_completion_report() -> dict[str, object]:
+    asset_sha = "a" * 64
+    unified_asset = {
+        "uri": "artifact://pillow-front/asset_pbr.glb",
+        "sha256": asset_sha,
+        "size_bytes": 4096,
+        "media_type": "model/gltf-binary",
+        "role": "unified_pbr_glb",
+        "status": "validated",
+        "provenance": {
+            "faces": 97082,
+            "face_count": 97082,
+            "watertight": False,
+            "closed_volume_claim": False,
+            "inside_outside_queries_allowed": False,
+            "technical_gates": {
+                "finite_vertices": True,
+                "valid_triangle_indices": True,
+                "no_degenerate_faces": True,
+                "winding_consistent": True,
+                "pbr_material_present": True,
+                "positive_extents": True,
+            },
+        },
+    }
+    return {
+        "kind": "video2world.object_completion_report",
+        "object_id": "pillow-front",
+        "created_at": "2026-07-17T00:00:00Z",
+        "status": "accepted",
+        "trellis2_receipt": {
+            "kind": "video2world.trellis2_mesh_first_asset",
+            "status": "technical_passed_visual_pending",
+            "technical_audit": {"technical_status": "passed"},
+            "outputs": {
+                "unified_pbr_glb": {
+                    **unified_asset,
+                    "path": "/artifacts/pillow-front/asset_pbr.glb",
+                    "status": "candidate",
+                    "collision_topology": "surface_bvh",
+                }
+            },
+        },
+        "geometry_review": {
+            "kind": "video2world.geometry_review",
+            "object_id": "pillow-front",
+            "attempt": 1,
+            "created_at": "2026-07-17T00:00:00Z",
+            "provider": "Qwen2.5-VL",
+            "model": "Qwen2.5-VL-3B-Instruct",
+            "source_asset_sha256": asset_sha,
+            "turntable_sha256": "b" * 64,
+            "technical_gates": {
+                "front_visible": True,
+                "backside_nonempty": True,
+                "top_bottom_nonempty": True,
+                "scene_fit_plausible": True,
+            },
+            "decision": "accept",
+            "raw_response_sha256": "c" * 64,
+        },
+        "completed_asset": {
+            "id": "pillow-front",
+            "representation_mode": "unified_pbr_glb",
+            "unified_pbr_glb": unified_asset,
+            "collision_topology": "surface_bvh",
+            "geometry_complete_verified": True,
+            "completion_report_uri": "artifact://pillow-front/object-completion-report.json",
+        },
+    }
+
+
 @pytest.mark.parametrize(
     ("role", "valid_payload"),
     [
         ("clean_plate_manifest", {"frame_records": [{"frame_id": "000064"}]}),
+        ("object_completion_report", _valid_object_completion_report()),
     ],
 )
 def test_completion_json_roles_require_role_specific_payload_fields(

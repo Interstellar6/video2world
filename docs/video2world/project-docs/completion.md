@@ -108,6 +108,8 @@ Web 投影用 `collision.mode=unified-glb` 显式声明该模式。同一 GLB �
 
 `technical_passed_visual_pending` 不能直接写入 `completed_object_assets_manifest`。提升时必须同时提供 `GeometryReview(decision="accept")`，且 review 的 `object_id`、`source_asset_sha256` 必须分别匹配目标对象和 TRELLIS2 输出资产；review 或 provider 任一技术 gate 失败、decision 为 retry/reject、hash 不匹配，都会 fail closed。通过后才把统一 GLB 状态改为 `validated`，并设置 `geometry_complete_verified=true`。
 
+每个 object round 的 `object_completion_report` 现在是强类型 JSON：它必须嵌入 TRELLIS2 mesh-first receipt、GeometryReview 和最终 `CompletedObjectAsset`，并能由同一 promotion helper 重新推导出完全一致的 completed asset。`completion_report_uri` 因此不再只是一个自由文本链接，而是 completed assets manifest 可以追溯到生成 receipt 和视觉审核 decision 的证据锚点。
+
 材质参数的技术合法性与物体语义分开。`metallicFactor=1` 对金属对象可能正确，因此通用 provider 不把它设为失败条件；scene-fit material profile/VLM 再依据对象类别、原视频主色与材质证据决定是否修正。明显 shape mismatch、主色类别错误和显著 interpenetration 仍是 hard gates；轻微不可见面纹理或材质 hallucination 保持 warning，可记录 limitation 后放行。
 
 receipt 固定记录 source commit、model revision、config hash、seed、输入 RGBA hash、最终 GLB hash、debug flags、运行时和完整 mesh audit。随后必须运行 `scripts/capture_object_review.mjs`，从 canonical `object-review` 页面取得 `front/right/back/left/top/bottom` 六个正交 object-local render、3x2 contact sheet 及逐文件 hash receipt。旧 wrapper 的水平 orbit 只能作动画预览，不能替代 top/bottom 与正交侧面证据。

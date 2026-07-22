@@ -594,6 +594,34 @@ def promote_trellis2_unified_pbr_glb_completion(
     return completed
 
 
+class ObjectCompletionReport(StrictModel):
+    schema_version: Literal["1.0"] = "1.0"
+    kind: Literal["video2world.object_completion_report"] = "video2world.object_completion_report"
+    object_id: str = Field(pattern=r"^[A-Za-z0-9_.-]+$")
+    created_at: datetime
+    status: Literal["accepted"] = "accepted"
+    trellis2_receipt: dict[str, Any]
+    geometry_review: GeometryReview
+    completed_asset: CompletedObjectAsset
+
+    @model_validator(mode="after")
+    def bind_receipts_to_completed_asset(self) -> ObjectCompletionReport:
+        if self.created_at.tzinfo is None or self.created_at.utcoffset() is None:
+            raise ValueError("created_at must include timezone information")
+        if self.completed_asset.unified_pbr_glb is None:
+            raise ValueError("object completion report requires a unified PBR GLB asset")
+        promoted = promote_trellis2_unified_pbr_glb_completion(
+            object_id=self.object_id,
+            trellis2_receipt=self.trellis2_receipt,
+            geometry_review=self.geometry_review,
+            completion_report_uri=self.completed_asset.completion_report_uri,
+            asset_uri=self.completed_asset.unified_pbr_glb.uri,
+        )
+        if promoted.model_dump(mode="json") != self.completed_asset.model_dump(mode="json"):
+            raise ValueError("completed_asset does not match TRELLIS2 receipt and GeometryReview")
+        return self
+
+
 class CompletionAttempt(StrictModel):
     attempt: int = Field(ge=1)
     seed: int = Field(ge=0)

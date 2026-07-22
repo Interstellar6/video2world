@@ -15,6 +15,7 @@ from video2world.completion import (
     InventoryFrame,
     LayeredCompletionPlan,
     ObjectCompletionHistory,
+    ObjectCompletionReport,
     OcclusionEdge,
     OcclusionGraph,
     SceneAssetObservation,
@@ -751,6 +752,41 @@ def test_trellis2_completion_promotion_rejects_review_for_different_asset() -> N
             geometry_review=_accepted_geometry_review(sha256="c" * 64),
             completion_report_uri="artifact://pillow-front/object-completion-report.json",
         )
+
+
+def _object_completion_report_payload() -> dict[str, object]:
+    completed = promote_trellis2_unified_pbr_glb_completion(
+        object_id="pillow-front",
+        trellis2_receipt=_trellis2_receipt_payload(),
+        geometry_review=_accepted_geometry_review(),
+        completion_report_uri="artifact://pillow-front/object-completion-report.json",
+        asset_uri="artifact://pillow-front/asset_pbr.glb",
+    )
+    return {
+        "kind": "video2world.object_completion_report",
+        "object_id": "pillow-front",
+        "created_at": "2026-07-17T00:00:00Z",
+        "status": "accepted",
+        "trellis2_receipt": _trellis2_receipt_payload(),
+        "geometry_review": _accepted_geometry_review().model_dump(mode="json"),
+        "completed_asset": completed.model_dump(mode="json"),
+    }
+
+
+def test_object_completion_report_binds_trellis2_receipt_review_and_asset() -> None:
+    report = ObjectCompletionReport.model_validate(_object_completion_report_payload())
+
+    assert report.object_id == "pillow-front"
+    assert report.completed_asset.unified_pbr_glb is not None
+    assert report.completed_asset.unified_pbr_glb.status == "validated"
+
+
+def test_object_completion_report_rejects_asset_that_was_not_promoted_from_review() -> None:
+    payload = _object_completion_report_payload()
+    payload["completed_asset"]["unified_pbr_glb"]["sha256"] = "b" * 64
+
+    with pytest.raises(ValidationError, match="completed_asset does not match"):
+        ObjectCompletionReport.model_validate(payload)
 
 
 def test_completion_history_is_bounded_and_stops_after_accept() -> None:

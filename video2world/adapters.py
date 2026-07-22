@@ -27,6 +27,7 @@ JSON_OUTPUT_ROLES = {
     "object_clouds_manifest",
     "object_facts",
     "object_assets_manifest",
+    "object_completion_report",
     "aligned_objects_manifest",
     "collision_manifest",
     "layered_completion_plan",
@@ -66,6 +67,7 @@ SEMANTIC_JSON_ROLES = {
     "layered_completion_plan",
     "layered_completion_report",
     "completed_object_assets_manifest",
+    "object_completion_report",
     "clean_plate_manifest",
     "provider_receipt",
 }
@@ -502,6 +504,10 @@ def _validate_semantic_json(value: dict[str, Any] | list[Any], path: Path, role:
             from video2world.completion import CompletedObjectAssetsManifest
 
             CompletedObjectAssetsManifest.model_validate(value)
+        elif role == "object_completion_report":
+            from video2world.completion import ObjectCompletionReport
+
+            ObjectCompletionReport.model_validate(value)
         elif role == "clean_plate_manifest":
             _require_json_collection(
                 value,
