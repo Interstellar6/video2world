@@ -150,6 +150,14 @@ def test_load_pillow_surfaces_scene_fit_rejection_context(tmp_path: Path) -> Non
             "next_action": {
                 "action": "rerun_scene_fit",
                 "blocker": "source-camera silhouette coverage is too low",
+                "blocking_gate_groups": ["scene_fit"],
+                "failed_gates": ["source_camera_iou"],
+                "failed_frame_ids": ["000064"],
+                "first_failed_frame_id": "000064",
+                "not_evaluable_pair_ids": ["0016_to_0017"],
+                "not_evaluable_triplet_center_frame_ids": ["000064"],
+                "no_support_frame_ids": ["000001"],
+                "unresolved_unobserved_pixels": 24,
             },
         },
     )
@@ -171,6 +179,14 @@ def test_load_pillow_surfaces_scene_fit_rejection_context(tmp_path: Path) -> Non
     assert "failed_acceptance_gates=source_camera_iou" in message
     assert "promotion_blockers=source_camera_iou" in message
     assert "next_action=rerun_scene_fit" in message
+    assert "blocking_gate_groups=scene_fit" in message
+    assert "failed_gates=source_camera_iou" in message
+    assert "failed_frame_ids=000064" in message
+    assert "first_failed_frame_id=000064" in message
+    assert "not_evaluable_pair_ids=0016_to_0017" in message
+    assert "not_evaluable_triplet_center_frame_ids=000064" in message
+    assert "no_support_frame_ids=000001" in message
+    assert "unresolved_unobserved_pixels=24" in message
     assert str(report_path) in message
 
 
