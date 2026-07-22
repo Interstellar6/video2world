@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
@@ -26,6 +27,7 @@ BLOCKING_TRUE_METRICS = {
 }
 
 REQUIRED_VISUAL_VIEWS = ("front", "right", "back", "left", "top", "bottom")
+SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 
 def load_world_manifest(path: str | Path) -> WorldManifest:
@@ -211,6 +213,19 @@ def _validate_unified_gate_report_manifest_bindings(
             raise ArtifactError(
                 "visual gate report has empty six-view evidence: " + ", ".join(empty_views)
             )
+        for view in REQUIRED_VISUAL_VIEWS:
+            evidence = report_views[view]
+            assert isinstance(evidence, dict)
+            uri = evidence.get("uri")
+            if not isinstance(uri, str) or not uri.strip():
+                raise ArtifactError(
+                    f"visual gate report {view!r} evidence requires non-empty uri"
+                )
+            sha256 = evidence.get("sha256")
+            if not isinstance(sha256, str) or not SHA256_RE.fullmatch(sha256):
+                raise ArtifactError(
+                    f"visual gate report {view!r} evidence requires lowercase SHA-256"
+                )
 
 
 def _validate_passed_gate_metrics(gate_name: str, metrics: dict[str, object]) -> None:

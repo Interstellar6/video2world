@@ -538,6 +538,9 @@ def test_manifest_rejects_passed_gate_blocking_metrics(
     [
         ("missing_top", "missing required six-view evidence"),
         ("empty_back", "empty six-view evidence"),
+        ("missing_front_uri", "front' evidence requires non-empty uri"),
+        ("missing_right_sha256", "right' evidence requires lowercase SHA-256"),
+        ("invalid_left_sha256", "left' evidence requires lowercase SHA-256"),
     ],
 )
 def test_manifest_rejects_incomplete_visual_six_view_evidence(
@@ -573,6 +576,18 @@ def test_manifest_rejects_incomplete_visual_six_view_evidence(
                 del views["top"]
             if view_mutation == "empty_back":
                 views["back"] = {}
+            if view_mutation == "missing_front_uri":
+                view_evidence = views["front"]
+                assert isinstance(view_evidence, dict)
+                del view_evidence["uri"]
+            if view_mutation == "missing_right_sha256":
+                view_evidence = views["right"]
+                assert isinstance(view_evidence, dict)
+                del view_evidence["sha256"]
+            if view_mutation == "invalid_left_sha256":
+                view_evidence = views["left"]
+                assert isinstance(view_evidence, dict)
+                view_evidence["sha256"] = "A" * 64
         report_path.write_text(json.dumps(report_payload, sort_keys=True) + "\n")
         report_digest = digest_path(report_path)
         object_payload["quality_gates"][gate_name].update(
