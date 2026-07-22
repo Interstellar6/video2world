@@ -71,6 +71,58 @@ def test_structure_uses_support_geometry_and_records_generated_residual() -> Non
     assert any("no observed donor" in note for note in route.notes)
 
 
+def test_clean_plate_no_support_blocker_routes_recovery_before_deeper_rounds() -> None:
+    route = route_completion_backend(
+        evidence(
+            category="pillow",
+            clean_plate_next_action={
+                "action": "add_observed_donor_or_switch_to_constrained_generation_for_residual",
+                "blocker": "no_guard_stable_measured_donor_support",
+                "failed_frame_ids": ["000064"],
+                "first_failed_frame_id": "000064",
+                "no_support_frame_ids": ["000064"],
+                "unresolved_unobserved_pixels": 23065,
+                "promotion_approved": False,
+            },
+        )
+    )
+
+    assert route.selected_backend == "deformable_category_prior"
+    assert [item.stage for item in route.recovery_actions] == [
+        "donor_support",
+        "boundary_qa",
+        "candidate_generation",
+    ]
+    donor = route.recovery_actions[0]
+    assert donor.action == "add_observed_donor_or_switch_to_constrained_generation_for_residual"
+    assert donor.frame_ids == ["000064"]
+    assert donor.allow_deeper_rounds is False
+    assert all(item.allow_deeper_rounds is False for item in route.recovery_actions)
+    assert any("deeper occlusion rounds must wait" in note for note in route.notes)
+
+
+def test_clean_plate_temporal_not_evaluable_routes_evidence_repair() -> None:
+    route = route_completion_backend(
+        evidence(
+            category="pillow",
+            clean_plate_next_action={
+                "action": "repair_temporal_evidence_before_retesting",
+                "blocker": "temporal_qa_not_evaluable",
+                "not_evaluable_pair_ids": ["0016_to_0017"],
+                "not_evaluable_triplet_center_frame_ids": ["000064"],
+                "promotion_approved": False,
+            },
+        )
+    )
+
+    assert len(route.recovery_actions) == 1
+    recovery = route.recovery_actions[0]
+    assert recovery.stage == "temporal_qa"
+    assert recovery.action == "repair_temporal_evidence_before_retesting"
+    assert recovery.pair_ids == ["0016_to_0017"]
+    assert recovery.triplet_center_frame_ids == ["000064"]
+
+
 def test_multi_depth_fixture_uses_one_logical_component_assembly() -> None:
     route = route_completion_backend(
         evidence(
@@ -138,4 +190,5 @@ def test_completion_route_cli_writes_auditable_route(tmp_path: Path) -> None:
     assert main(["completion-route", str(source), "--output", str(output)]) == 0
     payload = json.loads(output.read_text(encoding="utf-8"))
     assert payload["selected_backend"] == "deformable_category_prior"
+    assert payload["recovery_actions"] == []
     assert len(payload["route_sha256"]) == 64

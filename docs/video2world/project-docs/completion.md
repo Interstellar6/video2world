@@ -85,6 +85,8 @@ Qwen scene audit 只负责类别、可见数量、可见颜色/形状/材质和�
 
 只要 `persistent_occlusion_fraction > 0`，背景残余策略就是 `multi_view_donor_then_constrained_generation`；比例达到 `0.80` 以上时 receipt 还必须显式提醒“多数隐藏像素没有 observed donor”。这不会自动批准生成，只是规定 donor 与 generated residual 的顺序。
 
+如果上一轮 clean plate QA 或 materializer 已经产生 `next_action`，routing evidence 可以携带 `clean_plate_next_action`。输出的 `recovery_actions` 会把 no-support donor、temporal not-evaluable、boundary frame failure 与 unresolved residual 拆成有优先级的恢复动作，并且每一项都固定 `allow_deeper_rounds=false`。这保证 R1 在 frame `000064` 这类 strict boundary guard 失败时，R2-R4 不会被误启动；调度器必须先修 donor support、temporal evidence 或 residual generation，再重新审核。
+
 ## 独立对象默认交付：一个 PBR GLB
 
 独立对象采用 mesh-first 合同。只要 PBR GLB 的整体形状、主色类别、可见面外观和场景放置可接受，它本身就同时承担三种责任：Three.js PBR 可见表面、select/drag/spin 的逻辑主体，以及机器人 MeshBVH 接触表面。对象 Gaussian、对象 point cloud、单独 `renderAsset` 和单独 collider proxy 都不是必需产物；对象点云仍可作为扫描 evidence，场景整体仍保留 PGSR 3DGS 与 TSDF，但不要求把每个生成对象再复制成 Gaussian 视觉代理。
