@@ -1,0 +1,177 @@
+{
+  "blocking_findings": [
+    {
+      "gate": "visual_quality",
+      "observed": "pending_human_or_vlm_review",
+      "severity": "blocking"
+    }
+  ],
+  "candidate_report": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/04-planar_texture_candidate-footprint-detail-v1/planar_texture_report.json",
+  "candidate_report_sha256": "90b17bc75f73b0b499f013a1e125a8e18fe5cc86529c97150ef7c79e7d4f0ccc",
+  "decision": "rejected",
+  "full_resolution_review": [
+    {
+      "blocking_findings": [],
+      "boundary_color_p95_abs_rgb_delta": 35.0,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 37.05000000000003,
+      "collar_texture_gradient_mean": 56.66676330566406,
+      "completed_frame_sha256": "8f46e39745343fe0c97ec0abf13e3d9e2ba8c338eb1ca5af6affedaf99e2db0b",
+      "decision": "rejected",
+      "frame_id": "000064",
+      "synthetic_mask_sha256": "2fbece0752de8195356da83812467be4bf0200661d6ba9c9d752075456f3930d",
+      "synthetic_texture_energy_ratio": 0.7811039649023958,
+      "synthetic_texture_gradient_mean": 44.26263427734375,
+      "synthetic_texture_orientation_anisotropy": 1.1924317876259976,
+      "synthetic_texture_sobel_x_mean": 27.509716033935547,
+      "synthetic_texture_sobel_y_mean": 23.070262908935547,
+      "texture_collar_pixels": 20874,
+      "texture_core_pixels": 50275
+    },
+    {
+      "blocking_findings": [],
+      "boundary_color_p95_abs_rgb_delta": 37.84999999999999,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 39.0,
+      "collar_texture_gradient_mean": 56.09933090209961,
+      "completed_frame_sha256": "5270e718a9d2f560f62eb76aec7745280767077c3cc72b071470849ebf3907a5",
+      "decision": "rejected",
+      "frame_id": "000067",
+      "synthetic_mask_sha256": "94ba27728473a5d735c4b72506b795a2899823b43fa330223feb13003e8df5b2",
+      "synthetic_texture_energy_ratio": 0.8236202877195191,
+      "synthetic_texture_gradient_mean": 46.20454788208008,
+      "synthetic_texture_orientation_anisotropy": 1.3649025474578054,
+      "synthetic_texture_sobel_x_mean": 30.282180786132812,
+      "synthetic_texture_sobel_y_mean": 22.186330795288086,
+      "texture_collar_pixels": 20569,
+      "texture_core_pixels": 48033
+    },
+    {
+      "blocking_findings": [],
+      "boundary_color_p95_abs_rgb_delta": 37.0,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 39.0,
+      "collar_texture_gradient_mean": 53.70406723022461,
+      "completed_frame_sha256": "66795d2c604c2b3e996997d2bcdb710246f77c7cbc133c6c00168e3e5e7ccb46",
+      "decision": "rejected",
+      "frame_id": "000072",
+      "synthetic_mask_sha256": "6e0b4b99d1c0a7d9632e20a8be9b869962e1e132debfb264ee5a5f39d3369545",
+      "synthetic_texture_energy_ratio": 0.6870422004899923,
+      "synthetic_texture_gradient_mean": 36.8969612121582,
+      "synthetic_texture_orientation_anisotropy": 1.2220005329847945,
+      "synthetic_texture_sobel_x_mean": 23.49791717529297,
+      "synthetic_texture_sobel_y_mean": 19.229055404663086,
+      "texture_collar_pixels": 20449,
+      "texture_core_pixels": 44107
+    }
+  ],
+  "gates": {
+    "full_resolution_boundary_color_continuity": {
+      "observed_maximum": 37.84999999999999,
+      "passed": true,
+      "threshold_p95_abs_rgb_delta": 48.0
+    },
+    "full_resolution_boundary_low_frequency_gradient_continuity": {
+      "observed_maximum": 39.0,
+      "passed": true,
+      "threshold_p95_abs_rgb_delta": 64.0
+    },
+    "synthetic_region_texture_energy_ratio": {
+      "collar_width_pixels": 20,
+      "core_erosion_pixels": 3,
+      "observed_minimum": 0.6870422004899923,
+      "passed": true,
+      "threshold_minimum_ratio": 0.45
+    },
+    "synthetic_texture_orientation_anisotropy": {
+      "core_erosion_pixels": 3,
+      "observed_maximum": 1.3649025474578054,
+      "passed": true,
+      "threshold_maximum": 2.0
+    },
+    "visual_quality": "pending_human_or_vlm_review_after_metric_pass"
+  },
+  "kind": "video2world.planar_texture_visual_review",
+  "limitations": [
+    "This automated review only evaluates bound full-resolution boundary and synthetic texture-energy metrics.",
+    "A future human or VLM review must still inspect photorealism and semantic plausibility."
+  ],
+  "next_action": "run_bound_human_or_vlm_visual_review_before_acceptance; do not promote until photorealism, semantic plausibility, and wall-floor boundary quality are accepted",
+  "review_authority": {
+    "kind": "automated_metric_review",
+    "reviewed_at": "2026-07-22T08:39:14.463788+00:00",
+    "reviewer_id": "codex-orientation-qa",
+    "scope": "round04_clean_plate_texture_repair_triage"
+  },
+  "schema_version": 1,
+  "status": "completed",
+  "worst_frame_records": [
+    {
+      "boundary_color_p95_abs_rgb_delta": 39.0,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 43.11666666666664,
+      "frame_id": "000069",
+      "interpolated_pixels": 33851,
+      "synthetic_pixels": 49192
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 38.666666666666664,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 39.666666666666664,
+      "frame_id": "000052",
+      "interpolated_pixels": 30456,
+      "synthetic_pixels": 44794
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 38.383333333333326,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 39.666666666666664,
+      "frame_id": "000051",
+      "interpolated_pixels": 29716,
+      "synthetic_pixels": 44001
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 37.84999999999999,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 39.0,
+      "frame_id": "000067",
+      "interpolated_pixels": 35568,
+      "synthetic_pixels": 50993
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 37.44999999999997,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 40.333333333333336,
+      "frame_id": "000070",
+      "interpolated_pixels": 33114,
+      "synthetic_pixels": 48470
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 37.333333333333336,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 42.2833333333333,
+      "frame_id": "000053",
+      "interpolated_pixels": 31266,
+      "synthetic_pixels": 45753
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 37.333333333333336,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 39.0,
+      "frame_id": "000071",
+      "interpolated_pixels": 32296,
+      "synthetic_pixels": 47746
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 37.0,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 39.666666666666664,
+      "frame_id": "000068",
+      "interpolated_pixels": 34807,
+      "synthetic_pixels": 50107
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 37.0,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 39.0,
+      "frame_id": "000072",
+      "interpolated_pixels": 31534,
+      "synthetic_pixels": 47045
+    },
+    {
+      "boundary_color_p95_abs_rgb_delta": 36.65000000000001,
+      "boundary_normal_gradient_p95_abs_rgb_delta": 38.333333333333336,
+      "frame_id": "000055",
+      "interpolated_pixels": 33136,
+      "synthetic_pixels": 47840
+    }
+  ]
+}

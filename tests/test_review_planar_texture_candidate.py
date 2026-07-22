@@ -30,7 +30,13 @@ def read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def write_rgb_png(path: Path, value: int, *, flat_mask_region: bool = False) -> str:
+def write_rgb_png(
+    path: Path,
+    value: int,
+    *,
+    flat_mask_region: bool = False,
+    striped_mask_region: bool = False,
+) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     row, column = np.indices((48, 64))
     texture = ((row % 7) * 3 + (column % 5) * 4).astype(np.int16)
@@ -44,6 +50,16 @@ def write_rgb_png(path: Path, value: int, *, flat_mask_region: bool = False) -> 
     )
     if flat_mask_region:
         image[12:36, 16:48] = [value, value, value]
+    if striped_mask_region:
+        stripe = value + ((column[12:36, 16:48] % 4) * 28)
+        image[12:36, 16:48] = np.stack(
+            [
+                stripe,
+                stripe // 2,
+                stripe // 3,
+            ],
+            axis=2,
+        )
     Image.fromarray(np.clip(image, 0, 255).astype(np.uint8)).save(path)
     return sha256_file(path)
 
@@ -56,7 +72,12 @@ def write_mask_png(path: Path) -> str:
     return sha256_file(path)
 
 
-def make_candidate(tmp_path: Path, *, flat_mask_region: bool = False) -> Path:
+def make_candidate(
+    tmp_path: Path,
+    *,
+    flat_mask_region: bool = False,
+    striped_mask_region: bool = False,
+) -> Path:
     root = tmp_path / "candidate"
     geometry_path = root / "planar_background_report.json"
     geometry = {
@@ -81,6 +102,7 @@ def make_candidate(tmp_path: Path, *, flat_mask_region: bool = False) -> Path:
             completed_path,
             80 + index,
             flat_mask_region=flat_mask_region,
+            striped_mask_region=striped_mask_region,
         )
         mask_sha = write_mask_png(mask_path)
         color_p95 = 118.0 if index == 0 else 30.0 + index
@@ -268,6 +290,7 @@ def test_metric_review_rejects_flat_synthetic_texture_patch(tmp_path: Path) -> N
     assert receipt["status"] == "texture_candidate_rejected_or_needs_repair"
     assert review["gates"]["full_resolution_boundary_color_continuity"]["passed"] is True
     assert review["gates"]["synthetic_region_texture_energy_ratio"]["passed"] is False
+    assert review["gates"]["synthetic_texture_orientation_anisotropy"]["passed"] is True
     assert review["blocking_findings"] == [
         {
             "gate": "synthetic_region_texture_energy_ratio",
@@ -277,6 +300,44 @@ def test_metric_review_rejects_flat_synthetic_texture_patch(tmp_path: Path) -> N
         }
     ]
     assert "too flat" in review["next_action"]
+
+
+def test_metric_review_rejects_directional_stripe_artifact(tmp_path: Path) -> None:
+    candidate_path = make_candidate(tmp_path, striped_mask_region=True)
+    candidate = read_json(candidate_path)
+    for record in candidate["frame_records"]:
+        record["synthetic_boundary_continuity_full_resolution"][
+            "boundary_color_p95_abs_rgb_delta"
+        ] = 30.0
+        record["synthetic_boundary_continuity_full_resolution"][
+            "boundary_normal_gradient_p95_abs_rgb_delta"
+        ] = 31.0
+    write_json(candidate_path, candidate)
+
+    review, receipt, _ = review_candidate(
+        candidate_report_path=candidate_path,
+        output_dir=tmp_path / "review",
+        reviewer_id="auto-reviewer",
+        reviewed_at=datetime(2026, 7, 22, 12, 0, tzinfo=UTC),
+    )
+
+    assert receipt["status"] == "texture_candidate_rejected_or_needs_repair"
+    assert review["gates"]["full_resolution_boundary_color_continuity"]["passed"] is True
+    assert review["gates"]["synthetic_region_texture_energy_ratio"]["passed"] is True
+    assert review["gates"]["synthetic_texture_orientation_anisotropy"]["passed"] is False
+    observed_maximum = review["gates"]["synthetic_texture_orientation_anisotropy"][
+        "observed_maximum"
+    ]
+    assert observed_maximum > 2.0
+    assert review["blocking_findings"] == [
+        {
+            "gate": "synthetic_texture_orientation_anisotropy",
+            "threshold_maximum": 2.0,
+            "observed_maximum": pytest.approx(observed_maximum),
+            "severity": "blocking",
+        }
+    ]
+    assert "one-axis stripe energy" in review["next_action"]
 
 
 def test_refuses_already_promoted_candidate(tmp_path: Path) -> None:

@@ -31,6 +31,11 @@ DEFAULT_COLLAR_WIDTH_PIXELS = 28
 DEFAULT_INNER_RAMP_PIXELS = 10
 DEFAULT_RESIDUAL_SIGMA_PIXELS = 4.0
 DEFAULT_RESIDUAL_STRENGTH = 1.35
+DEFAULT_DONOR_REGION = "all"
+DONOR_REGION_CHOICES = ("all", "lower", "upper", "left", "right")
+DEFAULT_FILL_MODE = "residual"
+FILL_MODE_CHOICES = ("residual", "normalized_gaussian")
+DEFAULT_LOW_FREQUENCY_FILL_SIGMA_PIXELS = 18.0
 
 
 class TextureDetailRepairError(ValueError):
@@ -116,6 +121,76 @@ def gaussian_blur_rgb(image: np.ndarray, sigma: float) -> np.ndarray:
     return blurred
 
 
+def normalized_gaussian_fill_rgb(
+    image: np.ndarray,
+    fill_mask: np.ndarray,
+    *,
+    sigma: float,
+    known_mask: np.ndarray | None = None,
+) -> np.ndarray:
+    require(image.ndim == 3 and image.shape[2] == 3, "image must be RGB")
+    require(fill_mask.shape == image.shape[:2], "fill mask shape mismatch")
+    require(sigma > 0.0, "low-frequency fill sigma must be positive")
+    known = ~fill_mask.astype(bool) if known_mask is None else known_mask.astype(bool)
+    require(known.shape == fill_mask.shape, "known mask shape mismatch")
+    require(np.any(known), "normalized Gaussian fill has no known pixels")
+    known_weight = known.astype(np.float32)
+    blurred_weight = ndimage.gaussian_filter(known_weight, sigma=sigma, mode="nearest")
+    require(
+        bool(np.any(blurred_weight[fill_mask] > 1e-6)),
+        "fill mask has no known pixels in normalized Gaussian support",
+    )
+    filled = image.astype(np.float32).copy()
+    for channel in range(image.shape[2]):
+        weighted = image[:, :, channel].astype(np.float32) * known_weight
+        blurred = ndimage.gaussian_filter(weighted, sigma=sigma, mode="nearest")
+        normalized = blurred / np.maximum(blurred_weight, 1e-6)
+        filled[fill_mask, channel] = normalized[fill_mask]
+    return filled
+
+
+def select_texture_donor_collar(
+    synthetic_mask: np.ndarray,
+    collar: np.ndarray,
+    *,
+    donor_region: str,
+) -> tuple[np.ndarray, dict[str, Any]]:
+    require(donor_region in DONOR_REGION_CHOICES, f"unsupported donor region: {donor_region}")
+    mask = synthetic_mask.astype(bool)
+    require(np.any(mask), "synthetic mask is empty")
+    rows, columns = np.nonzero(mask)
+    top = int(rows.min())
+    bottom = int(rows.max())
+    left = int(columns.min())
+    right = int(columns.max())
+    if donor_region == "all":
+        donor = collar
+    elif donor_region == "lower":
+        row_index = np.indices(mask.shape)[0]
+        donor = collar & (row_index > bottom)
+    elif donor_region == "upper":
+        row_index = np.indices(mask.shape)[0]
+        donor = collar & (row_index < top)
+    elif donor_region == "left":
+        column_index = np.indices(mask.shape)[1]
+        donor = collar & (column_index < left)
+    else:
+        column_index = np.indices(mask.shape)[1]
+        donor = collar & (column_index > right)
+    if not np.any(donor):
+        donor = collar
+        fallback_to_all = True
+    else:
+        fallback_to_all = False
+    return donor, {
+        "donor_region": donor_region,
+        "fallback_to_all_collar": fallback_to_all,
+        "mask_bounds_inclusive": [left, top, right, bottom],
+        "available_collar_pixels": int(collar.sum()),
+        "selected_donor_collar_pixels": int(donor.sum()),
+    }
+
+
 def repair_texture_detail(
     image: np.ndarray,
     synthetic_mask: np.ndarray,
@@ -124,6 +199,9 @@ def repair_texture_detail(
     inner_ramp_pixels: int,
     residual_sigma_pixels: float,
     residual_strength: float,
+    donor_region: str = DEFAULT_DONOR_REGION,
+    fill_mode: str = DEFAULT_FILL_MODE,
+    low_frequency_fill_sigma_pixels: float = DEFAULT_LOW_FREQUENCY_FILL_SIGMA_PIXELS,
 ) -> tuple[np.ndarray, dict[str, Any]]:
     require(image.ndim == 3 and image.shape[2] == 3, "image must be RGB")
     require(synthetic_mask.shape == image.shape[:2], "synthetic mask shape mismatch")
@@ -131,17 +209,27 @@ def repair_texture_detail(
     require(inner_ramp_pixels >= 0, "inner ramp must be non-negative")
     require(residual_sigma_pixels > 0.0, "residual sigma must be positive")
     require(residual_strength >= 0.0, "residual strength must be non-negative")
+    require(fill_mode in FILL_MODE_CHOICES, f"unsupported fill mode: {fill_mode}")
+    require(
+        low_frequency_fill_sigma_pixels > 0.0,
+        "low-frequency fill sigma must be positive",
+    )
 
     mask = synthetic_mask.astype(bool)
     collar = ndimage.binary_dilation(mask, iterations=collar_width_pixels) & ~mask
     require(np.any(mask), "synthetic mask is empty")
     require(np.any(collar), "synthetic mask lacks a texture donor collar")
+    donor_collar, donor_details = select_texture_donor_collar(
+        mask,
+        collar,
+        donor_region=donor_region,
+    )
 
     image_float = image.astype(np.float32)
     low_frequency = gaussian_blur_rgb(image_float, residual_sigma_pixels)
     residual = image_float - low_frequency
     _, nearest_indices = ndimage.distance_transform_edt(
-        ~collar,
+        ~donor_collar,
         return_distances=True,
         return_indices=True,
     )
@@ -155,9 +243,20 @@ def repair_texture_detail(
         ramp = ramp * ramp * (3.0 - 2.0 * ramp)
     else:
         ramp = np.ones(mask.shape, dtype=np.float32)
+    if fill_mode == "normalized_gaussian":
+        base = normalized_gaussian_fill_rgb(
+            image_float,
+            mask,
+            sigma=low_frequency_fill_sigma_pixels,
+            known_mask=donor_collar,
+        )
+    else:
+        base = image_float
+    if fill_mode != "residual":
+        base = image_float + (base - image_float) * ramp[:, :, None]
     repaired = image_float.copy()
     repaired[mask] = (
-        image_float[mask]
+        base[mask]
         + transferred[mask] * ramp[mask, None] * float(residual_strength)
     )
     repaired = np.clip(np.rint(repaired), 0, 255).astype(np.uint8)
@@ -169,8 +268,11 @@ def repair_texture_detail(
         "inner_ramp_pixels": inner_ramp_pixels,
         "residual_sigma_pixels": residual_sigma_pixels,
         "residual_strength": residual_strength,
+        "fill_mode": fill_mode,
+        "low_frequency_fill_sigma_pixels": low_frequency_fill_sigma_pixels,
+        **donor_details,
         "synthetic_pixels": int(mask.sum()),
-        "texture_donor_collar_pixels": int(collar.sum()),
+        "texture_donor_collar_pixels": int(donor_collar.sum()),
         "outside_synthetic_mask_rgb_exact": outside_exact,
         "claims_measured_donor": False,
     }
@@ -267,6 +369,9 @@ def build_detail_repair_candidate(args: argparse.Namespace) -> dict[str, Any]:
         "inner_ramp_pixels": args.texture_inner_ramp_pixels,
         "residual_sigma_pixels": args.texture_residual_sigma_pixels,
         "residual_strength": args.texture_residual_strength,
+        "donor_region": args.texture_donor_region,
+        "fill_mode": args.texture_fill_mode,
+        "low_frequency_fill_sigma_pixels": args.texture_low_frequency_fill_sigma_pixels,
         "claims_measured_donor": False,
         "outside_synthetic_mask_rgb_exact": True,
         "created_at": datetime.now(UTC).isoformat(),
@@ -295,6 +400,9 @@ def build_detail_repair_candidate(args: argparse.Namespace) -> dict[str, Any]:
             inner_ramp_pixels=args.texture_inner_ramp_pixels,
             residual_sigma_pixels=args.texture_residual_sigma_pixels,
             residual_strength=args.texture_residual_strength,
+            donor_region=args.texture_donor_region,
+            fill_mode=args.texture_fill_mode,
+            low_frequency_fill_sigma_pixels=args.texture_low_frequency_fill_sigma_pixels,
         )
         output_frame = frames_dir / f"{index:04d}.png"
         Image.fromarray(repaired_image).save(output_frame)
@@ -405,6 +513,21 @@ def build_parser() -> argparse.ArgumentParser:
         "--texture-residual-strength",
         type=float,
         default=DEFAULT_RESIDUAL_STRENGTH,
+    )
+    parser.add_argument(
+        "--texture-donor-region",
+        choices=DONOR_REGION_CHOICES,
+        default=DEFAULT_DONOR_REGION,
+    )
+    parser.add_argument(
+        "--texture-fill-mode",
+        choices=FILL_MODE_CHOICES,
+        default=DEFAULT_FILL_MODE,
+    )
+    parser.add_argument(
+        "--texture-low-frequency-fill-sigma-pixels",
+        type=float,
+        default=DEFAULT_LOW_FREQUENCY_FILL_SIGMA_PIXELS,
     )
     parser.add_argument("--review-contact-sheet-samples", type=int, default=6)
     return parser

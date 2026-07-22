@@ -11,6 +11,7 @@ from scripts.repair_planar_texture_detail import (
     OUTPUT_REPORT_NAME,
     build_detail_repair_candidate,
     repair_texture_detail,
+    select_texture_donor_collar,
     sha256_file,
 )
 
@@ -41,12 +42,59 @@ def test_repair_texture_detail_preserves_outside_mask() -> None:
         inner_ramp_pixels=2,
         residual_sigma_pixels=2.0,
         residual_strength=1.2,
+        donor_region="all",
     )
 
     assert details["outside_synthetic_mask_rgb_exact"] is True
+    assert details["fill_mode"] == "residual"
     assert np.array_equal(repaired[~mask], image[~mask])
     assert not np.array_equal(repaired[mask], image[mask])
     assert details["claims_measured_donor"] is False
+
+
+def test_repair_texture_detail_can_use_normalized_gaussian_fill() -> None:
+    row, column = np.indices((48, 64))
+    image = np.zeros((48, 64, 3), dtype=np.uint8)
+    image[:, :, 0] = (90 + column).astype(np.uint8)
+    image[:, :, 1] = (80 + row).astype(np.uint8)
+    image[:, :, 2] = 70
+    mask = np.zeros((48, 64), dtype=bool)
+    mask[16:32, 20:44] = True
+    image[mask] = [180, 20, 20]
+
+    repaired, details = repair_texture_detail(
+        image,
+        mask,
+        collar_width_pixels=6,
+        inner_ramp_pixels=2,
+        residual_sigma_pixels=2.0,
+        residual_strength=0.5,
+        donor_region="all",
+        fill_mode="normalized_gaussian",
+        low_frequency_fill_sigma_pixels=8.0,
+    )
+
+    assert details["fill_mode"] == "normalized_gaussian"
+    assert details["outside_synthetic_mask_rgb_exact"] is True
+    assert np.array_equal(repaired[~mask], image[~mask])
+    assert repaired[mask, 0].mean() < image[mask, 0].mean()
+
+
+def test_select_texture_donor_collar_can_use_lower_region_only() -> None:
+    mask = np.zeros((12, 14), dtype=bool)
+    mask[4:8, 5:9] = True
+    collar = np.zeros_like(mask)
+    collar[2:10, 3:11] = True
+    collar &= ~mask
+
+    donor, details = select_texture_donor_collar(mask, collar, donor_region="lower")
+
+    row_index = np.indices(mask.shape)[0]
+    assert np.any(donor)
+    assert np.all(row_index[donor] > 7)
+    assert details["donor_region"] == "lower"
+    assert details["fallback_to_all_collar"] is False
+    assert details["selected_donor_collar_pixels"] == int(donor.sum())
 
 
 def test_build_detail_repair_candidate_rewrites_bound_frames(tmp_path: Path) -> None:
@@ -115,6 +163,9 @@ def test_build_detail_repair_candidate_rewrites_bound_frames(tmp_path: Path) -> 
             texture_inner_ramp_pixels=2,
             texture_residual_sigma_pixels=2.0,
             texture_residual_strength=1.2,
+            texture_donor_region="lower",
+            texture_fill_mode="normalized_gaussian",
+            texture_low_frequency_fill_sigma_pixels=8.0,
             review_contact_sheet_samples=3,
         )
     )
@@ -125,6 +176,12 @@ def test_build_detail_repair_candidate_rewrites_bound_frames(tmp_path: Path) -> 
     assert report["eligible_as_round04_clean_plate"] is False
     assert report["gates"]["texture_detail_repair_outside_synthetic_mask_rgb_exact"] is True
     assert report["gates"]["synthetic_texture_detail_claims_measured_donor"] is False
+    assert report["texture_detail_repair"]["donor_region"] == "lower"
+    assert report["texture_detail_repair"]["fill_mode"] == "normalized_gaussian"
+    assert report["frame_records"][0]["texture_detail_repair"]["donor_region"] == "lower"
+    assert report["frame_records"][0]["texture_detail_repair"]["fill_mode"] == (
+        "normalized_gaussian"
+    )
     assert report["full_resolution_review"][0]["completed_frame_sha256"] != (
         full_resolution_review[0]["completed_frame_sha256"]
     )

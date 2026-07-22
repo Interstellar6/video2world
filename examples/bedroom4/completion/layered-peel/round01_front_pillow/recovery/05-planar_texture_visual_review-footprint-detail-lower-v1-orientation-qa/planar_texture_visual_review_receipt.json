@@ -1,0 +1,29 @@
+{
+  "blocking_findings": [
+    {
+      "gate": "synthetic_texture_orientation_anisotropy",
+      "observed_maximum": 3.674354792319239,
+      "severity": "blocking",
+      "threshold_maximum": 2.0
+    }
+  ],
+  "candidate_report": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/04-planar_texture_candidate-footprint-detail-lower-v1/planar_texture_report.json",
+    "sha256": "e088f1b33eafe4cadfa243b6dd10ee566fdc34eb1d4683ce63a86bd8522d095e",
+    "status": "texture_candidate_review_pending"
+  },
+  "created_at": "2026-07-22T08:38:40.834425+00:00",
+  "decision": "rejected",
+  "eligible_as_round04_clean_plate": false,
+  "kind": "video2world.planar_texture_visual_review_receipt",
+  "next_action": "repair_directional_texture_artifact_before_acceptance; synthetic texture has excessive one-axis stripe energy",
+  "promotion_approved": false,
+  "reviewed_full_resolution_frame_count": 3,
+  "schema_version": 1,
+  "status": "texture_candidate_rejected_or_needs_repair",
+  "visual_review": {
+    "path": "planar_texture_visual_review.json",
+    "sha256": "521e57530bc5b7b0d3c5e77e3c3fe34f18b3c0246d38613ae64c1918f40f0187",
+    "size_bytes": 7068
+  }
+}

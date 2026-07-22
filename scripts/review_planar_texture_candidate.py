@@ -30,6 +30,7 @@ OUTPUT_RECEIPT_HASH_NAME = "planar_texture_visual_review_receipt.sha256"
 DEFAULT_MAX_BOUNDARY_P95 = 48.0
 DEFAULT_MAX_GRADIENT_P95 = 64.0
 DEFAULT_MIN_SYNTHETIC_TEXTURE_ENERGY_RATIO = 0.45
+DEFAULT_MAX_SYNTHETIC_TEXTURE_ORIENTATION_ANISOTROPY = 2.0
 DEFAULT_TEXTURE_CORE_EROSION_PIXELS = 3
 DEFAULT_TEXTURE_COLLAR_WIDTH_PIXELS = 20
 
@@ -50,6 +51,9 @@ class BoundFrame:
     collar_texture_gradient_mean: float
     texture_core_pixels: int
     texture_collar_pixels: int
+    texture_orientation_anisotropy: float
+    texture_sobel_x_mean: float
+    texture_sobel_y_mean: float
 
 
 def require(condition: bool, message: str) -> None:
@@ -128,10 +132,9 @@ def synthetic_texture_metrics(
     mask = np.asarray(Image.open(synthetic_mask).convert("L"), dtype=np.uint8) > 0
     require(image.shape[:2] == mask.shape, "completed frame and synthetic mask dimensions differ")
     gray = image.mean(axis=2)
-    gradient = np.hypot(
-        ndimage.sobel(gray, axis=1, mode="nearest"),
-        ndimage.sobel(gray, axis=0, mode="nearest"),
-    )
+    sobel_x = np.abs(ndimage.sobel(gray, axis=1, mode="nearest"))
+    sobel_y = np.abs(ndimage.sobel(gray, axis=0, mode="nearest"))
+    gradient = np.hypot(sobel_x, sobel_y)
     core = mask.copy()
     if core_erosion_pixels:
         core = ndimage.binary_erosion(core, iterations=core_erosion_pixels, border_value=0)
@@ -141,10 +144,20 @@ def synthetic_texture_metrics(
     core_mean = float(gradient[core].mean()) if core_pixels else 0.0
     collar_mean = float(gradient[collar].mean()) if collar_pixels else 0.0
     ratio = core_mean / (collar_mean + 1e-6) if core_pixels and collar_pixels else 0.0
+    sobel_x_mean = float(sobel_x[core].mean()) if core_pixels else 0.0
+    sobel_y_mean = float(sobel_y[core].mean()) if core_pixels else 0.0
+    if not core_pixels or max(sobel_x_mean, sobel_y_mean) <= 1e-6:
+        orientation_anisotropy = 1.0
+    else:
+        xy_ratio = sobel_x_mean / (sobel_y_mean + 1e-6)
+        orientation_anisotropy = max(xy_ratio, 1.0 / max(xy_ratio, 1e-6))
     return {
         "synthetic_texture_gradient_mean": core_mean,
         "collar_texture_gradient_mean": collar_mean,
         "synthetic_texture_energy_ratio": float(ratio),
+        "synthetic_texture_sobel_x_mean": sobel_x_mean,
+        "synthetic_texture_sobel_y_mean": sobel_y_mean,
+        "synthetic_texture_orientation_anisotropy": float(orientation_anisotropy),
         "texture_core_pixels": core_pixels,
         "texture_collar_pixels": collar_pixels,
         "core_erosion_pixels": core_erosion_pixels,
@@ -242,6 +255,11 @@ def bind_review_frames(
                 collar_texture_gradient_mean=texture_metrics["collar_texture_gradient_mean"],
                 texture_core_pixels=texture_metrics["texture_core_pixels"],
                 texture_collar_pixels=texture_metrics["texture_collar_pixels"],
+                texture_orientation_anisotropy=texture_metrics[
+                    "synthetic_texture_orientation_anisotropy"
+                ],
+                texture_sobel_x_mean=texture_metrics["synthetic_texture_sobel_x_mean"],
+                texture_sobel_y_mean=texture_metrics["synthetic_texture_sobel_y_mean"],
             )
         )
     return bound
@@ -285,6 +303,7 @@ def build_review(
     max_boundary_p95: float,
     max_gradient_p95: float,
     min_texture_energy_ratio: float,
+    max_texture_orientation_anisotropy: float,
     texture_core_erosion_pixels: int,
     texture_collar_width_pixels: int,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -298,9 +317,15 @@ def build_review(
     max_observed_boundary = max(frame.boundary_color_p95 for frame in frames)
     max_observed_gradient = max(frame.boundary_gradient_p95 for frame in frames)
     min_observed_texture_ratio = min(frame.texture_energy_ratio for frame in frames)
+    max_observed_orientation_anisotropy = max(
+        frame.texture_orientation_anisotropy for frame in frames
+    )
     boundary_passed = max_observed_boundary <= max_boundary_p95
     gradient_passed = max_observed_gradient <= max_gradient_p95
     texture_passed = min_observed_texture_ratio >= min_texture_energy_ratio
+    orientation_passed = (
+        max_observed_orientation_anisotropy <= max_texture_orientation_anisotropy
+    )
     decision = REJECTED_DECISION
     blocking_findings: list[dict[str, Any]] = []
     if not boundary_passed:
@@ -318,6 +343,15 @@ def build_review(
                 "gate": "synthetic_region_texture_energy_ratio",
                 "threshold_minimum_ratio": min_texture_energy_ratio,
                 "observed_minimum": min_observed_texture_ratio,
+                "severity": "blocking",
+            }
+        )
+    if not orientation_passed:
+        blocking_findings.append(
+            {
+                "gate": "synthetic_texture_orientation_anisotropy",
+                "threshold_maximum": max_texture_orientation_anisotropy,
+                "observed_maximum": max_observed_orientation_anisotropy,
                 "severity": "blocking",
             }
         )
@@ -351,6 +385,11 @@ def build_review(
                 "repair_synthetic_texture_detail_before_acceptance; boundary metrics passed "
                 "but synthetic texture is too flat relative to the local collar"
             )
+        elif not orientation_passed and boundary_passed and gradient_passed:
+            next_action = (
+                "repair_directional_texture_artifact_before_acceptance; synthetic texture "
+                "has excessive one-axis stripe energy"
+            )
         else:
             next_action = (
                 "repair_texture_candidate_before_acceptance; suggested first attempt is "
@@ -376,6 +415,11 @@ def build_review(
             "collar_texture_gradient_mean": frame.collar_texture_gradient_mean,
             "texture_core_pixels": frame.texture_core_pixels,
             "texture_collar_pixels": frame.texture_collar_pixels,
+            "synthetic_texture_orientation_anisotropy": (
+                frame.texture_orientation_anisotropy
+            ),
+            "synthetic_texture_sobel_x_mean": frame.texture_sobel_x_mean,
+            "synthetic_texture_sobel_y_mean": frame.texture_sobel_y_mean,
         }
         for frame in frames
     ]
@@ -410,13 +454,19 @@ def build_review(
                 "core_erosion_pixels": texture_core_erosion_pixels,
                 "collar_width_pixels": texture_collar_width_pixels,
             },
+            "synthetic_texture_orientation_anisotropy": {
+                "threshold_maximum": max_texture_orientation_anisotropy,
+                "observed_maximum": max_observed_orientation_anisotropy,
+                "passed": orientation_passed,
+                "core_erosion_pixels": texture_core_erosion_pixels,
+            },
             "visual_quality": visual_gate,
         },
         "blocking_findings": blocking_findings,
         "limitations": [
             (
                 "This automated review only evaluates bound full-resolution boundary "
-                "and synthetic texture-energy metrics."
+                "and synthetic texture-energy/orientation metrics."
             ),
             (
                 "A future human or VLM review must still inspect photorealism "
@@ -455,6 +505,9 @@ def review_candidate(
     max_boundary_p95: float = DEFAULT_MAX_BOUNDARY_P95,
     max_gradient_p95: float = DEFAULT_MAX_GRADIENT_P95,
     min_texture_energy_ratio: float = DEFAULT_MIN_SYNTHETIC_TEXTURE_ENERGY_RATIO,
+    max_texture_orientation_anisotropy: float = (
+        DEFAULT_MAX_SYNTHETIC_TEXTURE_ORIENTATION_ANISOTROPY
+    ),
     texture_core_erosion_pixels: int = DEFAULT_TEXTURE_CORE_EROSION_PIXELS,
     texture_collar_width_pixels: int = DEFAULT_TEXTURE_COLLAR_WIDTH_PIXELS,
     reviewed_at: datetime | None = None,
@@ -480,6 +533,7 @@ def review_candidate(
         max_boundary_p95=max_boundary_p95,
         max_gradient_p95=max_gradient_p95,
         min_texture_energy_ratio=min_texture_energy_ratio,
+        max_texture_orientation_anisotropy=max_texture_orientation_anisotropy,
         texture_core_erosion_pixels=texture_core_erosion_pixels,
         texture_collar_width_pixels=texture_collar_width_pixels,
     )
@@ -540,6 +594,11 @@ def build_parser() -> argparse.ArgumentParser:
         default=DEFAULT_MIN_SYNTHETIC_TEXTURE_ENERGY_RATIO,
     )
     parser.add_argument(
+        "--maximum-synthetic-texture-orientation-anisotropy",
+        type=float,
+        default=DEFAULT_MAX_SYNTHETIC_TEXTURE_ORIENTATION_ANISOTROPY,
+    )
+    parser.add_argument(
         "--texture-core-erosion-pixels",
         type=int,
         default=DEFAULT_TEXTURE_CORE_EROSION_PIXELS,
@@ -561,6 +620,9 @@ def main() -> int:
         max_boundary_p95=args.maximum_full_resolution_boundary_p95_delta,
         max_gradient_p95=args.maximum_full_resolution_gradient_p95_delta,
         min_texture_energy_ratio=args.minimum_synthetic_texture_energy_ratio,
+        max_texture_orientation_anisotropy=(
+            args.maximum_synthetic_texture_orientation_anisotropy
+        ),
         texture_core_erosion_pixels=args.texture_core_erosion_pixels,
         texture_collar_width_pixels=args.texture_collar_width_pixels,
     )
