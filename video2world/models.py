@@ -573,7 +573,7 @@ class WorldManifest(StrictModel):
             for name in ("file", "semantic", "alignment", "collision", "visual"):
                 gate = getattr(item.quality_gates, name)
                 if gate.report_uri and gate.report_sha256 and gate.report_size_bytes:
-                    yield f"{prefix}.{name}", gate
+                    yield f"{prefix}.{name}", gate, item
 
 
 def world_manifest_json_schema() -> dict[str, Any]:

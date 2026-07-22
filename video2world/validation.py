@@ -42,6 +42,7 @@ def _validate_gate_report_payload(
     gate_status: str,
     object_id: str,
     scoped_id: str,
+    asset_sha256: str | None,
 ) -> None:
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
@@ -72,6 +73,19 @@ def _validate_gate_report_payload(
                 f"gate report {field} {report_object_id!r} does not match manifest object "
                 f"{object_id!r}"
             )
+    if asset_sha256 is not None:
+        for field in (
+            "asset_sha256",
+            "source_asset_sha256",
+            "unified_pbr_glb_sha256",
+            "collision_asset_sha256",
+        ):
+            report_asset_sha256 = payload.get(field)
+            if report_asset_sha256 is not None and report_asset_sha256 != asset_sha256:
+                raise ArtifactError(
+                    f"gate report {field} {report_asset_sha256!r} does not match manifest "
+                    f"unified_pbr_glb asset {asset_sha256!r}"
+                )
 
 
 def _object_identity_from_gate_location(location: str) -> tuple[str, str]:
@@ -122,7 +136,7 @@ def validate_world_manifest(
                     issues.append({"location": location, "error": "size_bytes mismatch"})
             except ArtifactError as exc:
                 issues.append({"location": location, "error": str(exc)})
-        for location, gate in manifest.iter_gate_reports():
+        for location, gate, item in manifest.iter_gate_reports():
             assert gate.report_uri is not None
             assert gate.report_sha256 is not None
             assert gate.report_size_bytes is not None
@@ -154,6 +168,9 @@ def validate_world_manifest(
                     gate_status=gate.status,
                     object_id=object_id,
                     scoped_id=scoped_id,
+                    asset_sha256=(
+                        item.unified_pbr_glb.sha256 if item.unified_pbr_glb is not None else None
+                    ),
                 )
             except ArtifactError as exc:
                 issues.append({"location": location, "error": str(exc)})
