@@ -24,12 +24,12 @@ from scripts.materialize_accepted_clean_plate_next_round import (
     EXPECTED_FRAME_COUNT,
     EXPECTED_TRIPLETS,
     INPUT_KIND,
+    NEXT_ROUND_SOURCE_ACCEPTANCE_SCOPE,
+    NEXT_ROUND_SOURCE_LINEAGE_SCOPE,
     OUTPUT_KIND,
     OUTPUT_RECEIPT_KIND,
     SELECTION_KIND,
     SELECTION_STATUS,
-    NEXT_ROUND_SOURCE_ACCEPTANCE_SCOPE,
-    NEXT_ROUND_SOURCE_LINEAGE_SCOPE,
     TEMPORAL_KIND,
     VISUAL_REVIEW_KIND,
     AcceptedCleanPlateMaterializationError,
@@ -782,6 +782,35 @@ def test_missing_pending_or_rejected_evidence_fails_closed(
 
     with pytest.raises(AcceptedCleanPlateMaterializationError, match=message):
         materialize_accepted_clean_plate_next_round(paths["acceptance"], tmp_path / "output")
+    assert not (tmp_path / "output").exists()
+
+
+def test_boundary_failure_surfaces_next_action(tmp_path: Path) -> None:
+    paths = make_fixture(tmp_path)
+    boundary = json.loads(paths["boundary"].read_text(encoding="utf-8"))
+    boundary["status"] = "technical_failed"
+    boundary["boundary_texture_gate_passed"] = False
+    boundary["promotion_blocker"] = "boundary and local texture gates failed"
+    boundary["next_action"] = {
+        "action": "repair_removal_mask_or_target_matte_before_regeneration",
+        "reason": "The removal core and target matte disagree.",
+        "blocking_gate_groups": ["mask_alignment"],
+        "failed_gates": ["mask_iou_gte", "boundary_distance_p95_lte"],
+        "promotion_approved": False,
+    }
+    write_json(paths["boundary"], boundary)
+    update_acceptance_asset(paths, "boundary_qa_report", paths["boundary"])
+
+    with pytest.raises(AcceptedCleanPlateMaterializationError) as error:
+        materialize_accepted_clean_plate_next_round(paths["acceptance"], tmp_path / "output")
+
+    message = str(error.value)
+    assert "boundary QA did not pass" in message
+    assert "status=technical_failed" in message
+    assert "promotion_blocker=boundary and local texture gates failed" in message
+    assert "repair_removal_mask_or_target_matte_before_regeneration" in message
+    assert "blocking_gate_groups=mask_alignment" in message
+    assert "failed_gates=mask_iou_gte,boundary_distance_p95_lte" in message
     assert not (tmp_path / "output").exists()
 
 

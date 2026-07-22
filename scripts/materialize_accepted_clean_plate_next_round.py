@@ -271,6 +271,54 @@ def require(condition: bool, message: str) -> None:
         raise AcceptedCleanPlateMaterializationError(message)
 
 
+def evidence_failure_summary(report: dict[str, Any]) -> str:
+    details: list[str] = []
+    status = report.get("status")
+    if isinstance(status, str) and status:
+        details.append(f"status={status}")
+    promotion_blocker = report.get("promotion_blocker")
+    if isinstance(promotion_blocker, str) and promotion_blocker:
+        details.append(f"promotion_blocker={promotion_blocker}")
+    next_action = report.get("next_action")
+    if isinstance(next_action, dict):
+        action = next_action.get("action")
+        blocker = next_action.get("blocker")
+        if isinstance(action, str) and action:
+            details.append(f"next_action={action}")
+        if isinstance(blocker, str) and blocker:
+            details.append(f"next_blocker={blocker}")
+        blocking_groups = next_action.get("blocking_gate_groups")
+        if isinstance(blocking_groups, list) and blocking_groups:
+            groups = [group for group in blocking_groups if isinstance(group, str) and group]
+            if groups:
+                details.append(f"blocking_gate_groups={','.join(groups)}")
+        failed_gates = next_action.get("failed_gates")
+        if isinstance(failed_gates, list) and failed_gates:
+            gates = [gate for gate in failed_gates if isinstance(gate, str) and gate]
+            if gates:
+                details.append(f"failed_gates={','.join(gates)}")
+        no_support_frame_ids = next_action.get("no_support_frame_ids")
+        if isinstance(no_support_frame_ids, list) and no_support_frame_ids:
+            frames = [
+                frame_id
+                for frame_id in no_support_frame_ids
+                if isinstance(frame_id, str) and frame_id
+            ]
+            if frames:
+                details.append(f"no_support_frame_ids={','.join(frames)}")
+        unresolved = next_action.get("unresolved_unobserved_pixels")
+        if isinstance(unresolved, int):
+            details.append(f"unresolved_unobserved_pixels={unresolved}")
+    if not details:
+        return ""
+    return " [" + "; ".join(details) + "]"
+
+
+def require_evidence(condition: bool, message: str, report: dict[str, Any]) -> None:
+    if not condition:
+        raise AcceptedCleanPlateMaterializationError(message + evidence_failure_summary(report))
+
+
 def read_json(path: Path) -> dict[str, Any]:
     try:
         value = json.loads(path.read_text(encoding="utf-8"))
@@ -930,8 +978,12 @@ def validate_boundary(asset: Asset, selection: Selection) -> dict[str, Any]:
     report = read_json(asset.path)
     require(report.get("schema_version") == 1, "boundary schema is invalid")
     require(report.get("kind") == BOUNDARY_KIND, "boundary kind is invalid")
-    require(report.get("status") == "technical_passed", "boundary QA did not pass")
-    require(report.get("boundary_texture_gate_passed") is True, "boundary gate did not pass")
+    require_evidence(report.get("status") == "technical_passed", "boundary QA did not pass", report)
+    require_evidence(
+        report.get("boundary_texture_gate_passed") is True,
+        "boundary gate did not pass",
+        report,
+    )
     require(report.get("promotion_approved") is False, "boundary QA exceeded scoped authority")
     require(
         report.get("promotion_scope") == "boundary_and_local_texture_only",
@@ -1043,9 +1095,10 @@ def validate_temporal(
     report = read_json(asset.path)
     require(report.get("schema_version") == 1, "temporal schema is invalid")
     require(report.get("kind") == TEMPORAL_KIND, "temporal kind is invalid")
-    require(
+    require_evidence(
         report.get("status") == "technical_passed_temporal_only",
         "temporal QA did not pass",
+        report,
     )
     require(report.get("review_only") is True, "temporal QA must remain review-only")
     require(report.get("promotion_approved") is False, "temporal QA exceeded scoped authority")
@@ -1880,12 +1933,17 @@ def validate_semantic(
     report = read_json(asset.path)
     require(report.get("schema_version") == 1, "semantic schema is invalid")
     require(report.get("kind") == SEMANTIC_KIND, "semantic kind is invalid")
-    require(
+    require_evidence(
         report.get("status") == "technical_passed_semantic_only",
         "SAM/semantic QA did not pass",
+        report,
     )
     require(report.get("review_only") is True, "SAM/semantic QA must remain review-only")
-    require(report.get("sam_semantic_gate_passed") is True, "SAM/semantic gate did not pass")
+    require_evidence(
+        report.get("sam_semantic_gate_passed") is True,
+        "SAM/semantic gate did not pass",
+        report,
+    )
     require(report.get("promotion_approved") is False, "semantic QA exceeded scoped authority")
     require(report.get("frame_count") == EXPECTED_FRAME_COUNT, "semantic frame_count != 25")
     require(report.get("round_index") == round_index, "semantic round_index mismatch")
@@ -2209,7 +2267,7 @@ def validate_visual_review(
     review = read_json(asset.path)
     require(review.get("schema_version") == 1, "visual review schema is invalid")
     require(review.get("kind") == VISUAL_REVIEW_KIND, "visual review kind is invalid")
-    require(review.get("status") == "passed", "human visual review did not pass")
+    require_evidence(review.get("status") == "passed", "human visual review did not pass", review)
     require(
         review.get("decision") == "accepted_for_next_round_source",
         "human review decision is not accepted_for_next_round_source",
