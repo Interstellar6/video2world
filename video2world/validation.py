@@ -43,6 +43,7 @@ def _validate_gate_report_payload(
     object_id: str,
     scoped_id: str,
     asset_sha256: str | None,
+    require_unified_bindings: bool = False,
 ) -> None:
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
@@ -50,6 +51,30 @@ def _validate_gate_report_payload(
         raise ArtifactError(f"gate report is not readable JSON: {path}: {exc}") from exc
     if not isinstance(payload, dict) or not payload:
         raise ArtifactError(f"gate report must be a non-empty JSON object: {path}")
+    if require_unified_bindings:
+        missing_fields = [
+            field
+            for field in ("gate", "status", "scoped_id")
+            if payload.get(field) is None
+        ]
+        if payload.get("object_id") is None and payload.get("target_id") is None:
+            missing_fields.append("object_id or target_id")
+        if asset_sha256 is not None and not any(
+            payload.get(field) is not None
+            for field in (
+                "asset_sha256",
+                "source_asset_sha256",
+                "unified_pbr_glb_sha256",
+                "collision_asset_sha256",
+            )
+        ):
+            missing_fields.append("unified PBR GLB asset sha256")
+        if missing_fields:
+            raise ArtifactError(
+                "collision-enabled unified PBR GLB gate report is missing required "
+                "bindings: "
+                + ", ".join(missing_fields)
+            )
     report_gate = payload.get("gate")
     if report_gate is not None and report_gate != gate_name:
         raise ArtifactError(
@@ -170,6 +195,13 @@ def validate_world_manifest(
                     scoped_id=scoped_id,
                     asset_sha256=(
                         item.unified_pbr_glb.sha256 if item.unified_pbr_glb is not None else None
+                    ),
+                    require_unified_bindings=(
+                        item.unified_pbr_glb is not None
+                        and item.interaction.collision_enabled
+                        and gate.status == "passed"
+                        and location.rsplit(".", 1)[-1]
+                        in {"alignment", "collision", "visual"}
                     ),
                 )
             except ArtifactError as exc:

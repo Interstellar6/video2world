@@ -23,6 +23,31 @@ from video2world.models import (
 from video2world.validation import validate_world_manifest
 
 
+def _gate_report_payload(
+    gate_name: str,
+    asset_sha256: str,
+    *,
+    status: str = "passed",
+    report_gate: str | None = None,
+    object_id: str | None = "pillow-unified",
+    target_id: str | None = None,
+    scoped_id: str | None = "bedroom_4::pillow-unified-run::pillow-unified",
+    asset_field: str = "unified_pbr_glb_sha256",
+) -> str:
+    payload: dict[str, object] = {
+        "gate": report_gate or gate_name,
+        "status": status,
+        asset_field: asset_sha256,
+    }
+    if scoped_id is not None:
+        payload["scoped_id"] = scoped_id
+    if object_id is not None:
+        payload["object_id"] = object_id
+    if target_id is not None:
+        payload["target_id"] = target_id
+    return json.dumps(payload, sort_keys=True) + "\n"
+
+
 def test_committed_json_schema_matches_pydantic_model() -> None:
     schema_path = Path(__file__).parents[1] / "schemas" / "world-manifest.schema.json"
     assert json.loads(schema_path.read_text(encoding="utf-8")) == world_manifest_json_schema()
@@ -64,10 +89,7 @@ def test_manifest_verifies_local_gate_report_hashes(
     )
     for gate_name in ("alignment", "collision", "visual"):
         report_path = tmp_path / f"{gate_name}-report.json"
-        report_path.write_text(
-            f'{{"gate":"{gate_name}","status":"passed",'
-            f'"asset_sha256":"{glb_digest.sha256}"}}\n'
-        )
+        report_path.write_text(_gate_report_payload(gate_name, glb_digest.sha256))
         report_digest = digest_path(report_path)
         object_payload["quality_gates"][gate_name].update(
             {
@@ -95,6 +117,52 @@ def test_manifest_verifies_local_gate_report_hashes(
     }
 
 
+def test_manifest_requires_unified_gate_report_identity_bindings(
+    tmp_path: Path,
+    sample_manifest: WorldManifest,
+) -> None:
+    object_payload = _unified_pbr_object_payload(sample_manifest)
+    glb_path = tmp_path / "pillow-unified.glb"
+    glb_path.write_bytes(b"unified pbr glb")
+    glb_digest = digest_path(glb_path)
+    object_payload["unified_pbr_glb"].update(
+        {
+            "uri": str(glb_path),
+            "sha256": glb_digest.sha256,
+            "size_bytes": glb_digest.size_bytes,
+        }
+    )
+    for gate_name in ("alignment", "collision", "visual"):
+        report_path = tmp_path / f"{gate_name}-report.json"
+        report_payload = {
+            "gate": gate_name,
+            "status": "passed",
+            "unified_pbr_glb_sha256": glb_digest.sha256,
+        }
+        report_path.write_text(json.dumps(report_payload, sort_keys=True) + "\n")
+        report_digest = digest_path(report_path)
+        object_payload["quality_gates"][gate_name].update(
+            {
+                "report_uri": str(report_path),
+                "report_sha256": report_digest.sha256,
+                "report_size_bytes": report_digest.size_bytes,
+            }
+        )
+    payload = sample_manifest.model_dump(mode="json")
+    payload["objects"].append(object_payload)
+    manifest = WorldManifest.model_validate(payload)
+    manifest_path = tmp_path / "world.json"
+    manifest_path.write_text(manifest.model_dump_json(indent=2), encoding="utf-8")
+
+    result = validate_world_manifest(manifest_path)
+
+    assert result["valid"] is False
+    assert any(
+        "missing required bindings" in issue["error"] and "scoped_id" in issue["error"]
+        for issue in result["issues"]
+    )
+
+
 def test_manifest_rejects_non_json_gate_report_payload(
     tmp_path: Path,
     sample_manifest: WorldManifest,
@@ -112,7 +180,7 @@ def test_manifest_rejects_non_json_gate_report_payload(
     )
     for gate_name in ("alignment", "collision", "visual"):
         report_path = tmp_path / f"{gate_name}-report.json"
-        payload = f'{{"gate":"{gate_name}","status":"passed"}}\n'
+        payload = _gate_report_payload(gate_name, glb_digest.sha256)
         if gate_name == "collision":
             payload = "not json\n"
         report_path.write_text(payload)
@@ -154,7 +222,9 @@ def test_manifest_rejects_gate_report_status_mismatch(
     for gate_name in ("alignment", "collision", "visual"):
         report_path = tmp_path / f"{gate_name}-report.json"
         status = "failed" if gate_name == "visual" else "passed"
-        report_path.write_text(f'{{"gate":"{gate_name}","status":"{status}"}}\n')
+        report_path.write_text(
+            _gate_report_payload(gate_name, glb_digest.sha256, status=status)
+        )
         report_digest = digest_path(report_path)
         object_payload["quality_gates"][gate_name].update(
             {
@@ -193,7 +263,9 @@ def test_manifest_rejects_gate_report_role_mismatch(
     for gate_name in ("alignment", "collision", "visual"):
         report_path = tmp_path / f"{gate_name}-report.json"
         report_gate = "visual" if gate_name == "collision" else gate_name
-        report_path.write_text(f'{{"gate":"{report_gate}","status":"passed"}}\n')
+        report_path.write_text(
+            _gate_report_payload(gate_name, glb_digest.sha256, report_gate=report_gate)
+        )
         report_digest = digest_path(report_path)
         object_payload["quality_gates"][gate_name].update(
             {
@@ -233,8 +305,11 @@ def test_manifest_rejects_gate_report_object_mismatch(
         report_path = tmp_path / f"{gate_name}-report.json"
         report_object_id = "other-object" if gate_name == "collision" else "pillow-unified"
         report_path.write_text(
-            f'{{"gate":"{gate_name}","status":"passed",'
-            f'"object_id":"{report_object_id}"}}\n'
+            _gate_report_payload(
+                gate_name,
+                glb_digest.sha256,
+                object_id=report_object_id,
+            )
         )
         report_digest = digest_path(report_path)
         object_payload["quality_gates"][gate_name].update(
@@ -275,8 +350,7 @@ def test_manifest_rejects_gate_report_asset_mismatch(
         report_path = tmp_path / f"{gate_name}-report.json"
         asset_sha = "0" * 64 if gate_name == "visual" else glb_digest.sha256
         report_path.write_text(
-            f'{{"gate":"{gate_name}","status":"passed",'
-            f'"unified_pbr_glb_sha256":"{asset_sha}"}}\n'
+            _gate_report_payload(gate_name, asset_sha)
         )
         report_digest = digest_path(report_path)
         object_payload["quality_gates"][gate_name].update(
