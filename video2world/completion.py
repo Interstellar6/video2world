@@ -19,6 +19,7 @@ from video2world.models import (
     StrictModel,
     validate_unified_pbr_glb_asset,
 )
+from video2world.object_review import REQUIRED_CANONICAL_OBJECT_REVIEW_VIEWS
 
 CoverageStatus = Literal[
     "modeled_complete",
@@ -487,6 +488,27 @@ class GeometryReviewIssue(StrictModel):
         return self
 
 
+class VisualGateViewEvidence(StrictModel):
+    uri: str = Field(min_length=1)
+    sha256: Sha256
+
+
+class CanonicalSixViewReviewEvidence(StrictModel):
+    receipt_uri: str = Field(min_length=1)
+    receipt_sha256: Sha256
+    views: dict[str, VisualGateViewEvidence] = Field(min_length=6)
+
+    @model_validator(mode="after")
+    def require_canonical_views(self) -> CanonicalSixViewReviewEvidence:
+        expected = list(REQUIRED_CANONICAL_OBJECT_REVIEW_VIEWS)
+        if list(self.views) != expected:
+            raise ValueError(
+                "canonical six-view review evidence must preserve view order: "
+                + ", ".join(expected)
+            )
+        return self
+
+
 class GeometryReview(StrictModel):
     schema_version: Literal["1.0"] = "1.0"
     kind: Literal["video2world.geometry_review"] = "video2world.geometry_review"
@@ -499,6 +521,7 @@ class GeometryReview(StrictModel):
     turntable_sha256: Sha256
     technical_gates: dict[str, bool] = Field(min_length=1)
     advisory_gates: dict[str, bool] = Field(default_factory=dict)
+    canonical_six_view_review: CanonicalSixViewReviewEvidence | None = None
     acceptance_policy: Literal["usability_first_minor_artifacts"] = (
         "usability_first_minor_artifacts"
     )
@@ -520,6 +543,8 @@ class GeometryReview(StrictModel):
                 raise ValueError("accept is forbidden when blocking or technical gates fail")
             if self.retry_prompt is not None:
                 raise ValueError("accepted geometry cannot declare a retry_prompt")
+            if self.canonical_six_view_review is None:
+                raise ValueError("accepted geometry requires canonical_six_view_review evidence")
         if self.decision == "retry":
             if not blocking and not failed_technical:
                 raise ValueError("retry requires a blocking issue or failed technical gate")

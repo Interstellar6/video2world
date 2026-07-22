@@ -15,6 +15,7 @@ from typing import Any
 from video2world.completion import GeometryReview, GeometryReviewIssue
 from video2world.hashing import atomic_write_json
 from video2world.models import LocalizedText
+from video2world.object_review import visual_gate_views_from_canonical_review
 
 ISSUE_TYPES = {
     "missing_back_surface",
@@ -85,6 +86,15 @@ def load_json(path: Path) -> dict[str, Any]:
     if not isinstance(value, dict):
         raise ValueError(f"expected JSON object: {path}")
     return value
+
+
+def canonical_six_view_review_evidence(path: Path) -> dict[str, Any]:
+    receipt = load_json(path)
+    return {
+        "receipt_uri": str(path),
+        "receipt_sha256": sha256_file(path),
+        "views": visual_gate_views_from_canonical_review(receipt),
+    }
 
 
 def extract_json(text: str) -> dict[str, Any] | None:
@@ -483,6 +493,7 @@ def build_review(
     turntable: Path,
     raw_response: str,
     gates: dict[str, bool],
+    canonical_six_view_review: dict[str, Any] | None = None,
 ) -> GeometryReview:
     parsed = extract_json(raw_response)
     issues: list[GeometryReviewIssue] = []
@@ -599,6 +610,7 @@ def build_review(
         turntable_sha256=sha256_file(turntable),
         technical_gates=blocking_gates,
         advisory_gates=advisory_gates,
+        canonical_six_view_review=canonical_six_view_review,
         decision=decision,
         issues=issues,
         retry_prompt=str(retry_prompt) if retry_prompt else None,
@@ -625,6 +637,7 @@ def parse_args() -> argparse.Namespace:
         default="source",
     )
     parser.add_argument("--turntable-image", type=Path, required=True)
+    parser.add_argument("--canonical-review-receipt", type=Path)
     parser.add_argument("--source-asset", type=Path, required=True)
     parser.add_argument("--material-image", type=Path, required=True)
     parser.add_argument("--mesh-report", type=Path, required=True)
@@ -681,6 +694,11 @@ def main() -> int:
         turntable=args.turntable_image.resolve(),
         raw_response=raw,
         gates=gates,
+        canonical_six_view_review=(
+            canonical_six_view_review_evidence(args.canonical_review_receipt.resolve())
+            if args.canonical_review_receipt
+            else None
+        ),
     )
     atomic_write_json(output_dir / "geometry_review.json", review.model_dump(mode="json"))
     print(

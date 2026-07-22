@@ -2060,6 +2060,17 @@ def _valid_object_completion_report(
             "model": "Qwen2.5-VL-3B-Instruct",
             "source_asset_sha256": asset_sha,
             "turntable_sha256": "b" * 64,
+            "canonical_six_view_review": {
+                "receipt_uri": "artifact://pillow-front/object_six_view_review.json",
+                "receipt_sha256": "b" * 64,
+                "views": {
+                    view: {"uri": f"review/{view}_object.png", "sha256": str(index) * 64}
+                    for index, view in enumerate(
+                        ["front", "right", "back", "left", "top", "bottom"],
+                        start=1,
+                    )
+                },
+            },
             "technical_gates": {
                 "front_visible": True,
                 "backside_nonempty": True,

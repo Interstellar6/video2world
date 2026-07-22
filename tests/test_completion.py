@@ -27,6 +27,7 @@ from video2world.hashing import digest_json
 from video2world.models import LocalizedText
 
 SHA = "a" * 64
+REQUIRED_VIEWS = ("front", "right", "back", "left", "top", "bottom")
 
 
 def observation(
@@ -653,6 +654,54 @@ def test_retry_review_requires_detailed_remediation_prompt() -> None:
         )
 
 
+def _canonical_six_view_review_evidence() -> dict[str, object]:
+    return {
+        "receipt_uri": "artifact://pillow-front/object_six_view_review.json",
+        "receipt_sha256": SHA,
+        "views": {
+            view: {"uri": f"review/{view}_object.png", "sha256": str(index) * 64}
+            for index, view in enumerate(REQUIRED_VIEWS, start=1)
+        },
+    }
+
+
+def test_accepted_geometry_review_requires_canonical_six_view_evidence() -> None:
+    with pytest.raises(ValidationError, match="canonical_six_view_review"):
+        GeometryReview(
+            object_id="sam3_pillow_front",
+            attempt=1,
+            created_at=datetime(2026, 7, 17, tzinfo=UTC),
+            provider="Qwen2.5-VL",
+            model="Qwen2.5-VL-3B-Instruct",
+            source_asset_sha256=SHA,
+            turntable_sha256=SHA,
+            technical_gates={"backside_nonempty": True},
+            decision="accept",
+            raw_response_sha256=SHA,
+        )
+
+
+def test_canonical_six_view_evidence_preserves_all_orthogonal_views() -> None:
+    evidence = _canonical_six_view_review_evidence()
+    views = evidence["views"]
+    assert isinstance(views, dict)
+    del views["top"]
+    with pytest.raises(ValidationError, match="at least 6"):
+        GeometryReview(
+            object_id="sam3_pillow_front",
+            attempt=1,
+            created_at=datetime(2026, 7, 17, tzinfo=UTC),
+            provider="Qwen2.5-VL",
+            model="Qwen2.5-VL-3B-Instruct",
+            source_asset_sha256=SHA,
+            turntable_sha256=SHA,
+            canonical_six_view_review=evidence,
+            technical_gates={"backside_nonempty": True},
+            decision="accept",
+            raw_response_sha256=SHA,
+        )
+
+
 def _trellis2_receipt_payload(*, sha256: str = SHA) -> dict[str, object]:
     return {
         "kind": "video2world.trellis2_mesh_first_asset",
@@ -700,6 +749,7 @@ def _accepted_geometry_review(
         model="Qwen2.5-VL-3B-Instruct",
         source_asset_sha256=sha256,
         turntable_sha256=SHA,
+        canonical_six_view_review=_canonical_six_view_review_evidence(),
         technical_gates={
             "front_visible": True,
             "backside_nonempty": True,

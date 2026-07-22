@@ -29,6 +29,17 @@ def mesh_report(*, extents: list[float], components: int = 1) -> dict[str, objec
     return {"raw_mesh": base, "processed_mesh": dict(base)}
 
 
+def canonical_review_evidence() -> dict[str, object]:
+    return {
+        "receipt_uri": "artifact://object_six_view_review.json",
+        "receipt_sha256": "a" * 64,
+        "views": {
+            view: {"uri": f"{view}_object.png", "sha256": str(index) * 64}
+            for index, view in enumerate(SIX_VIEW_IDS, start=1)
+        },
+    }
+
+
 def test_pillow_thickness_gate_rejects_sheet_geometry() -> None:
     gates = technical_gates("pillow", mesh_report(extents=[0.49, 0.84, 0.13]))
     assert gates["pillow_thickness_ratio"] is False
@@ -138,6 +149,7 @@ def test_warning_only_review_is_accepted_with_advisory_limitations(tmp_path: Pat
             "raw_surface_closed": False,
             "six_view_color_style_consistency": False,
         },
+        canonical_six_view_review=canonical_review_evidence(),
     )
 
     assert review.decision == "accept"
@@ -219,9 +231,27 @@ def test_main_exit_code_reflects_geometry_review_decision(
 ) -> None:
     source_asset = tmp_path / "asset.glb"
     turntable = tmp_path / "turntable.png"
+    canonical_review_receipt = tmp_path / "object_six_view_review.json"
     mesh_report_path = tmp_path / "mesh-report.json"
     source_asset.write_bytes(b"asset")
     turntable.write_bytes(b"turntable")
+    canonical_review_receipt.write_text(
+        json.dumps(
+            {
+                "kind": "video2world.canonical_object_six_view_review",
+                "canonicalViews": ["front", "right", "back", "left", "top", "bottom"],
+                "horizontalOrbitAcceptedAsSixViewEvidence": False,
+                "views": {
+                    view: {"uri": f"{view}_object.png", "sha256": str(index) * 64}
+                    for index, view in enumerate(
+                        ["front", "right", "back", "left", "top", "bottom"],
+                        start=1,
+                    )
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
     mesh_report_path.write_text(
         json.dumps(mesh_report(extents=[1.0, 0.9, 0.3])),
         encoding="utf-8",
@@ -237,6 +267,7 @@ def test_main_exit_code_reflects_geometry_review_decision(
         front_render_mode="neutral-albedo",
         expected_tone="white",
         turntable_image=turntable,
+        canonical_review_receipt=canonical_review_receipt,
         source_asset=source_asset,
         material_image=tmp_path / "material.png",
         mesh_report=mesh_report_path,

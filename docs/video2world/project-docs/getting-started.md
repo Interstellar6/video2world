@@ -125,6 +125,25 @@ node scripts/capture_object_review.mjs \
 
 脚本从 `web/object-review.js` 读取固定的 `front/right/back/left/top/bottom` object-local 视图，输出六张 object-only PNG、3x2 contact sheet 和包含 GLB/图片 hash 的 `video2world.canonical_object_six_view_review` receipt。每个 view artifact 都写入相对 `uri` 和小写 SHA-256，可由 `video2world.object_review.visual_gate_views_from_canonical_review` 转成 WorldManifest visual gate 的 `views` evidence。水平 orbit 即使有六帧也不算六面证据；capture 只完成取证，视觉 gate 仍保持 pending，必须再按形状、主色和场景穿模门禁作出 review 决策。
 
+随后运行 VLM/规则结合的 geometry review 时，把这份 canonical receipt 显式传进去：
+
+```bash
+uv run python -m video2world.providers.qwen_geometry_review \
+  --object-id chair01 \
+  --category chair \
+  --source-image /absolute/path/to/source.rgba.png \
+  --front-render-image /absolute/path/to/object-candidate/review/front_object.png \
+  --view-render-dir /absolute/path/to/object-candidate/review \
+  --front-render-mode neutral-albedo \
+  --turntable-image /absolute/path/to/object-candidate/review/object_six_view_contact_sheet.png \
+  --canonical-review-receipt /absolute/path/to/object-candidate/review/object_six_view_review.json \
+  --source-asset /absolute/path/to/object-candidate/asset_pbr.glb \
+  --material-image /absolute/path/to/material.png \
+  --mesh-report /absolute/path/to/object-candidate/mesh_audit.json \
+  --output-dir /absolute/path/to/object-candidate/geometry-review \
+  --model-path /absolute/path/to/Qwen2.5-VL-3B-Instruct
+```
+
 ## 规划通用分层补全
 
 先由严格 scene inventory 与标定几何生成遮挡图，再构建 front-to-back rounds：
