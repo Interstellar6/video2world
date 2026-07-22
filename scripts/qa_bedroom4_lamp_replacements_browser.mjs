@@ -70,9 +70,14 @@ function manifestUrlForPath(manifestPath) {
   return `/@fs/${manifestPath}`;
 }
 
-function runtimeUrl(baseUrl, manifestPath) {
+function runtimeUrl(baseUrl, manifestPath, runtimeManifestUrl = null) {
   const url = new URL(baseUrl);
-  url.searchParams.set("manifest", manifestUrlForPath(manifestPath));
+  const manifestUrl = runtimeManifestUrl || manifestUrlForPath(manifestPath);
+  const resolvedManifest = new URL(manifestUrl, url);
+  if (resolvedManifest.origin !== url.origin) {
+    throw new Error(`Runtime manifest must be same-origin with the page: ${manifestUrl}`);
+  }
+  url.searchParams.set("manifest", manifestUrl);
   return url.href;
 }
 
@@ -88,16 +93,51 @@ function record(condition, message, failures) {
 
 function listenForDiagnostics(page) {
   const diagnostics = { pageErrors: [], consoleErrors: [], warnings: [], requestFailures: [] };
+  const successfulResponseUrls = new Set();
+  Object.defineProperty(diagnostics, "successfulResponseUrls", {
+    value: successfulResponseUrls,
+    enumerable: false,
+  });
   page.on("pageerror", (error) => diagnostics.pageErrors.push(error.message));
   page.on("console", (message) => {
     if (message.type() === "error") diagnostics.consoleErrors.push(message.text());
     if (message.type() === "warning") diagnostics.warnings.push(message.text());
+  });
+  page.on("response", (response) => {
+    if (response.ok()) successfulResponseUrls.add(response.url());
   });
   page.on("requestfailed", (request) => diagnostics.requestFailures.push({
     url: request.url(),
     error: request.failure()?.errorText || "unknown",
   }));
   return diagnostics;
+}
+
+function finalizeDiagnostics(diagnostics) {
+  const recoveredRequestFailures = diagnostics.requestFailures.filter(
+    (failure) => diagnostics.successfulResponseUrls.has(failure.url),
+  );
+  const requestFailures = diagnostics.requestFailures.filter(
+    (failure) => !diagnostics.successfulResponseUrls.has(failure.url),
+  );
+  const networkConsoleErrors = diagnostics.consoleErrors.filter(
+    (message) => /^Failed to load resource: net::ERR_/u.test(message),
+  );
+  const otherConsoleErrors = diagnostics.consoleErrors.filter(
+    (message) => !/^Failed to load resource: net::ERR_/u.test(message),
+  );
+  const allNetworkFailuresRecovered = requestFailures.length === 0
+    && recoveredRequestFailures.length > 0;
+  return {
+    pageErrors: diagnostics.pageErrors,
+    consoleErrors: allNetworkFailuresRecovered
+      ? otherConsoleErrors
+      : [...otherConsoleErrors, ...networkConsoleErrors],
+    warnings: diagnostics.warnings,
+    requestFailures,
+    recoveredConsoleErrors: allNetworkFailuresRecovered ? networkConsoleErrors : [],
+    recoveredRequestFailures,
+  };
 }
 
 async function waitForReady(page, contract) {
@@ -371,14 +411,15 @@ async function runDesktop(browser, url, outputDir, manifest, contract) {
     `lamp01: visual/collision matrix delta=${spin.visualCollisionMatrixDelta}`, failures);
   screenshots.leftLampAfterSpin = await screenshot(page, outputDir, "desktop_left_lamp_after_spin");
 
-  record(diagnostics.pageErrors.length === 0,
-    `desktop: page errors=${JSON.stringify(diagnostics.pageErrors)}`, failures);
-  record(diagnostics.consoleErrors.length === 0,
-    `desktop: console errors=${JSON.stringify(diagnostics.consoleErrors)}`, failures);
-  record(diagnostics.requestFailures.length === 0,
-    `desktop: request failures=${JSON.stringify(diagnostics.requestFailures)}`, failures);
+  const finalDiagnostics = finalizeDiagnostics(diagnostics);
+  record(finalDiagnostics.pageErrors.length === 0,
+    `desktop: page errors=${JSON.stringify(finalDiagnostics.pageErrors)}`, failures);
+  record(finalDiagnostics.consoleErrors.length === 0,
+    `desktop: console errors=${JSON.stringify(finalDiagnostics.consoleErrors)}`, failures);
+  record(finalDiagnostics.requestFailures.length === 0,
+    `desktop: request failures=${JSON.stringify(finalDiagnostics.requestFailures)}`, failures);
   await page.close();
-  return { status: failures.length ? "failed" : "passed", failures, diagnostics, initial, canvas, layout, queries, drag, spin, screenshots };
+  return { status: failures.length ? "failed" : "passed", failures, diagnostics: finalDiagnostics, initial, canvas, layout, queries, drag, spin, screenshots };
 }
 
 async function runMobile(browser, url, outputDir, contract) {
@@ -399,11 +440,12 @@ async function runMobile(browser, url, outputDir, contract) {
   record(canvas.nonblank === true, `mobile: blank canvas=${JSON.stringify(canvas)}`, failures);
   record(layout.noHorizontalOverflow && layout.qaVisible && layout.canvasVisible,
     `mobile: invalid layout=${JSON.stringify(layout)}`, failures);
-  record(diagnostics.pageErrors.length === 0 && diagnostics.consoleErrors.length === 0
-    && diagnostics.requestFailures.length === 0,
-  `mobile: browser diagnostics=${JSON.stringify(diagnostics)}`, failures);
+  const finalDiagnostics = finalizeDiagnostics(diagnostics);
+  record(finalDiagnostics.pageErrors.length === 0 && finalDiagnostics.consoleErrors.length === 0
+    && finalDiagnostics.requestFailures.length === 0,
+  `mobile: browser diagnostics=${JSON.stringify(finalDiagnostics)}`, failures);
   await page.close();
-  return { status: failures.length ? "failed" : "passed", failures, diagnostics, query, canvas, layout, screenshot: capture };
+  return { status: failures.length ? "failed" : "passed", failures, diagnostics: finalDiagnostics, query, canvas, layout, screenshot: capture };
 }
 
 async function main() {
@@ -412,6 +454,7 @@ async function main() {
   const reportPath = path.resolve(args.report || defaultReport);
   const screenshotDir = path.resolve(args.screenshots || path.dirname(reportPath));
   const baseUrl = args.url || defaultUrl;
+  const runtimeManifestUrl = args["runtime-manifest-url"] || null;
   const manifest = readJson(manifestPath);
   const contract = expectedContract(manifest);
   const failures = [];
@@ -426,7 +469,7 @@ async function main() {
     "manifest is missing reconstructed lamps", failures);
   if (failures.length) throw new Error(failures.join("\n"));
 
-  const url = runtimeUrl(baseUrl, manifestPath);
+  const url = runtimeUrl(baseUrl, manifestPath, runtimeManifestUrl);
   const browser = await chromium.launch({ channel: "chrome", headless: true });
   let desktop;
   let mobile;
