@@ -1667,7 +1667,13 @@ def test_layered_completion_report_requires_corrected_full_pipeline_lineage(
             lambda payload: payload["final_clean_plate"].__setitem__(
                 "canonical_promotion_approved", False
             ),
-            "final_clean_plate must claim canonical promotion approval",
+            "final_clean_plate does not match the terminal round output",
+        ),
+        (
+            lambda payload: payload["final_clean_plate"].__setitem__(
+                "uri", "artifact://completion/stale-final-clean-plate.json"
+            ),
+            "final_clean_plate does not match the terminal round output",
         ),
     ],
 )

@@ -1005,11 +1005,19 @@ class LayeredCompletionExecutionReport(StrictModel):
             raise ValueError(
                 "completion receipt targets differ from the completion plan target list"
             )
-        if (
-            self.final_clean_plate.sha256 != previous.sha256
-            or self.final_clean_plate.size_bytes != previous.size_bytes
+        for field in (
+            "uri",
+            "sha256",
+            "size_bytes",
+            "acceptance_scope",
+            "lineage_scope",
+            "corrected_full_pipeline",
+            "promotion_approved",
+            "canonical_promotion_approved",
+            "canonical_or_live_manifest_modified",
         ):
-            raise ValueError("final_clean_plate does not match the terminal round output")
+            if getattr(self.final_clean_plate, field) != getattr(previous, field):
+                raise ValueError("final_clean_plate does not match the terminal round output")
         _require_scoped_terminal_clean_plate(
             self.final_clean_plate,
             context="final_clean_plate",

@@ -26,6 +26,10 @@ def test_pipeline_docs_keep_corrected_clean_plate_status_fail_closed() -> None:
     getting_started = (DOCS / "getting-started.md").read_text(encoding="utf-8")
     assert "provider receipt 本身也会被校验" in getting_started
     assert "越权 next-round source" in getting_started
+    assert (
+        "terminal output 与 `final_clean_plate` 的 uri/hash/size/scope 完全一致"
+        in getting_started
+    )
     assert "provider_receipt.inputs" in getting_started
     assert "canonical input 角色路径和内容 hash 不能互相复用" in getting_started
     assert "provider_receipt.outputs" in getting_started
