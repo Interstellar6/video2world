@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from pathlib import Path
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import Field
 
@@ -59,6 +59,7 @@ class StagePlan(StrictModel):
     input_digest: Sha256 | None = None
     command: list[str] | None = None
     outputs: dict[str, str]
+    recovery_actions: list[dict[str, Any]] = Field(default_factory=list)
 
 
 def state_path(run_dir: Path, stage_id: str) -> Path:

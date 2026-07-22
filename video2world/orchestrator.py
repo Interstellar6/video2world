@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import fcntl
+import json
 import os
 import re
 import subprocess
@@ -308,6 +309,22 @@ class PipelineOrchestrator:
             for role, template in self.config.stages[stage_id].outputs.items()
         }
 
+    def _recovery_actions_from_outputs(self, outputs: dict[str, str]) -> list[dict[str, Any]]:
+        for path in outputs.values():
+            try:
+                payload = json.loads(Path(path).read_text(encoding="utf-8"))
+            except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+                continue
+            if not isinstance(payload, dict):
+                continue
+            actions = payload.get("recovery_actions")
+            if not isinstance(actions, list):
+                continue
+            kept = [item for item in actions if isinstance(item, dict)]
+            if kept:
+                return kept
+        return []
+
     def plan(self, targets: list[str] | None = None) -> list[StagePlan]:
         result: list[StagePlan] = []
         memo: dict[str, tuple[StageState | None, str]] = {}
@@ -319,6 +336,7 @@ class PipelineOrchestrator:
             context = self._context_for_stage(stage_id, dependency_states)
             outputs = self._rendered_outputs(stage_id, context)
             command = adapter.render_command(stage, context)
+            previous_state = load_stage_state(self.run_dir, stage_id)
 
             input_digest: str | None = None
             if not missing_dependencies:
@@ -350,6 +368,11 @@ class PipelineOrchestrator:
                     input_digest=input_digest,
                     command=command,
                     outputs=outputs,
+                    recovery_actions=(
+                        self._recovery_actions_from_outputs(outputs)
+                        if previous_state is not None and previous_state.status == "failed"
+                        else []
+                    ),
                 )
             )
         return result

@@ -233,6 +233,32 @@ def test_success_exit_without_required_output_is_failed(tmp_path: Path) -> None:
     assert state.mode == "executed"
 
 
+def test_plan_surfaces_recovery_actions_from_failed_stage_output(tmp_path: Path) -> None:
+    command = [
+        sys.executable,
+        "-c",
+        (
+            "import json, sys; "
+            "payload = dict(recovery_actions=[dict("
+            "priority=1, stage='donor_support', "
+            "action='add_observed_donor_or_switch_to_constrained_generation_for_residual', "
+            "frame_ids=['000064'], allow_deeper_rounds=False"
+            ")]); "
+            "json.dump(payload, open(sys.argv[1], 'w', encoding='utf-8')); "
+            "raise SystemExit(1)"
+        ),
+        "{output_result}",
+    ]
+    run_dir, _ = initialized_run(tmp_path, command=command)
+    with pytest.raises(StageBlockedError, match="exited with 1"):
+        PipelineOrchestrator(run_dir).run()
+
+    plan = PipelineOrchestrator(run_dir).plan()[0]
+    assert plan.action == "stale"
+    assert plan.recovery_actions[0]["stage"] == "donor_support"
+    assert plan.recovery_actions[0]["frame_ids"] == ["000064"]
+
+
 def test_adopt_records_real_content_without_copying(tmp_path: Path) -> None:
     run_dir, _ = initialized_run(tmp_path, command=None)
     existing = tmp_path / "upstream" / "result.txt"
