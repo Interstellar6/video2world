@@ -28,6 +28,8 @@ UNIFIED_GATE_REPORT_KINDS = {
     "visual": "video2world.unified_gate.visual",
 }
 
+REQUIRED_VISUAL_VIEWS = ("front", "right", "back", "left", "top", "bottom")
+
 
 def _gate_report_payload(
     gate_name: str,
@@ -70,6 +72,14 @@ def _gate_report_payload(
         assert isinstance(provenance, dict)
         payload["collision_topology"] = object_payload["collision_topology"]
         payload["faces"] = provenance["faces"]
+    if object_payload is not None and gate_name == "visual":
+        payload["views"] = {
+            view: {
+                "uri": f"reviews/pillow-unified-{view}.png",
+                "sha256": str(index) * 64,
+            }
+            for index, view in enumerate(REQUIRED_VISUAL_VIEWS, start=1)
+        }
     return json.dumps(payload, sort_keys=True) + "\n"
 
 
@@ -503,6 +513,67 @@ def test_manifest_rejects_passed_gate_blocking_metrics(
                 object_payload=object_payload,
             )
         )
+        report_digest = digest_path(report_path)
+        object_payload["quality_gates"][gate_name].update(
+            {
+                "report_uri": str(report_path),
+                "report_sha256": report_digest.sha256,
+                "report_size_bytes": report_digest.size_bytes,
+            }
+        )
+    payload = sample_manifest.model_dump(mode="json")
+    payload["objects"].append(object_payload)
+    manifest = WorldManifest.model_validate(payload)
+    manifest_path = tmp_path / "world.json"
+    manifest_path.write_text(manifest.model_dump_json(indent=2), encoding="utf-8")
+
+    result = validate_world_manifest(manifest_path)
+
+    assert result["valid"] is False
+    assert any(expected_error in issue["error"] for issue in result["issues"])
+
+
+@pytest.mark.parametrize(
+    ("view_mutation", "expected_error"),
+    [
+        ("missing_top", "missing required six-view evidence"),
+        ("empty_back", "empty six-view evidence"),
+    ],
+)
+def test_manifest_rejects_incomplete_visual_six_view_evidence(
+    tmp_path: Path,
+    sample_manifest: WorldManifest,
+    view_mutation: str,
+    expected_error: str,
+) -> None:
+    object_payload = _unified_pbr_object_payload(sample_manifest)
+    glb_path = tmp_path / "pillow-unified.glb"
+    glb_path.write_bytes(b"unified pbr glb")
+    glb_digest = digest_path(glb_path)
+    object_payload["unified_pbr_glb"].update(
+        {
+            "uri": str(glb_path),
+            "sha256": glb_digest.sha256,
+            "size_bytes": glb_digest.size_bytes,
+        }
+    )
+    for gate_name in ("alignment", "collision", "visual"):
+        report_path = tmp_path / f"{gate_name}-report.json"
+        report_payload = json.loads(
+            _gate_report_payload(
+                gate_name,
+                glb_digest.sha256,
+                object_payload=object_payload,
+            )
+        )
+        if gate_name == "visual":
+            views = report_payload["views"]
+            assert isinstance(views, dict)
+            if view_mutation == "missing_top":
+                del views["top"]
+            if view_mutation == "empty_back":
+                views["back"] = {}
+        report_path.write_text(json.dumps(report_payload, sort_keys=True) + "\n")
         report_digest = digest_path(report_path)
         object_payload["quality_gates"][gate_name].update(
             {

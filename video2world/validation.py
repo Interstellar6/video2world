@@ -25,6 +25,8 @@ BLOCKING_TRUE_METRICS = {
     "severe_identity_drift",
 }
 
+REQUIRED_VISUAL_VIEWS = ("front", "right", "back", "left", "top", "bottom")
+
 
 def load_world_manifest(path: str | Path) -> WorldManifest:
     manifest_path = Path(path).expanduser().resolve()
@@ -189,6 +191,25 @@ def _validate_unified_gate_report_manifest_bindings(
             raise ArtifactError(
                 f"collision gate report face count {report_faces!r} does not match manifest "
                 f"{expected_faces!r}"
+            )
+    if gate_name == "visual":
+        report_views = _expect_report_field(payload, "views", gate_name=gate_name)
+        if not isinstance(report_views, dict):
+            raise ArtifactError("visual gate report views must be a JSON object")
+        missing_views = [view for view in REQUIRED_VISUAL_VIEWS if view not in report_views]
+        if missing_views:
+            raise ArtifactError(
+                "visual gate report is missing required six-view evidence: "
+                + ", ".join(missing_views)
+            )
+        empty_views = [
+            view
+            for view in REQUIRED_VISUAL_VIEWS
+            if not isinstance(report_views[view], dict) or not report_views[view]
+        ]
+        if empty_views:
+            raise ArtifactError(
+                "visual gate report has empty six-view evidence: " + ", ".join(empty_views)
             )
 
 
