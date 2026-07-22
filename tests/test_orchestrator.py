@@ -1014,6 +1014,44 @@ def test_layered_completion_report_binds_completed_assets_to_planned_targets(
         )
 
 
+def test_layered_completion_report_binds_completed_assets_to_object_reports(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    assets_path = Path(outputs["completed_object_assets_manifest"]["path"])
+    assets_payload = _valid_completed_object_assets_manifest()
+    assets_payload["objects"][0]["completion_report_uri"] = (
+        "artifact://completion/wrong-object-report.json"
+    )
+    assets_path.write_text(json.dumps(assets_payload), encoding="utf-8")
+    outputs["completed_object_assets_manifest"] = _artifact_snapshot_payload(assets_path)
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=_layered_completion_input_snapshots(tmp_path, plan_path),
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ArtifactError, match="completion_report_uri differs"):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
 def test_layered_completion_report_binds_completed_assets_scene_run_to_report(
     tmp_path: Path,
 ) -> None:
@@ -1961,7 +1999,7 @@ def _valid_completed_object_assets_manifest() -> dict[str, object]:
                 },
                 "collision_topology": "surface_bvh",
                 "geometry_complete_verified": True,
-                "completion_report_uri": "artifact://pillow-front/report.json",
+                "completion_report_uri": "artifact://completion/r1-pillow-trellis2.json",
             }
         ],
     }

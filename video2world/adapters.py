@@ -376,6 +376,18 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             raise ValueError(
                 "completed_object_assets_manifest objects differ from planned target ids"
             )
+        object_completion_report_uris = {
+            receipt.target_id: receipt.uri
+            for round_item in report.rounds
+            for receipt in round_item.object_completion_receipts
+        }
+        for item in assets_manifest.objects:
+            expected_uri = object_completion_report_uris.get(item.id)
+            if item.completion_report_uri != expected_uri:
+                raise ValueError(
+                    "completed_object_assets_manifest completion_report_uri differs from "
+                    f"round object completion receipt for {item.id}"
+                )
         clean_plate_snapshot = receipt_outputs.get("clean_plate_manifest")
         if not isinstance(clean_plate_snapshot, dict):
             raise ValueError("provider receipt has no clean_plate_manifest output")
