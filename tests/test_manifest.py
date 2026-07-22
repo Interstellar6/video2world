@@ -211,6 +211,48 @@ def test_manifest_rejects_gate_report_role_mismatch(
     assert any("does not match manifest gate" in issue["error"] for issue in result["issues"])
 
 
+def test_manifest_rejects_gate_report_object_mismatch(
+    tmp_path: Path,
+    sample_manifest: WorldManifest,
+) -> None:
+    object_payload = _unified_pbr_object_payload(sample_manifest)
+    glb_path = tmp_path / "pillow-unified.glb"
+    glb_path.write_bytes(b"unified pbr glb")
+    glb_digest = digest_path(glb_path)
+    object_payload["unified_pbr_glb"].update(
+        {
+            "uri": str(glb_path),
+            "sha256": glb_digest.sha256,
+            "size_bytes": glb_digest.size_bytes,
+        }
+    )
+    for gate_name in ("alignment", "collision", "visual"):
+        report_path = tmp_path / f"{gate_name}-report.json"
+        report_object_id = "other-object" if gate_name == "collision" else "pillow-unified"
+        report_path.write_text(
+            f'{{"gate":"{gate_name}","status":"passed",'
+            f'"object_id":"{report_object_id}"}}\n'
+        )
+        report_digest = digest_path(report_path)
+        object_payload["quality_gates"][gate_name].update(
+            {
+                "report_uri": str(report_path),
+                "report_sha256": report_digest.sha256,
+                "report_size_bytes": report_digest.size_bytes,
+            }
+        )
+    payload = sample_manifest.model_dump(mode="json")
+    payload["objects"].append(object_payload)
+    manifest = WorldManifest.model_validate(payload)
+    manifest_path = tmp_path / "world.json"
+    manifest_path.write_text(manifest.model_dump_json(indent=2), encoding="utf-8")
+
+    result = validate_world_manifest(manifest_path)
+
+    assert result["valid"] is False
+    assert any("does not match manifest object" in issue["error"] for issue in result["issues"])
+
+
 def test_scoped_identity_is_checked_against_world(sample_manifest: WorldManifest) -> None:
     payload = sample_manifest.model_dump(mode="json")
     payload["objects"][0]["scoped_id"] = "other::run::bed01"

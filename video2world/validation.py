@@ -35,7 +35,14 @@ def _local_asset_path(manifest_path: Path, uri: str) -> Path | None:
     return (manifest_path.parent / path).resolve() if not path.is_absolute() else path.resolve()
 
 
-def _validate_gate_report_payload(path: Path, *, gate_name: str, gate_status: str) -> None:
+def _validate_gate_report_payload(
+    path: Path,
+    *,
+    gate_name: str,
+    gate_status: str,
+    object_id: str,
+    scoped_id: str,
+) -> None:
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
@@ -52,6 +59,29 @@ def _validate_gate_report_payload(path: Path, *, gate_name: str, gate_status: st
         raise ArtifactError(
             f"gate report status {report_status!r} does not match gate status {gate_status!r}"
         )
+    report_scoped_id = payload.get("scoped_id")
+    if report_scoped_id is not None and report_scoped_id != scoped_id:
+        raise ArtifactError(
+            f"gate report scoped_id {report_scoped_id!r} does not match manifest object "
+            f"{scoped_id!r}"
+        )
+    for field in ("object_id", "target_id"):
+        report_object_id = payload.get(field)
+        if report_object_id is not None and report_object_id != object_id:
+            raise ArtifactError(
+                f"gate report {field} {report_object_id!r} does not match manifest object "
+                f"{object_id!r}"
+            )
+
+
+def _object_identity_from_gate_location(location: str) -> tuple[str, str]:
+    prefix = "objects["
+    marker = "].quality_gates."
+    if not location.startswith(prefix) or marker not in location:
+        raise ArtifactError(f"invalid gate report location: {location}")
+    scoped_id = location[len(prefix) : location.index(marker)]
+    object_id = scoped_id.rsplit("::", 1)[-1]
+    return object_id, scoped_id
 
 
 def validate_world_manifest(
@@ -117,10 +147,13 @@ def validate_world_manifest(
                     issues.append({"location": location, "error": "report_sha256 mismatch"})
                 if current.size_bytes != gate.report_size_bytes:
                     issues.append({"location": location, "error": "report_size_bytes mismatch"})
+                object_id, scoped_id = _object_identity_from_gate_location(location)
                 _validate_gate_report_payload(
                     local_path,
                     gate_name=location.rsplit(".", 1)[-1],
                     gate_status=gate.status,
+                    object_id=object_id,
+                    scoped_id=scoped_id,
                 )
             except ArtifactError as exc:
                 issues.append({"location": location, "error": str(exc)})
