@@ -191,7 +191,18 @@ def _with_unified_web_ready_object(manifest: WorldManifest, object_id: str) -> W
         },
     }
     item["collision_topology"] = "surface_bvh"
-    item["quality_gates"]["collision"] = {"status": "passed"}
+    item["quality_gates"]["alignment"] = {
+        "status": "passed",
+        "report_uri": f"artifact://{object_id}/scene-fit-report.json",
+    }
+    item["quality_gates"]["collision"] = {
+        "status": "passed",
+        "report_uri": f"artifact://{object_id}/collision-report.json",
+    }
+    item["quality_gates"]["visual"] = {
+        "status": "passed",
+        "report_uri": f"artifact://{object_id}/visual-review.json",
+    }
     item["interaction"].update(
         {
             "collision_enabled": True,

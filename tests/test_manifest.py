@@ -218,7 +218,18 @@ def _unified_pbr_object_payload(sample_manifest: WorldManifest) -> dict[str, obj
         },
     }
     payload["collision_topology"] = "surface_bvh"
-    payload["quality_gates"]["collision"] = {"status": "passed"}
+    payload["quality_gates"]["alignment"] = {
+        "status": "passed",
+        "report_uri": "artifact://pillow-unified/scene-fit-report.json",
+    }
+    payload["quality_gates"]["collision"] = {
+        "status": "passed",
+        "report_uri": "artifact://pillow-unified/collision-report.json",
+    }
+    payload["quality_gates"]["visual"] = {
+        "status": "passed",
+        "report_uri": "artifact://pillow-unified/visual-review.json",
+    }
     payload["interaction"].update(
         {
             "collision_enabled": True,
@@ -275,6 +286,16 @@ def test_unified_surface_bvh_accepts_nonwatertight_glb_without_collider_proxy(
     assert unified.visual is None
     assert unified.render_mesh is None
     assert unified.collider is None
+
+
+def test_unified_collision_enabled_objects_require_gate_reports(
+    sample_manifest: WorldManifest,
+) -> None:
+    payload = _unified_pbr_object_payload(sample_manifest)
+    payload["quality_gates"]["alignment"] = {"status": "passed"}
+
+    with pytest.raises(ValidationError, match="requires report_uri"):
+        WorldObject.model_validate(payload)
 
 
 def test_unified_surface_bvh_rejects_missing_face_count(
@@ -400,7 +421,10 @@ def test_collision_enabled_interaction_requires_collider_and_passed_gate(
     with pytest.raises(ValidationError, match="requires a passed collision gate"):
         WorldObject.model_validate(payload)
 
-    payload["quality_gates"]["collision"] = {"status": "passed"}
+    payload["quality_gates"]["collision"] = {
+        "status": "passed",
+        "report_uri": "artifact://pillow01/collision-report.json",
+    }
     collidable = WorldObject.model_validate(payload)
     assert collidable.collider is not None
     assert collidable.interaction.collision_enabled is True

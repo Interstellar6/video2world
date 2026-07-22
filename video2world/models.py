@@ -406,6 +406,18 @@ class WorldObject(StrictModel):
             )
         if any(asset.status != "validated" for asset in visual_assets):
             raise ValueError("every interactive visual representation must be validated")
+        if self.unified_pbr_glb is not None and self.interaction.collision_enabled:
+            missing_report_gates = [
+                name
+                for name in ("alignment", "collision", "visual")
+                if getattr(self.quality_gates, name).report_uri is None
+            ]
+            if missing_report_gates:
+                raise ValueError(
+                    "collision-enabled unified PBR GLB requires report_uri for passed "
+                    "scene placement and interaction gates: "
+                    + ", ".join(missing_report_gates)
+                )
         if self.interaction.collision_enabled:
             if self.unified_pbr_glb is None and self.collider is None:
                 raise ValueError("collision-enabled interactive object is missing: collider")
