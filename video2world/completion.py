@@ -689,7 +689,33 @@ class ObjectCompletionEvidence(CompletionArtifactEvidence):
 
     target_id: str = Field(pattern=r"^[A-Za-z0-9_.:-]+$")
 
+    @model_validator(mode="after")
+    def require_object_completion_scope(self) -> ObjectCompletionEvidence:
+        if self.acceptance_scope != OBJECT_COMPLETION_ACCEPTANCE_SCOPE:
+            raise ValueError(
+                f"object completion receipt acceptance_scope must equal "
+                f"{OBJECT_COMPLETION_ACCEPTANCE_SCOPE}"
+            )
+        if self.lineage_scope != OBJECT_COMPLETION_LINEAGE_SCOPE:
+            raise ValueError(
+                f"object completion receipt lineage_scope must equal "
+                f"{OBJECT_COMPLETION_LINEAGE_SCOPE}"
+            )
+        if self.corrected_full_pipeline is not False:
+            raise ValueError("object completion receipt must not claim corrected full pipeline")
+        if self.promotion_approved is not False:
+            raise ValueError("object completion receipt must not claim promotion approval")
+        if self.canonical_promotion_approved is not False:
+            raise ValueError(
+                "object completion receipt must not claim canonical promotion approval"
+            )
+        if self.canonical_or_live_manifest_modified is not False:
+            raise ValueError("object completion receipt must not claim canonical/live mutation")
+        return self
 
+
+OBJECT_COMPLETION_ACCEPTANCE_SCOPE = "object_completion_report"
+OBJECT_COMPLETION_LINEAGE_SCOPE = "trellis2_geometry_review_object_asset"
 NEXT_ROUND_CLEAN_PLATE_ACCEPTANCE_SCOPE = "corrected_clean_plate_next_round_source_only"
 NEXT_ROUND_CLEAN_PLATE_LINEAGE_SCOPE = "corrected_clean_plate_round_source"
 TERMINAL_CLEAN_PLATE_ACCEPTANCE_SCOPE = "corrected_full_pipeline"

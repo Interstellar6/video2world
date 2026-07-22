@@ -487,7 +487,17 @@ def _completion_evidence(name: str, digest: str) -> dict[str, object]:
 
 def _object_completion_evidence(target_id: str, name: str, digest: str) -> dict[str, object]:
     evidence = _completion_evidence(name, digest)
-    evidence["target_id"] = target_id
+    evidence.update(
+        {
+            "target_id": target_id,
+            "acceptance_scope": "object_completion_report",
+            "lineage_scope": "trellis2_geometry_review_object_asset",
+            "corrected_full_pipeline": False,
+            "promotion_approved": False,
+            "canonical_promotion_approved": False,
+            "canonical_or_live_manifest_modified": False,
+        }
+    )
     return evidence
 
 
@@ -1753,8 +1763,14 @@ def test_layered_completion_report_binds_clean_plate_scope_lineage(
                 "object_completion_receipts",
                 [
                     {
-                        **dict(payload["rounds"][0]["quality_report"]),
-                        "target_id": "pillow-front",
+                        **_object_completion_evidence(
+                            "pillow-front",
+                            "r1-pillow-trellis2.json",
+                            "1",
+                        ),
+                        "uri": payload["rounds"][0]["quality_report"]["uri"],
+                        "sha256": payload["rounds"][0]["quality_report"]["sha256"],
+                        "size_bytes": payload["rounds"][0]["quality_report"]["size_bytes"],
                     }
                 ],
             ),
@@ -1856,6 +1872,20 @@ def test_layered_completion_report_binds_object_completion_receipts_to_targets(
     report_path.write_text(json.dumps(report_payload), encoding="utf-8")
 
     with pytest.raises(ArtifactError, match=expected):
+        get_adapter("layered_completion").validate_outputs(
+            {"layered_completion_report": snapshot_path(report_path)}
+        )
+
+
+def test_layered_completion_report_rejects_promoted_object_completion_receipt(
+    tmp_path: Path,
+) -> None:
+    report_payload = _valid_layered_completion_report()
+    report_payload["rounds"][0]["object_completion_receipts"][0]["promotion_approved"] = True
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+
+    with pytest.raises(ArtifactError, match="object completion receipt must not claim promotion"):
         get_adapter("layered_completion").validate_outputs(
             {"layered_completion_report": snapshot_path(report_path)}
         )
