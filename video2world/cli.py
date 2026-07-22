@@ -21,6 +21,7 @@ from video2world.completion import (
 )
 from video2world.completion_routing import (
     CompletionEvidence,
+    clean_plate_next_action_from_report,
     route_completion_backend,
 )
 from video2world.errors import Video2WorldError
@@ -235,6 +236,10 @@ def build_parser() -> argparse.ArgumentParser:
         help="Choose a completion backend from verified multi-view evidence",
     )
     completion_route_parser.add_argument("evidence")
+    completion_route_parser.add_argument(
+        "--clean-plate-report",
+        help="Optional failed clean-plate QA/materializer report; its next_action is routed.",
+    )
     completion_route_parser.add_argument("--output")
 
     scene_command_validate_parser = subparsers.add_parser(
@@ -570,7 +575,17 @@ def _cmd_completion_validate(args: argparse.Namespace) -> int:
 
 def _cmd_completion_route(args: argparse.Namespace) -> int:
     evidence_path = Path(args.evidence).expanduser().resolve()
-    evidence = CompletionEvidence.model_validate_json(evidence_path.read_text(encoding="utf-8"))
+    evidence_payload = json.loads(evidence_path.read_text(encoding="utf-8"))
+    if not isinstance(evidence_payload, dict):
+        raise ValueError("completion evidence root must be an object")
+    if args.clean_plate_report:
+        report_path = Path(args.clean_plate_report).expanduser().resolve()
+        report_payload = json.loads(report_path.read_text(encoding="utf-8"))
+        if not isinstance(report_payload, dict):
+            raise ValueError("clean plate report root must be an object")
+        next_action = clean_plate_next_action_from_report(report_payload)
+        evidence_payload["clean_plate_next_action"] = next_action.model_dump(mode="json")
+    evidence = CompletionEvidence.model_validate(evidence_payload)
     route = route_completion_backend(evidence)
     payload = route.model_dump(mode="json")
     if args.output:

@@ -160,6 +160,7 @@ uv run video2world completion-validate \
 
 uv run video2world completion-route \
   runs/my-room/artifacts/completion/objects/chair01/evidence.json \
+  --clean-plate-report runs/my-room/artifacts/completion/round01/failed-clean-plate.json \
   --output runs/my-room/artifacts/completion/objects/chair01/backend-route.json
 ```
 

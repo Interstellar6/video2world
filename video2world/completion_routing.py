@@ -174,6 +174,18 @@ def _ordered_unique(values: list[str | None]) -> list[str]:
     return kept
 
 
+def clean_plate_next_action_from_report(report: dict[str, object]) -> CleanPlateNextAction:
+    value = report.get("next_action")
+    if not isinstance(value, dict):
+        raise ValueError("clean plate report must contain a next_action object")
+    known = {
+        key: item
+        for key, item in value.items()
+        if key in CleanPlateNextAction.model_fields
+    }
+    return CleanPlateNextAction.model_validate(known)
+
+
 def clean_plate_recovery_actions(
     next_action: CleanPlateNextAction | None,
 ) -> list[CompletionRecoveryAction]:

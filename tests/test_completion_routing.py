@@ -192,3 +192,51 @@ def test_completion_route_cli_writes_auditable_route(tmp_path: Path) -> None:
     assert payload["selected_backend"] == "deformable_category_prior"
     assert payload["recovery_actions"] == []
     assert len(payload["route_sha256"]) == 64
+
+
+def test_completion_route_cli_can_inject_failed_clean_plate_report(tmp_path: Path) -> None:
+    source = tmp_path / "evidence.json"
+    report = tmp_path / "failed-clean-plate.json"
+    output = tmp_path / "route.json"
+    source.write_text(
+        evidence(category="pillow").model_dump_json(indent=2),
+        encoding="utf-8",
+    )
+    report.write_text(
+        json.dumps(
+            {
+                "status": "technical_failed_no_support",
+                "next_action": {
+                    "action": (
+                        "add_observed_donor_or_switch_to_constrained_generation_for_residual"
+                    ),
+                    "blocker": "no_guard_stable_measured_donor_support",
+                    "failed_frame_ids": ["000064"],
+                    "first_failed_frame_id": "000064",
+                    "no_support_frame_ids": ["000064"],
+                    "unresolved_unobserved_pixels": 23065,
+                    "failed_pairs": [{"direction_id": "ignored_verbose_record"}],
+                    "promotion_approved": False,
+                },
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    assert (
+        main(
+            [
+                "completion-route",
+                str(source),
+                "--clean-plate-report",
+                str(report),
+                "--output",
+                str(output),
+            ]
+        )
+        == 0
+    )
+    payload = json.loads(output.read_text(encoding="utf-8"))
+    assert payload["recovery_actions"][0]["stage"] == "donor_support"
+    assert payload["recovery_actions"][0]["frame_ids"] == ["000064"]
