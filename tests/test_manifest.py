@@ -456,6 +456,73 @@ def test_manifest_rejects_alignment_or_visual_report_metric_mismatch(
     )
 
 
+@pytest.mark.parametrize(
+    ("gate_to_mutate", "metric_name", "mutated_value", "expected_error"),
+    [
+        ("alignment", "stable_support_contact", False, "stable_support_contact"),
+        ("alignment", "obvious_interpenetration", True, "cannot be true"),
+        ("collision", "bvh_probe_hits", 0, "bvh_probe_hits"),
+        ("collision", "obvious_interpenetration", True, "cannot be true"),
+        ("visual", "six_view_count", 5, "at least 6"),
+        ("visual", "browser_canvas_nonblank", False, "browser_canvas_nonblank"),
+        ("visual", "severe_identity_drift", True, "cannot be true"),
+    ],
+)
+def test_manifest_rejects_passed_gate_blocking_metrics(
+    tmp_path: Path,
+    sample_manifest: WorldManifest,
+    gate_to_mutate: str,
+    metric_name: str,
+    mutated_value: object,
+    expected_error: str,
+) -> None:
+    object_payload = _unified_pbr_object_payload(sample_manifest)
+    glb_path = tmp_path / "pillow-unified.glb"
+    glb_path.write_bytes(b"unified pbr glb")
+    glb_digest = digest_path(glb_path)
+    object_payload["unified_pbr_glb"].update(
+        {
+            "uri": str(glb_path),
+            "sha256": glb_digest.sha256,
+            "size_bytes": glb_digest.size_bytes,
+        }
+    )
+    quality_gates = object_payload["quality_gates"]
+    assert isinstance(quality_gates, dict)
+    gate = quality_gates[gate_to_mutate]
+    assert isinstance(gate, dict)
+    metrics = gate["metrics"]
+    assert isinstance(metrics, dict)
+    metrics[metric_name] = mutated_value
+    for gate_name in ("alignment", "collision", "visual"):
+        report_path = tmp_path / f"{gate_name}-report.json"
+        report_path.write_text(
+            _gate_report_payload(
+                gate_name,
+                glb_digest.sha256,
+                object_payload=object_payload,
+            )
+        )
+        report_digest = digest_path(report_path)
+        object_payload["quality_gates"][gate_name].update(
+            {
+                "report_uri": str(report_path),
+                "report_sha256": report_digest.sha256,
+                "report_size_bytes": report_digest.size_bytes,
+            }
+        )
+    payload = sample_manifest.model_dump(mode="json")
+    payload["objects"].append(object_payload)
+    manifest = WorldManifest.model_validate(payload)
+    manifest_path = tmp_path / "world.json"
+    manifest_path.write_text(manifest.model_dump_json(indent=2), encoding="utf-8")
+
+    result = validate_world_manifest(manifest_path)
+
+    assert result["valid"] is False
+    assert any(expected_error in issue["error"] for issue in result["issues"])
+
+
 def test_manifest_rejects_non_json_gate_report_payload(
     tmp_path: Path,
     sample_manifest: WorldManifest,

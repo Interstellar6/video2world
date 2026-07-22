@@ -18,6 +18,13 @@ UNIFIED_GATE_REPORT_KINDS = {
     "visual": "video2world.unified_gate.visual",
 }
 
+BLOCKING_TRUE_METRICS = {
+    "obvious_interpenetration",
+    "obvious_unified_object_interpenetration",
+    "severe_interpenetration",
+    "severe_identity_drift",
+}
+
 
 def load_world_manifest(path: str | Path) -> WorldManifest:
     manifest_path = Path(path).expanduser().resolve()
@@ -146,6 +153,7 @@ def _validate_unified_gate_report_manifest_bindings(
     expected_metrics = getattr(item.quality_gates, gate_name).metrics
     if report_metrics != expected_metrics:
         raise ArtifactError(f"{gate_name} gate report metrics do not match manifest")
+    _validate_passed_gate_metrics(gate_name, report_metrics)
     if gate_name == "alignment":
         expected_bbox = item.bbox_scene.model_dump(mode="json") if item.bbox_scene else None
         expected_transform = (
@@ -181,6 +189,39 @@ def _validate_unified_gate_report_manifest_bindings(
             raise ArtifactError(
                 f"collision gate report face count {report_faces!r} does not match manifest "
                 f"{expected_faces!r}"
+            )
+
+
+def _validate_passed_gate_metrics(gate_name: str, metrics: dict[str, object]) -> None:
+    for field in BLOCKING_TRUE_METRICS:
+        if metrics.get(field) is True:
+            raise ArtifactError(
+                f"{gate_name} gate report metric {field!r} cannot be true for a passed gate"
+            )
+    if gate_name == "alignment" and metrics.get("stable_support_contact") is False:
+        raise ArtifactError(
+            "alignment gate report metric 'stable_support_contact' cannot be false "
+            "for a passed gate"
+        )
+    if gate_name == "collision" and metrics.get("bvh_probe_hits") == 0:
+        raise ArtifactError(
+            "collision gate report metric 'bvh_probe_hits' cannot be zero for a passed gate"
+        )
+    if gate_name == "visual":
+        if metrics.get("browser_canvas_nonblank") is False:
+            raise ArtifactError(
+                "visual gate report metric 'browser_canvas_nonblank' cannot be false "
+                "for a passed gate"
+            )
+        six_view_count = metrics.get("six_view_count")
+        if (
+            isinstance(six_view_count, (int, float))
+            and not isinstance(six_view_count, bool)
+            and six_view_count < 6
+        ):
+            raise ArtifactError(
+                "visual gate report metric 'six_view_count' must be at least 6 "
+                "for a passed gate"
             )
 
 
