@@ -271,6 +271,22 @@ def build_parser() -> argparse.ArgumentParser:
     )
     completion_recovery_preflight_parser.add_argument("--output", required=True)
 
+    completion_recovery_residual_handoff_parser = subparsers.add_parser(
+        "completion-recovery-residual-handoff",
+        help="Bind measured donor prefill output to constrained residual completion inputs",
+    )
+    completion_recovery_residual_handoff_parser.add_argument("--bundle", required=True)
+    completion_recovery_residual_handoff_parser.add_argument("--preflight", required=True)
+    completion_recovery_residual_handoff_parser.add_argument(
+        "--prefill-report",
+        required=True,
+    )
+    completion_recovery_residual_handoff_parser.add_argument(
+        "--prefill-receipt",
+        required=True,
+    )
+    completion_recovery_residual_handoff_parser.add_argument("--output", required=True)
+
     scene_command_validate_parser = subparsers.add_parser(
         "scene-command-validate",
         help="Validate structured natural-language scene intent JSON",
@@ -681,6 +697,23 @@ def _cmd_completion_recovery_preflight(args: argparse.Namespace) -> int:
     return 0 if preflight.status == "passed" else 3
 
 
+def _cmd_completion_recovery_residual_handoff(args: argparse.Namespace) -> int:
+    from video2world.completion_recovery import (
+        materialize_completion_recovery_residual_handoff,
+    )
+
+    handoff = materialize_completion_recovery_residual_handoff(
+        bundle_path=args.bundle,
+        preflight_path=args.preflight,
+        prefill_report_path=args.prefill_report,
+        prefill_receipt_path=args.prefill_receipt,
+    )
+    payload = handoff.model_dump(mode="json")
+    atomic_write_json(Path(args.output).expanduser().resolve(), payload)
+    _print_json(payload)
+    return 0
+
+
 def _cmd_scene_command_validate(args: argparse.Namespace) -> int:
     command = load_scene_command(args.command_file)
     _print_json(
@@ -837,6 +870,7 @@ COMMANDS = {
     "completion-recovery-work-order": _cmd_completion_recovery_work_order,
     "completion-recovery-bundle": _cmd_completion_recovery_bundle,
     "completion-recovery-preflight": _cmd_completion_recovery_preflight,
+    "completion-recovery-residual-handoff": _cmd_completion_recovery_residual_handoff,
     "scene-command-validate": _cmd_scene_command_validate,
     "scene-command-plan": _cmd_scene_command_plan,
     "scene-command-submit": _cmd_scene_command_submit,

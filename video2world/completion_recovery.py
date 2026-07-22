@@ -184,12 +184,95 @@ class CompletionRecoveryPreflight(StrictModel):
     notes: list[str] = Field(default_factory=list)
 
 
+class RecoveryHandoffInput(StrictModel):
+    path: str = Field(min_length=1)
+    sha256: Sha256
+    size_bytes: int = Field(ge=1)
+    role: Literal[
+        "completion_recovery_bundle",
+        "completion_recovery_preflight",
+        "measured_prefill_report",
+        "measured_prefill_receipt",
+    ]
+
+
+class RecoveryHandoffAsset(StrictModel):
+    path: str = Field(min_length=1)
+    sha256: Sha256
+    size_bytes: int = Field(ge=1)
+    role: str = Field(min_length=1)
+
+
+class RecoveryResidualHandoffFrame(StrictModel):
+    sequence_index: int = Field(ge=0)
+    frame_id: str = Field(min_length=1)
+    source_rgb: RecoveryHandoffAsset
+    removal_mask: RecoveryHandoffAsset
+    measured_prefill_rgb: RecoveryHandoffAsset
+    residual_mask: RecoveryHandoffAsset
+    support_visualization: RecoveryHandoffAsset
+    measured_depth: RecoveryHandoffAsset
+    removal_mask_pixels: int = Field(ge=0)
+    measured_multiview_pixels: int = Field(ge=0)
+    residual_mask_pixels: int = Field(ge=0)
+    coverage_fraction: float = Field(ge=0, le=1)
+    support_max: int = Field(ge=0)
+    measured_depth_valid_pixels: int = Field(ge=0)
+    donor_count: int = Field(ge=0)
+
+
+class CompletionRecoveryResidualHandoff(StrictModel):
+    schema_version: Literal["1.0"] = "1.0"
+    kind: Literal["video2world.completion_recovery_residual_handoff"] = (
+        "video2world.completion_recovery_residual_handoff"
+    )
+    object_id: str = Field(min_length=1)
+    handoff_sha256: Sha256
+    status: Literal["ready_for_constrained_residual_completion"] = (
+        "ready_for_constrained_residual_completion"
+    )
+    completed_step_id: Literal["01-donor_support"] = "01-donor_support"
+    next_step_id: Literal["03-constrained_residual_completion"] = (
+        "03-constrained_residual_completion"
+    )
+    deeper_rounds_blocked: Literal[True] = True
+    r1_promotion_approved: Literal[False] = False
+    output_claim: Literal[
+        "measured_prefill_plus_residual_masks_only_no_r1_acceptance"
+    ] = "measured_prefill_plus_residual_masks_only_no_r1_acceptance"
+    inputs: list[RecoveryHandoffInput] = Field(min_length=4, max_length=4)
+    frame_records: list[RecoveryResidualHandoffFrame] = Field(min_length=1)
+    pixel_provenance: dict[str, Any] = Field(default_factory=dict)
+    gates: dict[str, Any] = Field(default_factory=dict)
+    next_action: dict[str, Any] = Field(default_factory=dict)
+    required_next_steps: list[str] = Field(min_length=1)
+    notes: list[str] = Field(default_factory=list)
+
+
 def _artifact(
     path: Path,
     role: Literal["completion_backend_route", "clean_plate_report"],
 ) -> RecoveryInputArtifact:
     digest = digest_path(path)
     return RecoveryInputArtifact(
+        path=str(digest.path),
+        sha256=digest.sha256,
+        size_bytes=digest.size_bytes,
+        role=role,
+    )
+
+
+def _handoff_input(
+    path: Path,
+    role: Literal[
+        "completion_recovery_bundle",
+        "completion_recovery_preflight",
+        "measured_prefill_report",
+        "measured_prefill_receipt",
+    ],
+) -> RecoveryHandoffInput:
+    digest = digest_path(path)
+    return RecoveryHandoffInput(
         path=str(digest.path),
         sha256=digest.sha256,
         size_bytes=digest.size_bytes,
@@ -577,6 +660,115 @@ def _verify_declared_file(path: str, sha256: str, size_bytes: int) -> tuple[bool
     return digest.sha256 == sha256 and digest.size_bytes == size_bytes, digest.sha256
 
 
+def _load_object(path: Path, label: str) -> dict[str, Any]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise ValueError(f"{label} root must be an object")
+    return payload
+
+
+def _require_gate(report: dict[str, Any], gate: str) -> None:
+    gates = report.get("gates")
+    if not isinstance(gates, dict) or gates.get(gate) is not True:
+        raise ValueError(f"measured prefill report gate did not pass: {gate}")
+
+
+def _verified_handoff_asset(
+    record: dict[str, Any],
+    path_key: str,
+    sha_key: str,
+    role: str,
+) -> RecoveryHandoffAsset:
+    path_value = record.get(path_key)
+    sha_value = record.get(sha_key)
+    if not isinstance(path_value, str) or not path_value:
+        raise ValueError(f"prefill frame record is missing path: {path_key}")
+    if not isinstance(sha_value, str) or not sha_value:
+        raise ValueError(f"prefill frame record is missing sha256: {sha_key}")
+    digest = digest_path(path_value)
+    if digest.sha256 != sha_value:
+        raise ValueError(f"prefill frame record asset SHA-256 mismatch: {path_key}")
+    return RecoveryHandoffAsset(
+        path=str(digest.path),
+        sha256=digest.sha256,
+        size_bytes=digest.size_bytes,
+        role=role,
+    )
+
+
+def _int_record_value(record: dict[str, Any], key: str) -> int:
+    value = record.get(key)
+    if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+        raise ValueError(f"prefill frame record requires non-negative integer: {key}")
+    return value
+
+
+def _float_record_value(record: dict[str, Any], key: str) -> float:
+    value = record.get(key)
+    if not isinstance(value, int | float) or isinstance(value, bool):
+        raise ValueError(f"prefill frame record requires numeric value: {key}")
+    result = float(value)
+    if not 0 <= result <= 1:
+        raise ValueError(f"prefill frame record value must be in [0, 1]: {key}")
+    return result
+
+
+def _residual_handoff_frame(record: dict[str, Any]) -> RecoveryResidualHandoffFrame:
+    frame_id = record.get("frame_id")
+    if not isinstance(frame_id, str) or not frame_id:
+        raise ValueError("prefill frame record is missing frame_id")
+    donors = record.get("donors")
+    if not isinstance(donors, list):
+        raise ValueError("prefill frame record is missing donors")
+    return RecoveryResidualHandoffFrame(
+        sequence_index=_int_record_value(record, "sequence_index"),
+        frame_id=frame_id,
+        source_rgb=_verified_handoff_asset(
+            record,
+            "source_frame",
+            "source_frame_sha256",
+            "original_observed_rgb",
+        ),
+        removal_mask=_verified_handoff_asset(
+            record,
+            "removal_mask",
+            "removal_mask_sha256",
+            "cumulative_removal_mask",
+        ),
+        measured_prefill_rgb=_verified_handoff_asset(
+            record,
+            "prefill_frame",
+            "prefill_frame_sha256",
+            "measured_multiview_prefill_rgb",
+        ),
+        residual_mask=_verified_handoff_asset(
+            record,
+            "residual_mask",
+            "residual_mask_sha256",
+            "unresolved_residual_mask",
+        ),
+        support_visualization=_verified_handoff_asset(
+            record,
+            "support_visualization",
+            "support_visualization_sha256",
+            "measured_donor_support_visualization",
+        ),
+        measured_depth=_verified_handoff_asset(
+            record,
+            "measured_depth",
+            "measured_depth_sha256",
+            str(record.get("measured_depth_role") or "fused_multiview_measured_depth"),
+        ),
+        removal_mask_pixels=_int_record_value(record, "removal_mask_pixels"),
+        measured_multiview_pixels=_int_record_value(record, "covered_pixels"),
+        residual_mask_pixels=_int_record_value(record, "residual_mask_pixels"),
+        coverage_fraction=_float_record_value(record, "coverage_fraction"),
+        support_max=_int_record_value(record, "support_max"),
+        measured_depth_valid_pixels=_int_record_value(record, "measured_depth_valid_pixels"),
+        donor_count=len(donors),
+    )
+
+
 def materialize_completion_recovery_work_order(
     route_path: str | Path,
     clean_plate_report_path: str | Path,
@@ -811,5 +1003,113 @@ def materialize_completion_recovery_preflight(
     }
     return CompletionRecoveryPreflight(
         preflight_sha256=digest_json(payload),
+        **payload,
+    )
+
+
+def materialize_completion_recovery_residual_handoff(
+    bundle_path: str | Path,
+    preflight_path: str | Path,
+    prefill_report_path: str | Path,
+    prefill_receipt_path: str | Path,
+) -> CompletionRecoveryResidualHandoff:
+    bundle_file = Path(bundle_path).expanduser().resolve()
+    preflight_file = Path(preflight_path).expanduser().resolve()
+    report_file = Path(prefill_report_path).expanduser().resolve()
+    receipt_file = Path(prefill_receipt_path).expanduser().resolve()
+
+    bundle = CompletionRecoveryBundle.model_validate(
+        _load_object(bundle_file, "recovery bundle")
+    )
+    preflight = CompletionRecoveryPreflight.model_validate(
+        _load_object(preflight_file, "recovery preflight")
+    )
+    report = _load_object(report_file, "measured prefill report")
+    receipt = _load_object(receipt_file, "measured prefill receipt")
+
+    report_digest = digest_path(report_file)
+    if receipt.get("report_sha256") != report_digest.sha256:
+        raise ValueError("measured prefill receipt report_sha256 does not match report file")
+    if bundle.object_id != preflight.object_id:
+        raise ValueError("recovery bundle and preflight object_id differ")
+    if preflight.status != "passed":
+        raise ValueError("recovery preflight must pass before residual handoff")
+    if report.get("status") != "technical_passed":
+        raise ValueError("measured prefill report must have status=technical_passed")
+    if report.get("promotion_approved") is not False:
+        raise ValueError("residual handoff only records non-promoted donor support output")
+    _require_gate(report, "outside_removal_mask_rgb_exact")
+    _require_gate(report, "all_residual_masks_subset_of_removal_masks")
+    _require_gate(report, "fused_measured_metric_depth_materialized")
+
+    pixel_provenance = report.get("pixel_provenance")
+    if not isinstance(pixel_provenance, dict):
+        raise ValueError("measured prefill report is missing pixel_provenance")
+    unresolved = pixel_provenance.get("unresolved_unobserved_pixels")
+    if not isinstance(unresolved, int) or isinstance(unresolved, bool) or unresolved <= 0:
+        raise ValueError("residual handoff requires positive unresolved_unobserved_pixels")
+
+    records = report.get("frame_records")
+    if not isinstance(records, list) or not records:
+        raise ValueError("measured prefill report must contain frame_records")
+    frames = [
+        _residual_handoff_frame(record) for record in records if isinstance(record, dict)
+    ]
+    if len(frames) != len(records):
+        raise ValueError("measured prefill report contains non-object frame_records")
+    required_ids = set(preflight.required_frame_ids)
+    frame_ids = {frame.frame_id for frame in frames}
+    if required_ids and frame_ids != required_ids:
+        raise ValueError("residual handoff frame ids differ from recovery preflight")
+
+    next_action = report.get("next_action")
+    if not isinstance(next_action, dict):
+        raise ValueError("measured prefill report is missing next_action")
+    if (
+        next_action.get("action")
+        != "run_constrained_residual_completion_then_semantic_cross_view_review"
+    ):
+        raise ValueError("measured prefill report does not route to constrained residual")
+
+    payload = {
+        "object_id": bundle.object_id,
+        "status": "ready_for_constrained_residual_completion",
+        "completed_step_id": "01-donor_support",
+        "next_step_id": "03-constrained_residual_completion",
+        "deeper_rounds_blocked": True,
+        "r1_promotion_approved": False,
+        "output_claim": "measured_prefill_plus_residual_masks_only_no_r1_acceptance",
+        "inputs": [
+            _handoff_input(bundle_file, "completion_recovery_bundle").model_dump(mode="json"),
+            _handoff_input(preflight_file, "completion_recovery_preflight").model_dump(
+                mode="json"
+            ),
+            _handoff_input(report_file, "measured_prefill_report").model_dump(mode="json"),
+            _handoff_input(receipt_file, "measured_prefill_receipt").model_dump(mode="json"),
+        ],
+        "frame_records": [frame.model_dump(mode="json") for frame in frames],
+        "pixel_provenance": pixel_provenance,
+        "gates": report.get("gates"),
+        "next_action": next_action,
+        "required_next_steps": [
+            "Run constrained residual completion only inside residual_mask assets.",
+            "Preserve source RGB outside removal masks and measured prefill pixels exactly.",
+            "Run semantic cross-view review before any strict R1 acceptance attempt.",
+            "Rerun depth/normal estimation on an accepted clean plate before PGSR or TSDF.",
+        ],
+        "notes": [
+            (
+                "Step 01 donor support completed technically, but this handoff is not "
+                "an R1 acceptance artifact."
+            ),
+            (
+                "Residual masks are unresolved unobserved pixels; they are not valid "
+                "donor or geometry evidence."
+            ),
+            "R2-R4 remain blocked until strict R1 acceptance passes.",
+        ],
+    }
+    return CompletionRecoveryResidualHandoff(
+        handoff_sha256=digest_json(payload),
         **payload,
     )
