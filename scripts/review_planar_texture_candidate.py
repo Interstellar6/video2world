@@ -14,6 +14,10 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+import numpy as np
+from PIL import Image
+from scipy import ndimage
+
 REVIEW_KIND = "video2world.planar_texture_visual_review"
 REVIEW_STATUS = "completed"
 CANDIDATE_STATUS = "texture_candidate_review_pending"
@@ -25,6 +29,9 @@ OUTPUT_RECEIPT_NAME = "planar_texture_visual_review_receipt.json"
 OUTPUT_RECEIPT_HASH_NAME = "planar_texture_visual_review_receipt.sha256"
 DEFAULT_MAX_BOUNDARY_P95 = 48.0
 DEFAULT_MAX_GRADIENT_P95 = 64.0
+DEFAULT_MIN_SYNTHETIC_TEXTURE_ENERGY_RATIO = 0.45
+DEFAULT_TEXTURE_CORE_EROSION_PIXELS = 3
+DEFAULT_TEXTURE_COLLAR_WIDTH_PIXELS = 20
 
 
 class PlanarTextureReviewError(ValueError):
@@ -38,6 +45,11 @@ class BoundFrame:
     synthetic_mask_sha256: str
     boundary_color_p95: float
     boundary_gradient_p95: float
+    texture_energy_ratio: float
+    synthetic_texture_gradient_mean: float
+    collar_texture_gradient_mean: float
+    texture_core_pixels: int
+    texture_collar_pixels: int
 
 
 def require(condition: bool, message: str) -> None:
@@ -103,6 +115,43 @@ def frame_boundary_metrics(record: dict[str, Any], *, label: str) -> tuple[float
     )
 
 
+def synthetic_texture_metrics(
+    completed_frame: Path,
+    synthetic_mask: Path,
+    *,
+    core_erosion_pixels: int,
+    collar_width_pixels: int,
+) -> dict[str, Any]:
+    require(core_erosion_pixels >= 0, "texture core erosion must be non-negative")
+    require(collar_width_pixels > 0, "texture collar width must be positive")
+    image = np.asarray(Image.open(completed_frame).convert("RGB"), dtype=np.float32)
+    mask = np.asarray(Image.open(synthetic_mask).convert("L"), dtype=np.uint8) > 0
+    require(image.shape[:2] == mask.shape, "completed frame and synthetic mask dimensions differ")
+    gray = image.mean(axis=2)
+    gradient = np.hypot(
+        ndimage.sobel(gray, axis=1, mode="nearest"),
+        ndimage.sobel(gray, axis=0, mode="nearest"),
+    )
+    core = mask.copy()
+    if core_erosion_pixels:
+        core = ndimage.binary_erosion(core, iterations=core_erosion_pixels, border_value=0)
+    collar = ndimage.binary_dilation(mask, iterations=collar_width_pixels) & ~mask
+    core_pixels = int(core.sum())
+    collar_pixels = int(collar.sum())
+    core_mean = float(gradient[core].mean()) if core_pixels else 0.0
+    collar_mean = float(gradient[collar].mean()) if collar_pixels else 0.0
+    ratio = core_mean / (collar_mean + 1e-6) if core_pixels and collar_pixels else 0.0
+    return {
+        "synthetic_texture_gradient_mean": core_mean,
+        "collar_texture_gradient_mean": collar_mean,
+        "synthetic_texture_energy_ratio": float(ratio),
+        "texture_core_pixels": core_pixels,
+        "texture_collar_pixels": collar_pixels,
+        "core_erosion_pixels": core_erosion_pixels,
+        "collar_width_pixels": collar_width_pixels,
+    }
+
+
 def validate_candidate(candidate: dict[str, Any]) -> None:
     require(candidate.get("schema_version") == 1, "candidate schema_version must equal 1")
     require(candidate.get("status") == CANDIDATE_STATUS, "candidate status is not review-pending")
@@ -127,7 +176,13 @@ def validate_candidate(candidate: dict[str, Any]) -> None:
     )
 
 
-def bind_review_frames(candidate: dict[str, Any], candidate_dir: Path) -> list[BoundFrame]:
+def bind_review_frames(
+    candidate: dict[str, Any],
+    candidate_dir: Path,
+    *,
+    texture_core_erosion_pixels: int,
+    texture_collar_width_pixels: int,
+) -> list[BoundFrame]:
     frame_records = candidate.get("frame_records")
     require(isinstance(frame_records, list) and frame_records, "candidate frame_records are empty")
     records_by_id: dict[str, dict[str, Any]] = {}
@@ -167,6 +222,12 @@ def bind_review_frames(candidate: dict[str, Any], candidate_dir: Path) -> list[B
         )
         require(sha256_file(mask_path) == mask_sha, f"{frame_id} mask SHA-256 mismatch")
         color_p95, gradient_p95 = frame_boundary_metrics(record, label=frame_id)
+        texture_metrics = synthetic_texture_metrics(
+            completed_path,
+            mask_path,
+            core_erosion_pixels=texture_core_erosion_pixels,
+            collar_width_pixels=texture_collar_width_pixels,
+        )
         bound.append(
             BoundFrame(
                 frame_id=frame_id,
@@ -174,6 +235,13 @@ def bind_review_frames(candidate: dict[str, Any], candidate_dir: Path) -> list[B
                 synthetic_mask_sha256=mask_sha,
                 boundary_color_p95=color_p95,
                 boundary_gradient_p95=gradient_p95,
+                texture_energy_ratio=texture_metrics["synthetic_texture_energy_ratio"],
+                synthetic_texture_gradient_mean=texture_metrics[
+                    "synthetic_texture_gradient_mean"
+                ],
+                collar_texture_gradient_mean=texture_metrics["collar_texture_gradient_mean"],
+                texture_core_pixels=texture_metrics["texture_core_pixels"],
+                texture_collar_pixels=texture_metrics["texture_collar_pixels"],
             )
         )
     return bound
@@ -216,13 +284,23 @@ def build_review(
     reviewer_id: str,
     max_boundary_p95: float,
     max_gradient_p95: float,
+    min_texture_energy_ratio: float,
+    texture_core_erosion_pixels: int,
+    texture_collar_width_pixels: int,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     validate_candidate(candidate)
-    frames = bind_review_frames(candidate, candidate_path.parent)
+    frames = bind_review_frames(
+        candidate,
+        candidate_path.parent,
+        texture_core_erosion_pixels=texture_core_erosion_pixels,
+        texture_collar_width_pixels=texture_collar_width_pixels,
+    )
     max_observed_boundary = max(frame.boundary_color_p95 for frame in frames)
     max_observed_gradient = max(frame.boundary_gradient_p95 for frame in frames)
+    min_observed_texture_ratio = min(frame.texture_energy_ratio for frame in frames)
     boundary_passed = max_observed_boundary <= max_boundary_p95
     gradient_passed = max_observed_gradient <= max_gradient_p95
+    texture_passed = min_observed_texture_ratio >= min_texture_energy_ratio
     decision = REJECTED_DECISION
     blocking_findings: list[dict[str, Any]] = []
     if not boundary_passed:
@@ -231,6 +309,15 @@ def build_review(
                 "gate": "full_resolution_boundary_color_continuity",
                 "threshold_p95_abs_rgb_delta": max_boundary_p95,
                 "observed_maximum": max_observed_boundary,
+                "severity": "blocking",
+            }
+        )
+    if not texture_passed:
+        blocking_findings.append(
+            {
+                "gate": "synthetic_region_texture_energy_ratio",
+                "threshold_minimum_ratio": min_texture_energy_ratio,
+                "observed_minimum": min_observed_texture_ratio,
                 "severity": "blocking",
             }
         )
@@ -259,10 +346,16 @@ def build_review(
         visual_gate = "pending_human_or_vlm_review_after_metric_pass"
     else:
         triage_status = NEEDS_REPAIR_STATUS
-        next_action = (
-            "repair_texture_candidate_before_acceptance; suggested first attempt is "
-            "complete_planar_texture_atlas --plane-footprint-neutralization"
-        )
+        if not texture_passed and boundary_passed and gradient_passed:
+            next_action = (
+                "repair_synthetic_texture_detail_before_acceptance; boundary metrics passed "
+                "but synthetic texture is too flat relative to the local collar"
+            )
+        else:
+            next_action = (
+                "repair_texture_candidate_before_acceptance; suggested first attempt is "
+                "complete_planar_texture_atlas --plane-footprint-neutralization"
+            )
         visual_gate = "rejected_until_repaired_or_human_vlm_accepts"
 
     full_resolution_review = [
@@ -278,6 +371,11 @@ def build_review(
             ],
             "boundary_color_p95_abs_rgb_delta": frame.boundary_color_p95,
             "boundary_normal_gradient_p95_abs_rgb_delta": frame.boundary_gradient_p95,
+            "synthetic_texture_energy_ratio": frame.texture_energy_ratio,
+            "synthetic_texture_gradient_mean": frame.synthetic_texture_gradient_mean,
+            "collar_texture_gradient_mean": frame.collar_texture_gradient_mean,
+            "texture_core_pixels": frame.texture_core_pixels,
+            "texture_collar_pixels": frame.texture_collar_pixels,
         }
         for frame in frames
     ]
@@ -305,11 +403,21 @@ def build_review(
                 "observed_maximum": max_observed_gradient,
                 "passed": gradient_passed,
             },
+            "synthetic_region_texture_energy_ratio": {
+                "threshold_minimum_ratio": min_texture_energy_ratio,
+                "observed_minimum": min_observed_texture_ratio,
+                "passed": texture_passed,
+                "core_erosion_pixels": texture_core_erosion_pixels,
+                "collar_width_pixels": texture_collar_width_pixels,
+            },
             "visual_quality": visual_gate,
         },
         "blocking_findings": blocking_findings,
         "limitations": [
-            "This automated review only evaluates bound full-resolution boundary metrics.",
+            (
+                "This automated review only evaluates bound full-resolution boundary "
+                "and synthetic texture-energy metrics."
+            ),
             (
                 "A future human or VLM review must still inspect photorealism "
                 "and semantic plausibility."
@@ -346,6 +454,9 @@ def review_candidate(
     reviewer_id: str,
     max_boundary_p95: float = DEFAULT_MAX_BOUNDARY_P95,
     max_gradient_p95: float = DEFAULT_MAX_GRADIENT_P95,
+    min_texture_energy_ratio: float = DEFAULT_MIN_SYNTHETIC_TEXTURE_ENERGY_RATIO,
+    texture_core_erosion_pixels: int = DEFAULT_TEXTURE_CORE_EROSION_PIXELS,
+    texture_collar_width_pixels: int = DEFAULT_TEXTURE_COLLAR_WIDTH_PIXELS,
     reviewed_at: datetime | None = None,
 ) -> tuple[dict[str, Any], dict[str, Any], str]:
     output_candidate = output_dir.expanduser()
@@ -368,6 +479,9 @@ def review_candidate(
         reviewer_id=reviewer_id,
         max_boundary_p95=max_boundary_p95,
         max_gradient_p95=max_gradient_p95,
+        min_texture_energy_ratio=min_texture_energy_ratio,
+        texture_core_erosion_pixels=texture_core_erosion_pixels,
+        texture_collar_width_pixels=texture_collar_width_pixels,
     )
 
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -420,6 +534,21 @@ def build_parser() -> argparse.ArgumentParser:
         type=float,
         default=DEFAULT_MAX_GRADIENT_P95,
     )
+    parser.add_argument(
+        "--minimum-synthetic-texture-energy-ratio",
+        type=float,
+        default=DEFAULT_MIN_SYNTHETIC_TEXTURE_ENERGY_RATIO,
+    )
+    parser.add_argument(
+        "--texture-core-erosion-pixels",
+        type=int,
+        default=DEFAULT_TEXTURE_CORE_EROSION_PIXELS,
+    )
+    parser.add_argument(
+        "--texture-collar-width-pixels",
+        type=int,
+        default=DEFAULT_TEXTURE_COLLAR_WIDTH_PIXELS,
+    )
     return parser
 
 
@@ -431,6 +560,9 @@ def main() -> int:
         reviewer_id=args.reviewer_id,
         max_boundary_p95=args.maximum_full_resolution_boundary_p95_delta,
         max_gradient_p95=args.maximum_full_resolution_gradient_p95_delta,
+        min_texture_energy_ratio=args.minimum_synthetic_texture_energy_ratio,
+        texture_core_erosion_pixels=args.texture_core_erosion_pixels,
+        texture_collar_width_pixels=args.texture_collar_width_pixels,
     )
     print(
         json.dumps(

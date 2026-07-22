@@ -30,13 +30,33 @@ def read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def write_png(path: Path, value: int) -> str:
+def write_rgb_png(path: Path, value: int, *, flat_mask_region: bool = False) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
-    Image.fromarray(np.full((4, 5, 3), value, dtype=np.uint8)).save(path)
+    row, column = np.indices((48, 64))
+    texture = ((row % 7) * 3 + (column % 5) * 4).astype(np.int16)
+    image = np.stack(
+        [
+            value + texture,
+            value + texture // 2,
+            value + texture // 3,
+        ],
+        axis=2,
+    )
+    if flat_mask_region:
+        image[12:36, 16:48] = [value, value, value]
+    Image.fromarray(np.clip(image, 0, 255).astype(np.uint8)).save(path)
     return sha256_file(path)
 
 
-def make_candidate(tmp_path: Path) -> Path:
+def write_mask_png(path: Path) -> str:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    mask = np.zeros((48, 64), dtype=np.uint8)
+    mask[12:36, 16:48] = 255
+    Image.fromarray(mask).save(path)
+    return sha256_file(path)
+
+
+def make_candidate(tmp_path: Path, *, flat_mask_region: bool = False) -> Path:
     root = tmp_path / "candidate"
     geometry_path = root / "planar_background_report.json"
     geometry = {
@@ -57,8 +77,12 @@ def make_candidate(tmp_path: Path) -> Path:
     for index, frame_id in enumerate(frame_ids):
         completed_path = root / "frames" / f"{frame_id}.png"
         mask_path = root / "synthetic_masks" / f"{frame_id}.png"
-        completed_sha = write_png(completed_path, 80 + index)
-        mask_sha = write_png(mask_path, 20 + index)
+        completed_sha = write_rgb_png(
+            completed_path,
+            80 + index,
+            flat_mask_region=flat_mask_region,
+        )
+        mask_sha = write_mask_png(mask_path)
         color_p95 = 118.0 if index == 0 else 30.0 + index
         gradient_p95 = 119.0 if index == 0 else 40.0 + index
         frame_records.append(
@@ -218,7 +242,41 @@ def test_metric_pass_candidate_still_requires_visual_review(tmp_path: Path) -> N
         }
     ]
     assert review["gates"]["full_resolution_boundary_color_continuity"]["passed"] is True
+    assert review["gates"]["synthetic_region_texture_energy_ratio"]["passed"] is True
     assert "run_bound_human_or_vlm_visual_review" in review["next_action"]
+
+
+def test_metric_review_rejects_flat_synthetic_texture_patch(tmp_path: Path) -> None:
+    candidate_path = make_candidate(tmp_path, flat_mask_region=True)
+    candidate = read_json(candidate_path)
+    for record in candidate["frame_records"]:
+        record["synthetic_boundary_continuity_full_resolution"][
+            "boundary_color_p95_abs_rgb_delta"
+        ] = 30.0
+        record["synthetic_boundary_continuity_full_resolution"][
+            "boundary_normal_gradient_p95_abs_rgb_delta"
+        ] = 31.0
+    write_json(candidate_path, candidate)
+
+    review, receipt, _ = review_candidate(
+        candidate_report_path=candidate_path,
+        output_dir=tmp_path / "review",
+        reviewer_id="auto-reviewer",
+        reviewed_at=datetime(2026, 7, 22, 12, 0, tzinfo=UTC),
+    )
+
+    assert receipt["status"] == "texture_candidate_rejected_or_needs_repair"
+    assert review["gates"]["full_resolution_boundary_color_continuity"]["passed"] is True
+    assert review["gates"]["synthetic_region_texture_energy_ratio"]["passed"] is False
+    assert review["blocking_findings"] == [
+        {
+            "gate": "synthetic_region_texture_energy_ratio",
+            "threshold_minimum_ratio": 0.45,
+            "observed_minimum": pytest.approx(0.0),
+            "severity": "blocking",
+        }
+    ]
+    assert "too flat" in review["next_action"]
 
 
 def test_refuses_already_promoted_candidate(tmp_path: Path) -> None:

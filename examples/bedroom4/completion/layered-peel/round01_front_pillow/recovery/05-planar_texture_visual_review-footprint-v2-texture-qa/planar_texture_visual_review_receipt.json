@@ -1,9 +1,10 @@
 {
   "blocking_findings": [
     {
-      "gate": "visual_quality",
-      "observed": "pending_human_or_vlm_review",
-      "severity": "blocking"
+      "gate": "synthetic_region_texture_energy_ratio",
+      "observed_minimum": 0.30069992693524,
+      "severity": "blocking",
+      "threshold_minimum_ratio": 0.45
     }
   ],
   "candidate_report": {
@@ -11,18 +12,18 @@
     "sha256": "de45bd1aab7847b45a770be14cb47b893c9c71ca4af6362ef8c8d0b9e760abd8",
     "status": "texture_candidate_review_pending"
   },
-  "created_at": "2026-07-22T07:25:24.969874+00:00",
+  "created_at": "2026-07-22T07:42:33.822690+00:00",
   "decision": "rejected",
   "eligible_as_round04_clean_plate": false,
   "kind": "video2world.planar_texture_visual_review_receipt",
-  "next_action": "run_bound_human_or_vlm_visual_review_before_acceptance; do not promote until photorealism, semantic plausibility, and wall-floor boundary quality are accepted",
+  "next_action": "repair_synthetic_texture_detail_before_acceptance; boundary metrics passed but synthetic texture is too flat relative to the local collar",
   "promotion_approved": false,
   "reviewed_full_resolution_frame_count": 3,
   "schema_version": 1,
-  "status": "texture_candidate_metric_pass_visual_review_required",
+  "status": "texture_candidate_rejected_or_needs_repair",
   "visual_review": {
     "path": "planar_texture_visual_review.json",
-    "sha256": "d7dd78e32f2c63410ef3cd5e82a9b21d872f900e66d13be8652523c91cbc60e5",
-    "size_bytes": 5344
+    "sha256": "2d9239dcf0ae7698c7c6f4312e80d0c25a67f32ef18963d00be28dd832cc170a",
+    "size_bytes": 6388
   }
 }

@@ -1,9 +1,10 @@
 {
   "blocking_findings": [
     {
-      "gate": "visual_quality",
-      "observed": "pending_human_or_vlm_review",
-      "severity": "blocking"
+      "gate": "synthetic_region_texture_energy_ratio",
+      "observed_minimum": 0.30069992693524,
+      "severity": "blocking",
+      "threshold_minimum_ratio": 0.45
     }
   ],
   "candidate_report": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/04-planar_texture_candidate-footprint-v2/planar_texture_report.json",
@@ -14,28 +15,43 @@
       "blocking_findings": [],
       "boundary_color_p95_abs_rgb_delta": 35.683333333333316,
       "boundary_normal_gradient_p95_abs_rgb_delta": 37.0,
+      "collar_texture_gradient_mean": 56.678977966308594,
       "completed_frame_sha256": "e69f9f6f966b489cbe9eea8561122561f9d8d1b242a39083faa7b637a7d4ce4c",
       "decision": "rejected",
       "frame_id": "000064",
-      "synthetic_mask_sha256": "2fbece0752de8195356da83812467be4bf0200661d6ba9c9d752075456f3930d"
+      "synthetic_mask_sha256": "2fbece0752de8195356da83812467be4bf0200661d6ba9c9d752075456f3930d",
+      "synthetic_texture_energy_ratio": 0.3097311006411641,
+      "synthetic_texture_gradient_mean": 17.55524253845215,
+      "texture_collar_pixels": 20874,
+      "texture_core_pixels": 50275
     },
     {
       "blocking_findings": [],
       "boundary_color_p95_abs_rgb_delta": 38.666666666666664,
       "boundary_normal_gradient_p95_abs_rgb_delta": 39.666666666666664,
+      "collar_texture_gradient_mean": 56.13216018676758,
       "completed_frame_sha256": "9227021d92fcb2ff1e909b97167149e9bdc566da69f89781575a8d96e6980497",
       "decision": "rejected",
       "frame_id": "000067",
-      "synthetic_mask_sha256": "94ba27728473a5d735c4b72506b795a2899823b43fa330223feb13003e8df5b2"
+      "synthetic_mask_sha256": "94ba27728473a5d735c4b72506b795a2899823b43fa330223feb13003e8df5b2",
+      "synthetic_texture_energy_ratio": 0.30069992693524,
+      "synthetic_texture_gradient_mean": 16.878936767578125,
+      "texture_collar_pixels": 20569,
+      "texture_core_pixels": 48033
     },
     {
       "blocking_findings": [],
       "boundary_color_p95_abs_rgb_delta": 38.2833333333333,
       "boundary_normal_gradient_p95_abs_rgb_delta": 38.666666666666664,
+      "collar_texture_gradient_mean": 53.748863220214844,
       "completed_frame_sha256": "7279a02bc0bbd41b0ad4f588d1b6f017b7301e804c4150f82ad5bfe2a00fce4e",
       "decision": "rejected",
       "frame_id": "000072",
-      "synthetic_mask_sha256": "6e0b4b99d1c0a7d9632e20a8be9b869962e1e132debfb264ee5a5f39d3369545"
+      "synthetic_mask_sha256": "6e0b4b99d1c0a7d9632e20a8be9b869962e1e132debfb264ee5a5f39d3369545",
+      "synthetic_texture_energy_ratio": 0.31806031682901154,
+      "synthetic_texture_gradient_mean": 17.095380783081055,
+      "texture_collar_pixels": 20449,
+      "texture_core_pixels": 44107
     }
   ],
   "gates": {
@@ -49,17 +65,24 @@
       "passed": true,
       "threshold_p95_abs_rgb_delta": 64.0
     },
-    "visual_quality": "pending_human_or_vlm_review_after_metric_pass"
+    "synthetic_region_texture_energy_ratio": {
+      "collar_width_pixels": 20,
+      "core_erosion_pixels": 3,
+      "observed_minimum": 0.30069992693524,
+      "passed": false,
+      "threshold_minimum_ratio": 0.45
+    },
+    "visual_quality": "rejected_until_repaired_or_human_vlm_accepts"
   },
   "kind": "video2world.planar_texture_visual_review",
   "limitations": [
-    "This automated review only evaluates bound full-resolution boundary metrics.",
+    "This automated review only evaluates bound full-resolution boundary and synthetic texture-energy metrics.",
     "A future human or VLM review must still inspect photorealism and semantic plausibility."
   ],
-  "next_action": "run_bound_human_or_vlm_visual_review_before_acceptance; do not promote until photorealism, semantic plausibility, and wall-floor boundary quality are accepted",
+  "next_action": "repair_synthetic_texture_detail_before_acceptance; boundary metrics passed but synthetic texture is too flat relative to the local collar",
   "review_authority": {
     "kind": "automated_metric_review",
-    "reviewed_at": "2026-07-22T07:25:24.969874+00:00",
+    "reviewed_at": "2026-07-22T07:42:33.822690+00:00",
     "reviewer_id": "video2world-auto-boundary-reviewer",
     "scope": "round04_clean_plate_texture_repair_triage"
   },
