@@ -280,6 +280,12 @@ def test_exact_static_sequence_passes_temporal_only_with_one_model_load(
     assert len(report["triplet_records"]) == 23
     assert report["counts"]["failed_directed_pairs"] == 0
     assert report["counts"]["failed_triplets"] == 0
+    assert (
+        report["next_action"]["action"]
+        == "run_semantic_residual_pbr_da3_and_cross_view_review_before_any_promotion"
+    )
+    assert report["next_action"]["failed_pair_ids"] == []
+    assert report["next_action"]["not_evaluable_pair_ids"] == []
     first_pair = report["pair_records"][0]
     assert first_pair["coverage"]["target_core_overlap_fraction"] == 1.0
     assert first_pair["coverage"]["valid_core_fraction"] == 1.0
@@ -309,11 +315,31 @@ def test_core_flicker_fails_pairs_and_triplets_without_becoming_not_evaluable(
     assert report["counts"]["not_evaluable_triplets"] == 0
     assert report["counts"]["failed_directed_pairs"] > 0
     assert report["counts"]["failed_triplets"] > 0
+    assert (
+        report["next_action"]["action"]
+        == "repair_temporal_flicker_or_regenerate_clean_plate_candidates"
+    )
+    assert len(report["next_action"]["failed_pair_ids"]) == report["counts"][
+        "failed_directed_pairs"
+    ]
+    assert len(report["next_action"]["failed_triplet_center_frame_ids"]) == report["counts"][
+        "failed_triplets"
+    ]
     failing_pair = next(record for record in report["pair_records"] if not record["passed"])
     assert failing_pair["gates"]["core_color_p95_lte"]["passed"] is False
     assert failing_pair["gates"]["core_bad_pixel_fraction_lte"]["passed"] is False
+    pair_action = next(
+        item
+        for item in report["next_action"]["failed_pairs"]
+        if item["direction_id"] == failing_pair["direction_id"]
+    )
+    assert "core_color_p95_lte" in pair_action["failed_gates"]
+    assert "core_bad_pixel_fraction_lte" in pair_action["failed_gates"]
     failing_triplet = next(record for record in report["triplet_records"] if not record["passed"])
     assert failing_triplet["gates"]["triplet_second_difference_p95_lte"]["passed"] is False
+    assert failing_triplet["center_frame_id"] in report["next_action"][
+        "failed_triplet_center_frame_ids"
+    ]
 
 
 def test_ill_conditioned_control_ring_is_not_evaluable_fail_closed(
@@ -329,6 +355,9 @@ def test_ill_conditioned_control_ring_is_not_evaluable_fail_closed(
     assert report["counts"]["not_evaluable_directed_pairs"] == 48
     assert report["counts"]["not_evaluable_triplets"] == 23
     assert "ill-conditioned" in report["pair_records"][0]["not_evaluable_reason"]
+    assert report["next_action"]["action"] == "repair_temporal_evidence_before_retesting"
+    assert len(report["next_action"]["not_evaluable_pair_ids"]) == 48
+    assert "ill-conditioned" in report["next_action"]["not_evaluable_pairs"][0]["reason"]
     assert report["promotion_approved"] is False
 
 

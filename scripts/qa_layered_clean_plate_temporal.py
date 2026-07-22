@@ -1528,6 +1528,114 @@ def report_base(validated: ValidatedManifest) -> dict[str, Any]:
     }
 
 
+def failed_gate_names(record: dict[str, Any]) -> list[str]:
+    gates = record.get("gates")
+    if not isinstance(gates, dict):
+        return []
+    return sorted(
+        str(name)
+        for name, gate in gates.items()
+        if isinstance(gate, dict) and gate.get("passed") is not True
+    )
+
+
+def temporal_next_action(report: dict[str, Any]) -> dict[str, Any]:
+    pair_records = report.get("pair_records", [])
+    triplet_records = report.get("triplet_records", [])
+    if not isinstance(pair_records, list):
+        pair_records = []
+    if not isinstance(triplet_records, list):
+        triplet_records = []
+
+    failed_pairs = [
+        {
+            "direction_id": record["direction_id"],
+            "source_frame_id": record["source_frame_id"],
+            "target_frame_id": record["target_frame_id"],
+            "failed_gates": failed_gate_names(record),
+        }
+        for record in pair_records
+        if isinstance(record, dict)
+        and record.get("evaluable") is True
+        and record.get("passed") is not True
+    ]
+    failed_triplets = [
+        {
+            "center_frame_id": record["center_frame_id"],
+            "previous_frame_id": record["previous_frame_id"],
+            "following_frame_id": record["following_frame_id"],
+            "failed_gates": failed_gate_names(record),
+        }
+        for record in triplet_records
+        if isinstance(record, dict)
+        and record.get("evaluable") is True
+        and record.get("passed") is not True
+    ]
+    not_evaluable_pairs = [
+        {
+            "direction_id": record["direction_id"],
+            "source_frame_id": record["source_frame_id"],
+            "target_frame_id": record["target_frame_id"],
+            "reason": record.get("not_evaluable_reason"),
+        }
+        for record in pair_records
+        if isinstance(record, dict) and record.get("evaluable") is not True
+    ]
+    not_evaluable_triplets = [
+        {
+            "center_frame_id": record["center_frame_id"],
+            "previous_frame_id": record["previous_frame_id"],
+            "following_frame_id": record["following_frame_id"],
+            "reason": record.get("not_evaluable_reason"),
+        }
+        for record in triplet_records
+        if isinstance(record, dict) and record.get("evaluable") is not True
+    ]
+
+    status = report.get("status")
+    if status == "technical_passed_temporal_only":
+        action = "run_semantic_residual_pbr_da3_and_cross_view_review_before_any_promotion"
+        reason = (
+            "Review-only temporal gates passed, but this QA scope still does not prove "
+            "object-free semantics, PBR consistency, DA3 geometry, or promotion readiness."
+        )
+    elif status == "technical_failed":
+        action = "repair_temporal_flicker_or_regenerate_clean_plate_candidates"
+        reason = (
+            "Temporal flow evidence was evaluable, but one or more directed pairs or "
+            "triplets failed strict color/gradient consistency gates."
+        )
+    elif status == "not_evaluable":
+        action = "repair_temporal_evidence_before_retesting"
+        reason = (
+            "Temporal QA could not evaluate the strict review contract; fix runtime, flow "
+            "validity, control-ring conditioning, or candidate selection before promotion."
+        )
+    else:
+        action = "repair_temporal_input_contract_before_retesting"
+        reason = "Temporal QA input validation failed before review-only flow evidence was run."
+
+    return {
+        "action": action,
+        "reason": reason,
+        "promotion_approved": False,
+        "failed_pair_ids": [item["direction_id"] for item in failed_pairs],
+        "failed_pairs": failed_pairs,
+        "failed_triplet_center_frame_ids": [
+            item["center_frame_id"] for item in failed_triplets
+        ],
+        "failed_triplets": failed_triplets,
+        "not_evaluable_pair_ids": [
+            item["direction_id"] for item in not_evaluable_pairs
+        ],
+        "not_evaluable_pairs": not_evaluable_pairs,
+        "not_evaluable_triplet_center_frame_ids": [
+            item["center_frame_id"] for item in not_evaluable_triplets
+        ],
+        "not_evaluable_triplets": not_evaluable_triplets,
+    }
+
+
 def evaluate(
     args: argparse.Namespace,
     *,
@@ -1686,6 +1794,7 @@ def evaluate(
     else:
         report["status"] = "technical_passed_temporal_only"
     report["promotion_approved"] = False
+    report["next_action"] = temporal_next_action(report)
     report["artifacts"] = {
         "root": str(artifact_final),
         "review_only": True,
