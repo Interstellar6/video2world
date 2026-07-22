@@ -24,7 +24,7 @@ from video2world.completion_routing import (
     clean_plate_next_action_from_report,
     route_completion_backend,
 )
-from video2world.errors import Video2WorldError
+from video2world.errors import StageBlockedError, Video2WorldError
 from video2world.hashing import atomic_write_json, digest_json, digest_path
 from video2world.models import world_manifest_json_schema
 from video2world.orchestrator import (
@@ -425,9 +425,19 @@ def _cmd_site_preflight(args: argparse.Namespace) -> int:
 
 
 def _cmd_site_run(args: argparse.Namespace) -> int:
-    from video2world.site_pipeline import run_site_pipeline
+    from video2world.site_pipeline import SITE_RUN_RECEIPT_NAME, run_site_pipeline
 
-    receipt = run_site_pipeline(args.run_dir, targets=args.stages)
+    try:
+        receipt = run_site_pipeline(args.run_dir, targets=args.stages)
+    except StageBlockedError:
+        receipt_path = (
+            Path(args.run_dir).expanduser().resolve()
+            / ".video2world"
+            / SITE_RUN_RECEIPT_NAME
+        )
+        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        _print_json(receipt)
+        return 3
     _print_json(receipt)
     return 0
 
