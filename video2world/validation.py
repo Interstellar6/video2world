@@ -128,6 +128,12 @@ def _validate_unified_gate_report_manifest_bindings(
     gate_name: str,
     item: WorldObject,
 ) -> None:
+    report_metrics = _expect_report_field(payload, "metrics", gate_name=gate_name)
+    if not isinstance(report_metrics, dict):
+        raise ArtifactError(f"{gate_name} gate report metrics must be a JSON object")
+    expected_metrics = getattr(item.quality_gates, gate_name).metrics
+    if report_metrics != expected_metrics:
+        raise ArtifactError(f"{gate_name} gate report metrics do not match manifest")
     if gate_name == "alignment":
         expected_bbox = item.bbox_scene.model_dump(mode="json") if item.bbox_scene else None
         expected_transform = (
@@ -164,11 +170,6 @@ def _validate_unified_gate_report_manifest_bindings(
                 f"collision gate report face count {report_faces!r} does not match manifest "
                 f"{expected_faces!r}"
             )
-        report_metrics = _expect_report_field(payload, "metrics", gate_name=gate_name)
-        if not isinstance(report_metrics, dict):
-            raise ArtifactError("collision gate report metrics must be a JSON object")
-        if report_metrics != item.quality_gates.collision.metrics:
-            raise ArtifactError("collision gate report metrics do not match manifest")
 
 
 def _object_identity_from_gate_location(location: str) -> tuple[str, str]:

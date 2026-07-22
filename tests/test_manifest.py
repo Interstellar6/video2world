@@ -46,6 +46,12 @@ def _gate_report_payload(
         payload["object_id"] = object_id
     if target_id is not None:
         payload["target_id"] = target_id
+    if object_payload is not None:
+        quality_gates = object_payload["quality_gates"]
+        assert isinstance(quality_gates, dict)
+        gate = quality_gates[gate_name]
+        assert isinstance(gate, dict)
+        payload["metrics"] = gate.get("metrics", {})
     if object_payload is not None and gate_name == "alignment":
         payload["bbox_scene"] = object_payload["bbox_scene"]
         payload["transform_scene_from_asset"] = object_payload["transform_scene_from_asset"]
@@ -56,11 +62,6 @@ def _gate_report_payload(
         assert isinstance(provenance, dict)
         payload["collision_topology"] = object_payload["collision_topology"]
         payload["faces"] = provenance["faces"]
-        quality_gates = object_payload["quality_gates"]
-        assert isinstance(quality_gates, dict)
-        collision_gate = quality_gates["collision"]
-        assert isinstance(collision_gate, dict)
-        payload["metrics"] = collision_gate["metrics"]
     return json.dumps(payload, sort_keys=True) + "\n"
 
 
@@ -330,6 +331,66 @@ def test_manifest_rejects_collision_report_metric_mismatch(
 
     assert result["valid"] is False
     assert any("metrics do not match" in issue["error"] for issue in result["issues"])
+
+
+@pytest.mark.parametrize(
+    ("gate_to_mutate", "metric_name", "mutated_value"),
+    [
+        ("alignment", "stable_support_contact", False),
+        ("visual", "six_view_count", 5),
+    ],
+)
+def test_manifest_rejects_alignment_or_visual_report_metric_mismatch(
+    tmp_path: Path,
+    sample_manifest: WorldManifest,
+    gate_to_mutate: str,
+    metric_name: str,
+    mutated_value: object,
+) -> None:
+    object_payload = _unified_pbr_object_payload(sample_manifest)
+    glb_path = tmp_path / "pillow-unified.glb"
+    glb_path.write_bytes(b"unified pbr glb")
+    glb_digest = digest_path(glb_path)
+    object_payload["unified_pbr_glb"].update(
+        {
+            "uri": str(glb_path),
+            "sha256": glb_digest.sha256,
+            "size_bytes": glb_digest.size_bytes,
+        }
+    )
+    for gate_name in ("alignment", "collision", "visual"):
+        report_path = tmp_path / f"{gate_name}-report.json"
+        report_payload = json.loads(
+            _gate_report_payload(
+                gate_name,
+                glb_digest.sha256,
+                object_payload=object_payload,
+            )
+        )
+        if gate_name == gate_to_mutate:
+            report_payload["metrics"][metric_name] = mutated_value
+        report_path.write_text(json.dumps(report_payload, sort_keys=True) + "\n")
+        report_digest = digest_path(report_path)
+        object_payload["quality_gates"][gate_name].update(
+            {
+                "report_uri": str(report_path),
+                "report_sha256": report_digest.sha256,
+                "report_size_bytes": report_digest.size_bytes,
+            }
+        )
+    payload = sample_manifest.model_dump(mode="json")
+    payload["objects"].append(object_payload)
+    manifest = WorldManifest.model_validate(payload)
+    manifest_path = tmp_path / "world.json"
+    manifest_path.write_text(manifest.model_dump_json(indent=2), encoding="utf-8")
+
+    result = validate_world_manifest(manifest_path)
+
+    assert result["valid"] is False
+    assert any(
+        f"{gate_to_mutate} gate report metrics do not match" in issue["error"]
+        for issue in result["issues"]
+    )
 
 
 def test_manifest_rejects_non_json_gate_report_payload(
@@ -740,6 +801,11 @@ def _unified_pbr_object_payload(sample_manifest: WorldManifest) -> dict[str, obj
         "report_uri": "artifact://pillow-unified/scene-fit-report.json",
         "report_sha256": "e" * 64,
         "report_size_bytes": 2048,
+        "metrics": {
+            "stable_support_contact": True,
+            "max_interpenetration_ratio": 0.01,
+            "placement_fit_iou": 0.92,
+        },
     }
     payload["quality_gates"]["collision"] = {
         "status": "passed",
@@ -757,6 +823,11 @@ def _unified_pbr_object_payload(sample_manifest: WorldManifest) -> dict[str, obj
         "report_uri": "artifact://pillow-unified/visual-review.json",
         "report_sha256": "1" * 64,
         "report_size_bytes": 2048,
+        "metrics": {
+            "six_view_count": 6,
+            "browser_canvas_nonblank": True,
+            "severe_identity_drift": False,
+        },
     }
     payload["interaction"].update(
         {
