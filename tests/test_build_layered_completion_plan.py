@@ -295,6 +295,12 @@ def test_next_layer_association_failure_surfaces_next_action(tmp_path: Path) -> 
         "blocker": "missing_guard_stable_next_layer_instances",
         "missing_target_ids": ["left"],
         "failed_gates": ["mask_identity_closed"],
+        "failed_frame_ids": ["000064"],
+        "first_failed_frame_id": "000064",
+        "not_evaluable_pair_ids": ["0016_to_0017"],
+        "not_evaluable_triplet_center_frame_ids": ["000064"],
+        "no_support_frame_ids": ["000001"],
+        "unresolved_unobserved_pixels": 24,
         "promotion_approved": False,
     }
     write_json(association_path, association)
@@ -321,6 +327,12 @@ def test_next_layer_association_failure_surfaces_next_action(tmp_path: Path) -> 
     assert "missing_guard_stable_next_layer_instances" in message
     assert "missing_target_ids=left" in message
     assert "failed_gates=mask_identity_closed" in message
+    assert "failed_frame_ids=000064" in message
+    assert "first_failed_frame_id=000064" in message
+    assert "not_evaluable_pair_ids=0016_to_0017" in message
+    assert "not_evaluable_triplet_center_frame_ids=000064" in message
+    assert "no_support_frame_ids=000001" in message
+    assert "unresolved_unobserved_pixels=24" in message
 
 
 def test_display_candidate_cannot_be_declared_as_next_round_input(tmp_path: Path) -> None:

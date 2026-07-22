@@ -505,6 +505,12 @@ def test_rejects_pending_or_ineligible_texture_report_without_creating_output(
         "blocker": "semantic_texture_and_depth_normal_pending",
         "blocking_gate_groups": ["visual_quality"],
         "failed_gates": ["visual_quality"],
+        "failed_frame_ids": ["000064"],
+        "first_failed_frame_id": "000064",
+        "not_evaluable_pair_ids": ["0016_to_0017"],
+        "not_evaluable_triplet_center_frame_ids": ["000064"],
+        "no_support_frame_ids": ["000001"],
+        "unresolved_unobserved_pixels": 24,
         "promotion_approved": False,
     }
     report["gates"]["visual_quality"] = "pending_human_or_vlm_review"
@@ -524,6 +530,12 @@ def test_rejects_pending_or_ineligible_texture_report_without_creating_output(
     assert "run_semantic_texture_and_new_depth_normal_review_before_next_round" in message
     assert "semantic_texture_and_depth_normal_pending" in message
     assert "blocking_gate_groups=visual_quality" in message
+    assert "failed_frame_ids=000064" in message
+    assert "first_failed_frame_id=000064" in message
+    assert "not_evaluable_pair_ids=0016_to_0017" in message
+    assert "not_evaluable_triplet_center_frame_ids=000064" in message
+    assert "no_support_frame_ids=000001" in message
+    assert "unresolved_unobserved_pixels=24" in message
     assert "eligible_as_round04_clean_plate=False" in message
     assert not output.exists()
 
