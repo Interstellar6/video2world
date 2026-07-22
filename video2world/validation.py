@@ -10,7 +10,7 @@ from pydantic import ValidationError
 
 from video2world.errors import ArtifactError, ValidationFailure
 from video2world.hashing import digest_path
-from video2world.models import WorldManifest
+from video2world.models import WorldManifest, WorldObject
 
 
 def load_world_manifest(path: str | Path) -> WorldManifest:
@@ -44,7 +44,7 @@ def _validate_gate_report_payload(
     scoped_id: str,
     asset_sha256: str | None,
     require_unified_bindings: bool = False,
-) -> None:
+) -> dict[str, object]:
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
@@ -111,6 +111,59 @@ def _validate_gate_report_payload(
                     f"gate report {field} {report_asset_sha256!r} does not match manifest "
                     f"unified_pbr_glb asset {asset_sha256!r}"
                 )
+    return payload
+
+
+def _expect_report_field(payload: dict[str, object], field: str, *, gate_name: str) -> object:
+    if field not in payload:
+        raise ArtifactError(
+            f"{gate_name} gate report is missing required manifest binding field {field!r}"
+        )
+    return payload[field]
+
+
+def _validate_unified_gate_report_manifest_bindings(
+    payload: dict[str, object],
+    *,
+    gate_name: str,
+    item: WorldObject,
+) -> None:
+    if gate_name == "alignment":
+        expected_bbox = item.bbox_scene.model_dump(mode="json") if item.bbox_scene else None
+        expected_transform = (
+            item.transform_scene_from_asset.model_dump(mode="json")
+            if item.transform_scene_from_asset
+            else None
+        )
+        if _expect_report_field(payload, "bbox_scene", gate_name=gate_name) != expected_bbox:
+            raise ArtifactError("alignment gate report bbox_scene does not match manifest")
+        if (
+            _expect_report_field(payload, "transform_scene_from_asset", gate_name=gate_name)
+            != expected_transform
+        ):
+            raise ArtifactError(
+                "alignment gate report transform_scene_from_asset does not match manifest"
+            )
+    if gate_name == "collision":
+        report_topology = _expect_report_field(payload, "collision_topology", gate_name=gate_name)
+        if report_topology != item.collision_topology:
+            raise ArtifactError(
+                f"collision gate report topology {report_topology!r} does not match manifest "
+                f"{item.collision_topology!r}"
+            )
+        assert item.unified_pbr_glb is not None
+        expected_faces = item.unified_pbr_glb.provenance.get("faces")
+        report_faces = payload.get("faces", payload.get("face_count"))
+        if report_faces is None:
+            raise ArtifactError(
+                "collision gate report is missing required manifest binding field "
+                "'faces' or 'face_count'"
+            )
+        if report_faces != expected_faces:
+            raise ArtifactError(
+                f"collision gate report face count {report_faces!r} does not match manifest "
+                f"{expected_faces!r}"
+            )
 
 
 def _object_identity_from_gate_location(location: str) -> tuple[str, str]:
@@ -187,23 +240,30 @@ def validate_world_manifest(
                 if current.size_bytes != gate.report_size_bytes:
                     issues.append({"location": location, "error": "report_size_bytes mismatch"})
                 object_id, scoped_id = _object_identity_from_gate_location(location)
-                _validate_gate_report_payload(
+                gate_name = location.rsplit(".", 1)[-1]
+                require_unified_bindings = (
+                    item.unified_pbr_glb is not None
+                    and item.interaction.collision_enabled
+                    and gate.status == "passed"
+                    and gate_name in {"alignment", "collision", "visual"}
+                )
+                report_payload = _validate_gate_report_payload(
                     local_path,
-                    gate_name=location.rsplit(".", 1)[-1],
+                    gate_name=gate_name,
                     gate_status=gate.status,
                     object_id=object_id,
                     scoped_id=scoped_id,
                     asset_sha256=(
                         item.unified_pbr_glb.sha256 if item.unified_pbr_glb is not None else None
                     ),
-                    require_unified_bindings=(
-                        item.unified_pbr_glb is not None
-                        and item.interaction.collision_enabled
-                        and gate.status == "passed"
-                        and location.rsplit(".", 1)[-1]
-                        in {"alignment", "collision", "visual"}
-                    ),
+                    require_unified_bindings=require_unified_bindings,
                 )
+                if require_unified_bindings:
+                    _validate_unified_gate_report_manifest_bindings(
+                        report_payload,
+                        gate_name=gate_name,
+                        item=item,
+                    )
             except ArtifactError as exc:
                 issues.append({"location": location, "error": str(exc)})
     return {

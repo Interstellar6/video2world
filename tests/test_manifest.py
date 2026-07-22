@@ -27,6 +27,7 @@ def _gate_report_payload(
     gate_name: str,
     asset_sha256: str,
     *,
+    object_payload: dict[str, object] | None = None,
     status: str = "passed",
     report_gate: str | None = None,
     object_id: str | None = "pillow-unified",
@@ -45,6 +46,16 @@ def _gate_report_payload(
         payload["object_id"] = object_id
     if target_id is not None:
         payload["target_id"] = target_id
+    if object_payload is not None and gate_name == "alignment":
+        payload["bbox_scene"] = object_payload["bbox_scene"]
+        payload["transform_scene_from_asset"] = object_payload["transform_scene_from_asset"]
+    if object_payload is not None and gate_name == "collision":
+        unified_pbr_glb = object_payload["unified_pbr_glb"]
+        assert isinstance(unified_pbr_glb, dict)
+        provenance = unified_pbr_glb["provenance"]
+        assert isinstance(provenance, dict)
+        payload["collision_topology"] = object_payload["collision_topology"]
+        payload["faces"] = provenance["faces"]
     return json.dumps(payload, sort_keys=True) + "\n"
 
 
@@ -89,7 +100,13 @@ def test_manifest_verifies_local_gate_report_hashes(
     )
     for gate_name in ("alignment", "collision", "visual"):
         report_path = tmp_path / f"{gate_name}-report.json"
-        report_path.write_text(_gate_report_payload(gate_name, glb_digest.sha256))
+        report_path.write_text(
+            _gate_report_payload(
+                gate_name,
+                glb_digest.sha256,
+                object_payload=object_payload,
+            )
+        )
         report_digest = digest_path(report_path)
         object_payload["quality_gates"][gate_name].update(
             {
@@ -163,6 +180,106 @@ def test_manifest_requires_unified_gate_report_identity_bindings(
     )
 
 
+def test_manifest_rejects_alignment_report_geometry_mismatch(
+    tmp_path: Path,
+    sample_manifest: WorldManifest,
+) -> None:
+    object_payload = _unified_pbr_object_payload(sample_manifest)
+    glb_path = tmp_path / "pillow-unified.glb"
+    glb_path.write_bytes(b"unified pbr glb")
+    glb_digest = digest_path(glb_path)
+    object_payload["unified_pbr_glb"].update(
+        {
+            "uri": str(glb_path),
+            "sha256": glb_digest.sha256,
+            "size_bytes": glb_digest.size_bytes,
+        }
+    )
+    for gate_name in ("alignment", "collision", "visual"):
+        report_path = tmp_path / f"{gate_name}-report.json"
+        report_payload = json.loads(
+            _gate_report_payload(
+                gate_name,
+                glb_digest.sha256,
+                object_payload=object_payload,
+            )
+        )
+        if gate_name == "alignment":
+            report_payload["transform_scene_from_asset"]["pivot_scene"] = [9, 9, 9]
+        report_path.write_text(json.dumps(report_payload, sort_keys=True) + "\n")
+        report_digest = digest_path(report_path)
+        object_payload["quality_gates"][gate_name].update(
+            {
+                "report_uri": str(report_path),
+                "report_sha256": report_digest.sha256,
+                "report_size_bytes": report_digest.size_bytes,
+            }
+        )
+    payload = sample_manifest.model_dump(mode="json")
+    payload["objects"].append(object_payload)
+    manifest = WorldManifest.model_validate(payload)
+    manifest_path = tmp_path / "world.json"
+    manifest_path.write_text(manifest.model_dump_json(indent=2), encoding="utf-8")
+
+    result = validate_world_manifest(manifest_path)
+
+    assert result["valid"] is False
+    assert any(
+        "transform_scene_from_asset does not match" in issue["error"]
+        for issue in result["issues"]
+    )
+
+
+def test_manifest_rejects_collision_report_topology_or_face_mismatch(
+    tmp_path: Path,
+    sample_manifest: WorldManifest,
+) -> None:
+    object_payload = _unified_pbr_object_payload(sample_manifest)
+    glb_path = tmp_path / "pillow-unified.glb"
+    glb_path.write_bytes(b"unified pbr glb")
+    glb_digest = digest_path(glb_path)
+    object_payload["unified_pbr_glb"].update(
+        {
+            "uri": str(glb_path),
+            "sha256": glb_digest.sha256,
+            "size_bytes": glb_digest.size_bytes,
+        }
+    )
+    for gate_name in ("alignment", "collision", "visual"):
+        report_path = tmp_path / f"{gate_name}-report.json"
+        report_payload = json.loads(
+            _gate_report_payload(
+                gate_name,
+                glb_digest.sha256,
+                object_payload=object_payload,
+            )
+        )
+        if gate_name == "collision":
+            report_payload["faces"] = 1
+        report_path.write_text(json.dumps(report_payload, sort_keys=True) + "\n")
+        report_digest = digest_path(report_path)
+        object_payload["quality_gates"][gate_name].update(
+            {
+                "report_uri": str(report_path),
+                "report_sha256": report_digest.sha256,
+                "report_size_bytes": report_digest.size_bytes,
+            }
+        )
+    payload = sample_manifest.model_dump(mode="json")
+    payload["objects"].append(object_payload)
+    manifest = WorldManifest.model_validate(payload)
+    manifest_path = tmp_path / "world.json"
+    manifest_path.write_text(manifest.model_dump_json(indent=2), encoding="utf-8")
+
+    result = validate_world_manifest(manifest_path)
+
+    assert result["valid"] is False
+    assert any(
+        "face count" in issue["error"] and "does not match" in issue["error"]
+        for issue in result["issues"]
+    )
+
+
 def test_manifest_rejects_non_json_gate_report_payload(
     tmp_path: Path,
     sample_manifest: WorldManifest,
@@ -180,7 +297,11 @@ def test_manifest_rejects_non_json_gate_report_payload(
     )
     for gate_name in ("alignment", "collision", "visual"):
         report_path = tmp_path / f"{gate_name}-report.json"
-        payload = _gate_report_payload(gate_name, glb_digest.sha256)
+        payload = _gate_report_payload(
+            gate_name,
+            glb_digest.sha256,
+            object_payload=object_payload,
+        )
         if gate_name == "collision":
             payload = "not json\n"
         report_path.write_text(payload)
@@ -223,7 +344,12 @@ def test_manifest_rejects_gate_report_status_mismatch(
         report_path = tmp_path / f"{gate_name}-report.json"
         status = "failed" if gate_name == "visual" else "passed"
         report_path.write_text(
-            _gate_report_payload(gate_name, glb_digest.sha256, status=status)
+            _gate_report_payload(
+                gate_name,
+                glb_digest.sha256,
+                object_payload=object_payload,
+                status=status,
+            )
         )
         report_digest = digest_path(report_path)
         object_payload["quality_gates"][gate_name].update(
@@ -264,7 +390,12 @@ def test_manifest_rejects_gate_report_role_mismatch(
         report_path = tmp_path / f"{gate_name}-report.json"
         report_gate = "visual" if gate_name == "collision" else gate_name
         report_path.write_text(
-            _gate_report_payload(gate_name, glb_digest.sha256, report_gate=report_gate)
+            _gate_report_payload(
+                gate_name,
+                glb_digest.sha256,
+                object_payload=object_payload,
+                report_gate=report_gate,
+            )
         )
         report_digest = digest_path(report_path)
         object_payload["quality_gates"][gate_name].update(
@@ -308,6 +439,7 @@ def test_manifest_rejects_gate_report_object_mismatch(
             _gate_report_payload(
                 gate_name,
                 glb_digest.sha256,
+                object_payload=object_payload,
                 object_id=report_object_id,
             )
         )
@@ -350,7 +482,11 @@ def test_manifest_rejects_gate_report_asset_mismatch(
         report_path = tmp_path / f"{gate_name}-report.json"
         asset_sha = "0" * 64 if gate_name == "visual" else glb_digest.sha256
         report_path.write_text(
-            _gate_report_payload(gate_name, asset_sha)
+            _gate_report_payload(
+                gate_name,
+                asset_sha,
+                object_payload=object_payload,
+            )
         )
         report_digest = digest_path(report_path)
         object_payload["quality_gates"][gate_name].update(
