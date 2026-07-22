@@ -1863,6 +1863,64 @@ def _valid_completed_object_assets_manifest() -> dict[str, object]:
         "objects": [
             {
                 "id": "pillow-front",
+                "representation_mode": "unified_pbr_glb",
+                "unified_pbr_glb": {
+                    "uri": "artifact://pillow-front.glb",
+                    "sha256": "a" * 64,
+                    "size_bytes": 1024,
+                    "media_type": "model/gltf-binary",
+                    "role": "unified_pbr_glb",
+                    "status": "validated",
+                    "provenance": {
+                        "watertight": False,
+                        "closed_volume_claim": False,
+                        "inside_outside_queries_allowed": False,
+                    },
+                },
+                "collision_topology": "surface_bvh",
+                "geometry_complete_verified": True,
+                "completion_report_uri": "artifact://pillow-front/report.json",
+            }
+        ],
+    }
+
+
+@pytest.mark.parametrize(
+    "missing_field",
+    ["unified_pbr_glb", "collision_topology", "geometry_complete_verified"],
+)
+def test_completed_object_assets_manifest_uses_unified_pbr_typed_contract(
+    tmp_path: Path,
+    missing_field: str,
+) -> None:
+    output = tmp_path / "completed-object-assets.json"
+    payload = _valid_completed_object_assets_manifest()
+    output.write_text(json.dumps(payload), encoding="utf-8")
+
+    get_adapter("layered_completion").validate_outputs(
+        {"completed_object_assets_manifest": snapshot_path(output)}
+    )
+
+    del payload["objects"][0][missing_field]
+    output.write_text(json.dumps(payload), encoding="utf-8")
+    with pytest.raises(ArtifactError, match="failed semantic validation"):
+        get_adapter("layered_completion").validate_outputs(
+            {"completed_object_assets_manifest": snapshot_path(output)}
+        )
+
+
+def test_completed_object_assets_manifest_requires_explicit_legacy_policy_for_separate_assets(
+    tmp_path: Path,
+) -> None:
+    output = tmp_path / "completed-object-assets.json"
+    payload = {
+        "scene_id": "bedroom_4",
+        "run_id": "full-layered-run",
+        "created_at": "2026-07-17T00:00:00Z",
+        "objects": [
+            {
+                "id": "pillow-front",
+                "representation_mode": "separate_render_and_collider",
                 "render_mesh": {
                     "uri": "artifact://pillow-front.glb",
                     "sha256": "a" * 64,
@@ -1882,27 +1940,18 @@ def _valid_completed_object_assets_manifest() -> dict[str, object]:
             }
         ],
     }
-
-
-@pytest.mark.parametrize("missing_field", ["render_mesh", "collider", "closed_surface_verified"])
-def test_completed_object_assets_manifest_uses_mesh_first_typed_contract(
-    tmp_path: Path,
-    missing_field: str,
-) -> None:
-    output = tmp_path / "completed-object-assets.json"
-    payload = _valid_completed_object_assets_manifest()
     output.write_text(json.dumps(payload), encoding="utf-8")
 
-    get_adapter("layered_completion").validate_outputs(
-        {"completed_object_assets_manifest": snapshot_path(output)}
-    )
-
-    del payload["objects"][0][missing_field]
-    output.write_text(json.dumps(payload), encoding="utf-8")
-    with pytest.raises(ArtifactError, match="failed semantic validation"):
+    with pytest.raises(ArtifactError, match="requires unified_pbr_glb representation"):
         get_adapter("layered_completion").validate_outputs(
             {"completed_object_assets_manifest": snapshot_path(output)}
         )
+
+    payload["representation_policy"] = "mesh_first_optional_gaussian"
+    output.write_text(json.dumps(payload), encoding="utf-8")
+    get_adapter("layered_completion").validate_outputs(
+        {"completed_object_assets_manifest": snapshot_path(output)}
+    )
 
 
 @pytest.mark.parametrize(

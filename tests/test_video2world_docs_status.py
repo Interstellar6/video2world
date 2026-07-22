@@ -43,6 +43,12 @@ def test_pipeline_docs_keep_corrected_clean_plate_status_fail_closed() -> None:
         "三方 uri/hash/size、acceptance_scope、lineage_scope 和 promotion flags 一致"
         in getting_started
     )
+    assert (
+        "representation_policy=\"unified_pbr_glb_preferred_optional_gaussian\""
+        in getting_started
+    )
+    assert "representation_mode=\"unified_pbr_glb\"" in getting_started
+    assert "representation_policy=\"mesh_first_optional_gaussian\"" in getting_started
     assert "acceptance_scope" in getting_started
     assert "输出角色路径和内容 hash 不能互相复用" in getting_started
     assert "不能复用原始" in getting_started

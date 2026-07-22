@@ -455,6 +455,18 @@ class CompletedObjectAssetsManifest(StrictModel):
         object_ids = [item.id for item in self.objects]
         if len(object_ids) != len(set(object_ids)):
             raise ValueError("completed object ids must be unique")
+        if self.representation_policy == "unified_pbr_glb_preferred_optional_gaussian":
+            legacy_ids = [
+                item.id
+                for item in self.objects
+                if item.representation_mode != "unified_pbr_glb"
+            ]
+            if legacy_ids:
+                raise ValueError(
+                    "unified_pbr_glb_preferred_optional_gaussian requires "
+                    "unified_pbr_glb representation for all completed objects: "
+                    + ", ".join(legacy_ids)
+                )
         return self
 
 

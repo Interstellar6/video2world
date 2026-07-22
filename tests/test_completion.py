@@ -428,6 +428,14 @@ def test_completed_object_manifest_preserves_legacy_separate_mode() -> None:
     assert completed.unified_pbr_glb is None
 
 
+def test_completed_object_manifest_requires_legacy_policy_for_separate_mode() -> None:
+    payload = _legacy_completed_object_assets_payload()
+    del payload["representation_policy"]
+
+    with pytest.raises(ValidationError, match="requires unified_pbr_glb representation"):
+        CompletedObjectAssetsManifest.model_validate(payload)
+
+
 def test_legacy_closed_surface_flag_does_not_gate_unified_surface_bvh() -> None:
     payload = _unified_completed_object_assets_payload()
     payload["objects"][0]["closed_surface_verified"] = False
