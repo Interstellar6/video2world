@@ -22,6 +22,11 @@ import {
   placementMatrixElements,
   validateWebManifest,
 } from "./web-manifest.js";
+import {
+  assetFetchRetryDelayMs,
+  buildAssetFetchAttemptPlan,
+  DEFAULT_ASSET_FETCH_ATTEMPTS_PER_SOURCE,
+} from "./asset-fetch-policy.js";
 
 const ASSET_VERSION = "video2world-scene-qa-object-colliders-v1";
 const URL_PARAMS = new URLSearchParams(window.location.search);
@@ -36,6 +41,7 @@ let assetFetchSources = [
   { key: "origin", label: "origin", baseUrl: null, timeoutMs: 30_000 },
 ];
 const ASSET_FETCH_CONCURRENCY = 3;
+const ASSET_FETCH_ATTEMPTS_PER_SOURCE = DEFAULT_ASSET_FETCH_ATTEMPTS_PER_SOURCE;
 const ASSET_FETCH_RETRY_BASE_MS = 650;
 let preferredAssetSourceKey = "origin";
 const ALIGNMENT_STORAGE_KEY = "video2mesh-web-demo-alignment-pgsr-tsdf-v1";
@@ -1645,14 +1651,17 @@ async function sha256Hex(bytes) {
 
 async function fetchPart(part, label, onLoaded) {
   const sources = getAssetPartSources(part);
+  const attempts = buildAssetFetchAttemptPlan(sources, {
+    attemptsPerSource: ASSET_FETCH_ATTEMPTS_PER_SOURCE,
+  });
   let lastFailure = "unknown error";
-  for (let attempt = 0; attempt < sources.length; attempt += 1) {
-    const source = sources[attempt];
+  for (const attempt of attempts) {
+    const source = attempt.source;
     const controller = new AbortController();
     const timeoutId = window.setTimeout(() => controller.abort(), source.timeoutMs);
     try {
       const response = await fetch(source.url, {
-        cache: "force-cache",
+        cache: attempt.cacheMode,
         signal: controller.signal,
       });
       if (!response.ok) throw new Error(`HTTP ${response.status} ${response.statusText}`);
@@ -1673,17 +1682,22 @@ async function fetchPart(part, label, onLoaded) {
       lastFailure = error?.name === "AbortError"
         ? `${source.label} timed out after ${source.timeoutMs / 1000}s`
         : (error?.message || String(error));
-      const nextSource = sources[attempt + 1];
-      if (!nextSource) break;
-      preferredAssetSourceKey = nextSource.key;
+      const nextAttempt = attempts[attempt.attemptIndex + 1];
+      if (!nextAttempt) break;
+      const nextSource = nextAttempt.source;
+      if (nextSource.key !== source.key) preferredAssetSourceKey = nextSource.key;
       const fileName = part.url.split("/").pop() || part.url;
-      modeChip.textContent = `${label} retry ${attempt + 1}/${sources.length - 1} via ${nextSource.label} · ${fileName}`;
-      await new Promise((resolve) => window.setTimeout(resolve, ASSET_FETCH_RETRY_BASE_MS * (attempt + 1)));
+      modeChip.textContent = `${label} retry ${attempt.attemptNumber}/${attempts.length - 1} via ${nextSource.label} (${nextAttempt.sourceAttemptIndex + 1}/${ASSET_FETCH_ATTEMPTS_PER_SOURCE}) · ${fileName}`;
+      const retryDelayMs = assetFetchRetryDelayMs(
+        attempt.sourceAttemptIndex,
+        ASSET_FETCH_RETRY_BASE_MS,
+      );
+      await new Promise((resolve) => window.setTimeout(resolve, retryDelayMs));
     } finally {
       window.clearTimeout(timeoutId);
     }
   }
-  throw new Error(`${label} chunk failed across ${sources.length} sources: ${part.url} (${lastFailure})`);
+  throw new Error(`${label} chunk failed across ${sources.length} sources and ${attempts.length} attempts: ${part.url} (${lastFailure})`);
 }
 
 async function getChunkedAssetBytes(asset, assetKey = "asset") {
