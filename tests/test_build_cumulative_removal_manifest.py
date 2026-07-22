@@ -111,6 +111,8 @@ def fake_prefill_report(
     *,
     wrong_input_hash: bool = False,
     no_support: bool = False,
+    boundary_concentrated: bool = False,
+    status: str = "technical_passed",
 ) -> Path:
     manifest_path = round_root / "cumulative_removal_manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -137,11 +139,46 @@ def fake_prefill_report(
                 "covered_pixels": 0 if no_support else 1,
             }
         )
+    no_support_frame_ids = [record["frame_id"] for record in records] if no_support else []
+    unresolved_pixels = sum(record["residual_mask_pixels"] for record in records)
+    if no_support:
+        promotion_blocker = "one or more target frames have no configured donor support"
+        next_action = {
+            "action": "add_observed_donor_or_switch_to_constrained_generation_for_residual",
+            "blocker": "no_guard_stable_measured_donor_support",
+            "status": status,
+            "no_support_frame_ids": no_support_frame_ids,
+            "unresolved_unobserved_pixels": unresolved_pixels,
+            "promotion_approved": False,
+        }
+    elif boundary_concentrated:
+        promotion_blocker = "boundary-guard donor support validation failed"
+        next_action = {
+            "action": "tighten_physical_donor_exclusion_or_add_nonboundary_donor_views",
+            "blocker": "donor_support_boundary_concentrated",
+            "status": status,
+            "no_support_frame_ids": [],
+            "unresolved_unobserved_pixels": unresolved_pixels,
+            "promotion_approved": False,
+        }
+    else:
+        promotion_blocker = "semantic texture continuity review is required"
+        next_action = {
+            "action": "run_semantic_texture_and_new_depth_normal_review_before_next_round",
+            "blocker": "semantic_texture_and_depth_normal_pending",
+            "status": status,
+            "no_support_frame_ids": [],
+            "unresolved_unobserved_pixels": unresolved_pixels,
+            "promotion_approved": False,
+        }
     report = round_root / "prefill_report.json"
     write_json(
         report,
         {
-            "status": "technical_passed",
+            "status": status,
+            "promotion_approved": False,
+            "promotion_blocker": promotion_blocker,
+            "next_action": next_action,
             "input_manifest_sha256": (
                 "0" * 64 if wrong_input_hash else MODULE.sha256_file(manifest_path)
             ),
@@ -149,13 +186,16 @@ def fake_prefill_report(
                 "outside_removal_mask_rgb_exact": True,
                 "all_residual_masks_subset_of_removal_masks": True,
                 "donor_support_available_for_every_target": not no_support,
-                "donor_support_not_boundary_concentrated": not no_support,
+                "donor_support_not_boundary_concentrated": not (
+                    no_support or boundary_concentrated
+                ),
             },
             "pixel_provenance": {
                 "generated_pixels": 0,
                 "propainter_pixels": 0,
                 "unresolved_pixels_are_not_valid_donor_or_geometry_evidence": True,
                 "measured_multiview_pixels": 0 if no_support else len(records),
+                "unresolved_unobserved_pixels": unresolved_pixels,
             },
             "frame_records": records,
         },
@@ -536,6 +576,71 @@ def test_round2_rejects_previous_report_with_no_measured_support(tmp_path: Path)
                 previous_report=report,
             )
         )
+
+
+def test_round2_surfaces_next_action_from_failed_previous_report(tmp_path: Path) -> None:
+    _, round1, _ = make_round1(tmp_path)
+    report = fake_prefill_report(
+        round1,
+        no_support=True,
+        status="technical_failed_no_support",
+    )
+    donors = tmp_path / "raw"
+    masks = tmp_path / "round2_object_masks"
+    for frame_id in ("000000", "000001"):
+        make_mask(masks / f"{frame_id}.png", (4, 2, 7, 5))
+    current = tmp_path / "round2_object.json"
+    object_manifest(current, round1 / "prefill", masks, "left")
+
+    with pytest.raises(ValueError) as error:
+        MODULE.build_manifest(
+            args_for(
+                round_index=2,
+                object_id="left",
+                current_manifest=current,
+                donor_frames=donors,
+                output=tmp_path / "round2",
+                previous_manifest=round1 / "cumulative_removal_manifest.json",
+                previous_report=report,
+            )
+        )
+
+    message = str(error.value)
+    assert "previous prefill report did not technically pass" in message
+    assert "status=technical_failed_no_support" in message
+    assert "add_observed_donor_or_switch_to_constrained_generation_for_residual" in message
+    assert "no_guard_stable_measured_donor_support" in message
+    assert "no_support_frame_ids=000000,000001" in message
+
+
+def test_round2_surfaces_boundary_guard_next_action(tmp_path: Path) -> None:
+    _, round1, _ = make_round1(tmp_path)
+    report = fake_prefill_report(round1, boundary_concentrated=True)
+    donors = tmp_path / "raw"
+    masks = tmp_path / "round2_object_masks"
+    for frame_id in ("000000", "000001"):
+        make_mask(masks / f"{frame_id}.png", (4, 2, 7, 5))
+    current = tmp_path / "round2_object.json"
+    object_manifest(current, round1 / "prefill", masks, "left")
+
+    with pytest.raises(ValueError) as error:
+        MODULE.build_manifest(
+            args_for(
+                round_index=2,
+                object_id="left",
+                current_manifest=current,
+                donor_frames=donors,
+                output=tmp_path / "round2",
+                previous_manifest=round1 / "cumulative_removal_manifest.json",
+                previous_report=report,
+            )
+        )
+
+    message = str(error.value)
+    assert "previous prefill donor support failed its boundary guard" in message
+    assert "promotion_blocker=boundary-guard donor support validation failed" in message
+    assert "tighten_physical_donor_exclusion_or_add_nonboundary_donor_views" in message
+    assert "donor_support_boundary_concentrated" in message
 
 
 def test_round2_rejects_stale_associated_source_sha(tmp_path: Path) -> None:

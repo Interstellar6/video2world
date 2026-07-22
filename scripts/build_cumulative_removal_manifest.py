@@ -450,6 +450,48 @@ def materialize_associated_donor_evidence(
     }
 
 
+def previous_prefill_blocker_summary(previous_report: dict[str, Any]) -> str:
+    details: list[str] = []
+    status = previous_report.get("status")
+    if isinstance(status, str) and status:
+        details.append(f"status={status}")
+    promotion_blocker = previous_report.get("promotion_blocker")
+    if isinstance(promotion_blocker, str) and promotion_blocker:
+        details.append(f"promotion_blocker={promotion_blocker}")
+    next_action = previous_report.get("next_action")
+    if isinstance(next_action, dict):
+        action = next_action.get("action")
+        blocker = next_action.get("blocker")
+        if isinstance(action, str) and action:
+            details.append(f"next_action={action}")
+        if isinstance(blocker, str) and blocker:
+            details.append(f"next_blocker={blocker}")
+        no_support_frame_ids = next_action.get("no_support_frame_ids")
+        if isinstance(no_support_frame_ids, list) and no_support_frame_ids:
+            frames = [
+                frame_id
+                for frame_id in no_support_frame_ids
+                if isinstance(frame_id, str) and frame_id
+            ]
+            if frames:
+                details.append(f"no_support_frame_ids={','.join(frames)}")
+        unresolved = next_action.get("unresolved_unobserved_pixels")
+        if isinstance(unresolved, int):
+            details.append(f"unresolved_unobserved_pixels={unresolved}")
+    provenance = previous_report.get("pixel_provenance")
+    if isinstance(provenance, dict):
+        unresolved = provenance.get("unresolved_unobserved_pixels")
+        if isinstance(unresolved, int):
+            details.append(f"pixel_provenance.unresolved_unobserved_pixels={unresolved}")
+    if not details:
+        return ""
+    return " [" + "; ".join(details) + "]"
+
+
+def previous_prefill_error(message: str, previous_report: dict[str, Any]) -> ValueError:
+    return ValueError(message + previous_prefill_blocker_summary(previous_report))
+
+
 def validate_previous_lineage(
     *,
     current_round_index: int,
@@ -463,16 +505,30 @@ def validate_previous_lineage(
         raise ValueError("previous manifest is not the immediately preceding round")
     previous_report = require_dict(read_json(previous_report_path), "previous prefill report")
     if previous_report.get("status") != "technical_passed":
-        raise ValueError("previous prefill report did not technically pass")
+        raise previous_prefill_error(
+            "previous prefill report did not technically pass", previous_report
+        )
     gates = require_dict(previous_report.get("gates"), "previous report gates")
     if gates.get("outside_removal_mask_rgb_exact") is not True:
-        raise ValueError("previous prefill did not preserve RGB outside its removal mask")
+        raise previous_prefill_error(
+            "previous prefill did not preserve RGB outside its removal mask",
+            previous_report,
+        )
     if gates.get("all_residual_masks_subset_of_removal_masks") is not True:
-        raise ValueError("previous residual masks were not subsets of removal masks")
+        raise previous_prefill_error(
+            "previous residual masks were not subsets of removal masks",
+            previous_report,
+        )
     if gates.get("donor_support_available_for_every_target") is not True:
-        raise ValueError("previous prefill has one or more targets with no donor support")
+        raise previous_prefill_error(
+            "previous prefill has one or more targets with no donor support",
+            previous_report,
+        )
     if gates.get("donor_support_not_boundary_concentrated") is not True:
-        raise ValueError("previous prefill donor support failed its boundary guard")
+        raise previous_prefill_error(
+            "previous prefill donor support failed its boundary guard",
+            previous_report,
+        )
     provenance = require_dict(
         previous_report.get("pixel_provenance"), "previous report pixel provenance"
     )
@@ -484,7 +540,9 @@ def validate_previous_lineage(
         raise ValueError("previous prefill report allows unresolved pixels as evidence")
     measured_pixels = provenance.get("measured_multiview_pixels")
     if not isinstance(measured_pixels, int) or measured_pixels < 1:
-        raise ValueError("previous prefill has no measured multi-view pixels")
+        raise previous_prefill_error(
+            "previous prefill has no measured multi-view pixels", previous_report
+        )
     expected_manifest_sha = sha256_file(previous_manifest_path)
     if previous_report.get("input_manifest_sha256") != expected_manifest_sha:
         raise ValueError("previous report does not hash the previous cumulative manifest")
@@ -495,7 +553,10 @@ def validate_previous_lineage(
     for frame_id, record in report_records.items():
         covered_pixels = record.get("covered_pixels")
         if not isinstance(covered_pixels, int) or covered_pixels < 1:
-            raise ValueError(f"previous prefill target {frame_id} has no measured donor support")
+            raise previous_prefill_error(
+                f"previous prefill target {frame_id} has no measured donor support",
+                previous_report,
+            )
     return manifest_records, report_records, previous_report
 
 
