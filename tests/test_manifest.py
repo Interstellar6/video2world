@@ -22,12 +22,19 @@ from video2world.models import (
 )
 from video2world.validation import validate_world_manifest
 
+UNIFIED_GATE_REPORT_KINDS = {
+    "alignment": "video2world.unified_gate.alignment",
+    "collision": "video2world.unified_gate.collision",
+    "visual": "video2world.unified_gate.visual",
+}
+
 
 def _gate_report_payload(
     gate_name: str,
     asset_sha256: str,
     *,
     object_payload: dict[str, object] | None = None,
+    kind: str | None = None,
     status: str = "passed",
     report_gate: str | None = None,
     object_id: str | None = "pillow-unified",
@@ -36,6 +43,7 @@ def _gate_report_payload(
     asset_field: str = "unified_pbr_glb_sha256",
 ) -> str:
     payload: dict[str, object] = {
+        "kind": kind or UNIFIED_GATE_REPORT_KINDS[gate_name],
         "gate": report_gate or gate_name,
         "status": status,
         asset_field: asset_sha256,
@@ -181,7 +189,62 @@ def test_manifest_requires_unified_gate_report_identity_bindings(
 
     assert result["valid"] is False
     assert any(
-        "missing required bindings" in issue["error"] and "scoped_id" in issue["error"]
+        "missing required bindings" in issue["error"]
+        and "kind" in issue["error"]
+        and "scoped_id" in issue["error"]
+        for issue in result["issues"]
+    )
+
+
+def test_manifest_rejects_unified_gate_report_kind_mismatch(
+    tmp_path: Path,
+    sample_manifest: WorldManifest,
+) -> None:
+    object_payload = _unified_pbr_object_payload(sample_manifest)
+    glb_path = tmp_path / "pillow-unified.glb"
+    glb_path.write_bytes(b"unified pbr glb")
+    glb_digest = digest_path(glb_path)
+    object_payload["unified_pbr_glb"].update(
+        {
+            "uri": str(glb_path),
+            "sha256": glb_digest.sha256,
+            "size_bytes": glb_digest.size_bytes,
+        }
+    )
+    for gate_name in ("alignment", "collision", "visual"):
+        report_path = tmp_path / f"{gate_name}-report.json"
+        report_kind = (
+            UNIFIED_GATE_REPORT_KINDS["visual"]
+            if gate_name == "collision"
+            else UNIFIED_GATE_REPORT_KINDS[gate_name]
+        )
+        report_path.write_text(
+            _gate_report_payload(
+                gate_name,
+                glb_digest.sha256,
+                object_payload=object_payload,
+                kind=report_kind,
+            )
+        )
+        report_digest = digest_path(report_path)
+        object_payload["quality_gates"][gate_name].update(
+            {
+                "report_uri": str(report_path),
+                "report_sha256": report_digest.sha256,
+                "report_size_bytes": report_digest.size_bytes,
+            }
+        )
+    payload = sample_manifest.model_dump(mode="json")
+    payload["objects"].append(object_payload)
+    manifest = WorldManifest.model_validate(payload)
+    manifest_path = tmp_path / "world.json"
+    manifest_path.write_text(manifest.model_dump_json(indent=2), encoding="utf-8")
+
+    result = validate_world_manifest(manifest_path)
+
+    assert result["valid"] is False
+    assert any(
+        "kind" in issue["error"] and "does not match expected" in issue["error"]
         for issue in result["issues"]
     )
 

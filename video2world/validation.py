@@ -12,6 +12,12 @@ from video2world.errors import ArtifactError, ValidationFailure
 from video2world.hashing import digest_path
 from video2world.models import WorldManifest, WorldObject
 
+UNIFIED_GATE_REPORT_KINDS = {
+    "alignment": "video2world.unified_gate.alignment",
+    "collision": "video2world.unified_gate.collision",
+    "visual": "video2world.unified_gate.visual",
+}
+
 
 def load_world_manifest(path: str | Path) -> WorldManifest:
     manifest_path = Path(path).expanduser().resolve()
@@ -54,7 +60,7 @@ def _validate_gate_report_payload(
     if require_unified_bindings:
         missing_fields = [
             field
-            for field in ("gate", "status", "scoped_id")
+            for field in ("kind", "gate", "status", "scoped_id")
             if payload.get(field) is None
         ]
         if payload.get("object_id") is None and payload.get("target_id") is None:
@@ -74,6 +80,12 @@ def _validate_gate_report_payload(
                 "collision-enabled unified PBR GLB gate report is missing required "
                 "bindings: "
                 + ", ".join(missing_fields)
+            )
+        report_kind = payload.get("kind")
+        expected_kind = UNIFIED_GATE_REPORT_KINDS[gate_name]
+        if report_kind != expected_kind:
+            raise ArtifactError(
+                f"gate report kind {report_kind!r} does not match expected {expected_kind!r}"
             )
     report_gate = payload.get("gate")
     if report_gate is not None and report_gate != gate_name:
