@@ -166,6 +166,14 @@ def test_upstream_prefill_validation_is_fail_closed_and_records_coverage(
                 "schema_version": 1,
                 "status": "technical_passed",
                 "purpose": "measured donor prefill",
+                "promotion_blocker": "semantic texture continuity review is required",
+                "next_action": {
+                    "action": "run_constrained_residual_completion_then_semantic_cross_view_review",
+                    "blocker": "unresolved_residual_requires_reviewed_completion",
+                    "no_support_frame_ids": [],
+                    "unresolved_unobserved_pixels": 12,
+                    "promotion_approved": False,
+                },
                 "gates": {
                     "outside_removal_mask_rgb_exact": True,
                     "all_residual_masks_subset_of_removal_masks": True,
@@ -180,11 +188,59 @@ def test_upstream_prefill_validation_is_fail_closed_and_records_coverage(
 
     assert lineage["coverage_fraction"]["mean"] == pytest.approx(0.3)
     assert lineage["lineage_role"].endswith("only its residual masks")
+    assert (
+        lineage["next_action"]["action"]
+        == "run_constrained_residual_completion_then_semantic_cross_view_review"
+    )
+    assert lineage["promotion_blocker"] == "semantic texture continuity review is required"
     value = json.loads(path.read_text(encoding="utf-8"))
     value["gates"]["all_residual_masks_subset_of_removal_masks"] = False
     path.write_text(json.dumps(value), encoding="utf-8")
-    with pytest.raises(ValueError, match="exactness/subset"):
+    with pytest.raises(ValueError) as error:
         MODULE.validate_upstream_prefill(path, records)
+    message = str(error.value)
+    assert "exactness/subset" in message
+    assert "run_constrained_residual_completion_then_semantic_cross_view_review" in message
+    assert "unresolved_residual_requires_reviewed_completion" in message
+
+
+def test_upstream_prefill_validation_surfaces_failed_next_action(tmp_path: Path) -> None:
+    records = [
+        {"frame_id": "000001", "coverage_fraction": 0.0},
+        {"frame_id": "000002", "coverage_fraction": 0.1},
+    ]
+    path = tmp_path / "report.json"
+    path.write_text(
+        json.dumps(
+            {
+                "schema_version": 2,
+                "status": "technical_failed_no_support",
+                "promotion_blocker": "one or more target frames have no configured donor support",
+                "next_action": {
+                    "action": "add_observed_donor_or_switch_to_constrained_generation_for_residual",
+                    "blocker": "no_guard_stable_measured_donor_support",
+                    "no_support_frame_ids": ["000001"],
+                    "unresolved_unobserved_pixels": 24,
+                    "promotion_approved": False,
+                },
+                "gates": {
+                    "outside_removal_mask_rgb_exact": True,
+                    "all_residual_masks_subset_of_removal_masks": True,
+                },
+                "frame_records": records,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError) as error:
+        MODULE.validate_upstream_prefill(path, records)
+    message = str(error.value)
+    assert "did not pass its technical gates" in message
+    assert "status=technical_failed_no_support" in message
+    assert "add_observed_donor_or_switch_to_constrained_generation_for_residual" in message
+    assert "no_guard_stable_measured_donor_support" in message
+    assert "no_support_frame_ids=000001" in message
 
 
 def test_record_key_auto_prefers_prefill_and_residual_assets() -> None:

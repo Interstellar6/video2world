@@ -730,12 +730,51 @@ def select_record_key(
     raise ValueError(f"none of the record keys {candidates} is available for every frame")
 
 
+def upstream_prefill_blocker_summary(report: dict[str, Any]) -> str:
+    details: list[str] = []
+    status = report.get("status")
+    if isinstance(status, str) and status:
+        details.append(f"status={status}")
+    promotion_blocker = report.get("promotion_blocker")
+    if isinstance(promotion_blocker, str) and promotion_blocker:
+        details.append(f"promotion_blocker={promotion_blocker}")
+    next_action = report.get("next_action")
+    if isinstance(next_action, dict):
+        action = next_action.get("action")
+        blocker = next_action.get("blocker")
+        if isinstance(action, str) and action:
+            details.append(f"next_action={action}")
+        if isinstance(blocker, str) and blocker:
+            details.append(f"next_blocker={blocker}")
+        no_support_frame_ids = next_action.get("no_support_frame_ids")
+        if isinstance(no_support_frame_ids, list) and no_support_frame_ids:
+            frames = [
+                frame_id
+                for frame_id in no_support_frame_ids
+                if isinstance(frame_id, str) and frame_id
+            ]
+            if frames:
+                details.append(f"no_support_frame_ids={','.join(frames)}")
+        unresolved = next_action.get("unresolved_unobserved_pixels")
+        if isinstance(unresolved, int):
+            details.append(f"unresolved_unobserved_pixels={unresolved}")
+    if not details:
+        return ""
+    return " [" + "; ".join(details) + "]"
+
+
+def upstream_prefill_error(message: str, report: dict[str, Any]) -> ValueError:
+    return ValueError(message + upstream_prefill_blocker_summary(report))
+
+
 def validate_upstream_prefill(path: Path, records: list[dict[str, Any]]) -> dict[str, Any]:
     report = read_json(path)
     if not isinstance(report, dict) or not isinstance(report.get("frame_records"), list):
         raise ValueError("upstream prefill report must contain frame_records")
     if report.get("status") != "technical_passed":
-        raise ValueError("upstream prefill report did not pass its technical gates")
+        raise upstream_prefill_error(
+            "upstream prefill report did not pass its technical gates", report
+        )
     gates = report.get("gates")
     if not isinstance(gates, dict):
         raise ValueError("upstream prefill report is missing gates")
@@ -744,7 +783,9 @@ def validate_upstream_prefill(path: Path, records: list[dict[str, Any]]) -> dict
         "all_residual_masks_subset_of_removal_masks",
     )
     if not all(gates.get(key) is True for key in required_gates):
-        raise ValueError("upstream prefill exactness/subset gates did not pass")
+        raise upstream_prefill_error(
+            "upstream prefill exactness/subset gates did not pass", report
+        )
     upstream_ids = [str(record.get("frame_id")) for record in report["frame_records"]]
     selected_ids = [str(record.get("frame_id")) for record in records]
     if upstream_ids != selected_ids:
@@ -756,6 +797,8 @@ def validate_upstream_prefill(path: Path, records: list[dict[str, Any]]) -> dict
         "schema_version": report.get("schema_version"),
         "status": report["status"],
         "purpose": report.get("purpose"),
+        "promotion_blocker": report.get("promotion_blocker"),
+        "next_action": report.get("next_action"),
         "gates": {key: gates[key] for key in required_gates},
         "frame_count": len(upstream_ids),
         "coverage_fraction": {
