@@ -1,0 +1,28 @@
+{
+  "blocking_findings": [
+    {
+      "gate": "visual_quality",
+      "observed": "pending_human_or_vlm_review",
+      "severity": "blocking"
+    }
+  ],
+  "candidate_report": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/04-planar_texture_candidate-footprint-detail-v1/planar_texture_report.json",
+    "sha256": "90b17bc75f73b0b499f013a1e125a8e18fe5cc86529c97150ef7c79e7d4f0ccc",
+    "status": "texture_candidate_review_pending"
+  },
+  "created_at": "2026-07-22T08:11:46.942368+00:00",
+  "decision": "rejected",
+  "eligible_as_round04_clean_plate": false,
+  "kind": "video2world.planar_texture_visual_review_receipt",
+  "next_action": "run_bound_human_or_vlm_visual_review_before_acceptance; do not promote until photorealism, semantic plausibility, and wall-floor boundary quality are accepted",
+  "promotion_approved": false,
+  "reviewed_full_resolution_frame_count": 3,
+  "schema_version": 1,
+  "status": "texture_candidate_metric_pass_visual_review_required",
+  "visual_review": {
+    "path": "planar_texture_visual_review.json",
+    "sha256": "da7716bb73f2c91be82cb822c7c4e65adc979731a749fbd11915a246c112bd5b",
+    "size_bytes": 6302
+  }
+}
