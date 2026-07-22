@@ -746,6 +746,7 @@ def preflight_site_run(
     binding = load_site_binding(root)
     _verify_binding_identity(binding)
     selected = _selected_stages(orchestrator.config, targets)
+    plans = {item.stage_id: item for item in orchestrator.plan(selected)}
     reports: list[dict[str, Any]] = []
     environment = {**os.environ, **binding.provider_environment}
     values = {
@@ -772,6 +773,7 @@ def preflight_site_run(
                         "status": "ready",
                         "provider_stage": site_stage.provider_stage,
                         "provider_preflight": provider["stages"][0],
+                        "recovery_actions": plans[stage_id].recovery_actions,
                     }
                 )
             else:
@@ -796,6 +798,7 @@ def preflight_site_run(
                         "status": "ready",
                         "source_run_id": site_stage.adoption.source_run_id,
                         "input_hash_binding_status": input_binding_status,
+                        "recovery_actions": plans[stage_id].recovery_actions,
                         "outputs": {
                             role: {
                                 "path": str(value.path),
@@ -815,6 +818,7 @@ def preflight_site_run(
                     "status": "blocked",
                     "error_type": type(exc).__name__,
                     "reason": str(exc),
+                    "recovery_actions": plans[stage_id].recovery_actions,
                 }
             )
     blocked = [item for item in reports if item["status"] == "blocked"]
