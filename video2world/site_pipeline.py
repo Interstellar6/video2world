@@ -839,6 +839,18 @@ def preflight_site_run(
     return report
 
 
+def _collect_stage_recovery_actions(stages: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    actions: list[dict[str, Any]] = []
+    for stage in stages:
+        stage_id = stage.get("stage_id")
+        if not isinstance(stage_id, str) or not stage_id:
+            continue
+        for action in stage.get("recovery_actions", []):
+            if isinstance(action, dict):
+                actions.append({"stage_id": stage_id, **action})
+    return actions
+
+
 @contextmanager
 def _site_lock(run_dir: Path):  # type: ignore[no-untyped-def]
     path = run_dir / ".video2world" / "site-run.lock"
@@ -888,6 +900,9 @@ def run_site_pipeline(
             )
             preflight = preflight_site_run(root, targets=targets)
             receipt["preflight_status"] = preflight["status"]
+            preflight_recovery_actions = _collect_stage_recovery_actions(preflight["stages"])
+            if preflight_recovery_actions:
+                receipt["recovery_actions"] = preflight_recovery_actions
             if preflight["status"] != "passed":
                 blocked = [
                     f"{item['stage_id']}: {item['reason']}"

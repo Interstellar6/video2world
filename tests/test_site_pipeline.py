@@ -379,6 +379,71 @@ def test_site_preflight_surfaces_failed_stage_recovery_actions(tmp_path: Path) -
     assert preflight["stages"][0]["recovery_actions"][0]["frame_ids"] == ["000064"]
 
 
+def test_site_run_blocked_receipt_summarizes_preflight_recovery_actions(
+    tmp_path: Path,
+) -> None:
+    fixture = _site_fixture(tmp_path)
+    create_site_run(
+        fixture["run"],
+        video=fixture["video"],
+        scene_id="scene",
+        run_id="site-recovery-blocked-1",
+        profile_path=fixture["profile"],
+        provider_contract_path=fixture["contract"],
+        checkout_roots={"provider": fixture["provider"]},
+        artifact_roots={},
+    )
+    orchestrator = PipelineOrchestrator(fixture["run"])
+    plan = next(item for item in orchestrator.plan(["ingest"]) if item.stage_id == "ingest")
+    provider_receipt = Path(plan.outputs["provider_receipt"])
+    provider_receipt.parent.mkdir(parents=True, exist_ok=True)
+    provider_receipt.write_text(
+        json.dumps(
+            {
+                "recovery_actions": [
+                    {
+                        "priority": 1,
+                        "stage": "donor_support",
+                        "action": (
+                            "add_observed_donor_or_switch_to_constrained_generation_for_residual"
+                        ),
+                        "frame_ids": ["000064"],
+                        "allow_deeper_rounds": False,
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    now = datetime.now(UTC)
+    write_stage_state(
+        fixture["run"],
+        StageState(
+            stage_id="ingest",
+            adapter="holi_ingest",
+            status="failed",
+            mode="executed",
+            attempt=1,
+            input_digest="0" * 64,
+            config_digest="0" * 64,
+            command=["fixture"],
+            started_at=now,
+            finished_at=now,
+            error="fixture failed after writing route recovery actions",
+        ),
+    )
+    (fixture["provider"] / "driver.py").unlink()
+
+    with pytest.raises(StageBlockedError, match="site preflight failed"):
+        run_site_pipeline(fixture["run"], targets=["ingest"])
+
+    receipt = json.loads((fixture["run"] / ".video2world" / SITE_RUN_RECEIPT_NAME).read_text())
+    assert receipt["status"] == "blocked"
+    assert receipt["recovery_actions"][0]["stage_id"] == "ingest"
+    assert receipt["recovery_actions"][0]["stage"] == "donor_support"
+    assert receipt["recovery_actions"][0]["frame_ids"] == ["000064"]
+
+
 def test_site_preflight_and_run_fail_closed_when_provider_disappears(tmp_path: Path) -> None:
     fixture = _site_fixture(tmp_path)
     create_site_run(
