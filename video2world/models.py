@@ -260,8 +260,20 @@ class Relation(StrictModel):
 class GateRecord(StrictModel):
     status: Literal["passed", "failed", "not_tested"] = "not_tested"
     report_uri: str | None = None
+    report_sha256: Sha256 | None = None
+    report_size_bytes: int | None = Field(default=None, gt=0)
     metrics: dict[str, float | int | str | bool | None] = Field(default_factory=dict)
     reason: str | None = None
+
+    @model_validator(mode="after")
+    def require_complete_report_digest(self) -> GateRecord:
+        digest_fields = (self.report_sha256, self.report_size_bytes)
+        if any(value is not None for value in digest_fields):
+            if self.report_uri is None:
+                raise ValueError("gate report digest requires report_uri")
+            if self.report_sha256 is None or self.report_size_bytes is None:
+                raise ValueError("gate report digest requires report_sha256 and report_size_bytes")
+        return self
 
 
 class QualityGates(StrictModel):
@@ -418,6 +430,18 @@ class WorldObject(StrictModel):
                     "scene placement and interaction gates: "
                     + ", ".join(missing_report_gates)
                 )
+            missing_report_digests = [
+                name
+                for name in ("alignment", "collision", "visual")
+                if getattr(self.quality_gates, name).report_sha256 is None
+                or getattr(self.quality_gates, name).report_size_bytes is None
+            ]
+            if missing_report_digests:
+                raise ValueError(
+                    "collision-enabled unified PBR GLB requires hash-bound reports for "
+                    "scene placement and interaction gates: "
+                    + ", ".join(missing_report_digests)
+                )
         if self.interaction.collision_enabled:
             if self.unified_pbr_glb is None and self.collider is None:
                 raise ValueError("collision-enabled interactive object is missing: collider")
@@ -542,6 +566,14 @@ class WorldManifest(StrictModel):
                 asset = getattr(item.evidence, name)
                 if asset:
                     yield f"{prefix}.evidence.{name}", asset
+
+    def iter_gate_reports(self):  # type: ignore[no-untyped-def]
+        for item in self.objects:
+            prefix = f"objects[{item.scoped_id}].quality_gates"
+            for name in ("file", "semantic", "alignment", "collision", "visual"):
+                gate = getattr(item.quality_gates, name)
+                if gate.report_uri and gate.report_sha256 and gate.report_size_bytes:
+                    yield f"{prefix}.{name}", gate
 
 
 def world_manifest_json_schema() -> dict[str, Any]:

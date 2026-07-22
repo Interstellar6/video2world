@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 from pydantic import ValidationError
 
+from video2world.hashing import digest_path
 from video2world.models import (
     Bounds3D,
     CoordinateSystem,
@@ -43,6 +44,51 @@ def test_manifest_verifies_local_content_hashes(
     assert {issue["error"] for issue in invalid["issues"]} >= {
         "sha256 mismatch",
         "size_bytes mismatch",
+    }
+
+
+def test_manifest_verifies_local_gate_report_hashes(
+    tmp_path: Path,
+    sample_manifest: WorldManifest,
+) -> None:
+    object_payload = _unified_pbr_object_payload(sample_manifest)
+    glb_path = tmp_path / "pillow-unified.glb"
+    glb_path.write_bytes(b"unified pbr glb")
+    glb_digest = digest_path(glb_path)
+    object_payload["unified_pbr_glb"].update(
+        {
+            "uri": str(glb_path),
+            "sha256": glb_digest.sha256,
+            "size_bytes": glb_digest.size_bytes,
+        }
+    )
+    for gate_name in ("alignment", "collision", "visual"):
+        report_path = tmp_path / f"{gate_name}-report.json"
+        report_path.write_text(f'{{"gate":"{gate_name}","status":"passed"}}\n')
+        report_digest = digest_path(report_path)
+        object_payload["quality_gates"][gate_name].update(
+            {
+                "report_uri": str(report_path),
+                "report_sha256": report_digest.sha256,
+                "report_size_bytes": report_digest.size_bytes,
+            }
+        )
+    payload = sample_manifest.model_dump(mode="json")
+    payload["objects"].append(object_payload)
+    manifest = WorldManifest.model_validate(payload)
+    manifest_path = tmp_path / "world.json"
+    manifest_path.write_text(manifest.model_dump_json(indent=2), encoding="utf-8")
+
+    result = validate_world_manifest(manifest_path)
+    assert result["valid"] is True
+    assert result["checked_gate_reports"] == 3
+
+    (tmp_path / "visual-report.json").write_text('{"gate":"visual","status":"changed"}\n')
+    invalid = validate_world_manifest(manifest_path)
+    assert invalid["valid"] is False
+    assert {issue["error"] for issue in invalid["issues"]} >= {
+        "report_sha256 mismatch",
+        "report_size_bytes mismatch",
     }
 
 
@@ -221,14 +267,20 @@ def _unified_pbr_object_payload(sample_manifest: WorldManifest) -> dict[str, obj
     payload["quality_gates"]["alignment"] = {
         "status": "passed",
         "report_uri": "artifact://pillow-unified/scene-fit-report.json",
+        "report_sha256": "e" * 64,
+        "report_size_bytes": 2048,
     }
     payload["quality_gates"]["collision"] = {
         "status": "passed",
         "report_uri": "artifact://pillow-unified/collision-report.json",
+        "report_sha256": "f" * 64,
+        "report_size_bytes": 2048,
     }
     payload["quality_gates"]["visual"] = {
         "status": "passed",
         "report_uri": "artifact://pillow-unified/visual-review.json",
+        "report_sha256": "1" * 64,
+        "report_size_bytes": 2048,
     }
     payload["interaction"].update(
         {
@@ -296,6 +348,17 @@ def test_unified_collision_enabled_objects_require_gate_reports(
 
     with pytest.raises(ValidationError, match="requires report_uri"):
         WorldObject.model_validate(payload)
+
+
+def test_gate_report_digest_requires_complete_identity() -> None:
+    with pytest.raises(ValidationError, match="requires report_uri"):
+        GateRecord(status="passed", report_sha256="a" * 64, report_size_bytes=10)
+    with pytest.raises(ValidationError, match="report_sha256 and report_size_bytes"):
+        GateRecord(
+            status="passed",
+            report_uri="artifact://gate-report.json",
+            report_sha256="a" * 64,
+        )
 
 
 def test_unified_surface_bvh_rejects_missing_face_count(

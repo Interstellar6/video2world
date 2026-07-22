@@ -44,7 +44,9 @@ def validate_world_manifest(
     manifest = load_world_manifest(manifest_path)
     issues: list[dict[str, str]] = []
     checked_assets = 0
+    checked_gate_reports = 0
     remote_assets = 0
+    remote_gate_reports = 0
     if verify_assets:
         for location, asset in manifest.iter_assets():
             try:
@@ -70,6 +72,33 @@ def validate_world_manifest(
                     issues.append({"location": location, "error": "size_bytes mismatch"})
             except ArtifactError as exc:
                 issues.append({"location": location, "error": str(exc)})
+        for location, gate in manifest.iter_gate_reports():
+            assert gate.report_uri is not None
+            assert gate.report_sha256 is not None
+            assert gate.report_size_bytes is not None
+            try:
+                local_path = _local_asset_path(manifest_path, gate.report_uri)
+                if local_path is None:
+                    remote_gate_reports += 1
+                    if not allow_remote:
+                        issues.append(
+                            {
+                                "location": location,
+                                "error": (
+                                    "remote gate report was not content-verified; pass "
+                                    "--allow-remote explicitly"
+                                ),
+                            }
+                        )
+                    continue
+                current = digest_path(local_path)
+                checked_gate_reports += 1
+                if current.sha256 != gate.report_sha256:
+                    issues.append({"location": location, "error": "report_sha256 mismatch"})
+                if current.size_bytes != gate.report_size_bytes:
+                    issues.append({"location": location, "error": "report_size_bytes mismatch"})
+            except ArtifactError as exc:
+                issues.append({"location": location, "error": str(exc)})
     return {
         "valid": not issues,
         "manifest": str(manifest_path),
@@ -77,6 +106,8 @@ def validate_world_manifest(
         "manifest_status": manifest.manifest_status,
         "objects": len(manifest.objects),
         "checked_assets": checked_assets,
+        "checked_gate_reports": checked_gate_reports,
         "remote_assets": remote_assets,
+        "remote_gate_reports": remote_gate_reports,
         "issues": issues,
     }

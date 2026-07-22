@@ -67,7 +67,7 @@ bedroom_4::holi_fresh_20260714::sam3_plant_01
 
 规范 WorldManifest 保留 `visual`、`render_mesh`、`collider` 三个语义角色，是为了兼容历史资产并保持 provenance。新 unified 对象不需要 object Gaussian，因此 `visual` 可以为空；`render_mesh` 与 `collider` 可以引用同一个 PBR GLB 的同一 URI/hash。Web stage 会把这两个 canonical 角色折叠成一个 `collision.asset`，而不是把文件复制两次。
 
-collision-enabled 的 unified PBR GLB 不能只写 `status=passed`。World manifest 要求 `alignment`、`collision` 与 `visual` 三个 gate 的 passed 状态都带 `report_uri`，分别指向 scene fit / 支撑穿模审核、BVH collision 审核和六视图或浏览器 visual QA。这样对象进入 Web 交互层之前，pivot、摆放、碰撞和视觉审核都有可追溯证据，而不是手写通过。
+collision-enabled 的 unified PBR GLB 不能只写 `status=passed`。World manifest 要求 `alignment`、`collision` 与 `visual` 三个 gate 的 passed 状态都带 `report_uri`、`report_sha256` 与 `report_size_bytes`，分别指向 scene fit / 支撑穿模审核、BVH collision 审核和六视图或浏览器 visual QA。`video2world validate` 会重新 hash 本地 gate report；这样对象进入 Web 交互层之前，pivot、摆放、碰撞和视觉审核都有可复算证据，而不是手写通过。
 
 ## Web manifest 的 unified GLB 合同
 

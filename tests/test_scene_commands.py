@@ -194,14 +194,20 @@ def _with_unified_web_ready_object(manifest: WorldManifest, object_id: str) -> W
     item["quality_gates"]["alignment"] = {
         "status": "passed",
         "report_uri": f"artifact://{object_id}/scene-fit-report.json",
+        "report_sha256": "e" * 64,
+        "report_size_bytes": 2048,
     }
     item["quality_gates"]["collision"] = {
         "status": "passed",
         "report_uri": f"artifact://{object_id}/collision-report.json",
+        "report_sha256": "f" * 64,
+        "report_size_bytes": 2048,
     }
     item["quality_gates"]["visual"] = {
         "status": "passed",
         "report_uri": f"artifact://{object_id}/visual-review.json",
+        "report_sha256": "1" * 64,
+        "report_size_bytes": 2048,
     }
     item["interaction"].update(
         {
