@@ -659,6 +659,10 @@ def test_sequence_rejects_failed_measured_report_with_next_action(tmp_path: Path
         "action": "add_observed_donor_or_switch_to_constrained_generation_for_residual",
         "blocker": "no_guard_stable_measured_donor_support",
         "status": "technical_failed_no_support",
+        "failed_frame_ids": ["000064"],
+        "first_failed_frame_id": "000064",
+        "not_evaluable_pair_ids": ["0016_to_0017"],
+        "not_evaluable_triplet_center_frame_ids": ["000064"],
         "no_support_frame_ids": ["000001"],
         "unresolved_unobserved_pixels": 42,
         "promotion_approved": False,
@@ -673,6 +677,10 @@ def test_sequence_rejects_failed_measured_report_with_next_action(tmp_path: Path
     assert "status=technical_failed_no_support" in message
     assert "add_observed_donor_or_switch_to_constrained_generation_for_residual" in message
     assert "no_guard_stable_measured_donor_support" in message
+    assert "failed_frame_ids=000064" in message
+    assert "first_failed_frame_id=000064" in message
+    assert "not_evaluable_pair_ids=0016_to_0017" in message
+    assert "not_evaluable_triplet_center_frame_ids=000064" in message
     assert "no_support_frame_ids=000001" in message
     assert not fixture["args"].output.exists()
 
