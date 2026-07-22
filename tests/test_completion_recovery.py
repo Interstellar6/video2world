@@ -3,9 +3,12 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import numpy as np
+
 from video2world.cli import main
 from video2world.completion_recovery import (
     materialize_completion_recovery_bundle,
+    materialize_completion_recovery_constrained_residual_manifest,
     materialize_completion_recovery_residual_handoff,
     materialize_completion_recovery_work_order,
 )
@@ -622,7 +625,28 @@ def _write_prefill_report_and_receipt(report: Path, receipt: Path, root: Path) -
     )
 
 
-def _write_passed_preflight(path: Path, bundle_path: Path) -> None:
+def _preflight_binding(path: Path, role: str, expected_kind: str) -> dict[str, object]:
+    digest = digest_path(path)
+    return {
+        "role": role,
+        "path": str(digest.path),
+        "declared_path": str(digest.path),
+        "effective_path": str(digest.path),
+        "override_applied": False,
+        "expected_kind": expected_kind,
+        "status": "present",
+        "sha256": digest.sha256,
+        "size_bytes": digest.size_bytes,
+        "file_count": digest.file_count,
+    }
+
+
+def _write_passed_preflight(
+    path: Path,
+    bundle_path: Path,
+    *,
+    bindings: list[dict[str, object]] | None = None,
+) -> None:
     path.write_text(
         json.dumps(
             {
@@ -638,7 +662,7 @@ def _write_passed_preflight(path: Path, bundle_path: Path) -> None:
                 "bundle_input_verified": True,
                 "work_order_input_verified": True,
                 "clean_plate_report_verified": True,
-                "bindings": [],
+                "bindings": bindings or [],
                 "missing_roles": [],
                 "required_frame_ids": ["000064"],
                 "frame_alignment": [],
@@ -734,3 +758,148 @@ def test_completion_recovery_residual_handoff_cli_writes_json(
     assert stdout_payload == file_payload
     assert file_payload["r1_promotion_approved"] is False
     assert file_payload["frame_records"][0]["measured_multiview_pixels"] == 100
+
+
+def test_completion_recovery_constrained_residual_manifest_binds_npz_depth(
+    tmp_path: Path,
+) -> None:
+    route = tmp_path / "route.json"
+    report = tmp_path / "report.json"
+    work_order_path = tmp_path / "work-order.json"
+    bundle_path = tmp_path / "bundle.json"
+    preflight_path = tmp_path / "preflight.json"
+    prefill_report = tmp_path / "prefill" / "multiview_prefill_report.json"
+    prefill_receipt = tmp_path / "prefill" / "multiview_prefill_receipt.json"
+    handoff_path = tmp_path / "residual_handoff.json"
+    camera_info = tmp_path / "camera_info.json"
+    depth_dir = tmp_path / "depth"
+    mesh = tmp_path / "mesh" / "tsdf_fusion_post.ply"
+    script = tmp_path / "scripts" / "complete_planar_background.py"
+    output_dir = tmp_path / "03-constrained_residual_completion"
+    depth_dir.mkdir()
+    mesh.parent.mkdir()
+    script.parent.mkdir()
+    camera_info.write_text(
+        '{"extrinsic_type":"world_to_camera","extrinsic":{"000064":[]}}',
+        encoding="utf-8",
+    )
+    np.savez_compressed(depth_dir / "000064.npz", depth=np.ones((2, 2), dtype=np.float32))
+    mesh.write_bytes(b"ply\n")
+    script.write_text("#!/usr/bin/env python3\n", encoding="utf-8")
+    _write_route(route)
+    _write_report(report)
+    work_order = materialize_completion_recovery_work_order(route, report)
+    work_order_path.write_text(work_order.model_dump_json(indent=2), encoding="utf-8")
+    bundle = materialize_completion_recovery_bundle(work_order_path)
+    bundle_path.write_text(bundle.model_dump_json(indent=2), encoding="utf-8")
+    _write_passed_preflight(
+        preflight_path,
+        bundle_path,
+        bindings=[
+            _preflight_binding(camera_info, "camera_info", "file"),
+            _preflight_binding(depth_dir, "depth_arrays", "directory"),
+        ],
+    )
+    _write_prefill_report_and_receipt(prefill_report, prefill_receipt, tmp_path / "assets")
+    handoff = materialize_completion_recovery_residual_handoff(
+        bundle_path,
+        preflight_path,
+        prefill_report,
+        prefill_receipt,
+    )
+    handoff_path.write_text(handoff.model_dump_json(indent=2), encoding="utf-8")
+
+    manifest = materialize_completion_recovery_constrained_residual_manifest(
+        handoff_path,
+        mesh_path=mesh,
+        output_dir=output_dir,
+        script_path=script,
+        working_directory=tmp_path,
+    )
+
+    assert manifest.status == "ready_for_structural_residual_completion"
+    assert manifest.execution_status == "planned_not_run"
+    assert manifest.r1_promotion_approved is False
+    assert manifest.depth_format_counts == {"npz": 1}
+    assert manifest.frame_records[0].residual_mask.role == "unresolved_residual_mask"
+    assert "--upstream-prefill-report" in manifest.command_argv
+    assert str(prefill_report.resolve()) in manifest.command_argv
+    assert str(depth_dir.resolve()) in manifest.command_argv
+    assert manifest.constraints["allowed_edit_region"] == "residual_mask"
+
+
+def test_completion_recovery_constrained_residual_manifest_cli_writes_json(
+    tmp_path: Path,
+    capsys,
+) -> None:
+    route = tmp_path / "route.json"
+    report = tmp_path / "report.json"
+    work_order_path = tmp_path / "work-order.json"
+    bundle_path = tmp_path / "bundle.json"
+    preflight_path = tmp_path / "preflight.json"
+    prefill_report = tmp_path / "prefill" / "multiview_prefill_report.json"
+    prefill_receipt = tmp_path / "prefill" / "multiview_prefill_receipt.json"
+    handoff_path = tmp_path / "residual_handoff.json"
+    output = tmp_path / "step03_manifest.json"
+    camera_info = tmp_path / "camera_info.json"
+    depth_dir = tmp_path / "depth"
+    mesh = tmp_path / "mesh.ply"
+    script = tmp_path / "complete_planar_background.py"
+    depth_dir.mkdir()
+    camera_info.write_text(
+        '{"extrinsic_type":"world_to_camera","extrinsic":{"000064":[]}}',
+        encoding="utf-8",
+    )
+    np.savez_compressed(depth_dir / "000064.npz", depth=np.ones((2, 2), dtype=np.float32))
+    mesh.write_bytes(b"ply\n")
+    script.write_text("#!/usr/bin/env python3\n", encoding="utf-8")
+    _write_route(route)
+    _write_report(report)
+    work_order = materialize_completion_recovery_work_order(route, report)
+    work_order_path.write_text(work_order.model_dump_json(indent=2), encoding="utf-8")
+    bundle = materialize_completion_recovery_bundle(work_order_path)
+    bundle_path.write_text(bundle.model_dump_json(indent=2), encoding="utf-8")
+    _write_passed_preflight(
+        preflight_path,
+        bundle_path,
+        bindings=[
+            _preflight_binding(camera_info, "camera_info", "file"),
+            _preflight_binding(depth_dir, "depth_arrays", "directory"),
+        ],
+    )
+    _write_prefill_report_and_receipt(prefill_report, prefill_receipt, tmp_path / "assets")
+    handoff = materialize_completion_recovery_residual_handoff(
+        bundle_path,
+        preflight_path,
+        prefill_report,
+        prefill_receipt,
+    )
+    handoff_path.write_text(handoff.model_dump_json(indent=2), encoding="utf-8")
+
+    assert (
+        main(
+            [
+                "completion-recovery-constrained-residual-manifest",
+                "--handoff",
+                str(handoff_path),
+                "--mesh",
+                str(mesh),
+                "--output-dir",
+                str(tmp_path / "planned-output"),
+                "--script",
+                str(script),
+                "--workdir",
+                str(tmp_path),
+                "--output",
+                str(output),
+            ]
+        )
+        == 0
+    )
+
+    captured = capsys.readouterr()
+    stdout_payload = json.loads(captured.out)
+    file_payload = json.loads(output.read_text(encoding="utf-8"))
+    assert stdout_payload == file_payload
+    assert file_payload["depth_format_counts"] == {"npz": 1}
+    assert file_payload["execution_status"] == "planned_not_run"

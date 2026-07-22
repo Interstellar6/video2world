@@ -321,6 +321,27 @@ def test_mask_directory_resolver_accepts_sequence_or_frame_stem(tmp_path: Path) 
     assert resolved == mask_path.resolve()
 
 
+def test_depth_resolver_accepts_npz_depth_archive(tmp_path: Path) -> None:
+    depth_dir = tmp_path / "depth"
+    depth_dir.mkdir()
+    depth = np.asarray([[1.0, 2.0]], dtype=np.float32)
+    np.savez_compressed(depth_dir / "000055.npz", depth=depth)
+
+    resolved = MODULE.resolve_depth_path(depth_dir, "000055")
+    loaded = MODULE.load_depth_array(resolved)
+
+    assert resolved == (depth_dir / "000055.npz").resolve()
+    assert np.array_equal(loaded, depth)
+
+
+def test_depth_archive_rejects_ambiguous_npz_keys(tmp_path: Path) -> None:
+    path = tmp_path / "000055.npz"
+    np.savez_compressed(path, depth=np.ones((1, 1)), confidence=np.ones((1, 1)))
+
+    with pytest.raises(ValueError, match="exactly one 'depth' array"):
+        MODULE.load_depth_array(path)
+
+
 def test_supplement_manifest_joins_by_frame_and_binds_receipt(tmp_path: Path) -> None:
     masks = tmp_path / "masks"
     masks.mkdir()

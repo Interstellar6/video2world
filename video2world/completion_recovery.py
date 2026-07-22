@@ -189,6 +189,7 @@ class RecoveryHandoffInput(StrictModel):
     sha256: Sha256
     size_bytes: int = Field(ge=1)
     role: Literal[
+        "completion_recovery_residual_handoff",
         "completion_recovery_bundle",
         "completion_recovery_preflight",
         "measured_prefill_report",
@@ -249,6 +250,45 @@ class CompletionRecoveryResidualHandoff(StrictModel):
     notes: list[str] = Field(default_factory=list)
 
 
+class RecoveryConstrainedResidualFrame(StrictModel):
+    sequence_index: int = Field(ge=0)
+    frame_id: str = Field(min_length=1)
+    residual_mask: RecoveryHandoffAsset
+    measured_prefill_rgb: RecoveryHandoffAsset
+    source_rgb: RecoveryHandoffAsset
+    removal_mask: RecoveryHandoffAsset
+    measured_multiview_pixels: int = Field(ge=0)
+    residual_mask_pixels: int = Field(ge=0)
+
+
+class CompletionRecoveryConstrainedResidualManifest(StrictModel):
+    schema_version: Literal["1.0"] = "1.0"
+    kind: Literal["video2world.completion_recovery_constrained_residual_manifest"] = (
+        "video2world.completion_recovery_constrained_residual_manifest"
+    )
+    object_id: str = Field(min_length=1)
+    manifest_sha256: Sha256
+    status: Literal["ready_for_structural_residual_completion"] = (
+        "ready_for_structural_residual_completion"
+    )
+    planned_step_id: Literal["03-constrained_residual_completion"] = (
+        "03-constrained_residual_completion"
+    )
+    execution_status: Literal["planned_not_run"] = "planned_not_run"
+    deeper_rounds_blocked: Literal[True] = True
+    r1_promotion_approved: Literal[False] = False
+    source_handoff: RecoveryHandoffInput
+    bindings: list[RecoveryHandoffAsset] = Field(min_length=5)
+    frame_records: list[RecoveryConstrainedResidualFrame] = Field(min_length=1)
+    depth_format_counts: dict[str, int] = Field(default_factory=dict)
+    planned_output_dir: str = Field(min_length=1)
+    working_directory: str = Field(min_length=1)
+    command_argv: list[str] = Field(min_length=1)
+    constraints: dict[str, Any] = Field(default_factory=dict)
+    required_verification: list[str] = Field(min_length=1)
+    notes: list[str] = Field(default_factory=list)
+
+
 def _artifact(
     path: Path,
     role: Literal["completion_backend_route", "clean_plate_report"],
@@ -265,6 +305,7 @@ def _artifact(
 def _handoff_input(
     path: Path,
     role: Literal[
+        "completion_recovery_residual_handoff",
         "completion_recovery_bundle",
         "completion_recovery_preflight",
         "measured_prefill_report",
@@ -696,6 +737,75 @@ def _verified_handoff_asset(
     )
 
 
+def _asset_from_path(path: str | Path, role: str) -> RecoveryHandoffAsset:
+    digest = digest_path(path)
+    return RecoveryHandoffAsset(
+        path=str(digest.path),
+        sha256=digest.sha256,
+        size_bytes=digest.size_bytes,
+        role=role,
+    )
+
+
+def _handoff_input_by_role(
+    handoff: CompletionRecoveryResidualHandoff,
+    role: str,
+) -> RecoveryHandoffInput:
+    matches = [item for item in handoff.inputs if item.role == role]
+    if len(matches) != 1:
+        raise ValueError(f"residual handoff must contain exactly one {role} input")
+    return matches[0]
+
+
+def _verify_handoff_input(input_item: RecoveryHandoffInput) -> Path:
+    path = Path(input_item.path).expanduser().resolve()
+    verified, actual_sha = _verify_declared_file(
+        input_item.path,
+        input_item.sha256,
+        input_item.size_bytes,
+    )
+    if not verified:
+        detail = f"; actual_sha256={actual_sha}" if actual_sha else ""
+        raise ValueError(f"residual handoff input changed: {input_item.role}{detail}")
+    return path
+
+
+def _preflight_binding_by_role(
+    preflight: CompletionRecoveryPreflight,
+    role: str,
+) -> RecoveryPreflightBinding:
+    matches = [item for item in preflight.bindings if item.role == role]
+    if len(matches) != 1:
+        raise ValueError(f"recovery preflight must contain exactly one {role} binding")
+    binding = matches[0]
+    if binding.status != "present":
+        raise ValueError(f"recovery preflight binding is not present: {role}")
+    return binding
+
+
+def _depth_path_for_frame(depth_dir: Path, frame_id: str) -> Path | None:
+    for suffix in (".npy", ".npz"):
+        path = depth_dir / f"{frame_id}{suffix}"
+        if path.is_file():
+            return path.resolve()
+    return None
+
+
+def _constrained_residual_frame(
+    frame: RecoveryResidualHandoffFrame,
+) -> RecoveryConstrainedResidualFrame:
+    return RecoveryConstrainedResidualFrame(
+        sequence_index=frame.sequence_index,
+        frame_id=frame.frame_id,
+        residual_mask=frame.residual_mask,
+        measured_prefill_rgb=frame.measured_prefill_rgb,
+        source_rgb=frame.source_rgb,
+        removal_mask=frame.removal_mask,
+        measured_multiview_pixels=frame.measured_multiview_pixels,
+        residual_mask_pixels=frame.residual_mask_pixels,
+    )
+
+
 def _int_record_value(record: dict[str, Any], key: str) -> int:
     value = record.get(key)
     if not isinstance(value, int) or isinstance(value, bool) or value < 0:
@@ -1111,5 +1221,157 @@ def materialize_completion_recovery_residual_handoff(
     }
     return CompletionRecoveryResidualHandoff(
         handoff_sha256=digest_json(payload),
+        **payload,
+    )
+
+
+def materialize_completion_recovery_constrained_residual_manifest(
+    handoff_path: str | Path,
+    *,
+    mesh_path: str | Path,
+    output_dir: str | Path,
+    script_path: str | Path = "scripts/complete_planar_background.py",
+    working_directory: str | Path | None = None,
+) -> CompletionRecoveryConstrainedResidualManifest:
+    handoff_file = Path(handoff_path).expanduser().resolve()
+    handoff = CompletionRecoveryResidualHandoff.model_validate(
+        _load_object(handoff_file, "residual handoff")
+    )
+    if handoff.status != "ready_for_constrained_residual_completion":
+        raise ValueError("residual handoff is not ready for constrained completion")
+    if handoff.r1_promotion_approved is not False:
+        raise ValueError("constrained residual manifest cannot consume promoted R1 input")
+    if handoff.next_step_id != "03-constrained_residual_completion":
+        raise ValueError("residual handoff does not route to Step 03")
+
+    preflight_file = _verify_handoff_input(
+        _handoff_input_by_role(handoff, "completion_recovery_preflight")
+    )
+    prefill_report_file = _verify_handoff_input(
+        _handoff_input_by_role(handoff, "measured_prefill_report")
+    )
+    preflight = CompletionRecoveryPreflight.model_validate(
+        _load_object(preflight_file, "recovery preflight")
+    )
+    if preflight.status != "passed":
+        raise ValueError("recovery preflight must still be passed for Step 03")
+
+    camera_binding = _preflight_binding_by_role(preflight, "camera_info")
+    depth_binding = _preflight_binding_by_role(preflight, "depth_arrays")
+    camera_file = Path(camera_binding.effective_path).expanduser().resolve()
+    depth_dir = Path(depth_binding.effective_path).expanduser().resolve()
+    mesh_file = Path(mesh_path).expanduser().resolve()
+    output = Path(output_dir).expanduser().resolve()
+    workdir = (
+        Path(working_directory).expanduser().resolve()
+        if working_directory
+        else Path.cwd().resolve()
+    )
+    script_file = Path(script_path).expanduser()
+    if not script_file.is_absolute():
+        script_file = (workdir / script_file).resolve()
+    else:
+        script_file = script_file.resolve()
+
+    frame_ids = [frame.frame_id for frame in handoff.frame_records]
+    missing_depth_frame_ids: list[str] = []
+    depth_format_counts: dict[str, int] = {}
+    for frame_id in frame_ids:
+        depth_path = _depth_path_for_frame(depth_dir, frame_id)
+        if depth_path is None:
+            missing_depth_frame_ids.append(frame_id)
+            continue
+        suffix = depth_path.suffix.lstrip(".")
+        depth_format_counts[suffix] = depth_format_counts.get(suffix, 0) + 1
+    if missing_depth_frame_ids:
+        raise ValueError(
+            "depth_arrays binding does not cover Step 03 frame ids: "
+            + ", ".join(missing_depth_frame_ids)
+        )
+
+    handoff_digest = digest_path(handoff_file)
+    command_argv = [
+        "uv",
+        "run",
+        "python",
+        str(script_file),
+        "--input-manifest",
+        str(prefill_report_file),
+        "--camera-info",
+        str(camera_file),
+        "--mesh",
+        str(mesh_file),
+        "--depth-dir",
+        str(depth_dir),
+        "--upstream-prefill-report",
+        str(prefill_report_file),
+        "--target-frame-ids",
+        ",".join(frame_ids),
+        "--output",
+        str(output),
+    ]
+    payload = {
+        "object_id": handoff.object_id,
+        "status": "ready_for_structural_residual_completion",
+        "planned_step_id": "03-constrained_residual_completion",
+        "execution_status": "planned_not_run",
+        "deeper_rounds_blocked": True,
+        "r1_promotion_approved": False,
+        "source_handoff": {
+            "path": str(handoff_digest.path),
+            "sha256": handoff_digest.sha256,
+            "size_bytes": handoff_digest.size_bytes,
+            "role": "completion_recovery_residual_handoff",
+        },
+        "bindings": [
+            _asset_from_path(prefill_report_file, "step01_measured_prefill_report").model_dump(
+                mode="json"
+            ),
+            _asset_from_path(camera_file, "camera_info").model_dump(mode="json"),
+            _asset_from_path(depth_dir, "frame_id_depth_arrays").model_dump(mode="json"),
+            _asset_from_path(mesh_file, "structural_tsdf_mesh_prior").model_dump(mode="json"),
+            _asset_from_path(script_file, "constrained_residual_completion_script").model_dump(
+                mode="json"
+            ),
+        ],
+        "frame_records": [
+            _constrained_residual_frame(frame).model_dump(mode="json")
+            for frame in handoff.frame_records
+        ],
+        "depth_format_counts": dict(sorted(depth_format_counts.items())),
+        "planned_output_dir": str(output),
+        "working_directory": str(workdir),
+        "command_argv": command_argv,
+        "constraints": {
+            "target_rgb_key": "prefill_frame",
+            "target_mask_key": "residual_mask",
+            "texture_rgb_key": "source_frame",
+            "texture_mask_key": "removal_mask",
+            "allowed_edit_region": "residual_mask",
+            "outside_removal_mask_must_remain_source_rgb_exact": True,
+            "measured_prefill_pixels_must_remain_exact": True,
+            "residual_pixels_are_not_donor_or_geometry_evidence": True,
+            "promotion_allowed": False,
+        },
+        "required_verification": [
+            "Run complete_planar_background.py and inspect planar_background_report.json.",
+            "Run semantic cross-view review before any strict R1 acceptance attempt.",
+            "Verify outside-removal RGB exactness and residual-mask-only edits.",
+            "Rerun fresh depth/normal estimation before PGSR or TSDF reconstruction.",
+        ],
+        "notes": [
+            (
+                "This manifest plans Step 03 only; it does not execute generation or "
+                "accept R1."
+            ),
+            (
+                "The depth_arrays binding is frame-id addressed and may contain .npy or "
+                ".npz depth archives."
+            ),
+            "R2-R4 remain blocked until strict R1 acceptance passes.",
+        ],
+    }
+    return CompletionRecoveryConstrainedResidualManifest(
+        manifest_sha256=digest_json(payload),
         **payload,
     )

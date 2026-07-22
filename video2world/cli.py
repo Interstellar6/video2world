@@ -287,6 +287,20 @@ def build_parser() -> argparse.ArgumentParser:
     )
     completion_recovery_residual_handoff_parser.add_argument("--output", required=True)
 
+    completion_recovery_constrained_residual_parser = subparsers.add_parser(
+        "completion-recovery-constrained-residual-manifest",
+        help="Plan a constrained residual completion run from a residual handoff",
+    )
+    completion_recovery_constrained_residual_parser.add_argument("--handoff", required=True)
+    completion_recovery_constrained_residual_parser.add_argument("--mesh", required=True)
+    completion_recovery_constrained_residual_parser.add_argument("--output-dir", required=True)
+    completion_recovery_constrained_residual_parser.add_argument(
+        "--script",
+        default="scripts/complete_planar_background.py",
+    )
+    completion_recovery_constrained_residual_parser.add_argument("--workdir")
+    completion_recovery_constrained_residual_parser.add_argument("--output", required=True)
+
     scene_command_validate_parser = subparsers.add_parser(
         "scene-command-validate",
         help="Validate structured natural-language scene intent JSON",
@@ -714,6 +728,26 @@ def _cmd_completion_recovery_residual_handoff(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_completion_recovery_constrained_residual_manifest(
+    args: argparse.Namespace,
+) -> int:
+    from video2world.completion_recovery import (
+        materialize_completion_recovery_constrained_residual_manifest,
+    )
+
+    manifest = materialize_completion_recovery_constrained_residual_manifest(
+        args.handoff,
+        mesh_path=args.mesh,
+        output_dir=args.output_dir,
+        script_path=args.script,
+        working_directory=args.workdir,
+    )
+    payload = manifest.model_dump(mode="json")
+    atomic_write_json(Path(args.output).expanduser().resolve(), payload)
+    _print_json(payload)
+    return 0
+
+
 def _cmd_scene_command_validate(args: argparse.Namespace) -> int:
     command = load_scene_command(args.command_file)
     _print_json(
@@ -871,6 +905,9 @@ COMMANDS = {
     "completion-recovery-bundle": _cmd_completion_recovery_bundle,
     "completion-recovery-preflight": _cmd_completion_recovery_preflight,
     "completion-recovery-residual-handoff": _cmd_completion_recovery_residual_handoff,
+    "completion-recovery-constrained-residual-manifest": (
+        _cmd_completion_recovery_constrained_residual_manifest
+    ),
     "scene-command-validate": _cmd_scene_command_validate,
     "scene-command-plan": _cmd_scene_command_plan,
     "scene-command-submit": _cmd_scene_command_submit,

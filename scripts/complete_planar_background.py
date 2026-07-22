@@ -83,6 +83,25 @@ def mask_bool(path: Path) -> np.ndarray:
         return np.asarray(image.convert("L"), dtype=np.uint8) > 0
 
 
+def resolve_depth_path(depth_dir: Path, frame_id: str) -> Path:
+    for suffix in (".npy", ".npz"):
+        path = (depth_dir / f"{frame_id}{suffix}").resolve()
+        if path.is_file():
+            return path
+    return (depth_dir / f"{frame_id}.npy").resolve()
+
+
+def load_depth_array(path: Path) -> np.ndarray:
+    if path.suffix == ".npy":
+        return np.load(path, allow_pickle=False)
+    if path.suffix == ".npz":
+        with np.load(path, allow_pickle=False) as archive:
+            if archive.files != ["depth"]:
+                raise ValueError(f"depth archive must contain exactly one 'depth' array: {path}")
+            return np.asarray(archive["depth"])
+    raise ValueError(f"unsupported depth array format: {path}")
+
+
 def binary_dilate(mask: np.ndarray, iterations: int) -> np.ndarray:
     result = mask.astype(bool, copy=True)
     for _ in range(iterations):
@@ -447,8 +466,8 @@ def add_structural_shadow_collars(
         added = np.zeros_like(removal)
         plane_counts = {str(plane.plane_id): 0 for plane in planes}
         if np.any(candidate):
-            depth_path = (depth_dir / f"{frame_id}.npy").resolve()
-            depth = np.load(depth_path, allow_pickle=False)
+            depth_path = resolve_depth_path(depth_dir, frame_id)
+            depth = load_depth_array(depth_path)
             if depth.shape != removal.shape:
                 raise ValueError(f"shadow collar depth/mask shape mismatch for {frame_id}")
             y, x = np.nonzero(candidate)
@@ -1403,12 +1422,12 @@ def build_texture_atlases(
                 override_dir=masks_override,
             )
         )
-        depth_path = (depth_dir / f"{frame_id}.npy").resolve()
+        depth_path = resolve_depth_path(depth_dir, frame_id)
         if not depth_path.is_file():
             raise FileNotFoundError(depth_path)
         rgb = image_rgb(frame_path)
         removal = mask_bool(mask_path)
-        depth = np.load(depth_path)
+        depth = load_depth_array(depth_path)
         if depth.shape != rgb.shape[:2] or removal.shape != depth.shape:
             raise ValueError(f"RGB/depth/mask shape mismatch for donor {frame_id}")
         intrinsic = frame_intrinsic(camera_info, frame_id)
