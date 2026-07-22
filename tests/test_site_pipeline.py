@@ -444,6 +444,62 @@ def test_site_run_blocked_receipt_summarizes_preflight_recovery_actions(
     assert receipt["recovery_actions"][0]["frame_ids"] == ["000064"]
 
 
+def test_site_run_blocked_receipt_summarizes_execution_recovery_actions(
+    tmp_path: Path,
+) -> None:
+    fixture = _site_fixture(tmp_path)
+    create_site_run(
+        fixture["run"],
+        video=fixture["video"],
+        scene_id="scene",
+        run_id="site-execution-recovery-1",
+        profile_path=fixture["profile"],
+        provider_contract_path=fixture["contract"],
+        checkout_roots={"provider": fixture["provider"]},
+        artifact_roots={},
+    )
+    (fixture["provider"] / "driver.py").write_text(
+        "from pathlib import Path\n"
+        "import json\n"
+        "import sys\n"
+        "stage = sys.argv[sys.argv.index('--stage') + 1]\n"
+        "Path(sys.argv[sys.argv.index('--marker') + 1]).write_text(stage)\n"
+        "for index, value in enumerate(sys.argv):\n"
+        "    if value != '--output':\n"
+        "        continue\n"
+        "    role, path = sys.argv[index + 1].split('=', 1)\n"
+        "    output = Path(path)\n"
+        "    output.parent.mkdir(parents=True, exist_ok=True)\n"
+        "    if role == 'cameras':\n"
+        "        action = (\n"
+        "            'add_observed_donor_or_switch_to_constrained_generation_for_residual'\n"
+        "        )\n"
+        "        payload = dict(\n"
+        "            recovery_actions=[dict(\n"
+        "                priority=1,\n"
+        "                stage='donor_support',\n"
+        "                action=action,\n"
+        "                frame_ids=['000064'],\n"
+        "                allow_deeper_rounds=False,\n"
+        "            )]\n"
+        "        )\n"
+        "    else:\n"
+        "        payload = {'role': role, 'records': [{'id': 'real'}]}\n"
+        "    output.write_text(json.dumps(payload), encoding='utf-8')\n"
+        "raise SystemExit(1)\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(StageBlockedError, match="exited with 2"):
+        run_site_pipeline(fixture["run"], targets=["ingest"])
+
+    receipt = json.loads((fixture["run"] / ".video2world" / SITE_RUN_RECEIPT_NAME).read_text())
+    assert receipt["status"] == "blocked"
+    assert receipt["recovery_actions"][0]["stage_id"] == "ingest"
+    assert receipt["recovery_actions"][0]["stage"] == "donor_support"
+    assert receipt["recovery_actions"][0]["frame_ids"] == ["000064"]
+
+
 def test_site_preflight_and_run_fail_closed_when_provider_disappears(tmp_path: Path) -> None:
     fixture = _site_fixture(tmp_path)
     create_site_run(

@@ -851,6 +851,28 @@ def _collect_stage_recovery_actions(stages: list[dict[str, Any]]) -> list[dict[s
     return actions
 
 
+def _collect_plan_recovery_actions(
+    run_dir: Path,
+    selected_stages: list[str],
+) -> list[dict[str, Any]]:
+    if not selected_stages:
+        return []
+    try:
+        orchestrator = PipelineOrchestrator(run_dir)
+        plans = orchestrator.plan(selected_stages)
+    except Exception:
+        return []
+    return _collect_stage_recovery_actions(
+        [
+            {
+                "stage_id": plan.stage_id,
+                "recovery_actions": plan.recovery_actions,
+            }
+            for plan in plans
+        ]
+    )
+
+
 @contextmanager
 def _site_lock(run_dir: Path):  # type: ignore[no-untyped-def]
     path = run_dir / ".video2world" / "site-run.lock"
@@ -972,6 +994,14 @@ def run_site_pipeline(
             atomic_write_json(receipt_path, receipt)
             return receipt
     except Exception as exc:
+        selected_for_recovery = receipt.get("selected_stages", [])
+        if isinstance(selected_for_recovery, list) and "recovery_actions" not in receipt:
+            recovery_actions = _collect_plan_recovery_actions(
+                root,
+                [item for item in selected_for_recovery if isinstance(item, str)],
+            )
+            if recovery_actions:
+                receipt["recovery_actions"] = recovery_actions
         receipt.update(
             {
                 "status": "blocked",
