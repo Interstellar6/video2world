@@ -144,6 +144,11 @@ def test_exact_masks_and_continuous_composite_pass_all_fail_closed_gates(tmp_pat
     assert report["status"] == "technical_passed"
     assert report["boundary_texture_gate_passed"] is True
     assert report["promotion_approved"] is False
+    assert (
+        report["next_action"]["action"]
+        == "run_semantic_residual_and_cross_view_review_before_any_promotion"
+    )
+    assert report["next_action"]["blocking_gate_groups"] == []
     assert all(gate["passed"] is True for gate in report["gates"].values())
     frame = report["frame_records"][0]
     assert frame["alignment"]["mask_iou"] == 1.0
@@ -165,6 +170,11 @@ def test_offset_target_and_hard_color_seam_fail_geometry_and_continuity(tmp_path
     assert report["boundary_texture_gate_passed"] is False
     assert report["promotion_approved"] is False
     gates = report["gates"]
+    assert (
+        report["next_action"]["action"]
+        == "repair_removal_mask_or_target_matte_before_regeneration"
+    )
+    assert "mask_alignment" in report["next_action"]["blocking_gate_groups"]
     assert gates["mask_iou_gte"]["passed"] is False
     assert gates["mask_precision_gte"]["passed"] is False
     assert gates["mask_recall_gte"]["passed"] is False
@@ -190,6 +200,11 @@ def test_blurred_core_fails_texture_gate_while_boundary_gates_pass(tmp_path: Pat
     assert gates["seam_gradient_p95_lte"]["passed"] is True
     texture_gate = gates["core_to_local_ring_laplacian_energy_ratio_gte"]
     assert texture_gate["passed"] is False
+    assert (
+        report["next_action"]["action"]
+        == "add_observed_donor_or_switch_to_constrained_generation_for_residual"
+    )
+    assert report["next_action"]["blocking_gate_groups"] == ["core_texture"]
     texture = report["frame_records"][0]["texture"]
     assert texture["core_to_local_ring_laplacian_energy_ratio"] < 0.25
     assert (

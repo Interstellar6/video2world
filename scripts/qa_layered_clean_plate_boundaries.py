@@ -606,6 +606,55 @@ def aggregate_gates(
     return gates
 
 
+def clean_plate_next_action(gates: dict[str, dict[str, float | bool]]) -> dict[str, Any]:
+    failed = {name for name, gate in gates.items() if gate["passed"] is not True}
+    groups = {
+        "mask_alignment": [
+            "mask_iou_gte",
+            "mask_precision_gte",
+            "mask_recall_gte",
+            "boundary_distance_p95_lte",
+        ],
+        "boundary_seam": [
+            "seam_color_p95_lte",
+            "seam_gradient_p95_lte",
+        ],
+        "core_texture": [
+            "core_to_local_ring_laplacian_energy_ratio_gte",
+        ],
+    }
+    blocking_groups = [
+        group for group, names in groups.items() if any(name in failed for name in names)
+    ]
+    if not blocking_groups:
+        action = "run_semantic_residual_and_cross_view_review_before_any_promotion"
+        reason = (
+            "Boundary and local texture gates passed, but this QA scope does not prove "
+            "object-free semantics, revealed background correctness, or cross-view consistency."
+        )
+    elif "mask_alignment" in blocking_groups:
+        action = "repair_removal_mask_or_target_matte_before_regeneration"
+        reason = (
+            "The removal core and target matte disagree, so texture or VLM review is premature."
+        )
+    elif "boundary_seam" in blocking_groups:
+        action = "repair_composite_boundary_or_editable_collar"
+        reason = "The composite introduces a visible seam at the editable boundary."
+    else:
+        action = "add_observed_donor_or_switch_to_constrained_generation_for_residual"
+        reason = (
+            "The replacement core lacks enough local texture evidence; this usually means measured "
+            "donor support is insufficient or concentrated near the boundary."
+        )
+    return {
+        "action": action,
+        "reason": reason,
+        "blocking_gate_groups": blocking_groups,
+        "failed_gates": sorted(failed),
+        "promotion_approved": False,
+    }
+
+
 def validate(args: argparse.Namespace) -> dict[str, Any]:
     manifest_path = args.input_manifest.expanduser().resolve()
     manifest = require_dict(read_json(manifest_path), "manifest")
@@ -727,6 +776,7 @@ def validate(args: argparse.Namespace) -> dict[str, Any]:
         )
     gates = aggregate_gates(records, thresholds)
     passed = all(bool(gate["passed"]) for gate in gates.values())
+    next_action = clean_plate_next_action(gates)
     outputs: dict[str, Any] = {}
     if args.contact_sheet is not None:
         contact_sheet_path = args.contact_sheet.expanduser().resolve()
@@ -744,6 +794,7 @@ def validate(args: argparse.Namespace) -> dict[str, Any]:
         "boundary_texture_gate_passed": passed,
         "promotion_scope": "boundary_and_local_texture_only",
         "promotion_approved": False,
+        "next_action": next_action,
         "created_at": datetime.now(timezone.utc).isoformat(),  # noqa: UP017
         "input_manifest": str(manifest_path),
         "input_manifest_sha256": sha256_file(manifest_path),

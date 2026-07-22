@@ -203,7 +203,7 @@ corrected 审计先用三个显式 3D anchor 在原始 80 帧上建立 physical 
 
 ![Physical-instance donor audit](../assets/completion/clean-plate-physical-donor-audit.png "corrected front-only physical exclusion 与旧 all-pillow category union 的 25 帧对照；青色 support 增多，但仍集中在当前轮廓边界")
 
-生产合同还要用更大的 foreground exclusion 作为 boundary guard 复算 support。frame `000064` 在配置 dilation 下出现 256 个候选 support；8px guard 后 stable support 为 0，最终 measured coverage 为 0/23,065，residual 保持 23,065。严格报告因此为 `technical_failed`、`promotion_approved=false`，失败项是 `donor_support_not_boundary_concentrated=false`。本次 corrected manifest SHA-256 为 `7ad7ed45c46ffda1234bf3982e362233e900680e60c18546cfef34838e9a955f`，strict report SHA-256 为 `410eb5be0805458ee6d16b713832e26d93e5d50f83833c1461e7e6fea62a3a34`，raw associated-index receipt SHA-256 为 `62fc0b386998b95043806141f767285da5202fb889b99b9cf913ebd825574f4c`。
+生产合同还要用更大的 foreground exclusion 作为 boundary guard 复算 support。frame `000064` 在配置 dilation 下出现 256 个候选 support；8px guard 后 stable support 为 0，最终 measured coverage 为 0/23,065，residual 保持 23,065。严格报告因此为 `technical_failed`、`promotion_approved=false`，失败项是 `donor_support_not_boundary_concentrated=false`。本次 corrected manifest SHA-256 为 `7ad7ed45c46ffda1234bf3982e362233e900680e60c18546cfef34838e9a955f`，strict report SHA-256 为 `410eb5be0805458ee6d16b713832e26d93e5d50f83833c1461e7e6fea62a3a34`，raw associated-index receipt SHA-256 为 `62fc0b386998b95043806141f767285da5202fb889b99b9cf913ebd825574f4c`。边界 QA 报告会额外写入 `next_action`，把失败归类为 mask alignment、boundary seam 或 core texture/donor residual 路由；但这个字段只用于下一步调度，不能覆盖 `promotion_approved=false`。
 
 ![Boundary-guard rejection](../assets/completion/clean-plate-boundary-guard-rejection.png "frame 000064 strict R1：普通参数得到的 256 个边界 support 在 8px guard 下全部归零；该图是拒绝证据，不是 clean plate 结果")
 
