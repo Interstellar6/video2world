@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "kind": "video2world.bedroom4_lamp_replacement_materialization",
+  "createdAt": "2026-07-22T11:08:30.961257+00:00",
+  "status": "technical_gates_passed_browser_pending",
+  "baseManifest": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/web/public/worlds/bedroom4/manifest.json",
+    "sha256": "92fcd1a055f35c59d270512e78ad79c81f26412f515353f047e19d88ba18a5d3"
+  },
+  "candidateManifest": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/web/public/worlds/bedroom4/manifest.lamp-candidate.json",
+    "sha256": "163b24552927546d804dcf6a2956bad411059a38a2f49a4a2e72d5f0a0d9cc28"
+  },
+  "objects": [
+    {
+      "id": "sam3_lamp_01",
+      "asset": {
+        "id": "sam3_lamp_01_unified_pbr_glb",
+        "label": "Left lamp unified PBR GLB",
+        "url": "./worlds/bedroom4/objects/sam3_lamp_01.scene-fit.glb",
+        "fileName": "sam3_lamp_01.scene-fit.glb",
+        "fileType": "glb",
+        "format": "gltf-binary",
+        "sourcePath": "repo://video2world/examples/bedroom4/completion/lamps_trellis_seed43/sam3_lamp_01/scene_fit/sam3_lamp_01.scene-fit.glb",
+        "size": 1211940,
+        "sha256": "79589cd0dc7e61a17cb866ad776189cfdc436bd930e5ee867f0b4db545179cbf",
+        "vertices": 2051,
+        "faces": 2571,
+        "bounds": [
+          [
+            -1.0806144834848361,
+            -1.5390549764962311,
+            -0.9622663806393457
+          ],
+          [
+            1.0888466714529084,
+            1.3955682673125156,
+            1.1067649342105061
+          ]
+        ],
+        "finite": true,
+        "nondegenerate": true,
+        "watertight": false,
+        "windingConsistent": true,
+        "logicalRoot": "world"
+      },
+      "bbox": {
+        "coordinateFrame": "visual_native",
+        "min": [
+          -10.501860258707616,
+          -1.9281437228055114,
+          14.52211791768524
+        ],
+        "max": [
+          -8.332399103769871,
+          1.0064795210032353,
+          16.59114923253509
+        ],
+        "center": [
+          -9.417129681238745,
+          -0.460832100901138,
+          15.556633575110165
+        ],
+        "extent": [
+          2.1694611549377445,
+          2.9346232438087467,
+          2.069031314849852
+        ]
+      },
+      "sourceAnchor": {
+        "fileName": "sam3_lamp_01.source-anchor.ply",
+        "path": "./worlds/bedroom4/evidence/sam3_lamp_01.source-anchor.ply",
+        "pointCount": 39215,
+        "robustBounds": {
+          "center": [
+            -9.42124577522278,
+            -0.38908874630928036,
+            15.484384298324585
+          ],
+          "extent": [
+            2.1694611549377445,
+            2.9346232438087467,
+            2.069031314849852
+          ],
+          "min": [
+            -10.50597635269165,
+            -1.8564003682136536,
+            14.449868640899659
+          ],
+          "max": [
+            -8.336515197753906,
+            1.0782228755950929,
+            16.51889995574951
+          ],
+          "quantileLow": 0.01,
+          "quantileHigh": 0.99
+        },
+        "sha256": "1ffe8d4ef21301c28ef83ea516cfdeece8a8aa74258f60697a4fb63f988d294d",
+        "size": 1605565
+      },
+      "visualRemoved": 2692,
+      "colliderFacesRemoved": 33012,
+      "sixViewGate": "passed_with_minor_texture_hallucination"
+    },
+    {
+      "id": "sam3_lamp_02",
+      "asset": {
+        "id": "sam3_lamp_02_unified_pbr_glb",
+        "label": "Right lamp unified PBR GLB",
+        "url": "./worlds/bedroom4/objects/sam3_lamp_02.scene-fit.glb",
+        "fileName": "sam3_lamp_02.scene-fit.glb",
+        "fileType": "glb",
+        "format": "gltf-binary",
+        "sourcePath": "repo://video2world/examples/bedroom4/completion/lamps_trellis_seed43/sam3_lamp_02/scene_fit/sam3_lamp_02.scene-fit.glb",
+        "size": 1062960,
+        "sha256": "4480350c9dca92b0c21e88b2ffd3c1fe1a430ba62f98ebfbb12cf065f94268f9",
+        "vertices": 1526,
+        "faces": 2038,
+        "bounds": [
+          [
+            -0.8287279150024557,
+            -1.4396554057556474,
+            -0.9191483567912675
+          ],
+          [
+            0.9188133075698711,
+            1.3652774049085297,
+            0.9808516432087323
+          ]
+        ],
+        "finite": true,
+        "nondegenerate": true,
+        "watertight": false,
+        "windingConsistent": true,
+        "logicalRoot": "world"
+      },
+      "bbox": {
+        "coordinateFrame": "visual_native",
+        "min": [
+          3.4542751839622357,
+          -2.5360173304635367,
+          20.709129040364495
+        ],
+        "max": [
+          5.2018164065345625,
+          0.26891548020064016,
+          22.609129040364497
+        ],
+        "center": [
+          4.328045795248399,
+          -1.1335509251314484,
+          21.659129040364498
+        ],
+        "extent": [
+          1.7475412225723268,
+          2.8049328106641767,
+          1.9000000000000021
+        ]
+      },
+      "sourceAnchor": {
+        "fileName": "sam3_lamp_02.source-anchor.ply",
+        "path": "./worlds/bedroom4/evidence/sam3_lamp_02.source-anchor.ply",
+        "pointCount": 18099,
+        "robustBounds": {
+          "center": [
+            4.2830030989646914,
+            -1.0963619247078895,
+            21.628277397155763
+          ],
+          "extent": [
+            1.7475412225723268,
+            2.804932810664177,
+            2.7934902191162116
+          ],
+          "min": [
+            3.409232487678528,
+            -2.498828330039978,
+            20.231532287597656
+          ],
+          "max": [
+            5.156773710250855,
+            0.3061044806241991,
+            23.025022506713867
+          ],
+          "quantileLow": 0.01,
+          "quantileHigh": 0.99
+        },
+        "sha256": "100133069e396a802d7e163011a5178ba68c67f201e1dba48b9d59d56e194c6c",
+        "size": 740055
+      },
+      "visualRemoved": 6136,
+      "colliderFacesRemoved": 39104,
+      "sixViewGate": "passed_with_minor_texture_hallucination"
+    }
+  ],
+  "staticVisual": {
+    "inputVertices": 401421,
+    "outputVertices": 392593,
+    "removedByObject": {
+      "sam3_lamp_01": 2692,
+      "sam3_lamp_02": 6136
+    },
+    "sha256": "a6cb852454fad5abfba6d368c48184efdb15c5ada5e1de64ab66119897276995",
+    "chunkCount": 93
+  },
+  "staticCollider": {
+    "inputFaces": 3211877,
+    "highResolutionCarvedFaces": 3139761,
+    "deliveredVertices": 481898,
+    "deliveredFaces": 499999,
+    "removedByObject": {
+      "sam3_lamp_01": 33012,
+      "sam3_lamp_02": 39104
+    },
+    "highResolutionSha256": "080caafe0b3c9f383f57f143cdc5ec42fc35fbc57740662d316e128ec7d6c3fa",
+    "deliveredSha256": "c090656de78b3987f5f2180235d74c8cda9dc945d292c549ce861678165421f1",
+    "chunkCount": 14,
+    "browserLod": {
+      "schemaVersion": 1,
+      "kind": "video2world.browser_collision_ply_lod",
+      "createdAt": "2026-07-22T10:57:58.100038+00:00",
+      "status": "passed",
+      "method": "Blender collapse decimation with triangulated PLY export",
+      "source": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/staging/lamp-export-20260722/collider/bedroom4_lamps_carved_full.ply",
+        "bytes": 89570173,
+        "sha256": "080caafe0b3c9f383f57f143cdc5ec42fc35fbc57740662d316e128ec7d6c3fa",
+        "vertices": 1805667,
+        "faces": 3139761,
+        "bounds": {
+          "min": [
+            -13.389141082763672,
+            -12.587499618530273,
+            7.137499809265137
+          ],
+          "max": [
+            12.717731475830078,
+            5.791724681854248,
+            24.19373893737793
+          ],
+          "size": [
+            26.10687255859375,
+            18.37922430038452,
+            17.056239128112793
+          ]
+        }
+      },
+      "output": {
+        "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/staging/lamp-export-20260722/collider/bedroom4_lamps_carved_lod.ply",
+        "bytes": 14210931,
+        "sha256": "c090656de78b3987f5f2180235d74c8cda9dc945d292c549ce861678165421f1",
+        "vertices": 481898,
+        "faces": 499999,
+        "bounds": {
+          "min": [
+            -13.389073371887207,
+            -12.587489128112793,
+            7.137499809265137
+          ],
+          "max": [
+            12.71880054473877,
+            5.791781902313232,
+            24.19160270690918
+          ],
+          "size": [
+            26.107873916625977,
+            18.379271030426025,
+            17.054102897644043
+          ]
+        }
+      },
+      "targetFaces": 500000,
+      "faceRetentionRatio": 0.1592474713839684,
+      "maximumBoundsDelta": 0.00213623046875,
+      "boundsTolerance": 0.02610687255859375,
+      "gates": {
+        "nonempty": true,
+        "faceBudget": true,
+        "boundsPreserved": true
+      }
+    }
+  },
+  "browserQa": "pending"
+}

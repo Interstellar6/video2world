@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "kind": "video2world.bedroom4_lamp_replacement_promotion",
+  "createdAt": "2026-07-22T11:37:58.940Z",
+  "status": "passed",
+  "candidateManifest": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/web/public/worlds/bedroom4/manifest.lamp-candidate.json",
+    "size": 211584,
+    "sha256": "163b24552927546d804dcf6a2956bad411059a38a2f49a4a2e72d5f0a0d9cc28"
+  },
+  "candidateBrowserQa": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/examples/bedroom4/completion/lamps_trellis_seed43/browser_qa/browser_qa_report.json",
+    "size": 436077,
+    "sha256": "2c075a67edf0c91eeac2ec30b0a403cdd1b6ec18698387ec97e946978a6fbb37"
+  },
+  "promotedManifest": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/web/public/worlds/bedroom4/manifest.json",
+    "size": 213748,
+    "sha256": "0e7a331912aa6c4b6384c6022606d5802b7687a700b0b05681f7c8aa93dcc8e2"
+  },
+  "productionManifest": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/examples/bedroom4/manifest.production.json",
+    "size": 213748,
+    "sha256": "0e7a331912aa6c4b6384c6022606d5802b7687a700b0b05681f7c8aa93dcc8e2"
+  },
+  "finalBrowserQa": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/examples/bedroom4/completion/lamps_trellis_seed43/browser_qa/browser_qa_final_report.json",
+    "size": 435736,
+    "sha256": "73bf8c398a61510c1e49411ab5db1a38f7f00c0a4d10a07cf41392bacd7c3992"
+  },
+  "stableBaselineAliasChanged": false
+}

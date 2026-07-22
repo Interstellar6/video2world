@@ -8,6 +8,10 @@ const workspaceRoot = fileURLToPath(new URL("..", import.meta.url));
 export default defineConfig({
   root: "web",
   publicDir: "public",
+  cacheDir: fileURLToPath(new URL("./.vite-cache", import.meta.url)),
+  resolve: {
+    dedupe: ["three"],
+  },
   server: {
     host: "127.0.0.1",
     fs: {

@@ -94,6 +94,34 @@ describe("scene entity resolution", () => {
     ]);
   });
 
+  it("prefers a directional long alias while keeping the shared alias ambiguous", () => {
+    const directionalIndex = buildSceneKnowledgeIndex({
+      sceneKnowledge: {
+        objects: [
+          {
+            id: "sam3_lamp_01",
+            name: "左侧浅色陶瓷台灯",
+            category: "lamp",
+            aliases: ["台灯", "左侧台灯"],
+          },
+          {
+            id: "sam3_lamp_02",
+            name: "右侧浅色陶瓷台灯",
+            category: "lamp",
+            aliases: ["台灯", "右侧台灯"],
+          },
+        ],
+      },
+    });
+    expect(resolveSceneEntity("左侧台灯在哪里？", directionalIndex)).toMatchObject({
+      status: "resolved",
+      entity: { id: "sam3_lamp_01" },
+    });
+    expect(resolveSceneEntity("台灯在哪里？", directionalIndex)).toMatchObject({
+      status: "ambiguous",
+    });
+  });
+
   it("uses selected context only for a pronoun", () => {
     const result = resolveSceneEntity("它长什么样？", index, {
       selectedEntityId: "sam3_plant_02",

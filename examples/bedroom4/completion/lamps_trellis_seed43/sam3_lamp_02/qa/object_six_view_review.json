@@ -1,0 +1,253 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "video2world.canonical_object_six_view_review",
+  "createdAt": "2026-07-22T10:32:17.921Z",
+  "state": "captured_visual_pending",
+  "promotionAllowed": false,
+  "sourcePageUrl": "http://127.0.0.1:4185/object-review.html?objectId=sam3_lamp_02&asset=/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/staging/lamp-export-20260722/remote-output/sam3_lamp_02/sam3_lamp_02.glb",
+  "canonicalViews": [
+    "front",
+    "right",
+    "back",
+    "left",
+    "top",
+    "bottom"
+  ],
+  "canonicalViewAxes": {
+    "front": {
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "orientationContract": "web/object-review.js VIEW_SPECS orthogonal object-local axes",
+  "horizontalOrbitAcceptedAsSixViewEvidence": false,
+  "visualGate": {
+    "status": "pending",
+    "blocking": [
+      "shape_mismatch",
+      "primary_color_category_error",
+      "missing_surface_or_sheet_geometry",
+      "disconnected_or_floating_parts",
+      "significant_scene_interpenetration"
+    ],
+    "warning": [
+      "minor_backside_texture_hallucination",
+      "minor_material_or_pattern_drift"
+    ]
+  },
+  "objectId": "sam3_lamp_02",
+  "renderMode": "neutral-albedo",
+  "bounds": {
+    "min": [
+      -0.13437022268772125,
+      -0.20527124404907227,
+      -0.14895910024642944
+    ],
+    "max": [
+      0.14897669851779938,
+      0.21645407378673553,
+      0.13958840072155
+    ],
+    "size": [
+      0.28334692120552063,
+      0.4217253178358078,
+      0.28854750096797943
+    ],
+    "radius": 0.2921461029071014
+  },
+  "meshCount": 1,
+  "triangleCount": 2038,
+  "asset": {
+    "url": "http://127.0.0.1:4185/@fs/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/staging/lamp-export-20260722/remote-output/sam3_lamp_02/sam3_lamp_02.glb",
+    "sizeBytes": 1037016,
+    "sha256": "02837d3ca3d698b37037aad7703c93f30a3f7ac5d07af8cfd7c546c8fd92ed86"
+  },
+  "views": {
+    "front": {
+      "uri": "front_object.png",
+      "file": "front_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/staging/lamp-export-20260722/qa/sam3_lamp_02/front_object.png",
+      "sizeBytes": 73940,
+      "sha256": "76d0203b830ddc5c261b055823fa2ac72501dff315b17ab8e73ae29193a5181a",
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "right": {
+      "uri": "right_object.png",
+      "file": "right_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/staging/lamp-export-20260722/qa/sam3_lamp_02/right_object.png",
+      "sizeBytes": 73176,
+      "sha256": "647ea8b39850bff05cd70e3846faff76d4e92b3843e2240b39fd7a73a7699ece",
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "back": {
+      "uri": "back_object.png",
+      "file": "back_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/staging/lamp-export-20260722/qa/sam3_lamp_02/back_object.png",
+      "sizeBytes": 81049,
+      "sha256": "cfb74d88478d27aa9f8d51fe5678e3932810957dee5b2e8ee97e3b379f0c8b2a",
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "left": {
+      "uri": "left_object.png",
+      "file": "left_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/staging/lamp-export-20260722/qa/sam3_lamp_02/left_object.png",
+      "sizeBytes": 80014,
+      "sha256": "6fb3f278228714d0fd96fa2428f5ff59b596f5ac08ea2ef0fcd91f37064763e3",
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ]
+    },
+    "top": {
+      "uri": "top_object.png",
+      "file": "top_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/staging/lamp-export-20260722/qa/sam3_lamp_02/top_object.png",
+      "sizeBytes": 62396,
+      "sha256": "781271d9c04d57b8d74ad1e8dd3e1c9f48db7e23f5b69606e713c4983d35227d",
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "bottom": {
+      "uri": "bottom_object.png",
+      "file": "bottom_object.png",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/staging/lamp-export-20260722/qa/sam3_lamp_02/bottom_object.png",
+      "sizeBytes": 69795,
+      "sha256": "a951cd0a3016cc4c841882b5fff7b79c88f700ded75932174243de545fed71d0",
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "contactSheet": {
+    "uri": "object_six_view_contact_sheet.png",
+    "file": "object_six_view_contact_sheet.png",
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/staging/lamp-export-20260722/qa/sam3_lamp_02/object_six_view_contact_sheet.png",
+    "sizeBytes": 270652,
+    "sha256": "b3cefe2e866edcfc1a5d7a649969913d9bd4f2616080aed2783c8b93d5ebb9d7",
+    "layout": "3x2",
+    "viewport": [
+      1440,
+      1280
+    ]
+  },
+  "browser": {
+    "consoleWarnings": [],
+    "consoleErrors": []
+  }
+}

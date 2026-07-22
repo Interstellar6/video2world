@@ -1,0 +1,231 @@
+{
+  "acceptance_gates": {
+    "collision_face_budget": true,
+    "collision_topology_ready": true,
+    "finite_linear_transform": true,
+    "front_surface_anchor_alignment": true,
+    "material_profile_applied": true,
+    "mesh_face_indices_valid": true,
+    "mesh_finite": true,
+    "mesh_no_degenerate_faces": true,
+    "mesh_nonempty": true,
+    "mesh_winding_consistent": true,
+    "positive_transform_determinant": true,
+    "target_obb_extent_fit": true
+  },
+  "all_acceptance_gates_passed": true,
+  "baked_relative_transform": {
+    "linear_row_major": [
+      [
+        7.399581874789523,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -6.786074996999596,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -6.903790931150797
+      ]
+    ],
+    "runtime_pivot": [
+      -9.42124577522278,
+      -0.38908874630928036,
+      15.484384298324585
+    ],
+    "runtime_rotation_euler_deg": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "runtime_scale": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "scale_before_rotation": [
+      7.399581874789523,
+      6.786074996999596,
+      6.903790931150797
+    ]
+  },
+  "collision_semantics": {
+    "asset_mode": "unified_glb",
+    "closed_volume_claim": false,
+    "fallback_proxy_allowed": false,
+    "inside_outside_queries_allowed": false,
+    "max_faces": 100000,
+    "surface_blocking": true,
+    "topology": "surface_bvh"
+  },
+  "completed_obb": {
+    "axes_columns": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    ],
+    "center": [
+      -9.42124577522278,
+      -0.38908874630928036,
+      15.484384298324585
+    ],
+    "extents": [
+      2.1694611549377445,
+      2.9346232438087467,
+      2.069031314849852
+    ]
+  },
+  "created_at": "2026-07-22T10:37:35.221729+00:00",
+  "fit": {
+    "aabb_center_relative_to_pivot": [
+      0.004116093984036118,
+      -0.07174335459185777,
+      0.07224927678558024
+    ],
+    "aabb_extents": [
+      2.1694611549377445,
+      2.9346232438087467,
+      2.069031314849852
+    ],
+    "projected_fitted_extents": [
+      2.1694611310958862,
+      2.9346232414245605,
+      2.069031298160553
+    ],
+    "relative_extent_error": [
+      1.0989760388732008e-08,
+      8.124334825072046e-10,
+      8.066237911444053e-09
+    ],
+    "source_extents": [
+      0.2931869924068451,
+      0.43244780600070953,
+      0.2996949553489685
+    ]
+  },
+  "gaussian": null,
+  "kind": "video2world.object_scene_fit",
+  "material_profile": "preserve",
+  "mesh": {
+    "bounds": [
+      [
+        -1.0806144834848361,
+        -1.5390549764962311,
+        -0.9622663806393457
+      ],
+      [
+        1.0888466714529084,
+        1.3955682673125156,
+        1.1067649342105061
+      ]
+    ],
+    "degenerate_face_count": 0,
+    "extents": [
+      2.1694611549377445,
+      2.9346232438087467,
+      2.069031314849852
+    ],
+    "faces": 2571,
+    "finite_vertices": true,
+    "glb_bytes": 1211940,
+    "glb_sha256": "79589cd0dc7e61a17cb866ad776189cfdc436bd930e5ee867f0b4db545179cbf",
+    "material_profile": "preserve",
+    "materials": [
+      {
+        "metallic_factor_after": null,
+        "metallic_factor_before": null,
+        "roughness_factor_after": 1.0,
+        "roughness_factor_before": 1.0,
+        "type": "PBRMaterial"
+      }
+    ],
+    "obj_bytes": 199488,
+    "obj_sha256": "48d41138ff65233ca4926aefaa238207adae5049bca66f8453691383e87292a2",
+    "valid_face_indices": true,
+    "vertices": 2051,
+    "watertight": false,
+    "winding_consistent": true
+  },
+  "object_id": "sam3_lamp_01",
+  "placement_evidence": {
+    "completion_direction_sign": null,
+    "front_surface_anchor_error": 0.0,
+    "max_thickness_ratio": null,
+    "mode": "volume_center",
+    "observed_thickness": 2.069031314849852,
+    "target_extent_scale": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "thickness_axis": 2,
+    "thickness_reference": 2.9346232438087467,
+    "view_direction": null
+  },
+  "promotion_blockers": [
+    "scene_visual_overlay_review",
+    "scene_interpenetration_gate",
+    "support_contact_review",
+    "accepted_clean_plate_or_static_scene_carve"
+  ],
+  "promotion_status": "held_pending_scene_browser_review",
+  "representation_mode": "unified_mesh_visual_logic_collision",
+  "schema_version": 1,
+  "sources": {
+    "gaussian": null,
+    "instance_report": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/staging/lamp-export-20260722/lamp_instance_report.json",
+      "sha256": "2dd742d9acfae0ef6738c94a9a541dd379be820312ae5a476a5050a39f9e81ea"
+    },
+    "mesh": {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world-side-webfix-20260722/staging/lamp-export-20260722/remote-output/sam3_lamp_01/sam3_lamp_01.glb",
+      "sha256": "4591e4314847d73545b3007d12ea9017d87f1eb5bd0cc249d35fd4b059f618da"
+    }
+  },
+  "status": "technical_gates_passed",
+  "target_obb": {
+    "axes_columns": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    ],
+    "center": [
+      -9.42124577522278,
+      -0.38908874630928036,
+      15.484384298324585
+    ],
+    "extents": [
+      2.1694611549377445,
+      2.9346232438087467,
+      2.069031314849852
+    ]
+  }
+}

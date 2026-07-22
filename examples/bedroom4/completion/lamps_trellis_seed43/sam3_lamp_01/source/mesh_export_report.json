@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-22T10:28:30.607575+00:00",
+  "status": "completed",
+  "method": "TRELLIS image-to-3D mesh+gaussian decode with textured GLB/OBJ export",
+  "object_id": "sam3_lamp_01",
+  "input_manifest": "/data/zyx/workspace/video2world_lamp_mesh_exports_20260722/input_manifest.json",
+  "input_image": "/data/zyx/workspace/video2world_lamp_mesh_exports_20260722/input/sam3_lamp_01_rgba.png",
+  "input_image_sha256": "2a593140ca1d8e47b2dffd73852cbb00d57b097ab0656550d94268de88f7445d",
+  "weights": "/root/autodl-tmp/physx-anything-trellis",
+  "trellis_root": "/root/autodl-tmp/physx-anything-official-repro-20260713",
+  "gpu": 0,
+  "seed": 43,
+  "formats": [
+    "mesh",
+    "gaussian"
+  ],
+  "simplify_remove_ratio": 0.98,
+  "fill_holes": false,
+  "texture_size": 1024,
+  "raw_mesh": {
+    "vertices": 64250,
+    "faces": 128564,
+    "finite_vertices": true,
+    "finite_faces": true,
+    "bounds": [
+      [
+        -0.14548282325267792,
+        -0.1392778754234314,
+        -0.20571735501289368
+      ],
+      [
+        0.14746202528476715,
+        0.16007225215435028,
+        0.2269221395254135
+      ]
+    ],
+    "extents": [
+      0.29294484853744507,
+      0.2993501275777817,
+      0.4326394945383072
+    ],
+    "connected_components": 2,
+    "component_analysis": "completed",
+    "watertight": true,
+    "winding_consistent": true,
+    "visual_type": "ColorVisuals",
+    "trimesh_version": "4.12.2"
+  },
+  "processed_mesh": {
+    "vertices": 2051,
+    "faces": 2571,
+    "finite_vertices": true,
+    "finite_faces": true,
+    "bounds": [
+      [
+        -0.1460372358560562,
+        -0.20565176010131836,
+        -0.16031263768672943
+      ],
+      [
+        0.14714975655078888,
+        0.22679604589939117,
+        0.13938231766223907
+      ]
+    ],
+    "extents": [
+      0.2931869924068451,
+      0.43244780600070953,
+      0.2996949553489685
+    ],
+    "connected_components": null,
+    "component_analysis": "skipped_for_uv_or_large_mesh",
+    "watertight": false,
+    "winding_consistent": true,
+    "visual_type": "TextureVisuals",
+    "trimesh_version": "4.12.2"
+  },
+  "obj_mesh": {
+    "vertices": 2051,
+    "faces": 2571,
+    "finite_vertices": true,
+    "finite_faces": true,
+    "bounds": [
+      [
+        -0.14603724,
+        -0.20565176,
+        -0.16031264
+      ],
+      [
+        0.14714976,
+        0.22679605,
+        0.13938232
+      ]
+    ],
+    "extents": [
+      0.293187,
+      0.43244781,
+      0.29969496
+    ],
+    "connected_components": null,
+    "component_analysis": "skipped_for_uv_or_large_mesh",
+    "watertight": false,
+    "winding_consistent": true,
+    "visual_type": "TextureVisuals",
+    "trimesh_version": "4.12.2"
+  },
+  "peak_decode_vram_gb": 9.528520584106445,
+  "peak_total_vram_gb": 9.528520584106445,
+  "elapsed_seconds": 71.89137106598355,
+  "artifacts": [
+    {
+      "path": "/data/zyx/workspace/video2world_lamp_mesh_exports_20260722/output/sam3_lamp_01/sam3_lamp_01.glb",
+      "bytes": 1181344,
+      "sha256": "4591e4314847d73545b3007d12ea9017d87f1eb5bd0cc249d35fd4b059f618da"
+    },
+    {
+      "path": "/data/zyx/workspace/video2world_lamp_mesh_exports_20260722/output/sam3_lamp_01/sam3_lamp_01_decoder_raw.obj",
+      "bytes": 4840290,
+      "sha256": "354ffd236219d8d58c3510726c9ccb078a7c60d8e7cc8ae9fd17c93877b0f99b"
+    },
+    {
+      "path": "/data/zyx/workspace/video2world_lamp_mesh_exports_20260722/output/sam3_lamp_01/sam3_lamp_01.obj",
+      "bytes": 310666,
+      "sha256": "f67ee77d2201fdcddb08b38b5fa4e08b243c821631f1f6c20b01fd8391bef086"
+    },
+    {
+      "path": "/data/zyx/workspace/video2world_lamp_mesh_exports_20260722/output/sam3_lamp_01/material_0.png",
+      "bytes": 1108118,
+      "sha256": "66dfd80b817e8fbd30cf763b47640f8cb0d3bc8e398e0f67969d59f63ff18e8d"
+    },
+    {
+      "path": "/data/zyx/workspace/video2world_lamp_mesh_exports_20260722/output/sam3_lamp_01/sam3_lamp_01.mtl",
+      "bytes": 198,
+      "sha256": "ca4deadbb314a7d180f552345fc0411e5becebcbb61fac04171a2f364eb9f396"
+    }
+  ]
+}

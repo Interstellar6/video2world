@@ -4,6 +4,7 @@
 !.env.example
 .pytest_cache/
 .ruff_cache/
+.vite-cache/
 .venv/
 __pycache__/
 *.py[cod]
@@ -16,6 +17,7 @@ coverage/
 htmlcov/
 .coverage
 tmp/
+staging/
 output/
 runs/
 web/public/worlds/
@@ -76,3 +78,10 @@ downloads/
 !examples/bedroom4/completion/bedroom4_frame64_three_pillows/objects/sam3_pillow_front/sam3_pillow_front.ply
 !examples/bedroom4/completion/bedroom4_frame64_three_pillows/objects/sam3_pillow_left/sam3_pillow_left.ply
 !examples/bedroom4/completion/bedroom4_frame64_three_pillows/objects/sam3_pillow_right/sam3_pillow_right.ply
+
+# Curated Bedroom 4 lamp reconstruction, scene-fit, and browser QA evidence.
+!examples/bedroom4/completion/lamps_trellis_seed43/**/*.png
+!examples/bedroom4/completion/lamps_trellis_seed43/**/*.glb
+!examples/bedroom4/completion/lamps_trellis_seed43/**/*.obj
+!examples/bedroom4/completion/lamps_trellis_seed43/**/*.mtl
+!examples/bedroom4/evidence/lamp_completion_20260722/*.ply

@@ -974,6 +974,10 @@ function exposeDebugApi() {
       ndcZ: projected.z,
     };
   };
+  window.__inspectInteractiveObjectFocusVisibility = (objectId) => {
+    const component = interactiveObjects.get(String(objectId));
+    return component ? inspectInteractiveObjectFocusVisibility(component, camera.position) : null;
+  };
   window.__inspectInteractiveObjectHitAt = (clientX, clientY) => {
     const hit = interactiveObjectHitAt(clientX, clientY);
     if (!hit) return null;
@@ -4105,6 +4109,73 @@ function applyInteractiveObjectVisibility() {
   }
 }
 
+function focusVisibilitySamplePoints(worldBounds, worldPosition) {
+  if (!worldBounds || worldBounds.isEmpty()) return [worldPosition.clone()];
+  const size = worldBounds.getSize(new THREE.Vector3());
+  return [
+    worldPosition.clone(),
+    worldPosition.clone().add(new THREE.Vector3(size.x * 0.24, 0, 0)),
+    worldPosition.clone().add(new THREE.Vector3(-size.x * 0.24, 0, 0)),
+    worldPosition.clone().add(new THREE.Vector3(0, size.y * 0.24, 0)),
+    worldPosition.clone().add(new THREE.Vector3(0, -size.y * 0.24, 0)),
+    worldPosition.clone().add(new THREE.Vector3(0, 0, size.z * 0.24)),
+    worldPosition.clone().add(new THREE.Vector3(0, 0, -size.z * 0.24)),
+  ];
+}
+
+function hitBelongsToFocusedAssembly(component, hit) {
+  let hitComponent = interactiveObjects.get(hit?.object?.userData?.interactiveObjectId);
+  while (hitComponent) {
+    if (hitComponent === component) return true;
+    hitComponent = hitComponent.parentComponent;
+  }
+  return false;
+}
+
+function inspectInteractiveObjectFocusVisibility(component, eye, worldBounds = null) {
+  const bounds = worldBounds || interactiveObjectCollisionBounds(component);
+  const worldPosition = bounds
+    ? bounds.getCenter(new THREE.Vector3())
+    : component.group.getWorldPosition(new THREE.Vector3());
+  const samplePoints = focusVisibilitySamplePoints(bounds, worldPosition);
+  const targets = colliderMesh
+    ? [colliderMesh, ...interactiveObjectColliders]
+    : interactiveObjectColliders;
+  const previousFar = raycaster.far;
+  const firstHits = [];
+  let visibleSamples = 0;
+  let minimumClearanceRatio = 1;
+  for (const sample of samplePoints) {
+    const line = sample.clone().sub(eye);
+    const lineDistance = line.length();
+    if (lineDistance < 1e-6) continue;
+    raycaster.set(eye, line.normalize());
+    raycaster.far = lineDistance * 1.08;
+    const firstHit = raycaster.intersectObjects(targets, false)[0];
+    const visible = hitBelongsToFocusedAssembly(component, firstHit);
+    if (visible) visibleSamples += 1;
+    const clearanceDistance = visible || !firstHit ? lineDistance : firstHit.distance;
+    const clearanceRatio = THREE.MathUtils.clamp(clearanceDistance / lineDistance, 0, 1);
+    minimumClearanceRatio = Math.min(minimumClearanceRatio, clearanceRatio);
+    firstHits.push({
+      visible,
+      colliderKind: firstHit?.object?.userData?.colliderKind || null,
+      objectId: firstHit?.object?.userData?.interactiveObjectId || null,
+      distance: Number.isFinite(firstHit?.distance) ? Number(firstHit.distance.toFixed(4)) : null,
+      clearanceRatio: Number(clearanceRatio.toFixed(4)),
+    });
+  }
+  raycaster.far = previousFar;
+  return {
+    visibleSamples,
+    sampleCount: samplePoints.length,
+    directTargetVisible: visibleSamples > 0,
+    minimumClearanceRatio: Number(minimumClearanceRatio.toFixed(4)),
+    passed: visibleSamples > 0 || minimumClearanceRatio >= 0.35,
+    firstHits,
+  };
+}
+
 function focusCameraOnInteractiveComponent(component, {
   immediate = false,
   overview = false,
@@ -4149,7 +4220,17 @@ function focusCameraOnInteractiveComponent(component, {
   currentDirection.normalize();
   inward.normalize();
   const candidateDirections = [];
-  const appendOrbitDirections = (seed, angles = [0, Math.PI / 4, -Math.PI / 4, Math.PI / 2, -Math.PI / 2, Math.PI]) => {
+  const appendOrbitDirections = (seed, angles = [
+    0,
+    Math.PI / 8, -Math.PI / 8,
+    Math.PI / 4, -Math.PI / 4,
+    3 * Math.PI / 8, -3 * Math.PI / 8,
+    Math.PI / 2, -Math.PI / 2,
+    5 * Math.PI / 8, -5 * Math.PI / 8,
+    3 * Math.PI / 4, -3 * Math.PI / 4,
+    7 * Math.PI / 8, -7 * Math.PI / 8,
+    Math.PI,
+  ]) => {
     for (const angle of angles) {
       candidateDirections.push(seed.clone().applyAxisAngle(ROBOT_UP, angle).normalize());
     }
@@ -4161,33 +4242,50 @@ function focusCameraOnInteractiveComponent(component, {
   } else {
     appendOrbitDirections(currentDirection);
   }
-  if (!preservePresetDirection) appendOrbitDirections(inward);
-  const height = verticalView ? 0 : Math.max(0.9, dimensions[1] * 0.28);
+  if (!preservePresetDirection) {
+    const recordedReference = recordedCameraPreset("reference");
+    const recordedDirection = recordedReference?.eye.clone().sub(recordedReference.target);
+    if (recordedDirection?.lengthSq() > 1e-5) {
+      flatten(recordedDirection);
+      if (recordedDirection.lengthSq() > 1e-5) appendOrbitDirections(recordedDirection.normalize());
+    }
+    appendOrbitDirections(inward);
+  }
+  const height = Math.max(1.6, dimensions[1] * 0.45);
+  const candidateHeights = [
+    height,
+    Math.max(2.8, height * 1.75),
+    Math.max(4.2, height * 2.5),
+  ];
   const previousFar = raycaster.far;
   interactiveObjectLayer.updateMatrixWorld(true);
   const expandedCollisionBounds = Array.from(interactiveObjects.values(), (candidate) =>
     interactiveObjectCollisionBounds(candidate)?.clone().expandByScalar(0.05)
   ).filter(Boolean);
-  const hitsFocusedAssembly = (hit) => {
-    let hitComponent = interactiveObjects.get(hit?.object?.userData?.interactiveObjectId);
-    while (hitComponent) {
-      if (hitComponent === component) return true;
-      hitComponent = hitComponent.parentComponent;
-    }
-    return false;
-  };
-  const eyeCandidates = candidateDirections.map((direction) => worldPosition.clone()
-    .addScaledVector(direction, distance)
-    .addScaledVector(ROBOT_UP, height));
-  const eye = eyeCandidates.find((candidateEye) => {
-    if (expandedCollisionBounds.some((bounds) => bounds.containsPoint(candidateEye))) return false;
-    const line = worldPosition.clone().sub(candidateEye);
-    const lineDistance = line.length();
-    raycaster.set(candidateEye, line.normalize());
-    raycaster.far = lineDistance * 1.05;
-    const firstHit = raycaster.intersectObjects(interactiveObjectColliders, false)[0];
-    return hitsFocusedAssembly(firstHit);
-  }) || eyeCandidates.find((candidateEye) =>
+  const eyeCandidates = candidateDirections.flatMap((direction) => candidateHeights.map(
+    (candidateHeight) => worldPosition.clone()
+      .addScaledVector(direction, distance)
+      .addScaledVector(ROBOT_UP, candidateHeight)
+  ));
+  const scoredEyeCandidates = eyeCandidates
+    .map((candidateEye, index) => ({
+      candidateEye,
+      index,
+      insideObject: expandedCollisionBounds.some((bounds) => bounds.containsPoint(candidateEye)),
+      visibility: inspectInteractiveObjectFocusVisibility(component, candidateEye, worldBounds),
+    }));
+  const directEye = scoredEyeCandidates.find((candidate) => (
+    !candidate.insideObject && candidate.visibility.directTargetVisible
+  ));
+  const clearanceEye = scoredEyeCandidates
+    .filter((candidate) => !candidate.insideObject)
+    .sort((left, right) => (
+      right.visibility.minimumClearanceRatio - left.visibility.minimumClearanceRatio
+        || left.index - right.index
+    ))[0];
+  const eye = directEye?.candidateEye
+    || clearanceEye?.candidateEye
+    || eyeCandidates.find((candidateEye) =>
     !expandedCollisionBounds.some((bounds) => bounds.containsPoint(candidateEye))
   ) || eyeCandidates[0];
   raycaster.far = previousFar;

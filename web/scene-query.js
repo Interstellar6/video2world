@@ -190,7 +190,11 @@ export function resolveSceneEntity(text, index, { selectedEntityId = null } = {}
   }
   matches.sort((left, right) => left.priority - right.priority || right.term.length - left.term.length);
   const bestPriority = matches[0]?.priority;
-  const bestIds = [...new Set(matches.filter((match) => match.priority === bestPriority).map((match) => match.id))];
+  const bestPriorityMatches = matches.filter((match) => match.priority === bestPriority);
+  const longestBestTerm = bestPriorityMatches[0]?.term.length;
+  const bestIds = [...new Set(bestPriorityMatches
+    .filter((match) => match.term.length === longestBestTerm)
+    .map((match) => match.id))];
   if (bestIds.length === 1) {
     return { status: "resolved", query, entity: index.entities.get(bestIds[0]), candidates: [] };
   }
