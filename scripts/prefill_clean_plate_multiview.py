@@ -119,14 +119,46 @@ def resolve_frame_path(frames_dir: Path, frame_id: str) -> Path:
     return matches[0].resolve()
 
 
+def resolve_source_frame_path(
+    value: str,
+    *,
+    relative_to: Path,
+    frames_dir: Path,
+    frame_id: str,
+    expected_sha256: str | None,
+) -> Path:
+    declared = resolve_path(value, relative_to=relative_to)
+    if declared.is_file():
+        return declared
+    local = resolve_frame_path(frames_dir, frame_id)
+    if expected_sha256 is not None and sha256_file(local) != expected_sha256:
+        raise ValueError(f"local source RGB fallback SHA-256 mismatch for {frame_id}")
+    return local
+
+
 def resolve_depth_path(depth_dir: Path, frame_id: str) -> Path:
     require_path_component(frame_id, "depth frame_id")
     matches = sorted(depth_dir.glob(f"{frame_id}.*"))
     if len(matches) != 1:
         raise ValueError(f"expected one depth array for {frame_id}, found {len(matches)}")
-    if matches[0].suffix != ".npy":
-        raise ValueError(f"depth must be a .npy array: {matches[0]}")
+    if matches[0].suffix not in {".npy", ".npz"}:
+        raise ValueError(f"depth must be a .npy array or .npz depth archive: {matches[0]}")
     return matches[0].resolve()
+
+
+def load_depth_array(path: Path) -> np.ndarray:
+    if path.suffix == ".npy":
+        depth = np.load(path, allow_pickle=False)
+    elif path.suffix == ".npz":
+        with np.load(path, allow_pickle=False) as archive:
+            if archive.files != ["depth"]:
+                raise ValueError(f"depth archive must contain exactly one 'depth' array: {path}")
+            depth = archive["depth"]
+    else:  # pragma: no cover - resolve_depth_path guards callers.
+        raise ValueError(f"unsupported depth array format: {path}")
+    if depth.ndim != 2 or not np.issubdtype(depth.dtype, np.number):
+        raise ValueError(f"depth array must be a numeric 2D array: {path}")
+    return depth.astype(np.float32, copy=False)
 
 
 def load_camera_info(path: Path) -> dict[str, Any]:
@@ -936,7 +968,7 @@ def _build_prefill_in_place(args: argparse.Namespace) -> dict[str, Any]:
         frame_path = resolve_frame_path(donor_frames_dir, frame_id)
         depth_path = resolve_depth_path(depth_dir, frame_id)
         rgb = image_rgb(frame_path)
-        depth = np.load(depth_path)
+        depth = load_depth_array(depth_path)
         if depth.shape != rgb.shape[:2]:
             raise ValueError(f"depth/RGB shape mismatch for donor {frame_id}")
         raw_exclusion = union_masks(donor_masks.get(frame_id, []), depth.shape)
@@ -999,8 +1031,15 @@ def _build_prefill_in_place(args: argparse.Namespace) -> dict[str, Any]:
 
     for output_index, input_record in enumerate(target_records):
         frame_id = str(input_record["frame_id"])
-        source_path = resolve_path(
-            str(input_record["source_frame"]), relative_to=input_manifest_path.parent
+        expected_source_sha = input_record.get("source_frame_sha256")
+        if expected_source_sha is not None and not isinstance(expected_source_sha, str):
+            raise ValueError(f"source_frame_sha256 must be a string for target {frame_id}")
+        source_path = resolve_source_frame_path(
+            str(input_record["source_frame"]),
+            relative_to=input_manifest_path.parent,
+            frames_dir=donor_frames_dir,
+            frame_id=frame_id,
+            expected_sha256=expected_source_sha,
         )
         mask_path = resolve_path(
             str(input_record["union_mask"]), relative_to=input_manifest_path.parent

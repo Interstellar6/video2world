@@ -190,8 +190,22 @@ def test_completion_recovery_preflight_passes_with_local_bindings(tmp_path: Path
     depth_dir = tmp_path / "depth"
     frames_dir.mkdir()
     depth_dir.mkdir()
+    source_frame = frames_dir / "000064.png"
+    source_frame.write_bytes(b"frame")
     input_manifest.write_text(
-        '{"frame_records":[{"frame_id":"000064"}]}',
+        json.dumps(
+            {
+                "frame_records": [{"frame_id": "000064"}],
+                "donor_contract": {
+                    "assets": {
+                        "000064": {
+                            "sha256": digest_path(source_frame).sha256,
+                            "role": "original_observed_rgb_only",
+                        }
+                    }
+                },
+            }
+        ),
         encoding="utf-8",
     )
     camera_info.write_text(
@@ -202,7 +216,6 @@ def test_completion_recovery_preflight_passes_with_local_bindings(tmp_path: Path
         '{"items":[{"frame_id":"000064","image":"000064.png"}]}',
         encoding="utf-8",
     )
-    (frames_dir / "000064.png").write_bytes(b"frame")
     (depth_dir / "000064.npy").write_bytes(b"depth")
     _write_route(route)
     _write_report(
@@ -255,8 +268,22 @@ def test_completion_recovery_preflight_passes_with_binding_overrides(
     depth_dir = tmp_path / "depth"
     frames_dir.mkdir()
     depth_dir.mkdir()
+    source_frame = frames_dir / "000064.png"
+    source_frame.write_bytes(b"frame")
     input_manifest.write_text(
-        '{"frame_records":[{"frame_id":"000064"}]}',
+        json.dumps(
+            {
+                "frame_records": [{"frame_id": "000064"}],
+                "donor_contract": {
+                    "assets": {
+                        "000064": {
+                            "sha256": digest_path(source_frame).sha256,
+                            "role": "original_observed_rgb_only",
+                        }
+                    }
+                },
+            }
+        ),
         encoding="utf-8",
     )
     camera_info.write_text(
@@ -267,7 +294,6 @@ def test_completion_recovery_preflight_passes_with_binding_overrides(
         '{"items":[{"frame_id":"000064","image":"000064.png"}]}',
         encoding="utf-8",
     )
-    (frames_dir / "000064.png").write_bytes(b"frame")
     (depth_dir / "000064.npy").write_bytes(b"depth")
     _write_route(route)
     _write_report(
@@ -323,8 +349,22 @@ def test_completion_recovery_preflight_blocks_depth_frame_mismatch(
     depth_dir = tmp_path / "depth"
     frames_dir.mkdir()
     depth_dir.mkdir()
+    source_frame = frames_dir / "000064.png"
+    source_frame.write_bytes(b"frame")
     input_manifest.write_text(
-        '{"frame_records":[{"frame_id":"000064"}]}',
+        json.dumps(
+            {
+                "frame_records": [{"frame_id": "000064"}],
+                "donor_contract": {
+                    "assets": {
+                        "000064": {
+                            "sha256": digest_path(source_frame).sha256,
+                            "role": "original_observed_rgb_only",
+                        }
+                    }
+                },
+            }
+        ),
         encoding="utf-8",
     )
     camera_info.write_text(
@@ -335,7 +375,6 @@ def test_completion_recovery_preflight_blocks_depth_frame_mismatch(
         '{"items":[{"frame_id":"000064","image":"000064.png"}]}',
         encoding="utf-8",
     )
-    (frames_dir / "000064.png").write_bytes(b"frame")
     (depth_dir / "000000.npy").write_bytes(b"depth")
     _write_route(route)
     _write_report(
@@ -360,6 +399,73 @@ def test_completion_recovery_preflight_blocks_depth_frame_mismatch(
     by_role = {item.role: item for item in preflight.frame_alignment}
     assert by_role["depth_arrays"].status == "missing_required_frames"
     assert by_role["depth_arrays"].missing_frame_ids == ["000064"]
+
+
+def test_completion_recovery_preflight_blocks_source_rgb_sha_mismatch(
+    tmp_path: Path,
+) -> None:
+    from video2world.completion_recovery import materialize_completion_recovery_preflight
+
+    route = tmp_path / "route.json"
+    report = tmp_path / "report.json"
+    work_order_path = tmp_path / "work-order.json"
+    bundle_path = tmp_path / "bundle.json"
+    input_manifest = tmp_path / "manifest.json"
+    camera_info = tmp_path / "camera-info.json"
+    donor_index = tmp_path / "donor-index.json"
+    frames_dir = tmp_path / "frames"
+    depth_dir = tmp_path / "depth"
+    frames_dir.mkdir()
+    depth_dir.mkdir()
+    (frames_dir / "000064.png").write_bytes(b"changed-frame")
+    input_manifest.write_text(
+        json.dumps(
+            {
+                "frame_records": [{"frame_id": "000064"}],
+                "donor_contract": {
+                    "assets": {
+                        "000064": {
+                            "sha256": "0" * 64,
+                            "role": "original_observed_rgb_only",
+                        }
+                    }
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    camera_info.write_text(
+        '{"images":{"000064":{"name":"000064.png"}}}',
+        encoding="utf-8",
+    )
+    donor_index.write_text(
+        '{"items":[{"frame_id":"000064","image":"000064.png"}]}',
+        encoding="utf-8",
+    )
+    (depth_dir / "000064.npy").write_bytes(b"depth")
+    _write_route(route)
+    _write_report(
+        report,
+        bindings={
+            "input_manifest": str(input_manifest),
+            "camera_info": str(camera_info),
+            "donor_frames_dir": str(frames_dir),
+            "depth_dir": str(depth_dir),
+            "donor_mask_index": str(donor_index),
+        },
+    )
+    work_order = materialize_completion_recovery_work_order(route, report)
+    work_order_path.write_text(work_order.model_dump_json(indent=2), encoding="utf-8")
+    bundle = materialize_completion_recovery_bundle(work_order_path)
+    bundle_path.write_text(bundle.model_dump_json(indent=2), encoding="utf-8")
+
+    preflight = materialize_completion_recovery_preflight(bundle_path)
+
+    assert preflight.status == "blocked_binding_semantics"
+    assert preflight.semantic_blocking_roles == ["source_rgb_frames"]
+    by_role = {item.role: item for item in preflight.frame_alignment}
+    assert by_role["source_rgb_frames"].status == "content_mismatch"
+    assert by_role["source_rgb_frames"].content_mismatch_frame_ids == ["000064"]
 
 
 def test_completion_recovery_preflight_cli_blocks_missing_bindings(

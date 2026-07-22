@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "kind": "video2world.multiview_prefill_receipt",
+  "report": "multiview_prefill_report.json",
+  "report_sha256": "832aa404857e9d1692688cd9a9897e4986c2c52964538c26ff0512588ddb593c",
+  "contact_sheet": "multiview_prefill_contact_sheet.png",
+  "contact_sheet_sha256": "2a2fa1259b14c829b09294e9e065161dd9f825becc8e0af5bd64ac7ba08a0192",
+  "frame_count": 25,
+  "frame_artifacts_are_hashed_in_report": true,
+  "fused_metric_depth_artifacts_are_hashed_in_report": true,
+  "measured_provenance_excludes_generated_pixels": true,
+  "measured_provenance_excludes_propainter_pixels": true
+}

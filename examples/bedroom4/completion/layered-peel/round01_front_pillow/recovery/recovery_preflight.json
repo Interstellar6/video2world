@@ -26,14 +26,14 @@
     },
     {
       "declared_path": "/data/zyx/workspace/Video2MeshWorkspace/video2mesh_runs/bedroom_4_scene_only_v2mw_20260709_030359/scene/frames",
-      "effective_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/bedroom4_clean_plate_all_pillows_20260720/frames",
+      "effective_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source",
       "expected_kind": "directory",
       "file_count": 25,
       "override_applied": true,
-      "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/bedroom4_clean_plate_all_pillows_20260720/frames",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source",
       "role": "source_rgb_frames",
-      "sha256": "f3e70252ad44be8acf785db9b2547c3793f1c72bbd6420a495aebd57d76c3b1c",
-      "size_bytes": 25743945,
+      "sha256": "f3fa5451c7477b8e4c8498f3f617e6260265781c0069901b35a804baab4476cf",
+      "size_bytes": 27428686,
       "status": "present"
     },
     {
@@ -96,6 +96,7 @@
         "000071",
         "000072"
       ],
+      "content_mismatch_frame_ids": [],
       "expected_frame_count": 25,
       "extra_frame_ids": [],
       "matched_frame_count": 25,
@@ -133,6 +134,7 @@
         "000071",
         "000072"
       ],
+      "content_mismatch_frame_ids": [],
       "expected_frame_count": 25,
       "extra_frame_ids": [],
       "matched_frame_count": 25,
@@ -170,11 +172,12 @@
         "000071",
         "000072"
       ],
+      "content_mismatch_frame_ids": [],
       "expected_frame_count": 25,
       "extra_frame_ids": [],
       "matched_frame_count": 25,
       "missing_frame_ids": [],
-      "reason": "binding covers all recovery bundle frame ids",
+      "reason": "binding covers all recovery bundle frame ids and source RGB SHA-256 matches donor_contract",
       "role": "source_rgb_frames",
       "status": "matched"
     },
@@ -207,6 +210,7 @@
         "000071",
         "000072"
       ],
+      "content_mismatch_frame_ids": [],
       "expected_frame_count": 25,
       "extra_frame_ids": [],
       "matched_frame_count": 25,
@@ -244,6 +248,7 @@
         "000071",
         "000072"
       ],
+      "content_mismatch_frame_ids": [],
       "expected_frame_count": 25,
       "extra_frame_ids": [],
       "matched_frame_count": 25,
@@ -261,7 +266,7 @@
     "Local binding overrides were used; declared remote paths are preserved beside effective local mirror paths."
   ],
   "object_id": "sam3_pillow_front",
-  "preflight_sha256": "b833fadb2fadb770c86062b1e9d50eb515e2cc9a038d67844706bcf491235f1f",
+  "preflight_sha256": "b57c1a3226616cdca330429ec95412e46a6453365342f285a9b56b5436c88fbe",
   "required_frame_ids": [
     "000048",
     "000049",

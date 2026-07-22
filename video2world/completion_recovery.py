@@ -143,12 +143,14 @@ class RecoveryPreflightFrameAlignment(StrictModel):
         "matched",
         "binding_unavailable",
         "missing_required_frames",
+        "content_mismatch",
         "unverified",
     ]
     expected_frame_count: int = Field(ge=0)
     available_frame_count: int = Field(ge=0)
     matched_frame_count: int = Field(ge=0)
     missing_frame_ids: list[str] = Field(default_factory=list)
+    content_mismatch_frame_ids: list[str] = Field(default_factory=list)
     extra_frame_ids: list[str] = Field(default_factory=list)
     available_frame_ids: list[str] = Field(default_factory=list)
     reason: str = Field(min_length=1)
@@ -361,6 +363,83 @@ def _available_frame_ids(binding: RecoveryPreflightBinding) -> list[str]:
     if binding.expected_kind == "directory":
         return _directory_frame_ids(path)
     return _json_frame_ids(binding.role, path)
+
+
+def _source_rgb_sha256_contract(input_manifest: dict[str, Any] | None) -> dict[str, str]:
+    if input_manifest is None:
+        return {}
+    donor_contract = input_manifest.get("donor_contract")
+    if not isinstance(donor_contract, dict):
+        return {}
+    assets = donor_contract.get("assets")
+    if not isinstance(assets, dict):
+        return {}
+    result: dict[str, str] = {}
+    for frame_id, asset in assets.items():
+        if not isinstance(frame_id, str) or not isinstance(asset, dict):
+            continue
+        sha256 = asset.get("sha256")
+        if isinstance(sha256, str):
+            result[frame_id] = sha256
+    return result
+
+
+def _frame_file_for_id(directory: Path, frame_id: str) -> Path | None:
+    matches = sorted(directory.glob(f"{frame_id}.*"))
+    if len(matches) != 1 or not matches[0].is_file():
+        return None
+    return matches[0]
+
+
+def _verify_source_rgb_content(
+    alignment: RecoveryPreflightFrameAlignment,
+    binding: RecoveryPreflightBinding,
+    expected_sha256_by_frame: dict[str, str],
+) -> RecoveryPreflightFrameAlignment:
+    if binding.role != "source_rgb_frames" or alignment.status != "matched":
+        return alignment
+    expected = {
+        frame_id: expected_sha256_by_frame[frame_id]
+        for frame_id in alignment.available_frame_ids
+        if frame_id in expected_sha256_by_frame
+    }
+    if not expected:
+        return RecoveryPreflightFrameAlignment(
+            **(alignment.model_dump(mode="json") | {
+                "status": "unverified",
+                "reason": "source RGB binding has no donor_contract SHA-256 contract",
+            })
+        )
+    directory = Path(binding.effective_path or binding.path)
+    mismatched: list[str] = []
+    for frame_id, expected_sha in expected.items():
+        frame_path = _frame_file_for_id(directory, frame_id)
+        if frame_path is None or digest_path(frame_path).sha256 != expected_sha:
+            mismatched.append(frame_id)
+    if mismatched:
+        return RecoveryPreflightFrameAlignment(
+            **(
+                alignment.model_dump(mode="json")
+                | {
+                    "status": "content_mismatch",
+                    "content_mismatch_frame_ids": mismatched,
+                    "reason": (
+                        "source RGB files do not match the cumulative donor_contract SHA-256"
+                    ),
+                }
+            )
+        )
+    return RecoveryPreflightFrameAlignment(
+        **(
+            alignment.model_dump(mode="json")
+            | {
+                "reason": (
+                    "binding covers all recovery bundle frame ids and source RGB SHA-256 "
+                    "matches donor_contract"
+                ),
+            }
+        )
+    )
 
 
 def _frame_alignment(
@@ -661,8 +740,23 @@ def materialize_completion_recovery_preflight(
             )
             for role, (report_key, expected_kind) in _PREFLIGHT_BINDING_SPECS.items()
         ]
+        input_manifest_payload: dict[str, Any] | None = None
+        input_binding = next(
+            (binding for binding in bindings if binding.role == "input_manifest"),
+            None,
+        )
+        if input_binding is not None and input_binding.status == "present":
+            payload = json.loads(Path(input_binding.effective_path).read_text(encoding="utf-8"))
+            if isinstance(payload, dict):
+                input_manifest_payload = payload
+        expected_source_sha = _source_rgb_sha256_contract(input_manifest_payload)
         frame_alignment = [
-            _frame_alignment(required_frame_ids, binding) for binding in bindings
+            _verify_source_rgb_content(
+                _frame_alignment(required_frame_ids, binding),
+                binding,
+                expected_source_sha,
+            )
+            for binding in bindings
         ]
 
     missing_roles = [

@@ -340,6 +340,53 @@ def test_prefill_fuses_donors_and_preserves_outside_mask_exactly(tmp_path: Path)
     assert receipt["measured_provenance_excludes_propainter_pixels"] is True
 
 
+def test_prefill_accepts_npz_depth_archives(tmp_path: Path) -> None:
+    make_fixture(tmp_path)
+    depth_dir = tmp_path / "depth"
+    for path in depth_dir.glob("*.npy"):
+        depth = np.load(path)
+        path.unlink()
+        np.savez(depth_dir / f"{path.stem}.npz", depth=depth)
+
+    report = MODULE.build_prefill(make_args(tmp_path))
+
+    assert report["status"] == "technical_passed"
+    assert report["donor_assets"]["000001"]["depth"].endswith("000001.npz")
+    assert report["frame_records"][0]["covered_pixels"] > 0
+
+
+def test_prefill_uses_local_source_frame_fallback_when_declared_remote_matches_sha(
+    tmp_path: Path,
+) -> None:
+    make_fixture(tmp_path)
+    manifest_path = tmp_path / "input_manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["frame_records"][0]["source_frame"] = "/remote/missing/000000.png"
+    manifest["frame_records"][0]["source_frame_sha256"] = MODULE.sha256_file(
+        tmp_path / "frames" / "000000.png"
+    )
+    write_json(manifest_path, manifest)
+
+    report = MODULE.build_prefill(make_args(tmp_path))
+
+    assert report["status"] == "technical_passed"
+    assert report["frame_records"][0]["source_frame"] == str(
+        (tmp_path / "frames" / "000000.png").resolve()
+    )
+
+
+def test_prefill_rejects_npz_depth_archive_without_unique_depth_key(tmp_path: Path) -> None:
+    make_fixture(tmp_path)
+    depth_dir = tmp_path / "depth"
+    for path in depth_dir.glob("*.npy"):
+        depth = np.load(path)
+        path.unlink()
+        np.savez(depth_dir / f"{path.stem}.npz", z=depth)
+
+    with pytest.raises(ValueError, match="exactly one 'depth' array"):
+        MODULE.build_prefill(make_args(tmp_path))
+
+
 def test_donor_object_masks_prevent_copying_occluder_pixels(tmp_path: Path) -> None:
     _, removal = make_fixture(tmp_path)
     donor_mask = removal.astype(np.uint8) * 255

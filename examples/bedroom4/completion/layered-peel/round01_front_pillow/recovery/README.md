@@ -35,10 +35,12 @@ uv run video2world completion-recovery-preflight \
   examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_bundle.json \
   --binding input_manifest=/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/round01_front_pillow/manifest/cumulative_removal_manifest.json \
   --binding camera_info=/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/assets-local/clean-scene-reconstruction-input-v23/camera_info.json \
-  --binding source_rgb_frames=/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/bedroom4_clean_plate_all_pillows_20260720/frames \
+  --binding source_rgb_frames=/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/pbr-layer-render-batch-v2-geometry-matte/source \
   --binding depth_arrays=/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/assets-local/clean-scene-reconstruction-input-v23/provenance/geometry_depth_visibility_evidence \
   --binding physical_donor_exclusion_index=/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/round01_front_pillow/manifest/donor_exclusion_index.json \
   --output examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_preflight.json
 ```
 
-The current local preflight is `passed`: RGB frames, camera info, cumulative manifest, physical donor exclusion index, and geometry-depth visibility evidence all cover `000048`-`000072`. This is still only an execution preflight. It does not run donor support, accept R1, generate a clean plate, or unblock R2-R4.
+The current local preflight is `passed`: RGB frames are byte-exact against the cumulative donor contract, and camera info, cumulative manifest, donor exclusion index, and geometry-depth visibility evidence all cover `000048`-`000072`. This is still only an execution preflight. It does not accept R1 or unblock R2-R4.
+
+Step `01-donor_support` has been run locally at `01-donor_support/`. It produced `status=technical_passed`, `promotion_approved=false`, and `next_action=run_constrained_residual_completion_then_semantic_cross_view_review`. Measured RGB-D donor support covers 62,989 / 532,888 cumulative removal pixels (`11.82%`); frame `000064` now has 3,620 covered pixels (`15.69%`) and 19,445 residual pixels. This is useful recovery evidence, but not an accepted clean plate: the run still has 469,899 unresolved pixels, semantic texture/depth-normal review is pending, and the local donor index is the legacy cumulative exclusion index rather than a materialized associated physical-instance index.
