@@ -203,9 +203,18 @@ def _unified_pbr_object_payload(sample_manifest: WorldManifest) -> dict[str, obj
         "role": "unified_pbr_glb",
         "status": "validated",
         "provenance": {
+            "faces": 97082,
             "watertight": False,
             "closed_volume_claim": False,
             "inside_outside_queries_allowed": False,
+            "technical_gates": {
+                "finite_vertices": True,
+                "valid_triangle_indices": True,
+                "no_degenerate_faces": True,
+                "winding_consistent": True,
+                "pbr_material_present": True,
+                "positive_extents": True,
+            },
         },
     }
     payload["collision_topology"] = "surface_bvh"
@@ -266,6 +275,26 @@ def test_unified_surface_bvh_accepts_nonwatertight_glb_without_collider_proxy(
     assert unified.visual is None
     assert unified.render_mesh is None
     assert unified.collider is None
+
+
+def test_unified_surface_bvh_rejects_missing_face_count(
+    sample_manifest: WorldManifest,
+) -> None:
+    payload = _unified_pbr_object_payload(sample_manifest)
+    del payload["unified_pbr_glb"]["provenance"]["faces"]
+
+    with pytest.raises(ValidationError, match="face_count"):
+        WorldObject.model_validate(payload)
+
+
+def test_unified_surface_bvh_rejects_failed_technical_gate(
+    sample_manifest: WorldManifest,
+) -> None:
+    payload = _unified_pbr_object_payload(sample_manifest)
+    payload["unified_pbr_glb"]["provenance"]["technical_gates"]["winding_consistent"] = False
+
+    with pytest.raises(ValidationError, match="winding_consistent"):
+        WorldObject.model_validate(payload)
 
 
 def test_unified_pbr_glb_is_iterated_once_for_visual_and_collision(

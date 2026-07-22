@@ -176,9 +176,18 @@ def _with_unified_web_ready_object(manifest: WorldManifest, object_id: str) -> W
         "role": "unified_pbr_glb",
         "status": "validated",
         "provenance": {
+            "faces": 97082,
             "watertight": False,
             "closed_volume_claim": False,
             "inside_outside_queries_allowed": False,
+            "technical_gates": {
+                "finite_vertices": True,
+                "valid_triangle_indices": True,
+                "no_degenerate_faces": True,
+                "winding_consistent": True,
+                "pbr_material_present": True,
+                "positive_extents": True,
+            },
         },
     }
     item["collision_topology"] = "surface_bvh"

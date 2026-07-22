@@ -29,12 +29,21 @@ Matrix4 = tuple[
 ]
 CollisionTopology = Literal["surface_bvh", "closed_volume"]
 UNIFIED_PBR_GLB_MEDIA_TYPE = "model/gltf-binary"
+SURFACE_BVH_MAX_FACES = 100_000
 _VOLUME_CLAIM_PROVENANCE_KEYS = (
     "closed_volume_claim",
     "inside_outside_queries_allowed",
     "is_volume",
     "volume_claim",
     "volume_physics",
+)
+_SURFACE_BVH_TECHNICAL_GATES = (
+    ("finite_vertices", ("finite",)),
+    ("valid_triangle_indices", ("valid_indices",)),
+    ("no_degenerate_faces", ("nondegenerate", "nondegenerate_faces")),
+    ("winding_consistent", ("windingConsistent",)),
+    ("pbr_material_present", ("has_pbr_material",)),
+    ("positive_extents", ("positive_extent",)),
 )
 
 
@@ -78,6 +87,25 @@ def validate_unified_pbr_glb_asset(
         raise ValueError("unified PBR GLB asset must be validated")
     if asset.media_type != UNIFIED_PBR_GLB_MEDIA_TYPE:
         raise ValueError(f"unified PBR GLB media_type must be {UNIFIED_PBR_GLB_MEDIA_TYPE!r}")
+    if topology is not None:
+        face_count = _provenance_int(asset.provenance, "face_count", aliases=("faces",))
+        if (
+            not isinstance(face_count, int)
+            or isinstance(face_count, bool)
+            or not 1 <= face_count <= SURFACE_BVH_MAX_FACES
+        ):
+            raise ValueError(
+                f"{topology} requires provenance face_count in 1..{SURFACE_BVH_MAX_FACES}"
+            )
+        missing_gates = [
+            gate
+            for gate, aliases in _SURFACE_BVH_TECHNICAL_GATES
+            if not _provenance_bool(asset.provenance, gate, aliases=aliases)
+        ]
+        if missing_gates:
+            raise ValueError(
+                f"{topology} requires passed technical gates: " + ", ".join(missing_gates)
+            )
     if topology == "closed_volume" and asset.provenance.get("watertight") is not True:
         raise ValueError("closed_volume requires explicit watertight=true provenance")
     if topology == "surface_bvh":
@@ -89,6 +117,34 @@ def validate_unified_pbr_glb_asset(
                 "surface_bvh cannot claim volume or inside/outside semantics: "
                 + ", ".join(volume_claims)
             )
+
+
+def _provenance_int(
+    provenance: dict[str, Any],
+    key: str,
+    *,
+    aliases: tuple[str, ...] = (),
+) -> int | None:
+    for candidate in (key, *aliases):
+        value = provenance.get(candidate)
+        if isinstance(value, int) and not isinstance(value, bool):
+            return value
+    return None
+
+
+def _provenance_bool(
+    provenance: dict[str, Any],
+    key: str,
+    *,
+    aliases: tuple[str, ...] = (),
+) -> bool:
+    candidates = (key, *aliases)
+    if any(provenance.get(candidate) is True for candidate in candidates):
+        return True
+    technical_gates = provenance.get("technical_gates")
+    return isinstance(technical_gates, dict) and any(
+        technical_gates.get(candidate) is True for candidate in candidates
+    )
 
 
 class CoordinateSystem(StrictModel):

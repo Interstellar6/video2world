@@ -81,6 +81,8 @@ uv run video2world site-run runs/my-room
 
 默认 `completed_object_assets_manifest.representation_policy="unified_pbr_glb_preferred_optional_gaussian"` 时，每个 completed object 都必须使用 `representation_mode="unified_pbr_glb"`，由同一 validated PBR GLB 承担可见表面、选择/旋转逻辑和 MeshBVH collision。旧 `render_mesh + collider` 分离模式只能在 manifest 显式声明 `representation_policy="mesh_first_optional_gaussian"` 时作为 legacy compatibility 保留，不能静默伪装成新默认交付。
 
+统一 PBR GLB 不能只声明文件存在。用于 `surface_bvh` 或 `closed_volume` 时，`provenance` 必须带真实审计证据：`faces`/`face_count` 在 `1..100000` 内，`technical_gates` 至少证明 finite vertices、valid triangle indices、no degenerate faces、winding consistent、PBR material present、positive extents 全部通过。`surface_bvh` 允许 non-watertight，但不能声明 volume 或 inside/outside；`closed_volume` 额外要求 `watertight=true`。
+
 `examples/bedroom4/site-profile.partial.yaml` 把当前真实 PGSR、SAM3、fusion 和 cognition 文件映射到对应 adoption role。fusion 的五项输入 hash 已从现有归档完整恢复；但旧归档没有原始视频 hash，PGSR/SAM3/cognition 也缺部分 canonical input receipt，所以这些 stage 故意不填完整 `expected_inputs`，`site-preflight` 会阻断采用。找回并填写输入 hash 后才能登记。inventory/DA3、completion plan、完整 layered completion、placement、bundle 与 Web 仍保持 execute；在真实逐层补全完成前不会产生 `complete_pipeline=true`。
 
 旧 `holi_embodiedgen_upstream.yaml` 与 `holi_embodiedgen.provider.example.yaml` 仍保留为历史十阶段 adapter 示例；它们缺少 canonical `inventory + completion_plan + layered_completion`，不能作为新 pipeline 完成证据。

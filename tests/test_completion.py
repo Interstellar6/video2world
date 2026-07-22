@@ -293,9 +293,18 @@ def _unified_completed_object_assets_payload() -> dict[str, object]:
                     "role": "unified_pbr_glb",
                     "status": "validated",
                     "provenance": {
+                        "faces": 97082,
                         "watertight": False,
                         "closed_volume_claim": False,
                         "inside_outside_queries_allowed": False,
+                        "technical_gates": {
+                            "finite_vertices": True,
+                            "valid_triangle_indices": True,
+                            "no_degenerate_faces": True,
+                            "winding_consistent": True,
+                            "pbr_material_present": True,
+                            "positive_extents": True,
+                        },
                     },
                 },
                 "collision_topology": "surface_bvh",
@@ -351,6 +360,23 @@ def test_completed_object_manifest_accepts_unified_surface_without_gaussian_or_p
     assert completed.collider is None
     assert completed.object_gaussian is None
     assert completed.object_point_cloud is None
+
+
+def test_completed_object_manifest_rejects_unified_surface_without_face_evidence() -> None:
+    payload = _unified_completed_object_assets_payload()
+    del payload["objects"][0]["unified_pbr_glb"]["provenance"]["faces"]
+
+    with pytest.raises(ValidationError, match="face_count"):
+        CompletedObjectAssetsManifest.model_validate(payload)
+
+
+def test_completed_object_manifest_rejects_unified_surface_without_technical_gate() -> None:
+    payload = _unified_completed_object_assets_payload()
+    gates = payload["objects"][0]["unified_pbr_glb"]["provenance"]["technical_gates"]
+    gates["pbr_material_present"] = False
+
+    with pytest.raises(ValidationError, match="pbr_material_present"):
+        CompletedObjectAssetsManifest.model_validate(payload)
 
 
 def test_completed_object_manifest_rejects_unvalidated_optional_representation() -> None:
