@@ -242,6 +242,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     completion_route_parser.add_argument("--output")
 
+    completion_recovery_parser = subparsers.add_parser(
+        "completion-recovery-work-order",
+        help="Materialize a blocked completion route into auditable recovery work items",
+    )
+    completion_recovery_parser.add_argument("route")
+    completion_recovery_parser.add_argument("--clean-plate-report", required=True)
+    completion_recovery_parser.add_argument("--output", required=True)
+
     scene_command_validate_parser = subparsers.add_parser(
         "scene-command-validate",
         help="Validate structured natural-language scene intent JSON",
@@ -604,6 +612,19 @@ def _cmd_completion_route(args: argparse.Namespace) -> int:
     return 3 if route.selected_backend == "hold_for_more_evidence" else 0
 
 
+def _cmd_completion_recovery_work_order(args: argparse.Namespace) -> int:
+    from video2world.completion_recovery import materialize_completion_recovery_work_order
+
+    work_order = materialize_completion_recovery_work_order(
+        args.route,
+        args.clean_plate_report,
+    )
+    payload = work_order.model_dump(mode="json")
+    atomic_write_json(Path(args.output).expanduser().resolve(), payload)
+    _print_json(payload)
+    return 0
+
+
 def _cmd_scene_command_validate(args: argparse.Namespace) -> int:
     command = load_scene_command(args.command_file)
     _print_json(
@@ -757,6 +778,7 @@ COMMANDS = {
     "completion-plan": _cmd_completion_plan,
     "completion-validate": _cmd_completion_validate,
     "completion-route": _cmd_completion_route,
+    "completion-recovery-work-order": _cmd_completion_recovery_work_order,
     "scene-command-validate": _cmd_scene_command_validate,
     "scene-command-plan": _cmd_scene_command_plan,
     "scene-command-submit": _cmd_scene_command_submit,

@@ -11,4 +11,11 @@ uv run video2world completion-route \
   --output examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/completion_backend_route.json
 ```
 
-The expected recovery actions keep `allow_deeper_rounds=false` and require donor support, boundary QA, and constrained residual generation before any deeper layer can be promoted.
+The expected recovery actions keep `allow_deeper_rounds=false` and require donor support, boundary QA, and constrained residual generation before any deeper layer can be promoted. The route can be converted into an auditable work order without generating or accepting any clean plate:
+
+```bash
+uv run video2world completion-recovery-work-order \
+  examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/completion_backend_route.json \
+  --clean-plate-report examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/round01_front_pillow/output/multiview_prefill_report.json \
+  --output examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_work_order.json
+```

@@ -1,0 +1,745 @@
+{
+  "deeper_rounds_blocked": true,
+  "inputs": [
+    {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/completion_backend_route.json",
+      "role": "completion_backend_route",
+      "sha256": "780ade54092986ab9ac27176e8bad5aebcd7fd1c8f9cec56ab7fcc0c0a520383",
+      "size_bytes": 5649
+    },
+    {
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/round01_front_pillow/output/multiview_prefill_report.json",
+      "role": "clean_plate_report",
+      "sha256": "aae81c30666f54afeeffe0911b2cc7b90035d6aabf3c85332aee1b9bc1cf6aec",
+      "size_bytes": 190542
+    }
+  ],
+  "kind": "video2world.completion_recovery_work_order",
+  "notes": [
+    "This work order is a recovery plan only; it does not accept R1 or generate clean plates.",
+    "R2-R4 remain blocked until the listed verification steps pass."
+  ],
+  "object_id": "sam3_pillow_front",
+  "output_claim": "work_order_only_no_clean_plate_generated",
+  "route_sha256": "1dea8d5669fbb4ba09b69af3723aa39c24b8a10682caaf08be2fc625ece2d774",
+  "schema_version": "1.0",
+  "selected_backend": "deformable_category_prior",
+  "status": "blocked_pending_recovery",
+  "work_items": [
+    {
+      "action": "add_observed_donor_or_switch_to_constrained_generation_for_residual",
+      "allow_deeper_rounds": false,
+      "blocker": "no_guard_stable_measured_donor_support",
+      "frame_ids": [
+        "000048",
+        "000049",
+        "000050",
+        "000051",
+        "000052",
+        "000053",
+        "000054",
+        "000055",
+        "000056",
+        "000057",
+        "000058",
+        "000059",
+        "000060",
+        "000061",
+        "000062",
+        "000063",
+        "000064",
+        "000065",
+        "000066",
+        "000067",
+        "000068",
+        "000069",
+        "000070",
+        "000071",
+        "000072"
+      ],
+      "frame_records": [
+        {
+          "coverage_fraction": 0.000981140303063338,
+          "covered_pixels": 18,
+          "frame_id": "000048",
+          "removal_mask_pixels": 18346,
+          "residual_mask_pixels": 18328,
+          "support_max": 7
+        },
+        {
+          "coverage_fraction": 0.00010741138560687433,
+          "covered_pixels": 2,
+          "frame_id": "000049",
+          "removal_mask_pixels": 18620,
+          "residual_mask_pixels": 18618,
+          "support_max": 2
+        },
+        {
+          "coverage_fraction": 0.001150026136957658,
+          "covered_pixels": 22,
+          "frame_id": "000050",
+          "removal_mask_pixels": 19130,
+          "residual_mask_pixels": 19108,
+          "support_max": 5
+        },
+        {
+          "coverage_fraction": 0.00010353574571620853,
+          "covered_pixels": 2,
+          "frame_id": "000051",
+          "removal_mask_pixels": 19317,
+          "residual_mask_pixels": 19315,
+          "support_max": 3
+        },
+        {
+          "coverage_fraction": 0.0009156577474819412,
+          "covered_pixels": 18,
+          "frame_id": "000052",
+          "removal_mask_pixels": 19658,
+          "residual_mask_pixels": 19640,
+          "support_max": 4
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000053",
+          "removal_mask_pixels": 19891,
+          "residual_mask_pixels": 19891,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000054",
+          "removal_mask_pixels": 20152,
+          "residual_mask_pixels": 20152,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000055",
+          "removal_mask_pixels": 20518,
+          "residual_mask_pixels": 20518,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.00019103109030994795,
+          "covered_pixels": 4,
+          "frame_id": "000056",
+          "removal_mask_pixels": 20939,
+          "residual_mask_pixels": 20935,
+          "support_max": 2
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000057",
+          "removal_mask_pixels": 21309,
+          "residual_mask_pixels": 21309,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000058",
+          "removal_mask_pixels": 21763,
+          "residual_mask_pixels": 21763,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000059",
+          "removal_mask_pixels": 22219,
+          "residual_mask_pixels": 22219,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000060",
+          "removal_mask_pixels": 22622,
+          "residual_mask_pixels": 22622,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000061",
+          "removal_mask_pixels": 22968,
+          "residual_mask_pixels": 22968,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000062",
+          "removal_mask_pixels": 23185,
+          "residual_mask_pixels": 23185,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000063",
+          "removal_mask_pixels": 23209,
+          "residual_mask_pixels": 23209,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000064",
+          "removal_mask_pixels": 23065,
+          "residual_mask_pixels": 23065,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000065",
+          "removal_mask_pixels": 22825,
+          "residual_mask_pixels": 22825,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000066",
+          "removal_mask_pixels": 22481,
+          "residual_mask_pixels": 22481,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000067",
+          "removal_mask_pixels": 22295,
+          "residual_mask_pixels": 22295,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000068",
+          "removal_mask_pixels": 22091,
+          "residual_mask_pixels": 22091,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000069",
+          "removal_mask_pixels": 21759,
+          "residual_mask_pixels": 21759,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000070",
+          "removal_mask_pixels": 21517,
+          "residual_mask_pixels": 21517,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000071",
+          "removal_mask_pixels": 21569,
+          "residual_mask_pixels": 21569,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.00013992537313432837,
+          "covered_pixels": 3,
+          "frame_id": "000072",
+          "removal_mask_pixels": 21440,
+          "residual_mask_pixels": 21437,
+          "support_max": 2
+        }
+      ],
+      "priority": 1,
+      "reason": "Boundary-guarded measured donor support is missing; do not advance the next layer.",
+      "required_verification": "rerun measured donor support and strict boundary guard before any R2 input",
+      "stage": "donor_support"
+    },
+    {
+      "action": "repair_removal_mask_or_target_matte_before_regeneration",
+      "allow_deeper_rounds": false,
+      "blocker": "no_guard_stable_measured_donor_support",
+      "frame_ids": [
+        "000048",
+        "000049",
+        "000050",
+        "000051",
+        "000052",
+        "000053",
+        "000054",
+        "000055",
+        "000056",
+        "000057",
+        "000058",
+        "000059",
+        "000060",
+        "000061",
+        "000062",
+        "000063",
+        "000064",
+        "000065",
+        "000066",
+        "000067",
+        "000068",
+        "000069",
+        "000070",
+        "000071",
+        "000072"
+      ],
+      "frame_records": [
+        {
+          "coverage_fraction": 0.000981140303063338,
+          "covered_pixels": 18,
+          "frame_id": "000048",
+          "removal_mask_pixels": 18346,
+          "residual_mask_pixels": 18328,
+          "support_max": 7
+        },
+        {
+          "coverage_fraction": 0.00010741138560687433,
+          "covered_pixels": 2,
+          "frame_id": "000049",
+          "removal_mask_pixels": 18620,
+          "residual_mask_pixels": 18618,
+          "support_max": 2
+        },
+        {
+          "coverage_fraction": 0.001150026136957658,
+          "covered_pixels": 22,
+          "frame_id": "000050",
+          "removal_mask_pixels": 19130,
+          "residual_mask_pixels": 19108,
+          "support_max": 5
+        },
+        {
+          "coverage_fraction": 0.00010353574571620853,
+          "covered_pixels": 2,
+          "frame_id": "000051",
+          "removal_mask_pixels": 19317,
+          "residual_mask_pixels": 19315,
+          "support_max": 3
+        },
+        {
+          "coverage_fraction": 0.0009156577474819412,
+          "covered_pixels": 18,
+          "frame_id": "000052",
+          "removal_mask_pixels": 19658,
+          "residual_mask_pixels": 19640,
+          "support_max": 4
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000053",
+          "removal_mask_pixels": 19891,
+          "residual_mask_pixels": 19891,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000054",
+          "removal_mask_pixels": 20152,
+          "residual_mask_pixels": 20152,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000055",
+          "removal_mask_pixels": 20518,
+          "residual_mask_pixels": 20518,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.00019103109030994795,
+          "covered_pixels": 4,
+          "frame_id": "000056",
+          "removal_mask_pixels": 20939,
+          "residual_mask_pixels": 20935,
+          "support_max": 2
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000057",
+          "removal_mask_pixels": 21309,
+          "residual_mask_pixels": 21309,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000058",
+          "removal_mask_pixels": 21763,
+          "residual_mask_pixels": 21763,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000059",
+          "removal_mask_pixels": 22219,
+          "residual_mask_pixels": 22219,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000060",
+          "removal_mask_pixels": 22622,
+          "residual_mask_pixels": 22622,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000061",
+          "removal_mask_pixels": 22968,
+          "residual_mask_pixels": 22968,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000062",
+          "removal_mask_pixels": 23185,
+          "residual_mask_pixels": 23185,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000063",
+          "removal_mask_pixels": 23209,
+          "residual_mask_pixels": 23209,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000064",
+          "removal_mask_pixels": 23065,
+          "residual_mask_pixels": 23065,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000065",
+          "removal_mask_pixels": 22825,
+          "residual_mask_pixels": 22825,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000066",
+          "removal_mask_pixels": 22481,
+          "residual_mask_pixels": 22481,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000067",
+          "removal_mask_pixels": 22295,
+          "residual_mask_pixels": 22295,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000068",
+          "removal_mask_pixels": 22091,
+          "residual_mask_pixels": 22091,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000069",
+          "removal_mask_pixels": 21759,
+          "residual_mask_pixels": 21759,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000070",
+          "removal_mask_pixels": 21517,
+          "residual_mask_pixels": 21517,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000071",
+          "removal_mask_pixels": 21569,
+          "residual_mask_pixels": 21569,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.00013992537313432837,
+          "covered_pixels": 3,
+          "frame_id": "000072",
+          "removal_mask_pixels": 21440,
+          "residual_mask_pixels": 21437,
+          "support_max": 2
+        }
+      ],
+      "priority": 2,
+      "reason": "Boundary or local texture gates failed on specific source frames.",
+      "required_verification": "rerun boundary QA with failed frame records preserved in the report",
+      "stage": "boundary_qa"
+    },
+    {
+      "action": "regenerate_residual_with_constrained_background_prior",
+      "allow_deeper_rounds": false,
+      "blocker": "no_guard_stable_measured_donor_support",
+      "frame_ids": [
+        "000048",
+        "000049",
+        "000050",
+        "000051",
+        "000052",
+        "000053",
+        "000054",
+        "000055",
+        "000056",
+        "000057",
+        "000058",
+        "000059",
+        "000060",
+        "000061",
+        "000062",
+        "000063",
+        "000064",
+        "000065",
+        "000066",
+        "000067",
+        "000068",
+        "000069",
+        "000070",
+        "000071",
+        "000072"
+      ],
+      "frame_records": [
+        {
+          "coverage_fraction": 0.000981140303063338,
+          "covered_pixels": 18,
+          "frame_id": "000048",
+          "removal_mask_pixels": 18346,
+          "residual_mask_pixels": 18328,
+          "support_max": 7
+        },
+        {
+          "coverage_fraction": 0.00010741138560687433,
+          "covered_pixels": 2,
+          "frame_id": "000049",
+          "removal_mask_pixels": 18620,
+          "residual_mask_pixels": 18618,
+          "support_max": 2
+        },
+        {
+          "coverage_fraction": 0.001150026136957658,
+          "covered_pixels": 22,
+          "frame_id": "000050",
+          "removal_mask_pixels": 19130,
+          "residual_mask_pixels": 19108,
+          "support_max": 5
+        },
+        {
+          "coverage_fraction": 0.00010353574571620853,
+          "covered_pixels": 2,
+          "frame_id": "000051",
+          "removal_mask_pixels": 19317,
+          "residual_mask_pixels": 19315,
+          "support_max": 3
+        },
+        {
+          "coverage_fraction": 0.0009156577474819412,
+          "covered_pixels": 18,
+          "frame_id": "000052",
+          "removal_mask_pixels": 19658,
+          "residual_mask_pixels": 19640,
+          "support_max": 4
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000053",
+          "removal_mask_pixels": 19891,
+          "residual_mask_pixels": 19891,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000054",
+          "removal_mask_pixels": 20152,
+          "residual_mask_pixels": 20152,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000055",
+          "removal_mask_pixels": 20518,
+          "residual_mask_pixels": 20518,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.00019103109030994795,
+          "covered_pixels": 4,
+          "frame_id": "000056",
+          "removal_mask_pixels": 20939,
+          "residual_mask_pixels": 20935,
+          "support_max": 2
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000057",
+          "removal_mask_pixels": 21309,
+          "residual_mask_pixels": 21309,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000058",
+          "removal_mask_pixels": 21763,
+          "residual_mask_pixels": 21763,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000059",
+          "removal_mask_pixels": 22219,
+          "residual_mask_pixels": 22219,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000060",
+          "removal_mask_pixels": 22622,
+          "residual_mask_pixels": 22622,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000061",
+          "removal_mask_pixels": 22968,
+          "residual_mask_pixels": 22968,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000062",
+          "removal_mask_pixels": 23185,
+          "residual_mask_pixels": 23185,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000063",
+          "removal_mask_pixels": 23209,
+          "residual_mask_pixels": 23209,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000064",
+          "removal_mask_pixels": 23065,
+          "residual_mask_pixels": 23065,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000065",
+          "removal_mask_pixels": 22825,
+          "residual_mask_pixels": 22825,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000066",
+          "removal_mask_pixels": 22481,
+          "residual_mask_pixels": 22481,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000067",
+          "removal_mask_pixels": 22295,
+          "residual_mask_pixels": 22295,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000068",
+          "removal_mask_pixels": 22091,
+          "residual_mask_pixels": 22091,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000069",
+          "removal_mask_pixels": 21759,
+          "residual_mask_pixels": 21759,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000070",
+          "removal_mask_pixels": 21517,
+          "residual_mask_pixels": 21517,
+          "support_max": 1
+        },
+        {
+          "coverage_fraction": 0.0,
+          "covered_pixels": 0,
+          "frame_id": "000071",
+          "removal_mask_pixels": 21569,
+          "residual_mask_pixels": 21569,
+          "support_max": 0
+        },
+        {
+          "coverage_fraction": 0.00013992537313432837,
+          "covered_pixels": 3,
+          "frame_id": "000072",
+          "removal_mask_pixels": 21440,
+          "residual_mask_pixels": 21437,
+          "support_max": 2
+        }
+      ],
+      "priority": 3,
+      "reason": "The clean plate still has unresolved unobserved pixels after measured support.",
+      "required_verification": "rerun clean-plate residual generation QA before promotion",
+      "stage": "candidate_generation"
+    }
+  ],
+  "work_order_sha256": "0b81c2e54716a43d81d84198bc32a97b13fc20b2c3b3ea08ecc2dde7cdb30b96"
+}
