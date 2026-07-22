@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import sys
 from pathlib import Path
 
@@ -13,6 +14,10 @@ SPEC = importlib.util.spec_from_file_location("qa_bed_pillow_joint", SCRIPT_PATH
 assert SPEC is not None and SPEC.loader is not None
 MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
+
+
+def write_json(path: Path, payload: object) -> None:
+    path.write_text(json.dumps(payload, sort_keys=True), encoding="utf-8")
 
 
 def test_allowed_penetration_uses_stricter_limit() -> None:
@@ -125,3 +130,106 @@ def test_headboard_relation_uses_first_sufficient_sampling(monkeypatch) -> None:
     assert result["status"] == "passed"
     assert result["sampling"]["selected_bin_size_px"] == 12
     assert result["sampling"]["fallback_used"] is True
+
+
+def test_load_pillow_surfaces_scene_fit_rejection_context(tmp_path: Path) -> None:
+    mesh_path = tmp_path / "pillow.glb"
+    mesh_path.write_bytes(b"pillow candidate")
+    report_path = tmp_path / "pillow-scene-fit.json"
+    write_json(
+        report_path,
+        {
+            "object_id": "pillow-a",
+            "mesh": {"glb_sha256": MODULE.sha256_file(mesh_path)},
+            "all_acceptance_gates_passed": False,
+            "acceptance_gates": {
+                "source_camera_iou": False,
+                "scene_support_contact": True,
+            },
+            "promotion_blockers": ["source_camera_iou"],
+            "next_action": {
+                "action": "rerun_scene_fit",
+                "blocker": "source-camera silhouette coverage is too low",
+            },
+        },
+    )
+
+    with pytest.raises(ValueError) as exc_info:
+        MODULE.load_pillow(
+            {
+                "object_id": "pillow-a",
+                "mesh": str(mesh_path),
+                "scene_fit_report": str(report_path),
+            },
+            base=tmp_path,
+            camera={},
+        )
+
+    message = str(exc_info.value)
+    assert "scene fit is not accepted for pillow-a" in message
+    assert "all_acceptance_gates_passed=false" in message
+    assert "failed_acceptance_gates=source_camera_iou" in message
+    assert "promotion_blockers=source_camera_iou" in message
+    assert "next_action=rerun_scene_fit" in message
+    assert str(report_path) in message
+
+
+def test_joint_review_surfaces_bed_scene_fit_rejection_context(tmp_path: Path) -> None:
+    bed_mesh = tmp_path / "bed.glb"
+    bed_mesh.write_bytes(b"bed candidate")
+    bed_report = tmp_path / "bed-scene-fit.json"
+    write_json(
+        bed_report,
+        {
+            "sources": {"mesh": {"sha256": MODULE.sha256_file(bed_mesh)}},
+            "all_acceptance_gates_passed": False,
+            "acceptance_gates": {
+                "scene_floor_contact": True,
+                "source_camera_silhouette_iou": False,
+            },
+            "promotion_blockers": ["source_camera_silhouette_iou"],
+        },
+    )
+    cameras = tmp_path / "cameras.json"
+    write_json(
+        cameras,
+        [
+            {
+                "img_name": "000064",
+                "width": 64,
+                "height": 64,
+                "fx": 40.0,
+                "fy": 40.0,
+                "rotation": np.eye(3).tolist(),
+                "position": [0.0, 0.0, 0.0],
+            }
+        ],
+    )
+    pairwise = tmp_path / "pairwise.json"
+    write_json(pairwise, {"status": "passed", "promotion_allowed": True})
+    spec = tmp_path / "joint-spec.json"
+    write_json(
+        spec,
+        {
+            "frame_id": "000064",
+            "cameras": str(cameras),
+            "source_frame": str(tmp_path / "source.png"),
+            "pairwise_review": str(pairwise),
+            "bed": {
+                "mesh": str(bed_mesh),
+                "scene_fit_report": str(bed_report),
+                "mattress_geometries": ["mattress"],
+                "headboard_geometries": ["headboard"],
+            },
+        },
+    )
+
+    with pytest.raises(ValueError) as exc_info:
+        MODULE.review_joint(spec, tmp_path / "joint-output")
+
+    message = str(exc_info.value)
+    assert "bed scene fit is not accepted" in message
+    assert "all_acceptance_gates_passed=false" in message
+    assert "failed_acceptance_gates=source_camera_silhouette_iou" in message
+    assert "promotion_blockers=source_camera_silhouette_iou" in message
+    assert str(bed_report) in message

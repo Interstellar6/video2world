@@ -139,6 +139,67 @@ def make_bed_floor_support_gate(
     }
 
 
+def failed_gate_names(gates: Any) -> list[str]:
+    if not isinstance(gates, dict):
+        return []
+    failed = []
+    for name, value in gates.items():
+        if value is False or (
+            isinstance(value, dict)
+            and (value.get("passed") is False or value.get("status") == "rejected")
+        ):
+            failed.append(str(name))
+    return sorted(failed)
+
+
+def review_rejection_summary(
+    report: dict[str, Any],
+    *,
+    report_path: Path | None = None,
+) -> str:
+    details = []
+    if report_path is not None:
+        details.append(f"report={report_path}")
+    for key in (
+        "status",
+        "decision",
+        "promotion_allowed",
+        "all_acceptance_gates_passed",
+    ):
+        if key in report:
+            value = report[key]
+            if isinstance(value, bool):
+                value = str(value).lower()
+            details.append(f"{key}={value}")
+    failed_acceptance = failed_gate_names(report.get("acceptance_gates"))
+    if failed_acceptance:
+        details.append("failed_acceptance_gates=" + ",".join(failed_acceptance))
+    failed_gates = failed_gate_names(report.get("gates"))
+    if failed_gates:
+        details.append("failed_gates=" + ",".join(failed_gates))
+    blockers = report.get("promotion_blockers")
+    if isinstance(blockers, list) and blockers:
+        details.append("promotion_blockers=" + ",".join(str(item) for item in blockers))
+    next_action = report.get("next_action")
+    if isinstance(next_action, dict):
+        action = next_action.get("action")
+        blocker = next_action.get("blocker")
+        if action:
+            details.append(f"next_action={action}")
+        if blocker:
+            details.append(f"next_blocker={blocker}")
+    relations = report.get("relations")
+    if isinstance(relations, dict):
+        failed_relations = sorted(
+            str(name)
+            for name, relation in relations.items()
+            if isinstance(relation, dict) and relation.get("status") != "passed"
+        )
+        if failed_relations:
+            details.append("failed_relations=" + ",".join(failed_relations))
+    return "[" + "; ".join(details) + "]"
+
+
 def load_pillow(
     item: dict[str, Any],
     *,
@@ -155,7 +216,10 @@ def load_pillow(
     if report.get("mesh", {}).get("glb_sha256") != mesh_hash:
         raise ValueError(f"mesh hash mismatch for {object_id}")
     if report.get("all_acceptance_gates_passed") is not True:
-        raise ValueError(f"scene fit is not accepted for {object_id}")
+        raise ValueError(
+            f"scene fit is not accepted for {object_id} "
+            + review_rejection_summary(report, report_path=report_path)
+        )
     loaded = trimesh.load(mesh_path, force="scene")
     mesh = loaded.to_geometry() if isinstance(loaded, trimesh.Scene) else loaded
     pivot = np.asarray(report["baked_relative_transform"]["runtime_pivot"], dtype=np.float64)
@@ -402,17 +466,32 @@ def review_joint(
     if bed_report.get("sources", {}).get("mesh", {}).get("sha256") != bed_mesh_hash:
         raise ValueError("bed mesh hash does not match its scene-fit report")
     if bed_report.get("all_acceptance_gates_passed") is not True:
-        raise ValueError("bed scene fit is not accepted")
+        raise ValueError(
+            "bed scene fit is not accepted "
+            + review_rejection_summary(bed_report, report_path=bed_report_path)
+        )
     if floor_support_report.get("support_contact", {}).get("passed") is not True:
-        raise ValueError("bed floor contact is not accepted")
+        raise ValueError(
+            "bed floor contact is not accepted "
+            + review_rejection_summary(floor_support_report, report_path=floor_support_report_path)
+        )
     if support_adjustment is not None:
         if support_adjustment.get("all_acceptance_gates_passed") is not True:
-            raise ValueError("bed support adjustment technical gates are not accepted")
+            raise ValueError(
+                "bed support adjustment technical gates are not accepted "
+                + review_rejection_summary(
+                    support_adjustment,
+                    report_path=support_adjustment_path,
+                )
+            )
         adjusted_mesh = support_adjustment.get("output", {}).get("unified_pbr_glb", {})
         if adjusted_mesh.get("sha256") != bed_mesh_hash:
             raise ValueError("bed support adjustment mesh hash mismatch")
     if pairwise_review.get("status") != "passed" or not pairwise_review.get("promotion_allowed"):
-        raise ValueError("pillow pairwise review must pass before joint review")
+        raise ValueError(
+            "pillow pairwise review must pass before joint review "
+            + review_rejection_summary(pairwise_review, report_path=pairwise_path)
+        )
 
     bed_matrix = np.asarray(bed_report["runtime_transform"]["matrix_row_major"], dtype=np.float64)
     if bed_matrix.shape != (4, 4):
