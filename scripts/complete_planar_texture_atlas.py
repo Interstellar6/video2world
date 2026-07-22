@@ -789,6 +789,24 @@ def make_footprint_provenance_contact_sheet(
     sheet.save(path)
 
 
+def plane_target_pixel_counts(
+    geometry_report: dict[str, Any],
+    plane_ids: list[int],
+) -> dict[int, int]:
+    counts = {plane_id: 0 for plane_id in plane_ids}
+    for record in geometry_report.get("frame_records", []):
+        if not isinstance(record, dict):
+            continue
+        pixel_counts = record.get("plane_pixel_counts")
+        if not isinstance(pixel_counts, dict):
+            continue
+        for plane_id in plane_ids:
+            value = pixel_counts.get(str(plane_id), 0)
+            if isinstance(value, int) and not isinstance(value, bool):
+                counts[plane_id] += value
+    return counts
+
+
 def excluded_evidence(paths: list[Path]) -> list[dict[str, Any]]:
     records: list[dict[str, Any]] = []
     for path in paths:
@@ -1623,6 +1641,11 @@ def build_texture_candidate(args: argparse.Namespace) -> dict[str, Any]:
     atlas_dir.mkdir(parents=True, exist_ok=True)
     completed_atlases: dict[int, dict[str, Any]] = {}
     atlas_records: list[dict[str, Any]] = []
+    skipped_unused_atlas_records: list[dict[str, Any]] = []
+    target_pixel_counts = plane_target_pixel_counts(
+        geometry_report,
+        sorted(plane_records),
+    )
     measured_exact = True
     synthetic_anchor_exact = True
     for atlas_record in geometry_report["texture_atlases"]:
@@ -1637,6 +1660,29 @@ def build_texture_candidate(args: argparse.Namespace) -> dict[str, Any]:
             compose_atlas_provenance(measured, observed, anchor_atlas)
         )
         combined_known = observed | synthetic_anchor
+        target_pixels = target_pixel_counts.get(plane_id, 0)
+        if not np.any(combined_known):
+            if target_pixels == 0:
+                skipped_unused_atlas_records.append(
+                    {
+                        "plane_id": plane_id,
+                        "semantic_role": str(plane_record["semantic_role"]),
+                        "reason": "unused_zero_observed_plane",
+                        "target_pixels_across_selected_frames": 0,
+                        "measured_rgb": str(measured_path),
+                        "measured_rgb_sha256": sha256_file(measured_path),
+                        "observed_mask": str(observed_path),
+                        "observed_mask_sha256": sha256_file(observed_path),
+                        "observed_texels": 0,
+                        "synthetic_anchor_texels": 0,
+                        "interpolated_texels": 0,
+                        "rendering_required": False,
+                    }
+                )
+                continue
+            raise ValueError(
+                f"plane {plane_id} has target pixels but no measured or synthetic texels"
+            )
         role = str(plane_record["semantic_role"])
         method_details: dict[str, Any]
         if role == "floor":
@@ -1722,6 +1768,7 @@ def build_texture_candidate(args: argparse.Namespace) -> dict[str, Any]:
             "observed_texels": int(observed.sum()),
             "synthetic_anchor_texels": int(synthetic_anchor.sum()),
             "interpolated_texels": int(interpolated.sum()),
+            "target_pixels_across_selected_frames": target_pixels,
             "observed_fraction": float(observed.mean()),
             "synthetic_anchor_fraction": float(synthetic_anchor.mean()),
             "interpolated_fraction": float(interpolated.mean()),
@@ -2392,6 +2439,7 @@ def build_texture_candidate(args: argparse.Namespace) -> dict[str, Any]:
             "Old DA3 depth remains visibility evidence only, not final regenerated scene depth.",
         ],
         "atlas_records": atlas_records,
+        "skipped_unused_atlas_records": skipped_unused_atlas_records,
         "cross_view_atlas_consistency": consistency_records,
         "frame_records": frame_records,
         "full_resolution_review": full_resolution_review,

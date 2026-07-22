@@ -266,6 +266,22 @@ def test_synthetic_anchor_edit_mask_must_be_binary(tmp_path: Path) -> None:
         MODULE.load_binary_mask(path, "test mask")
 
 
+def test_plane_target_pixel_counts_sums_frame_usage() -> None:
+    counts = MODULE.plane_target_pixel_counts(
+        {
+            "frame_records": [
+                {"plane_pixel_counts": {"1": 4, "2": 0}},
+                {"plane_pixel_counts": {"1": 6, "3": 5}},
+                {"plane_pixel_counts": {"1": True, "2": 2}},
+                {"plane_pixel_counts": {"1": "ignored", "2": 3}},
+            ]
+        },
+        [1, 2, 3, 4],
+    )
+
+    assert counts == {1: 10, 2: 5, 3: 5, 4: 0}
+
+
 def test_measured_atlas_texels_take_priority_over_synthetic_anchor() -> None:
     measured = np.full((2, 3, 3), [40, 50, 60], dtype=np.uint8)
     observed = np.zeros((2, 3), dtype=bool)
