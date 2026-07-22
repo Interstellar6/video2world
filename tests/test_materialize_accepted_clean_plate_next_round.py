@@ -796,6 +796,8 @@ def test_boundary_failure_surfaces_next_action(tmp_path: Path) -> None:
         "reason": "The removal core and target matte disagree.",
         "blocking_gate_groups": ["mask_alignment"],
         "failed_gates": ["mask_iou_gte", "boundary_distance_p95_lte"],
+        "failed_frame_ids": ["000064"],
+        "first_failed_frame_id": "000064",
         "promotion_approved": False,
     }
     write_json(paths["boundary"], boundary)
@@ -811,6 +813,34 @@ def test_boundary_failure_surfaces_next_action(tmp_path: Path) -> None:
     assert "repair_removal_mask_or_target_matte_before_regeneration" in message
     assert "blocking_gate_groups=mask_alignment" in message
     assert "failed_gates=mask_iou_gte,boundary_distance_p95_lte" in message
+    assert "failed_frame_ids=000064" in message
+    assert "first_failed_frame_id=000064" in message
+    assert not (tmp_path / "output").exists()
+
+
+def test_temporal_failure_surfaces_next_action(tmp_path: Path) -> None:
+    paths = make_fixture(tmp_path)
+    temporal = json.loads(paths["temporal"].read_text(encoding="utf-8"))
+    temporal["status"] = "not_evaluable"
+    temporal["next_action"] = {
+        "action": "repair_temporal_evidence_before_retesting",
+        "reason": "Strict flow evidence was not evaluable.",
+        "not_evaluable_pair_ids": ["0016_to_0017"],
+        "not_evaluable_triplet_center_frame_ids": ["000064"],
+        "promotion_approved": False,
+    }
+    write_json(paths["temporal"], temporal)
+    update_acceptance_asset(paths, "temporal_qa_report", paths["temporal"])
+
+    with pytest.raises(AcceptedCleanPlateMaterializationError) as error:
+        materialize_accepted_clean_plate_next_round(paths["acceptance"], tmp_path / "output")
+
+    message = str(error.value)
+    assert "temporal QA did not pass" in message
+    assert "status=not_evaluable" in message
+    assert "next_action=repair_temporal_evidence_before_retesting" in message
+    assert "not_evaluable_pair_ids=0016_to_0017" in message
+    assert "not_evaluable_triplet_center_frame_ids=000064" in message
     assert not (tmp_path / "output").exists()
 
 

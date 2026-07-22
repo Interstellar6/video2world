@@ -297,6 +297,29 @@ def evidence_failure_summary(report: dict[str, Any]) -> str:
             gates = [gate for gate in failed_gates if isinstance(gate, str) and gate]
             if gates:
                 details.append(f"failed_gates={','.join(gates)}")
+        failed_frame_ids = next_action.get("failed_frame_ids")
+        if isinstance(failed_frame_ids, list) and failed_frame_ids:
+            frames = [
+                frame_id
+                for frame_id in failed_frame_ids
+                if isinstance(frame_id, str) and frame_id
+            ]
+            if frames:
+                details.append(f"failed_frame_ids={','.join(frames)}")
+        first_failed_frame_id = next_action.get("first_failed_frame_id")
+        if isinstance(first_failed_frame_id, str) and first_failed_frame_id:
+            details.append(f"first_failed_frame_id={first_failed_frame_id}")
+        for key in (
+            "failed_pair_ids",
+            "failed_triplet_center_frame_ids",
+            "not_evaluable_pair_ids",
+            "not_evaluable_triplet_center_frame_ids",
+        ):
+            values = next_action.get(key)
+            if isinstance(values, list) and values:
+                kept = [value for value in values if isinstance(value, str) and value]
+                if kept:
+                    details.append(f"{key}={','.join(kept)}")
         no_support_frame_ids = next_action.get("no_support_frame_ids")
         if isinstance(no_support_frame_ids, list) and no_support_frame_ids:
             frames = [
