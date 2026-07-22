@@ -164,6 +164,11 @@ def _validate_unified_gate_report_manifest_bindings(
                 f"collision gate report face count {report_faces!r} does not match manifest "
                 f"{expected_faces!r}"
             )
+        report_metrics = _expect_report_field(payload, "metrics", gate_name=gate_name)
+        if not isinstance(report_metrics, dict):
+            raise ArtifactError("collision gate report metrics must be a JSON object")
+        if report_metrics != item.quality_gates.collision.metrics:
+            raise ArtifactError("collision gate report metrics do not match manifest")
 
 
 def _object_identity_from_gate_location(location: str) -> tuple[str, str]:

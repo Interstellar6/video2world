@@ -56,6 +56,11 @@ def _gate_report_payload(
         assert isinstance(provenance, dict)
         payload["collision_topology"] = object_payload["collision_topology"]
         payload["faces"] = provenance["faces"]
+        quality_gates = object_payload["quality_gates"]
+        assert isinstance(quality_gates, dict)
+        collision_gate = quality_gates["collision"]
+        assert isinstance(collision_gate, dict)
+        payload["metrics"] = collision_gate["metrics"]
     return json.dumps(payload, sort_keys=True) + "\n"
 
 
@@ -278,6 +283,53 @@ def test_manifest_rejects_collision_report_topology_or_face_mismatch(
         "face count" in issue["error"] and "does not match" in issue["error"]
         for issue in result["issues"]
     )
+
+
+def test_manifest_rejects_collision_report_metric_mismatch(
+    tmp_path: Path,
+    sample_manifest: WorldManifest,
+) -> None:
+    object_payload = _unified_pbr_object_payload(sample_manifest)
+    glb_path = tmp_path / "pillow-unified.glb"
+    glb_path.write_bytes(b"unified pbr glb")
+    glb_digest = digest_path(glb_path)
+    object_payload["unified_pbr_glb"].update(
+        {
+            "uri": str(glb_path),
+            "sha256": glb_digest.sha256,
+            "size_bytes": glb_digest.size_bytes,
+        }
+    )
+    for gate_name in ("alignment", "collision", "visual"):
+        report_path = tmp_path / f"{gate_name}-report.json"
+        report_payload = json.loads(
+            _gate_report_payload(
+                gate_name,
+                glb_digest.sha256,
+                object_payload=object_payload,
+            )
+        )
+        if gate_name == "collision":
+            report_payload["metrics"]["stale_static_intersection_faces"] = 99
+        report_path.write_text(json.dumps(report_payload, sort_keys=True) + "\n")
+        report_digest = digest_path(report_path)
+        object_payload["quality_gates"][gate_name].update(
+            {
+                "report_uri": str(report_path),
+                "report_sha256": report_digest.sha256,
+                "report_size_bytes": report_digest.size_bytes,
+            }
+        )
+    payload = sample_manifest.model_dump(mode="json")
+    payload["objects"].append(object_payload)
+    manifest = WorldManifest.model_validate(payload)
+    manifest_path = tmp_path / "world.json"
+    manifest_path.write_text(manifest.model_dump_json(indent=2), encoding="utf-8")
+
+    result = validate_world_manifest(manifest_path)
+
+    assert result["valid"] is False
+    assert any("metrics do not match" in issue["error"] for issue in result["issues"])
 
 
 def test_manifest_rejects_non_json_gate_report_payload(
@@ -694,6 +746,11 @@ def _unified_pbr_object_payload(sample_manifest: WorldManifest) -> dict[str, obj
         "report_uri": "artifact://pillow-unified/collision-report.json",
         "report_sha256": "f" * 64,
         "report_size_bytes": 2048,
+        "metrics": {
+            "bvh_probe_hits": 8,
+            "stale_static_intersection_faces": 0,
+            "obvious_interpenetration": False,
+        },
     }
     payload["quality_gates"]["visual"] = {
         "status": "passed",
