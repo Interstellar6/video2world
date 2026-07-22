@@ -585,6 +585,16 @@ def test_round2_surfaces_next_action_from_failed_previous_report(tmp_path: Path)
         no_support=True,
         status="technical_failed_no_support",
     )
+    report_value = json.loads(report.read_text(encoding="utf-8"))
+    report_value["next_action"].update(
+        {
+            "failed_frame_ids": ["000064"],
+            "first_failed_frame_id": "000064",
+            "not_evaluable_pair_ids": ["0016_to_0017"],
+            "not_evaluable_triplet_center_frame_ids": ["000064"],
+        }
+    )
+    write_json(report, report_value)
     donors = tmp_path / "raw"
     masks = tmp_path / "round2_object_masks"
     for frame_id in ("000000", "000001"):
@@ -610,6 +620,10 @@ def test_round2_surfaces_next_action_from_failed_previous_report(tmp_path: Path)
     assert "status=technical_failed_no_support" in message
     assert "add_observed_donor_or_switch_to_constrained_generation_for_residual" in message
     assert "no_guard_stable_measured_donor_support" in message
+    assert "failed_frame_ids=000064" in message
+    assert "first_failed_frame_id=000064" in message
+    assert "not_evaluable_pair_ids=0016_to_0017" in message
+    assert "not_evaluable_triplet_center_frame_ids=000064" in message
     assert "no_support_frame_ids=000000,000001" in message
 
 
