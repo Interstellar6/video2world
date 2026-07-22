@@ -32,10 +32,13 @@ DEFAULT_INNER_RAMP_PIXELS = 10
 DEFAULT_RESIDUAL_SIGMA_PIXELS = 4.0
 DEFAULT_RESIDUAL_STRENGTH = 1.35
 DEFAULT_DONOR_REGION = "all"
-DONOR_REGION_CHOICES = ("all", "lower", "upper", "left", "right")
+DONOR_REGION_CHOICES = ("all", "lower", "upper", "left", "right", "horizontal", "vertical")
 DEFAULT_FILL_MODE = "residual"
 FILL_MODE_CHOICES = ("residual", "normalized_gaussian")
 DEFAULT_LOW_FREQUENCY_FILL_SIGMA_PIXELS = 18.0
+DEFAULT_REGION_DONOR_MODE = "single"
+REGION_DONOR_MODE_CHOICES = ("single", "plane_label_auto")
+DEFAULT_MINIMUM_DONOR_LUMINANCE = 0.0
 
 
 class TextureDetailRepairError(ValueError):
@@ -174,9 +177,15 @@ def select_texture_donor_collar(
     elif donor_region == "left":
         column_index = np.indices(mask.shape)[1]
         donor = collar & (column_index < left)
-    else:
+    elif donor_region == "right":
         column_index = np.indices(mask.shape)[1]
         donor = collar & (column_index > right)
+    elif donor_region == "horizontal":
+        column_index = np.indices(mask.shape)[1]
+        donor = collar & ((column_index < left) | (column_index > right))
+    else:
+        row_index = np.indices(mask.shape)[0]
+        donor = collar & ((row_index < top) | (row_index > bottom))
     if not np.any(donor):
         donor = collar
         fallback_to_all = True
@@ -191,6 +200,112 @@ def select_texture_donor_collar(
     }
 
 
+def label_ids(label_image: np.ndarray) -> np.ndarray:
+    require(label_image.ndim in {2, 3}, "region labels must be a 2D or RGB image")
+    if label_image.ndim == 2:
+        return label_image.astype(np.int64)
+    require(label_image.shape[2] >= 3, "RGB region labels must have at least 3 channels")
+    labels = label_image[:, :, :3].astype(np.int64)
+    return (labels[:, :, 0] << 16) + (labels[:, :, 1] << 8) + labels[:, :, 2]
+
+
+def partition_mask_by_label_seeds(
+    synthetic_mask: np.ndarray,
+    region_labels: np.ndarray,
+) -> list[tuple[np.ndarray, int]]:
+    mask = synthetic_mask.astype(bool)
+    ids = label_ids(region_labels)
+    require(ids.shape == mask.shape, "region labels shape mismatch")
+    seed = mask & (ids != 0)
+    if not np.any(seed):
+        return [(mask, 0)]
+    seed_ids = np.zeros(mask.shape, dtype=np.int64)
+    seed_ids[seed] = ids[seed]
+    _, nearest_indices = ndimage.distance_transform_edt(
+        ~seed,
+        return_distances=True,
+        return_indices=True,
+    )
+    assigned = seed_ids[nearest_indices[0], nearest_indices[1]]
+    segments: list[tuple[np.ndarray, int]] = []
+    for value in sorted(int(item) for item in np.unique(assigned[mask]) if int(item) != 0):
+        segment = mask & (assigned == value)
+        if np.any(segment):
+            segments.append((segment, value))
+    return segments or [(mask, 0)]
+
+
+def choose_auto_region_donor(segment: np.ndarray, whole_mask: np.ndarray) -> str:
+    rows, _ = np.nonzero(segment)
+    whole_rows, _ = np.nonzero(whole_mask)
+    require(rows.size > 0, "segment is empty")
+    require(whole_rows.size > 0, "synthetic mask is empty")
+    segment_center_y = float(rows.mean())
+    whole_center_y = float(whole_rows.mean())
+    return "lower" if segment_center_y >= whole_center_y else "horizontal"
+
+
+def transfer_texture_into_region(
+    image_float: np.ndarray,
+    region_mask: np.ndarray,
+    whole_mask: np.ndarray,
+    *,
+    collar_width_pixels: int,
+    ramp: np.ndarray,
+    residual: np.ndarray,
+    residual_strength: float,
+    donor_region: str,
+    fill_mode: str,
+    low_frequency_fill_sigma_pixels: float,
+    minimum_donor_luminance: float,
+) -> tuple[np.ndarray, dict[str, Any]]:
+    collar = ndimage.binary_dilation(region_mask, iterations=collar_width_pixels) & ~whole_mask
+    require(np.any(collar), "synthetic region lacks a texture donor collar")
+    donor_collar, donor_details = select_texture_donor_collar(
+        region_mask,
+        collar,
+        donor_region=donor_region,
+    )
+    donor_before_luminance_filter = int(donor_collar.sum())
+    if minimum_donor_luminance > 0.0:
+        luminance = image_float.mean(axis=2)
+        filtered = donor_collar & (luminance >= minimum_donor_luminance)
+        if np.any(filtered):
+            donor_collar = filtered
+            donor_details["fallback_after_luminance_filter"] = False
+        else:
+            donor_details["fallback_after_luminance_filter"] = True
+    else:
+        donor_details["fallback_after_luminance_filter"] = False
+    donor_details["minimum_donor_luminance"] = minimum_donor_luminance
+    donor_details["donor_pixels_before_luminance_filter"] = donor_before_luminance_filter
+    donor_details["selected_donor_collar_pixels"] = int(donor_collar.sum())
+    _, nearest_indices = ndimage.distance_transform_edt(
+        ~donor_collar,
+        return_distances=True,
+        return_indices=True,
+    )
+    transferred = residual[
+        nearest_indices[0],
+        nearest_indices[1],
+    ]
+    if fill_mode == "normalized_gaussian":
+        base = normalized_gaussian_fill_rgb(
+            image_float,
+            region_mask,
+            sigma=low_frequency_fill_sigma_pixels,
+            known_mask=donor_collar,
+        )
+        base = image_float + (base - image_float) * ramp[:, :, None]
+    else:
+        base = image_float
+    repaired_region = (
+        base[region_mask]
+        + transferred[region_mask] * ramp[region_mask, None] * float(residual_strength)
+    )
+    return repaired_region, donor_details
+
+
 def repair_texture_detail(
     image: np.ndarray,
     synthetic_mask: np.ndarray,
@@ -202,6 +317,9 @@ def repair_texture_detail(
     donor_region: str = DEFAULT_DONOR_REGION,
     fill_mode: str = DEFAULT_FILL_MODE,
     low_frequency_fill_sigma_pixels: float = DEFAULT_LOW_FREQUENCY_FILL_SIGMA_PIXELS,
+    region_donor_mode: str = DEFAULT_REGION_DONOR_MODE,
+    region_labels: np.ndarray | None = None,
+    minimum_donor_luminance: float = DEFAULT_MINIMUM_DONOR_LUMINANCE,
 ) -> tuple[np.ndarray, dict[str, Any]]:
     require(image.ndim == 3 and image.shape[2] == 3, "image must be RGB")
     require(synthetic_mask.shape == image.shape[:2], "synthetic mask shape mismatch")
@@ -214,51 +332,62 @@ def repair_texture_detail(
         low_frequency_fill_sigma_pixels > 0.0,
         "low-frequency fill sigma must be positive",
     )
+    require(minimum_donor_luminance >= 0.0, "minimum donor luminance must be non-negative")
+    require(
+        region_donor_mode in REGION_DONOR_MODE_CHOICES,
+        f"unsupported region donor mode: {region_donor_mode}",
+    )
+    if region_donor_mode == "plane_label_auto":
+        require(region_labels is not None, "plane-label auto mode requires region labels")
 
     mask = synthetic_mask.astype(bool)
-    collar = ndimage.binary_dilation(mask, iterations=collar_width_pixels) & ~mask
     require(np.any(mask), "synthetic mask is empty")
-    require(np.any(collar), "synthetic mask lacks a texture donor collar")
-    donor_collar, donor_details = select_texture_donor_collar(
-        mask,
-        collar,
-        donor_region=donor_region,
-    )
-
     image_float = image.astype(np.float32)
     low_frequency = gaussian_blur_rgb(image_float, residual_sigma_pixels)
     residual = image_float - low_frequency
-    _, nearest_indices = ndimage.distance_transform_edt(
-        ~donor_collar,
-        return_distances=True,
-        return_indices=True,
-    )
-    transferred = residual[
-        nearest_indices[0],
-        nearest_indices[1],
-    ]
     distance_inside = ndimage.distance_transform_edt(mask).astype(np.float32)
     if inner_ramp_pixels:
         ramp = np.clip(distance_inside / float(inner_ramp_pixels), 0.0, 1.0)
         ramp = ramp * ramp * (3.0 - 2.0 * ramp)
     else:
         ramp = np.ones(mask.shape, dtype=np.float32)
-    if fill_mode == "normalized_gaussian":
-        base = normalized_gaussian_fill_rgb(
-            image_float,
-            mask,
-            sigma=low_frequency_fill_sigma_pixels,
-            known_mask=donor_collar,
-        )
-    else:
-        base = image_float
-    if fill_mode != "residual":
-        base = image_float + (base - image_float) * ramp[:, :, None]
     repaired = image_float.copy()
-    repaired[mask] = (
-        base[mask]
-        + transferred[mask] * ramp[mask, None] * float(residual_strength)
-    )
+    if region_donor_mode == "plane_label_auto" and region_labels is not None:
+        regions = partition_mask_by_label_seeds(mask, region_labels)
+    else:
+        regions = [(mask, 0)]
+    region_records: list[dict[str, Any]] = []
+    total_donor_pixels = 0
+    for region_index, (region_mask, label_id) in enumerate(regions):
+        selected_donor_region = (
+            choose_auto_region_donor(region_mask, mask)
+            if region_donor_mode == "plane_label_auto"
+            else donor_region
+        )
+        repaired_region, donor_details = transfer_texture_into_region(
+            image_float,
+            region_mask,
+            mask,
+            collar_width_pixels=collar_width_pixels,
+            ramp=ramp,
+            residual=residual,
+            residual_strength=residual_strength,
+            donor_region=selected_donor_region,
+            fill_mode=fill_mode,
+            low_frequency_fill_sigma_pixels=low_frequency_fill_sigma_pixels,
+            minimum_donor_luminance=minimum_donor_luminance,
+        )
+        repaired[region_mask] = repaired_region
+        total_donor_pixels += int(donor_details["selected_donor_collar_pixels"])
+        region_records.append(
+            {
+                "region_index": region_index,
+                "label_id": label_id,
+                "donor_region": selected_donor_region,
+                "synthetic_pixels": int(region_mask.sum()),
+                **donor_details,
+            }
+        )
     repaired = np.clip(np.rint(repaired), 0, 255).astype(np.uint8)
     repaired[~mask] = image[~mask]
     outside_exact = bool(np.array_equal(repaired[~mask], image[~mask]))
@@ -270,9 +399,13 @@ def repair_texture_detail(
         "residual_strength": residual_strength,
         "fill_mode": fill_mode,
         "low_frequency_fill_sigma_pixels": low_frequency_fill_sigma_pixels,
-        **donor_details,
+        "minimum_donor_luminance": minimum_donor_luminance,
+        "donor_region": donor_region,
+        "region_donor_mode": region_donor_mode,
+        "region_count": len(region_records),
+        "regions": region_records,
         "synthetic_pixels": int(mask.sum()),
-        "texture_donor_collar_pixels": int(donor_collar.sum()),
+        "texture_donor_collar_pixels": total_donor_pixels,
         "outside_synthetic_mask_rgb_exact": outside_exact,
         "claims_measured_donor": False,
     }
@@ -372,6 +505,8 @@ def build_detail_repair_candidate(args: argparse.Namespace) -> dict[str, Any]:
         "donor_region": args.texture_donor_region,
         "fill_mode": args.texture_fill_mode,
         "low_frequency_fill_sigma_pixels": args.texture_low_frequency_fill_sigma_pixels,
+        "region_donor_mode": args.texture_region_donor_mode,
+        "minimum_donor_luminance": args.texture_minimum_donor_luminance,
         "claims_measured_donor": False,
         "outside_synthetic_mask_rgb_exact": True,
         "created_at": datetime.now(UTC).isoformat(),
@@ -391,6 +526,14 @@ def build_detail_repair_candidate(args: argparse.Namespace) -> dict[str, Any]:
             relative_to=candidate_dir,
             label=f"{frame_id} synthetic mask",
         )
+        region_labels = None
+        if args.texture_region_donor_mode == "plane_label_auto":
+            labels_path = resolve_file(
+                record.get("plane_labels"),
+                relative_to=candidate_dir,
+                label=f"{frame_id} plane labels",
+            )
+            region_labels = np.asarray(Image.open(labels_path).convert("RGB"), dtype=np.uint8)
         image = np.asarray(Image.open(completed_path).convert("RGB"), dtype=np.uint8)
         mask = np.asarray(Image.open(mask_path).convert("L"), dtype=np.uint8) > 0
         repaired_image, details = repair_texture_detail(
@@ -403,6 +546,9 @@ def build_detail_repair_candidate(args: argparse.Namespace) -> dict[str, Any]:
             donor_region=args.texture_donor_region,
             fill_mode=args.texture_fill_mode,
             low_frequency_fill_sigma_pixels=args.texture_low_frequency_fill_sigma_pixels,
+            region_donor_mode=args.texture_region_donor_mode,
+            region_labels=region_labels,
+            minimum_donor_luminance=args.texture_minimum_donor_luminance,
         )
         output_frame = frames_dir / f"{index:04d}.png"
         Image.fromarray(repaired_image).save(output_frame)
@@ -528,6 +674,16 @@ def build_parser() -> argparse.ArgumentParser:
         "--texture-low-frequency-fill-sigma-pixels",
         type=float,
         default=DEFAULT_LOW_FREQUENCY_FILL_SIGMA_PIXELS,
+    )
+    parser.add_argument(
+        "--texture-region-donor-mode",
+        choices=REGION_DONOR_MODE_CHOICES,
+        default=DEFAULT_REGION_DONOR_MODE,
+    )
+    parser.add_argument(
+        "--texture-minimum-donor-luminance",
+        type=float,
+        default=DEFAULT_MINIMUM_DONOR_LUMINANCE,
     )
     parser.add_argument("--review-contact-sheet-samples", type=int, default=6)
     return parser
