@@ -386,12 +386,19 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
         final_clean_plate = clean_plate_manifest.get("final_clean_plate")
         if not isinstance(final_clean_plate, dict):
             raise ValueError("clean_plate_manifest must bind final_clean_plate")
-        if (
-            final_clean_plate.get("uri") != report.final_clean_plate.uri
-            or final_clean_plate.get("sha256") != report.final_clean_plate.sha256
-            or final_clean_plate.get("size_bytes") != report.final_clean_plate.size_bytes
+        for field in (
+            "uri",
+            "sha256",
+            "size_bytes",
+            "acceptance_scope",
+            "lineage_scope",
+            "corrected_full_pipeline",
+            "promotion_approved",
+            "canonical_promotion_approved",
+            "canonical_or_live_manifest_modified",
         ):
-            raise ValueError("clean_plate_manifest final_clean_plate differs from report")
+            if final_clean_plate.get(field) != getattr(report.final_clean_plate, field):
+                raise ValueError("clean_plate_manifest final_clean_plate differs from report")
         final_clean_plate_output = receipt_outputs.get("final_clean_plate")
         if not isinstance(final_clean_plate_output, dict):
             raise ValueError("provider receipt has no final_clean_plate output")

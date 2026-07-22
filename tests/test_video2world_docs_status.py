@@ -35,7 +35,11 @@ def test_pipeline_docs_keep_corrected_clean_plate_status_fail_closed() -> None:
     assert "scene_id/run_id" in getting_started
     assert "final_clean_plate` 也必须是 receipt 中的真实输出" in getting_started
     assert "clean_plate_manifest.final_clean_plate" in getting_started
-    assert "三方 uri/hash/size 一致" in getting_started
+    assert (
+        "三方 uri/hash/size、acceptance_scope、lineage_scope 和 promotion flags 一致"
+        in getting_started
+    )
+    assert "acceptance_scope" in getting_started
     assert "输出角色路径和内容 hash 不能互相复用" in getting_started
     assert "不能复用原始" in getting_started
     assert "hash 或路径" in getting_started

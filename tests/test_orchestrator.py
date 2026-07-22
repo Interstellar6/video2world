@@ -1086,6 +1086,45 @@ def test_layered_completion_report_binds_clean_plate_manifest_to_final_clean_pla
         )
 
 
+def test_layered_completion_report_binds_clean_plate_manifest_final_scope(
+    tmp_path: Path,
+) -> None:
+    plan_path = tmp_path / "plan.json"
+    plan_path.write_text(json.dumps(_valid_layered_completion_plan()), encoding="utf-8")
+    plan_sha = snapshot_path(plan_path).sha256
+    report_payload = _valid_layered_completion_report()
+    report_payload["completion_plan_sha256"] = plan_sha
+    report_path = tmp_path / "report.json"
+    report_path.write_text(json.dumps(report_payload), encoding="utf-8")
+    outputs = _layered_completion_output_snapshots(tmp_path, report_path)
+    clean_plate_path = Path(outputs["clean_plate_manifest"]["path"])
+    clean_plate_payload = json.loads(clean_plate_path.read_text(encoding="utf-8"))
+    clean_plate_payload["final_clean_plate"]["acceptance_scope"] = (
+        "corrected_clean_plate_next_round_source_only"
+    )
+    clean_plate_payload["final_clean_plate"]["promotion_approved"] = False
+    clean_plate_path.write_text(json.dumps(clean_plate_payload), encoding="utf-8")
+    outputs["clean_plate_manifest"] = _artifact_snapshot_payload(clean_plate_path)
+    receipt_path = tmp_path / "provider-receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            _provider_receipt_payload(
+                inputs=_layered_completion_input_snapshots(tmp_path, plan_path),
+                outputs=outputs,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ArtifactError, match="final_clean_plate differs from report"):
+        get_adapter("layered_completion").validate_outputs(
+            {
+                "layered_completion_report": snapshot_path(report_path),
+                "provider_receipt": snapshot_path(receipt_path),
+            }
+        )
+
+
 def test_layered_completion_report_binds_final_clean_plate_to_receipt_output(
     tmp_path: Path,
 ) -> None:
