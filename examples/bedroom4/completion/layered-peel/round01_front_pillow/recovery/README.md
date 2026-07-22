@@ -36,9 +36,9 @@ uv run video2world completion-recovery-preflight \
   --binding input_manifest=/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/round01_front_pillow/manifest/cumulative_removal_manifest.json \
   --binding camera_info=/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/assets-local/clean-scene-reconstruction-input-v23/camera_info.json \
   --binding source_rgb_frames=/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/bedroom4_clean_plate_all_pillows_20260720/frames \
-  --binding depth_arrays=/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3 \
+  --binding depth_arrays=/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/assets-local/clean-scene-reconstruction-input-v23/provenance/geometry_depth_visibility_evidence \
   --binding physical_donor_exclusion_index=/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/completion/layered-peel/cumulative-rgbd-reprojection/round01_front_pillow/manifest/donor_exclusion_index.json \
   --output examples/bedroom4/completion/layered-peel/round01_front_pillow/recovery/recovery_preflight.json
 ```
 
-The current local preflight is `blocked_binding_semantics`. The RGB frames, camera info, cumulative manifest, and donor exclusion index cover `000048`-`000072`, but the Holi-Spatial `depth_da3` mirror only exposes `000000`-`000011`. Recovery execution must not start until `depth_arrays` is rebound to a depth directory or manifest that covers the same `000048`-`000072` frame IDs, or until an auditable camera/depth remapping artifact is materialized.
+The current local preflight is `passed`: RGB frames, camera info, cumulative manifest, physical donor exclusion index, and geometry-depth visibility evidence all cover `000048`-`000072`. This is still only an execution preflight. It does not run donor support, accept R1, generate a clean plate, or unblock R2-R4.

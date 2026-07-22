@@ -38,14 +38,14 @@
     },
     {
       "declared_path": "/data/design/zyx/workspace/holi_spatial_runs/bedroom_4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3",
-      "effective_path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3",
+      "effective_path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/assets-local/clean-scene-reconstruction-input-v23/provenance/geometry_depth_visibility_evidence",
       "expected_kind": "directory",
-      "file_count": 12,
+      "file_count": 25,
       "override_applied": true,
-      "path": "/Users/zhangyuxiang/Desktop/worksplace/Video2Mesh/tmp_remote_results/holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217/scannetppv2/data/bedroom_4/depth_da3",
+      "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/examples/bedroom4/assets-local/clean-scene-reconstruction-input-v23/provenance/geometry_depth_visibility_evidence",
       "role": "depth_arrays",
-      "sha256": "84069a7f0b3dd4815dd78b91473b6dab30ddaa66dac5cc4d5026045a2199c102",
-      "size_bytes": 42517888,
+      "sha256": "fff0730ead516bfc4fc67f38d5662b3058a189634f354c935db89597b85144eb",
+      "size_bytes": 27041244,
       "status": "present"
     },
     {
@@ -179,38 +179,8 @@
       "status": "matched"
     },
     {
-      "available_frame_count": 12,
+      "available_frame_count": 25,
       "available_frame_ids": [
-        "000000",
-        "000001",
-        "000002",
-        "000003",
-        "000004",
-        "000005",
-        "000006",
-        "000007",
-        "000008",
-        "000009",
-        "000010",
-        "000011"
-      ],
-      "expected_frame_count": 25,
-      "extra_frame_ids": [
-        "000000",
-        "000001",
-        "000002",
-        "000003",
-        "000004",
-        "000005",
-        "000006",
-        "000007",
-        "000008",
-        "000009",
-        "000010",
-        "000011"
-      ],
-      "matched_frame_count": 0,
-      "missing_frame_ids": [
         "000048",
         "000049",
         "000050",
@@ -237,9 +207,13 @@
         "000071",
         "000072"
       ],
-      "reason": "binding frame ids do not cover the recovery bundle frame ids",
+      "expected_frame_count": 25,
+      "extra_frame_ids": [],
+      "matched_frame_count": 25,
+      "missing_frame_ids": [],
+      "reason": "binding covers all recovery bundle frame ids",
       "role": "depth_arrays",
-      "status": "missing_required_frames"
+      "status": "matched"
     },
     {
       "available_frame_count": 25,
@@ -287,7 +261,7 @@
     "Local binding overrides were used; declared remote paths are preserved beside effective local mirror paths."
   ],
   "object_id": "sam3_pillow_front",
-  "preflight_sha256": "5dabfbb4bf92c1b9a6e8b57d12a3610b8f8c071b0ec6559c427c072cabf41af0",
+  "preflight_sha256": "b833fadb2fadb770c86062b1e9d50eb515e2cc9a038d67844706bcf491235f1f",
   "required_frame_ids": [
     "000048",
     "000049",
@@ -316,10 +290,8 @@
     "000072"
   ],
   "schema_version": "1.0",
-  "semantic_blocking_roles": [
-    "depth_arrays"
-  ],
-  "status": "blocked_binding_semantics",
+  "semantic_blocking_roles": [],
+  "status": "passed",
   "work_order_input_verified": true,
   "work_order_sha256": "e3b09434fe9078e1d9e35b717e053d4ee4be85dee87a034327279d6deac7f448"
 }
