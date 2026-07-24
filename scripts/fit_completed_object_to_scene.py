@@ -719,6 +719,7 @@ def _candidate_matrix(
     source_extents: np.ndarray,
     target: dict[str, Any],
     canonical_vertices: np.ndarray,
+    initial_scale_mode: str = "uniform",
     maximum_scale_multiplier: float,
     maximum_scale_anisotropy: float,
     maximum_rotation_radians: float,
@@ -744,7 +745,12 @@ def _candidate_matrix(
     permuted_extents = np.einsum("ij,j->i", np.abs(permutation), source_extents, optimize=False)
     extent_ratios = np.asarray(target["extents"]) / permuted_extents
     uniform_scale = float(np.median(extent_ratios))
-    initial_scale = np.full(3, uniform_scale, dtype=np.float64)
+    if initial_scale_mode == "uniform":
+        initial_scale = np.full(3, uniform_scale, dtype=np.float64)
+    elif initial_scale_mode == "target_extents":
+        initial_scale = extent_ratios
+    else:
+        raise ValueError(f"unsupported initial_scale_mode: {initial_scale_mode}")
     scale = initial_scale * np.exp(log_scale)
     axes = np.asarray(target["axes_columns"], dtype=np.float64)
     linear = axes @ _rotation_xyz(angles) @ np.diag(scale) @ permutation
@@ -770,6 +776,7 @@ def _candidate_matrix(
         )
     return matrix, {
         "initial_scale_xyz": initial_scale.tolist(),
+        "initial_scale_mode": initial_scale_mode,
         "initial_uniform_scale": uniform_scale,
         "target_to_source_extent_ratios_xyz": extent_ratios.tolist(),
         "permuted_source_extents_xyz": permuted_extents.tolist(),
@@ -792,6 +799,7 @@ def _optimize_candidate(
     source_extents: np.ndarray,
     target: dict[str, Any],
     canonical_vertices: np.ndarray,
+    initial_scale_mode: str = "uniform",
     support: dict[str, Any] | None,
     front: dict[str, Any] | None,
     semantic_up: dict[str, Any] | None,
@@ -821,6 +829,7 @@ def _optimize_candidate(
             source_extents=source_extents,
             target=target,
             canonical_vertices=canonical_vertices,
+            initial_scale_mode=initial_scale_mode,
             maximum_scale_multiplier=maximum_scale_multiplier,
             maximum_scale_anisotropy=maximum_scale_anisotropy,
             maximum_rotation_radians=maximum_rotation_radians,
@@ -1293,6 +1302,7 @@ def fit_completed_object_to_scene(
     initial_scene_fit_receipt: Path | None = None,
     support_contact_manifest_path: Path | None = None,
     placement_mode: str = "volume_center",
+    initial_scale_mode: str = "uniform",
     expected_object_anchor_sha256: str | None = None,
     expected_support_anchor_sha256: str | None = None,
     robust_quantiles: tuple[float, float] = (0.005, 0.995),
@@ -1320,6 +1330,8 @@ def fit_completed_object_to_scene(
 ) -> dict[str, Any]:
     if placement_mode not in {"volume_center", "observed_front_surface"}:
         raise ValueError("placement_mode must be volume_center or observed_front_surface")
+    if initial_scale_mode not in {"uniform", "target_extents"}:
+        raise ValueError("initial_scale_mode must be uniform or target_extents")
     if cycles < 0 or not 0 < shrink < 1:
         raise ValueError("cycles must be non-negative and shrink must be in (0, 1)")
     if not 1 <= refine_axis_candidates <= 24:
@@ -1576,6 +1588,7 @@ def fit_completed_object_to_scene(
                 source_extents=source_extents,
                 target=target,
                 canonical_vertices=canonical_vertices,
+                initial_scale_mode=initial_scale_mode,
                 support=support,
                 front=front,
                 semantic_up=semantic_up,
@@ -1602,6 +1615,7 @@ def fit_completed_object_to_scene(
                     source_extents=source_extents,
                     target=target,
                     canonical_vertices=canonical_vertices,
+                    initial_scale_mode=initial_scale_mode,
                     support=support,
                     front=front,
                     semantic_up=semantic_up,
@@ -1832,6 +1846,7 @@ def fit_completed_object_to_scene(
         "object_id": object_id,
         "representation_mode": "unified_pbr_mesh_visual_logic_collision",
         "placement_mode": placement_mode,
+        "initial_scale_mode": initial_scale_mode,
         "support_policy": {
             "provided": support_anchor_ply is not None,
             "maximum_signed_penetration": maximum_support_penetration,
@@ -1925,6 +1940,7 @@ def fit_completed_object_to_scene(
             "cycles": cycles,
             "shrink": shrink,
             "refined_axis_candidates": refine_axis_candidates,
+            "initial_scale_mode": initial_scale_mode,
             "maximum_scale_multiplier": maximum_scale_multiplier,
             "maximum_scale_anisotropy": maximum_scale_anisotropy,
             "maximum_rotation_degrees": maximum_rotation_degrees,
@@ -2013,6 +2029,16 @@ def parse_args() -> argparse.Namespace:
         choices=("volume_center", "observed_front_surface"),
         default="volume_center",
     )
+    parser.add_argument(
+        "--initial-scale-mode",
+        choices=("uniform", "target_extents"),
+        default="uniform",
+        help=(
+            "Initialize candidate scaling uniformly (default) or independently from "
+            "target/source oriented extents. The latter is intended for planar assets "
+            "whose generated local aspect ratio is not trustworthy."
+        ),
+    )
     parser.add_argument("--robust-lower-quantile", type=float, default=0.005)
     parser.add_argument("--robust-upper-quantile", type=float, default=0.995)
     parser.add_argument("--front-quantile", type=float, default=0.05)
@@ -2062,6 +2088,7 @@ def main() -> int:
         view_manifest_path=args.view_manifest.expanduser(),
         output_dir=args.output_dir.expanduser(),
         placement_mode=args.placement_mode,
+        initial_scale_mode=args.initial_scale_mode,
         robust_quantiles=(args.robust_lower_quantile, args.robust_upper_quantile),
         front_quantile=args.front_quantile,
         cycles=args.cycles,

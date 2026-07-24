@@ -16,6 +16,7 @@ import numpy as np
 
 PLANAR_CATEGORIES = {"window", "door", "picture", "mirror", "wall art"}
 HORIZONTAL_SUPPORT_CATEGORIES = {"bed", "nightstand", "table", "desk", "chair", "sofa"}
+PLANAR_RANSAC_SEED = 20260724
 PREFERRED_ASSET_NAMES = (
     "asset_pbr.glb",
     "asset_pbr.obj",
@@ -152,6 +153,148 @@ def planar_inlier_points(
     }
 
 
+def planar_distance_threshold(points: np.ndarray) -> float:
+    """Estimate a conservative plane inlier tolerance from local point spacing."""
+    if len(points) < 2:
+        return 1e-5
+    try:
+        from scipy.spatial import cKDTree
+
+        distances, _ = cKDTree(points).query(points, k=2)
+        nearest = np.asarray(distances[:, 1], dtype=np.float64)
+    except ImportError:
+        # Keep the fallback bounded for environments that use this utility without SciPy.
+        generator = np.random.default_rng(PLANAR_RANSAC_SEED)
+        sample_count = min(len(points), 2048)
+        indices = (
+            np.arange(len(points), dtype=np.int64)
+            if sample_count == len(points)
+            else generator.choice(len(points), size=sample_count, replace=False)
+        )
+        sample = points[indices]
+        nearest = np.full(len(sample), np.inf, dtype=np.float64)
+        for start in range(0, len(sample), 256):
+            end = min(len(sample), start + 256)
+            deltas = sample[start:end, None, :] - sample[None, :, :]
+            distances = np.linalg.norm(deltas, axis=2)
+            row_indices = np.arange(start, end)
+            distances[np.arange(end - start), row_indices] = np.inf
+            nearest[start:end] = distances.min(axis=1)
+    finite = nearest[np.isfinite(nearest) & (nearest > 1e-9)]
+    if len(finite) == 0:
+        return 1e-5
+    return max(1e-5, float(np.median(finite) * 1.4))
+
+
+def planar_ransac_consensus_points(
+    points: np.ndarray,
+    *,
+    iterations: int = 6000,
+    distance_threshold: float | None = None,
+    minimum_inlier_fraction: float = 0.15,
+    seed: int = PLANAR_RANSAC_SEED,
+) -> tuple[np.ndarray, dict[str, Any]]:
+    """Find a dominant thin plane before falling back to a PCA depth slab.
+
+    A semantic window cloud often contains points reconstructed through the glass.
+    PCA on that mixture can rotate the plane toward the distant exterior.  RANSAC
+    makes the intended observed plane explicit and returns a reasoned fallback
+    signal when it cannot find enough consensus.
+    """
+    if iterations <= 0:
+        raise ValueError("iterations must be positive")
+    if not 0 < minimum_inlier_fraction <= 1:
+        raise ValueError("minimum_inlier_fraction must be in (0, 1]")
+    if len(points) < 3:
+        return points, {
+            "mode": "planar_ransac_rejected_too_few_points",
+            "input_points": int(len(points)),
+            "kept_points": int(len(points)),
+            "kept_fraction": 1.0,
+        }
+    threshold = float(distance_threshold or planar_distance_threshold(points))
+    if not math.isfinite(threshold) or threshold <= 0:
+        raise ValueError("distance_threshold must be finite and positive")
+    generator = np.random.default_rng(seed)
+    best_mask: np.ndarray | None = None
+    best_score: tuple[int, float] | None = None
+    for _ in range(iterations):
+        indices = generator.choice(len(points), size=3, replace=False)
+        anchor, second, third = points[indices]
+        normal = np.cross(second - anchor, third - anchor)
+        magnitude = float(np.linalg.norm(normal))
+        if magnitude <= 1e-9:
+            continue
+        normal /= magnitude
+        residuals = np.abs((points - anchor) @ normal)
+        mask = residuals <= threshold
+        count = int(mask.sum())
+        if count < 3:
+            continue
+        score = (count, -float(np.median(residuals[mask])))
+        if best_score is None or score > best_score:
+            best_score = score
+            best_mask = mask
+    minimum_count = max(8, int(math.ceil(len(points) * minimum_inlier_fraction)))
+    if best_mask is None or int(best_mask.sum()) < minimum_count:
+        return points, {
+            "mode": "planar_ransac_rejected_too_few_inliers",
+            "input_points": int(len(points)),
+            "kept_points": int(len(points)),
+            "candidate_kept_points": int(best_mask.sum()) if best_mask is not None else 0,
+            "kept_fraction": 1.0,
+            "distance_threshold": threshold,
+            "iterations": int(iterations),
+            "minimum_inlier_fraction": minimum_inlier_fraction,
+        }
+
+    # Refit once from the consensus set, then classify with that refined plane.
+    consensus = points[best_mask]
+    origin = consensus.mean(axis=0)
+    _, _, right_vectors = np.linalg.svd(consensus - origin, full_matrices=False)
+    normal = right_vectors[-1]
+    residuals = np.abs((points - origin) @ normal)
+    refined_mask = residuals <= threshold
+    if int(refined_mask.sum()) >= minimum_count:
+        consensus = points[refined_mask]
+        origin = consensus.mean(axis=0)
+        _, _, right_vectors = np.linalg.svd(consensus - origin, full_matrices=False)
+        normal = right_vectors[-1]
+        residuals = np.abs((points - origin) @ normal)
+        refined_mask = residuals <= threshold
+        consensus = points[refined_mask]
+    if len(consensus) < minimum_count:
+        return points, {
+            "mode": "planar_ransac_rejected_after_refit",
+            "input_points": int(len(points)),
+            "kept_points": int(len(points)),
+            "candidate_kept_points": int(len(consensus)),
+            "kept_fraction": 1.0,
+            "distance_threshold": threshold,
+            "iterations": int(iterations),
+            "minimum_inlier_fraction": minimum_inlier_fraction,
+        }
+    basis, _ = pca_basis(consensus)
+    local = (consensus - consensus.mean(axis=0)) @ basis
+    local_min, local_max = robust_bounds(local, 96.0)
+    extents = safe_extents(local_min, local_max)
+    thickness_ratio = float(extents[2] / max(extents[0], extents[1], 1e-5))
+    return consensus, {
+        "mode": "planar_ransac_consensus",
+        "input_points": int(len(points)),
+        "kept_points": int(len(consensus)),
+        "kept_fraction": float(len(consensus) / max(1, len(points))),
+        "distance_threshold": threshold,
+        "iterations": int(iterations),
+        "minimum_inlier_fraction": minimum_inlier_fraction,
+        "refit_plane_origin": origin.tolist(),
+        "refit_plane_normal": normal.tolist(),
+        "median_inlier_residual": float(np.median(residuals[refined_mask])),
+        "robust_pca_extents": extents.tolist(),
+        "planar_thickness_ratio": thickness_ratio,
+    }
+
+
 def pca_basis(points: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     centered = points - points.mean(axis=0, keepdims=True)
     covariance = np.cov(centered.T)
@@ -242,11 +385,17 @@ def replacement_for_job(job: dict[str, Any], asset_root: Path, bounds_percentile
     }
     initial_basis, initial_eigenvalues = pca_basis(source_points)
     if category_key in PLANAR_CATEGORIES:
-        placement_points, placement_filter = planar_inlier_points(
+        placement_points, placement_filter = planar_ransac_consensus_points(
             source_points,
-            initial_basis,
-            bounds_percentile=bounds_percentile,
         )
+        if placement_filter["mode"] != "planar_ransac_consensus":
+            placement_points, pca_filter = planar_inlier_points(
+                source_points,
+                initial_basis,
+                bounds_percentile=bounds_percentile,
+            )
+            pca_filter["ransac_attempt"] = placement_filter
+            placement_filter = pca_filter
     target_min, target_max = robust_bounds(placement_points, bounds_percentile)
     target_center = (target_min + target_max) / 2.0
     target_extents = safe_extents(target_min, target_max)

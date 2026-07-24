@@ -181,3 +181,37 @@ def test_source_camera_silhouette_excludes_verified_occluder(tmp_path: Path) -> 
     assert result["metrics"]["mask_iou"] == 1.0
     assert result["metrics"]["rendered_occluded_pixels"] > 0
     assert result["sources"]["occluder_masks"][0]["pixels"] > 0
+
+
+def test_projection_respects_explicit_principal_point(tmp_path: Path) -> None:
+    cameras_path = tmp_path / "cameras.json"
+    cameras_path.write_text(
+        json.dumps(
+            [
+                {
+                    "img_name": "000001",
+                    "width": 200,
+                    "height": 160,
+                    "position": [0, 0, 0],
+                    "rotation": [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+                    "fx": 100,
+                    "fy": 100,
+                    "cx": 64,
+                    "cy": 101,
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    camera = load_camera(cameras_path, "000001")
+    rendered = project_mesh_silhouette(
+        trimesh.creation.box(extents=(1.0, 1.0, 0.5)),
+        runtime_pivot=np.asarray([0.0, 0.0, 5.0]),
+        camera=camera,
+    )
+    y, x = np.nonzero(rendered)
+
+    assert camera["cx"] == 64
+    assert camera["cy"] == 101
+    assert abs(float(x.mean()) - 64) < 1.0
+    assert abs(float(y.mean()) - 101) < 1.0

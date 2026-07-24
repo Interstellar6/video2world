@@ -239,6 +239,26 @@ def test_planar_replacement_filters_densest_source_slab(tmp_path: Path) -> None:
         tmp_path / "assets",
         bounds_percentile=96.0,
     )
-    assert plan["placement_source_filter"]["mode"] == "planar_pca_densest_slab"
+    assert plan["placement_source_filter"]["mode"] == "planar_ransac_consensus"
     assert plan["placement_source_filter"]["kept_points"] == len(plane_points)
     assert plan["planar_thickness_ratio"] < 0.18
+
+
+def test_planar_ransac_recovers_a_plane_without_rotating_toward_far_background() -> None:
+    generator = np.random.default_rng(7)
+    xy = generator.uniform(-2.0, 2.0, size=(600, 2))
+    plane = np.column_stack((xy, generator.normal(0.0, 0.015, size=len(xy))))
+    background = generator.uniform(-3.0, 3.0, size=(180, 3))
+    background[:, 2] += 6.0
+
+    filtered, report = replacement.planar_ransac_consensus_points(
+        np.vstack((plane, background)),
+        iterations=2000,
+        distance_threshold=0.08,
+    )
+
+    assert report["mode"] == "planar_ransac_consensus"
+    assert len(filtered) >= 580
+    assert report["planar_thickness_ratio"] < 0.05
+    normal = np.asarray(report["refit_plane_normal"])
+    assert abs(normal[2]) > 0.98
