@@ -185,3 +185,60 @@ def test_planar_replacement_warns_for_thick_source_cloud(tmp_path: Path) -> None
     )
     assert plan["status"] == "planned_with_warnings"
     assert plan["warnings"]
+
+
+def test_planar_replacement_filters_densest_source_slab(tmp_path: Path) -> None:
+    plane_points = [
+        (x * 0.2, y * 0.2, 0.0)
+        for x in range(-5, 5)
+        for y in range(-2, 2)
+    ]
+    background_points = [(x * 0.2, 0.0, 4.0) for x in range(-5, 5)]
+    points = plane_points + background_points
+    cloud_path = tmp_path / "window_with_background_cloud.ply"
+    cloud_path.write_text(
+        "\n".join(
+            [
+                "ply",
+                "format ascii 1.0",
+                f"element vertex {len(points)}",
+                "property float x",
+                "property float y",
+                "property float z",
+                "end_header",
+                *[f"{x} {y} {z}" for x, y, z in points],
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    asset_dir = tmp_path / "assets" / "gdino_object_window"
+    asset_dir.mkdir(parents=True)
+    obj_path = asset_dir / "asset_pbr.obj"
+    obj_path.write_text(
+        "\n".join(
+            [
+                "v -0.5 -0.5 -0.05",
+                "v 0.5 -0.5 -0.05",
+                "v -0.5 0.5 0.05",
+                "v 0.5 0.5 0.05",
+                "f 1 2 3",
+                "f 2 4 3",
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    plan = replacement.replacement_for_job(
+        {
+            "object_id": "gdino_object_window",
+            "category": "window",
+            "source_point_cloud": str(cloud_path),
+            "generated_asset": str(obj_path),
+        },
+        tmp_path / "assets",
+        bounds_percentile=96.0,
+    )
+    assert plan["placement_source_filter"]["mode"] == "planar_pca_densest_slab"
+    assert plan["placement_source_filter"]["kept_points"] == len(plane_points)
+    assert plan["planar_thickness_ratio"] < 0.18

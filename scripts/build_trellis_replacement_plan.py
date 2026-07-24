@@ -85,6 +85,73 @@ def robust_pca_bounds(points: np.ndarray, basis: np.ndarray, percentile: float) 
     return local_min, local_max, scene_center
 
 
+def planar_inlier_points(
+    points: np.ndarray,
+    basis: np.ndarray,
+    *,
+    bounds_percentile: float,
+    maximum_thickness_ratio: float = 0.12,
+    minimum_inlier_fraction: float = 0.15,
+) -> tuple[np.ndarray, dict[str, Any]]:
+    origin = points.mean(axis=0)
+    local = (points - origin) @ basis
+    local_min, local_max = robust_bounds(local, bounds_percentile)
+    local_extents = safe_extents(local_min, local_max)
+    in_plane_extent = float(max(local_extents[0], local_extents[1], 1e-5))
+    full_thickness = float(local_extents[2])
+    target_width = max(in_plane_extent * maximum_thickness_ratio, 1e-5)
+    if full_thickness <= target_width:
+        return points, {
+            "mode": "planar_pca_slab_not_needed",
+            "input_points": int(len(points)),
+            "kept_points": int(len(points)),
+            "kept_fraction": 1.0,
+            "target_slab_width": target_width,
+            "full_robust_thickness": full_thickness,
+            "maximum_thickness_ratio": maximum_thickness_ratio,
+        }
+
+    z = local[:, 2]
+    order = np.argsort(z)
+    sorted_z = z[order]
+    best_start = 0
+    best_end = 0
+    end = 0
+    for start in range(len(sorted_z)):
+        while end < len(sorted_z) and sorted_z[end] - sorted_z[start] <= target_width:
+            end += 1
+        if end - start > best_end - best_start:
+            best_start, best_end = start, end
+    selected = order[best_start:best_end]
+    minimum_count = max(8, int(math.ceil(len(points) * minimum_inlier_fraction)))
+    if len(selected) < minimum_count:
+        return points, {
+            "mode": "planar_pca_slab_rejected_too_few_inliers",
+            "input_points": int(len(points)),
+            "kept_points": int(len(points)),
+            "candidate_kept_points": int(len(selected)),
+            "kept_fraction": 1.0,
+            "candidate_kept_fraction": float(len(selected) / max(1, len(points))),
+            "target_slab_width": target_width,
+            "full_robust_thickness": full_thickness,
+            "minimum_inlier_fraction": minimum_inlier_fraction,
+            "maximum_thickness_ratio": maximum_thickness_ratio,
+        }
+    kept = points[np.sort(selected)]
+    return kept, {
+        "mode": "planar_pca_densest_slab",
+        "input_points": int(len(points)),
+        "kept_points": int(len(kept)),
+        "kept_fraction": float(len(kept) / max(1, len(points))),
+        "target_slab_width": target_width,
+        "full_robust_thickness": full_thickness,
+        "slab_min": float(sorted_z[best_start]),
+        "slab_max": float(sorted_z[best_end - 1]),
+        "maximum_thickness_ratio": maximum_thickness_ratio,
+        "minimum_inlier_fraction": minimum_inlier_fraction,
+    }
+
+
 def pca_basis(points: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     centered = points - points.mean(axis=0, keepdims=True)
     covariance = np.cov(centered.T)
@@ -165,19 +232,33 @@ def replacement_for_job(job: dict[str, Any], asset_root: Path, bounds_percentile
     source_cloud = Path(str(job["source_point_cloud"])).expanduser().resolve()
     asset_path = find_asset(asset_root.resolve(), object_id, job.get("generated_asset"))
     source_points = read_ascii_ply_xyz(source_cloud)
-    target_min, target_max = robust_bounds(source_points, bounds_percentile)
+    category_key = category.lower()
+    placement_points = source_points
+    placement_filter: dict[str, Any] = {
+        "mode": "all_source_points",
+        "input_points": int(len(source_points)),
+        "kept_points": int(len(source_points)),
+        "kept_fraction": 1.0,
+    }
+    initial_basis, initial_eigenvalues = pca_basis(source_points)
+    if category_key in PLANAR_CATEGORIES:
+        placement_points, placement_filter = planar_inlier_points(
+            source_points,
+            initial_basis,
+            bounds_percentile=bounds_percentile,
+        )
+    target_min, target_max = robust_bounds(placement_points, bounds_percentile)
     target_center = (target_min + target_max) / 2.0
     target_extents = safe_extents(target_min, target_max)
-    basis, eigenvalues = pca_basis(source_points)
+    basis, eigenvalues = pca_basis(placement_points)
     source_min, source_max, generated_stats = mesh_bounds(asset_path)
     source_center = (source_min + source_max) / 2.0
     source_extents = safe_extents(source_min, source_max)
-    category_key = category.lower()
 
     if category_key in PLANAR_CATEGORIES:
         rotation = planar_rotation_from_basis(basis)
         target_local_min, target_local_max, target_center = robust_pca_bounds(
-            source_points,
+            placement_points,
             basis,
             bounds_percentile,
         )
@@ -208,6 +289,8 @@ def replacement_for_job(job: dict[str, Any], asset_root: Path, bounds_percentile
         warnings.append(
             "planar_source_cloud_has_large_depth_thickness; likely includes through-window/background points"
         )
+    if placement_filter["kept_fraction"] < 0.5:
+        warnings.append("placement_uses_minor_planar_slab_subset_of_source_cloud")
     return {
         "object_id": object_id,
         "name": job.get("name"),
@@ -219,6 +302,7 @@ def replacement_for_job(job: dict[str, Any], asset_root: Path, bounds_percentile
         "source_frame_id": job.get("frame_id"),
         "source_image": job.get("source_image"),
         "target_bounds_percentile": float(bounds_percentile),
+        "placement_source_filter": placement_filter,
         "target_bounds": [target_min.tolist(), target_max.tolist()],
         "target_center": target_center.tolist(),
         "target_extents": target_extents.tolist(),
@@ -241,6 +325,8 @@ def replacement_for_job(job: dict[str, Any], asset_root: Path, bounds_percentile
         "world_from_asset": transform.tolist(),
         "pca_basis": basis.tolist(),
         "pca_eigenvalues": eigenvalues.tolist(),
+        "initial_pca_basis": initial_basis.tolist(),
+        "initial_pca_eigenvalues": initial_eigenvalues.tolist(),
         "front_back_audit_required": category_key in PLANAR_CATEGORIES,
         "warnings": warnings,
         "planar_thickness_ratio": planar_thickness_ratio,
