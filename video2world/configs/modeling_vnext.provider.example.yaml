@@ -1,0 +1,174 @@
+# Deployment-owned provider interface for modeling_vnext_pipeline.yaml. DINOv3
+# may be used as a feature encoder, but the proposal backend is GroundingDINO or
+# Qwen-VL. SAM3-I simple queries require geometry gates and fail back to SAM3.
+schema_version: "1.0"
+provider_id: video2world-modeling-vnext
+scope: generic_interface
+verification_status: requires_site_configuration
+notes:
+  - Each driver must emit real artifacts and the outer runner hash-binds every input and output.
+  - 3D-Fixer is an in-place completion backend, not the mesh repair/simplify/UV/CoACD stage.
+  - Qwen-VL physical values must remain unvalidated_estimate until metric calibration evidence exists.
+  - Clean-plate API credentials are process environment only and must never enter a receipt.
+  - SAM3-I complex queries remain fail-closed until a separate quality gate passes.
+source_repositories:
+  holi_spatial: Pin the deployed Holi-Spatial checkout.
+  pgsr: Pin the deployed PGSR checkout.
+  sam3: Pin the deployed SAM3 checkout used by the fallback route.
+  sam3_i: Pin the official SAM3-I checkout and a verified Stage 3 checkpoint.
+  stream3d: Pin the deployed Stream3D checkout.
+  trellis2: Pin the deployed TRELLIS.2 checkout.
+  sam3d: Pin the deployed SAM 3D Objects checkout.
+  hunyuan3d_2_1: Pin the deployed Hunyuan3D-2.1 checkout.
+  three_d_fixer: Pin the deployed 3D-Fixer checkout.
+stages:
+  ingest:
+    provider: Holi-Spatial scene ingest
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/ingest.py", --input-video, "{input_video}", --frames-manifest, "{output_frames_manifest}", --cameras, "{output_cameras}"]
+    input_roles: [video]
+    output_roles: [frames_manifest, cameras]
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/ingest.py", kind: file}
+      holi_root: {path: "${HOLI_ROOT}", kind: directory}
+  da3:
+    provider: Depth Anything 3 depth and point prior
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/da3.py", --frames-manifest, "{input_frames_manifest}", --cameras, "{input_cameras}", --depth-manifest, "{output_depth_manifest}", --point-prior, "{output_point_prior}"]
+    input_roles: [frames_manifest, cameras]
+    output_roles: [depth_manifest, point_prior]
+    timeout_seconds: 86400
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/da3.py", kind: file}
+      da3_root: {path: "${DA3_ROOT}", kind: directory}
+  pgsr:
+    provider: PGSR visual Gaussian and TSDF scene mesh
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/pgsr.py", --frames-manifest, "{input_frames_manifest}", --cameras, "{input_cameras}", --depth-manifest, "{input_depth_manifest}", --point-prior, "{input_point_prior}", --scene-gaussian, "{output_scene_gaussian}", --scene-mesh, "{output_scene_mesh}"]
+    input_roles: [frames_manifest, cameras, depth_manifest, point_prior]
+    output_roles: [scene_gaussian, scene_mesh]
+    timeout_seconds: 172800
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/pgsr.py", kind: file}
+      pgsr_root: {path: "${PGSR_ROOT}", kind: directory}
+  object_proposals:
+    provider: GroundingDINO or Qwen-VL object proposals with optional DINOv3 features
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/object_proposals.py", --frames-manifest, "{input_frames_manifest}", --cameras, "{input_cameras}", --scene-gaussian, "{input_scene_gaussian}", --output, "{output_object_proposals_manifest}"]
+    input_roles: [frames_manifest, cameras, scene_gaussian]
+    output_roles: [object_proposals_manifest]
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/object_proposals.py", kind: file}
+      proposal_root: {path: "${PROPOSAL_ROOT}", kind: directory}
+  qwen_contracts:
+    provider: Qwen-VL structured object descriptions and component prompts
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/qwen_contracts.py", --frames-manifest, "{input_frames_manifest}", --cameras, "{input_cameras}", --proposals, "{input_object_proposals_manifest}", --contracts, "{output_qwen_object_contracts_manifest}", --object-facts, "{output_object_facts}"]
+    input_roles: [frames_manifest, cameras, object_proposals_manifest]
+    output_roles: [qwen_object_contracts_manifest, object_facts]
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/qwen_contracts.py", kind: file}
+      qwen_model: {path: "${QWEN_MODEL_ROOT}", kind: directory}
+  component_segmentation:
+    provider: SAM3-I simple-query segmentation with proposal geometry gates and SAM3 fallback
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/component_segmentation.py", --frames-manifest, "{input_frames_manifest}", --cameras, "{input_cameras}", --proposals, "{input_object_proposals_manifest}", --contracts, "{input_qwen_object_contracts_manifest}", --sam3i-root, "${SAM3I_ROOT}", --sam3i-checkpoint, "${SAM3I_CHECKPOINT}", --sam3-root, "${SAM3_ROOT}", --sam3-checkpoint, "${SAM3_CHECKPOINT}", --sam3i-category, simple, --fallback, sam3, --output, "{output_component_masks_manifest}"]
+    input_roles: [frames_manifest, cameras, object_proposals_manifest, qwen_object_contracts_manifest]
+    output_roles: [component_masks_manifest]
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/component_segmentation.py", kind: file}
+      sam3i_root: {path: "${SAM3I_ROOT}", kind: directory}
+      sam3i_checkpoint: {path: "${SAM3I_CHECKPOINT}", kind: file, min_size_bytes: 1024}
+      sam3_root: {path: "${SAM3_ROOT}", kind: directory}
+      sam3_checkpoint: {path: "${SAM3_CHECKPOINT}", kind: file, min_size_bytes: 1024}
+  semantic_lifting:
+    provider: DA3 object lifting plus SAM3-to-PGSR semantic projection
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/semantic_lifting.py", --cameras, "{input_cameras}", --depth-manifest, "{input_depth_manifest}", --point-prior, "{input_point_prior}", --scene-gaussian, "{input_scene_gaussian}", --scene-mesh, "{input_scene_mesh}", --component-masks, "{input_component_masks_manifest}", --contracts, "{input_qwen_object_contracts_manifest}", --lifting-manifest, "{output_semantic_lifting_manifest}", --semantic-gaussian, "{output_semantic_gaussian}"]
+    input_roles: [cameras, depth_manifest, point_prior, scene_gaussian, scene_mesh, component_masks_manifest, qwen_object_contracts_manifest]
+    output_roles: [semantic_lifting_manifest, semantic_gaussian]
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/semantic_lifting.py", kind: file}
+      video2mesh_root: {path: "${VIDEO2MESH_ROOT}", kind: directory}
+  clean_plate:
+    provider: Object removal, Responses GPT Image 2 completion, and fresh DA3/PGSR/TSDF background
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/clean_plate.py", --frames-manifest, "{input_frames_manifest}", --cameras, "{input_cameras}", --depth-manifest, "{input_depth_manifest}", --point-prior, "{input_point_prior}", --scene-gaussian, "{input_scene_gaussian}", --scene-mesh, "{input_scene_mesh}", --component-masks, "{input_component_masks_manifest}", --lifting, "{input_semantic_lifting_manifest}", --image-provider, responses_image_generation, --responses-runner, "${RESPONSES_CLEAN_PLATE_RUNNER}", --controller-model, gpt-5.5, --reasoning-effort, xhigh, --image-model, gpt-image-2, --clean-scene-gaussian, "{output_clean_scene_gaussian}", --clean-scene-mesh, "{output_clean_scene_mesh}", --frames-output, "{output_final_clean_plate}", --manifest, "{output_clean_plate_manifest}", --report, "{output_clean_plate_report}"]
+    input_roles: [frames_manifest, cameras, depth_manifest, point_prior, scene_gaussian, scene_mesh, component_masks_manifest, semantic_lifting_manifest]
+    output_roles: [clean_scene_gaussian, clean_scene_mesh, final_clean_plate, clean_plate_manifest, clean_plate_report]
+    timeout_seconds: 604800
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/clean_plate.py", kind: file}
+      responses_runner: {path: "${RESPONSES_CLEAN_PLATE_RUNNER}", kind: file}
+      da3_root: {path: "${DA3_ROOT}", kind: directory}
+      pgsr_root: {path: "${PGSR_ROOT}", kind: directory}
+  component_assembly:
+    provider: Observed SAM3 component union with completion-only labels preserved
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/component_assembly.py", --frames-manifest, "{input_frames_manifest}", --contracts, "{input_qwen_object_contracts_manifest}", --component-masks, "{input_component_masks_manifest}", --lifting, "{input_semantic_lifting_manifest}", --output, "{output_component_assembly_manifest}"]
+    input_roles: [frames_manifest, qwen_object_contracts_manifest, component_masks_manifest, semantic_lifting_manifest]
+    output_roles: [component_assembly_manifest]
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/component_assembly.py", kind: file}
+  image_completion:
+    provider: Optional Responses GPT Image 2 complete-object reference images
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/image_completion.py", --contracts, "{input_qwen_object_contracts_manifest}", --assemblies, "{input_component_assembly_manifest}", --image-provider, responses_image_generation, --responses-runner, "${RESPONSES_OBJECT_COMPLETION_RUNNER}", --controller-model, gpt-5.5, --reasoning-effort, xhigh, --image-model, gpt-image-2, --output, "{output_image_completion_manifest}"]
+    input_roles: [qwen_object_contracts_manifest, component_assembly_manifest]
+    output_roles: [image_completion_manifest]
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/image_completion.py", kind: file}
+      responses_runner: {path: "${RESPONSES_OBJECT_COMPLETION_RUNNER}", kind: file}
+  object_completion:
+    provider: Stream3D/TRELLIS/TRELLIS2/SAM3D/Hunyuan3D/3D-Fixer candidate router
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/object_completion.py", --contracts, "{input_qwen_object_contracts_manifest}", --lifting, "{input_semantic_lifting_manifest}", --assemblies, "{input_component_assembly_manifest}", --image-completion, "{input_image_completion_manifest}", --output, "{output_object_completion_candidates_manifest}"]
+    input_roles: [qwen_object_contracts_manifest, semantic_lifting_manifest, component_assembly_manifest, image_completion_manifest]
+    output_roles: [object_completion_candidates_manifest]
+    timeout_seconds: 604800
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/object_completion.py", kind: file}
+      completion_models: {path: "${OBJECT_COMPLETION_MODELS_ROOT}", kind: directory}
+  mesh_postprocess:
+    provider: Mesh repair, simplify, UV/PBR texture baking, and CoACD
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/mesh_postprocess.py", --candidates, "{input_object_completion_candidates_manifest}", --lifting, "{input_semantic_lifting_manifest}", --assets, "{output_completed_object_assets_manifest}", --report, "{output_mesh_postprocess_manifest}"]
+    input_roles: [object_completion_candidates_manifest, semantic_lifting_manifest]
+    output_roles: [completed_object_assets_manifest, mesh_postprocess_manifest]
+    timeout_seconds: 172800
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/mesh_postprocess.py", kind: file}
+      coacd: {path: "${COACD_EXECUTABLE}", kind: executable}
+  physics_estimation:
+    provider: Qwen-VL prior with explicit unvalidated status or calibrated physics
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/physics_estimation.py", --assets, "{input_completed_object_assets_manifest}", --contracts, "{input_qwen_object_contracts_manifest}", --lifting, "{input_semantic_lifting_manifest}", --output, "{output_physics_manifest}"]
+    input_roles: [completed_object_assets_manifest, qwen_object_contracts_manifest, semantic_lifting_manifest]
+    output_roles: [physics_manifest]
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/physics_estimation.py", kind: file}
+      qwen_model: {path: "${QWEN_MODEL_ROOT}", kind: directory}
+  placement:
+    provider: Scene fit, support, collision, and physics sidecar binding
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/placement.py", --scene-gaussian, "{input_clean_scene_gaussian}", --scene-mesh, "{input_clean_scene_mesh}", --assets, "{input_completed_object_assets_manifest}", --lifting, "{input_semantic_lifting_manifest}", --physics, "{input_physics_manifest}", --aligned-objects, "{output_aligned_objects_manifest}", --collisions, "{output_collision_manifest}"]
+    input_roles: [clean_scene_gaussian, clean_scene_mesh, completed_object_assets_manifest, semantic_lifting_manifest, physics_manifest]
+    output_roles: [aligned_objects_manifest, collision_manifest]
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/placement.py", kind: file}
+  bundle:
+    provider: Video2World world manifest compiler
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/bundle.py", --scene-gaussian, "{input_clean_scene_gaussian}", --scene-mesh, "{input_clean_scene_mesh}", --assets, "{input_completed_object_assets_manifest}", --object-facts, "{input_object_facts}", --aligned-objects, "{input_aligned_objects_manifest}", --collisions, "{input_collision_manifest}", --physics, "{input_physics_manifest}", --output, "{output_world_manifest}"]
+    input_roles: [clean_scene_gaussian, clean_scene_mesh, completed_object_assets_manifest, object_facts, aligned_objects_manifest, collision_manifest, physics_manifest]
+    output_roles: [world_manifest]
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/bundle.py", kind: file}
+  web:
+    provider: Video2World Web bundle compiler
+    command: ["${SITE_PYTHON}", "${SITE_DRIVERS_ROOT}/vnext/web.py", --world-manifest, "{input_world_manifest}", --output, "{output_web_bundle_manifest}"]
+    input_roles: [world_manifest]
+    output_roles: [web_bundle_manifest]
+    requires:
+      python: {path: "${SITE_PYTHON}", kind: executable}
+      driver: {path: "${SITE_DRIVERS_ROOT}/vnext/web.py", kind: file}

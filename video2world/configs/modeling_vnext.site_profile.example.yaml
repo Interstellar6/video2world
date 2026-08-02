@@ -1,0 +1,96 @@
+# Copy and pin every root before use. This profile only describes an executable
+# boundary; it does not claim that a scene or model backend has passed preflight.
+schema_version: "1.0"
+pipeline_id: modeling_vnext
+profile_id: video2world-modeling-vnext-site
+description: Holi/DA3/PGSR scene modeling plus component-aware multi-provider object completion.
+provider_environment:
+  SITE_PYTHON:
+    root_kind: artifact
+    root: envs
+    relative_path: video2world/bin/python
+    expected_kind: executable
+  SITE_DRIVERS_ROOT:
+    root_kind: checkout
+    root: site_drivers
+    expected_kind: directory
+  HOLI_ROOT:
+    root_kind: checkout
+    root: holi
+    expected_kind: directory
+  DA3_ROOT:
+    root_kind: checkout
+    root: da3
+    expected_kind: directory
+  PGSR_ROOT:
+    root_kind: checkout
+    root: pgsr
+    expected_kind: directory
+  PROPOSAL_ROOT:
+    root_kind: checkout
+    root: groundingdino
+    expected_kind: directory
+  QWEN_MODEL_ROOT:
+    root_kind: artifact
+    root: models
+    relative_path: Qwen-VL
+    expected_kind: directory
+  SAM3_ROOT:
+    root_kind: checkout
+    root: sam3
+    expected_kind: directory
+  SAM3_CHECKPOINT:
+    root_kind: artifact
+    root: models
+    relative_path: sam3/model.pt
+    expected_kind: file
+  SAM3I_ROOT:
+    root_kind: checkout
+    root: sam3_i
+    expected_kind: directory
+  SAM3I_CHECKPOINT:
+    root_kind: artifact
+    root: models
+    relative_path: sam3_i/sam3i_3.pt
+    expected_kind: file
+  RESPONSES_CLEAN_PLATE_RUNNER:
+    root_kind: checkout
+    root: video2world
+    relative_path: scripts/run_responses_clean_plate_batch.py
+    expected_kind: file
+  VIDEO2MESH_ROOT:
+    root_kind: checkout
+    root: video2mesh
+    expected_kind: directory
+  RESPONSES_OBJECT_COMPLETION_RUNNER:
+    root_kind: checkout
+    root: video2world
+    relative_path: scripts/run_responses_object_completion_batch.py
+    expected_kind: file
+  OBJECT_COMPLETION_MODELS_ROOT:
+    root_kind: artifact
+    root: models
+    relative_path: object-completion
+    expected_kind: directory
+  COACD_EXECUTABLE:
+    root_kind: artifact
+    root: tools
+    relative_path: coacd
+    expected_kind: executable
+stages:
+  ingest: {mode: execute, provider_stage: ingest}
+  da3: {mode: execute, provider_stage: da3}
+  pgsr: {mode: execute, provider_stage: pgsr}
+  object_proposals: {mode: execute, provider_stage: object_proposals}
+  qwen_contracts: {mode: execute, provider_stage: qwen_contracts}
+  component_segmentation: {mode: execute, provider_stage: component_segmentation}
+  semantic_lifting: {mode: execute, provider_stage: semantic_lifting}
+  clean_plate: {mode: execute, provider_stage: clean_plate}
+  component_assembly: {mode: execute, provider_stage: component_assembly}
+  image_completion: {mode: execute, provider_stage: image_completion}
+  object_completion: {mode: execute, provider_stage: object_completion}
+  mesh_postprocess: {mode: execute, provider_stage: mesh_postprocess}
+  physics_estimation: {mode: execute, provider_stage: physics_estimation}
+  placement: {mode: execute, provider_stage: placement}
+  bundle: {mode: execute, provider_stage: bundle}
+  web: {mode: execute, provider_stage: web}

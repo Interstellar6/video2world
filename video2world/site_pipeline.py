@@ -78,6 +78,8 @@ CANONICAL_STAGE_INPUTS: dict[str, dict[str, str]] = {
     },
     "fusion": {
         "cameras": "{ingest_cameras}",
+        "depth_manifest": "{da3_depth_manifest}",
+        "point_prior": "{da3_point_prior}",
         "scene_gaussian": "{pgsr_scene_gaussian}",
         "scene_mesh": "{pgsr_scene_mesh}",
         "masks_manifest": "{sam3_masks_manifest}",
@@ -127,6 +129,108 @@ CANONICAL_STAGE_INPUTS: dict[str, dict[str, str]] = {
         "collision_manifest": "{placement_collision_manifest}",
     },
     "web": {"world_manifest": "{bundle_world_manifest}"},
+}
+
+MODELING_VNEXT_STAGE_INPUTS: dict[str, dict[str, str]] = {
+    "ingest": {"video": "{input_video}"},
+    "da3": {
+        "frames_manifest": "{ingest_frames_manifest}",
+        "cameras": "{ingest_cameras}",
+    },
+    "pgsr": {
+        "frames_manifest": "{ingest_frames_manifest}",
+        "cameras": "{ingest_cameras}",
+        "depth_manifest": "{da3_depth_manifest}",
+        "point_prior": "{da3_point_prior}",
+    },
+    "object_proposals": {
+        "frames_manifest": "{ingest_frames_manifest}",
+        "cameras": "{ingest_cameras}",
+        "scene_gaussian": "{pgsr_scene_gaussian}",
+    },
+    "qwen_contracts": {
+        "frames_manifest": "{ingest_frames_manifest}",
+        "cameras": "{ingest_cameras}",
+        "object_proposals_manifest": "{object_proposals_object_proposals_manifest}",
+    },
+    "component_segmentation": {
+        "frames_manifest": "{ingest_frames_manifest}",
+        "cameras": "{ingest_cameras}",
+        "object_proposals_manifest": "{object_proposals_object_proposals_manifest}",
+        "qwen_object_contracts_manifest": "{qwen_contracts_qwen_object_contracts_manifest}",
+    },
+    "semantic_lifting": {
+        "cameras": "{ingest_cameras}",
+        "depth_manifest": "{da3_depth_manifest}",
+        "point_prior": "{da3_point_prior}",
+        "scene_gaussian": "{pgsr_scene_gaussian}",
+        "scene_mesh": "{pgsr_scene_mesh}",
+        "component_masks_manifest": "{component_segmentation_component_masks_manifest}",
+        "qwen_object_contracts_manifest": "{qwen_contracts_qwen_object_contracts_manifest}",
+    },
+    "clean_plate": {
+        "frames_manifest": "{ingest_frames_manifest}",
+        "cameras": "{ingest_cameras}",
+        "depth_manifest": "{da3_depth_manifest}",
+        "point_prior": "{da3_point_prior}",
+        "scene_gaussian": "{pgsr_scene_gaussian}",
+        "scene_mesh": "{pgsr_scene_mesh}",
+        "component_masks_manifest": "{component_segmentation_component_masks_manifest}",
+        "semantic_lifting_manifest": "{semantic_lifting_semantic_lifting_manifest}",
+    },
+    "component_assembly": {
+        "frames_manifest": "{ingest_frames_manifest}",
+        "qwen_object_contracts_manifest": "{qwen_contracts_qwen_object_contracts_manifest}",
+        "component_masks_manifest": "{component_segmentation_component_masks_manifest}",
+        "semantic_lifting_manifest": "{semantic_lifting_semantic_lifting_manifest}",
+    },
+    "image_completion": {
+        "qwen_object_contracts_manifest": "{qwen_contracts_qwen_object_contracts_manifest}",
+        "component_assembly_manifest": "{component_assembly_component_assembly_manifest}",
+    },
+    "object_completion": {
+        "qwen_object_contracts_manifest": "{qwen_contracts_qwen_object_contracts_manifest}",
+        "semantic_lifting_manifest": "{semantic_lifting_semantic_lifting_manifest}",
+        "component_assembly_manifest": "{component_assembly_component_assembly_manifest}",
+        "image_completion_manifest": "{image_completion_image_completion_manifest}",
+    },
+    "mesh_postprocess": {
+        "object_completion_candidates_manifest": (
+            "{object_completion_object_completion_candidates_manifest}"
+        ),
+        "semantic_lifting_manifest": "{semantic_lifting_semantic_lifting_manifest}",
+    },
+    "physics_estimation": {
+        "completed_object_assets_manifest": ("{mesh_postprocess_completed_object_assets_manifest}"),
+        "qwen_object_contracts_manifest": "{qwen_contracts_qwen_object_contracts_manifest}",
+        "semantic_lifting_manifest": "{semantic_lifting_semantic_lifting_manifest}",
+    },
+    "placement": {
+        "clean_scene_gaussian": "{clean_plate_clean_scene_gaussian}",
+        "clean_scene_mesh": "{clean_plate_clean_scene_mesh}",
+        "completed_object_assets_manifest": ("{mesh_postprocess_completed_object_assets_manifest}"),
+        "semantic_lifting_manifest": "{semantic_lifting_semantic_lifting_manifest}",
+        "physics_manifest": "{physics_estimation_physics_manifest}",
+    },
+    "bundle": {
+        "clean_scene_gaussian": "{clean_plate_clean_scene_gaussian}",
+        "clean_scene_mesh": "{clean_plate_clean_scene_mesh}",
+        "completed_object_assets_manifest": ("{mesh_postprocess_completed_object_assets_manifest}"),
+        "object_facts": "{qwen_contracts_object_facts}",
+        "aligned_objects_manifest": "{placement_aligned_objects_manifest}",
+        "collision_manifest": "{placement_collision_manifest}",
+        "physics_manifest": "{physics_estimation_physics_manifest}",
+    },
+    "web": {"world_manifest": "{bundle_world_manifest}"},
+}
+
+PIPELINE_STAGE_INPUTS = {
+    "canonical_v1": CANONICAL_STAGE_INPUTS,
+    "modeling_vnext": MODELING_VNEXT_STAGE_INPUTS,
+}
+PIPELINE_CONFIG_FILES = {
+    "canonical_v1": "default_pipeline.yaml",
+    "modeling_vnext": "modeling_vnext_pipeline.yaml",
 }
 
 
@@ -209,6 +313,7 @@ class SiteStageProfile(StrictModel):
 
 class SiteProfile(StrictModel):
     schema_version: Literal["1.0"]
+    pipeline_id: Literal["canonical_v1", "modeling_vnext"] = "canonical_v1"
     profile_id: str = Field(min_length=1, pattern=r"^[A-Za-z0-9_.-]+$")
     description: str = Field(min_length=1)
     provider_environment: dict[str, SitePathBinding] = Field(default_factory=dict)
@@ -266,6 +371,7 @@ class BoundSiteStage(StrictModel):
 class BoundSiteRun(StrictModel):
     schema_version: Literal["1.0"] = "1.0"
     kind: Literal["video2world.site_binding"] = "video2world.site_binding"
+    pipeline_id: Literal["canonical_v1", "modeling_vnext"] = "canonical_v1"
     profile_id: str
     profile_path: str
     profile_sha256: Sha256
@@ -305,9 +411,17 @@ def parse_root_assignments(values: list[str] | None, *, label: str) -> dict[str,
     return result
 
 
-def _load_default_pipeline() -> RunConfig:
-    resource = files("video2world").joinpath("configs/default_pipeline.yaml")
+def _load_pipeline_template(pipeline_id: str) -> RunConfig:
+    try:
+        filename = PIPELINE_CONFIG_FILES[pipeline_id]
+    except KeyError as exc:
+        raise ConfigurationError(f"unknown site pipeline_id: {pipeline_id}") from exc
+    resource = files("video2world").joinpath(f"configs/{filename}")
     return RunConfig.model_validate(yaml.safe_load(resource.read_text(encoding="utf-8")))
+
+
+def _load_default_pipeline() -> RunConfig:
+    return _load_pipeline_template("canonical_v1")
 
 
 def _validate_profile_stage_coverage(profile: SiteProfile, template: RunConfig) -> None:
@@ -318,7 +432,8 @@ def _validate_profile_stage_coverage(profile: SiteProfile, template: RunConfig) 
             "site profile must bind every canonical stage exactly once; "
             f"missing={sorted(expected - actual)}, extra={sorted(actual - expected)}"
         )
-    if set(CANONICAL_STAGE_INPUTS) != expected:
+    stage_inputs = PIPELINE_STAGE_INPUTS[profile.pipeline_id]
+    if set(stage_inputs) != expected:
         raise ConfigurationError("internal canonical input map differs from packaged pipeline")
 
 
@@ -376,13 +491,14 @@ def _contract_roles(
     canonical_stage_id: str,
     provider_stage_id: str,
     output_roles: set[str],
+    stage_inputs: dict[str, dict[str, str]],
 ) -> None:
     if provider_stage_id not in contract.stages:
         raise ConfigurationError(
             f"provider contract has no stage {provider_stage_id!r} for {canonical_stage_id}"
         )
     provider_stage = contract.stages[provider_stage_id]
-    expected_inputs = set(CANONICAL_STAGE_INPUTS[canonical_stage_id])
+    expected_inputs = set(stage_inputs[canonical_stage_id])
     if set(provider_stage.input_roles) != expected_inputs:
         raise ConfigurationError(
             f"provider input roles differ for {canonical_stage_id}; "
@@ -403,6 +519,7 @@ def _provider_command(
     *,
     driver_python: str,
     output_roles: set[str],
+    stage_inputs: dict[str, dict[str, str]],
 ) -> list[str]:
     command = [
         driver_python,
@@ -422,7 +539,7 @@ def _provider_command(
         "--value",
         "input_video={input_video}",
     ]
-    for role in CANONICAL_STAGE_INPUTS[stage_id]:
+    for role in stage_inputs[stage_id]:
         command.extend(["--input", f"{role}={{input_{role}}}"])
     for role in sorted(output_roles):
         command.extend(["--output", f"{role}={{output_{role}}}"])
@@ -451,7 +568,8 @@ def _bound_template(
     driver_python: Path,
     provider_environment: dict[str, str],
 ) -> RunConfig:
-    template = _load_default_pipeline()
+    template = _load_pipeline_template(profile.pipeline_id)
+    stage_inputs = PIPELINE_STAGE_INPUTS[profile.pipeline_id]
     _validate_profile_stage_coverage(profile, template)
     stages: dict[str, StageConfig] = {}
     binding_path = run_dir / ".video2world" / SITE_BINDING_NAME
@@ -463,11 +581,9 @@ def _bound_template(
         if base.adapter == "layered_completion":
             adoption_required_outputs.add("provider_receipt")
         outputs = {
-            role: path
-            for role, path in base.outputs.items()
-            if role in adoption_required_outputs
+            role: path for role, path in base.outputs.items() if role in adoption_required_outputs
         }
-        inputs = CANONICAL_STAGE_INPUTS[stage_id]
+        inputs = stage_inputs[stage_id]
         fingerprints = {"site_binding": str(binding_path)}
         if site_stage.mode == "execute":
             assert site_stage.provider_stage is not None
@@ -476,6 +592,7 @@ def _bound_template(
                 canonical_stage_id=stage_id,
                 provider_stage_id=site_stage.provider_stage,
                 output_roles=required_outputs,
+                stage_inputs=stage_inputs,
             )
             outputs["provider_receipt"] = f"{{run_dir}}/artifacts/{stage_id}/provider-receipt.json"
             fingerprints["provider_contract"] = str(provider_contract_path)
@@ -486,6 +603,7 @@ def _bound_template(
                 site_stage.provider_stage,
                 driver_python=str(driver_python),
                 output_roles=required_outputs,
+                stage_inputs=stage_inputs,
             )
             environment = provider_environment
         else:
@@ -546,7 +664,7 @@ def create_site_run(
     if not python.is_file() or not os.access(python, os.X_OK):
         raise ConfigurationError(f"site driver Python is not executable: {python}")
 
-    template = _load_default_pipeline()
+    template = _load_pipeline_template(profile.pipeline_id)
     _validate_profile_stage_coverage(profile, template)
     referenced_checkouts = {
         binding.root
@@ -636,6 +754,7 @@ def create_site_run(
         )
 
     binding = BoundSiteRun(
+        pipeline_id=profile.pipeline_id,
         profile_id=profile.profile_id,
         profile_path=str(profile_file),
         profile_sha256=sha256_file(profile_file)[0],
@@ -687,6 +806,8 @@ def _verify_binding_identity(binding: BoundSiteRun) -> None:
         if not Path(root.path).is_dir():
             raise ConfigurationError(f"bound {root.kind} root is unavailable: {root.path}")
     profile = load_site_profile(binding.profile_path)
+    if profile.pipeline_id != binding.pipeline_id:
+        raise ConfigurationError("site profile pipeline_id differs from the site binding")
     checkouts = {root.name: Path(root.path) for root in binding.roots if root.kind == "checkout"}
     artifacts = {root.name: Path(root.path) for root in binding.roots if root.kind == "artifact"}
     resolved_environment = {
@@ -708,7 +829,7 @@ def _validate_adoption_inputs(
     *,
     allow_deferred: bool,
 ) -> str:
-    expected_roles = set(CANONICAL_STAGE_INPUTS[stage_id])
+    expected_roles = set(orchestrator.config.stages[stage_id].inputs)
     provided_roles = set(adoption.expected_inputs)
     if provided_roles != expected_roles:
         raise ConfigurationError(
@@ -829,6 +950,7 @@ def preflight_site_run(
         "created_at": datetime.now(UTC).isoformat(),
         "run_id": orchestrator.config.run_id,
         "scene_id": orchestrator.config.scene_id,
+        "pipeline_id": binding.pipeline_id,
         "profile_id": binding.profile_id,
         "selected_stages": selected,
         "stages": reports,
@@ -916,6 +1038,7 @@ def run_site_pipeline(
                 {
                     "run_id": orchestrator.config.run_id,
                     "scene_id": orchestrator.config.scene_id,
+                    "pipeline_id": binding.pipeline_id,
                     "profile_id": binding.profile_id,
                     "selected_stages": selected,
                 }

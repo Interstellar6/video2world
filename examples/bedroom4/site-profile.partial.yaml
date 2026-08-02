@@ -3,8 +3,8 @@
 # completed run. In particular, layered_completion remains execute-only: the
 # current front-pillow candidate is not a full front-to-back peel/background run.
 # The old archive also lacks several canonical per-stage input hash receipts.
-# Fusion has a complete recovered input binding; other adopt entries intentionally
-# omit expected_inputs and remain blocked until their source receipts are recovered.
+# The historical fusion receipt does not bind its DA3 depth/point-prior inputs, so
+# fusion is recomputed instead of adopting an output with incomplete provenance.
 schema_version: "1.0"
 profile_id: bedroom4-partial-adoption-20260717
 description: Adopt verified legacy scene artifacts, then execute the missing canonical stages.
@@ -109,21 +109,7 @@ stages:
       masks_manifest: sam3_masks_scannetppv2_new/bedroom_4/mask_index.json
       captions_manifest: GroundingDINO-Scannetppv2/bedroom_4.json
     note: Real SAM3 mask index and category discovery output; no stable cross-frame instance IDs are claimed.
-  fusion:
-    mode: adopt
-    artifact_root: holi_run
-    source_run_id: holi_spatial_bedroom4_fresh_da3_sam3_pgsr_20260714_184217
-    source_repository: Video2Mesh projection fusion
-    outputs:
-      object_clouds_manifest: video2mesh/simulator_assets/object_masks_3d/object_mask_clouds.json
-      semantic_gaussian: video2mesh/simulator_assets/semantic_pgsr_30k_projected.ply
-    expected_inputs:
-      cameras: 89f7f4d3855dcf7a439de5556e82c9a5a61d7bc0c274c0289dac496e2d133330
-      scene_gaussian: 6b2b84b372d452f9fb70328d6fddb4bdc8dfebf8c2072c7a5b5d5985f5e54f13
-      scene_mesh: 1cd9faf084a51f3959cd19dfc3ef05fb2dba9d6e1cdca944bfbeba6c33a1859d
-      masks_manifest: 08a0bb11dab795cb77f1648a1d2b55cea9a722360710d5e711e055f5146dfa75
-      captions_manifest: 36c661081756e7dea08a3b10434d5c1752e6d1e6a6efcaf85446935a9941c5c5
-    note: Category-semantic Gaussian and per-object point-cloud manifest; not full instance-semantic truth.
+  fusion: {mode: execute, provider_stage: fusion}
   cognition:
     mode: adopt
     artifact_root: video2world_evidence

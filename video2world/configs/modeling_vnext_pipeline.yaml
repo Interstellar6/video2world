@@ -1,0 +1,190 @@
+# Video2World vNext modeling graph. Commands remain deployment-owned and are
+# attached through a modeling_vnext site profile and provider contract.
+schema_version: "1.0"
+run_id: initialized-by-cli
+scene_id: scene
+input_video: /absolute/path/to/input.mp4
+run_dir: /absolute/path/to/run
+variables: {}
+stages:
+  ingest:
+    adapter: holi_ingest
+    needs: []
+    command: null
+    inputs: {video: "{input_video}"}
+    outputs:
+      frames_manifest: "{run_dir}/artifacts/ingest/frames.json"
+      cameras: "{run_dir}/artifacts/ingest/cameras.json"
+  da3:
+    adapter: holi_da3
+    needs: [ingest]
+    command: null
+    inputs:
+      frames_manifest: "{ingest_frames_manifest}"
+      cameras: "{ingest_cameras}"
+    outputs:
+      depth_manifest: "{run_dir}/artifacts/da3/depth.json"
+      point_prior: "{run_dir}/artifacts/da3/point-prior.ply"
+  pgsr:
+    adapter: holi_pgsr
+    needs: [ingest, da3]
+    command: null
+    inputs:
+      frames_manifest: "{ingest_frames_manifest}"
+      cameras: "{ingest_cameras}"
+      depth_manifest: "{da3_depth_manifest}"
+      point_prior: "{da3_point_prior}"
+    outputs:
+      scene_gaussian: "{run_dir}/artifacts/pgsr/scene-gaussian.ply"
+      scene_mesh: "{run_dir}/artifacts/pgsr/tsdf-scene.ply"
+  object_proposals:
+    adapter: object_proposals
+    needs: [ingest, pgsr]
+    command: null
+    inputs:
+      frames_manifest: "{ingest_frames_manifest}"
+      cameras: "{ingest_cameras}"
+      scene_gaussian: "{pgsr_scene_gaussian}"
+    outputs:
+      object_proposals_manifest: "{run_dir}/artifacts/proposals/objects.json"
+  qwen_contracts:
+    adapter: qwen_object_contracts
+    needs: [ingest, object_proposals]
+    command: null
+    inputs:
+      frames_manifest: "{ingest_frames_manifest}"
+      cameras: "{ingest_cameras}"
+      object_proposals_manifest: "{object_proposals_object_proposals_manifest}"
+    outputs:
+      qwen_object_contracts_manifest: "{run_dir}/artifacts/qwen/object-contracts.json"
+      object_facts: "{run_dir}/artifacts/qwen/object-facts.json"
+  component_segmentation:
+    adapter: component_segmentation
+    needs: [ingest, object_proposals, qwen_contracts]
+    command: null
+    inputs:
+      frames_manifest: "{ingest_frames_manifest}"
+      cameras: "{ingest_cameras}"
+      object_proposals_manifest: "{object_proposals_object_proposals_manifest}"
+      qwen_object_contracts_manifest: "{qwen_contracts_qwen_object_contracts_manifest}"
+    outputs:
+      component_masks_manifest: "{run_dir}/artifacts/segmentation/components.json"
+  semantic_lifting:
+    adapter: semantic_lifting
+    needs: [da3, pgsr, qwen_contracts, component_segmentation]
+    command: null
+    inputs:
+      cameras: "{ingest_cameras}"
+      depth_manifest: "{da3_depth_manifest}"
+      point_prior: "{da3_point_prior}"
+      scene_gaussian: "{pgsr_scene_gaussian}"
+      scene_mesh: "{pgsr_scene_mesh}"
+      component_masks_manifest: "{component_segmentation_component_masks_manifest}"
+      qwen_object_contracts_manifest: "{qwen_contracts_qwen_object_contracts_manifest}"
+    outputs:
+      semantic_lifting_manifest: "{run_dir}/artifacts/lifting/objects.json"
+      semantic_gaussian: "{run_dir}/artifacts/lifting/semantic-gaussian.ply"
+  clean_plate:
+    adapter: clean_plate_reconstruction
+    needs: [ingest, da3, pgsr, component_segmentation, semantic_lifting]
+    command: null
+    inputs:
+      frames_manifest: "{ingest_frames_manifest}"
+      cameras: "{ingest_cameras}"
+      depth_manifest: "{da3_depth_manifest}"
+      point_prior: "{da3_point_prior}"
+      scene_gaussian: "{pgsr_scene_gaussian}"
+      scene_mesh: "{pgsr_scene_mesh}"
+      component_masks_manifest: "{component_segmentation_component_masks_manifest}"
+      semantic_lifting_manifest: "{semantic_lifting_semantic_lifting_manifest}"
+    outputs:
+      clean_scene_gaussian: "{run_dir}/artifacts/clean-plate/clean-scene-gaussian.ply"
+      clean_scene_mesh: "{run_dir}/artifacts/clean-plate/clean-scene-mesh.ply"
+      final_clean_plate: "{run_dir}/artifacts/clean-plate/frames"
+      clean_plate_manifest: "{run_dir}/artifacts/clean-plate/manifest.json"
+      clean_plate_report: "{run_dir}/artifacts/clean-plate/report.json"
+  component_assembly:
+    adapter: component_assembly
+    needs: [ingest, qwen_contracts, component_segmentation, semantic_lifting]
+    command: null
+    inputs:
+      frames_manifest: "{ingest_frames_manifest}"
+      qwen_object_contracts_manifest: "{qwen_contracts_qwen_object_contracts_manifest}"
+      component_masks_manifest: "{component_segmentation_component_masks_manifest}"
+      semantic_lifting_manifest: "{semantic_lifting_semantic_lifting_manifest}"
+    outputs:
+      component_assembly_manifest: "{run_dir}/artifacts/assembly/conditions.json"
+  image_completion:
+    adapter: image_completion
+    needs: [qwen_contracts, component_assembly]
+    command: null
+    inputs:
+      qwen_object_contracts_manifest: "{qwen_contracts_qwen_object_contracts_manifest}"
+      component_assembly_manifest: "{component_assembly_component_assembly_manifest}"
+    outputs:
+      image_completion_manifest: "{run_dir}/artifacts/image-completion/references.json"
+  object_completion:
+    adapter: object_completion_router
+    needs: [qwen_contracts, semantic_lifting, component_assembly, image_completion]
+    command: null
+    inputs:
+      qwen_object_contracts_manifest: "{qwen_contracts_qwen_object_contracts_manifest}"
+      semantic_lifting_manifest: "{semantic_lifting_semantic_lifting_manifest}"
+      component_assembly_manifest: "{component_assembly_component_assembly_manifest}"
+      image_completion_manifest: "{image_completion_image_completion_manifest}"
+    outputs:
+      object_completion_candidates_manifest: "{run_dir}/artifacts/object-completion/candidates.json"
+  mesh_postprocess:
+    adapter: mesh_postprocess
+    needs: [semantic_lifting, object_completion]
+    command: null
+    inputs:
+      object_completion_candidates_manifest: "{object_completion_object_completion_candidates_manifest}"
+      semantic_lifting_manifest: "{semantic_lifting_semantic_lifting_manifest}"
+    outputs:
+      completed_object_assets_manifest: "{run_dir}/artifacts/postprocess/object-assets.json"
+      mesh_postprocess_manifest: "{run_dir}/artifacts/postprocess/report.json"
+  physics_estimation:
+    adapter: physics_estimation
+    needs: [qwen_contracts, semantic_lifting, mesh_postprocess]
+    command: null
+    inputs:
+      completed_object_assets_manifest: "{mesh_postprocess_completed_object_assets_manifest}"
+      qwen_object_contracts_manifest: "{qwen_contracts_qwen_object_contracts_manifest}"
+      semantic_lifting_manifest: "{semantic_lifting_semantic_lifting_manifest}"
+    outputs:
+      physics_manifest: "{run_dir}/artifacts/physics/objects.json"
+  placement:
+    adapter: object_placement
+    needs: [clean_plate, semantic_lifting, mesh_postprocess, physics_estimation]
+    command: null
+    inputs:
+      clean_scene_gaussian: "{clean_plate_clean_scene_gaussian}"
+      clean_scene_mesh: "{clean_plate_clean_scene_mesh}"
+      completed_object_assets_manifest: "{mesh_postprocess_completed_object_assets_manifest}"
+      semantic_lifting_manifest: "{semantic_lifting_semantic_lifting_manifest}"
+      physics_manifest: "{physics_estimation_physics_manifest}"
+    outputs:
+      aligned_objects_manifest: "{run_dir}/artifacts/placement/aligned-objects.json"
+      collision_manifest: "{run_dir}/artifacts/placement/colliders.json"
+  bundle:
+    adapter: world_bundle
+    needs: [clean_plate, qwen_contracts, mesh_postprocess, physics_estimation, placement]
+    command: null
+    inputs:
+      clean_scene_gaussian: "{clean_plate_clean_scene_gaussian}"
+      clean_scene_mesh: "{clean_plate_clean_scene_mesh}"
+      completed_object_assets_manifest: "{mesh_postprocess_completed_object_assets_manifest}"
+      object_facts: "{qwen_contracts_object_facts}"
+      aligned_objects_manifest: "{placement_aligned_objects_manifest}"
+      collision_manifest: "{placement_collision_manifest}"
+      physics_manifest: "{physics_estimation_physics_manifest}"
+    outputs:
+      world_manifest: "{run_dir}/bundle/world.json"
+  web:
+    adapter: web_bundle
+    needs: [bundle]
+    command: null
+    inputs: {world_manifest: "{bundle_world_manifest}"}
+    outputs:
+      web_bundle_manifest: "{run_dir}/bundle/web-bundle.json"

@@ -687,6 +687,193 @@
       "title": "OrientedBounds3D",
       "type": "object"
     },
+    "PhysicalProperties": {
+      "additionalProperties": false,
+      "description": "Auditable physical metadata; VLM outputs remain unvalidated priors.",
+      "properties": {
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "density_kg_m3": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Density Kg M3"
+        },
+        "dimensions_m": {
+          "anyOf": [
+            {
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dimensions M"
+        },
+        "dynamic_friction": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dynamic Friction"
+        },
+        "evidence_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence Sha256"
+        },
+        "evidence_size_bytes": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence Size Bytes"
+        },
+        "evidence_uri": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence Uri"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        },
+        "mass_kg": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mass Kg"
+        },
+        "restitution": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Restitution"
+        },
+        "scale_basis": {
+          "enum": [
+            "scene_scale_estimate",
+            "category_prior",
+            "metric_calibrated"
+          ],
+          "title": "Scale Basis",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "qwen_vl_prior",
+            "category_prior",
+            "measured",
+            "material_database",
+            "simulation_calibrated",
+            "user_verified"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "static_friction": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Static Friction"
+        },
+        "status": {
+          "enum": [
+            "unvalidated_estimate",
+            "calibrated",
+            "validated"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "source",
+        "scale_basis",
+        "confidence"
+      ],
+      "title": "PhysicalProperties",
+      "type": "object"
+    },
     "ProvenanceRecord": {
       "additionalProperties": false,
       "properties": {
@@ -993,6 +1180,23 @@
           ],
           "default": null
         },
+        "collider_topology": {
+          "anyOf": [
+            {
+              "enum": [
+                "surface_bvh",
+                "closed_volume",
+                "convex_decomposition"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Collider Topology"
+        },
         "collision_topology": {
           "anyOf": [
             {
@@ -1060,6 +1264,17 @@
           ],
           "default": null,
           "title": "Parent Object Id"
+        },
+        "physics": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PhysicalProperties"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "quality_gates": {
           "$ref": "#/$defs/QualityGates"

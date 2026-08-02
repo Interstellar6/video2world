@@ -52,7 +52,7 @@ stages:
       captions_manifest: "{run_dir}/artifacts/sam3/captions.json"
   fusion:
     adapter: video2mesh_fusion
-    needs: [ingest, pgsr, sam3]
+    needs: [ingest, da3, pgsr, sam3]
     command: null
     cwd: "{run_dir}"
     outputs:

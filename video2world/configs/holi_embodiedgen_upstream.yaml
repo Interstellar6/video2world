@@ -192,7 +192,7 @@ stages:
       provider_receipt: "{run_dir}/artifacts/pgsr/provider-receipt.json"
   fusion:
     adapter: video2mesh_fusion
-    needs: [pgsr, sam3]
+    needs: [da3, pgsr, sam3]
     command:
       - "{provider_python}"
       - -m
@@ -209,6 +209,10 @@ stages:
       - --value
       - "scene_id={scene_id}"
       - --input
+      - "depth_manifest={da3_depth_manifest}"
+      - --input
+      - "point_prior={da3_point_prior}"
+      - --input
       - "scene_gaussian={pgsr_scene_gaussian}"
       - --input
       - "scene_mesh={pgsr_scene_mesh}"
@@ -224,6 +228,8 @@ stages:
       - "{output_provider_receipt}"
     cwd: "{run_dir}"
     inputs:
+      depth_manifest: "{da3_depth_manifest}"
+      point_prior: "{da3_point_prior}"
       scene_gaussian: "{pgsr_scene_gaussian}"
       scene_mesh: "{pgsr_scene_mesh}"
       masks_manifest: "{sam3_masks_manifest}"

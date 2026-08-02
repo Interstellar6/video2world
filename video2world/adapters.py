@@ -36,6 +36,16 @@ JSON_OUTPUT_ROLES = {
     "clean_plate_manifest",
     "provider_receipt",
     "web_bundle_manifest",
+    "object_proposals_manifest",
+    "qwen_object_contracts_manifest",
+    "component_masks_manifest",
+    "semantic_lifting_manifest",
+    "component_assembly_manifest",
+    "image_completion_manifest",
+    "object_completion_candidates_manifest",
+    "mesh_postprocess_manifest",
+    "physics_manifest",
+    "clean_plate_report",
 }
 PLY_OUTPUT_ROLES = {
     "point_prior",
@@ -70,6 +80,15 @@ SEMANTIC_JSON_ROLES = {
     "object_completion_report",
     "clean_plate_manifest",
     "provider_receipt",
+    "object_proposals_manifest",
+    "qwen_object_contracts_manifest",
+    "component_masks_manifest",
+    "semantic_lifting_manifest",
+    "component_assembly_manifest",
+    "image_completion_manifest",
+    "object_completion_candidates_manifest",
+    "mesh_postprocess_manifest",
+    "physics_manifest",
 }
 CLEAN_SCENE_PLY_ROLES = {"clean_scene_gaussian", "clean_scene_mesh"}
 LAYERED_COMPLETION_REQUIRED_INPUT_ROLES = {
@@ -309,9 +328,10 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             raise ValueError(
                 "provider receipt cannot compare scene_gaussian to semantic_gaussian paths"
             )
-        if Path(scene_gaussian_path).expanduser().resolve() == Path(
-            semantic_gaussian_path
-        ).expanduser().resolve():
+        if (
+            Path(scene_gaussian_path).expanduser().resolve()
+            == Path(semantic_gaussian_path).expanduser().resolve()
+        ):
             raise ValueError("semantic_gaussian path must differ from scene_gaussian input path")
         if scene_gaussian_input.get("sha256") == semantic_gaussian_input.get("sha256"):
             raise ValueError("semantic_gaussian must not reuse scene_gaussian input artifact")
@@ -323,9 +343,7 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             input_snapshot = inputs.get(input_role)
             output_snapshot = receipt_outputs.get(output_role)
             if not isinstance(input_snapshot, dict) or not isinstance(output_snapshot, dict):
-                raise ValueError(
-                    f"provider receipt cannot compare {input_role} to {output_role}"
-                )
+                raise ValueError(f"provider receipt cannot compare {input_role} to {output_role}")
             input_path = input_snapshot.get("path")
             output_path = output_snapshot.get("path")
             if not isinstance(input_path, str) or not isinstance(output_path, str):
@@ -453,10 +471,7 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
         if not isinstance(final_clean_plate_output, dict):
             raise ValueError("provider receipt has no final_clean_plate output")
         final_clean_plate_output_path = final_clean_plate_output.get("path")
-        if (
-            not isinstance(final_clean_plate_output_path, str)
-            or not final_clean_plate_output_path
-        ):
+        if not isinstance(final_clean_plate_output_path, str) or not final_clean_plate_output_path:
             raise ValueError("provider receipt has no final_clean_plate output path")
         if report.final_clean_plate.uri != final_clean_plate_output_path:
             raise ValueError(
@@ -464,8 +479,7 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
             )
         if (
             final_clean_plate_output.get("sha256") != report.final_clean_plate.sha256
-            or final_clean_plate_output.get("size_bytes")
-            != report.final_clean_plate.size_bytes
+            or final_clean_plate_output.get("size_bytes") != report.final_clean_plate.size_bytes
         ):
             raise ValueError("final_clean_plate report asset differs from provider receipt output")
         for role, report_asset in (
@@ -487,8 +501,7 @@ def _validate_layered_completion_lineage(outputs: dict[str, ArtifactSnapshot]) -
                 raise ValueError(f"{role} report asset differs from provider receipt output")
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError) as exc:
         raise ArtifactError(
-            "layered completion plan/receipt lineage validation failed: "
-            f"{report_path}: {exc}"
+            f"layered completion plan/receipt lineage validation failed: {report_path}: {exc}"
         ) from exc
 
 
@@ -582,6 +595,41 @@ def _validate_semantic_json(value: dict[str, Any] | list[Any], path: Path, role:
             LayeredCompletionExecutionReport.model_validate(value)
         elif role == "provider_receipt":
             _validate_provider_receipt(value)
+        elif role in {
+            "object_proposals_manifest",
+            "qwen_object_contracts_manifest",
+            "component_masks_manifest",
+            "semantic_lifting_manifest",
+            "component_assembly_manifest",
+            "image_completion_manifest",
+            "object_completion_candidates_manifest",
+            "mesh_postprocess_manifest",
+            "physics_manifest",
+        }:
+            from video2world.modeling import (
+                ComponentAssemblyManifest,
+                ComponentMasksManifest,
+                ImageCompletionManifest,
+                MeshPostprocessManifest,
+                ObjectCompletionCandidatesManifest,
+                ObjectProposalsManifest,
+                PhysicsManifest,
+                QwenObjectContractsManifest,
+                SemanticLiftingManifest,
+            )
+
+            model_by_role = {
+                "object_proposals_manifest": ObjectProposalsManifest,
+                "qwen_object_contracts_manifest": QwenObjectContractsManifest,
+                "component_masks_manifest": ComponentMasksManifest,
+                "semantic_lifting_manifest": SemanticLiftingManifest,
+                "component_assembly_manifest": ComponentAssemblyManifest,
+                "image_completion_manifest": ImageCompletionManifest,
+                "object_completion_candidates_manifest": ObjectCompletionCandidatesManifest,
+                "mesh_postprocess_manifest": MeshPostprocessManifest,
+                "physics_manifest": PhysicsManifest,
+            }
+            model_by_role[role].model_validate(value)
     except (TypeError, ValueError) as exc:
         raise ArtifactError(f"{role} failed semantic validation: {path}: {exc}") from exc
 
@@ -958,6 +1006,64 @@ ADAPTERS = {
             "embodiedgen_trellis",
             "EmbodiedGen V2/TRELLIS",
             frozenset({"object_assets_manifest"}),
+        ),
+        StageAdapter(
+            "object_proposals",
+            "GroundingDINO/Qwen proposal provider",
+            frozenset({"object_proposals_manifest"}),
+        ),
+        StageAdapter(
+            "qwen_object_contracts",
+            "Qwen-VL structured object and component contracts",
+            frozenset({"qwen_object_contracts_manifest", "object_facts"}),
+        ),
+        StageAdapter(
+            "component_segmentation",
+            "SAM3-I simple queries with geometry gates and SAM3 fallback",
+            frozenset({"component_masks_manifest"}),
+        ),
+        StageAdapter(
+            "semantic_lifting",
+            "DA3 instance lifting and SAM3-to-PGSR semantic projection",
+            frozenset({"semantic_lifting_manifest", "semantic_gaussian"}),
+        ),
+        StageAdapter(
+            "component_assembly",
+            "Observed component condition assembly",
+            frozenset({"component_assembly_manifest"}),
+        ),
+        StageAdapter(
+            "clean_plate_reconstruction",
+            "Object removal, image completion, and fresh DA3/PGSR/TSDF reconstruction",
+            frozenset(
+                {
+                    "clean_scene_gaussian",
+                    "clean_scene_mesh",
+                    "final_clean_plate",
+                    "clean_plate_manifest",
+                    "clean_plate_report",
+                }
+            ),
+        ),
+        StageAdapter(
+            "image_completion",
+            "Optional generated complete-object reference images",
+            frozenset({"image_completion_manifest"}),
+        ),
+        StageAdapter(
+            "object_completion_router",
+            "Stream3D/TRELLIS/TRELLIS2/SAM3D/Hunyuan3D/3D-Fixer",
+            frozenset({"object_completion_candidates_manifest"}),
+        ),
+        StageAdapter(
+            "mesh_postprocess",
+            "Mesh repair, simplify, UV/PBR baking, and CoACD",
+            frozenset({"completed_object_assets_manifest", "mesh_postprocess_manifest"}),
+        ),
+        StageAdapter(
+            "physics_estimation",
+            "Qwen-VL prior or calibrated physical sidecar",
+            frozenset({"physics_manifest"}),
         ),
         StageAdapter(
             "object_placement",

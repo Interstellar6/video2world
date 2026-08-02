@@ -111,6 +111,10 @@ stages:
     command:
       - "${VIDEO2MESH_PYTHON}"
       - "${VIDEO2WORLD_FUSION_DRIVER}"
+      - --depth-manifest
+      - "{input_depth_manifest}"
+      - --point-prior
+      - "{input_point_prior}"
       - --scene-gaussian
       - "{input_scene_gaussian}"
       - --scene-mesh
@@ -123,7 +127,7 @@ stages:
       - "{output_object_clouds_manifest}"
       - --semantic-gaussian
       - "{output_semantic_gaussian}"
-    input_roles: [scene_gaussian, scene_mesh, masks_manifest, captions_manifest]
+    input_roles: [depth_manifest, point_prior, scene_gaussian, scene_mesh, masks_manifest, captions_manifest]
     output_roles: [object_clouds_manifest, semantic_gaussian]
     requires:
       video2mesh_python: {path: "${VIDEO2MESH_PYTHON}", kind: executable}

@@ -1,0 +1,337 @@
+{
+  "claim_boundary": "This receipt records observed execution evidence across environments. It does not convert proxy, reused, partial, failed, blocked, or not-tested stages into a canonical world promotion.",
+  "created_at": "2026-08-02T11:13:46.507681+00:00",
+  "kind": "video2world.modeling_vnext_experiment_receipt",
+  "pipeline_id": "modeling_vnext",
+  "promotion_allowed": false,
+  "run_id": "bedroom4-fresh-vnext-20260802-130542",
+  "scene_id": "bedroom_4",
+  "schema_version": 1,
+  "source_spec": {
+    "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/modeling_vnext_experiment_spec.json",
+    "sha256": "d9b6d33a859a01b64e0d0588404f817f9d41be1312a4f6df8640487396a5c78f",
+    "size_bytes": 8593
+  },
+  "stages": [
+    {
+      "artifacts": [],
+      "notes": [
+        "Fresh run used the current 50-frame bedroom_4 input at 1280x720 with fixed frame order.",
+        "The full input tree remains on the isolated remote run; it is not represented by a fabricated local artifact."
+      ],
+      "stage_id": "ingest",
+      "status": "passed"
+    },
+    {
+      "artifacts": [],
+      "notes": [
+        "Fresh DA3 produced 50 depth maps and a 4,000,000-point prior on the remote run.",
+        "Remote pointcloud_da3.ply SHA-256 is 3595a1e1...; the large file was not copied into Git."
+      ],
+      "stage_id": "da3",
+      "status": "passed"
+    },
+    {
+      "artifacts": [],
+      "notes": [
+        "Fresh original-scene PGSR reached 30,000 iterations with L1 0.012239338 and PSNR 29.220133.",
+        "Fresh TSDF produced 1,837,796 vertices and 3,614,374 faces; visual 3DGS and static mesh roles remain separate."
+      ],
+      "stage_id": "pgsr",
+      "status": "passed"
+    },
+    {
+      "artifacts": [
+        {
+          "kind": "file",
+          "note": "Fresh GroundingDINO/Qwen proposal evidence; DINOv3 is not represented as a detector.",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/remote-audit/contracts/qwen_sam3_scene_inventory.json",
+          "role": "scene_inventory_and_boxes",
+          "sha256": "01dcd0f29cdbd5548cf0ab53b73ec5d58b2750e6ada0953e7febf5430c743da0",
+          "size_bytes": 6582
+        }
+      ],
+      "notes": [
+        "Bounding boxes came from GroundingDINO/Qwen contracts; DINOv3 remains an optional feature encoder."
+      ],
+      "stage_id": "object_proposals",
+      "status": "passed"
+    },
+    {
+      "artifacts": [
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/remote-audit/contracts/bed/qwen_bed_component_contract.json",
+          "role": "bed_component_contract",
+          "sha256": "e2855d095b7855c9aef74196f90eaa07ab95f01ceb771993eec7ae63adeffef9",
+          "size_bytes": 7212
+        },
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/remote-audit/contracts/nonbed/qwen_scene_object_contracts.json",
+          "role": "nonbed_object_contracts",
+          "sha256": "faa8e5184e3eabb69ee8e598fb4aa2d3e9e69766c73bd750e37607c38df45786",
+          "size_bytes": 13720
+        }
+      ],
+      "notes": [
+        "Contracts distinguish observed components from completion-only hypotheses and include generation prompts."
+      ],
+      "stage_id": "qwen_contracts",
+      "status": "passed"
+    },
+    {
+      "artifacts": [
+        {
+          "kind": "file",
+          "note": "Eleven SAM3-I outputs compared against the current SAM3/Qwen-box proxy.",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/sam3i/results/components_simple_metrics.json",
+          "role": "sam3i_simple_query_metrics",
+          "sha256": "200bf33d17be7742484099de66e34a47abdd6c5a25fde6fcd63168b6979be008",
+          "size_bytes": 4923
+        }
+      ],
+      "notes": [
+        "SAM3-I returned 11/11 masks, but only 6/11 reached proxy IoU 0.5; failed gates fall back to SAM3.",
+        "Complex instruction routing remains fail closed."
+      ],
+      "stage_id": "component_segmentation",
+      "status": "partial"
+    },
+    {
+      "artifacts": [
+        {
+          "kind": "file",
+          "note": "Observed 2D-to-3D fragments only; not amodal completed objects.",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/remote-audit/lifting/bedroom_4.json",
+          "role": "da3_instance_lifting_manifest",
+          "sha256": "e61ec626c56010844506c03fcde9a26049e185119d74db396fe9fc4f35699fba",
+          "size_bytes": 358376
+        }
+      ],
+      "notes": [
+        "DA3 depth lifting produced 116 cross-frame observed fragments across bed, nightstand, pillow, plant and window categories."
+      ],
+      "stage_id": "semantic_lifting",
+      "status": "passed"
+    },
+    {
+      "artifacts": [
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/gpt-image2/batch_responses/batch_receipt.json",
+          "role": "responses_batch_receipt",
+          "sha256": "f01cb1312fd0063f2d445aad6bfbefa87a8a5ea290b1ac47eaf9ff1f924ec291",
+          "size_bytes": 178735
+        },
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/gpt-image2/batch_responses/qa/automatic_metrics.json",
+          "role": "automatic_metrics",
+          "sha256": "117d4eed0e222a3c2bb15b64a263c6d88100882e5e00cf23c64d1046512bd43d",
+          "size_bytes": 28422
+        },
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/gpt-image2/batch_responses/qa/visual_review.json",
+          "role": "manual_visual_review",
+          "sha256": "36eb43ffa8589686f800c3b4b01f1f574389290af77695b72263d28ffbd7adea",
+          "size_bytes": 2256
+        }
+      ],
+      "notes": [
+        "Responses API used gpt-5.5 as controller and gpt-image-2 as image tool; no images/edits endpoint was used.",
+        "Fresh clean DA3/PGSR/TSDF completed, but full-frame redraw and blurry PGSR render forbid visual promotion."
+      ],
+      "stage_id": "clean_plate",
+      "status": "partial"
+    },
+    {
+      "artifacts": [
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/remote-audit/contracts/bed/qwen_bed_component_contract.json",
+          "role": "component_contract",
+          "sha256": "e2855d095b7855c9aef74196f90eaa07ab95f01ceb771993eec7ae63adeffef9",
+          "size_bytes": 7212
+        }
+      ],
+      "notes": [
+        "Assembly is observed_union_not_amodal and does not fill hidden backs, feet or undersides."
+      ],
+      "stage_id": "component_assembly",
+      "status": "partial"
+    },
+    {
+      "artifacts": [
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/object-image-completion/gpt-image2-responses/batch_receipt.json",
+          "role": "generated_reference_batch_receipt",
+          "sha256": "21350f49c99ca969608c6438ce2b04cb07928546909aaef9240822d75ee22aeb",
+          "size_bytes": 17494
+        },
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/object-image-completion/gpt-image2-responses/qa/visual_review.json",
+          "role": "generated_reference_visual_review",
+          "sha256": "fa06afc4fdfa821dfbe39634c1a7893a9af03ff8f4169a62dcad57f3b6c278f4",
+          "size_bytes": 2829
+        }
+      ],
+      "notes": [
+        "Five generated references were produced; only the pillow and nightstand were judged useful for downstream image-to-3D.",
+        "Generated references are hypotheses, not source observations."
+      ],
+      "stage_id": "image_completion",
+      "status": "partial"
+    },
+    {
+      "artifacts": [
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/backend-matrix/right_nightstand/visual_review.json",
+          "role": "observed_reference_backend_review",
+          "sha256": "c1bf2ea9e8c8ed817ed26e6155e43a80e6cfd7eb45eaac15aef218b08e426de4",
+          "size_bytes": 2357
+        },
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/generated-reference-trellis2/trellis2_asset_receipt.json",
+          "role": "generated_reference_trellis2_receipt",
+          "sha256": "4e1545cc4875b1a4211f2fa162d2b76209c79523450e24b2a7f64bfcb7f90a40",
+          "size_bytes": 11335
+        },
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/generated-reference-trellis2/visual_review.json",
+          "role": "generated_reference_trellis2_review",
+          "sha256": "d3820a1deb6b016b11e1421fba3dc9db47f19cfdcee28c4c0f1e3560b72f0462",
+          "size_bytes": 2001
+        }
+      ],
+      "notes": [
+        "Stream3D, TRELLIS, TRELLIS2, SAM3D and Hunyuan3D-2.1 produced readable candidates, but no candidate passed all shape, appearance and room gates.",
+        "Generated-reference TRELLIS2 improved shape completeness but its original provider receipt failed on six degenerate faces."
+      ],
+      "stage_id": "object_completion",
+      "status": "partial"
+    },
+    {
+      "artifacts": [
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/postprocess/right_nightstand/sam3d_observed_reference/coacd_receipt.json",
+          "role": "sam3d_coacd_receipt",
+          "sha256": "4ff2976d8a35b743a23c4dfd821f42ed75276c9bb174a33c40f3ee3f7eb94ffd",
+          "size_bytes": 15924
+        },
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/postprocess/right_nightstand/sam3d_observed_reference/visual_review.json",
+          "role": "sam3d_coacd_visual_review",
+          "sha256": "09d7440053664c462225ebb31002afe4c8b6b693be13de3c5c1c25709ca9d8ad",
+          "size_bytes": 2436
+        },
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/generated-reference-trellis2/repair_lod90k_qa.json",
+          "role": "trellis2_pbr_repair_qa",
+          "sha256": "6972aa3f5ae23755cd3a7196a052c37ab1ee09ac44ae19f1fc51b7c9f98b19b0",
+          "size_bytes": 8642
+        },
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/three-d-fixer/current_pillow/geometry_audit.json",
+          "role": "three_d_fixer_geometry_audit",
+          "sha256": "782ec57c0c4bb0c6b0a3e94eba468a43c6150880136abd1c0b0afa9af2034855",
+          "size_bytes": 2122
+        }
+      ],
+      "notes": [
+        "CoACD produced 32 watertight convex hulls for the SAM3D nightstand, but room runtime collision was not tested.",
+        "PBR-preserving TRELLIS2 repair removed degenerate faces and retained UV/material/textures; room alignment remains untested.",
+        "3D-Fixer official core geometry passed for the pillow, while the upstream preview/texture path did not close."
+      ],
+      "stage_id": "mesh_postprocess",
+      "status": "partial"
+    },
+    {
+      "artifacts": [
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/physics/qwen3vl8b/physics_manifest.json",
+          "role": "qwen3vl8b_physics_manifest",
+          "sha256": "f80dfd7becab6a3d128584346b9e1d275055862bfbf7b1fb610724a2b82d1d88",
+          "size_bytes": 5182
+        },
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/physics/visual_semantic_review.json",
+          "role": "physics_semantic_review",
+          "sha256": "b9fa55557ed9af124f17e9459705b9c452d8fc488a4374416d6726df665fc2b2",
+          "size_bytes": 2372
+        }
+      ],
+      "notes": [
+        "All Qwen-VL physical values remain unvalidated estimates; runtime dynamics are disabled."
+      ],
+      "stage_id": "physics_estimation",
+      "status": "partial"
+    },
+    {
+      "artifacts": [
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/placement/stream3d_pose/visual_review.json",
+          "role": "placement_visual_review",
+          "sha256": "5b112922ada6fd820215a50a3c6be662e3c4abe7f22f69abb8baa1e70d50c61c",
+          "size_bytes": 2721
+        },
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/placement/stream3d_pose/right_nightstand/room_pose_receipt.json",
+          "role": "nightstand_room_pose_receipt",
+          "sha256": "a5a731779adab5438578e92078a1eeaef6911d920518081c4109f12fa40e8d51",
+          "size_bytes": 5302
+        },
+        {
+          "kind": "file",
+          "path": "/Users/zhangyuxiang/Desktop/worksplace/video2world/tmp/bedroom4-fresh-vnext-20260802/placement/stream3d_pose/right_window/room_pose_receipt.json",
+          "role": "window_room_pose_receipt",
+          "sha256": "eb2f41738a74685b4df421c1d0e0f79bff4b9d2b9e6415026bc78305817f6064",
+          "size_bytes": 5251
+        }
+      ],
+      "notes": [
+        "Numerical placement gate passed only for the window; manual source-camera QA rejected all five objects, including the window false positive."
+      ],
+      "stage_id": "placement",
+      "status": "failed"
+    },
+    {
+      "artifacts": [],
+      "notes": [
+        "Canonical bundle is blocked by placement, appearance, physics calibration and runtime collision gates."
+      ],
+      "stage_id": "bundle",
+      "status": "blocked"
+    },
+    {
+      "artifacts": [],
+      "notes": [
+        "No promoted world bundle exists, so Web/runtime QA is intentionally not represented as passed."
+      ],
+      "stage_id": "web",
+      "status": "not_tested"
+    }
+  ],
+  "status": "experiment_recorded_pending_or_failed_gates",
+  "summary": {
+    "blocked": 1,
+    "failed": 1,
+    "not_tested": 1,
+    "partial": 7,
+    "passed": 6
+  }
+}

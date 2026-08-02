@@ -13,8 +13,10 @@ from pydantic import Field, model_validator
 from video2world.hashing import atomic_write_json, digest_json
 from video2world.models import (
     AssetRef,
+    ColliderTopology,
     CollisionTopology,
     LocalizedText,
+    PhysicalProperties,
     Sha256,
     StrictModel,
     validate_unified_pbr_glb_asset,
@@ -360,11 +362,14 @@ class CompletedObjectAsset(StrictModel):
     representation_mode: Literal[
         "unified_pbr_glb",
         "separate_render_and_collider",
+        "layered_visual_and_collider",
     ] = "separate_render_and_collider"
     unified_pbr_glb: AssetRef | None = None
     collision_topology: CollisionTopology | None = None
     render_mesh: AssetRef | None = None
     collider: AssetRef | None = None
+    collider_topology: ColliderTopology | None = None
+    physics: PhysicalProperties | None = None
     geometry_complete_verified: Literal[True] | None = None
     closed_surface_verified: bool | None = None
     object_gaussian: AssetRef | None = None
@@ -391,7 +396,9 @@ class CompletedObjectAsset(StrictModel):
                     "unified_pbr_glb representation requires geometry_complete_verified=true"
                 )
             validate_unified_pbr_glb_asset(self.unified_pbr_glb, self.collision_topology)
-        else:
+            if self.collider_topology is not None:
+                raise ValueError("unified_pbr_glb cannot declare collider_topology")
+        elif self.representation_mode == "separate_render_and_collider":
             if self.unified_pbr_glb is not None or self.collision_topology is not None:
                 raise ValueError(
                     "separate_render_and_collider cannot declare unified_pbr_glb or "
@@ -418,6 +425,45 @@ class CompletedObjectAsset(StrictModel):
                     raise ValueError(f"mesh-first object {name} has mismatched role {asset.role!r}")
                 if asset.status != "validated":
                     raise ValueError(f"mesh-first object {name} must be validated")
+        else:
+            if self.unified_pbr_glb is not None or self.collision_topology is not None:
+                raise ValueError(
+                    "layered_visual_and_collider cannot declare unified_pbr_glb or "
+                    "collision_topology"
+                )
+            if self.collider is None:
+                raise ValueError("layered_visual_and_collider requires collider")
+            if self.collider.status != "validated" or self.collider.role != "collider":
+                raise ValueError("layered_visual_and_collider requires a validated collider")
+            if not any((self.render_mesh, self.object_gaussian, self.object_point_cloud)):
+                raise ValueError(
+                    "layered_visual_and_collider requires render_mesh, object_gaussian, "
+                    "or object_point_cloud"
+                )
+            if self.geometry_complete_verified is not True:
+                raise ValueError(
+                    "layered_visual_and_collider requires geometry_complete_verified=true"
+                )
+            if self.render_mesh is not None:
+                if self.render_mesh.role != "render_mesh":
+                    raise ValueError(
+                        f"layered visual render_mesh has mismatched role {self.render_mesh.role!r}"
+                    )
+                if self.render_mesh.status != "validated":
+                    raise ValueError("layered visual render_mesh must be validated")
+        if (
+            self.representation_mode == "layered_visual_and_collider"
+            and self.collider_topology is None
+        ):
+            raise ValueError("layered_visual_and_collider requires collider_topology")
+        if self.collider is None and self.collider_topology is not None:
+            raise ValueError("collider_topology requires a separate collider asset")
+        if self.collider_topology == "convex_decomposition":
+            assert self.collider is not None
+            if self.collider.provenance.get("decomposition") != "coacd":
+                raise ValueError(
+                    "convex_decomposition requires collider provenance decomposition='coacd'"
+                )
         optional = {
             "object_gaussian": self.object_gaussian,
             "object_point_cloud": self.object_point_cloud,
@@ -446,6 +492,7 @@ class CompletedObjectAssetsManifest(StrictModel):
     representation_policy: Literal[
         "unified_pbr_glb_preferred_optional_gaussian",
         "mesh_first_optional_gaussian",
+        "layered_visual_with_explicit_collider",
     ] = "unified_pbr_glb_preferred_optional_gaussian"
     objects: list[CompletedObjectAsset] = Field(min_length=1)
 
@@ -461,15 +508,24 @@ class CompletedObjectAssetsManifest(StrictModel):
             raise ValueError("completed object completion_report_uri values must be unique")
         if self.representation_policy == "unified_pbr_glb_preferred_optional_gaussian":
             legacy_ids = [
-                item.id
-                for item in self.objects
-                if item.representation_mode != "unified_pbr_glb"
+                item.id for item in self.objects if item.representation_mode != "unified_pbr_glb"
             ]
             if legacy_ids:
                 raise ValueError(
                     "unified_pbr_glb_preferred_optional_gaussian requires "
                     "unified_pbr_glb representation for all completed objects: "
                     + ", ".join(legacy_ids)
+                )
+        if self.representation_policy == "layered_visual_with_explicit_collider":
+            nonlayered_ids = [
+                item.id
+                for item in self.objects
+                if item.representation_mode != "layered_visual_and_collider"
+            ]
+            if nonlayered_ids:
+                raise ValueError(
+                    "layered_visual_with_explicit_collider requires layered representation "
+                    "for all completed objects: " + ", ".join(nonlayered_ids)
                 )
         return self
 
@@ -562,14 +618,9 @@ def _geometry_review_rejection_summary(geometry_review: GeometryReview) -> str:
     )
     if failed_technical:
         details.append("failed_technical_gates=" + ",".join(failed_technical))
-    blocking_issues = [
-        issue for issue in geometry_review.issues if issue.severity == "blocking"
-    ]
+    blocking_issues = [issue for issue in geometry_review.issues if issue.severity == "blocking"]
     if blocking_issues:
-        details.append(
-            "blocking_issues="
-            + ",".join(issue.issue_type for issue in blocking_issues)
-        )
+        details.append("blocking_issues=" + ",".join(issue.issue_type for issue in blocking_issues))
         evidence_view_ids = sorted(
             {view_id for issue in blocking_issues for view_id in issue.evidence_view_ids}
         )
@@ -795,8 +846,7 @@ def _require_scoped_next_round_clean_plate(
 ) -> None:
     if evidence.acceptance_scope != NEXT_ROUND_CLEAN_PLATE_ACCEPTANCE_SCOPE:
         raise ValueError(
-            f"{context} acceptance_scope must equal "
-            f"{NEXT_ROUND_CLEAN_PLATE_ACCEPTANCE_SCOPE}"
+            f"{context} acceptance_scope must equal {NEXT_ROUND_CLEAN_PLATE_ACCEPTANCE_SCOPE}"
         )
     if evidence.lineage_scope != NEXT_ROUND_CLEAN_PLATE_LINEAGE_SCOPE:
         raise ValueError(
@@ -822,9 +872,7 @@ def _require_scoped_terminal_clean_plate(
             f"{context} acceptance_scope must equal {TERMINAL_CLEAN_PLATE_ACCEPTANCE_SCOPE}"
         )
     if evidence.lineage_scope != TERMINAL_CLEAN_PLATE_LINEAGE_SCOPE:
-        raise ValueError(
-            f"{context} lineage_scope must equal {TERMINAL_CLEAN_PLATE_LINEAGE_SCOPE}"
-        )
+        raise ValueError(f"{context} lineage_scope must equal {TERMINAL_CLEAN_PLATE_LINEAGE_SCOPE}")
     if evidence.corrected_full_pipeline is not True:
         raise ValueError(f"{context} must claim corrected full-pipeline completion")
     if evidence.promotion_approved is not True:
@@ -1053,9 +1101,7 @@ class LayeredCompletionRoundReceipt(StrictModel):
                 raise ValueError("object_layer receipts require object completion evidence")
             receipt_targets = [receipt.target_id for receipt in self.object_completion_receipts]
             if len(receipt_targets) != len(set(receipt_targets)):
-                raise ValueError(
-                    f"round {self.index} object completion receipts duplicate targets"
-                )
+                raise ValueError(f"round {self.index} object completion receipts duplicate targets")
             if set(receipt_targets) != set(self.target_ids):
                 raise ValueError(
                     f"round {self.index} object completion receipts must match target_ids"
@@ -1172,8 +1218,7 @@ class LayeredCompletionExecutionReport(StrictModel):
                 register_execution_receipt(
                     receipt,
                     context=(
-                        f"round {round_item.index} object_completion_receipts"
-                        f"[{receipt_index}]"
+                        f"round {round_item.index} object_completion_receipts[{receipt_index}]"
                     ),
                 )
             if round_item.background_rebuild_receipt is not None:

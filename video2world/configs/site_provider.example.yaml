@@ -136,6 +136,10 @@ stages:
       - "${SITE_DRIVERS_ROOT}/fusion.py"
       - --cameras
       - "{input_cameras}"
+      - --depth-manifest
+      - "{input_depth_manifest}"
+      - --point-prior
+      - "{input_point_prior}"
       - --scene-gaussian
       - "{input_scene_gaussian}"
       - --scene-mesh
@@ -148,7 +152,7 @@ stages:
       - "{output_object_clouds_manifest}"
       - --semantic-gaussian
       - "{output_semantic_gaussian}"
-    input_roles: [cameras, scene_gaussian, scene_mesh, masks_manifest, captions_manifest]
+    input_roles: [cameras, depth_manifest, point_prior, scene_gaussian, scene_mesh, masks_manifest, captions_manifest]
     output_roles: [object_clouds_manifest, semantic_gaussian]
     requires:
       site_python: {path: "${SITE_PYTHON}", kind: executable}

@@ -637,7 +637,8 @@ def test_checked_in_site_examples_cover_exact_canonical_contract() -> None:
     assert set(bedroom4.stages) == set(CANONICAL_STAGE_INPUTS)
     assert bedroom4.stages["layered_completion"].mode == "execute"
     assert bedroom4.stages["pgsr"].mode == "adopt"
-    assert set(bedroom4.stages["fusion"].expected_inputs) == set(CANONICAL_STAGE_INPUTS["fusion"])
+    assert bedroom4.stages["fusion"].mode == "execute"
+    assert bedroom4.stages["fusion"].provider_stage == "fusion"
     assert bedroom4.stages["ingest"].expected_inputs == {}
     for stage_id, inputs in CANONICAL_STAGE_INPUTS.items():
         assert set(contract.stages[stage_id].input_roles) == set(inputs)

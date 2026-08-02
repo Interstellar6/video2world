@@ -28,6 +28,7 @@ Matrix4 = tuple[
     float,
 ]
 CollisionTopology = Literal["surface_bvh", "closed_volume"]
+ColliderTopology = Literal["surface_bvh", "closed_volume", "convex_decomposition"]
 UNIFIED_PBR_GLB_MEDIA_TYPE = "model/gltf-binary"
 SURFACE_BVH_MAX_FACES = 100_000
 _VOLUME_CLAIM_PROVENANCE_KEYS = (
@@ -312,6 +313,69 @@ class InteractionPolicy(StrictModel):
         return self
 
 
+class PhysicalProperties(StrictModel):
+    """Auditable physical metadata; VLM outputs remain unvalidated priors."""
+
+    status: Literal["unvalidated_estimate", "calibrated", "validated"]
+    source: Literal[
+        "qwen_vl_prior",
+        "category_prior",
+        "measured",
+        "material_database",
+        "simulation_calibrated",
+        "user_verified",
+    ]
+    scale_basis: Literal["scene_scale_estimate", "category_prior", "metric_calibrated"]
+    dimensions_m: Vector3 | None = None
+    mass_kg: float | None = Field(default=None, gt=0)
+    density_kg_m3: float | None = Field(default=None, gt=0)
+    static_friction: float | None = Field(default=None, ge=0)
+    dynamic_friction: float | None = Field(default=None, ge=0)
+    restitution: float | None = Field(default=None, ge=0, le=1)
+    confidence: float = Field(ge=0, le=1)
+    evidence_uri: str | None = Field(default=None, min_length=1)
+    evidence_sha256: Sha256 | None = None
+    evidence_size_bytes: int | None = Field(default=None, gt=0)
+    limitations: list[str] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def validate_physical_claim(self) -> PhysicalProperties:
+        if self.dimensions_m is not None and any(value <= 0 for value in self.dimensions_m):
+            raise ValueError("physical dimensions_m must be positive")
+        if (
+            self.static_friction is not None
+            and self.dynamic_friction is not None
+            and self.dynamic_friction > self.static_friction
+        ):
+            raise ValueError("dynamic_friction cannot exceed static_friction")
+        if self.source in {"qwen_vl_prior", "category_prior"}:
+            if self.status != "unvalidated_estimate":
+                raise ValueError(
+                    "Qwen-VL/category-prior physics may only be an unvalidated_estimate"
+                )
+            if self.scale_basis == "metric_calibrated":
+                raise ValueError(
+                    "Qwen-VL/category-prior physics cannot claim metric_calibrated scale"
+                )
+        digest_fields = (self.evidence_sha256, self.evidence_size_bytes)
+        if any(value is not None for value in digest_fields):
+            if self.evidence_uri is None:
+                raise ValueError("physical evidence digest requires evidence_uri")
+            if self.evidence_sha256 is None or self.evidence_size_bytes is None:
+                raise ValueError(
+                    "physical evidence digest requires evidence_sha256 and evidence_size_bytes"
+                )
+        if self.status in {"calibrated", "validated"} and (
+            self.evidence_uri is None
+            or self.evidence_sha256 is None
+            or self.evidence_size_bytes is None
+        ):
+            raise ValueError(
+                "calibrated or validated physics requires hash-bound evidence"
+            )
+        return self
+
+
 class ObjectEvidence(StrictModel):
     source_frame_id: str | None = None
     source_image: AssetRef | None = None
@@ -346,6 +410,8 @@ class WorldObject(StrictModel):
     collider: AssetRef | None = None
     unified_pbr_glb: AssetRef | None = None
     collision_topology: CollisionTopology | None = None
+    collider_topology: ColliderTopology | None = None
+    physics: PhysicalProperties | None = None
     transform_scene_from_asset: SceneTransform | None = None
     relations: list[Relation] = Field(default_factory=list)
     quality_gates: QualityGates = Field(default_factory=QualityGates)
@@ -376,6 +442,8 @@ class WorldObject(StrictModel):
                     + ", ".join(separate_assets)
                 )
             validate_unified_pbr_glb_asset(self.unified_pbr_glb, self.collision_topology)
+            if self.collider_topology is not None:
+                raise ValueError("unified PBR GLB cannot declare collider_topology")
             if self.interaction.collision_enabled and self.collision_topology is None:
                 raise ValueError("collision-enabled unified PBR GLB requires collision_topology")
             if not self.interaction.collision_enabled and self.collision_topology is not None:
@@ -389,6 +457,18 @@ class WorldObject(StrictModel):
                 raise ValueError("visual-only interaction must not pass the collision gate")
         elif self.collision_topology is not None:
             raise ValueError("collision_topology requires unified_pbr_glb")
+        if self.collider_topology is not None:
+            if self.collider is None:
+                raise ValueError("collider_topology requires a separate collider asset")
+            if not self.interaction.collision_enabled:
+                raise ValueError("collider_topology requires collision_enabled=true")
+            if (
+                self.collider_topology == "convex_decomposition"
+                and self.collider.provenance.get("decomposition") != "coacd"
+            ):
+                raise ValueError(
+                    "convex_decomposition requires collider provenance decomposition='coacd'"
+                )
         enabled = (
             self.interaction.selectable
             or self.interaction.double_click_action != "none"
@@ -427,8 +507,7 @@ class WorldObject(StrictModel):
             if missing_report_gates:
                 raise ValueError(
                     "collision-enabled unified PBR GLB requires report_uri for passed "
-                    "scene placement and interaction gates: "
-                    + ", ".join(missing_report_gates)
+                    "scene placement and interaction gates: " + ", ".join(missing_report_gates)
                 )
             missing_report_digests = [
                 name
@@ -439,8 +518,7 @@ class WorldObject(StrictModel):
             if missing_report_digests:
                 raise ValueError(
                     "collision-enabled unified PBR GLB requires hash-bound reports for "
-                    "scene placement and interaction gates: "
-                    + ", ".join(missing_report_digests)
+                    "scene placement and interaction gates: " + ", ".join(missing_report_digests)
                 )
         if self.interaction.collision_enabled:
             if self.unified_pbr_glb is None and self.collider is None:
@@ -458,6 +536,15 @@ class WorldObject(StrictModel):
                 raise ValueError("visual-only interactive object must not declare a collider")
             if self.quality_gates.collision.status == "passed":
                 raise ValueError("visual-only interactive object must not pass the collision gate")
+        if self.interaction.physics_mode == "dynamic":
+            if self.physics is None:
+                raise ValueError("dynamic object requires a physics sidecar")
+            if self.physics.mass_kg is None:
+                raise ValueError("dynamic object physics requires mass_kg")
+            if self.physics.status == "unvalidated_estimate":
+                raise ValueError(
+                    "dynamic object physics cannot use an unvalidated estimate"
+                )
         return self
 
 
