@@ -53,7 +53,16 @@ def load_camera(path: Path, frame_id: str) -> dict[str, Any]:
     height = int(camera.get("height", 0))
     fx = float(camera.get("fx", 0))
     fy = float(camera.get("fy", 0))
-    if width <= 0 or height <= 0 or fx <= 0 or fy <= 0:
+    cx = float(camera.get("cx", width / 2))
+    cy = float(camera.get("cy", height / 2))
+    if (
+        width <= 0
+        or height <= 0
+        or fx <= 0
+        or fy <= 0
+        or not np.isfinite(cx)
+        or not np.isfinite(cy)
+    ):
         raise ValueError("camera intrinsics must be positive")
     return {
         "position": position,
@@ -62,6 +71,8 @@ def load_camera(path: Path, frame_id: str) -> dict[str, Any]:
         "height": height,
         "fx": fx,
         "fy": fy,
+        "cx": cx,
+        "cy": cy,
         "raw": camera,
     }
 
@@ -100,11 +111,11 @@ def project_mesh_silhouette(
     visible = depth > 1e-6
     projected = np.full((len(camera_points), 2), np.nan, dtype=np.float64)
     projected[visible, 0] = (
-        camera["fx"] * camera_points[visible, 0] / depth[visible] + camera["width"] / 2
+        camera["fx"] * camera_points[visible, 0] / depth[visible] + camera["cx"]
     )
     y_sign = 1.0 if image_y_axis == "down" else -1.0
     projected[visible, 1] = (
-        camera["height"] / 2 + y_sign * camera["fy"] * camera_points[visible, 1] / depth[visible]
+        camera["cy"] + y_sign * camera["fy"] * camera_points[visible, 1] / depth[visible]
     )
 
     canvas = Image.new("1", (camera["width"], camera["height"]), 0)

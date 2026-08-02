@@ -159,6 +159,37 @@ def test_extreme_target_extents_cannot_force_excessive_anisotropy() -> None:
     assert fit["scale_anisotropy_ratio"] <= maximum_anisotropy + 1e-12
 
 
+def test_target_extent_scale_initialization_preserves_planar_aspect_ratio() -> None:
+    source_extents = np.asarray([1.0, 0.2, 1.0])
+    target = {
+        "center": np.zeros(3),
+        "axes_columns": np.eye(3),
+        "extents": np.asarray([12.0, 0.6, 5.0]),
+    }
+    canonical_vertices = trimesh.bounds.corners(
+        np.asarray([-source_extents / 2.0, source_extents / 2.0])
+    )
+
+    _, fit = _candidate_matrix(
+        permutation=np.eye(3),
+        parameters=np.zeros(9),
+        source_extents=source_extents,
+        target=target,
+        canonical_vertices=canonical_vertices,
+        initial_scale_mode="target_extents",
+        maximum_scale_multiplier=1.35,
+        maximum_scale_anisotropy=32.0,
+        maximum_rotation_radians=np.radians(15.0),
+        maximum_translation_ratio=0.2,
+        support=None,
+        front=None,
+    )
+
+    assert fit["initial_scale_mode"] == "target_extents"
+    np.testing.assert_allclose(fit["initial_scale_xyz"], [12.0, 3.0, 5.0], atol=1e-12)
+    np.testing.assert_allclose(fit["scale_xyz"], [12.0, 3.0, 5.0], atol=1e-12)
+
+
 def test_candidate_reports_semantic_up_alignment_after_axis_permutation() -> None:
     source_extents = np.asarray([1.0, 2.0, 3.0])
     target = {
