@@ -1,0 +1,259 @@
+{
+  "description": "The complete recipe with the background branch left in place and the completion module left to the opt-in learned 3D-Fixer provider: run it through scripts/three_d_fixer_cli.py, which registers observed_context_completion in place of geometry_completion, and pass --skip-bg-recon to skip clean_plate, background_reconstruction and scene_recomposition at run time. Every stage argument is identical to profiles/seetacloud.json.",
+  "pipeline": [
+    "scene_reconstruction",
+    "scene_understanding",
+    "component_segmentation",
+    "object_lifting",
+    "clean_plate",
+    "background_reconstruction",
+    "component_assembly",
+    "orbit_video",
+    "observed_context_completion",
+    "mesh_postprocess",
+    "physics_estimation",
+    "scene_recomposition"
+  ],
+  "profile_id": "video2world-modeling.three-d-fixer.skipbg",
+  "providers": {
+    "background_reconstruction": {
+      "command": [
+        "/usr/bin/env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/root/miniconda3/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/background_reconstruction.py",
+        "--task-dir",
+        "{task_dir}",
+        "--inputs",
+        "{inputs_json}",
+        "--outputs",
+        "{outputs_json}",
+        "--da3-source",
+        "/autodl-fs/data/video2world/code-external/Depth-Anything-3/src",
+        "--da3-model",
+        "/autodl-fs/data/models/depth-anything/DA3NESTED-GIANT-LARGE",
+        "--da3-python-path",
+        "/autodl-fs/data/video2world/python-packages/da3",
+        "--da3-resolution",
+        "504",
+        "--da3-batch-size",
+        "8",
+        "--pgsr-source",
+        "/root/autodl-tmp/bedroom4-holi-scene-orbits-20260830/pgsr_compat_code",
+        "--pgsr-python",
+        "/root/miniconda3/bin/python",
+        "--pgsr-python-path",
+        "/root/autodl-tmp/video2world-runtime/pytorch3d-py312-cu124",
+        "--pgsr-iterations",
+        "6000",
+        "--max-frames",
+        "0"
+      ],
+      "kind": "command"
+    },
+    "clean_plate": {
+      "command": [
+        "/root/miniconda3/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/clean_plate.py",
+        "--task-dir",
+        "{task_dir}",
+        "--inputs",
+        "{inputs_json}",
+        "--outputs",
+        "{outputs_json}",
+        "--endpoint",
+        "https://plbbl.com/v1/responses",
+        "--token-env",
+        "PLBBL_API_KEY",
+        "--controller",
+        "gpt-5.5",
+        "--model",
+        "gpt-image-2",
+        "--reasoning-effort",
+        "xhigh",
+        "--size",
+        "source",
+        "--max-api-requests",
+        "0"
+      ],
+      "kind": "command"
+    },
+    "component_assembly": {
+      "command": [
+        "/root/miniconda3/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/component_assembly.py",
+        "--task-dir",
+        "{task_dir}",
+        "--inputs",
+        "{inputs_json}",
+        "--outputs",
+        "{outputs_json}"
+      ],
+      "kind": "command"
+    },
+    "component_segmentation": {
+      "command": [
+        "/usr/bin/env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/root/autodl-tmp/envs/sam3i-py312/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/sam3_components.py",
+        "--task-dir",
+        "{task_dir}",
+        "--inputs",
+        "{inputs_json}",
+        "--outputs",
+        "{outputs_json}",
+        "--source-root",
+        "/root/autodl-tmp/video2world-modeling/external/SAM3-I",
+        "--checkpoint",
+        "/autodl-fs/data/sam3i-deploy/checkpoints/sam3i_3.pt",
+        "--backend",
+        "sam3i",
+        "--instruction-stage",
+        "complex"
+      ],
+      "kind": "command"
+    },
+    "mesh_postprocess": {
+      "command": [
+        "/root/autodl-tmp/envs/embodiedgen-011d815ea393-py310-cu124/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/mesh_postprocess.py",
+        "--task-dir",
+        "{task_dir}",
+        "--inputs",
+        "{inputs_json}",
+        "--outputs",
+        "{outputs_json}"
+      ],
+      "kind": "command"
+    },
+    "object_lifting": {
+      "command": [
+        "/root/miniconda3/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/object_lifting.py",
+        "--task-dir",
+        "{task_dir}",
+        "--inputs",
+        "{inputs_json}",
+        "--outputs",
+        "{outputs_json}",
+        "--composite-policy",
+        "{{\"bed\":{{\"pillow\":\"bedding\",\"pillow_group\":\"bedding\"}}}}"
+      ],
+      "kind": "command"
+    },
+    "orbit_video": {
+      "command": [
+        "/root/miniconda3/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/orbit_video.py",
+        "--task-dir",
+        "{task_dir}",
+        "--inputs",
+        "{inputs_json}",
+        "--outputs",
+        "{outputs_json}",
+        "--source-root",
+        "/root/autodl-tmp/fixanything-bedroom4-poc-20260829/source/fix-anything",
+        "--model-dir",
+        "/root/autodl-tmp/video2world-modeling/models/fixanything",
+        "--lora-path",
+        "/root/autodl-tmp/fixanything-bedroom4-poc-20260829/checkpoints/fixanything_lora.safetensors",
+        "--fix-python",
+        "/root/autodl-tmp/fixanything-bedroom4-poc-20260829/env/bin/python",
+        "--render-python",
+        "/root/autodl-tmp/envs/stream3d-py312-20260827/bin/python",
+        "--render-python-path",
+        "/root/autodl-tmp/video2world-builds/pytorch3d-py312-cu124-75ebee/build/lib.linux-x86_64-cpython-312",
+        "--render-python-path",
+        "/autodl-fs/data/rest3d-20260810/workspace/gsplat",
+        "--seed",
+        "20260829",
+        "--num-inference-steps",
+        "10",
+        "--clean-frame-indices",
+        ""
+      ],
+      "kind": "command"
+    },
+    "physics_estimation": {
+      "command": [
+        "/root/autodl-tmp/envs/sam3i-py312/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/physics_estimation.py",
+        "--task-dir",
+        "{task_dir}",
+        "--inputs",
+        "{inputs_json}",
+        "--outputs",
+        "{outputs_json}",
+        "--model",
+        "/root/autodl-tmp/models/Qwen2.5-VL-3B-Instruct"
+      ],
+      "kind": "command"
+    },
+    "scene_recomposition": {
+      "command": [
+        "/root/miniconda3/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/scene_recomposition.py",
+        "--task-dir",
+        "{task_dir}",
+        "--inputs",
+        "{inputs_json}",
+        "--outputs",
+        "{outputs_json}"
+      ],
+      "kind": "command"
+    },
+    "scene_reconstruction": {
+      "command": [
+        "/usr/bin/env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/root/miniconda3/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/scene_reconstruction.py",
+        "--task-dir",
+        "{task_dir}",
+        "--inputs",
+        "{inputs_json}",
+        "--outputs",
+        "{outputs_json}",
+        "--da3-source",
+        "/autodl-fs/data/video2world/code-external/Depth-Anything-3/src",
+        "--da3-model",
+        "/autodl-fs/data/models/depth-anything/DA3NESTED-GIANT-LARGE",
+        "--da3-python-path",
+        "/autodl-fs/data/video2world/python-packages/da3",
+        "--da3-resolution",
+        "504",
+        "--da3-batch-size",
+        "8",
+        "--pgsr-source",
+        "/root/autodl-tmp/bedroom4-holi-scene-orbits-20260830/pgsr_compat_code",
+        "--pgsr-python",
+        "/root/miniconda3/bin/python",
+        "--pgsr-python-path",
+        "/root/autodl-tmp/video2world-runtime/pytorch3d-py312-cu124",
+        "--pgsr-iterations",
+        "6000",
+        "--max-frames",
+        "0"
+      ],
+      "kind": "command"
+    },
+    "scene_understanding": {
+      "command": [
+        "/root/autodl-tmp/envs/sam3i-py312/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/qwen_understanding.py",
+        "--task-dir",
+        "{task_dir}",
+        "--inputs",
+        "{inputs_json}",
+        "--outputs",
+        "{outputs_json}",
+        "--model",
+        "/root/autodl-tmp/models/Qwen2.5-VL-3B-Instruct",
+        "--component-inventory"
+      ],
+      "kind": "command"
+    }
+  },
+  "schema_version": "1.0"
+}

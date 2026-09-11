@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "three-d-fixer-seetacloud",
+  "description": "Deployment binding for the opt-in learned 3D-Fixer observed-context completion provider on SeetaCloud. Use only through scripts/three_d_fixer_cli.py, which replaces geometry_completion with observed_context_completion in that process's registry. This provider consumes original observed RGB, verified masks, calibrated cameras and observed depth; it has no generated-orbit dependency. PYTHONPATH adds external/three-d-fixer-shims, a faithful minimal kaolin.utils.testing.check_tensor shim required only by the vendored FlexiCubes debug assertions; the audited 3D-Fixer source files are untouched. Add --prepare-only to audit inputs without model inference (never publishes roles).",
+  "pipeline": ["observed_context_completion"],
+  "providers": {
+    "observed_context_completion": {
+      "kind": "command",
+      "command": [
+        "/usr/bin/env", "PYTHONPATH=/root/autodl-tmp/video2world-modeling/external/three-d-fixer-shims",
+        "/root/autodl-tmp/envs/stream3d-py312-20260827/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/three_d_fixer.py",
+        "--task-dir", "{task_dir}", "--inputs", "{inputs_json}", "--outputs", "{outputs_json}",
+        "--source", "/root/autodl-tmp/video2world-modeling/external/3D-Fixer",
+        "--model-dir", "/root/autodl-tmp/video2world-modeling/models/three-d-fixer",
+        "--trellis-base", "/root/autodl-tmp/hf/trellis-image-large",
+        "--moge-checkpoint", "/root/autodl-tmp/video2world-modeling/models/moge-2-vitl/model.pt",
+        "--dino-source", "/root/autodl-tmp/video2world-modeling/external/dinov2",
+        "--dino-checkpoint", "/root/.cache/torch/hub/checkpoints/dinov2_vitl14_reg4_pretrain.pth"
+      ]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "local-provider-binding",
+  "description": "Replace every argv with the isolated deployment adapter for that provider. No shell interpolation is used.",
+  "providers": {
+    "scene_reconstruction": {"kind": "command", "command": ["/absolute/path/to/holi-adapter", "--task-dir", "{task_dir}", "--inputs", "{inputs_json}", "--outputs", "{outputs_json}"]},
+    "scene_understanding": {"kind": "command", "command": ["/absolute/path/to/qwen-adapter", "--task-dir", "{task_dir}", "--inputs", "{inputs_json}", "--outputs", "{outputs_json}"]},
+    "component_segmentation": {"kind": "command", "command": ["/absolute/path/to/sam3-adapter", "--task-dir", "{task_dir}", "--inputs", "{inputs_json}", "--outputs", "{outputs_json}"]},
+    "object_lifting": {"kind": "command", "command": ["/absolute/path/to/lifting-adapter", "--task-dir", "{task_dir}", "--inputs", "{inputs_json}", "--outputs", "{outputs_json}"]},
+    "clean_plate": {"kind": "command", "command": ["/absolute/path/to/clean-plate-adapter", "--task-dir", "{task_dir}", "--inputs", "{inputs_json}", "--outputs", "{outputs_json}"]},
+    "background_reconstruction": {"kind": "command", "command": ["/absolute/path/to/background-reconstruction-adapter", "--task-dir", "{task_dir}", "--inputs", "{inputs_json}", "--outputs", "{outputs_json}"]},
+    "component_assembly": {"kind": "command", "command": ["/absolute/path/to/assembly-adapter", "--task-dir", "{task_dir}", "--inputs", "{inputs_json}", "--outputs", "{outputs_json}"]},
+    "orbit_video": {"kind": "command", "command": ["/absolute/path/to/fixanything-adapter", "--task-dir", "{task_dir}", "--inputs", "{inputs_json}", "--outputs", "{outputs_json}"]},
+    "geometry_completion": {"kind": "command", "command": ["/absolute/path/to/completion-router", "--task-dir", "{task_dir}", "--inputs", "{inputs_json}", "--outputs", "{outputs_json}"]},
+    "mesh_postprocess": {"kind": "command", "command": ["/absolute/path/to/embodiedgen-3dfixer-adapter", "--task-dir", "{task_dir}", "--inputs", "{inputs_json}", "--outputs", "{outputs_json}"]},
+    "physics_estimation": {"kind": "command", "command": ["/absolute/path/to/physics-adapter", "--task-dir", "{task_dir}", "--inputs", "{inputs_json}", "--outputs", "{outputs_json}"]},
+    "scene_recomposition": {"kind": "command", "command": ["/absolute/path/to/world-assembly-adapter", "--task-dir", "{task_dir}", "--inputs", "{inputs_json}", "--outputs", "{outputs_json}"]}
+  }
+}
+

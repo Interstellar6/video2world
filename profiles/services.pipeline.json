@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "registered-modeling-services",
+  "registry": "services.seetacloud.json",
+  "pipeline": [
+    "scene_reconstruction", "scene_understanding", "component_segmentation", "object_lifting",
+    "clean_plate", "background_reconstruction", "component_assembly", "orbit_video",
+    "geometry_completion", "mesh_postprocess", "physics_estimation", "scene_recomposition"
+  ],
+  "providers": {
+    "scene_reconstruction": {"kind": "service"},
+    "scene_understanding": {"kind": "service"},
+    "component_segmentation": {"kind": "service"},
+    "object_lifting": {"kind": "service"},
+    "clean_plate": {"kind": "service"},
+    "background_reconstruction": {"kind": "service"},
+    "component_assembly": {"kind": "service"},
+    "orbit_video": {"kind": "service"},
+    "geometry_completion": {"kind": "service"},
+    "mesh_postprocess": {"kind": "service"},
+    "physics_estimation": {"kind": "service"},
+    "scene_recomposition": {"kind": "service"}
+  }
+}

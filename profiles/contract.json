@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "contract-only",
+  "description": "Validates all task-local module handoffs without invoking models or claiming generated geometry.",
+  "providers": {
+    "scene_reconstruction": {"kind": "contract"},
+    "scene_understanding": {"kind": "contract"},
+    "component_segmentation": {"kind": "contract"},
+    "object_lifting": {"kind": "contract"},
+    "clean_plate": {"kind": "contract"},
+    "background_reconstruction": {"kind": "contract"},
+    "component_assembly": {"kind": "contract"},
+    "orbit_video": {"kind": "contract"},
+    "geometry_completion": {"kind": "contract"},
+    "mesh_postprocess": {"kind": "contract"},
+    "physics_estimation": {"kind": "contract"},
+    "scene_recomposition": {"kind": "contract"}
+  }
+}
+

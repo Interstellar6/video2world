@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+models/
+external/
+profiles/services.seetacloud.json
+outputs/*
+!outputs/.gitkeep
+.DS_Store
+._*
+

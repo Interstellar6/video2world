@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "opt-in-three-d-fixer-single-stage",
+  "description": "Use scripts/three_d_fixer_cli.py run-stage or serve, not the default CLI. This is an explicit standalone stage binding, not a full-scene pipeline profile. Source/model/MoGe/DINO-source deployment targets below are NOT currently deployed; source and official-weight preflight will block until independently verified. The listed Python is a CPU-tested candidate environment, not a proven complete model runtime. Do not enable prepare-only as a service provider: it never publishes completion roles.",
+  "pipeline": ["observed_context_completion"],
+  "providers": {
+    "observed_context_completion": {
+      "kind": "command",
+      "command": [
+        "/root/autodl-tmp/envs/stream3d-py312-20260827/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/three_d_fixer.py",
+        "--task-dir", "{task_dir}", "--inputs", "{inputs_json}", "--outputs", "{outputs_json}",
+        "--source", "/root/autodl-tmp/video2world-modeling/external/3D-Fixer",
+        "--model-dir", "/root/autodl-tmp/video2world-modeling/models/three-d-fixer",
+        "--trellis-base", "/root/autodl-tmp/hf/trellis-image-large",
+        "--moge-checkpoint", "/root/autodl-tmp/video2world-modeling/models/moge-2-vitl/model.pt",
+        "--dino-source", "/root/autodl-tmp/video2world-modeling/external/dinov2",
+        "--dino-checkpoint", "/root/.cache/torch/hub/checkpoints/dinov2_vitl14_reg4_pretrain.pth"
+      ]
+    }
+  }
+}

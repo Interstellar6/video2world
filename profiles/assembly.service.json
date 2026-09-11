@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "assembly-service-live",
+  "registry": "services.seetacloud.json",
+  "providers": {
+    "component_assembly": {"kind": "service"}
+  }
+}
