@@ -7,6 +7,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts/object_registration.py"
@@ -179,58 +180,73 @@ class RegistrationTests(unittest.TestCase):
         with self.assertRaisesRegex(adapter.RegistrationError, "rejection ceiling"):
             self.reprojection_case(1.0, 4)
 
-    def test_full_cpu_adapter_proof_is_accepted_by_recomposition_validator(self):
+    def registration_case(self, task, *, conditioning=False, geometry_overrides=None):
+        """A complete solved registration task; returns the chain registration must find."""
         import numpy as np
         import trimesh
         from PIL import Image
         from plyfile import PlyData, PlyElement
 
+        generated, conditioned, chain, _ = self.cameras()
+        if conditioning:
+            # the generated views carry the trajectory they were conditioned on
+            generated = [pose.copy() for pose in conditioned]
+            chain = np.eye(4)
+        mesh = trimesh.creation.icosphere(subdivisions=2)
+        mesh.vertices *= [1.3, .8, .5]
+        mesh.visual.vertex_colors = [220, 80, 30, 255]
+        mesh.export(task / "mesh.glb")
+        source = adapter.scene_vertices(task / "mesh.glb")
+        pose = {"scale": np.array([[1.4, 1.4, 1.4]]), "rotation": np.array([[1, 0, 0, 0]]), "translation": np.array([[.2, -.1, 5]])}
+        np.savez(task / "pose.npz", **pose)
+        expected = chain @ np.linalg.inv(generated[0]) @ adapter.glb_to_reference_camera(pose)
+        target = adapter.transform(source, expected)
+        table = np.zeros(len(target), dtype=[(name, "f4") for name in ("x", "y", "z", "f_dc_0", "opacity", "scale_0", "rot_0")])
+        for axis, name in enumerate(("x", "y", "z")):
+            table[name] = target[:, axis]
+        table["rot_0"] = 1
+        for name in ("observed.ply", "scene.ply"):
+            PlyData([PlyElement.describe(table, "vertex")]).write(task / name)
+        frames, provenance = [], []
+        for orbit in range(3):
+            path = task / f"conditioning_{orbit}.json"
+            adapter.write_json(path, {"frames": [{"world_to_camera": p.tolist()} for p in conditioned[orbit * 4:orbit * 4 + 4]]})
+            for position in range(4):
+                index = orbit * 4 + position
+                frames.append({"frame_id": f"{index:06d}", "stream3d_frame_name": f"frame_{index:06d}", "world_to_camera": generated[index].tolist()})
+                provenance.append({"frame_id": f"{index:06d}", "orbit_id": f"orbit_{orbit}", "conditioning_cameras_path": path.name, "generated_frame_index": position})
+        geometry = {"coordinate_frame": "colmap_world" if conditioning else "generated_DA3_world",
+                    "unit": "colmap_reconstruction", "conditioning_poses_used": bool(conditioning), "frames": frames}
+        if geometry_overrides:
+            geometry.update(geometry_overrides)
+        adapter.write_json(task / "geometry.json", geometry)
+        adapter.write_json(task / "provenance.json", {"frames": provenance})
+        adapter.write_json(task / "metadata.json", {"stage1_selected_crop_view_names": ["frame_000000.png"]})
+        Image.new("L", (200, 200), 255).save(task / "mask.png")
+        other = conditioned[0].copy()
+        other[0, 3] -= .1
+        cameras = {"coordinate_frame": "colmap_world", "units": "colmap_reconstruction", "frames": [{"frame_id": str(i), "world_to_camera": p.tolist(), "intrinsics": [[100, 0, 100], [0, 100, 100], [0, 0, 1]], "width": 200, "height": 200} for i, p in enumerate((conditioned[0], other))]}
+        observations = [{"frame_id": str(i), "mask_path": "mask.png"} for i in range(2)]
+        observed = {"object_id": "bed", "ply_path": "observed.ply", "coordinate_frame": "colmap_world", "units": "colmap_reconstruction", "association_status": "geometrically_verified", "observations": observations}
+        item = {"object_id": "bed", "mesh_path": "mesh.glb", "mesh_sha256": adapter.sha256(task / "mesh.glb"), "coordinate_frame": "object_local", "unit": "asset_units", "normalization_metadata_path": "metadata.json", "backend_pose_path": "pose.npz"}
+        documents = {"cameras": cameras, "isolated_object_ply": {"objects": [observed]}, "lifting_report": {"voxel_size": .01}, "completed_object_meshes": {"objects": [item]}, "completion_candidates": {"objects": [{"object_id": "bed", "generated_frame_geometry_path": "geometry.json", "sampled_frame_provenance_path": "provenance.json"}]}}
+        envelope = {"module": "object_registration", "inputs": {"scene_gaussian_ply": {"path": "scene.ply", "evidence": "derived"}}}
+        for name, document in documents.items():
+            adapter.write_json(task / f"{name}.json", document)
+            envelope["inputs"][name] = {"path": f"{name}.json", "evidence": "derived"}
+        adapter.write_json(task / "inputs.json", envelope)
+        args = argparse.Namespace(task_dir=task, inputs=task / "inputs.json", outputs=task / "outputs.json", max_camera_angle=12, min_observed_coverage=.7, max_reprojection_pixels=8, seed=0)
+        return args, expected, observed, cameras
+
+    def test_full_cpu_adapter_proof_is_accepted_by_recomposition_validator(self):
+        import numpy as np
+
         recomposition_spec = importlib.util.spec_from_file_location("registration_recomposition_check", SCRIPT.with_name("scene_recomposition.py"))
         recomposition = importlib.util.module_from_spec(recomposition_spec)
         recomposition_spec.loader.exec_module(recomposition)
-        generated, conditioned, chain, _ = self.cameras()
         with tempfile.TemporaryDirectory() as folder:
             task = Path(folder)
-            mesh = trimesh.creation.icosphere(subdivisions=2)
-            mesh.vertices *= [1.3, .8, .5]
-            mesh.visual.vertex_colors = [220, 80, 30, 255]
-            mesh.export(task / "mesh.glb")
-            source = adapter.scene_vertices(task / "mesh.glb")
-            pose = {"scale": np.array([[1.4, 1.4, 1.4]]), "rotation": np.array([[1, 0, 0, 0]]), "translation": np.array([[.2, -.1, 5]])}
-            np.savez(task / "pose.npz", **pose)
-            expected = chain @ np.linalg.inv(generated[0]) @ adapter.glb_to_reference_camera(pose)
-            target = adapter.transform(source, expected)
-            table = np.zeros(len(target), dtype=[(name, "f4") for name in ("x", "y", "z", "f_dc_0", "opacity", "scale_0", "rot_0")])
-            for axis, name in enumerate(("x", "y", "z")):
-                table[name] = target[:, axis]
-            table["rot_0"] = 1
-            for name in ("observed.ply", "scene.ply"):
-                PlyData([PlyElement.describe(table, "vertex")]).write(task / name)
-            frames, provenance = [], []
-            for orbit in range(3):
-                path = task / f"conditioning_{orbit}.json"
-                adapter.write_json(path, {"frames": [{"world_to_camera": p.tolist()} for p in conditioned[orbit * 4:orbit * 4 + 4]]})
-                for position in range(4):
-                    index = orbit * 4 + position
-                    frames.append({"frame_id": f"{index:06d}", "stream3d_frame_name": f"frame_{index:06d}", "world_to_camera": generated[index].tolist()})
-                    provenance.append({"frame_id": f"{index:06d}", "orbit_id": f"orbit_{orbit}", "conditioning_cameras_path": path.name, "generated_frame_index": position})
-            adapter.write_json(task / "geometry.json", {"coordinate_frame": "generated_DA3_world", "conditioning_poses_used": False, "frames": frames})
-            adapter.write_json(task / "provenance.json", {"frames": provenance})
-            adapter.write_json(task / "metadata.json", {"stage1_selected_crop_view_names": ["frame_000000.png"]})
-            Image.new("L", (200, 200), 255).save(task / "mask.png")
-            other = conditioned[0].copy()
-            other[0, 3] -= .1
-            cameras = {"coordinate_frame": "colmap_world", "units": "colmap_reconstruction", "frames": [{"frame_id": str(i), "world_to_camera": p.tolist(), "intrinsics": [[100, 0, 100], [0, 100, 100], [0, 0, 1]], "width": 200, "height": 200} for i, p in enumerate((conditioned[0], other))]}
-            observations = [{"frame_id": str(i), "mask_path": "mask.png"} for i in range(2)]
-            observed = {"object_id": "bed", "ply_path": "observed.ply", "coordinate_frame": "colmap_world", "units": "colmap_reconstruction", "association_status": "geometrically_verified", "observations": observations}
-            item = {"object_id": "bed", "mesh_path": "mesh.glb", "mesh_sha256": adapter.sha256(task / "mesh.glb"), "coordinate_frame": "object_local", "unit": "asset_units", "normalization_metadata_path": "metadata.json", "backend_pose_path": "pose.npz"}
-            documents = {"cameras": cameras, "isolated_object_ply": {"objects": [observed]}, "lifting_report": {"voxel_size": .01}, "completed_object_meshes": {"objects": [item]}, "completion_candidates": {"objects": [{"object_id": "bed", "generated_frame_geometry_path": "geometry.json", "sampled_frame_provenance_path": "provenance.json"}]}}
-            envelope = {"module": "object_registration", "inputs": {"scene_gaussian_ply": {"path": "scene.ply", "evidence": "derived"}}}
-            for name, document in documents.items():
-                adapter.write_json(task / f"{name}.json", document)
-                envelope["inputs"][name] = {"path": f"{name}.json", "evidence": "derived"}
-            adapter.write_json(task / "inputs.json", envelope)
-            args = argparse.Namespace(task_dir=task, inputs=task / "inputs.json", outputs=task / "outputs.json", max_camera_angle=12, min_observed_coverage=.7, max_reprojection_pixels=8, seed=0)
+            args, expected, observed, cameras = self.registration_case(task)
             result = adapter.run(args)
             self.assertEqual(result["status"], "accepted")
             record = adapter.read_json(task / adapter.read_json(args.outputs)["outputs"]["completed_object_meshes"]["path"])["objects"][0]
@@ -238,6 +254,30 @@ class RegistrationTests(unittest.TestCase):
             np.testing.assert_allclose(actual["object_to_world"], expected, atol=2e-6)
             self.assertEqual(qa["status"], "numeric_correspondences_verified")
             self.assertEqual(record["room_alignment"], "observed_correspondence_verified")
+
+    def test_a_declared_conditioning_trajectory_needs_no_camera_fit(self):
+        import numpy as np
+
+        with tempfile.TemporaryDirectory() as folder:
+            task = Path(folder)
+            args, expected, _, _ = self.registration_case(task, conditioning=True)
+            with patch.object(adapter, "camera_chain", side_effect=AssertionError("declared poses must not be refitted")):
+                result = adapter.run(args)
+            self.assertEqual(result["status"], "accepted")
+            record = adapter.read_json(task / adapter.read_json(args.outputs)["outputs"]["completed_object_meshes"]["path"])["objects"][0]
+            chain = record["registration"]["camera_chain"]
+            self.assertEqual(chain["method"], "conditioning_trajectory_declared")
+            self.assertEqual(chain["policy"], "poses_are_the_conditioning_trajectory_of_the_registered_generated_views")
+            self.assertEqual(chain["coordinate_frame"], "colmap_world")
+            np.testing.assert_allclose(np.asarray(record["registration"]["object_to_world"]), expected, atol=2e-6)
+
+    def test_conditioning_geometry_in_another_frame_is_refused(self):
+        with tempfile.TemporaryDirectory() as folder:
+            task = Path(folder)
+            args, _, _, _ = self.registration_case(task, conditioning=True,
+                                                   geometry_overrides={"coordinate_frame": "generated_DA3_world"})
+            with self.assertRaisesRegex(adapter.RegistrationError, "not in the observed object's declared frame"):
+                adapter.run(args)
 
 
 if __name__ == "__main__":

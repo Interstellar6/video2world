@@ -272,7 +272,14 @@ def register_object(task, item, candidate, observed, cameras, scene_path, output
         raise RegistrationError("room registration requires a geometrically verified physical object")
     geometry_path = local_path(task, candidate["generated_frame_geometry_path"])
     geometry = read_json(geometry_path)
-    if geometry.get("conditioning_poses_used") is not False or geometry.get("coordinate_frame") != "generated_DA3_world":
+    # Generated views either carry an independently estimated trajectory, which
+    # has to be fitted into the scene, or the conditioning trajectory they were
+    # rendered from, which is already the scene frame and needs no fit at all.
+    conditioning_chain = geometry.get("conditioning_poses_used") is True
+    if conditioning_chain:
+        if geometry.get("coordinate_frame") != observed.get("coordinate_frame") or geometry.get("unit") != observed.get("units"):
+            raise RegistrationError("conditioning-trajectory generated geometry is not in the observed object's declared frame")
+    elif geometry.get("coordinate_frame") != "generated_DA3_world":
         raise RegistrationError("registration needs independently estimated generated-frame geometry")
     provenance_path = local_path(task, candidate["sampled_frame_provenance_path"])
     provenance = {r["frame_id"]: r for r in read_json(provenance_path)["frames"]}
@@ -292,7 +299,14 @@ def register_object(task, item, candidate, observed, cameras, scene_path, output
         frame_map[frame["stream3d_frame_name"] + ".png"] = frame
     if len(counters) != 3 or min(counters.values()) < 4:
         raise RegistrationError("registration requires >=4 sampled frames from each of three distinct elevations")
-    chain, camera_qa = camera_chain(generated, conditioned, heldout, threshold * 2, args.max_camera_angle, args.seed)
+    chain, camera_qa = (np.eye(4), {"method": "conditioning_trajectory_declared",
+                                    "generated_world_to_scene_world": np.eye(4).tolist(),
+                                    "threshold_world_units": threshold,
+                                    "policy": "poses_are_the_conditioning_trajectory_of_the_registered_generated_views",
+                                    "coordinate_frame": geometry.get("coordinate_frame"), "unit": geometry.get("unit"),
+                                    "independent_estimation": (geometry.get("generated_camera_fallback") or {}).get("independent_estimation")}) \
+        if conditioning_chain else \
+        camera_chain(generated, conditioned, heldout, threshold * 2, args.max_camera_angle, args.seed)
     metadata_path = local_path(task, item["normalization_metadata_path"])
     metadata = read_json(metadata_path)
     selected = metadata.get("stage1_selected_crop_view_names", [])
