@@ -52,11 +52,32 @@ class ProfileTests(unittest.TestCase):
             self.skipTest("historical task output is intentionally not committed")
         original = launcher.read_json(historical)
         current = launcher.read_json(ROOT / "profiles/seetacloud.json")
+
+        def without(command, flags):
+            """Drop the options that were deliberately changed since that run."""
+            kept, index = [], 0
+            while index < len(command):
+                if command[index] in flags:
+                    index += 2
+                    continue
+                kept.append(command[index])
+                index += 1
+            return kept
+
         scene = copy.deepcopy(original["providers"]["scene_reconstruction"])
         index = scene["command"].index("--resume-run-dir")
         del scene["command"][index:index + 2]
-        self.assertEqual(scene, current["providers"]["scene_reconstruction"])
-        self.assertEqual(original["providers"]["scene_understanding"], current["providers"]["scene_understanding"])
+        # Two deliberate recipe changes since the preserved run: the scene runs the
+        # reference 30000 PGSR iterations (see tests/test_profiles.py), and the
+        # grounding stage gained an object hint and a tolerant inventory policy.
+        # Everything else must still match byte for byte.
+        self.assertEqual(without(scene["command"], {"--pgsr-iterations"}),
+                         without(current["providers"]["scene_reconstruction"]["command"], {"--pgsr-iterations"}))
+        self.assertEqual(
+            without(original["providers"]["scene_understanding"]["command"],
+                    {"--object-hints", "--component-inventory-policy"}),
+            without(current["providers"]["scene_understanding"]["command"],
+                    {"--object-hints", "--component-inventory-policy"}))
 
 
 class LauncherTests(unittest.TestCase):

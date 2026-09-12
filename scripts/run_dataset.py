@@ -28,7 +28,7 @@ sys.path.insert(0, str(REPO / "scripts"))
 from world_modeling import modules  # noqa: E402
 
 TASK_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,127}")
-DEFAULT_PROFILE = REPO / "profiles/three-d-fixer.skipbg.json"
+DEFAULT_PROFILE = REPO / "profiles/embodiedgen.skipbg.json"
 
 
 def resolve_paths(output_dir: Path, task_id: str | None, source: Path):
@@ -62,8 +62,12 @@ def main(argv=None) -> int:
     parser.add_argument("--export-dir", type=Path,
                         help="also write the delivery layout here and verify it independently")
     parser.add_argument("--scene-name", help="scene directory name inside the export; defaults to the task id")
+    parser.add_argument("--compare-with", type=Path,
+                        help="reference delivery to measure this export against; requires --export-dir")
     args = parser.parse_args(argv)
 
+    if args.compare_with and not args.export_dir:
+        raise SystemExit("--compare-with needs --export-dir: there is nothing to compare otherwise")
     source = args.source.expanduser().resolve()
     if not source.is_dir() or not (source / "images").is_dir() or not (source / "sparse").is_dir():
         raise SystemExit(f"--source must be a directory containing images/ and sparse/: {source}")
@@ -116,6 +120,15 @@ def main(argv=None) -> int:
         return exported
     verified = verify_export.main(["--export-root", str(export_root)])
     print(f"EXPORT_VERIFY_EXIT={verified}", flush=True)
+    if args.compare_with:
+        import compare_deliveries
+
+        print(f"compare: {args.compare_with} -> {export_root}", flush=True)
+        compared = compare_deliveries.main(["--reference", str(args.compare_with.expanduser()),
+                                            "--candidate", str(export_root),
+                                            "--report", str(export_root / "qa" / "comparison.json")])
+        print(f"COMPARE_EXIT={compared}", flush=True)
+        return verified or compared
     return verified
 
 

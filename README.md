@@ -223,6 +223,71 @@ All three current bed videos are **rejected as reconstruction inputs**: invented
 
 The pipeline now runs end to end for the bed. PLBBL authentication still returns HTTP 401 and no paid image request was sent; instead `clean_plate` runs the offline LaMa ONNX transport, producing 50 generated clean plates, after which `background_reconstruction` produces a fresh DA3/PGSR/TSDF background. The opt-in learned 3D-Fixer publishes `completion_candidates` and `completed_object_meshes` (status `generated_and_geometrically_registered`, `generated_orbit_used=false`) with an accepted registration and its own heldout reprojection gate at p95 median 4.55 px and 0 of 49 cameras over the bound; the raw surface had failed that gate systemically (p95 median 10.77 px, 43 of 49 over) because the model is conditioned on one observed view, and `--observed-refinement` is a data-fit step rather than a threshold change. 10,433 saturated opacity logits were clamped finite. `mesh_postprocess` executes with a guarded pymeshfix step: pymeshfix had collapsed the completion mesh into a thin sheet (volume 0.00102 against 0.01169, Y extent 0.108 against 0.616), so its result is now accepted only when it closes the surface without moving bounds more than 20% of the diagonal or changing volume by more than 2x; otherwise the pre-repair mesh is kept and `meshfix_outcome` records the rejection. The repaired bed keeps 100,000 faces at volume 0.01544 and full bounds. `physics_estimation` needed a prompt reorder (ending the prompt with the description JSON made Qwen2.5-VL-3B continue that JSON instead of answering). `scene_recomposition` then reports `assembled_candidate` with zero errors, using the carved observed PGSR as the visual background. Stream3D completion remains fail-closed: `geometry_completion` rejects the orbit clips before Stream3D with `generated camera alignment failed ... RANSAC found fewer than three supported correspondences`. A least-squares Sim3 between the DA3-recovered generated cameras and the conditioning trajectory shows those clips are off by 19.6% of the orbit radius (residual p95 13.5 units against a 0.49 unit threshold), so this is a generation-quality failure, not a threshold artefact. A clean-conditioning experiment (`--conditioning-radius-clip 0.25 --conditioning-dc-only`, available behind explicit flags and off by default) made it **worse**: the trajectory error rose to 45.3% and the fit needed a reflection, so the deployed conditioning remains the original. Every published role keeps its evidence class: completion, clean plates and background stay `generated`, and `promotion_allowed` remains false because no visual, geometry, collision or source-camera acceptance gate exists in the orchestration contract. A completed process is still not visual or simulation acceptance.
 
+### Scene-Level Delivery Preparation
+
+The reconstruction hands back a raw TSDF surface: on bedroom_4 that is 12,798,127 faces and 260 MB, which no viewer opens. Export therefore prepares the scene level before writing it, and records what it did in `export_manifest.json`:
+
+* `scene/mesh.ply` and `object/background.glb` are decimated to `--scene-face-budget` faces (default 1,000,000). `vtkDecimatePro` is used because `vtkQuadricDecimation` refuses to reduce this open surface at all -- it preserves boundary edges, and a TSDF surface is mostly boundary. Measured: 12.8M faces to 1.0M in about 130 s, keeping the reconstructed vertex colours.
+* Readers go through VTK rather than trimesh, which has to walk 12.8M faces in Python; `vtkGLTFReader` reads the same file in 2 s.
+* Vertex colours are normalised to an unsigned-char RGB active scalar array before writing. Both writers silently drop colours of any other shape, which is invisible until someone opens the delivered file.
+* `scene/depth/` gains one 16-bit PNG per frame plus `manifest.json`, carrying the linear scale, offset, units and the hash of the raw float array each image came from.
+
+Export now needs `vtk`, `trimesh` and `PIL`, so run it with an environment that has them (the EmbodiedGen environment does):
+
+```bash
+/root/autodl-tmp/envs/embodiedgen-011d815ea393-py310-cu124/bin/python scripts/export_assets.py \
+  my-scan --export-root /path/to/delivery --scene-name my_scene
+```
+
+### Observed Object Parts
+
+Lifting already carves every geometrically verified component track of an object, so the parts a delivery wants -- bedding, a headboard, pillows, a lamp shade -- exist as observed geometry before any generative completion touches them. Export copies each one to `object/parts/<object_id>/<object_id>_part_NN.ply` (ordered by component id) and writes `object/parts/manifest.json` with the component id, the lifting association status, both hashes and the evidence class `observed`. A component PLY whose hash no longer matches its lifting receipt is refused rather than shipped.
+
+Measured on bedroom_4: seven verified parts (bed 4, lamp 2, plant 1). They are observed geometry, not generated assets: completing and texturing them per part is a separate step that has not run.
+
+### Delivery Viewer
+
+Export also writes a `web-demo/` project next to the assets: a three.js page that
+loads the scene layers, the background and each object's mesh and Gaussian splat,
+with the object list generated from the export manifest (`--skip-viewer` opts
+out). Nothing about the scene is hardcoded, so the viewer always matches what was
+actually delivered.
+
+```bash
+cd web-demo && npm install && npm run build      # writes web-demo/dist
+python3 -m http.server 8000                      # from the export root
+# open http://127.0.0.1:8000/web-demo/dist/index.html
+```
+
+Asset URLs are absolute from the server root, and `?root=<prefix>` overrides that
+if the viewer is hosted somewhere else. Meshes load as glTF; splats load as
+coloured points with the DC term of the spherical harmonics decoded in the
+browser, so this is a QA viewer rather than a photoreal splat rasterizer.
+Verified against a real export: the built page serves, `assets.json` resolves to
+the delivered layers and objects, and the referenced mesh/background URLs return
+200 from a static server on the export root.
+
+### Delivery Previews
+
+Export also renders the QA images a delivery needs to be judged without opening a 30 MB mesh (`--skip-previews` opts out). `scripts/render_previews.py` draws them with a CPU point painter rather than OpenGL, because a headless box has no display: point clouds are perspective-projected and painted far-to-near, and detections come from the observed frames through PIL.
+
+| Image | What it shows |
+|---|---|
+| `scene/scene_overview.jpg` | the delivered surface from three sides (top, front, back) |
+| `object/object_layout_preview.png` | top-down view of the observed scene Gaussians |
+| `object/object_detect_preview.png` | detected boxes and labels on their own source frame |
+| `object/object_cutout_preview.png` | the detected crops side by side |
+| `object_version_2/<id>/gaussian_turntable_overview.jpg` | six-view turntable of the object's own splat |
+| `object_version_2/<id>/glb_mesh_overview.jpg` | the same turntable for the delivered mesh |
+
+`qa/previews.json` records each image's hash, its painted fraction and every preview that was skipped with the reason. A preview that renders nothing is refused instead of shipped: an empty image looks like evidence.
+
+### Scene Recipe
+
+The reference delivery trained PGSR to iteration 30000 with a 7000 fallback, and its scene Gaussian cloud carries 871,317 points. The deployed profiles therefore ask for `--pgsr-iterations 30000` with `--max-frames 0`; `scripts/scene_reconstruction.py` scales the densification window with that number (`densify_until_iter = min(15000, iterations // 2)`) rather than hardcoding it, so a longer schedule actually densifies instead of only refining. `tests/test_profiles.py` pins this so a profile cannot quietly fall back to a short schedule.
+
+Scene delivery then decimates and textures that reconstruction: `--scene-face-budget` (default 1,000,000) for the delivered surface and a separate `--background-face-budget` (default 100,000) with a baked 2048 texture for `object/background.glb`.
+
 ## Verify
 
 ```bash

@@ -55,8 +55,27 @@ class OutputDirectoryTests(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 launcher.resolve_paths(Path(folder) / "runs", None, source)
 
+    def test_comparing_needs_an_export_to_compare(self):
+        with tempfile.TemporaryDirectory() as folder:
+            source = Path(folder) / "scene"
+            source.mkdir()
+            (source / "images").mkdir()
+            (source / "sparse").mkdir()
+            with self.assertRaises(SystemExit):
+                launcher.main(["--source", str(source), "--output-dir", str(Path(folder) / "runs"),
+                               "--compare-with", str(Path(folder) / "reference")])
+
+    def test_the_comparison_flag_is_documented(self):
+        import contextlib
+        import io
+
+        stream = io.StringIO()
+        with contextlib.redirect_stdout(stream), self.assertRaises(SystemExit):
+            launcher.main(["--help"])
+        self.assertIn("--compare-with", stream.getvalue())
+
     def test_the_default_profile_is_the_fixer_recipe(self):
-        self.assertEqual(launcher.DEFAULT_PROFILE.name, "three-d-fixer.skipbg.json")
+        self.assertEqual(launcher.DEFAULT_PROFILE.name, "embodiedgen.skipbg.json")
         self.assertTrue(launcher.DEFAULT_PROFILE.is_file())
 
 

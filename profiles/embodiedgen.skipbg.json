@@ -1,5 +1,5 @@
 {
-  "description": "The complete twelve-stage recipe with the learned 3D-Fixer registered in place of geometry_completion. Run it through scripts/three_d_fixer_cli.py with --skip-bg-recon to skip clean_plate, background_reconstruction and scene_recomposition at run time; every other stage argument is identical to profiles/seetacloud.json.",
+  "description": "The twelve-stage recipe with the learned 3D-Fixer completion provider and the EmbodiedGen v2 object-asset provider: mesh_postprocess renders each completed object own Gaussian splat, simplifies and hole-fills the mesh, bakes a texture, writes the OBJ/MTL/texture triple plus GLB, and decomposes a CoACD collision proxy. Run with --skip-bg-recon to skip the background branch.",
   "pipeline": [
     "scene_reconstruction",
     "scene_understanding",
@@ -14,7 +14,7 @@
     "physics_estimation",
     "scene_recomposition"
   ],
-  "profile_id": "video2world-modeling.three-d-fixer.skipbg",
+  "profile_id": "video2world-modeling.embodiedgen.skipbg",
   "providers": {
     "background_reconstruction": {
       "command": [
@@ -116,14 +116,18 @@
     },
     "mesh_postprocess": {
       "command": [
+        "/usr/bin/env",
+        "PYTHONDONTWRITEBYTECODE=1",
         "/root/autodl-tmp/envs/embodiedgen-011d815ea393-py310-cu124/bin/python",
-        "/root/autodl-tmp/video2world-modeling/scripts/mesh_postprocess.py",
+        "/root/autodl-tmp/video2world-modeling/scripts/embodiedgen_assets.py",
         "--task-dir",
         "{task_dir}",
         "--inputs",
         "{inputs_json}",
         "--outputs",
-        "{outputs_json}"
+        "{outputs_json}",
+        "--embodiedgen-root",
+        "/root/autodl-tmp/video2world-modeling/external/EmbodiedGen"
       ],
       "kind": "command"
     },

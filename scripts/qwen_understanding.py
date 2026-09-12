@@ -256,8 +256,14 @@ def validate_response(payload: dict, width: int, height: int, allowed_categories
     return payload
 
 
-def make_prompt(width: int, height: int, categories: str | None, previous: list[dict], component_inventory=False, independent=False) -> str:
+def make_prompt(width: int, height: int, categories: str | None, previous: list[dict], component_inventory=False,
+                independent=False, hints: str | None = None) -> str:
     target = f"Identify only these object categories: {categories}." if categories else "Identify movable foreground objects in the scene."
+    if hints and not categories:
+        # A hint widens what the model looks for without making the category
+        # list binding: allowed_categories rejects anything outside its list, so
+        # a wider search must not also become a stricter contract.
+        target += " Also look for: " + hints.strip().rstrip(".") + "."
     component_instructions = (
         "For this whole-frame grounding pass, return components: [] and unobserved_components: [] for every object. "
         "A separate object-crop pass will inventory component classes. Focus on the whole physical object's box. "
@@ -292,7 +298,7 @@ def make_prompt(width: int, height: int, categories: str | None, previous: list[
     return prompt
 
 
-def ground_frame(image, categories, previous, generate, *, component_inventory, mode, frame_index):
+def ground_frame(image, categories, previous, generate, *, component_inventory, mode, frame_index, hints=None):
     if mode not in ("joint", "category_scoped"):
         raise ValueError("unknown grounding mode")
     if mode == "category_scoped" and not categories:
@@ -301,7 +307,7 @@ def ground_frame(image, categories, previous, generate, *, component_inventory, 
     objects, queries = [], []
     for scope in scopes:
         prompt = make_prompt(*image.size, ", ".join(scope) or None, [] if mode == "category_scoped" else previous,
-                             component_inventory, independent=mode == "category_scoped")
+                             component_inventory, independent=mode == "category_scoped", hints=hints)
         accepted, attempts = query_with_retries(image, prompt, generate,
             lambda response: validate_response(parse_response(response), *image.size,
                 allowed_categories=scope if mode == "joint" else None))
@@ -524,6 +530,9 @@ def main() -> int:
     app = parser(__doc__)
     app.add_argument("--model", type=Path, required=True)
     app.add_argument("--categories")
+    app.add_argument("--object-hints", default=None,
+                     help="extra object classes to look for, appended to the general prompt; unlike --categories this "
+                          "does not restrict what the model may return")
     app.add_argument("--grounding-mode", choices=("joint", "category_scoped"), default="joint",
                      help="category_scoped queries each requested category independently and emits frame-local IDs")
     app.add_argument("--component-inventory-policy", choices=("required", "tolerant"), default="required",
@@ -565,7 +574,8 @@ def main() -> int:
                         "max_new_tokens": args.max_new_tokens, "do_sample": False,
                         "local_files_only": True, "processor_use_fast": False,
                         "torch_version": str(torch.__version__), "component_inventory": args.component_inventory,
-                        "grounding_mode": args.grounding_mode, "categories": categories}
+                        "grounding_mode": args.grounding_mode, "categories": categories,
+                        "object_hints": args.object_hints, "component_inventory_policy": args.component_inventory_policy}
 
     def generate(image, prompt):
         messages = [{"role": "user", "content": [{"type": "image", "image": image}, {"type": "text", "text": prompt}]}]
@@ -591,6 +601,7 @@ def main() -> int:
         inference_size = vision_size(source_size)
         image = source.resize(inference_size, Image.Resampling.BICUBIC)
         accepted, queries = ground_frame(image, categories, previous, generate, component_inventory=args.component_inventory,
+                                        hints=args.object_hints,
                                         mode=args.grounding_mode, frame_index=index)
         write_json(stage / f"response_{index:06d}.json", {
             "frame_id": frame["frame_id"], "image_path": frame["image_path"], "prompt_version": PROMPT_VERSION,

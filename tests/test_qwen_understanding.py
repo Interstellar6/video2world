@@ -166,6 +166,24 @@ class QwenContractTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "duplicate component_id"):
             MODULE.validate_response(payload, 1280, 720)
 
+    def test_object_hints_widen_the_general_prompt_without_binding_it(self):
+        plain = MODULE.make_prompt(1280, 720, None, [], component_inventory=True)
+        self.assertNotIn("Also look for", plain)
+        hinted = MODULE.make_prompt(1280, 720, None, [], component_inventory=True,
+                                    hints="nightstands, paintings, windows")
+        self.assertIn("Also look for: nightstands, paintings, windows.", hinted)
+        self.assertIn("Identify movable foreground objects in the scene.", hinted)
+        # An explicit category list is binding, so a hint must not widen it.
+        strict = MODULE.make_prompt(1280, 720, "bed", [], hints="nightstands, paintings")
+        self.assertIn("Identify only these object categories: bed.", strict)
+        self.assertNotIn("Also look for", strict)
+
+    def test_a_hint_does_not_relax_category_validation(self):
+        payload = copy.deepcopy(MODULE.SCHEMA)
+        payload["objects"][0]["category"] = "painting"
+        with self.assertRaisesRegex(ValueError, "outside requested categories"):
+            MODULE.validate_response(payload, 1280, 720, ["bed"])
+
     def test_slug_identifier_always_satisfies_the_declared_grammar(self):
         import re as regex
 

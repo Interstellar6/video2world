@@ -378,6 +378,33 @@ class GeometricLiftingTests(unittest.TestCase):
                 self.assertEqual(record["mask_path"], originals[record["frame_id"]]["mask_path"])
                 self.assertEqual(record["composition"]["added_source_pixels"], 0)
 
+    def test_observation_components_split_a_category_level_track(self):
+        # One lamp hypothesis covered two disconnected groups of views; the
+        # components must come back largest first with their own members.
+        observations = [{"frame_id": str(index)} for index in range(5)]
+        accepted = {("0", "1"), ("1", "2"), ("0", "2"), ("3", "4")}
+
+        def fake_pair(first, second, frames, voxel_size, tolerance, args):
+            key = (first["frame_id"], second["frame_id"])
+            return {"accepted": key in accepted, "frame_ids": list(key), "reprojection": []}
+
+        with patch.object(adapter, "association_pair", side_effect=fake_pair):
+            components = adapter.observation_components(observations, {}, None, 1.0, 1.0, argparse.Namespace())
+        self.assertEqual([[observations[i]["frame_id"] for i in group] for group in components],
+                         [["0", "1", "2"], ["3", "4"]])
+
+    def test_every_observation_is_its_own_component_when_nothing_matches(self):
+        observations = [{"frame_id": str(index)} for index in range(3)]
+        with patch.object(adapter, "association_pair", return_value={"accepted": False, "reprojection": []}):
+            components = adapter.observation_components(observations, {}, None, 1.0, 1.0, argparse.Namespace())
+        self.assertEqual([len(group) for group in components], [1, 1, 1])
+
+    def test_a_connected_track_stays_one_component(self):
+        observations = [{"frame_id": str(index)} for index in range(4)]
+        with patch.object(adapter, "association_pair", return_value={"accepted": True, "reprojection": []}):
+            components = adapter.observation_components(observations, {}, None, 1.0, 1.0, argparse.Namespace())
+        self.assertEqual([len(group) for group in components], [4])
+
     def test_visibility_conflicts_are_recorded_without_rejecting_a_connected_track(self):
         # A wide-baseline pair can legitimately disagree about occluding a surface
         # it sees from the other side; identity is decided by accepted-pair

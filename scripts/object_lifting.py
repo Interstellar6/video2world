@@ -324,6 +324,39 @@ def association_pair(first, second, frames, voxel_size, absolute_tolerance, args
             "backward_overlap_ratio": backward, "reprojection": contradictions, "accepted": accepted}
 
 
+# A category-level hypothesis can cover more than one physical object: the
+# ScanNet++ bedroom lamp splits into 41 and 9 mutually disconnected views and the
+# plant into 25, 14 and 10. The largest component is validated as the identity
+# and the rest are recorded instead of rejecting the whole track; a component
+# that does not cover this share of the track is not treated as its identity.
+MIN_COMPONENT_SHARE = 0.5
+
+
+def observation_components(observations, frames, scene_tree, voxel_size, absolute_tolerance, args) -> list:
+    """Connected components of the accepted-pair graph over one track's views."""
+    count = len(observations)
+    parent = list(range(count))
+
+    def find(node):
+        while parent[node] != node:
+            parent[node] = parent[parent[node]]
+            node = parent[node]
+        return node
+
+    for left_index in range(count):
+        for right_index in range(left_index + 1, count):
+            pair = association_pair(observations[left_index], observations[right_index], frames, voxel_size,
+                                    absolute_tolerance, args)
+            if pair["accepted"]:
+                left, right = find(left_index), find(right_index)
+                if left != right:
+                    parent[max(left, right)] = min(left, right)
+    groups = {}
+    for index in range(count):
+        groups.setdefault(find(index), []).append(index)
+    return sorted(groups.values(), key=lambda group: (-len(group), group[0]))
+
+
 def association_report(observations: list[dict], frames: dict, scene_tree, voxel_size: float, absolute_tolerance: float, args) -> dict:
     import numpy as np
 
@@ -859,8 +892,32 @@ def run(args) -> dict:
             original_observations = {str(record["frame_id"]): record for record in records}
             resolved_track["observations"] = [{**original_observations[item["frame_id"]], "mask_path": item["mask_path"],
                                                 "mask_sha256": item["mask_sha256"]} for item in observations]
+            view_components = observation_components(observations, frame_cache, scene_tree, voxel_size,
+                                                     absolute_tolerance, args)
+            component_split = None
+            if len(view_components) > 1:
+                kept, excluded = view_components[0], [index for group in view_components[1:] for index in group]
+                share = len(kept) / len(observations)
+                component_split = {"components": [len(group) for group in view_components],
+                                   "largest_component_share": round(share, 4),
+                                   "excluded_frames": [observations[index]["frame_id"] for index in excluded],
+                                   "policy": "largest_connected_component_is_the_identity",
+                                   "minimum_share": MIN_COMPONENT_SHARE}
+                if len(kept) >= args.min_views and share >= MIN_COMPONENT_SHARE:
+                    observations = [observations[index] for index in kept]
+                    resolved_track["observations"] = [{**original_observations[item["frame_id"]],
+                                                       "mask_path": item["mask_path"], "mask_sha256": item["mask_sha256"]}
+                                                      for item in observations]
+                else:
+                    component_split["applied"] = False
             association = association_report(observations, frame_cache, scene_tree, voxel_size, absolute_tolerance, args)
             track_report.update(association)
+            if component_split is not None:
+                component_split.setdefault("applied", True)
+                track_report["identity_components"] = component_split
+                if not component_split["applied"]:
+                    track_report["reasons"] = sorted(set(track_report["reasons"]) | {"no_component_covers_the_track"})
+                    track_report["accepted"] = False
             if any(not alignments[item["frame_id"]]["accepted"] for item in observations):
                 track_report["accepted"] = False
                 track_report["reasons"].append("depth_scale_or_scene_alignment_mismatch")
