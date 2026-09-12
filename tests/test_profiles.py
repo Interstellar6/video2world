@@ -52,6 +52,25 @@ class ShippedProfileTests(unittest.TestCase):
         self.assertIn("--embodiedgen-root", command)
         self.assertEqual(sorted(profile["providers"]), sorted(set(profile["pipeline"])))
 
+    def test_the_stream3d_profile_differs_from_the_asset_profile_only_in_the_completion(self):
+        asset = load("embodiedgen.skipbg.json")
+        stream = load("embodiedgen-stream3d.skipbg.json")
+        self.assertIn("geometry_completion", stream["providers"])
+        self.assertNotIn("observed_context_completion", stream["providers"])
+        self.assertIn("geometry_completion", stream["pipeline"])
+        self.assertNotIn("observed_context_completion", stream["pipeline"])
+        # the object asset provider and the scene recipe are shared, not re-specified
+        self.assertEqual(command_of(stream, "mesh_postprocess"), command_of(asset, "mesh_postprocess"))
+        self.assertEqual(command_of(stream, "orbit_video"), command_of(asset, "orbit_video"))
+        self.assertEqual(command_of(stream, "scene_reconstruction"), command_of(asset, "scene_reconstruction"))
+        self.assertIn("--stream3d-python", command_of(stream, "geometry_completion"))
+        # a generated turntable video cannot support an independently estimated
+        # trajectory, so the profile declares the fallback instead of failing
+        self.assertEqual(option(command_of(stream, "geometry_completion"), "--generated-camera-fallback"),
+                         "conditioning")
+        self.assertEqual(option(command_of(load("seetacloud.json"), "geometry_completion"),
+                                "--generated-camera-fallback"), "conditioning")
+
     def test_a_profile_declares_every_provider_it_binds(self):
         for path in sorted(PROFILES.glob("*.json")):
             with self.subTest(profile=path.name):

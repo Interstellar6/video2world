@@ -441,6 +441,117 @@ class GeneratedInputTests(unittest.TestCase):
                 adapter.validate_generated_camera_chain(*args)
             gate.assert_not_called()
 
+    def conditioning_cameras(self, task, count=4):
+        import numpy as np
+
+        frames = []
+        for index in range(count):
+            pose = np.eye(4)
+            pose[:3, 3] = [.4 * index, .2, 1.5]
+            frames.append({"frame_id": f"{index:06d}", "azimuth_degrees": 6.0 * index,
+                           "world_to_camera": pose.tolist(),
+                           "camera_center_world": (-pose[:3, :3].T @ pose[:3, 3]).tolist(),
+                           "intrinsics": [[8., 0, 3], [0, 8., 3], [0, 0, 1]]})
+        document = {"coordinate_frame": "scene_world", "units": "meters",
+                    "camera_convention": "world_to_camera_opencv", "frames": frames}
+        adapter.write_json(task / "cameras.json", document)
+        return document
+
+    def generated_dataset(self, task, count=12):
+        """A materialized generated-frame dataset with its conditioning trajectory."""
+        request, prediction, mappings = self.fixture(task, count=count)
+        adapter.save_generated_geometry(task, request, prediction, mappings)
+        geometry_path = task / "dataset/bed/input_manifest.json"
+        conditioning = self.conditioning_cameras(task)
+        video = task / "generated.mp4"
+        video.write_bytes(b"generated orbit video fixture")
+        provenance = []
+        for index in range(count):
+            provenance.append({"frame_id": str(index), "orbit_id": f"orbit_{index // 4:02d}",
+                               "generated_video_path": video.name, "generated_video_sha256": adapter.sha256(video),
+                               "generated_frame_index": index % 4,
+                               "conditioning_cameras_path": "cameras.json",
+                               "conditioning_cameras_sha256": adapter.sha256(task / "cameras.json")})
+        adapter.write_json(task / "provenance.json", {"frames": provenance})
+        adapter.write_json(task / "lifting.json", {"voxel_size": .1})
+        return geometry_path, prediction, conditioning
+
+    @unittest.skipUnless(RASTER_DEPS, "requires OpenCV for official DA3 raster materialization")
+    def test_conditioning_fallback_replaces_estimated_cameras_and_keeps_the_estimate(self):
+        import numpy as np
+
+        with tempfile.TemporaryDirectory() as folder:
+            task = Path(folder)
+            geometry_path, prediction, conditioning = self.generated_dataset(task, count=12)
+            args = (task, geometry_path, task / "provenance.json", task / "lifting.json", 7)
+            sys.path.insert(0, str(SCRIPT.parent))
+            import object_registration
+
+            with patch.object(object_registration, "camera_chain", side_effect=object_registration.RegistrationError("fewer than three supported correspondences")):
+                report = adapter.validate_generated_camera_chain(*args, fallback="conditioning")
+            self.assertEqual(report["camera_source"], "conditioning_trajectory")
+            self.assertEqual(report["independent_estimation"]["status"], "rejected")
+            self.assertIn("fewer than three", report["independent_estimation"]["reason"])
+            self.assertGreater(report["independent_estimation"]["conditioning_camera_center_span"], 0)
+            geometry = adapter.read_json(geometry_path)
+            self.assertTrue(geometry["conditioning_poses_used"])
+            self.assertTrue(geometry["camera_conditioned"])
+            self.assertEqual(geometry["coordinate_frame"], "scene_world")
+            self.assertEqual(geometry["unit"], "meters")
+            self.assertEqual(geometry["generated_camera_fallback"]["applied"], "conditioning_trajectory")
+            mapping = np.diag([.5, .5, 1.])
+            for index, frame in enumerate(geometry["frames"]):
+                pose = np.asarray(conditioning["frames"][index % 4]["world_to_camera"], dtype=float)
+                np.testing.assert_allclose(np.asarray(frame["world_to_camera"], dtype=float), pose, atol=1e-9)
+                np.testing.assert_allclose(np.asarray(frame["da3_world_to_camera"], dtype=float), prediction.extrinsics[index], atol=1e-9)
+                np.testing.assert_allclose(np.asarray(frame["intrinsics"], dtype=float),
+                                           mapping @ np.asarray(conditioning["frames"][index % 4]["intrinsics"], dtype=float), atol=1e-9)
+                with np.load(task / frame["depth_npz_path"]) as archive:
+                    np.testing.assert_allclose(np.asarray(archive["world_to_camera"], dtype=float), pose, atol=1e-6)
+                self.assertEqual(frame["depth_sha256"], adapter.sha256(task / frame["depth_npz_path"]))
+                self.assertEqual(frame["camera_source"], "conditioning_trajectory")
+            written = np.loadtxt(task / geometry["camera_poses_path"]).reshape(12, 4, 4)
+            np.testing.assert_allclose(written, np.array([frame["world_to_camera"] for frame in geometry["frames"]]), atol=1e-6)
+            provenance = adapter.read_json(task / "provenance.json")
+            self.assertTrue(provenance["conditioning_cameras_used_as_geometry"])
+            self.assertTrue(all(item["conditioning_cameras_used_as_geometry"] for item in provenance["frames"]))
+            # a rewritten dataset is re-verified, never re-estimated
+            with patch.object(object_registration, "camera_chain", side_effect=AssertionError("estimation must not run again")):
+                again = adapter.validate_generated_camera_chain(*args, fallback="conditioning")
+            self.assertEqual(again["camera_source"], "conditioning_trajectory")
+            tampered = adapter.read_json(geometry_path)
+            tampered["frames"][0]["world_to_camera"] = np.eye(4).tolist()
+            adapter.write_json(geometry_path, tampered)
+            with self.assertRaisesRegex(adapter.CompletionError, "not its conditioning pose"):
+                adapter.verify_conditioning_trajectory(task, geometry_path, task / "provenance.json")
+
+    @unittest.skipUnless(RASTER_DEPS, "requires OpenCV for official DA3 raster materialization")
+    def test_the_conditioning_fallback_is_off_unless_the_profile_asks_for_it(self):
+        with tempfile.TemporaryDirectory() as folder:
+            task = Path(folder)
+            geometry_path, _, _ = self.generated_dataset(task, count=12)
+            args = (task, geometry_path, task / "provenance.json", task / "lifting.json", 7)
+            sys.path.insert(0, str(SCRIPT.parent))
+            import object_registration
+
+            with patch.object(object_registration, "camera_chain", side_effect=object_registration.RegistrationError("collapsed estimates")):
+                with self.assertRaisesRegex(adapter.CompletionError, "before Stream3D"):
+                    adapter.validate_generated_camera_chain(*args)
+            geometry = adapter.read_json(geometry_path)
+            self.assertFalse(geometry["conditioning_poses_used"])
+            self.assertEqual(geometry["camera_estimation"], "fresh_DA3_joint_generated_RGB")
+            self.assertNotIn("generated_camera_fallback", geometry)
+
+    def test_a_conditioning_frame_outside_its_trajectory_is_refused(self):
+        with tempfile.TemporaryDirectory() as folder:
+            task = Path(folder)
+            self.conditioning_cameras(task)
+            adapter.write_json(task / "provenance.json", {"frames": [
+                {"frame_id": "000000", "conditioning_cameras_path": "cameras.json",
+                 "conditioning_cameras_sha256": adapter.sha256(task / "cameras.json"), "generated_frame_index": 9}]})
+            with self.assertRaisesRegex(adapter.CompletionError, "outside its conditioning trajectory"):
+                adapter.conditioning_camera_records(task, task / "provenance.json")
+
     @unittest.skipUnless(RASTER_DEPS, "requires OpenCV for official DA3 raster materialization")
     def test_invalid_predicted_camera_cannot_be_promoted_to_stream3d_input(self):
         with tempfile.TemporaryDirectory() as folder:

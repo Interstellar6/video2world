@@ -1,5 +1,5 @@
 {
-  "description": "Explicit real adapter bindings for SeetaCloud. Bindings are not inference success: FixAnything weights require preflight and Responses requires valid credentials. No task-specific resume cache is used.",
+  "description": "The architecture the reference export used: Holi-Spatial scene reconstruction, Qwen-VL detection, SAM3-I segmentation, FixAnything orbit video, Stream3D geometry completion, EmbodiedGen v2 object assets and CoACD collision proxies. Run with --skip-bg-recon to drop clean_plate, background_reconstruction and scene_recomposition at run time.",
   "pipeline": [
     "scene_reconstruction",
     "scene_understanding",
@@ -14,7 +14,7 @@
     "physics_estimation",
     "scene_recomposition"
   ],
-  "profile_id": "seetacloud-modular-real",
+  "profile_id": "seetacloud-embodiedgen-stream3d-skipbg",
   "providers": {
     "background_reconstruction": {
       "command": [
@@ -114,6 +114,38 @@
       ],
       "kind": "command"
     },
+    "mesh_postprocess": {
+      "command": [
+        "/usr/bin/env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "/root/autodl-tmp/envs/embodiedgen-011d815ea393-py310-cu124/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/embodiedgen_assets.py",
+        "--task-dir",
+        "{task_dir}",
+        "--inputs",
+        "{inputs_json}",
+        "--outputs",
+        "{outputs_json}",
+        "--embodiedgen-root",
+        "/root/autodl-tmp/video2world-modeling/external/EmbodiedGen"
+      ],
+      "kind": "command"
+    },
+    "object_lifting": {
+      "command": [
+        "/root/miniconda3/bin/python",
+        "/root/autodl-tmp/video2world-modeling/scripts/object_lifting.py",
+        "--task-dir",
+        "{task_dir}",
+        "--inputs",
+        "{inputs_json}",
+        "--outputs",
+        "{outputs_json}",
+        "--composite-policy",
+        "{{\"bed\":{{\"pillow\":\"bedding\",\"pillow_group\":\"bedding\"}}}}"
+      ],
+      "kind": "command"
+    },
     "geometry_completion": {
       "command": [
         "/root/miniconda3/bin/python",
@@ -164,34 +196,6 @@
         "0",
         "--generated-camera-fallback",
         "conditioning"
-      ],
-      "kind": "command"
-    },
-    "mesh_postprocess": {
-      "command": [
-        "/root/autodl-tmp/envs/embodiedgen-011d815ea393-py310-cu124/bin/python",
-        "/root/autodl-tmp/video2world-modeling/scripts/mesh_postprocess.py",
-        "--task-dir",
-        "{task_dir}",
-        "--inputs",
-        "{inputs_json}",
-        "--outputs",
-        "{outputs_json}"
-      ],
-      "kind": "command"
-    },
-    "object_lifting": {
-      "command": [
-        "/root/miniconda3/bin/python",
-        "/root/autodl-tmp/video2world-modeling/scripts/object_lifting.py",
-        "--task-dir",
-        "{task_dir}",
-        "--inputs",
-        "{inputs_json}",
-        "--outputs",
-        "{outputs_json}",
-        "--composite-policy",
-        "{{\"bed\":{{\"pillow\":\"bedding\",\"pillow_group\":\"bedding\"}}}}"
       ],
       "kind": "command"
     },
@@ -303,7 +307,11 @@
         "{outputs_json}",
         "--model",
         "/root/autodl-tmp/models/Qwen2.5-VL-3B-Instruct",
-        "--component-inventory"
+        "--component-inventory",
+        "--component-inventory-policy",
+        "tolerant",
+        "--object-hints",
+        "nightstands, bed frames and headboards, pillows, paintings, mirrors, windows, curtains, rugs, chairs and desks"
       ],
       "kind": "command"
     }

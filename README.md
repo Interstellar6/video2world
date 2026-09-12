@@ -201,6 +201,70 @@ Every copied artifact is re-verified against its task receipt first, and `export
 python3 scripts/verify_export.py --export-root /path/to/video2world-export-assets/bedroom_4 [--skip-geometry]
 ```
 
+## Delivery Layout
+
+The delivery is the only thing a consumer receives, so every documented capability has to be a file in it. `export_assets.py` writes this shape:
+
+```text
+<delivery>/
+  datasets/<scene>/                 source images and calibration
+  scene/point_cloud_3dgs.ply        scene Gaussians (PGSR); non-finite rows are dropped and counted
+  scene/point_cloud_simple.ply      scene surface points
+  scene/mesh.ply                    scene surface, decimated to the face budget, vertex-coloured
+  scene/depth/                      per-frame 16-bit PNG depth plus manifest.json
+  object/background.glb             scene surface with a baked texture, or vertex colours as fallback
+  object/background_texture.png     the baked atlas
+  object/parts/<object>/            observed per-component parts, one PLY each, plus manifest.json
+  object/object_version_1/<id>/     completed mesh and textures plus asset_report.json
+  object/object_version_2/<id>/     EmbodiedGen v2 asset: GLB, textured OBJ/MTL/PNG, collision/ hulls
+  qa/                               previews, comparison and QA records
+  web-demo/                         three.js viewer over the delivered assets
+  export_manifest.json              every delivered file with source path, SHA-256 and evidence class
+```
+
+`asset_report.json` sits in each object directory and lists the stages that produced that object — role, provider, evidence class and source frame ids — so an object can be traced without opening the task registry. Vertex colours are written as a normalised unsigned-char array on purpose: PLY and GLB writers silently drop them otherwise, and `verify_export` re-reads the files rather than trusting the writer.
+
+Three scene assets have a stated budget because an unbounded one is not a delivery: the scene surface is decimated to `--scene-face-budget` faces, the background to `--background-face-budget` faces with a `--background-texture-size` atlas baked from the calibrated frames, and the depth layer writes 16-bit PNGs per frame with a manifest. Decimation uses `vtkDecimatePro`; `vtkQuadricDecimation` refuses to reduce an open TSDF surface because it preserves boundary edges (measured: 12.79M to 12.19M faces). The scene surface is loaded through VTK, not trimesh, for the same practical reason: 2.2s against minutes on a 12.8M-face surface.
+
+### The Provider Mapping Behind It
+
+| Level | Recipe | Bound provider |
+|---|---|---|
+| Scene | Holi-Spatial: DA3/VGGT-Omega depth, PGSR Gaussians at `--pgsr-iterations 30000`, TSDF surface | `scripts/scene_reconstruction.py` |
+| Detection | Qwen2.5-VL frame inventory with `--component-inventory-policy tolerant` and `--object-hints` | `scripts/qwen_understanding.py` |
+| Segmentation | native SAM3-I, all-instance class queries | `scripts/component_segmentation.py` |
+| Video | FixAnything orbit video, three elevations per object | `scripts/orbit_video.py` |
+| Completion | Stream3D + SAM3D over the generated views | `scripts/geometry_completion.py` |
+| Objects | EmbodiedGen v2: splat renders, `MeshFixer`, `TextureBaker`, `save_mesh_with_mtl`, CoACD | `scripts/embodiedgen_assets.py` |
+
+`profiles/embodiedgen-stream3d.skipbg.json` binds exactly this and is the default of `run_dataset.py`. It replaces the builtin `mesh_postprocess` utilities with the EmbodiedGen v2 toolchain, which is what turns "a mesh and a splat" into a textured OBJ/MTL/PNG triple plus convex collision proxies; the builtin provider stays bound in `profiles/three-d-fixer.skipbg.json`. The PGSR iteration count is a scene-density decision, not a speed knob: 6000 iterations decay the learning rate to zero and do converge, but they densify for only 3000 steps and deliver a visibly coarser cloud.
+
+### Cameras for the Generated Views
+
+Stream3D needs a pose and a calibration per input view, and the stage first tries to measure them: DA3 is run on the generated frames alone (`extrinsics=None`), and its trajectory is aligned to the conditioning orbit with a Sim(3) fit whose error gates are the registration gates. That measurement is rejected on a turntable orbit, and the reason is structural rather than a threshold: DA3 explains a rotating object as a moving camera, so on the six degree-of-freedom-free orbit renders it estimates almost no baseline. Measured on the bedroom_4 bed, the estimated camera-centre span was 1.9 units against 4.5 in the conditioning trajectory, with each orbit's four views collapsing into a 0.2-unit cluster, and the Sim(3) fit then found fewer than three supported correspondences.
+
+`--generated-camera-fallback conditioning` therefore lets the stage keep the depth the generated view actually predicts while taking the pose and calibration of the conditioning frame that view was rendered from — generated frame `i` is the conditioned edit of conditioning frame `i`, so those are the exact cameras of the view, not an approximation of them. The switch is never silent: `da3_world_to_camera` and `da3_intrinsics` keep the rejected estimate on every frame, `generated_camera_fallback` records its failure reason and both measured spans, `camera_estimation` becomes `conditioning_trajectory_of_registered_generated_frames`, `conditioning_poses_used` turns true, and the dataset declares the conditioning scene frame and units so the reconstructed object lands in the scene frame rather than in a hallucinated one. The default remains `fail`, which is what a profile gets when it does not ask for the fallback, and a dataset that already declares the conditioning trajectory is re-verified against it exactly rather than re-estimated.
+
+## Comparing Deliveries
+
+`scripts/compare_deliveries.py` measures two deliveries item by item — total size, every scene layer with its vertex/face counts and whether it carries colour, objects per version with mesh, splat and hull counts, delivered parts, advertised previews and whether the files exist, and the viewer — and checks the candidate against a delivery contract: a scene surface, Gaussians, depth maps, completed objects, a mesh and a splat per object, collision hulls per object, a textured background, observed parts, at least four preview kinds, and a viewer.
+
+```bash
+python3 scripts/compare_deliveries.py --reference /path/to/old --candidate /path/to/new \
+  --report /path/to/new/qa/comparison.json --require-contract
+```
+
+The contract is deliberately stricter than the reference it was written against: that export carried no collision hulls for any of its 15 objects and no depth maps, so it fails the contract the current delivery satisfies. A violation is reported per line and `--require-contract` turns it into an exit code instead of a claim.
+
+A delivery can also be described where it lives and compared where the reference lives, which avoids moving hundreds of megabytes between hosts:
+
+```bash
+python3 scripts/compare_deliveries.py --describe <delivery> > candidate.json   # on the GPU host
+python3 scripts/compare_deliveries.py --reference <old> --candidate candidate.json --require-contract
+```
+
+`run_dataset.py --export-dir <path> --compare-with <old>` does the export, the independent verification and this comparison in one invocation.
+
 ## Credentials and Readiness
 
 Credentials are inherited through environment variables, never written into profiles or launcher receipts. `--token-env` on the launcher is optional service authentication; it is distinct from clean plate's `PLBBL_API_KEY`. Load provider secrets in the launching environment without printing them.

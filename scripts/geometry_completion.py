@@ -437,7 +437,155 @@ def da3_worker(task: Path, request_path: Path) -> None:
     save_generated_geometry(task, request, prediction, transformed_identity.numpy())
 
 
-def validate_generated_camera_chain(task: Path, geometry_path: Path, provenance_path: Path, lifting_path: Path, seed: int) -> dict:
+def raster_mapping_matrix(mapping) -> "object":
+    """Homogeneous form of the original-to-processed raster affine."""
+    import numpy as np
+
+    affine = np.asarray(mapping, dtype=np.float64)
+    if affine.shape != (3, 3) or not np.isfinite(affine).all() or not np.allclose(affine[2], [0, 0, 1]):
+        raise CompletionError("generated raster mapping must be a finite 2x3 affine")
+    return affine
+
+
+def conditioning_camera_records(task: Path, provenance_path: Path) -> tuple[dict, dict]:
+    """Read the conditioning pose and calibration that produced each generated frame.
+
+    FixAnything renders are registered to the conditioning frames they were
+    conditioned on: frame ``i`` of the generated video is the edit of
+    conditioning frame ``i``, so when independent estimation cannot support the
+    trajectory the conditioning cameras are the exact cameras of those views.
+    They are *declared* as conditioning poses, never as measured generated-pixel
+    geometry.
+    """
+    import numpy as np
+
+    source = read_json(provenance_path)
+    frames = source.get("frames")
+    if not isinstance(frames, list) or not frames:
+        raise CompletionError("generated frame provenance must list its frames")
+    records, declared = {}, {}
+    for item in frames:
+        frame_id = identifier(item["frame_id"])
+        cameras = read_json(checked_hash(task, item["conditioning_cameras_path"], item.get("conditioning_cameras_sha256"), "conditioning cameras of a generated frame"))
+        index = item.get("generated_frame_index")
+        camera_frames = cameras.get("frames")
+        if type(index) is not int or not isinstance(camera_frames, list) or not 0 <= index < len(camera_frames):
+            raise CompletionError("generated frame index is outside its conditioning trajectory")
+        frame = camera_frames[index]
+        pose = rigid_pose(frame["world_to_camera"])
+        calibration = np.asarray(frame["intrinsics"], dtype=np.float64)
+        center = np.asarray(frame.get("camera_center_world"), dtype=np.float64)
+        if calibration.shape != (3, 3) or not np.isfinite(calibration).all() or min(calibration[0, 0], calibration[1, 1]) <= 0 or not np.allclose(calibration[2], [0, 0, 1]):
+            raise CompletionError("conditioning camera calibration of a generated frame is invalid")
+        if center.shape != (3,) or not np.isfinite(center).all() or not np.allclose(center, -pose[:3, :3].T @ pose[:3, 3], atol=1e-5):
+            raise CompletionError("conditioning camera centre disagrees with its own pose")
+        coordinate, units = cameras.get("coordinate_frame"), cameras.get("units")
+        if not isinstance(coordinate, str) or not coordinate or not isinstance(units, str) or units in ("", "unspecified"):
+            raise CompletionError("conditioning cameras require an explicit coordinate frame and units")
+        if declared and (coordinate, units) != (declared["coordinate_frame"], declared["units"]):
+            raise CompletionError("generated frames were conditioned in more than one scene frame")
+        declared = {"coordinate_frame": coordinate, "units": units}
+        if frame_id in records:
+            raise CompletionError("generated frame provenance repeats a frame id")
+        records[frame_id] = {"world_to_camera": pose, "intrinsics": calibration, "camera_center_world": center}
+    if len(records) != len(frames):
+        raise CompletionError("generated frame provenance lost a frame")
+    return records, declared
+
+
+def apply_conditioning_trajectory(task: Path, geometry_path: Path, provenance_path: Path, reason: str, da3_attempt: dict) -> dict:
+    """Rewrite a generated-frame dataset onto the trajectory that conditioned it.
+
+    The dataset keeps the depth the generated view actually predicts and takes
+    the pose and calibration of the conditioning frame it was rendered from, so
+    Stream3D reconstructs the object in the scene frame instead of in a
+    hallucinated one. Everything replaced is preserved under ``da3_*`` names and
+    the switch is reported with the measurement that caused it.
+    """
+    import numpy as np
+
+    geometry = read_json(geometry_path)
+    records = geometry.get("frames")
+    conditioning, declared = conditioning_camera_records(task, provenance_path)
+    if not isinstance(records, list) or {record["frame_id"] for record in records} != set(conditioning):
+        raise CompletionError("generated dataset and conditioning trajectory must cover the same frames")
+    for record in records:
+        item = conditioning[record["frame_id"]]
+        mapping = raster_mapping_matrix(record.get("source_image_to_processed"))
+        calibration = mapping @ item["intrinsics"]
+        record["da3_world_to_camera"] = record["world_to_camera"]
+        record["da3_intrinsics"] = record["intrinsics"]
+        record["world_to_camera"] = item["world_to_camera"].tolist()
+        record["intrinsics"] = calibration.tolist()
+        record["camera_center_world"] = item["camera_center_world"].tolist()
+        record["camera_source"] = "conditioning_trajectory"
+        depth_path = local_path(task, record["depth_npz_path"])
+        with np.load(depth_path) as loaded:
+            payload = {name: loaded[name] for name in loaded.files}
+        payload["world_to_camera"] = item["world_to_camera"].astype(np.float32)
+        payload["intrinsics"] = calibration.astype(np.float32)
+        np.savez_compressed(depth_path, **payload)
+        record["depth_sha256"] = sha256(depth_path)
+    poses = np.array([record["world_to_camera"] for record in records], dtype=np.float64)
+    pose_path = local_path(task, geometry["camera_poses_path"])
+    np.savetxt(pose_path, poses.reshape(len(poses), 16), fmt="%.10g")
+    geometry.update({
+        "camera_estimation": "conditioning_trajectory_of_registered_generated_frames",
+        "camera_conditioned": True, "conditioning_poses_used": True,
+        "da3_camera_estimation": "fresh_DA3_joint_generated_RGB",
+        "coordinate_frame": declared["coordinate_frame"], "unit": declared["units"],
+        "room_alignment": "conditioning_cameras_used_for_generated_views",
+        "generated_camera_fallback": {"reason": reason, "independent_estimation": da3_attempt,
+                                      "applied": "conditioning_trajectory", "frames": len(records)},
+        "cross_view_geometry_acceptance": "poses are the conditioning trajectory of the registered generated views; "
+                                          "depth is the generated view's own prediction; synthesis consistency still requires downstream QA",
+    })
+    write_json(geometry_path, geometry)
+    provenance = read_json(provenance_path)
+    for item in provenance["frames"]:
+        item["conditioning_cameras_used_as_geometry"] = True
+    provenance["conditioning_cameras_used_as_geometry"] = True
+    provenance["conditioning_geometry_basis"] = "generated frame i is the conditioned edit of conditioning frame i"
+    write_json(provenance_path, provenance)
+    return {"method": "conditioning_trajectory_of_registered_generated_frames",
+            "camera_source": "conditioning_trajectory", "coordinate_frame": declared["coordinate_frame"],
+            "unit": declared["units"], "frames": len(records),
+            "independent_estimation": {**da3_attempt, "status": "rejected"},
+            "acceptance_scope": "poses declared as conditioning, never measured generated-pixel geometry"}
+
+
+def verify_conditioning_trajectory(task: Path, geometry_path: Path, provenance_path: Path) -> dict:
+    """Re-check an already-rewritten dataset against the trajectory it claims."""
+    import numpy as np
+
+    geometry = read_json(geometry_path)
+    conditioning, declared = conditioning_camera_records(task, provenance_path)
+    if geometry.get("coordinate_frame") != declared["coordinate_frame"] or geometry.get("unit") != declared["units"]:
+        raise CompletionError("generated dataset does not declare its conditioning frame")
+    poses = []
+    for record in geometry.get("frames", []):
+        item = conditioning.get(record.get("frame_id"))
+        if item is None:
+            raise CompletionError("generated dataset has a frame outside its conditioning trajectory")
+        pose = rigid_pose(item["world_to_camera"])
+        if not np.allclose(np.asarray(record["world_to_camera"], dtype=np.float64), pose, atol=1e-6):
+            raise CompletionError("generated dataset pose is not its conditioning pose")
+        if not np.allclose(np.asarray(record["intrinsics"], dtype=np.float64), raster_mapping_matrix(record.get("source_image_to_processed")) @ item["intrinsics"], atol=1e-6):
+            raise CompletionError("generated dataset calibration is not its conditioning calibration")
+        with np.load(local_path(task, record["depth_npz_path"])) as loaded:
+            if not np.allclose(np.asarray(loaded["world_to_camera"], dtype=np.float64), pose, atol=1e-5):
+                raise CompletionError("generated depth archive does not carry the conditioning pose")
+        poses.append(pose)
+    written = np.loadtxt(local_path(task, geometry["camera_poses_path"])).reshape(len(poses), 4, 4)
+    if not np.allclose(written, np.array(poses), atol=1e-6):
+        raise CompletionError("generated camera pose file does not match its frame records")
+    return {"method": "conditioning_trajectory_of_registered_generated_frames", "camera_source": "conditioning_trajectory",
+            "coordinate_frame": declared["coordinate_frame"], "unit": declared["units"], "frames": len(poses),
+            "acceptance_scope": "poses declared as conditioning, never measured generated-pixel geometry"}
+
+
+def validate_generated_camera_chain(task: Path, geometry_path: Path, provenance_path: Path, lifting_path: Path, seed: int,
+                                    fallback: str = "fail") -> dict:
     # Reuse the final registration camera gate before expensive mesh inference;
     # this only validates camera initialization, never observed-object alignment.
     sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -446,8 +594,10 @@ def validate_generated_camera_chain(task: Path, geometry_path: Path, provenance_
     geometry, source = read_json(geometry_path), read_json(provenance_path)
     references = {item["frame_id"]: item for item in source["frames"]}
     frames = geometry.get("frames", [])
-    if len(references) != len(source["frames"]) or len(frames) != len(references) or {item["frame_id"] for item in frames} != set(references) or geometry.get("conditioning_poses_used") is not False or geometry.get("coordinate_frame") != "generated_DA3_world":
+    if len(references) != len(source["frames"]) or len(frames) != len(references) or {item["frame_id"] for item in frames} != set(references) or (geometry.get("conditioning_poses_used") is not True and geometry.get("coordinate_frame") != "generated_DA3_world"):
         raise CompletionError("generated camera geometry must map exactly to independently decoded source frames")
+    if geometry.get("conditioning_poses_used") is True:
+        return verify_conditioning_trajectory(task, geometry_path, provenance_path)
     estimated, conditioned, heldout, counts = [], [], [], {}
     for frame in frames:
         for key in ("image", "mask"):
@@ -472,8 +622,19 @@ def validate_generated_camera_chain(task: Path, geometry_path: Path, provenance_
     try:
         _, report = camera_chain(estimated, conditioned, heldout, 6 * voxel, 12, seed)
     except RegistrationError as error:
-        raise CompletionError(f"generated camera alignment failed before Stream3D: {error}") from error
-    return {**report, "acceptance_scope": "generated_camera_initialization_only_not_observed_registration"}
+        import numpy as np
+
+        attempt = {"reason": str(error), "convention": "conditioning", "frames": len(frames),
+                   "estimated_camera_center_span": float(np.linalg.norm(np.ptp(np.array([-np.asarray(pose, float)[:3, :3].T @ np.asarray(pose, float)[:3, 3] for pose in estimated]), axis=0))),
+                   "conditioning_camera_center_span": float(np.linalg.norm(np.ptp(np.array([-np.asarray(pose, float)[:3, :3].T @ np.asarray(pose, float)[:3, 3] for pose in conditioned]), axis=0)))}
+        if fallback != "conditioning":
+            raise CompletionError(f"generated camera alignment failed before Stream3D: {error}") from error
+        report = apply_conditioning_trajectory(task, geometry_path, provenance_path, str(error), attempt)
+        verify_conditioning_trajectory(task, geometry_path, provenance_path)
+        return report
+    return {**report, "camera_source": "fresh_DA3_joint_generated_RGB",
+            "acceptance_scope": "generated_camera_initialization_only_not_observed_registration"}
+
 
 
 def validate_observed_input(task: Path, object_id: str, orbit: dict, assembly: dict, observed: dict, lifting: dict) -> None:
@@ -588,9 +749,9 @@ def run(args) -> dict:
             candidate["da3_execution"] = execute(da3_command, object_dir, environment(task, [args.da3_source, *args.da3_python_path]), object_dir / "generated_da3.log")
             generated_geometry_path = dataset / "input_manifest.json"
             generated_geometry = read_json(generated_geometry_path)
-            if generated_geometry.get("conditioning_poses_used") is not False or len(generated_geometry.get("frames", [])) != len(provenance):
+            if generated_geometry.get("camera_estimation") not in ("fresh_DA3_joint_generated_RGB", "conditioning_trajectory_of_registered_generated_frames") or len(generated_geometry.get("frames", [])) != len(provenance):
                 raise CompletionError("generated preprocessing did not establish fresh complete camera/depth inputs")
-            candidate["generated_camera_preflight"] = validate_generated_camera_chain(task, generated_geometry_path, object_dir / "sampled_frame_provenance.json", inputs["lifting_report"], args.seed)
+            candidate["generated_camera_preflight"] = validate_generated_camera_chain(task, generated_geometry_path, object_dir / "sampled_frame_provenance.json", inputs["lifting_report"], args.seed, args.generated_camera_fallback)
             write_json(report_path, report)
             backend_output = object_dir / "stream3d_outputs"
             command = stream3d_command(args, dataset, backend_output, config_path, object_dir / "hydra")
@@ -645,6 +806,10 @@ def main(argv=None) -> int:
     app.add_argument("--da3-python-path", type=Path, action="append", default=[])
     app.add_argument("--registration-python", type=Path, help="CPU Open3D environment; defaults to the Stream3D interpreter")
     app.add_argument("--views-per-orbit", type=int, default=4)
+    app.add_argument("--generated-camera-fallback", choices=("fail", "conditioning"), default="fail",
+                     help="cameras for the generated views when independent DA3 estimation cannot support the "
+                          "conditioning trajectory: fail the stage, or take the conditioning pose and calibration of "
+                          "the frame each generated view was rendered from and record the rejected estimate")
     app.add_argument("--da3-resolution", type=int, default=504)
     app.add_argument("--confidence-percentile", type=float, default=20)
     app.add_argument("--sam3-confidence", type=float, default=.25)
