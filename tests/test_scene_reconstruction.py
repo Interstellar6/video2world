@@ -55,12 +55,29 @@ class SceneBoundaryTests(unittest.TestCase):
                     adapter.task_path(task, value, exists=False)
 
     def test_pgsr_shorter_training_still_activates_plane_losses(self):
-        args = argparse.Namespace(pgsr_iterations=6000, pgsr_resolution=2, pgsr_python=Path("/python"), pgsr_source=Path("/pgsr"))
+        args = argparse.Namespace(pgsr_iterations=6000, pgsr_resolution=2, pgsr_python=Path("/python"), pgsr_source=Path("/pgsr"),
+                                  densify_until_iter=0, densify_grad_threshold=0.0002)
         argv = adapter.pgsr_command(args, Path("/task/dataset"), Path("/task/model"))
         self.assertEqual(argv[argv.index("--iterations") + 1], "6000")
         self.assertLess(int(argv[argv.index("--single_view_weight_from_iter") + 1]), 6000)
         self.assertLess(int(argv[argv.index("--multi_view_weight_from_iter") + 1]), 6000)
         self.assertNotIn("--start_checkpoint", argv)
+
+    def test_scene_density_is_controlled_by_densification_not_by_iterations(self):
+        # Measured on bedroom_4: 6000 iterations delivered 453,381 Gaussians and
+        # 30000 delivered 437,419, so the iteration count alone never raises
+        # density. The densify window and gradient threshold are the controls.
+        base = dict(pgsr_resolution=2, pgsr_python=Path("/python"), pgsr_source=Path("/pgsr"),
+                    densify_grad_threshold=0.0002, densify_until_iter=0)
+        short = adapter.pgsr_command(argparse.Namespace(pgsr_iterations=6000, **base), Path("/d"), Path("/m"))
+        long = adapter.pgsr_command(argparse.Namespace(pgsr_iterations=30000, **base), Path("/d"), Path("/m"))
+        self.assertEqual(short[short.index("--densify_until_iter") + 1], "3000")
+        self.assertEqual(long[long.index("--densify_until_iter") + 1], "15000")
+        self.assertEqual(short[short.index("--densify_grad_threshold") + 1], "0.0002")
+        denser = adapter.pgsr_command(argparse.Namespace(pgsr_iterations=30000, **{**base, "densify_grad_threshold": 0.00005,
+                                                                                  "densify_until_iter": 20000}), Path("/d"), Path("/m"))
+        self.assertEqual(denser[denser.index("--densify_grad_threshold") + 1], "5e-05")
+        self.assertEqual(denser[denser.index("--densify_until_iter") + 1], "20000")
 
     def test_output_must_be_actual_nonempty_gaussian_ply(self):
         with tempfile.TemporaryDirectory() as directory:

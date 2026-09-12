@@ -452,6 +452,12 @@ def run_logged(argv: list[str], cwd: Path, log: Path, environment: dict[str, str
 
 def pgsr_command(args, dataset: Path, model: Path) -> list[str]:
     iterations = args.pgsr_iterations
+    # Iterations train the fit; the densify window and the gradient threshold are
+    # what decide how many Gaussians the scene ends up with. Measured on
+    # bedroom_4: 6000 iterations delivered 453,381 Gaussians and 30000 delivered
+    # 437,419, because pruning continues after densification stops. Density is
+    # raised with a lower gradient threshold, not with more iterations.
+    densify_until = args.densify_until_iter if args.densify_until_iter else min(15000, iterations // 2)
     return [
         str(args.pgsr_python), str(args.pgsr_source / "train.py"), "-s", str(dataset), "-m", str(model),
         "--iterations", str(iterations), "--save_iterations", str(iterations), "--test_iterations", str(iterations),
@@ -460,7 +466,8 @@ def pgsr_command(args, dataset: Path, model: Path) -> list[str]:
         "--single_view_weight_from_iter", str(min(7000, iterations // 4)),
         "--multi_view_weight_from_iter", str(min(7000, iterations // 4)),
         "--densify_from_iter", str(min(500, iterations // 10)),
-        "--densify_until_iter", str(min(15000, iterations // 2)),
+        "--densify_until_iter", str(densify_until),
+        "--densify_grad_threshold", str(args.densify_grad_threshold),
     ]
 
 
@@ -491,6 +498,8 @@ def run(args) -> dict:
     outputs = task_path(task_dir, args.outputs, exists=False)
     if args.pgsr_iterations < 4 or args.pgsr_resolution <= 0:
         raise ReconstructionError("PGSR requires at least four iterations and positive resolution")
+    if args.densify_grad_threshold <= 0 or args.densify_until_iter < 0 or args.densify_until_iter > args.pgsr_iterations:
+        raise ReconstructionError("PGSR densification window and threshold must be positive and inside the run")
     if args.pgsr_prior_max_points <= 0 or args.pgsr_prior_voxel_size <= 0:
         raise ReconstructionError("PGSR depth-prior point count and voxel size must be positive")
     if min(args.tsdf_voxel_size, args.tsdf_sdf_trunc, args.depth_trunc) <= 0 or not 0 <= args.confidence_percentile < 100:
@@ -569,6 +578,10 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--pgsr-python", type=Path, default=Path(sys.executable))
     result.add_argument("--pgsr-python-path", action="append", default=[])
     result.add_argument("--pgsr-iterations", type=int, default=30000)
+    result.add_argument("--densify-until-iter", type=int, default=0,
+                        help="last densification iteration; 0 scales it with the iteration count (min(15000, iterations//2))")
+    result.add_argument("--densify-grad-threshold", type=float, default=0.0002,
+                        help="PGSR densification gradient threshold; lower values keep more Gaussians")
     result.add_argument("--pgsr-resolution", type=int, default=2)
     result.add_argument("--pgsr-prior-voxel-size", type=float, default=0.04)
     result.add_argument("--pgsr-prior-max-points", type=int, default=300000)

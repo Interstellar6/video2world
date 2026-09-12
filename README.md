@@ -237,7 +237,9 @@ Three scene assets have a stated budget because an unbounded one is not a delive
 | Completion | Stream3D + SAM3D over the generated views | `scripts/geometry_completion.py` |
 | Objects | EmbodiedGen v2: splat renders, `MeshFixer`, `TextureBaker`, `save_mesh_with_mtl`, CoACD | `scripts/embodiedgen_assets.py` |
 
-`profiles/embodiedgen-stream3d.skipbg.json` binds exactly this and is the default of `run_dataset.py`. It replaces the builtin `mesh_postprocess` utilities with the EmbodiedGen v2 toolchain, which is what turns "a mesh and a splat" into a textured OBJ/MTL/PNG triple plus convex collision proxies; the builtin provider stays bound in `profiles/three-d-fixer.skipbg.json`. The PGSR iteration count is a scene-density decision, not a speed knob: 6000 iterations decay the learning rate to zero and do converge, but they densify for only 3000 steps and deliver a visibly coarser cloud.
+`profiles/embodiedgen-stream3d.skipbg.json` binds exactly this and is the default of `run_dataset.py`. It replaces the builtin `mesh_postprocess` utilities with the EmbodiedGen v2 toolchain, which is what turns "a mesh and a splat" into a textured OBJ/MTL/PNG triple plus convex collision proxies; the builtin provider stays bound in `profiles/three-d-fixer.skipbg.json`.
+
+Scene density is not an iteration-count decision. Measured on bedroom_4 at 50 frames and resolution 2, `--pgsr-iterations 6000` delivered 453,381 Gaussians and `--pgsr-iterations 30000` delivered 437,419: densification stops at `--densify-until-iter` and opacity pruning continues after it, so more iterations train a better fit of a scene of the same size. Density is a separate control — a lower `--densify-grad-threshold` (default 0.0002) and a longer densify window — which is why the provider exposes both rather than only the iteration count. The reference delivery's scene model held 1,331,069 Gaussians.
 
 ### Cameras for the Generated Views
 
