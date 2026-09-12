@@ -308,12 +308,16 @@ class GaussianSceneExportTests(unittest.TestCase):
             root = Path(folder) / "delivery"
             root.mkdir()
             manifest = {"status": "complete", "missing": [],
-                        "scene_roles": {"scene/point_cloud_3dgs.ply": {"gaussians": 1331069, "evidence": "observed",
+                        "scene_roles": {"scene/point_cloud_3dgs.ply": {"exported_rows": 437419, "evidence": "observed",
                                                                        "source_path": "stages/scene_reconstruction/r/point_cloud.ply"},
+                                        "scene/point_cloud_simple.ply": {"points": 4000000, "points_before": 6657760,
+                                                                         "evidence": "observed", "size_bytes": 60000000,
+                                                                         "source_path": "stages/scene_reconstruction/r/scene_tsdf.glb"},
                                         "scene/mesh.ply": {"faces": 1000000, "colour": True, "evidence": "observed",
                                                            "converted_from": "stages/scene_reconstruction/r/scene_tsdf.glb"}},
-                        "background": {"textured": True, "faces": 100000, "faces_before": 12798127, "texture_size": 2048,
-                                       "calibrated_frames_used": 50, "covered_texel_fraction": 0.459, "method": "per_face_bake"},
+                        "background": {"textured": True, "faces": 100000, "decimation": {"faces_before": 12798127},
+                                       "texture_size": 2048, "calibrated_frames_used": 50,
+                                       "covered_texel_fraction": 0.459, "method": "per_face_bake"},
                         "object_version_2": {"bed": {"asset_mesh.glb": {}, "collision/hull_000.obj": {}}},
                         "object_version_1": {"bed": {"bed.glb": {}, "asset_report.json": {}}},
                         "observed_parts": {"parts": 4, "objects": ["bed"]},
@@ -323,8 +327,13 @@ class GaussianSceneExportTests(unittest.TestCase):
             text = (root / "README.md").read_text()
             self.assertEqual(report["sha256"], export.sha256(root / "README.md"))
             self.assertTrue(text.startswith("# bedroom_4"))
-            self.assertIn("1,331,069 gaussians", text)
-            self.assertIn("1,000,000 faces", text)
+            self.assertIn("437,419 Gaussians", text)
+            self.assertIn("4,000,000 points", text)
+            self.assertIn("60.0 MB", text)
+            # a task-relative source, never the absolute path the file lives at
+            self.assertIn("`stages/scene_reconstruction/r/scene_tsdf.glb`", text)
+            self.assertNotIn(str(root), text)
+            self.assertIn("100,000 faces decimated from 12,798,127", text)
             self.assertIn("46% of texels covered", text)
             self.assertIn("across 1 object ", text)
             self.assertIn("asset_mesh.glb", text)

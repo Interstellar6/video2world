@@ -129,7 +129,7 @@ def write_point_cloud(positions, colors, destination: Path) -> None:
     PlyData([PlyElement.describe(rows, "vertex")], text=False).write(str(destination))
 
 
-def observed_scene_cloud(source: Path, destination: Path, budget: int) -> dict:
+def observed_scene_cloud(source: Path, destination: Path, budget: int, source_path: str | None = None) -> dict:
     """Deliver the observed scene surface as a coloured point cloud.
 
     The reference delivery carries four million coloured scene points next to the
@@ -158,7 +158,7 @@ def observed_scene_cloud(source: Path, destination: Path, budget: int) -> dict:
     else:
         selected = np.arange(len(points))
     write_point_cloud(points[selected], colors[selected].astype(np.uint8), destination)
-    return {"source_path": str(source), "evidence": "observed", "sha256": sha256(destination),
+    return {"source_path": source_path or str(source), "evidence": "observed", "sha256": sha256(destination),
             "points": int(len(selected)), "points_before": int(len(points)), "budget": int(budget),
             "size_bytes": destination.stat().st_size,
             "method": "observed_TSDF_surface_points_uniform_index_subset"}
@@ -322,7 +322,8 @@ def export_depth_frames(task: Task, record: dict, export_root: Path, manifest: d
                                 "depth_kind": document.get("depth_kind"), "frames": entries})
     manifest["scene_roles"]["scene/depth/manifest.json"] = {
         "path": "scene/depth/manifest.json", "sha256": sha256(depth_manifest), "frames": len(entries),
-        "encoding": "uint16_linear", "units": document.get("units")}
+        "encoding": "uint16_linear", "units": document.get("units"), "evidence": record.get("evidence"),
+        "source_path": record.get("path")}
 
 
 def copy_bound(task: Task, record: dict, destination: Path) -> dict:
@@ -538,6 +539,8 @@ def export_object_reports(task: Task, root: Path, index: dict, manifest: dict) -
 def scene_role_line(relative: str, record: dict) -> str:
     """One markdown line describing a delivered scene layer."""
     details = []
+    if isinstance(record.get("exported_rows"), int):
+        details.append(f"{record['exported_rows']:,} Gaussians")
     for key in ("gaussians", "vertices", "points", "faces", "frames"):
         if isinstance(record.get(key), int):
             details.append(f"{record[key]:,} {key}")
@@ -552,12 +555,24 @@ def scene_role_line(relative: str, record: dict) -> str:
     return f"| `{relative}` | {', '.join(details) or 'delivered'} | `{source}` |"
 
 
+def decimated_from(background: dict):
+    """The pre-decimation face count, whether it is recorded flat or nested."""
+    if isinstance(background.get("faces_before"), int):
+        return background["faces_before"]
+    decimation = background.get("decimation")
+    if isinstance(decimation, dict) and isinstance(decimation.get("faces_before"), int):
+        return decimation["faces_before"]
+    return None
+
+
 def background_line(background: dict) -> str:
     """What the delivered background actually is, textured or not."""
+    before = decimated_from(background)
     if background.get("textured"):
-        return ("Background: {faces:,} faces decimated from {before:,}, {size}² texture atlas from "
+        return ("Background: {faces:,} faces{origin}, {size}² texture atlas from "
                 "{frames} calibrated frames, {coverage:.0%} of texels covered, {method}.").format(
-            faces=int(background.get("faces") or 0), before=int(background.get("faces_before") or 0),
+            faces=int(background.get("faces") or 0),
+            origin=f" decimated from {before:,}" if before else "",
             size=background.get("texture_size"), frames=background.get("calibrated_frames_used"),
             coverage=float(background.get("covered_texel_fraction") or 0), method=background.get("method", ""))
     fallback = background.get("background_texture_fallback")
@@ -667,7 +682,8 @@ def main(argv=None) -> int:
     if "scene_tsdf_mesh" in index and args.simple_cloud_points:
         verify_artifact(task, index["scene_tsdf_mesh"])
         manifest["scene_roles"][SIMPLE_CLOUD_PATH] = observed_scene_cloud(
-            artifact_path(task, index["scene_tsdf_mesh"]), export_root / SIMPLE_CLOUD_PATH, args.simple_cloud_points)
+            artifact_path(task, index["scene_tsdf_mesh"]), export_root / SIMPLE_CLOUD_PATH, args.simple_cloud_points,
+            source_path=index["scene_tsdf_mesh"]["path"])
     elif "carved_scene_ply" not in index:
         manifest["missing"].append("scene_tsdf_mesh")
     if "carved_scene_ply" in index:
