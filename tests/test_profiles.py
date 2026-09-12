@@ -71,6 +71,15 @@ class ShippedProfileTests(unittest.TestCase):
         self.assertEqual(option(command_of(load("seetacloud.json"), "geometry_completion"),
                                 "--generated-camera-fallback"), "conditioning")
 
+    def test_the_object_hints_cover_the_reference_delivery_categories(self):
+        # The reference export ships lamps and plants, so a hint list that omits
+        # them cannot cover its object set even when the scene contains them.
+        for name in ("embodiedgen-stream3d.skipbg.json", "embodiedgen.skipbg.json", "three-d-fixer.skipbg.json"):
+            with self.subTest(profile=name):
+                hints = option(command_of(load(name), "scene_understanding"), "--object-hints")
+                for category in ("lamp", "plant", "pillow", "headboard", "nightstand", "painting", "curtain", "chair"):
+                    self.assertIn(category, hints.lower(), f"{name}: hints do not mention {category}")
+
     def test_a_profile_declares_every_provider_it_binds(self):
         for path in sorted(PROFILES.glob("*.json")):
             with self.subTest(profile=path.name):

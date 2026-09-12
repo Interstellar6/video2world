@@ -311,7 +311,7 @@
         "--component-inventory-policy",
         "tolerant",
         "--object-hints",
-        "nightstands, bed frames and headboards, pillows, paintings, mirrors, windows, curtains, rugs, chairs and desks"
+        "nightstands, bed frames and headboards, pillows, bedding, paintings, mirrors, windows, curtains, rugs, chairs and desks, table lamps and floor lamps, potted plants, shelves"
       ],
       "kind": "command"
     }
