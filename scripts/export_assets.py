@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -235,13 +236,29 @@ def deliverable_mesh(source: Path, destination: Path, face_budget: int) -> dict:
     return info
 
 
+def part_stem(object_id: str, part: dict, index: int) -> tuple[str, str]:
+    """Name a delivered part after what it is, when the lifting policy knows.
+
+    The reference delivery names its parts as assets in their own right
+    (bed_bedding, bed_headboard, pillow_left), and lifting already resolves a
+    semantic component group for parts that its membership policy accepted, so a
+    delivered part keeps that word instead of an opaque index. A part with no
+    resolved group falls back to its position.
+    """
+    label = part.get("component_group_id") or part.get("category") or part.get("group")
+    if isinstance(label, str) and label.strip():
+        slug = re.sub(r"[^a-z0-9]+", "_", label.strip().lower()).strip("_")
+        if slug:
+            return f"{object_id}_{slug}_{index:02d}.ply", slug
+    return f"{object_id}_part_{index:02d}.ply", "unnamed"
+
+
 def export_observed_parts(task: Task, record: dict, export_root: Path) -> dict:
     """Deliver every geometrically verified observed component as its own asset.
 
     Lifting already carves each verified component track of an object, so the
-    parts a delivery wants (bedding, headboard, pillows, a lamp shade) exist as
-    observed geometry before any generative completion touches them. They are
-    copied with their hashes so a part can be inspected without the parent.
+    delivery does not have to re-segment anything: each component is copied
+    beside the object assets with its association status and its hash.
     """
     verify_artifact(task, record)
     document = read_json(artifact_path(task, record))
@@ -256,11 +273,13 @@ def export_observed_parts(task: Task, record: dict, export_root: Path) -> dict:
             expected = part.get("sha256")
             if expected and sha256(source) != expected:
                 raise PipelineError(f"{object_id}: component PLY changed after lifting: {part['ply_path']}")
-            name = f"{object_id}_part_{index:02d}.ply"
+            name, slug = part_stem(object_id, part, index)
             destination = root / object_id / name
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, destination)
             entries.append({"object_id": object_id, "component_id": part.get("component_id"),
+                            "component_group_id": part.get("component_group_id"),
+                            "component_name": slug,
                             "association_status": part.get("association_status"),
                             "export_path": f"object/parts/{object_id}/{name}",
                             "source_path": part["ply_path"], "source_sha256": expected,
@@ -276,6 +295,7 @@ def export_observed_parts(task: Task, record: dict, export_root: Path) -> dict:
                           "parts": entries})
     return {"root": "object/parts", "manifest": "object/parts/manifest.json", "sha256": sha256(manifest),
             "parts": len(entries),
+            "names": sorted({entry["component_name"] for entry in entries if entry["component_name"] != "unnamed"}),
             "objects": sorted({entry["object_id"] for entry in entries})}
 
 
@@ -609,8 +629,10 @@ def write_delivery_readme(task: Task, export_root: Path, manifest: dict, args) -
     parts = manifest.get("observed_parts") or {}
     if parts.get("parts"):
         objects = len(parts.get("objects", []))
+        names = parts.get("names") or []
         lines += [f"Observed parts: {parts['parts']} PLY components across {objects} "
-                  f"{'object' if objects == 1 else 'objects'} (`object/parts/manifest.json`) — lifted geometry, not generated.", ""]
+                  f"{'object' if objects == 1 else 'objects'} (`object/parts/manifest.json`) — lifted geometry, not generated"
+                  + (f", named by the resolved component group where lifting has one ({', '.join('`' + name + '`' for name in names)})." if names else "."), ""]
     previews = (manifest.get("previews") or {}).get("previews") or {}
     if previews:
         lines += [f"QA previews: {len(previews)} images under `qa/` (`qa/previews.json`), rendered from delivered assets.", ""]

@@ -218,9 +218,11 @@ class GaussianSceneExportTests(unittest.TestCase):
             document = {"objects": [
                 {"object_id": "bed", "parts": [
                     {"component_id": "component_track_b", "ply_path": "stages/object_lifting/bed/part_b.ply",
-                     "sha256": parts["bed/part_b.ply"], "association_status": "geometrically_verified_observed_component"},
+                     "sha256": parts["bed/part_b.ply"], "component_group_id": "bedding",
+                     "association_status": "geometrically_verified_observed_component"},
                     {"component_id": "component_track_a", "ply_path": "stages/object_lifting/bed/part_a.ply",
-                     "sha256": parts["bed/part_a.ply"], "association_status": "geometrically_verified_observed_component"}]},
+                     "sha256": parts["bed/part_a.ply"], "component_group_id": "Pillow Group",
+                     "association_status": "geometrically_verified_observed_component"}]},
                 {"object_id": "lamp", "parts": [
                     {"component_id": "component_track_c", "ply_path": "stages/object_lifting/lamp/part_c.ply",
                      "sha256": parts["lamp/part_c.ply"], "association_status": "geometrically_verified_observed_component"}]}]}
@@ -232,12 +234,19 @@ class GaussianSceneExportTests(unittest.TestCase):
             summary = export.export_observed_parts(task, record, export_root)
             self.assertEqual(summary["parts"], 3)
             self.assertEqual(summary["objects"], ["bed", "lamp"])
-            # parts are ordered by component id, so part_00 is the "a" component
+            # parts are ordered by component id, and a part with a resolved group
+            # keeps that word instead of only its index
             self.assertEqual(sorted(p.name for p in (export_root / "object/parts/bed").iterdir()),
-                             ["bed_part_00.ply", "bed_part_01.ply"])
+                             ["bed_bedding_01.ply", "bed_pillow_group_00.ply"])
+            self.assertEqual([p.name for p in (export_root / "object/parts/lamp").iterdir()],
+                             ["lamp_part_00.ply"])
             delivered = json.loads((export_root / "object/parts/manifest.json").read_text())
             self.assertTrue(all(entry["evidence"] == "observed" for entry in delivered["parts"]))
             self.assertEqual(delivered["parts"][0]["sha256"], parts["bed/part_a.ply"])
+            self.assertEqual(delivered["parts"][0]["component_name"], "pillow_group")
+            self.assertEqual(delivered["parts"][0]["component_group_id"], "Pillow Group")
+            self.assertEqual(delivered["parts"][2]["component_name"], "unnamed")
+            self.assertEqual(summary["names"], ["bedding", "pillow_group"])
 
     def test_a_component_ply_that_changed_after_lifting_is_refused(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -320,7 +329,7 @@ class GaussianSceneExportTests(unittest.TestCase):
                                        "covered_texel_fraction": 0.459, "method": "per_face_bake"},
                         "object_version_2": {"bed": {"asset_mesh.glb": {}, "collision/hull_000.obj": {}}},
                         "object_version_1": {"bed": {"bed.glb": {}, "asset_report.json": {}}},
-                        "observed_parts": {"parts": 4, "objects": ["bed"]},
+                        "observed_parts": {"parts": 4, "objects": ["bed"], "names": ["bedding", "headboard"]},
                         "previews": {"previews": {"scene_overview": {}, "object_layout": {}}},
                         "viewer": {"directory": "web-demo"}}
             report = export.write_delivery_readme(task, root, manifest, type("A", (), {"scene_name": "bedroom_4"})())
@@ -336,6 +345,7 @@ class GaussianSceneExportTests(unittest.TestCase):
             self.assertIn("100,000 faces decimated from 12,798,127", text)
             self.assertIn("46% of texels covered", text)
             self.assertIn("across 1 object ", text)
+            self.assertIn("`bedding`, `headboard`", text)
             self.assertIn("asset_mesh.glb", text)
             self.assertIn("web-demo", text)
             self.assertIn("promotion_allowed` is false", text)
