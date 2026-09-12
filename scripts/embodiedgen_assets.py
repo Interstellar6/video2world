@@ -111,20 +111,100 @@ def asset_directory(root: Path, object_id: str) -> Path:
     return root / object_id
 
 
-def clean_splat(source: Path, destination: Path) -> tuple[Path, int]:
-    """Copy a splat without the rows EmbodiedGen's renderer cannot consume."""
+SH_DC_FACTOR = 0.28209479177387814
+
+
+def synthesize_gaussian_ply(source: Path, destination: Path) -> dict:
+    """Turn a coloured surface point cloud into a renderable splat.
+
+    Stream3D publishes the object as surface points sampled from its mesh, with
+    the appearance it recovered, while the asset pipeline renders an object by
+    rasterising Gaussians. The conversion is mechanical and declared: every point
+    becomes one opaque isotropic Gaussian carrying that point's colour, with a
+    radius equal to the median nearest-neighbour spacing, so the rendered views
+    show the object's own surface rather than an invented appearance.
+    """
+    import numpy as np
+    from plyfile import PlyData, PlyElement
+    from scipy.spatial import cKDTree
+
+    table = PlyData.read(str(source))["vertex"].data
+    names = table.dtype.names or ()
+    if not {"x", "y", "z"} <= set(names):
+        raise AssetError(f"surface point cloud has no positions: {source}")
+    colour_names = [name for name in ("red", "green", "blue") if name in names]
+    if len(colour_names) != 3:
+        raise AssetError(f"surface point cloud has no RGB colour to texture with: {source}")
+    points = np.column_stack([table[name] for name in ("x", "y", "z")]).astype(np.float64)
+    finite = np.isfinite(points).all(axis=1)
+    points, colours = points[finite], np.column_stack([table[name] for name in colour_names]).astype(np.float64)[finite]
+    if len(points) < 2:
+        raise AssetError(f"surface point cloud has too few finite points: {source}")
+    spacing = float(np.median(cKDTree(points).query(points, k=2)[0][:, 1]))
+    if not np.isfinite(spacing) or spacing <= 0:
+        extent = float(np.linalg.norm(points.max(axis=0) - points.min(axis=0)))
+        spacing = max(extent / 256.0, 1e-6)
+    colour = np.clip(colours[:, :3] / 255.0, 0.0, 1.0)
+    rows = np.zeros(len(points), dtype=[(name, "f4") for name in
+                                        ("x", "y", "z", "nx", "ny", "nz", "f_dc_0", "f_dc_1", "f_dc_2",
+                                         "opacity", "scale_0", "scale_1", "scale_2", "rot_0", "rot_1", "rot_2", "rot_3")])
+    rows["x"], rows["y"], rows["z"] = points[:, 0], points[:, 1], points[:, 2]
+    rows["f_dc_0"], rows["f_dc_1"], rows["f_dc_2"] = ((colour - 0.5) / SH_DC_FACTOR).T
+    rows["opacity"] = 4.59511985013459  # logit(0.99): opaque surface points
+    rows["scale_0"] = rows["scale_1"] = rows["scale_2"] = math.log(spacing)
+    rows["rot_0"] = 1.0
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    PlyData([PlyElement.describe(rows, "vertex")], text=False).write(str(destination))
+    return {"status": "synthesized_from_surface_points", "source_path": str(source), "points": int(len(rows)),
+            "median_neighbour_spacing": spacing, "opacity": 0.99, "basis": "isotropic",
+            "policy": "the sampled surface colours of the object itself, no invented appearance",
+            "sha256": sha256(destination)}
+
+
+GAUSSIAN_FIELDS = ("opacity", "scale_0", "rot_0")
+
+
+def ply_property_names(path: Path) -> set:
+    """The vertex properties a PLY declares, read from its header only."""
+    with path.open("rb") as handle:
+        names, in_vertex = set(), False
+        for _ in range(512):
+            line = handle.readline().decode("ascii", errors="replace").strip()
+            if not line:
+                break
+            if line.startswith("element "):
+                in_vertex = line.split()[1] == "vertex"
+            elif line.startswith("property ") and in_vertex:
+                names.add(line.split()[-1])
+            elif line == "end_header":
+                break
+    return names
+
+
+def clean_splat(source: Path, destination: Path) -> tuple[Path, int, dict]:
+    """Return a splat EmbodiedGen's renderer can rasterise, whatever was published.
+
+    A provider that publishes sampled surface points rather than Gaussians is
+    still a usable appearance source, so that input is converted instead of
+    refused; the conversion is reported on the object either way. The renderer
+    itself is what rejects a point cloud (it asks for the opacity field), so the
+    decision is taken from the file's own property list.
+    """
     from world_modeling.gaussian_io import GaussianError, read_gaussian_rows
     from plyfile import PlyData, PlyElement
 
+    if not set(GAUSSIAN_FIELDS) <= ply_property_names(source):
+        return destination, 0, synthesize_gaussian_ply(source, destination)
     try:
         cloud = read_gaussian_rows(source, error=AssetError)
-    except GaussianError as error:
+    except (GaussianError, AssetError) as error:
         raise AssetError(str(error)) from error
     if not cloud.dropped:
-        return source, 0
+        return source, 0, {"status": "used_as_given", "source_path": str(source), "rows": int(len(cloud.rows))}
     destination.parent.mkdir(parents=True, exist_ok=True)
     PlyData([PlyElement.describe(cloud.rows, "vertex")], text=False).write(str(destination))
-    return destination, cloud.dropped
+    return destination, cloud.dropped, {"status": "non_finite_rows_dropped", "source_path": str(source),
+                                        "rows": int(len(cloud.rows)), "dropped": int(cloud.dropped)}
 
 
 def render_views(embodiedgen, splat: Path, *, images: int, resolution: int):
@@ -297,7 +377,7 @@ def texturize_object(embodiedgen, *, task_dir: Path, object_id: str, mesh_path: 
 
     raw_mesh = load_mesh(mesh_path)
     before = mesh_stats(raw_mesh)
-    usable_splat, dropped = clean_splat(splat_path, scratch / f"{object_id}_splat.ply")
+    usable_splat, dropped, splat_source = clean_splat(splat_path, scratch / f"{object_id}_splat.ply")
     frames, camera_params = render_views(embodiedgen, usable_splat, images=args.num_images, resolution=args.resolution)
 
     vertices, scale, center = embodiedgen.normalize_vertices_array(raw_mesh.vertices)
@@ -339,6 +419,7 @@ def texturize_object(embodiedgen, *, task_dir: Path, object_id: str, mesh_path: 
     if not textures or not materials:
         raise AssetError(f"{object_id}: textured asset is missing its material or texture sidecar")
     return {
+        "splat_source": splat_source, "splat_rows_dropped_non_finite": dropped,
         "object_id": object_id, "mesh_path": relative(task_dir, glb_path),
         "obj_path": relative(task_dir, obj_path),
         "texture_paths": [relative(task_dir, directory / name) for name in textures],
