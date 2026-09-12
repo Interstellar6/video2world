@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 import tempfile
 import unittest
@@ -74,9 +75,14 @@ class OutputDirectoryTests(unittest.TestCase):
             launcher.main(["--help"])
         self.assertIn("--compare-with", stream.getvalue())
 
-    def test_the_default_profile_is_the_fixer_recipe(self):
-        self.assertEqual(launcher.DEFAULT_PROFILE.name, "embodiedgen.skipbg.json")
+    def test_the_default_profile_is_the_stream3d_asset_recipe(self):
+        # The delivered architecture: Holi-Spatial scene, Qwen/SAM3-I objects,
+        # FixAnything video, Stream3D completion and EmbodiedGen v2 assets.
+        self.assertEqual(launcher.DEFAULT_PROFILE.name, "embodiedgen-stream3d.skipbg.json")
         self.assertTrue(launcher.DEFAULT_PROFILE.is_file())
+        profile = json.loads(launcher.DEFAULT_PROFILE.read_text())
+        self.assertIn("geometry_completion", profile["providers"])
+        self.assertNotIn("observed_context_completion", profile["providers"])
 
 
 if __name__ == "__main__":

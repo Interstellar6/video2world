@@ -28,7 +28,7 @@ sys.path.insert(0, str(REPO / "scripts"))
 from world_modeling import modules  # noqa: E402
 
 TASK_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,127}")
-DEFAULT_PROFILE = REPO / "profiles/embodiedgen.skipbg.json"
+DEFAULT_PROFILE = REPO / "profiles/embodiedgen-stream3d.skipbg.json"
 
 
 def resolve_paths(output_dir: Path, task_id: str | None, source: Path):
