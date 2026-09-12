@@ -257,6 +257,48 @@ class GaussianSceneExportTests(unittest.TestCase):
             self.assertEqual(report["provenance"], [])
             self.assertEqual(report["export_version"], "object_version_2")
 
+    def test_the_delivery_explains_itself_in_a_readme_the_manifest_binds(self):
+        with tempfile.TemporaryDirectory() as folder:
+            task = export.Task(Path(folder), "scene")
+            root = Path(folder) / "delivery"
+            root.mkdir()
+            manifest = {"status": "complete", "missing": [],
+                        "scene_roles": {"scene/point_cloud_3dgs.ply": {"gaussians": 1331069, "evidence": "observed",
+                                                                       "source_path": "stages/scene_reconstruction/r/point_cloud.ply"},
+                                        "scene/mesh.ply": {"faces": 1000000, "colour": True, "evidence": "observed",
+                                                           "converted_from": "stages/scene_reconstruction/r/scene_tsdf.glb"}},
+                        "background": {"textured": True, "faces": 100000, "faces_before": 12798127, "texture_size": 2048,
+                                       "calibrated_frames_used": 50, "covered_texel_fraction": 0.459, "method": "per_face_bake"},
+                        "object_version_2": {"bed": {"asset_mesh.glb": {}, "collision/hull_000.obj": {}}},
+                        "object_version_1": {"bed": {"bed.glb": {}, "asset_report.json": {}}},
+                        "observed_parts": {"parts": 4, "objects": ["bed"]},
+                        "previews": {"previews": {"scene_overview": {}, "object_layout": {}}},
+                        "viewer": {"directory": "web-demo"}}
+            report = export.write_delivery_readme(task, root, manifest, type("A", (), {"scene_name": "bedroom_4"})())
+            text = (root / "README.md").read_text()
+            self.assertEqual(report["sha256"], export.sha256(root / "README.md"))
+            self.assertTrue(text.startswith("# bedroom_4"))
+            self.assertIn("1,331,069 gaussians", text)
+            self.assertIn("1,000,000 faces", text)
+            self.assertIn("46% of texels covered", text)
+            self.assertIn("across 1 object ", text)
+            self.assertIn("asset_mesh.glb", text)
+            self.assertIn("web-demo", text)
+            self.assertIn("promotion_allowed` is false", text)
+
+    def test_a_scene_only_export_without_a_texture_says_so(self):
+        with tempfile.TemporaryDirectory() as folder:
+            task = export.Task(Path(folder), "scene")
+            root = Path(folder) / "delivery"
+            root.mkdir()
+            manifest = {"status": "partial", "missing": ["scene_depth"], "scene_roles": {},
+                        "background": {"faces": 1000000, "background_texture_fallback": "no calibrated frames"}}
+            export.write_delivery_readme(task, root, manifest, type("A", (), {"scene_name": None})())
+            text = (root / "README.md").read_text()
+            self.assertIn("# scene", text)
+            self.assertIn("Missing roles: `scene_depth`", text)
+            self.assertIn("no baked texture: no calibrated frames", text)
+
     def test_a_tampered_source_cloud_is_rejected_before_export(self):
         task, source, record, directory = self.build([[0.0, 0.0, 0.0]])
         write_gaussian_ply(source, [[0.0, 0.0, 0.0], [2.0, 2.0, 2.0]])

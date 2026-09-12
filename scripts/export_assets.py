@@ -484,6 +484,83 @@ def export_object_reports(task: Task, root: Path, index: dict, manifest: dict) -
     manifest["object_report_provenance"] = {object_id: len(items) for object_id, items in sorted(sources.items())}
 
 
+def scene_role_line(relative: str, record: dict) -> str:
+    """One markdown line describing a delivered scene layer."""
+    details = []
+    for key in ("gaussians", "vertices", "points", "faces", "frames"):
+        if isinstance(record.get(key), int):
+            details.append(f"{record[key]:,} {key}")
+    if record.get("colour"):
+        details.append("vertex colour")
+    size = record.get("size_bytes")
+    if isinstance(size, int):
+        details.append(f"{size / 1e6:.1f} MB")
+    if record.get("evidence"):
+        details.append(str(record["evidence"]))
+    source = record.get("source_path") or record.get("converted_from") or ""
+    return f"| `{relative}` | {', '.join(details) or 'delivered'} | `{source}` |"
+
+
+def background_line(background: dict) -> str:
+    """What the delivered background actually is, textured or not."""
+    if background.get("textured"):
+        return ("Background: {faces:,} faces decimated from {before:,}, {size}² texture atlas from "
+                "{frames} calibrated frames, {coverage:.0%} of texels covered, {method}.").format(
+            faces=int(background.get("faces") or 0), before=int(background.get("faces_before") or 0),
+            size=background.get("texture_size"), frames=background.get("calibrated_frames_used"),
+            coverage=float(background.get("covered_texel_fraction") or 0), method=background.get("method", ""))
+    fallback = background.get("background_texture_fallback")
+    return ("Background: {faces:,} faces with vertex colours{reason}.").format(
+        faces=int(background.get("faces") or 0),
+        reason=f" (no baked texture: {fallback})" if fallback else "")
+
+
+def write_delivery_readme(task: Task, export_root: Path, manifest: dict, args) -> dict:
+    """Write the delivery's own description and hash it into the manifest."""
+    lines = [f"# {args.scene_name or task.task_id}", "",
+             f"Task `{task.task_id}`, status **{manifest['status']}**, written by `scripts/export_assets.py`.",
+             "Every file below is bound in `export_manifest.json`, which records the task artifact it came from,",
+             "its SHA-256 and its evidence class (`observed`, `derived` or `generated`).", ""]
+    if manifest.get("missing"):
+        lines += [f"Missing roles: {', '.join('`' + name + '`' for name in manifest['missing'])}.", ""]
+    lines += ["## Scene", "", "| file | contents | source |", "|---|---|---|"]
+    lines += [scene_role_line(relative, record) for relative, record in sorted(manifest.get("scene_roles", {}).items())
+              if isinstance(record, dict)]
+    background = manifest.get("background")
+    if isinstance(background, dict):
+        lines += ["", background_line(background), ""]
+    lines += ["## Objects", ""]
+    for version, title in (("object_version_2", "Completed assets (EmbodiedGen v2, textured OBJ/GLB + CoACD hulls)"),
+                           ("object_version_1", "Completion-provider output (generated mesh and splat)")):
+        entries = manifest.get(version) or {}
+        if not entries:
+            continue
+        lines += [f"### {title}", "", "| object | files |", "|---|---|"]
+        for object_id, files in sorted(entries.items()):
+            names = sorted(name for name in files if name.endswith((".glb", ".obj", ".ply", ".json", ".png")))
+            lines.append(f"| `{object_id}` | {', '.join('`' + name + '`' for name in names)} |")
+        lines.append("")
+    parts = manifest.get("observed_parts") or {}
+    if parts.get("parts"):
+        objects = len(parts.get("objects", []))
+        lines += [f"Observed parts: {parts['parts']} PLY components across {objects} "
+                  f"{'object' if objects == 1 else 'objects'} (`object/parts/manifest.json`) — lifted geometry, not generated.", ""]
+    previews = (manifest.get("previews") or {}).get("previews") or {}
+    if previews:
+        lines += [f"QA previews: {len(previews)} images under `qa/` (`qa/previews.json`), rendered from delivered assets.", ""]
+    if manifest.get("viewer"):
+        lines += ["Viewer: `web-demo/` (three.js); serve the delivery root and open `web-demo/dist/index.html`.", ""]
+    lines += ["## Evidence", "",
+              "Generated assets stay `generated` and are never promoted: `promotion_allowed` is false for every modeled",
+              "artifact until independent appearance, geometry, novel-view, support/contact and collision acceptance exists.",
+              "`scripts/verify_export.py` re-hashes every file and re-loads every mesh; structural integrity is not visual",
+              "or simulation acceptance.", ""]
+    content = "\n".join(lines) + "\n"
+    path = export_root / "README.md"
+    path.write_text(content)
+    return {"path": "README.md", "sha256": sha256(path), "bytes": len(content.encode("utf-8"))}
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("task_id")
@@ -613,7 +690,10 @@ def main(argv=None) -> int:
         import build_viewer
 
         manifest["viewer"] = build_viewer.run(export_root, title=args.scene_name or task_id)
-        write_json(export_root / "export_manifest.json", manifest)
+    # The delivery explains itself: which layer came from which provider, what
+    # was measured, and what still needs a human or a simulator to accept.
+    manifest["readme"] = write_delivery_readme(task, export_root, manifest, args)
+    write_json(export_root / "export_manifest.json", manifest)
     print(json.dumps({"export_root": str(export_root), "status": manifest["status"],
                       "missing": manifest["missing"], "scene_roles": sorted(manifest["scene_roles"]),
                       "object_version_1": sorted(manifest["object_version_1"]),
