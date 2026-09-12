@@ -601,5 +601,70 @@ class GeneratedInputTests(unittest.TestCase):
             np.testing.assert_allclose(pointcloud.colors[:, :3].mean(axis=0), [180, 90, 20], atol=1)
 
 
+class BackendReuseTests(unittest.TestCase):
+    """Mesh inference is the expensive half of completion, so a re-run may reuse it."""
+
+    def dataset(self, root, shift=0, frames=2):
+        import numpy as np
+
+        split = root / "render_spiral_100"
+        for name in ("images", "masks"):
+            (split / name).mkdir(parents=True, exist_ok=True)
+        (split / "da3" / "results_output").mkdir(parents=True, exist_ok=True)
+        for index in range(frames):
+            (split / "images" / f"frame_{index:06d}.png").write_bytes(b"image %d shifted %d" % (index, shift))
+            (split / "masks" / f"frame_{index:06d}.png").write_bytes(b"mask %d" % index)
+            np.savez_compressed(split / "da3" / "results_output" / f"frame_{index:06d}.npz",
+                                depth=np.full((4, 4), 1.0 + shift, dtype=np.float32))
+        (split / "da3" / "camera_poses.txt").write_text("1 0 0 0\n")
+        return root
+
+    def cached_run(self, task, object_id, shift=0):
+        cached = task / "stages/geometry_completion/run-cached" / object_id
+        self.dataset(cached / "stream3d_inputs" / object_id, shift=shift)
+        result = cached / "stream3d_outputs" / object_id / "chunk_0001"
+        result.mkdir(parents=True)
+        (result / "result.glb").write_bytes(b"glTF cached mesh")
+        return cached
+
+    def args(self, task, reuse):
+        return SimpleNamespace(task_dir=task, reuse_run_dir=reuse)
+
+    def test_identical_views_reuse_the_cached_backend_result(self):
+        with tempfile.TemporaryDirectory() as folder:
+            task = Path(folder)
+            self.cached_run(task, "bed")
+            dataset = self.dataset(task / "stages/geometry_completion/run-new/bed/stream3d_inputs/bed")
+            object_dir = task / "stages/geometry_completion/run-new/bed"
+            report = adapter.reuse_backend_output(self.args(task, "stages/geometry_completion/run-cached"),
+                                                  task, object_dir, dataset, "bed")
+            self.assertEqual(report["status"], "reused")
+            # two images, two masks, two depth arrays and the pose file
+            self.assertEqual(report["views"], 7)
+            self.assertTrue((object_dir / "stream3d_outputs/bed/chunk_0001/result.glb").is_file())
+
+    def test_a_changed_view_is_never_reused(self):
+        with tempfile.TemporaryDirectory() as folder:
+            task = Path(folder)
+            self.cached_run(task, "bed", shift=1)
+            dataset = self.dataset(task / "stages/geometry_completion/run-new/bed/stream3d_inputs/bed", shift=0)
+            object_dir = task / "stages/geometry_completion/run-new/bed"
+            report = adapter.reuse_backend_output(self.args(task, "stages/geometry_completion/run-cached"),
+                                                  task, object_dir, dataset, "bed")
+            self.assertEqual(report["status"], "not_reused")
+            self.assertIn("differ", report["reason"])
+            self.assertFalse((object_dir / "stream3d_outputs").exists())
+
+    def test_an_object_without_a_cached_result_is_not_reused(self):
+        with tempfile.TemporaryDirectory() as folder:
+            task = Path(folder)
+            self.cached_run(task, "bed")
+            dataset = self.dataset(task / "stages/geometry_completion/run-new/lamp/stream3d_inputs/lamp")
+            report = adapter.reuse_backend_output(self.args(task, "stages/geometry_completion/run-cached"),
+                                                  task, task / "stages/geometry_completion/run-new/lamp", dataset, "lamp")
+            self.assertEqual(report["status"], "not_reused")
+            self.assertIn("no cached backend result", report["reason"])
+
+
 if __name__ == "__main__":
     unittest.main()

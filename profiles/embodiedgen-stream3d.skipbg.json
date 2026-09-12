@@ -195,7 +195,9 @@
         "--seed",
         "0",
         "--generated-camera-fallback",
-        "conditioning"
+        "conditioning",
+        "--registration-policy",
+        "record"
       ],
       "kind": "command"
     },

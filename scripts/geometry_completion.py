@@ -11,6 +11,7 @@ import math
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -684,6 +685,46 @@ def sample_generated_mesh(mesh_path: Path, ply_path: Path, count: int, seed: int
     return {"vertices": len(mesh.vertices), "faces": len(mesh.faces), "watertight": bool(mesh.is_watertight), "bounds": mesh.bounds.tolist(), "visual_point_count": count, "visual_ply_kind": "generated_surface_points_not_gaussians", "color_sampling": "trimesh_face_colors; input_textures_converted_to_vertex_colors_when_present", "mesh_sha256": sha256(mesh_path), "visual_ply_sha256": sha256(ply_path)}
 
 
+def dataset_view_hashes(dataset: Path) -> dict:
+    """Hash the views a backend run consumed, so a cached result can be matched to them."""
+    split = dataset / "render_spiral_100"
+    hashes = {}
+    for name in ("images", "masks"):
+        for path in sorted((split / name).glob("*.png")):
+            hashes[f"{name}/{path.name}"] = sha256(path)
+    for path in sorted((split / "da3" / "results_output").glob("*.npz")):
+        hashes[f"depth/{path.name}"] = sha256(path)
+    poses = split / "da3" / "camera_poses.txt"
+    if poses.is_file():
+        hashes["da3/camera_poses.txt"] = sha256(poses)
+    return hashes
+
+
+def reuse_backend_output(args, task: Path, object_dir: Path, dataset: Path, object_id: str) -> dict:
+    """Copy a previous run's backend result when it consumed exactly these views.
+
+    Mesh inference is the expensive half of this stage, and a re-run after an
+    unrelated fix downstream would otherwise repeat it for every object. A result
+    is reused only when every image, mask and depth array it was produced from is
+    byte-identical, so a changed dataset can never reuse a stale mesh.
+    """
+    root = local_path(task, args.reuse_run_dir, exists=True)
+    source = root / object_id
+    source_dataset = source / "stream3d_inputs" / object_id
+    source_outputs = source / "stream3d_outputs"
+    if not source_dataset.is_dir() or not source_outputs.is_dir():
+        return {"status": "not_reused", "reason": "no cached backend result for this object"}
+    cached, current = dataset_view_hashes(source_dataset), dataset_view_hashes(dataset)
+    if not cached or cached != current:
+        return {"status": "not_reused", "reason": "cached views differ from the current dataset"}
+    destination = object_dir / "stream3d_outputs"
+    if destination.exists():
+        shutil.rmtree(destination)
+    shutil.copytree(source_outputs, destination)
+    return {"status": "reused", "source_run_dir": str(args.reuse_run_dir), "views": len(cached),
+            "policy": "reused_only_for_byte_identical_input_views"}
+
+
 def run(args) -> dict:
     task = args.task_dir.resolve(strict=True)
     args.task_dir = task
@@ -754,8 +795,14 @@ def run(args) -> dict:
             candidate["generated_camera_preflight"] = validate_generated_camera_chain(task, generated_geometry_path, object_dir / "sampled_frame_provenance.json", inputs["lifting_report"], args.seed, args.generated_camera_fallback)
             write_json(report_path, report)
             backend_output = object_dir / "stream3d_outputs"
-            command = stream3d_command(args, dataset, backend_output, config_path, object_dir / "hydra")
-            candidate["stream3d_execution"] = execute(command, object_dir, environment(task, [args.stream3d_source / "_compat", args.stream3d_source, *args.stream3d_python_path]), object_dir / "stream3d.log")
+            reuse = reuse_backend_output(args, task, object_dir, dataset, object_id) if args.reuse_run_dir else {"status": "disabled"}
+            candidate["backend_reuse"] = reuse
+            if reuse.get("status") == "reused":
+                print(f"{object_id}: reusing the backend result of {reuse['source_run_dir']} for {reuse['views']} identical views", flush=True)
+                candidate["stream3d_execution"] = {"status": "reused", "returncode": 0, **reuse}
+            else:
+                command = stream3d_command(args, dataset, backend_output, config_path, object_dir / "hydra")
+                candidate["stream3d_execution"] = execute(command, object_dir, environment(task, [args.stream3d_source / "_compat", args.stream3d_source, *args.stream3d_python_path]), object_dir / "stream3d.log")
             final_chunk = len(chunk_starts(len(provenance))) - 1
             result_dir = backend_output / object_id / f"chunk_{final_chunk:04d}"
             mesh_path = result_dir / "result.glb"
@@ -776,7 +823,7 @@ def run(args) -> dict:
         registration_paths = {name: inputs[name] for name in ("isolated_object_ply", "cameras", "scene_gaussian_ply", "lifting_report")}
         registration_paths.update({"completed_object_meshes": meshes_path, "completion_candidates": report_path})
         write_json(registration_inputs, {"module": "object_registration", "inputs": {name: {"path": relative(task, path), "evidence": "generated" if name in {"completed_object_meshes", "completion_candidates"} else "derived"} for name, path in registration_paths.items()}})
-        command = [str(args.registration_python or args.stream3d_python), str(Path(__file__).with_name("object_registration.py")), "--task-dir", str(task), "--inputs", str(registration_inputs), "--outputs", str(registration_outputs), "--seed", str(args.seed)]
+        command = [str(args.registration_python or args.stream3d_python), str(Path(__file__).with_name("object_registration.py")), "--task-dir", str(task), "--inputs", str(registration_inputs), "--outputs", str(registration_outputs), "--seed", str(args.seed), "--registration-policy", args.registration_policy]
         report["registration_execution"] = execute(command, output_dir, environment(task), output_dir / "registration.log")
         registered = read_json(registration_outputs)["outputs"]
         paths = {name: local_path(task, registered[name]["path"]) for name in ("completion_candidates", "completed_object_meshes")}
@@ -806,6 +853,14 @@ def main(argv=None) -> int:
     app.add_argument("--da3-python-path", type=Path, action="append", default=[])
     app.add_argument("--registration-python", type=Path, help="CPU Open3D environment; defaults to the Stream3D interpreter")
     app.add_argument("--views-per-orbit", type=int, default=4)
+    app.add_argument("--reuse-run-dir", type=Path,
+                     help="a previous geometry_completion run dir whose backend results may be reused for "
+                          "objects whose input views are byte-identical; mesh inference is the expensive half "
+                          "of this stage")
+    app.add_argument("--registration-policy", choices=("fail", "record"), default="fail",
+                     help="what to do when a generated object cannot be placed against the observed geometry: "
+                          "fail the stage, or deliver the object with its room placement refused and measured "
+                          "(the object stays generated and unplaced)")
     app.add_argument("--generated-camera-fallback", choices=("fail", "conditioning"), default="fail",
                      help="cameras for the generated views when independent DA3 estimation cannot support the "
                           "conditioning trajectory: fail the stage, or take the conditioning pose and calibration of "

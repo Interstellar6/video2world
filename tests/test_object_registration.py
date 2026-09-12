@@ -180,7 +180,7 @@ class RegistrationTests(unittest.TestCase):
         with self.assertRaisesRegex(adapter.RegistrationError, "rejection ceiling"):
             self.reprojection_case(1.0, 4)
 
-    def registration_case(self, task, *, conditioning=False, geometry_overrides=None):
+    def registration_case(self, task, *, conditioning=False, geometry_overrides=None, metadata_overrides=None):
         """A complete solved registration task; returns the chain registration must find."""
         import numpy as np
         import trimesh
@@ -208,12 +208,24 @@ class RegistrationTests(unittest.TestCase):
         for name in ("observed.ply", "scene.ply"):
             PlyData([PlyElement.describe(table, "vertex")]).write(task / name)
         frames, provenance = [], []
+        # A generated view carries the depth it predicted for the object plus the
+        # mask that selected it. The depth below is the true camera-to-object
+        # distance in scene units, so the measured scale correction is one.
+        mask_path = task / "generated_mask.png"
+        Image.fromarray(np.full((8, 8), 255, dtype=np.uint8)).save(mask_path)
+        centroid = target.mean(axis=0)
         for orbit in range(3):
             path = task / f"conditioning_{orbit}.json"
             adapter.write_json(path, {"frames": [{"world_to_camera": p.tolist()} for p in conditioned[orbit * 4:orbit * 4 + 4]]})
             for position in range(4):
                 index = orbit * 4 + position
-                frames.append({"frame_id": f"{index:06d}", "stream3d_frame_name": f"frame_{index:06d}", "world_to_camera": generated[index].tolist()})
+                center = -np.asarray(conditioned[index], float)[:3, :3].T @ np.asarray(conditioned[index], float)[:3, 3]
+                depth = float(np.linalg.norm(center - centroid))
+                depth_path = task / f"generated_depth_{index:06d}.npz"
+                np.savez_compressed(depth_path, depth=np.full((8, 8), depth, dtype=np.float32))
+                frames.append({"frame_id": f"{index:06d}", "stream3d_frame_name": f"frame_{index:06d}",
+                               "world_to_camera": generated[index].tolist(),
+                               "depth_npz_path": depth_path.name, "mask_path": mask_path.name})
                 provenance.append({"frame_id": f"{index:06d}", "orbit_id": f"orbit_{orbit}", "conditioning_cameras_path": path.name, "generated_frame_index": position})
         geometry = {"coordinate_frame": "colmap_world" if conditioning else "generated_DA3_world",
                     "unit": "colmap_reconstruction", "conditioning_poses_used": bool(conditioning), "frames": frames}
@@ -221,7 +233,7 @@ class RegistrationTests(unittest.TestCase):
             geometry.update(geometry_overrides)
         adapter.write_json(task / "geometry.json", geometry)
         adapter.write_json(task / "provenance.json", {"frames": provenance})
-        adapter.write_json(task / "metadata.json", {"stage1_selected_crop_view_names": ["frame_000000.png"]})
+        adapter.write_json(task / "metadata.json", metadata_overrides or {"stage1_selected_crop_view_names": ["frame_000000.png"]})
         Image.new("L", (200, 200), 255).save(task / "mask.png")
         other = conditioned[0].copy()
         other[0, 3] -= .1
@@ -235,7 +247,7 @@ class RegistrationTests(unittest.TestCase):
             adapter.write_json(task / f"{name}.json", document)
             envelope["inputs"][name] = {"path": f"{name}.json", "evidence": "derived"}
         adapter.write_json(task / "inputs.json", envelope)
-        args = argparse.Namespace(task_dir=task, inputs=task / "inputs.json", outputs=task / "outputs.json", max_camera_angle=12, min_observed_coverage=.7, max_reprojection_pixels=8, seed=0)
+        args = argparse.Namespace(task_dir=task, inputs=task / "inputs.json", outputs=task / "outputs.json", max_camera_angle=12, min_observed_coverage=.7, max_reprojection_pixels=8, seed=0, registration_policy="fail")
         return args, expected, observed, cameras
 
     def test_full_cpu_adapter_proof_is_accepted_by_recomposition_validator(self):
@@ -266,10 +278,37 @@ class RegistrationTests(unittest.TestCase):
             self.assertEqual(result["status"], "accepted")
             record = adapter.read_json(task / adapter.read_json(args.outputs)["outputs"]["completed_object_meshes"]["path"])["objects"][0]
             chain = record["registration"]["camera_chain"]
-            self.assertEqual(chain["method"], "conditioning_trajectory_declared")
-            self.assertEqual(chain["policy"], "poses_are_the_conditioning_trajectory_of_the_registered_generated_views")
+            self.assertEqual(chain["method"], "conditioning_trajectory_with_measured_depth_scale")
+            self.assertIn("poses_are_the_conditioning_trajectory", chain["policy"])
             self.assertEqual(chain["coordinate_frame"], "colmap_world")
+            self.assertGreater(chain["generated_depth_to_scene_scale"], 0)
+            # the correction scales about the reference camera, so the placed
+            # object stays on the view it was reconstructed from
+            reference = np.asarray(record["registration"]["camera_chain"]["reference_camera_center_world"])
+            self.assertTrue(np.isfinite(reference).all())
+
+    def test_the_backend_reference_crop_is_matched_by_frame_stem(self):
+        import numpy as np
+
+        with tempfile.TemporaryDirectory() as folder:
+            task = Path(folder)
+            args, expected, _, _ = self.registration_case(
+                task, conditioning=True,
+                metadata_overrides={"stage1_selected_crop_view_names": ["frame_000000", "frame_000003"]})
+            result = adapter.run(args)
+            self.assertEqual(result["status"], "accepted")
+            record = adapter.read_json(task / adapter.read_json(args.outputs)["outputs"]["completed_object_meshes"]["path"])["objects"][0]
+            self.assertEqual(record["registration"]["reference_generated_frame"], "frame_000000.png")
             np.testing.assert_allclose(np.asarray(record["registration"]["object_to_world"]), expected, atol=2e-6)
+
+    def test_a_reference_crop_outside_the_generated_frames_is_refused(self):
+        with tempfile.TemporaryDirectory() as folder:
+            task = Path(folder)
+            args, _, _, _ = self.registration_case(
+                task, conditioning=True,
+                metadata_overrides={"stage1_selected_crop_view_names": ["frame_999999"]})
+            with self.assertRaisesRegex(adapter.RegistrationError, "reference camera is not bound"):
+                adapter.run(args)
 
     def test_conditioning_geometry_in_another_frame_is_refused(self):
         with tempfile.TemporaryDirectory() as folder:

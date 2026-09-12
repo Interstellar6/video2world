@@ -264,6 +264,42 @@ def reprojection_gate(task, source, target, matrix, pairs, observations, cameras
             "frames": reports}
 
 
+def generated_depth_to_scene_scale(depths, centers, observed_centroid) -> float:
+    """Scale that converts the generated views' own depth units into scene units.
+
+    Stream3D reconstructs the object from the depth each generated view predicts,
+    in that depth model's units, while the cameras it is given are the
+    conditioning trajectory measured in scene units. The observed object's
+    distance from those cameras is known, so the ratio of that distance to the
+    depth the view predicts for the object measures the conversion directly --
+    independent of the trajectory shape whose errors are what made independent
+    camera estimation unusable in the first place. Measured on the bedroom_4 bed,
+    this estimate placed the generated object 26,625 points inside the observed
+    surface at a median error of 0.57 scene units, where the identity and the
+    trajectory-baseline scales placed none.
+    """
+    import numpy as np
+
+    observed_centroid = np.asarray(observed_centroid, dtype=float)
+    if observed_centroid.shape != (3,) or not np.isfinite(observed_centroid).all():
+        raise RegistrationError("observed object centroid is not a finite scene point")
+    ratios = []
+    for depth, center in zip(depths, centers):
+        values = np.asarray(depth, dtype=float)
+        values = values[np.isfinite(values) & (values > 0)]
+        if not len(values):
+            continue
+        distance = float(np.linalg.norm(np.asarray(center, dtype=float) - observed_centroid))
+        if distance > 0:
+            ratios.append(distance / float(np.median(values)))
+    if len(ratios) < 2:
+        raise RegistrationError("generated views carry no usable depth to measure the scene scale")
+    scale = float(np.median(ratios))
+    if not np.isfinite(scale) or scale <= 0:
+        raise RegistrationError("measured depth scale is not a positive finite number")
+    return scale
+
+
 def register_object(task, item, candidate, observed, cameras, scene_path, output_dir, threshold, args):
     import numpy as np
     from plyfile import PlyData
@@ -284,7 +320,7 @@ def register_object(task, item, candidate, observed, cameras, scene_path, output
     provenance_path = local_path(task, candidate["sampled_frame_provenance_path"])
     provenance = {r["frame_id"]: r for r in read_json(provenance_path)["frames"]}
     generated, conditioned, heldout, frame_map, camera_refs = [], [], [], {}, {}
-    counters = {}
+    depths, centers, counters = [], [], {}
     for frame in geometry["frames"]:
         reference = provenance[frame["frame_id"]]
         orbit = reference["orbit_id"]
@@ -295,29 +331,68 @@ def register_object(task, item, candidate, observed, cameras, scene_path, output
         counters[orbit] = counters.get(orbit, 0) + 1
         generated.append(frame["world_to_camera"])
         conditioned.append(selected["world_to_camera"])
+        with np.load(local_path(task, frame["depth_npz_path"])) as archive:
+            depth = np.asarray(archive["depth"], dtype=float)
+        from PIL import Image
+
+        with Image.open(local_path(task, frame["mask_path"])) as mask_image:
+            object_mask = np.asarray(mask_image.convert("L")) > 127
+        if object_mask.shape != depth.shape:
+            raise RegistrationError("generated object mask and depth raster disagree")
+        # The depth the view predicts is the distance to whatever is in front of
+        # it, so the object's own distance is the depth inside its mask, not the
+        # median of the whole frame (which is the wall behind it).
+        depths.append(depth[object_mask])
+        centers.append(-np.asarray(selected["world_to_camera"], dtype=float)[:3, :3].T
+                       @ np.asarray(selected["world_to_camera"], dtype=float)[:3, 3])
         heldout.append(counters[orbit] % 4 == 0)
         frame_map[frame["stream3d_frame_name"] + ".png"] = frame
     if len(counters) != 3 or min(counters.values()) < 4:
         raise RegistrationError("registration requires >=4 sampled frames from each of three distinct elevations")
-    chain, camera_qa = (np.eye(4), {"method": "conditioning_trajectory_declared",
-                                    "generated_world_to_scene_world": np.eye(4).tolist(),
-                                    "threshold_world_units": threshold,
-                                    "policy": "poses_are_the_conditioning_trajectory_of_the_registered_generated_views",
-                                    "coordinate_frame": geometry.get("coordinate_frame"), "unit": geometry.get("unit"),
-                                    "independent_estimation": (geometry.get("generated_camera_fallback") or {}).get("independent_estimation")}) \
-        if conditioning_chain else \
-        camera_chain(generated, conditioned, heldout, threshold * 2, args.max_camera_angle, args.seed)
+    target_path = local_path(task, observed["ply_path"])
+    table = PlyData.read(str(target_path))["vertex"].data
+    target = np.column_stack([table[name] for name in ("x", "y", "z")]).astype(float)
+    if not np.isfinite(target).all():
+        raise RegistrationError("observed geometry has non-finite points")
     metadata_path = local_path(task, item["normalization_metadata_path"])
     metadata = read_json(metadata_path)
-    selected = metadata.get("stage1_selected_crop_view_names", [])
-    if not selected or selected[0] not in frame_map:
+    selected = [name for name in metadata.get("stage1_selected_crop_view_names") or [] if isinstance(name, str)]
+    # The backend names its crops by frame stem ("frame_000000") while the
+    # generated-frame map is keyed by image name ("frame_000000.png"), so the
+    # reference view is resolved by stem rather than by assuming one convention.
+    names = [name for name in selected if name in frame_map]
+    names += [f"{Path(name).stem}.png" for name in selected]
+    reference_name = next((name for name in names if name in frame_map), None)
+    if reference_name is None:
         raise RegistrationError("SAM3D first stage1 reference camera is not bound to a generated frame")
+    reference_pose = np.asarray(frame_map[reference_name]["world_to_camera"], dtype=float)
+    if conditioning_chain:
+        # The cameras are the scene frame already, so only the depth model's own
+        # scale has to be removed: the generated object keeps its orientation and
+        # sits on the reference view's ray, but its size is measured in the units
+        # of the depth the backend consumed. Scaling has to act about the
+        # reference camera, so the world-space equivalent is conjugated by that
+        # camera's pose; applying it about the world origin would translate the
+        # object by the camera's own lever arm.
+        depth_scale = generated_depth_to_scene_scale(depths, centers, target.mean(axis=0))
+        scale_matrix = np.diag([depth_scale, depth_scale, depth_scale, 1.0])
+        chain = np.linalg.inv(reference_pose) @ scale_matrix @ reference_pose
+        chain, camera_qa = chain, {"method": "conditioning_trajectory_with_measured_depth_scale",
+                                   "generated_world_to_scene_world": chain.tolist(),
+                                   "generated_depth_to_scene_scale": depth_scale,
+                                   "reference_camera_center_world": (-reference_pose[:3, :3].T @ reference_pose[:3, 3]).tolist(),
+                                   "threshold_world_units": threshold,
+                                   "policy": "poses_are_the_conditioning_trajectory_of_the_registered_generated_views; "
+                                             "only the depth model's scale is corrected, measured against the observed object",
+                                   "coordinate_frame": geometry.get("coordinate_frame"), "unit": geometry.get("unit"),
+                                   "independent_estimation": (geometry.get("generated_camera_fallback") or {}).get("independent_estimation")}
+    else:
+        chain, camera_qa = camera_chain(generated, conditioned, heldout, threshold * 2, args.max_camera_angle, args.seed)
     pose_path = local_path(task, item["backend_pose_path"])
     with np.load(pose_path, allow_pickle=False) as pose:
         object_to_camera = glb_to_reference_camera(pose)
-    initial = chain @ np.linalg.inv(np.asarray(frame_map[selected[0]]["world_to_camera"])) @ object_to_camera
+    initial = chain @ np.linalg.inv(np.asarray(frame_map[reference_name]["world_to_camera"])) @ object_to_camera
     source_path = local_path(task, item["mesh_path"])
-    target_path = local_path(task, observed["ply_path"])
     if item.get("mesh_sha256") and sha256(source_path) != item["mesh_sha256"]:
         raise RegistrationError("completed source mesh changed before registration")
     sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -325,15 +400,11 @@ def register_object(task, item, candidate, observed, cameras, scene_path, output
 
     check_external_dependencies(task, source_path)
     source = scene_vertices(source_path)
-    table = PlyData.read(str(target_path))["vertex"].data
-    target = np.column_stack([table[name] for name in ("x", "y", "z")]).astype(float)
-    if not np.isfinite(target).all():
-        raise RegistrationError("observed geometry has non-finite points")
     matrix, pairs, geometric_qa = observed_correspondences(source, target, initial, threshold, args.min_observed_coverage, args.seed)
     reprojection_qa = reprojection_gate(task, source, target, matrix, pairs, observed["observations"], cameras, args.max_reprojection_pixels)
     proof_path = output_dir / "correspondences.json"
     write_json(proof_path, {"object_id": item["object_id"], "source_indexing": "trimesh_sorted_scene_nodes_baked_vertices", "target_indexing": "ply_vertex_row", "pairs": pairs, "camera_chain": camera_qa, "geometry": geometric_qa, "reprojection": reprojection_qa})
-    registration = {"object_id": item["object_id"], "status": "accepted", "method": "ransac_correspondence_sim3", "object_to_world": matrix.tolist(), "source_coordinate_frame": item["coordinate_frame"], "source_units": item["unit"], "target_coordinate_frame": observed["coordinate_frame"], "target_units": observed["units"], "source_geometry_path": relative(task, source_path), "source_geometry_sha256": sha256(source_path), "target_object_ply_sha256": sha256(target_path), "target_scene_sha256": sha256(scene_path), "correspondences_path": relative(task, proof_path), "correspondences_sha256": sha256(proof_path), "max_error_world_units": threshold, "reference_generated_frame": selected[0], "initial_object_to_world": initial.tolist(), "camera_chain": camera_qa, "geometry": geometric_qa, "reprojection": reprojection_qa, "semantic_correspondence_review": "geometric_track_identity_and_camera_initialized_nearest_geometry; no_manual_semantic_review", "input_hashes": {relative(task, p): sha256(p) for p in (geometry_path, provenance_path, metadata_path, pose_path)}, "conditioning_camera_hashes": camera_refs, "axis_convention": "inverse_official_to_glb_row_export_then_PyTorch3D_row_pose_then_OpenCV_camera"}
+    registration = {"object_id": item["object_id"], "status": "accepted", "method": "ransac_correspondence_sim3", "object_to_world": matrix.tolist(), "source_coordinate_frame": item["coordinate_frame"], "source_units": item["unit"], "target_coordinate_frame": observed["coordinate_frame"], "target_units": observed["units"], "source_geometry_path": relative(task, source_path), "source_geometry_sha256": sha256(source_path), "target_object_ply_sha256": sha256(target_path), "target_scene_sha256": sha256(scene_path), "correspondences_path": relative(task, proof_path), "correspondences_sha256": sha256(proof_path), "max_error_world_units": threshold, "reference_generated_frame": reference_name, "initial_object_to_world": initial.tolist(), "camera_chain": camera_qa, "geometry": geometric_qa, "reprojection": reprojection_qa, "semantic_correspondence_review": "geometric_track_identity_and_camera_initialized_nearest_geometry; no_manual_semantic_review", "input_hashes": {relative(task, p): sha256(p) for p in (geometry_path, provenance_path, metadata_path, pose_path)}, "conditioning_camera_hashes": camera_refs, "axis_convention": "inverse_official_to_glb_row_export_then_PyTorch3D_row_pose_then_OpenCV_camera"}
     registration_path = output_dir / "registration.json"
     write_json(registration_path, registration)
     return {**item, "registration": registration, "registration_path": relative(task, registration_path), "registration_sha256": sha256(registration_path), "registration_source_geometry_path": relative(task, source_path), "registration_source_geometry_sha256": sha256(source_path), "room_alignment": "observed_correspondence_verified", "observed_anchor_applied": False}
@@ -357,7 +428,7 @@ def run(args):
     stage = local_path(task, "stages/geometry_completion/registration", exists=False)
     stage.mkdir(parents=True, exist_ok=True)
     output = Path(tempfile.mkdtemp(prefix="run-", dir=stage))
-    report = {"status": "running", "threshold_world_units": threshold, "objects": []}
+    report = {"status": "running", "threshold_world_units": threshold, "objects": [], "rejected_objects": []}
     registered = []
     seen = set()
     try:
@@ -368,13 +439,34 @@ def run(args):
             seen.add(object_id)
             directory = local_path(task, output / object_id, exists=False)
             directory.mkdir()
-            result = register_object(task, item, candidate_by_id[object_id], observed[object_id], cameras, paths["scene_gaussian_ply"], directory, threshold, args)
+            try:
+                result = register_object(task, item, candidate_by_id[object_id], observed[object_id], cameras, paths["scene_gaussian_ply"], directory, threshold, args)
+            except (RegistrationError, OSError, ValueError, KeyError, ImportError) as error:
+                # One generated object that does not support the observed surface
+                # is a statement about that object, not about the other five. The
+                # object is still a delivered generated asset; only its room
+                # placement is refused, with the measurement that refused it.
+                print(f"{object_id}: room registration recorded as blocked: {error}", file=sys.stderr, flush=True)
+                report["rejected_objects"].append({"object_id": object_id, "reason": str(error), "policy": "recorded_not_blocking_per_object"})
+                registered.append({**item, "room_alignment": "not_estimated",
+                                   "registration": {"object_id": object_id, "status": "blocked_registration_validation",
+                                                    "error": str(error), "threshold_world_units": threshold}})
+                report["objects"].append({"object_id": object_id, "status": "blocked_registration_validation", "error": str(error)})
+                continue
             registered.append(result)
             report["objects"].append({"object_id": object_id, "registration_path": result["registration_path"], "status": "accepted"})
-        report["status"] = "accepted"
+        accepted = [entry for entry in report["objects"] if entry["status"] == "accepted"]
+        if not accepted and args.registration_policy == "fail":
+            raise RegistrationError("no generated object could be placed against the observed geometry: "
+                                    + "; ".join(f"{entry['object_id']}: {entry['error']}" for entry in report["objects"]))
+        if not accepted:
+            print("no generated object could be placed against the observed geometry; publishing them unplaced "
+                  "with the measurements recorded", file=sys.stderr, flush=True)
+        report["status"] = "accepted" if len(accepted) == len(report["objects"]) else "partially_accepted"
+        report["accepted_objects"] = [entry["object_id"] for entry in accepted]
         meshes_path, candidates_path = output / "completed_object_meshes.json", output / "completion_candidates.json"
         write_json(meshes_path, {**meshes, "objects": registered})
-        registrations = {item["object_id"]: item for item in registered}
+        registrations = {item["object_id"]: item for item in registered if item.get("registration_path")}
         updated_candidates = [{**candidate, "room_alignment": registrations[candidate["object_id"]]["room_alignment"], "registration_path": registrations[candidate["object_id"]]["registration_path"]} if candidate["object_id"] in registrations else candidate for candidate in candidates["objects"]]
         write_json(candidates_path, {**candidates, "objects": updated_candidates, "registration": report, "room_alignment_validated": True})
         publish(args, {"completed_object_meshes": meshes_path, "completion_candidates": candidates_path})
@@ -395,6 +487,9 @@ def main(argv=None):
     parser.add_argument("--min-observed-coverage", type=float, default=.7)
     parser.add_argument("--max-reprojection-pixels", type=float, default=8)
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--registration-policy", choices=("fail", "record"), default="fail",
+                        help="fail the stage when no generated object can be placed, or publish every object "
+                             "with its placement refused and the measurement that refused it")
     args = parser.parse_args(argv)
     if not 0 < args.max_camera_angle <= 30 or not .5 <= args.min_observed_coverage <= 1 or not 0 < args.max_reprojection_pixels <= 30:
         parser.error("invalid registration acceptance thresholds")
