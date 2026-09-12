@@ -5,9 +5,10 @@ The layout mirrors `video2world-export-assets/<scene>/`:
 
     datasets/<source>/            copied calibrated source media
     scene/point_cloud_3dgs.ply    observed PGSR Gaussians
-    scene/point_cloud_simple.ply  carved scene Gaussians
+    scene/point_cloud_simple.ply  observed scene surface points, coloured
+    scene/point_cloud_carved.ply  observed scene points with the objects carved out
     scene/mesh.ply                observed TSDF mesh
-    object/background.glb         generated background candidate when present
+    object/background.glb         observed scene surface with a baked texture
     object/object_version_2/<id>/asset_mesh.glb + asset_splat.ply
     object/object_version_1/<id>/<id>.obj|.mtl|.glb + textures
     export_manifest.json          role -> exported path, sha256, evidence class
@@ -38,8 +39,10 @@ from world_modeling.gaussian_io import GaussianError, read_gaussian_rows  # noqa
 # role -> fixed destination inside the export root
 SCENE_ROLES = {
     "scene_gaussian_ply": "scene/point_cloud_3dgs.ply",
-    "carved_scene_ply": "scene/point_cloud_simple.ply",
 }
+# the carved background cloud is an extra layer: object-removed scene points
+CARVED_CLOUD_PATH = "scene/point_cloud_carved.ply"
+SIMPLE_CLOUD_PATH = "scene/point_cloud_simple.ply"
 MESH_TO_PLY_ROLES = {"scene_tsdf_mesh": "scene/mesh.ply"}
 
 
@@ -111,6 +114,54 @@ def normalize_colors(polydata) -> bool:
     array.SetNumberOfComponents(3)
     polydata.GetPointData().SetScalars(array)
     return True
+
+
+def write_point_cloud(positions, colors, destination: Path) -> None:
+    """Write an XYZ + unsigned-char RGB point cloud that readers keep coloured."""
+    import numpy as np
+    from plyfile import PlyData, PlyElement
+
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    rows = np.empty(len(positions), dtype=[("x", "f4"), ("y", "f4"), ("z", "f4"),
+                                           ("red", "u1"), ("green", "u1"), ("blue", "u1")])
+    rows["x"], rows["y"], rows["z"] = positions[:, 0], positions[:, 1], positions[:, 2]
+    rows["red"], rows["green"], rows["blue"] = colors[:, 0], colors[:, 1], colors[:, 2]
+    PlyData([PlyElement.describe(rows, "vertex")], text=False).write(str(destination))
+
+
+def observed_scene_cloud(source: Path, destination: Path, budget: int) -> dict:
+    """Deliver the observed scene surface as a coloured point cloud.
+
+    The reference delivery carries four million coloured scene points next to the
+    surface, and a simulator that consumes that layer is looking at the scene, not
+    at a decimated mesh or at the background left over after carving the objects
+    out of it. The points come from the reconstructed TSDF surface before it is
+    decimated, thinned with a fixed stride so the same task always exports the
+    same cloud.
+    """
+    import numpy as np
+    from vtk.util.numpy_support import vtk_to_numpy
+
+    polydata = read_scene_mesh(source)
+    if not normalize_colors(polydata):
+        raise PipelineError(f"scene surface carries no vertex colours for the point cloud: {source}")
+    points = np.asarray(vtk_to_numpy(polydata.GetPoints().GetData()), dtype=np.float64)
+    colors = np.asarray(vtk_to_numpy(polydata.GetPointData().GetScalars()))
+    if len(points) != len(colors) or not len(points):
+        raise PipelineError("scene surface points and colours disagree")
+    finite = np.isfinite(points).all(axis=1)
+    points, colors = points[finite], colors[finite]
+    if not len(points):
+        raise PipelineError("scene surface has no finite points")
+    if budget and len(points) > budget:
+        selected = np.unique(np.linspace(0, len(points) - 1, budget).astype(np.int64))
+    else:
+        selected = np.arange(len(points))
+    write_point_cloud(points[selected], colors[selected].astype(np.uint8), destination)
+    return {"source_path": str(source), "evidence": "observed", "sha256": sha256(destination),
+            "points": int(len(selected)), "points_before": int(len(points)), "budget": int(budget),
+            "size_bytes": destination.stat().st_size,
+            "method": "observed_TSDF_surface_points_uniform_index_subset"}
 
 
 def write_scene_mesh(polydata, destination: Path) -> None:
@@ -579,6 +630,9 @@ def main(argv=None) -> int:
     parser.add_argument("--preview-views", type=int, default=6)
     parser.add_argument("--scene-face-budget", type=int, default=1_000_000,
                         help="decimate the reconstructed scene mesh to at most this many faces; 0 disables")
+    parser.add_argument("--simple-cloud-points", type=int, default=4_000_000,
+                        help="deliver the observed scene surface as at most this many coloured points; "
+                             "0 delivers the carved background cloud as scene/point_cloud_simple.ply instead")
     args = parser.parse_args(argv)
     root = args.root.resolve()
     task = Task(root, args.task_id)
@@ -608,6 +662,22 @@ def main(argv=None) -> int:
         manifest["scene_roles"][relative] = {"source_path": index[role]["path"], "sha256": sha256(destination),
                                              "evidence": index[role].get("evidence"),
                                              "converted_from": index[role]["path"], **info}
+    # The scene point cloud comes from the observed surface, before decimation,
+    # because that layer is what a simulator consumes as "the scene".
+    if "scene_tsdf_mesh" in index and args.simple_cloud_points:
+        verify_artifact(task, index["scene_tsdf_mesh"])
+        manifest["scene_roles"][SIMPLE_CLOUD_PATH] = observed_scene_cloud(
+            artifact_path(task, index["scene_tsdf_mesh"]), export_root / SIMPLE_CLOUD_PATH, args.simple_cloud_points)
+    elif "carved_scene_ply" not in index:
+        manifest["missing"].append("scene_tsdf_mesh")
+    if "carved_scene_ply" in index:
+        try:
+            manifest["scene_roles"][CARVED_CLOUD_PATH] = copy_gaussian_ply(
+                task, index["carved_scene_ply"], export_root / CARVED_CLOUD_PATH)
+        except GaussianError as error:
+            raise PipelineError(f"carved_scene_ply: {error}") from error
+    elif not args.simple_cloud_points:
+        manifest["missing"].append("carved_scene_ply")
     for role, name in (("scene_tsdf_mesh", "background.glb"), ("generated_background_mesh", "background_generated.glb")):
         record = index.get(role)
         if record is None:

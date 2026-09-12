@@ -108,6 +108,51 @@ class GaussianSceneExportTests(unittest.TestCase):
 
     @unittest.skipUnless(importlib.util.find_spec("vtk") and importlib.util.find_spec("trimesh"),
                          "vtk and trimesh are required for scene delivery")
+    def test_the_simple_cloud_is_sampled_from_the_observed_surface_with_colour(self):
+        import numpy as np
+        import trimesh
+
+        with tempfile.TemporaryDirectory() as folder:
+            mesh = trimesh.creation.icosphere(subdivisions=5)
+            colors = np.tile(np.array([[10, 200, 30, 255]], dtype=np.uint8), (len(mesh.vertices), 1))
+            mesh.visual = trimesh.visual.ColorVisuals(vertex_colors=colors)
+            source = Path(folder) / "scene.glb"
+            mesh.export(source)
+            destination = Path(folder) / "point_cloud_simple.ply"
+            info = export.observed_scene_cloud(source, destination, 1000)
+            self.assertEqual(info["evidence"], "observed")
+            self.assertLessEqual(info["points"], 1000)
+            self.assertGreater(info["points"], 900)
+            self.assertEqual(info["points_before"], len(mesh.vertices))
+            self.assertEqual(info["sha256"], export.sha256(destination))
+            loaded = trimesh.load(destination, process=False)
+            points = np.asarray(loaded.vertices)
+            self.assertEqual(len(points), info["points"])
+            self.assertTrue(np.isfinite(points).all())
+            # the delivered cloud is a subset of the observed surface, not a resample
+            self.assertTrue(np.isin(points, np.asarray(mesh.vertices)).all())
+            header = destination.read_bytes()[:300].decode("latin-1")
+            self.assertIn("red", header)
+            self.assertIn("green", header)
+            self.assertIn("blue", header)
+
+    def test_a_point_cloud_keeps_its_colour_through_the_ply_writer(self):
+        import numpy as np
+
+        with tempfile.TemporaryDirectory() as folder:
+            destination = Path(folder) / "cloud.ply"
+            positions = np.array([[0.0, 1.0, 2.0], [3.0, 4.0, 5.0]])
+            colors = np.array([[1, 2, 3], [250, 251, 252]], dtype=np.uint8)
+            export.write_point_cloud(positions, colors, destination)
+            from plyfile import PlyData
+
+            table = PlyData.read(str(destination))["vertex"]
+            np.testing.assert_allclose(np.column_stack([table["x"], table["y"], table["z"]]),
+                                       positions.astype(np.float32), atol=1e-6)
+            np.testing.assert_array_equal(np.column_stack([table["red"], table["green"], table["blue"]]), colors)
+
+    @unittest.skipUnless(importlib.util.find_spec("vtk") and importlib.util.find_spec("trimesh"),
+                         "vtk and trimesh are required for scene delivery")
     def test_scene_delivery_writes_a_glb_with_vertex_colours(self):
         import numpy as np
         import trimesh
