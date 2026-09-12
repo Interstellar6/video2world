@@ -120,7 +120,7 @@ def run(args) -> int:
     processor = AutoProcessor.from_pretrained(args.model, local_files_only=True, use_fast=False)
     stage = local_path(args.task_dir, args.outputs, exists=False).parent / "physics"
     stage.mkdir(parents=True, exist_ok=True)
-    objects, priors = [], []
+    objects, priors, skipped = [], [], []
     for index, plan in enumerate(plans):
         obj = plan["object"]
         object_id = obj["object_id"]
@@ -158,7 +158,12 @@ def run(args) -> int:
         write_json(stage / f"qwen_{index:04d}.json", {"object_id": object_id, "source_description": plan["source_description"],
                    "model": str(args.model), "attempts": attempts})
         if estimate is None:
-            raise ValueError(f"{object_id}: model did not return a valid physical estimate after retry")
+            # An object the model will not describe is a gap in one sidecar, not a
+            # reason to discard the other objects' assets and collision geometry.
+            reason = f"{object_id}: model did not return a valid physical estimate after retry"
+            print(reason, file=sys.stderr, flush=True)
+            skipped.append({"object_id": object_id, "reason": reason, "policy": "recorded_not_blocking_per_object"})
+            continue
         geometry_path = plan["geometry_path"]
         scene = trimesh.load(geometry_path, force="scene")
         if not scene.geometry:
@@ -183,12 +188,15 @@ def run(args) -> int:
                        "measured": False, "dimensions_applied_to_geometry": False,
                        "friction_coefficient": None, "restitution": None,
                        **lineage_metadata(obj), "source_description": plan["source_description"]})
+    if not objects:
+        raise ValueError("no object received a physical estimate: "
+                         + "; ".join(f"{entry['object_id']}: {entry['reason']}" for entry in skipped))
     paths = {role: stage / f"{role}.json" for role in ("physical_object_obj", "physics_properties", "physics_report")}
     write_json(paths["physical_object_obj"], {"schema_version": "1.0", "objects": objects})
     write_json(paths["physics_properties"], {"schema_version": "1.0", "objects": priors})
     write_json(paths["physics_report"], {"schema_version": "1.0", "object_count": len(objects), "model": str(args.model),
                                        "mesh_qa_status": qa.get("status"), "calibrated_physics": False,
-                                       "simulator_validation": "not_performed"})
+                                       "simulator_validation": "not_performed", "skipped_objects": skipped})
     publish(args, paths)
     return 0
 
