@@ -265,7 +265,31 @@ python3 scripts/compare_deliveries.py --describe <delivery> > candidate.json   #
 python3 scripts/compare_deliveries.py --reference <old> --candidate candidate.json --require-contract
 ```
 
-`run_dataset.py --export-dir <path> --compare-with <old>` does the export, the independent verification and this comparison in one invocation.
+`run_dataset.py --export-dir <path> --compare-with <old>` does the export, the independent verification and this comparison in one invocation. The export runs inside the launching interpreter and needs VTK to decimate and re-load the reconstructed surface, so `--export-dir` refuses up front when the interpreter has no VTK instead of failing after a full pipeline run.
+
+### The Delivered bedroom_4 Delivery, Measured
+
+The recipe above was run end to end on the ScanNet++ DSLR capture `bedroom_4` and exported to `video2world-export-assets/bedroom_4-stream3d`. `verify_export` reports `valid: true` with no issues over six objects, `world_modeling validate` reports the task `valid` and `completed`, and the delivery satisfies the whole contract that the reference export fails:
+
+| item | reference `bedroom_4` | delivered |
+|---|---|---|
+| `scene/point_cloud_simple.ply` | 4,000,000 points | 4,000,000 points, 60.0 MB |
+| `object/background.glb` | 98,436 tris, `POSITION`+`TEXCOORD_0`, 6.3 MB | 100,000 tris, `POSITION`+`TEXCOORD_0`, 7.8 MB, 2048² atlas from 50 calibrated frames at 46% texel coverage |
+| `scene/mesh.ply` | 1,351,454 faces, coloured | 1,000,000 faces decimated from 12,798,134, coloured |
+| `scene/point_cloud_3dgs.ply` | 871,317 vertices | 437,419 Gaussians |
+| `scene/depth/*` | absent | 50 frames, 16-bit |
+| observed parts | absent | 10 components with the group lifting resolved (`pillow_group`, `headboard`, `drawer_front`) |
+| QA previews | 3 | 4 |
+| collision hulls | absent for all 15 objects | present for all 6 objects (CoACD) |
+| objects | 15 v2 + 7 v1 (`lamp_*`, `plant_*`, `pillow_*`, `bed_bedding`, `bed_headboard`, …) | 6 (`bed`, `chairs`, `curtains`, `nightstand`, `paintings`, `windows`) |
+| delivery contract | violated | met |
+
+Two behaviours in that run were *recorded* rather than allowed to block, and both stay off by default:
+
+* `--generated-camera-fallback conditioning` keeps the depth each generated view predicts and takes the camera of the conditioning frame it was an edit of, because an independently estimated trajectory cannot be measured on a turntable orbit. Every frame keeps the rejected estimate (`da3_world_to_camera`), the manifest keeps the failure reason and both measured spans, and the dataset declares `colmap_world` so Stream3D reconstructs in the scene frame.
+* `--registration-policy record` publishes an object whose room placement cannot be verified as a generated asset with `room_alignment: not_estimated`, keeping the measurement that refused it. In that run none of the six placed: `bed` and `nightstand` initialised well (70,003 and 1,895 observed points inside the generated surface at 0.51 and 0.43 scene units) but reached 76% and 58% inliers where the gate requires 90%, and `chairs` and `curtains` have only 33 and 162 observed points to place against at all.
+
+The remaining gap against the reference is object coverage and scene density, both quantified above. The coverage gap has a named cause: the hints that were deployed for that run did not ask for lamps or plants, which the reference exports; the shipped hints now do, so closing it is a re-run rather than an unknown.
 
 ## Credentials and Readiness
 
