@@ -16,6 +16,8 @@ runs so the caller never has to guess where the artifacts went.
 
 from __future__ import annotations
 
+import importlib.util
+
 import argparse
 import re
 import sys
@@ -68,6 +70,12 @@ def main(argv=None) -> int:
 
     if args.compare_with and not args.export_dir:
         raise SystemExit("--compare-with needs --export-dir: there is nothing to compare otherwise")
+    if args.export_dir and importlib.util.find_spec("vtk") is None:
+        # The export decimates a reconstructed surface with VTK and re-loads what
+        # it wrote, so an interpreter without VTK cannot produce a delivery.
+        # Refusing here is clearer than failing after a full pipeline run.
+        raise SystemExit("--export-dir needs VTK in this interpreter: run run_dataset.py with the environment "
+                         "that provides vtk (the pipeline itself does not)")
     source = args.source.expanduser().resolve()
     if not source.is_dir() or not (source / "images").is_dir() or not (source / "sparse").is_dir():
         raise SystemExit(f"--source must be a directory containing images/ and sparse/: {source}")

@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+import contextlib
 import importlib.util
+import io
 import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts/run_dataset.py"
@@ -74,6 +77,18 @@ class OutputDirectoryTests(unittest.TestCase):
         with contextlib.redirect_stdout(stream), self.assertRaises(SystemExit):
             launcher.main(["--help"])
         self.assertIn("--compare-with", stream.getvalue())
+
+    def test_an_export_without_vtk_is_refused_before_the_pipeline_runs(self):
+        with tempfile.TemporaryDirectory() as folder:
+            source = Path(folder) / "dataset"
+            (source / "images").mkdir(parents=True)
+            (source / "sparse").mkdir()
+            stream = io.StringIO()
+            with contextlib.redirect_stdout(stream), patch.object(launcher.importlib.util, "find_spec", return_value=None), \
+                    self.assertRaises(SystemExit) as raised:
+                launcher.main(["--source", str(source), "--output-dir", folder,
+                               "--export-dir", str(Path(folder) / "delivery")])
+            self.assertIn("needs VTK", str(raised.exception))
 
     def test_the_default_profile_is_the_stream3d_asset_recipe(self):
         # The delivered architecture: Holi-Spatial scene, Qwen/SAM3-I objects,
