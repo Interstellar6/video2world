@@ -363,6 +363,30 @@ class GaussianSceneExportTests(unittest.TestCase):
             self.assertIn("Missing roles: `scene_depth`", text)
             self.assertIn("no baked texture: no calibrated frames", text)
 
+    def test_an_object_without_a_physics_obj_still_ships_a_material(self):
+        with tempfile.TemporaryDirectory() as folder:
+            task = export.Task(Path(folder), "scene")
+            asset_dir = task.directory / "stages/mesh_postprocess/run/assets/bed"
+            asset_dir.mkdir(parents=True)
+            (asset_dir / "material.mtl").write_text("newmtl material_0\nmap_Kd material_0.png\n")
+            (asset_dir / "material_0.png").write_bytes(b"\x89PNG\r\n\x1a\n texture")
+            document = {"objects": [{"object_id": "bed", "asset_dir": "stages/mesh_postprocess/run/assets/bed",
+                                     "provider": "embodiedgen_v2_texture_baker"}]}
+            path = task.directory / "mesh_qa_report.json"
+            path.write_text(json.dumps(document))
+            index = {"mesh_qa_report": {"path": "mesh_qa_report.json", "sha256": export.sha256(path),
+                                        "size_bytes": path.stat().st_size, "producer": "mesh_postprocess"}}
+            export_root = Path(folder) / "delivery"
+            (export_root / "object/object_version_1/bed").mkdir(parents=True)
+            manifest = {"object_version_1": {"bed": {"bed.glb": {"source_path": "x", "sha256": "0" * 64}},
+                                             "chairs": {"chairs.glb": {}}}, "object_version_2": {}}
+            export.export_asset_materials(task, export_root, index, manifest)
+            delivered = sorted(p.name for p in (export_root / "object/object_version_1/bed").iterdir())
+            self.assertEqual(delivered, ["material.mtl", "material_0.png"])
+            self.assertIn("material.mtl", manifest["object_version_1"]["bed"])
+            # an object with no asset directory of its own is left alone
+            self.assertFalse((export_root / "object/object_version_1/chairs").exists())
+
     def test_a_tampered_source_cloud_is_rejected_before_export(self):
         task, source, record, directory = self.build([[0.0, 0.0, 0.0]])
         write_gaussian_ply(source, [[0.0, 0.0, 0.0], [2.0, 2.0, 2.0]])

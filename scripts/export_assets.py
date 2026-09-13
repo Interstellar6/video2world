@@ -500,7 +500,46 @@ def export_object_versions(task: Task, root: Path, index: dict, manifest: dict) 
                 destination.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(source, destination)
                 entry[f"textures/{source.name}"] = {"source_path": value, "sha256": sha256(source)}
+    export_asset_materials(task, root, index, manifest)
     export_object_reports(task, root, index, manifest)
+
+
+def export_asset_materials(task: Task, root: Path, index: dict, manifest: dict) -> None:
+    """Give every delivered object a material sidecar, whatever produced its OBJ.
+
+    A version-1 object directory is a textured asset, and its OBJ only means
+    something next to the material that names its texture. The physics stage
+    writes that OBJ, but it records an object it could not describe without one,
+    so EmbodiedGen's own material and texture are copied in for those objects and
+    the source is recorded.
+    """
+    if "mesh_qa_report" not in index:
+        return
+    assets = {}
+    for item in records_of(read_json(artifact_path(task, index["mesh_qa_report"])), "objects"):
+        object_id = str(item.get("object_id") or "").strip()
+        if object_id and isinstance(item.get("asset_dir"), str):
+            assets[object_id] = (task.directory / item["asset_dir"]).resolve()
+    for object_id, entry in manifest["object_version_1"].items():
+        if any(name.endswith(".mtl") for name in entry):
+            continue
+        asset_dir = assets.get(object_id)
+        if asset_dir is None or not asset_dir.is_dir():
+            continue
+        materials = sorted(asset_dir.glob("*.mtl"))
+        if not materials:
+            continue
+        destination = root / "object" / "object_version_1" / object_id
+        destination.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(materials[0], destination / materials[0].name)
+        entry[materials[0].name] = {"source_path": str(materials[0].relative_to(task.directory)),
+                                    "sha256": sha256(materials[0]),
+                                    "note": "object asset material; the physics stage published no OBJ for this object"}
+        for texture in sorted(asset_dir.glob("material*.png")):
+            shutil.copy2(texture, destination / texture.name)
+            entry[texture.name] = {"source_path": str(texture.relative_to(task.directory)),
+                                   "sha256": sha256(texture),
+                                   "note": "texture named by the object asset material"}
 
 
 def object_report_sources(task: Task, index: dict) -> dict:
