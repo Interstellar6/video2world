@@ -71,17 +71,27 @@ class ShippedProfileTests(unittest.TestCase):
         self.assertEqual(option(command_of(load("seetacloud.json"), "geometry_completion"),
                                 "--generated-camera-fallback"), "conditioning")
 
-    def test_the_object_hints_name_the_furniture_the_scene_is_asked_about(self):
+    def test_the_object_hints_name_every_category_the_reference_delivery_contains(self):
         # The hints are part of the stage fingerprint: they decide which
         # categories Qwen reports, so widening them costs a fresh detection pass
-        # and a full downstream re-run. They are asserted rather than tweaked by
-        # hand. The reference delivery also carries lamp and plant instances,
-        # which these hints do not name; see the README's coverage note.
+        # and a full downstream re-run. The reference export ships lamps and
+        # plants next to the bedroom furniture, so a hint list that omits them
+        # cannot cover its object set even where the scene contains them.
         for name in ("embodiedgen-stream3d.skipbg.json", "embodiedgen.skipbg.json", "three-d-fixer.skipbg.json"):
             with self.subTest(profile=name):
                 hints = option(command_of(load(name), "scene_understanding"), "--object-hints").lower()
-                for category in ("pillow", "headboard", "nightstand", "painting", "window", "curtain", "rug", "chair", "desk"):
+                for category in ("pillow", "headboard", "bedding", "nightstand", "painting", "window", "curtain",
+                                 "rug", "chair", "desk", "lamp", "plant"):
                     self.assertIn(category, hints, f"{name}: hints do not mention {category}")
+
+    def test_the_scene_recipe_exposes_the_density_controls_it_uses(self):
+        # Measured: 6000 and 30000 iterations both delivered ~440k Gaussians, so
+        # the densification window and gradient threshold are what set density.
+        profile = load("embodiedgen-stream3d.skipbg.json")
+        command = command_of(profile, "scene_reconstruction")
+        self.assertEqual(option(command, "--pgrs-iterations") or option(command, "--pgsr-iterations"), "30000")
+        self.assertEqual(option(command, "--densify-until-iter"), "20000")
+        self.assertEqual(option(command, "--densify-grad-threshold"), "0.0001")
 
     def test_a_profile_declares_every_provider_it_binds(self):
         for path in sorted(PROFILES.glob("*.json")):

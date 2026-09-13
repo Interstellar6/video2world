@@ -293,7 +293,11 @@
         "--pgsr-iterations",
         "30000",
         "--max-frames",
-        "0"
+        "0",
+        "--densify-grad-threshold",
+        "0.0001",
+        "--densify-until-iter",
+        "20000"
       ],
       "kind": "command"
     },
@@ -313,7 +317,7 @@
         "--component-inventory-policy",
         "tolerant",
         "--object-hints",
-        "nightstands, bed frames and headboards, pillows, paintings, mirrors, windows, curtains, rugs, chairs and desks"
+        "nightstands, bed frames and headboards, bedding, pillows, paintings, mirrors, windows, curtains, rugs, chairs and desks, table lamps and floor lamps, potted plants"
       ],
       "kind": "command"
     }
