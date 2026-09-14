@@ -269,27 +269,31 @@ python3 scripts/compare_deliveries.py --reference <old> --candidate candidate.js
 
 ### The Delivered bedroom_4 Delivery, Measured
 
-The recipe above was run end to end on the ScanNet++ DSLR capture `bedroom_4` and exported to `video2world-export-assets/bedroom_4-stream3d`. `verify_export` reports `valid: true` with no issues over six objects, `world_modeling validate` reports the task `valid` and `completed`, and the delivery satisfies the whole contract that the reference export fails:
+The recipe above was run end to end twice on the ScanNet++ DSLR capture `bedroom_4`. The final delivery is `video2world-export-assets/bedroom_4-stream3d-v2` from task `bedroom4-coverage-20260913`, produced by one `run_dataset.py` invocation (`PIPELINE_EXIT=0`) followed by its own export and independent verification (`EXPORT_VERIFY_EXIT=0`). `verify_export` reports `valid: true` over eleven objects, `world_modeling validate` reports the task `valid` and `completed`, and the delivery satisfies the whole contract the reference export fails:
 
 | item | reference `bedroom_4` | delivered |
 |---|---|---|
+| `scene/point_cloud_3dgs.ply` | 871,317 vertices | 1,079,983 Gaussians, 267.8 MB |
 | `scene/point_cloud_simple.ply` | 4,000,000 points | 4,000,000 points, 60.0 MB |
-| `object/background.glb` | 98,436 tris, `POSITION`+`TEXCOORD_0`, 6.3 MB | 100,000 tris, `POSITION`+`TEXCOORD_0`, 7.8 MB, 2048² atlas from 50 calibrated frames at 46% texel coverage |
+| `object/background.glb` | 98,436 tris, `POSITION`+`TEXCOORD_0`, 6.3 MB | 100,000 tris, `POSITION`+`TEXCOORD_0`, 7.8 MB, 2048² atlas from 50 calibrated frames |
 | `scene/mesh.ply` | 1,351,454 faces, coloured | 1,000,000 faces decimated from 12,798,134, coloured |
-| `scene/point_cloud_3dgs.ply` | 871,317 vertices | 437,419 Gaussians |
 | `scene/depth/*` | absent | 50 frames, 16-bit |
-| observed parts | absent | 10 components with the group lifting resolved (`pillow_group`, `headboard`, `drawer_front`) |
+| `scene/point_cloud_carved.ply` | absent | 777,648 scene points with the objects carved out |
+| observed parts | absent | 16 components across 7 objects, named by the group lifting resolved: `headboard`, `pillow_group`, `bedskirt`, `bed_quilt`, `drawer_front`, `shade`, `flower_group` |
 | QA previews | 3 | 4 |
-| collision hulls | absent for all 15 objects | present for all 6 objects (CoACD) |
-| objects | 15 v2 + 7 v1 (`lamp_*`, `plant_*`, `pillow_*`, `bed_bedding`, `bed_headboard`, …) | 6 (`bed`, `chairs`, `curtains`, `nightstand`, `paintings`, `windows`) |
+| collision hulls | absent for all 15 objects | present for all 11 objects (CoACD) |
+| objects | 15 v2 + 7 v1 (`lamp_*`, `plant_*`, `pillow_*`, `bed_bedding`, `bed_headboard`, …) | 11 v2 + 11 v1: `bed`, `bedding`, `chairs`, `curtains`, `desks`, `nightstand`, `paintings`, `potted_plants`, `rug`, `table_lamps`, `windows` |
 | delivery contract | violated | met |
+| total size | 1933.7 MB | 1081.4 MB |
 
-Two behaviours in that run were *recorded* rather than allowed to block, and both stay off by default:
+Every category the reference export names is present: bedding, lamps, nightstand, paintings, plants and windows, with `chairs`, `curtains`, `rug` and `desks` beyond it. Pillows and headboards are not separate generated objects here; they are the `pillow_group` and `headboard` components of the observed-parts layer, which is the layer the reference does not have at all.
+
+Scene density is set by densification, not by iteration count: measured on this capture, 6000 and 30000 iterations both delivered about 440k Gaussians, while `--densify-grad-threshold 0.0001 --densify-until-iter 20000` delivered 1,079,983, above the reference model's 1,331,069-scale scene at 871,317 delivered vertices.
+
+Two behaviours in these runs are *recorded* rather than allowed to block, and both stay off by default:
 
 * `--generated-camera-fallback conditioning` keeps the depth each generated view predicts and takes the camera of the conditioning frame it was an edit of, because an independently estimated trajectory cannot be measured on a turntable orbit. Every frame keeps the rejected estimate (`da3_world_to_camera`), the manifest keeps the failure reason and both measured spans, and the dataset declares `colmap_world` so Stream3D reconstructs in the scene frame.
-* `--registration-policy record` publishes an object whose room placement cannot be verified as a generated asset with `room_alignment: not_estimated`, keeping the measurement that refused it. In that run none of the six placed: `bed` and `nightstand` initialised well (70,003 and 1,895 observed points inside the generated surface at 0.51 and 0.43 scene units) but reached 76% and 58% inliers where the gate requires 90%, and `chairs` and `curtains` have only 33 and 162 observed points to place against at all.
-
-The remaining gap against the reference is object coverage and scene density, both quantified above. The coverage gap has a named cause: the hints that were deployed for that run did not ask for lamps or plants, which the reference exports; the shipped hints now do, so closing it is a re-run rather than an unknown.
+* `--registration-policy record` publishes an object whose room placement cannot be verified as a generated asset with `room_alignment: not_estimated`, keeping the measurement that refused it. Registration also measures the depth model's scale against the observed surface and refines it within ±15% before the correspondence fit, which is what placed `table_lamps` in the room; the other ten are refused by shape agreement, not by initialisation — their generated surfaces reach 0.72 to 0.88 inliers where the gate requires 0.90, and `chairs` has 33 observed points to place against at all.
 
 ## Credentials and Readiness
 
